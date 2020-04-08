@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="448.0" y="0.0">UsersComparator</node>
+    <node x="132.0" y="872.0">Game</node>
+    <node x="859.0" y="186.0">User</node>
+    <node x="372.0" y="2148.0">moves</node>
+    <node x="0.0" y="176.0">Menu</node>
+    <node x="397.0" y="601.0">Main</node>
+    <node x="314.0" y="331.0">RegistrationMenu</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="RegistrationMenu" target="User">
+      <point x="-0.14369623612236637" y="-4.997934712631263" />
+      <point x="-0.14369623612236637" y="-4.997934712631263" />
+    </edge>
+    <edge source="Game" target="User">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Menu" target="Main">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Main" target="RegistrationMenu">
+      <point x="-5.040843638598943" y="0.0" />
+      <point x="-5.040843638598943" y="0.0" />
+    </edge>
+    <edge source="Menu" target="RegistrationMenu">
+      <point x="0.0" y="-5.496745439659776" />
+      <point x="0.0" y="-5.496745439659776" />
+    </edge>
+    <edge source="RegistrationMenu" target="Main">
+      <point x="4.959487298627764" y="-0.6352052697749855" />
+      <point x="4.959487298627764" y="-0.6352052697749855" />
+    </edge>
+    <edge source="Menu" target="UsersComparator">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="RegistrationMenu" target="Menu">
+      <point x="-2.07710598207224" y="4.548145857296106" />
+      <point x="-2.0771059820722257" y="4.548145857296049" />
+    </edge>
+    <edge source="Game" target="Menu">
+      <point x="-4.95990229500552" y="0.6319566630701843" />
+      <point x="-4.95990229500552" y="0.6319566630702411" />
+    </edge>
+    <edge source="UsersComparator" target="User">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Menu" target="User">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Game" target="moves">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Menu" target="Game">
+      <point x="5.040421869836905" y="0.0" />
+      <point x="5.040421869836791" y="0.0" />
+    </edge>
+    <edge source="Game" target="Main">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal" zoom="1.2953204049831253" x="299.00794928749986" y="700.3350710777272" />
+  <SelectedNodes>
+    <node>Game</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
