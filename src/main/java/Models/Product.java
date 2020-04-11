@@ -3,6 +3,7 @@ package Models;
 import java.util.ArrayList;
 
 public class Product {
+
     private String productId;
     private Situation productSituation;
     private String name;
