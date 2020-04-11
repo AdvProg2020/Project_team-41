@@ -1,5 +1,7 @@
 package Models;
 
+import Models.Person.Seller;
+
 import java.util.ArrayList;
 
 public class Product {

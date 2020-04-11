@@ -1,5 +1,7 @@
 package Models;
 
+import Models.Person.Person;
+
 public class Comment {
     private Person person;
     private Product product;
