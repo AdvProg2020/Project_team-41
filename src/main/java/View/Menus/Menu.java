@@ -1,4 +1,4 @@
-package View;
+package View.Menus;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,8 +7,9 @@ public abstract class Menu {
     private Menu superMenu;
     private ArrayList<Menu> subMenus;
     private String name;
-    private static Scanner scanner = new Scanner(System.in);
+    protected static Scanner scanner = new Scanner(System.in);
     public Menu(Menu superMenu, String name) {
+        subMenus = new ArrayList<>();
         this.superMenu = superMenu;
         this.name = name;
     }
@@ -48,6 +49,10 @@ public abstract class Menu {
 
     public String getName() {
         return name;
+    }
+
+    public void addSubMenu(Menu subMenu){
+        this.subMenus.add(subMenu);
     }
 
 }
