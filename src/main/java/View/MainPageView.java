@@ -1,23 +1,22 @@
 package View;
-
 import java.util.Scanner;
-
 public class MainPageView {
-    private Scanner scanner = new Scanner(System.in);
     private String command;
     private boolean loggedIn;
+    private static Scanner scanner = new Scanner(System.in);
+    private static MainPageView single_instance = null;
+    public static MainPageView getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new MainPageView();
 
-    public MainPageView() {
+        return single_instance;
     }
 
-    public void run(){
-        mainMenu();
-
-    }
-    private void mainMenu(){
+    public void mainMenu(){
         command = scanner.nextLine();
       //if
-         userSection();
+         UserSection.getInstance();
       //else if
         productSection();
       //else if
@@ -26,6 +25,7 @@ public class MainPageView {
     }
     private void userSection(){
         //if not logged in
+
 
     }
     private void productSection(){
@@ -38,4 +38,7 @@ public class MainPageView {
 
     }
 
+    public static Scanner getScanner() {
+        return scanner;
+    }
 }
