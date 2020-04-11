@@ -1,6 +1,6 @@
 package Controller;
 
-import Models.Person;
+import Models.Person.Person;
 
 import java.util.ArrayList;
 
