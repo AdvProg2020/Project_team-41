@@ -3,7 +3,7 @@ package Models;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Sale {
+public class Off {
     private String offId;
     private ArrayList<Product>products;
     private Situation situation;
