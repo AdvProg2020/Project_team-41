@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public class Category {
     private String name;
-    //todo private ArrayList<String>
+    private ArrayList<String> specialFeatures;//todo new in constructor
     private ArrayList<Product>products;
 }
