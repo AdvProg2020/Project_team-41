@@ -21,4 +21,5 @@ public class Product {
     private String description;
     private ArrayList<Score>scores;//todo add method to calculate average
     private ArrayList<Comment>comments;
+    private int views;
 }

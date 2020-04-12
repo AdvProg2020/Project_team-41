@@ -13,7 +13,7 @@ public abstract class Menu {
         this.superMenu = superMenu;
         this.name = name;
     }
-    private void show(){
+    public void show(){
         for (Menu subMenu : subMenus) {
             System.out.println(subMenu.getName());
         }
@@ -21,7 +21,7 @@ public abstract class Menu {
             System.out.println("back");
         this.execute();
     }
-    private void execute(){
+    public void execute(){
         String command = scanner.nextLine();
         if(command.equals("help"))
             this.show();
