@@ -3,6 +3,7 @@ package Models;
 import java.util.ArrayList;
 
 public class Category {
+    private static ArrayList<Category> allCategory = new ArrayList<>();
     private String name;
     private ArrayList<String> specialFeatures;//todo new in constructor
     private ArrayList<Product>products;
