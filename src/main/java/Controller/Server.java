@@ -1,5 +1,6 @@
 package Controller;
 
+import Models.Category;
 import Models.Person.Person;
 
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ public class Server {
 
         return single_instance;
     }
-    ArrayList<Person> allUsers;
+    private ArrayList<Person> allUsers;
     private Person loggedInPerson;
+    private ArrayList<Category>categories;
 
     public Person getLoggedInPerson() {
         return loggedInPerson;
