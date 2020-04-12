@@ -1,6 +1,11 @@
+import View.Menus.MainMenu;
+
 public class Main {
 
     public static void main(String[] args) {
-        MainPageView.getInstance().mainMenu();
+        MainMenu mainMenu=new MainMenu();
+        mainMenu.show();
+        mainMenu.execute();
+
     }
 }
