@@ -7,4 +7,12 @@ public class Category {
     private String name;
     private ArrayList<String> specialFeatures;//todo new in constructor
     private ArrayList<Product>products;
+
+    public static Category getCategoryByName(String CategoryName) {
+        //todo
+        Category example = null;
+        return example;
+    }
+
+
 }
