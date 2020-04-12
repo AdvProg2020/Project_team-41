@@ -21,6 +21,7 @@ public class Server {
     private Person loggedInPerson;
     private Category filterCategory;
     private HashMap<String ,String> filterFeature;
+    private ArrayList<Product> cart;
 
     public Person getLoggedInPerson() {
         return loggedInPerson;
@@ -38,6 +39,24 @@ public class Server {
         this.filterFeature = filterFeature;
     }
 
+    public Category getFilterCategory() {
+        return filterCategory;
+    }
+
+    public HashMap<String, String> getFilterFeature() {
+        return filterFeature;
+    }
+    public int create(String type,String user,String pass){
+        //return -1 invalid User
+        //return 1 correct
+        //return 0 error type
+    }
+    public boolean login(String user,String pass){
+
+    }
+    public void logout(){
+
+    }
 
 
 
