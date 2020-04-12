@@ -15,6 +15,7 @@ public abstract class Menu {
     }
     public void show(){
         for (Menu subMenu : subMenus) {
+
             System.out.println(subMenu.getName());
         }
         if(superMenu != null)
@@ -44,6 +45,7 @@ public abstract class Menu {
 
             }
         }
+        //todo if not valid
     }
 
 

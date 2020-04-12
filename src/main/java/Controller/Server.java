@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Server {
+    private ArrayList<Product> filterProducts = new ArrayList<>();
 
     private static Server single_instance = null;
     public static Server getInstance()
@@ -29,7 +30,6 @@ public class Server {
         this.loggedInPerson = loggedInPerson;
     }
 
-
     public void setFilterCategory(Category filterCategory) {
         this.filterCategory = filterCategory;
     }
@@ -37,6 +37,8 @@ public class Server {
     public void setFilterFeature(HashMap<String, String> filterFeature) {
         this.filterFeature = filterFeature;
     }
+
+
 
 
 

@@ -5,9 +5,6 @@ public class Products extends Menu {
         super(superMenu, "Products");
         addSubMenu(new Product(this));
     }
-    private void filter(){
-
-    }
 
     //todo getter for unnamed subclasses
 }
