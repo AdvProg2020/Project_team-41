@@ -17,9 +17,7 @@ public class Server {
 
         return single_instance;
     }
-    private ArrayList<Person> allUsers;
     private Person loggedInPerson;
-    private ArrayList<Category>categories;
     private Category filterCategory;
     private HashMap<String ,String> filterFeature;
 
@@ -31,9 +29,15 @@ public class Server {
         this.loggedInPerson = loggedInPerson;
     }
 
-    public ArrayList<Category> getCategories() {
-        return categories;
+
+    public void setFilterCategory(Category filterCategory) {
+        this.filterCategory = filterCategory;
     }
-    public
+
+    public void setFilterFeature(HashMap<String, String> filterFeature) {
+        this.filterFeature = filterFeature;
+    }
+
+
 
 }
