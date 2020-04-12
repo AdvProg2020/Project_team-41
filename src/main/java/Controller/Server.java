@@ -38,7 +38,13 @@ public class Server {
         this.filterFeature = filterFeature;
     }
 
+    public Category getFilterCategory() {
+        return filterCategory;
+    }
 
+    public HashMap<String, String> getFilterFeature() {
+        return filterFeature;
+    }
 
-
+    
 }
