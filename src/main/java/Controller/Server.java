@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Server {
+
     private static Server single_instance = null;
     public static Server getInstance()
     {

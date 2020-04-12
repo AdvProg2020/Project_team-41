@@ -4,8 +4,8 @@ import Models.TradeLogs;
 
 import java.util.ArrayList;
 
-public class Person {
-
+public abstract class Person {
+    private static ArrayList<Person> allUsers = new ArrayList<>();
     //start of personal information
     private String userName;
     private String firstName;
