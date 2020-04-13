@@ -1,9 +1,9 @@
 package View.Menus;
 
-public class Filter extends Products {
+public class Filter extends Menu {
 
     public Filter(Menu superMenu) {
-        super(superMenu);
+        super(superMenu,"Filter");
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Filter extends Products {
     private void showAvailableFilters(){
         //todo
     }
-    private void filter(){
+    private void filter(String input){
 
     }
     private void currentFilters(){
