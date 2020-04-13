@@ -29,7 +29,6 @@ public class Server {
         this.loggedInPerson = loggedInPerson;
     }
 
-
     public void setFilterCategory(Category filterCategory) {
         this.filterCategory = filterCategory;
     }
@@ -37,6 +36,7 @@ public class Server {
     public void setFilterFeature(HashMap<String, String> filterFeature) {
         this.filterFeature = filterFeature;
     }
+
 
 
 
