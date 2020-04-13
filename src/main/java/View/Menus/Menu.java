@@ -24,8 +24,10 @@ public abstract class Menu {
     }
     public void execute(){
         String command = scanner.nextLine();
-        if(command.equals("help"))
+        if(command.equals("help")) {
             this.show();
+            this.execute();
+        }
         if(command.equals("back")) {
             if (superMenu != null) {
                 superMenu.show();
