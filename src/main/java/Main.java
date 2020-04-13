@@ -1,4 +1,4 @@
-import View.Menus.MainMenu;
+import Client.View.Menus.MainMenu;
 
 public class Main {
 
