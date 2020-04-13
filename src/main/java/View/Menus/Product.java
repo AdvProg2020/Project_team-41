@@ -5,6 +5,9 @@ public class Product extends Menu {
     public Product(Menu superMenu) {
         super(superMenu, "Product");
         addSubMenu(addDigest());
+        addSubMenu(addAttribute());
+        addSubMenu(addComments());
+        addSubMenu(addCompare());
     }
 
     @Override
@@ -28,12 +31,57 @@ public class Product extends Menu {
         return new Menu(this,"Digest") {
             @Override
             public void show() {
+                //todo
+            }
+
+            @Override
+            public void execute() {
+                //todo
+            }
+        };
+    }
+    public Menu addAttribute(){
+        return new Menu(this,"Attributes") {
+            @Override
+            public void show() {
                 super.show();
             }
 
             @Override
             public void execute() {
                 super.execute();
+            }
+        };
+    }
+    public Menu addComments(){
+        return new Menu(this,"Comments") {
+            @Override
+            public void show() {
+                super.show();
+            }
+
+            @Override
+            public void execute() {
+                super.execute();
+            }
+        };
+    }
+    public Menu addCompare(){
+        return new Menu(this,"Compare") {
+            private int id;
+            @Override
+            public void show() {
+                super.show();
+            }
+
+            @Override
+            public void execute() {
+                super.execute();
+            }
+
+
+            public void setId(int id) {
+                this.id = id;
             }
         };
     }
