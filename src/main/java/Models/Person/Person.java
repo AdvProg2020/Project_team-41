@@ -17,6 +17,43 @@ public abstract class Person {
 
     private ArrayList<String>discountCodes;
     private int credit;
+
+    public static ArrayList<Person> getAllUsers() {
+        return allUsers;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public ArrayList<String> getDiscountCodes() {
+        return discountCodes;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public ArrayList<TradeLogs> getTradeLogs() {
+        return tradeLogs;
+    }
+
     private ArrayList<TradeLogs> tradeLogs;
 
     @Override

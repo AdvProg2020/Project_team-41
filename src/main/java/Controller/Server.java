@@ -18,18 +18,9 @@ public class Server {
 
         return single_instance;
     }
-    private Person loggedInPerson;
     private Category filterCategory;
     private HashMap<String ,String> filterFeature;
     private ArrayList<Product> cart;
-
-    public Person getLoggedInPerson() {
-        return loggedInPerson;
-    }
-
-    public void setLoggedInPerson(Person loggedInPerson) {
-        this.loggedInPerson = loggedInPerson;
-    }
 
     public void setFilterCategory(Category filterCategory) {
         this.filterCategory = filterCategory;
