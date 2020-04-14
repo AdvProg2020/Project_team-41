@@ -4,7 +4,7 @@ import Client.Models.Person.Person;
 
 import java.util.ArrayList;
 
-public class ManagerController {
+public class ManagerController extends UserSectionController{
     public Person viewUser(String username){
 
     }
