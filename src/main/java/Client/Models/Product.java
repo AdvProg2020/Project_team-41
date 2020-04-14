@@ -16,6 +16,7 @@ public class Product {
     private Seller seller;
     private boolean isThereMore;
     // end of common specifics
+
     private Category category;
     private HashMap<String, String> specialFeatures;//todo new in constructor
     private String description;
