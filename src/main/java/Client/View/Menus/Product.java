@@ -1,9 +1,10 @@
 package Client.View.Menus;
 
 public class Product extends Menu {
-    private int id;
-    public Product(Menu superMenu) {
+    private String id;
+    public Product(Menu superMenu , String productId) {
         super(superMenu, "Product");
+        id = productId;
         addSubMenu(addDigest());
         addSubMenu(addAttribute());
         addSubMenu(addComments());
@@ -27,6 +28,7 @@ public class Product extends Menu {
     public int getId() {
         return id;
     }
+
     public Menu addDigest(){
         return new Menu(this,"Digest") {
             @Override
