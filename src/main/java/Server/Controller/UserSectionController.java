@@ -1,4 +1,4 @@
-package Client.Controller;
+package Server.Controller;
 
 import Client.Models.Person.Person;
 

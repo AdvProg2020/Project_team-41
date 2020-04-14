@@ -10,7 +10,8 @@ public abstract class UserSection extends Menu {
         addSubMenu(new ViewPersonalInfo(this));
     }
 
-
-
-
+    @Override
+    public void execute() {
+        super.execute();
+    }
 }
