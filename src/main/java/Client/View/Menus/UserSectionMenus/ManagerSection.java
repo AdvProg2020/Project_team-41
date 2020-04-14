@@ -7,7 +7,8 @@ public class ManagerSection extends UserSection {
 
     public ManagerSection(Menu superMenu) {
         super(superMenu, "ManagerSection");
-        addSubMenu();
+        addSubMenu(this.addManageUsers());
+
     }
 
     @Override
@@ -21,7 +22,7 @@ public class ManagerSection extends UserSection {
         super.execute();
 
     }
-    private void getManageUsersObject(){
+    private Menu addManageUsers(){
         return new Menu(this,"manageUsers") {
                     public void view(Person username){
 
@@ -35,6 +36,7 @@ public class ManagerSection extends UserSection {
                     public void execute() {
                         super.execute();
                     }
-                });
+                };
     }
+
 }
