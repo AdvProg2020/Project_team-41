@@ -11,7 +11,7 @@ public class ManagerController extends UserSectionController{
     public boolean deleteUser(String username){
         //returns boolean for error handling
     }
-    public String createManagerProfile(ArrayList<String> userInfo){
+    public void createManagerProfile(ArrayList<String> userInfo){
         //returns String for error handling
     }
     public boolean removeProduct(String productId){
@@ -23,7 +23,7 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> viewDiscountCode(String code){
 
     }
-    public String editDiscountCode(String command,String code){
+    public void  editDiscountCode(String command,String code){
         //returns String for error handling
     }
     public boolean removeDiscountCode(String code){
