@@ -1,13 +1,11 @@
 package Client.View.Menus.UserSectionMenus;
 
-import Client.Controller.UserSectionController;
-import Client.Models.Person.Person;
+import Client.Controller.UserSectionController.ManagerController;
+import Client.Models.Person.Manager;
 import Client.View.Menus.Menu;
-import Client.View.Menus.UserSectionMenus.UserSection;
-
-import java.util.ArrayList;
 
 public class ManagerSection extends UserSection {
+    private ManagerController managerController;
 
     public ManagerSection(Menu superMenu) {
         super(superMenu, "ManagerSection");
@@ -17,7 +15,7 @@ public class ManagerSection extends UserSection {
         addSubMenu(this.addManageCategories());
         addSubMenu(this.addManageRequests());
         addSubMenu(this.addViewDiscountCodes());
-
+        managerController = new ManagerController();
     }
 
     @Override

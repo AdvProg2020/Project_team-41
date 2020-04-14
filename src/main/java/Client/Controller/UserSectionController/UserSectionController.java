@@ -1,4 +1,4 @@
-package Client.Controller;
+package Client.Controller.UserSectionController;
 
 import Client.Models.Person.Person;
 
