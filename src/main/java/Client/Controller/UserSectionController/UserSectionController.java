@@ -5,7 +5,7 @@ import Client.Models.Person.Person;
 import java.util.ArrayList;
 
 public class UserSectionController {
-    private static Person loggedInPerson;
+    protected static Person loggedInPerson;
     public static ArrayList<String> viewPersonalInfo(Person person){
         if(person == null)
             throw new NullPointerException();
