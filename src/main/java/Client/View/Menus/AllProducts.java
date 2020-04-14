@@ -1,8 +1,8 @@
 package Client.View.Menus;
 
-public class Products extends Menu {
-    public Products(Menu superMenu) {
-        super(superMenu, "Products");
+public class AllProducts extends Menu {
+    public AllProducts(Menu superMenu) {
+        super(superMenu, "AllProducts");
         addSubMenu(new Product(this));
         addSubMenu(new Filter(this));
         addSubMenu(new Sort(this));
