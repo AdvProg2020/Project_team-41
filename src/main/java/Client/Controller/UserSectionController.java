@@ -11,6 +11,9 @@ public class UserSectionController {
             throw new NullPointerException();
         //todo return ArrayList of personal info
     }
+    public static void edit(String field){
+        //todo edit fields except username
+    }
 
     public static Person getLoggedInPerson() {
         return loggedInPerson;
@@ -18,9 +21,6 @@ public class UserSectionController {
 
     public static void setLoggedInPerson(Person loggedInPerson) {
         UserSectionController.loggedInPerson = loggedInPerson;
-    }
-    public static void edit(String field){
-        //todo edit fields except username
     }
 
 }
