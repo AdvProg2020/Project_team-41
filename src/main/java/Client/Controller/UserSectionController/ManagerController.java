@@ -5,34 +5,34 @@ import Client.Models.Person.Person;
 import java.util.ArrayList;
 
 public class ManagerController {
-    public static Person viewUser(String username){
+    public Person viewUser(String username){
 
     }
-    public static boolean deleteUser(String username){
+    public boolean deleteUser(String username){
         //returns boolean for error handling
     }
-    public static String createManagerProfile(ArrayList<String> userInfo){
+    public String createManagerProfile(ArrayList<String> userInfo){
         //returns String for error handling
     }
-    public static boolean removeProduct(String productId){
+    public boolean removeProduct(String productId){
         //returns boolean for error handling
     }
-    public static void createDiscountCode(ArrayList<String> codeInformation){
+    public void createDiscountCode(ArrayList<String> codeInformation){
 
     }
-    public static ArrayList<String> viewDiscountCode(String code){
+    public ArrayList<String> viewDiscountCode(String code){
 
     }
-    public static String editDiscountCode(String command,String code){
+    public String editDiscountCode(String command,String code){
         //returns String for error handling
     }
-    public static boolean removeDiscountCode(String code){
+    public boolean removeDiscountCode(String code){
 
     }
-    public static ArrayList<String> showRequest(){
+    public ArrayList<String> showRequest(){
 
     }
-    public static ArrayList<String> getRequestDetails(String request){
+    public ArrayList<String> getRequestDetails(String request){
 
     }
     public boolean acceptRequest(String request){

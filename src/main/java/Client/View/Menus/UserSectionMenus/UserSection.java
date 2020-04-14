@@ -1,6 +1,6 @@
 package Client.View.Menus.UserSectionMenus;
 
-import Client.Controller.UserSectionController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.View.Menus.Menu;
 
 import java.util.ArrayList;
