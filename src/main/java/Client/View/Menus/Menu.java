@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Menu {
-    private Menu superMenu;
+    protected Menu superMenu;
     private ArrayList<Menu> subMenus;
     private String name;
     protected static Scanner scanner = new Scanner(System.in);
@@ -44,7 +44,6 @@ public abstract class Menu {
             if(command.equals(subMenu.getName())) {
                 subMenu.show();
                 subMenu.execute();
-
             }
         }
         //todo if not valid
