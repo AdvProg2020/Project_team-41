@@ -14,6 +14,8 @@ public class OffsController {
 
         return single_instance;
     }
+    private OffsController(){
+    }
     public ArrayList<Product> getOffs(){
 
     }

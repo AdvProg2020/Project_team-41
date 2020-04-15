@@ -1,5 +1,6 @@
 package Client.Controller.UserSectionController;
 
+import Client.Controller.BuyerAccountController.BuyerController;
 import Client.Models.Person.Person;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ public class ManagerController extends UserSectionController{
 
         return single_instance;
     }
+    private ManagerController(){
+    }
+
     public Person viewUser(String username){
 
     }

@@ -9,7 +9,8 @@ public class CartController {
 
         return single_instance;
     }
-
+    private CartController(){
+    }
     public static void increaseProduct(int num , String productId){
         //TODO increase number of the product
     }

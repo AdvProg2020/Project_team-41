@@ -18,4 +18,6 @@ public class LoginRegisterController {
     public void logout(){
 
     }
+    private LoginRegisterController(){
+    }
 }

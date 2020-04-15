@@ -9,4 +9,6 @@ public class Server {
 
         return single_instance;
     }
+    private Server(){
+    }
 }

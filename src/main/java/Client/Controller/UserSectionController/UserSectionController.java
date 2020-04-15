@@ -4,18 +4,8 @@ import Client.Models.Person.Person;
 
 import java.util.ArrayList;
 
-public class UserSectionController {
-    private static UserSectionController
-            single_instance = null;
-    public static UserSectionController
-    getInstance()
-    {
-        if (single_instance == null)
-            single_instance = new UserSectionController()
-                    ;
+public abstract class UserSectionController {
 
-        return single_instance;
-    }
     protected static Person loggedInPerson;
     public static ArrayList<String> viewPersonalInfo(Person person){
         if(person == null)

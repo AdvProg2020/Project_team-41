@@ -13,4 +13,6 @@ public class FilterController {
 
         return single_instance;
     }
+    private FilterController(){
+    }
 }

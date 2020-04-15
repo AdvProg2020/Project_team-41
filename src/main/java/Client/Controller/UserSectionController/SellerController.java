@@ -13,6 +13,9 @@ public class SellerController extends UserSectionController{
 
                 return single_instance;
         }
+        private SellerController(){
+
+        }
         public String getFactoryName(){
 
         }
