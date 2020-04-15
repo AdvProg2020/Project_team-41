@@ -1,8 +1,10 @@
 package Client.Controller;
 
+import Client.Models.Category;
 import Client.Models.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FilterController {
     private static FilterController single_instance = null;
@@ -13,20 +15,29 @@ public class FilterController {
 
         return single_instance;
     }
+
+    private Category filterCategory;
+    private HashMap<String ,String> filterFeature;
+
     private FilterController(){
     }
-    public ArrayList<String> getAvailableFilters(){
-
-    }
-    public ArrayList<Product> getFilteredProducts(String Filter){
-
-    }
-    public ArrayList<String> getCurrentFilters(){
-
-    }
-    public ArrayList<Product> getProductsWithDisabledFilter(String Filter){
-
+    public void setFilterCategory(Category filterCategory) {
+        this.filterCategory = filterCategory;
     }
 
+    public void setFilterFeature(HashMap<String, String> filterFeature) {
+        this.filterFeature = filterFeature;
+    }
 
+    public Category getFilterCategory() {
+        return filterCategory;
+    }
+
+    public HashMap<String, String> getFilterFeature() {
+        return filterFeature;
+    }
+
+    public ArrayList<Product> getFilteredProducts(){
+
+    }
 }

@@ -1,5 +1,7 @@
 package Client.Controller;
 
+import Client.Models.Product;
+
 import java.util.ArrayList;
 
 public class SortController {
@@ -13,16 +15,16 @@ public class SortController {
     }
     private SortController(){
     }
-    public ArrayList<String> getAvailableSorts(){
+    private String sortFeature;
 
+    public String getSortFeature() {
+        return sortFeature;
     }
-    public void sortProducts(String sort){
 
+    public void setSortFeature(String sortFeature) {
+        this.sortFeature = sortFeature;
     }
-    public String getCurrentSort(){
-
-    }
-    public void disableCurrentSort(){
+    public ArrayList<Product> getProducts(){
 
     }
 }
