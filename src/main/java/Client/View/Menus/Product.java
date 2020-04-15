@@ -1,5 +1,7 @@
 package Client.View.Menus;
 
+import Client.Controller.ProductController;
+
 public class Product extends Menu {
     private String id;
     public Product(Menu superMenu , String productId) {
@@ -21,29 +23,41 @@ public class Product extends Menu {
         super.execute();
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public Menu addDigest(){
-        return new Menu(this,"Digest") {
+        return new Menu(this,"digest") {
             @Override
             public void show() {
-                //todo
+                //todo print product info
             }
 
             @Override
             public void execute() {
-                //todo
+                this.addSubMenu(new Menu(this , "add to cart") {
+                    @Override
+                    public void show() {
+                        super.show();
+                    }
+
+                    @Override
+                    public void execute() {
+                        //todo Go to login page if user is not logged in(the function returns false):
+                        ProductController.addToCart(id);
+                    }
+                });
+
             }
         };
     }
     public Menu addAttribute(){
-        return new Menu(this,"Attributes") {
+        return new Menu(this,"attributes") {
             @Override
             public void show() {
                 super.show();
@@ -56,20 +70,33 @@ public class Product extends Menu {
         };
     }
     public Menu addComments(){
-        return new Menu(this,"Comments") {
+        return new Menu(this,"comments") {
             @Override
             public void show() {
-                super.show();
+                //TODO print comments
             }
 
             @Override
             public void execute() {
-                super.execute();
+                this.addSubMenu(new Menu() {
+                    @Override
+                    public void show() {
+                        //TODO print sth for user to enter comment
+                    }
+
+                    @Override
+                    public void execute() {
+                        //TODO get title and content:
+                        String title = "";
+                        String content = "";
+                        ProductController.addComment(title , content);
+                    }
+                });
             }
         };
     }
     public Menu addCompare(){
-        return new Menu(this,"Compare") {
+        return new Menu(this,"compare") {
             private int id;
             @Override
             public void show() {
@@ -81,10 +108,6 @@ public class Product extends Menu {
                 super.execute();
             }
 
-
-            public void setId(int id) {
-                this.id = id;
-            }
         };
     }
 }
