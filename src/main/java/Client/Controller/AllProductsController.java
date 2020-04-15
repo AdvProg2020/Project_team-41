@@ -1,9 +1,5 @@
 package Client.Controller;
 
-import Client.View.Menus.Product;
-
-import java.util.ArrayList;
-
 public class AllProductsController {
     private static AllProductsController single_instance = null;
     public static AllProductsController getInstance()
@@ -15,6 +11,7 @@ public class AllProductsController {
     }
     private AllProductsController(){
     }
+
 
 
 }

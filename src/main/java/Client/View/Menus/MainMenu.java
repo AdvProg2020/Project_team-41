@@ -5,8 +5,8 @@ public class MainMenu extends Menu {
     public MainMenu() {
         super(null, "Main");
         //todo if for subMenu logged in
-        addSubMenu(new AllProducts(this));
-        addSubMenu(new Offs(this));
+        addSubMenu(new AllProductsMenu(this));
+        addSubMenu(new OffsMenu(this));
 
 
     }

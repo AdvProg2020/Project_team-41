@@ -1,8 +1,8 @@
 package Client.View.Menus;
 
-public class Filter extends Menu {
+public class FilterMenu extends Menu {
 
-    public Filter(Menu superMenu) {
+    public FilterMenu(Menu superMenu) {
         super(superMenu,"Filter");
     }
 
