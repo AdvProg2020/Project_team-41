@@ -11,6 +11,7 @@ public class Main {
     }
     private static void startProgram(){
         //todo read files from resources
+System.out.println("123");
     }
     private static void endProgram(){
 
