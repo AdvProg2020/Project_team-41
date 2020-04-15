@@ -15,7 +15,6 @@ public class ManagerSection extends UserSection {
         addSubMenu(this.addManageCategories());
         addSubMenu(this.addManageRequests());
         addSubMenu(this.addViewDiscountCodes());
-        managerController = new ManagerController();
     }
 
     @Override
