@@ -5,5 +5,12 @@ import Client.View.Menus.Product;
 import java.util.ArrayList;
 
 public class FilterController {
-    private ArrayList<Product>
+    private static FilterController single_instance = null;
+    public static FilterController getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new FilterController();
+
+        return single_instance;
+    }
 }
