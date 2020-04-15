@@ -3,6 +3,7 @@ package Client.Controller.UserSectionController;
 import Client.Models.Person.Person;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ManagerController extends UserSectionController{
     private static ManagerController single_instance = null;
@@ -34,7 +35,7 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> viewDiscountCode(String code){
 
     }
-    public void  editDiscountCode(String command,String code){
+    public void  editDiscountCode(HashMap<String,String> edits, String code){
         //returns String for error handling
     }
     public boolean removeDiscountCode(String code){
