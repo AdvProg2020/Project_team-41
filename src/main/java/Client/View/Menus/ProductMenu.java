@@ -4,9 +4,8 @@ import Client.Controller.ProductController;
 
 public class ProductMenu extends Menu {
     private String id;
-    public ProductMenu(Menu superMenu , String productId) {
+    public ProductMenu(Menu superMenu) {
         super(superMenu, "Product");
-        id = productId;
         addSubMenu(addDigest());
         addSubMenu(addAttribute());
         addSubMenu(addComments());

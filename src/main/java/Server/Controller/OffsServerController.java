@@ -19,8 +19,6 @@ public class OffsServerController {
     public ArrayList<Product> getOffs(){
 
     }
-    public Product getProductId(String id){
 
-    }
 
 }

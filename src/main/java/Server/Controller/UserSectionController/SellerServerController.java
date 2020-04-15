@@ -22,13 +22,6 @@ public class SellerServerController extends UserSectionServerController {
 
         }
 
-
-        public Product getProduct(int id){
-
-        }
-        public ArrayList<Buyer> getBuyers(int id){
-
-        }
         public void editProduct(HashMap<String ,String> edit){
 
         }
@@ -42,9 +35,6 @@ public class SellerServerController extends UserSectionServerController {
 
         }
         public ArrayList<Off> getOffs(){
-
-        }
-        public Off getOff(int id){
 
         }
         public void editOff(HashMap<String ,String> edit){
