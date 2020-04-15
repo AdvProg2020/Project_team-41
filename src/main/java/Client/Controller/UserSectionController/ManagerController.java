@@ -5,6 +5,17 @@ import Client.Models.Person.Person;
 import java.util.ArrayList;
 
 public class ManagerController extends UserSectionController{
+    private static ManagerController single_instance = null;
+    public static ManagerController getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new ManagerController();
+
+        return single_instance;
+    }
+    private ManagerController(){
+    }
+
     public Person viewUser(String username){
 
     }

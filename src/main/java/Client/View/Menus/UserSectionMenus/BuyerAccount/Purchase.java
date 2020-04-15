@@ -1,6 +1,6 @@
 package Client.View.Menus.UserSectionMenus.BuyerAccount;
 
-import Client.Controller.BuyerAccountController.BuyerController;
+import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
 import Client.View.Menus.Menu;
 
 public class Purchase extends Menu {
