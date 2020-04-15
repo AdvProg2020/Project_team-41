@@ -12,3 +12,5 @@ public class MainMenu extends Menu {
     }
 
 }
+singleton
+allproduct
