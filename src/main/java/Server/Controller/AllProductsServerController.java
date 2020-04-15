@@ -1,20 +1,20 @@
-package Client.Controller;
+package Server.Controller;
 
 import Client.Models.Category;
 import Client.Models.Product;
 
 import java.util.ArrayList;
 
-public class AllProductsController {
-    private static AllProductsController single_instance = null;
-    public static AllProductsController getInstance()
+public class AllProductsServerController {
+    private static AllProductsServerController single_instance = null;
+    public static AllProductsServerController getInstance()
     {
         if (single_instance == null)
-            single_instance = new AllProductsController();
+            single_instance = new AllProductsServerController();
 
         return single_instance;
     }
-    private AllProductsController(){
+    private AllProductsServerController(){
     }
     public ArrayList<Category> getAllCategories(){
 
