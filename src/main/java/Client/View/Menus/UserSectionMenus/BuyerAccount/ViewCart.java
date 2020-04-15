@@ -1,10 +1,8 @@
 package Client.View.Menus.UserSectionMenus.BuyerAccount;
 
-import Client.Controller.BuyerAccountController.CartController;
+import Client.Controller.UserSectionController.BuyerAccountController.CartController;
 import Client.View.Menus.Menu;
-import Client.View.Menus.Product;
-
-import java.util.Scanner;
+import Client.View.Menus.ProductMenu;
 
 public class ViewCart extends Menu {
 
@@ -33,7 +31,7 @@ public class ViewCart extends Menu {
         else if(input.startsWith("view")){
             //todo initialize productIdThatIsGiven
             String productIdThatIsGiven = "";
-            Product productPage = new Product(this  , productIdThatIsGiven);
+            ProductMenu productPage = new ProductMenu(this  , productIdThatIsGiven);
             this.addSubMenu( productPage );
             productPage.show();
             productPage.execute();

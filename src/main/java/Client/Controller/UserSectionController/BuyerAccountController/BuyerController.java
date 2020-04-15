@@ -1,6 +1,5 @@
-package Client.Controller.BuyerAccountController;
+package Client.Controller.UserSectionController.BuyerAccountController;
 
-import Client.Models.Person.Buyer;
 import Client.Models.TradeLogs;
 
 public class BuyerController {

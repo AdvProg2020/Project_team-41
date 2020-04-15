@@ -1,6 +1,6 @@
 package Client.View.Menus.UserSectionMenus.BuyerAccount;
 
-import Client.Controller.BuyerAccountController.BuyerController;
+import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
 import Client.Models.Person.ViewPersonalInfo;
 import Client.View.Menus.Menu;
 import Client.View.Menus.UserSectionMenus.UserSection;
