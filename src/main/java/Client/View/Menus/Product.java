@@ -78,7 +78,7 @@ public class Product extends Menu {
 
             @Override
             public void execute() {
-                this.addSubMenu(new Menu() {
+                this.addSubMenu(new Menu(this , "add comment") {
                     @Override
                     public void show() {
                         //TODO print sth for user to enter comment
