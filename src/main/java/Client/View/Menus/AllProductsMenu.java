@@ -1,11 +1,11 @@
 package Client.View.Menus;
 
-public class AllProducts extends Menu {
-    public AllProducts(Menu superMenu) {
+public class AllProductsMenu extends Menu {
+    public AllProductsMenu(Menu superMenu) {
         super(superMenu, "AllProducts");
-        addSubMenu(new Product(this));
-        addSubMenu(new Filter(this));
-        addSubMenu(new Sort(this));
+        addSubMenu(new ProductMenu(this));
+        addSubMenu(new FilterMenu(this));
+        addSubMenu(new SortView(this));
         addSubMenu(addViewCategory());
         addSubMenu(addShowProducts());
     }

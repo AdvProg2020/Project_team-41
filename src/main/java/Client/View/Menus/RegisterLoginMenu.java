@@ -1,7 +1,7 @@
 package Client.View.Menus;
 
-public class RegisterLogin extends Menu {
-    public RegisterLogin(Menu superMenu) {
+public class RegisterLoginMenu extends Menu {
+    public RegisterLoginMenu(Menu superMenu) {
         //toDoIfLogged
             super(superMenu, "RegisterLogin");
             this.addSubMenu(new Menu(this, "Create") {

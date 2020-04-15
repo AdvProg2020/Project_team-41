@@ -1,6 +1,6 @@
 package Client.View.Menus.UserSectionMenus.BuyerAccount;
 
-import Client.Controller.BuyerAccountController.BuyerController;
+import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
 import Client.Models.Person.ViewPersonalInfo;
 import Client.View.Menus.Menu;
 import Client.View.Menus.UserSectionMenus.UserSection;
@@ -8,7 +8,6 @@ import Client.View.Menus.UserSectionMenus.UserSection;
 public class BuyerSection extends UserSection {
     public BuyerSection(Menu superMenu, String name) {
         super(superMenu, name);
-        this.addSubMenu(new ViewPersonalInfo(this));
         this.addSubMenu(new ViewCart(this));
         this.addSubMenu(new Purchase(this));
         this.addSubMenu(viewOrders());
