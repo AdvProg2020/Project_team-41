@@ -9,6 +9,8 @@ public class ProductController {
 
         return single_instance;
     }
+    private ProductController(){
+    }
 
     public static boolean addToCart(String Id){
 

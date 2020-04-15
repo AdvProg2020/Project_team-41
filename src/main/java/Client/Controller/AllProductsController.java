@@ -13,6 +13,8 @@ public class AllProductsController {
 
         return single_instance;
     }
+    private AllProductsController(){
+    }
 
 
 }

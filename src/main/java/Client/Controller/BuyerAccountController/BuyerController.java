@@ -6,12 +6,13 @@ import Client.Models.TradeLogs;
 public class BuyerController {
 
     private static BuyerController single_instance = null;
-    public static BuyerController getInstance()
-    {
+    public static BuyerController getInstance(){
         if (single_instance == null)
             single_instance = new BuyerController();
 
         return single_instance;
+    }
+    private BuyerController(){
     }
 
     public static boolean checkDiscountCode(String code){

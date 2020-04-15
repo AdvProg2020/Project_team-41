@@ -9,4 +9,6 @@ public class SortController {
 
         return single_instance;
     }
+    private SortController(){
+    }
 }
