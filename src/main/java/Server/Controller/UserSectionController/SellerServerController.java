@@ -21,15 +21,8 @@ public class SellerServerController extends UserSectionServerController {
         private SellerServerController(){
 
         }
-        public String getFactoryName(){
 
-        }
-        public ArrayList<TradeLogs> getLogs(){
 
-        }
-        public ArrayList<Product> getProducts(){
-
-        }
         public Product getProduct(int id){
 
         }
