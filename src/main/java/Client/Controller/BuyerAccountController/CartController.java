@@ -1,6 +1,14 @@
 package Client.Controller.BuyerAccountController;
 
 public class CartController {
+    private static CartController single_instance = null;
+    public static CartController getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new CartController();
+
+        return single_instance;
+    }
 
     public static void increaseProduct(int num , String productId){
         //TODO increase number of the product
