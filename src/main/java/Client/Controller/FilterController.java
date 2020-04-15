@@ -1,5 +1,9 @@
 package Client.Controller;
 
+import Client.Models.Product;
+
+import java.util.ArrayList;
+
 public class FilterController {
     private static FilterController single_instance = null;
     public static FilterController getInstance()
@@ -11,4 +15,18 @@ public class FilterController {
     }
     private FilterController(){
     }
+    public ArrayList<String> getAvailableFilters(){
+
+    }
+    public ArrayList<Product> getFilteredProducts(String Filter){
+
+    }
+    public ArrayList<String> getCurrentFilters(){
+
+    }
+    public ArrayList<Product> getProductsWithDisabledFilter(String Filter){
+
+    }
+
+
 }
