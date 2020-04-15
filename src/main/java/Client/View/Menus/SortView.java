@@ -1,7 +1,7 @@
 package Client.View.Menus;
 
-public class Sort extends Menu {
-    public Sort(Menu superMenu) {
+public class SortView extends Menu {
+    public SortView(Menu superMenu) {
         super(superMenu,"Sort");
     }
 

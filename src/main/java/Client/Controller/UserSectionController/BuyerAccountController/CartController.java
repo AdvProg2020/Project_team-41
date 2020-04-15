@@ -1,4 +1,4 @@
-package Client.Controller.BuyerAccountController;
+package Client.Controller.UserSectionController.BuyerAccountController;
 
 public class CartController {
     private static CartController single_instance = null;
@@ -23,6 +23,5 @@ public class CartController {
         int price = -1;
         return price;
     }
-    public
 
 }
