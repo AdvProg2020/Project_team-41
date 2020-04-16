@@ -1,5 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
+
+
+#files
+
 # Compiled class file
 *.class
 
@@ -136,5 +140,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-src/main/resources/
