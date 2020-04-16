@@ -15,6 +15,7 @@ public class AllProductsServerController {
         return single_instance;
     }
     private AllProductsServerController(){
+
     }
     public ArrayList<Category> getAllCategories(){
 
