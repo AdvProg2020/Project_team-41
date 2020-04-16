@@ -35,7 +35,7 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> viewDiscountCode(String code){
 
     }
-    public void  editDiscountCode(HashMap<String,String> edits, String code){
+    public void  editDiscountCode(String code,HashMap<String,String> edits){
         //returns String for error handling
     }
     public boolean removeDiscountCode(String code){
@@ -56,7 +56,7 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> showCategories(){
 
     }
-    public boolean editCategory(String category,String command){
+    public boolean editCategory(String category,HashMap<String,String> edits){
 
     }
     public boolean addCategory(String categoryName,ArrayList<String> categoryInformation){
