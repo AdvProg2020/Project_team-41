@@ -1,8 +1,9 @@
 package Client.Controller.UserSectionController.BuyerAccountController;
 
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.TradeLogs;
 
-public class BuyerController {
+public class BuyerController extends UserSectionController {
 
     private static BuyerController single_instance = null;
     public static BuyerController getInstance(){
