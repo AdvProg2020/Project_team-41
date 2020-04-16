@@ -6,7 +6,4 @@ import java.util.ArrayList;
 
 public class Manager extends Person {
 
-    public ArrayList<Request> getAllRequest(){
-
-    }
 }
