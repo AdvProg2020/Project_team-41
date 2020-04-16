@@ -22,13 +22,10 @@ public class ManagerServerController extends UserSectionServerController {
 
     }
     public void  deleteUser(String username){
-        //returns boolean for error handling
     }
     public void createManagerProfile(ArrayList<String> userInfo){
-        //returns String for error handling
     }
     public void  removeProduct(String productId){
-        //returns boolean for error handling
     }
     public void createDiscountCode(ArrayList<String> codeInformation){
 
@@ -36,8 +33,7 @@ public class ManagerServerController extends UserSectionServerController {
     public ArrayList<String> viewDiscountCode(String code){
 
     }
-    public void  editDiscountCode(HashMap<String,String> edits, String code){
-        //returns String for error handling
+    public void  editDiscountCode(String code,HashMap<String,String> edits) {
     }
     public void  removeDiscountCode(String code){
 
@@ -57,7 +53,7 @@ public class ManagerServerController extends UserSectionServerController {
     public ArrayList<String> showCategories(){
 
     }
-    public void editCategory(String category,String command){
+    public void editCategory(String category,HashMap<String,String> edits){
 
     }
     public void addCategory(String categoryName,ArrayList<String> categoryInformation){
