@@ -5,8 +5,8 @@ import Client.View.Menus.Menu;
 import Client.View.Menus.UserSectionMenus.UserSection;
 
 public class BuyerSection extends UserSection {
-    public BuyerSection(Menu superMenu, String name) {
-        super(superMenu, name);
+    public BuyerSection(Menu superMenu) {
+        super(superMenu, "BuyerSection");
         this.addSubMenu(new ViewCart(this));
         this.addSubMenu(new Purchase(this));
         this.addSubMenu(viewOrders());

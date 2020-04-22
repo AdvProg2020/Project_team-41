@@ -1,14 +1,17 @@
 package Client.View.Menus;
 
+import Client.Controller.UserSectionController.UserSectionController;
+import Client.View.Menus.UserSectionMenus.UserSection;
+
 public class RegisterLoginMenu extends Menu {
     public RegisterLoginMenu(Menu superMenu,String name) {
-        //toDoIfLogged
-            super(superMenu, name);
+
+        super(superMenu, name);
+        if (UserSectionController.getLoggedInPerson() == null) {
             this.addSubMenu(addCreate());
             this.addSubMenu(addLogin());
-
-        //elseLogout
-
+        }
+        else this.addSubMenu(addLogout());
 
     }
     public Menu addCreate(){
@@ -34,6 +37,20 @@ public class RegisterLoginMenu extends Menu {
             @Override
             public void execute() {
                 //to do
+            }
+        };
+    }
+    public Menu addLogout(){
+        return new Menu(this,"Logout") {
+            @Override
+            public void show() {
+                System.out.println("GoodBye!");
+            }
+
+            @Override
+            public void execute() {
+                UserSectionController.setLoggedInPerson(null);
+                //todo other things
             }
         };
     }
