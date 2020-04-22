@@ -22,5 +22,4 @@ public class ProductController {
     public static void addComment(String title , String content){
         //TODO add the comment
     }
-
 }
