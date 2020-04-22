@@ -28,11 +28,11 @@ public abstract class Menu {
     }
     public void execute(){
         String command = scanner.nextLine();
-        if(command.equals("help")) {
+        if(command.equalsIgnoreCase("help")) {
             this.show();
             this.execute();
         }
-        if(command.equals("back")) {
+        if(command.equalsIgnoreCase("back")) {
             if (superMenu != null) {
                 superMenu.show();
                 superMenu.execute();
@@ -45,7 +45,7 @@ public abstract class Menu {
 
 
         for (Menu subMenu : subMenus) {
-            if(command.equals(subMenu.getName())) {
+            if(command.equalsIgnoreCase(subMenu.getName())) {
                 subMenu.show();
                 subMenu.execute();
             }
