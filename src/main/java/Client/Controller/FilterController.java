@@ -38,6 +38,7 @@ public class FilterController {
     }
 
     public ArrayList<Product> getFilteredProducts(){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
 }

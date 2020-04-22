@@ -31,7 +31,7 @@ public class ViewCart extends Menu {
         else if(input.startsWith("view")){
             //todo initialize productIdThatIsGiven
             String productIdThatIsGiven = "";
-            ProductMenu productPage = new ProductMenu(this  , productIdThatIsGiven);
+            ProductMenu productPage = new ProductMenu(this);
             this.addSubMenu( productPage );
             productPage.show();
             productPage.execute();

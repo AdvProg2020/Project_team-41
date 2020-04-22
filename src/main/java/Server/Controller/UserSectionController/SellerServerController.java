@@ -32,10 +32,12 @@ public class SellerServerController extends UserSectionServerController {
 
         }
         public ArrayList<Category> getCategories(){
-
+                System.err.println("fail");
+                return new ArrayList<>();
         }
         public ArrayList<Off> getOffs(){
-
+                System.err.println("fail");
+                return new ArrayList<>();
         }
         public void editOff(HashMap<String ,String> edit){
 

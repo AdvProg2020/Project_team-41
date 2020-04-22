@@ -17,7 +17,8 @@ public class OffsServerController {
     private OffsServerController(){
     }
     public ArrayList<Product> getOffs(){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
 
 

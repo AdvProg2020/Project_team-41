@@ -17,10 +17,12 @@ public class OffsController {
     private OffsController(){
     }
     public ArrayList<Product> getOffs(){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
     public Product getProductId(String id){
-
+        System.err.println("fail");
+        return new Product();
     }
 
 }
