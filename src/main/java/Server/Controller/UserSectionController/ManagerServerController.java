@@ -1,5 +1,6 @@
 package Server.Controller.UserSectionController;
 
+import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 
 import java.util.ArrayList;
@@ -19,7 +20,8 @@ public class ManagerServerController extends UserSectionServerController {
     }
 
     public Person viewUser(String username){
-
+        System.err.println("fail");
+        return new Manager();
     }
     public void  deleteUser(String username){
     }
@@ -31,7 +33,8 @@ public class ManagerServerController extends UserSectionServerController {
 
     }
     public ArrayList<String> viewDiscountCode(String code){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
     public void  editDiscountCode(String code,HashMap<String,String> edits) {
     }
@@ -39,10 +42,12 @@ public class ManagerServerController extends UserSectionServerController {
 
     }
     public ArrayList<String> showRequest(){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
     public ArrayList<String> getRequestDetails(String request){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
     public void  acceptRequest(String request){
 
@@ -51,7 +56,8 @@ public class ManagerServerController extends UserSectionServerController {
 
     }
     public ArrayList<String> showCategories(){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
     public void editCategory(String category,HashMap<String,String> edits){
 

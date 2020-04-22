@@ -25,6 +25,7 @@ public class SortController {
         this.sortFeature = sortFeature;
     }
     public ArrayList<Product> getProducts(){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
 }

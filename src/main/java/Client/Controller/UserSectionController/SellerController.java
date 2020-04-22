@@ -23,19 +23,24 @@ public class SellerController extends UserSectionController{
 
         }
         public String getFactoryName(){
-
+                System.err.println("fail");
+                return new String();
         }
         public ArrayList<TradeLogs> getLogs(){
-
+                System.err.println("fail");
+                return new ArrayList<>();
         }
         public ArrayList<Product> getProducts(){
-
+                System.err.println("fail");
+                return new ArrayList<>();
         }
         public Product getProduct(int id){
-
+                System.err.println("fail");
+                return new Product();
         }
         public ArrayList<Buyer> getBuyers(int id){
-
+                System.err.println("fail");
+                return new ArrayList<>();
         }
         public void editProduct(HashMap<String ,String> edit){
 
@@ -47,13 +52,16 @@ public class SellerController extends UserSectionController{
 
         }
         public ArrayList<Category> getCategories(){
-
+                System.err.println("fail");
+                return new ArrayList<>();
         }
         public ArrayList<Off> getOffs(){
-
+                System.err.println("fail");
+                return new ArrayList<>();
         }
         public Off getOff(int id){
-
+                System.err.println("fail");
+                return new Off();
         }
         public void editOff(HashMap<String ,String> edit){
 

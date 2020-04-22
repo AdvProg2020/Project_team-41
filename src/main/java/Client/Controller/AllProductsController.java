@@ -17,13 +17,17 @@ public class AllProductsController {
     private AllProductsController(){
     }
     public ArrayList<Category> getAllCategories(){
-
+        System.err.println("fail");
+        return new ArrayList<>();
     }
     public ArrayList<Product> getAllProducts(){
+        System.err.println("fail");
+        return new ArrayList<>();
 
     }
     public Product showProduct(String productId){
-
+        System.err.println("fail");
+        return new Product();
     }
 
 }

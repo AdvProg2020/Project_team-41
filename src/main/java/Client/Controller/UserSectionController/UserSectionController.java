@@ -11,6 +11,10 @@ public abstract class UserSectionController {
         if(person == null)
             throw new NullPointerException();
         //todo return ArrayList of personal info
+
+        System.err.println("fail");
+        return new ArrayList<>();
+
     }
     public static void edit(String field){
         //todo edit fields except username

@@ -1,5 +1,8 @@
 package Client.View.Menus;
 
+import Client.Controller.UserSectionController.UserSectionController;
+import Client.View.Menus.UserSectionMenus.UserSection;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,6 +15,7 @@ public abstract class Menu {
         subMenus = new ArrayList<>();
         this.superMenu = superMenu;
         this.name = name;
+
     }
     public void show(){
         for (Menu subMenu : subMenus) {
