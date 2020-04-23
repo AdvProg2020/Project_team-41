@@ -1,7 +1,13 @@
 package Client.View.Menus;
 
+import Client.Controller.LoginRegisterController;
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Buyer;
+import Client.Models.Person.Manager;
+import Client.Models.Person.Person;
+import Client.Models.Person.Seller;
 import Client.View.Menus.UserSectionMenus.UserSection;
+import Server.Controller.LoginRegisterServerController;
 
 public class RegisterLoginMenu extends Menu {
     public RegisterLoginMenu(Menu superMenu,String name) {
@@ -16,27 +22,93 @@ public class RegisterLoginMenu extends Menu {
     }
     public Menu addCreate(){
         return new Menu(this, "Create") {
+            String type;
             @Override
             public void show() {
-                //to do
+                System.out.println("Which type of user do you want to be?(Manager|Seller|Buyer)");
             }
 
             @Override
             public void execute() {
-                //to do
+                type=scanner.nextLine();
+                if(type.equalsIgnoreCase("Manager")){
+                    Manager manager=(Manager)makePerson(new Manager());
+                    try {
+                        LoginRegisterController.getInstance().createAccount(manager);
+                        System.out.println("Welcome!\nplease login with your username and password");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+                    }
+
+                }else if(type.equalsIgnoreCase("Seller")){
+                    Seller seller=(Seller)makePerson(new Seller());
+                    System.out.println("What is your factory name?");
+                    seller.setFactoryName(scanner.nextLine());
+                    try {
+                        LoginRegisterController.getInstance().createAccount(seller);
+                        System.out.println("Welcome!\nplease login with your username and password");
+
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+                    }
+                }else if(type.equalsIgnoreCase("Buyer")){
+                    Buyer buyer=(Buyer)makePerson(new Buyer());
+                    try {
+                        LoginRegisterController.getInstance().createAccount(buyer);
+                        System.out.println("Welcome!\nplease login with your username and password");
+
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+                    }
+                }
+                this.superMenu.show();
+                this.superMenu.execute();
+
+            }
+            private Person makePerson(Person person){
+                System.out.println("UserName:");
+                person.setUserName(scanner.nextLine());
+                System.out.println("Password:");
+                person.setPassword(scanner.nextLine());
+                System.out.println("What is your first name?");
+                person.setFirstName(scanner.nextLine());
+                System.out.println("What is your last name?");
+                person.setLastName(scanner.nextLine());
+                System.out.println("What is your email?");
+                person.setEmail(scanner.nextLine());
+                System.out.println("What is your phone number?");
+                person.setPhoneNumber(scanner.nextLine());
+                System.out.println("How much money do you have?");
+                person.setCredit(Integer.parseInt(scanner.nextLine()));
+                return person;
             }
         };
     }
     public Menu addLogin(){
         return new Menu(this, "login") {
+            String userName;
+            String password;
             @Override
             public void show() {
-                //to do
+                System.out.println("UserName:");
             }
 
             @Override
             public void execute() {
-                //to do
+                userName=scanner.nextLine();
+                System.out.println("Password:");
+                password=scanner.nextLine();
+
+                try {
+                    LoginRegisterController.getInstance().login(userName,password);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.superMenu.show();
+                    this.superMenu.execute();
+                }
             }
         };
     }
@@ -49,8 +121,7 @@ public class RegisterLoginMenu extends Menu {
 
             @Override
             public void execute() {
-                UserSectionController.setLoggedInPerson(null);
-                //todo other things
+                LoginRegisterController.getInstance().logout();
             }
         };
     }
