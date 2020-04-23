@@ -17,6 +17,10 @@ public abstract class Person {
     private ArrayList<String>discountCodes;
     private int credit;
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -85,5 +89,9 @@ public abstract class Person {
 
     public void setCredit(int credit) {
         this.credit = credit;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
