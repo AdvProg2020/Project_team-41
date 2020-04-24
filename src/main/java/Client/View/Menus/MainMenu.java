@@ -28,6 +28,9 @@ public class MainMenu extends Menu {
 
 
     }
+    public void removeUserSection(){
+        this.subMenus.remove(subMenus.size()-1);
+    }
 
 
 }
