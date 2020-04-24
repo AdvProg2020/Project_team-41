@@ -8,16 +8,23 @@ import java.util.Scanner;
 
 public abstract class Menu {
     protected Menu superMenu;
-    private ArrayList<Menu> subMenus;
-    private String name;
+    protected ArrayList<Menu> subMenus;
+    protected String name;
     protected static Scanner scanner = new Scanner(System.in);
     public Menu(Menu superMenu, String name) {
         subMenus = new ArrayList<>();
         this.superMenu = superMenu;
         this.name = name;
-
+        if(!(this.superMenu instanceof RegisterLoginMenu)){
+            this.addSubMenu(new RegisterLoginMenu(this,"Register or Login"));
+        }
     }
+
+    protected Menu() {
+    }
+
     public void show(){
+        setRightNameForLoginMenu();
         for (Menu subMenu : subMenus) {
 
             System.out.println(subMenu.getName());
@@ -60,6 +67,21 @@ public abstract class Menu {
 
     public void addSubMenu(Menu subMenu){
         this.subMenus.add(subMenu);
+    }
+    public Menu getSuperMenu(){
+        return superMenu;
+    }
+    public void setRightNameForLoginMenu(){
+        if(!(this.superMenu instanceof RegisterLoginMenu)){
+            if(UserSectionController.getLoggedInPerson()==null){
+                this.subMenus.get(0).setName("Register or Login");
+            }else{
+                this.subMenus.get(0).setName("Logout");
+            }
+        }
+    }
+    public void setName(String name){
+        this.name=name;
     }
 
 }

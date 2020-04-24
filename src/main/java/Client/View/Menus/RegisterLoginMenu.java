@@ -6,20 +6,34 @@ import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
+import Client.View.Menus.UserSectionMenus.BuyerAccount.BuyerSection;
+import Client.View.Menus.UserSectionMenus.ManagerSection;
+import Client.View.Menus.UserSectionMenus.SellerSection;
 import Client.View.Menus.UserSectionMenus.UserSection;
 import Server.Controller.LoginRegisterServerController;
 
 public class RegisterLoginMenu extends Menu {
     public RegisterLoginMenu(Menu superMenu,String name) {
-
         super(superMenu, name);
-        if (UserSectionController.getLoggedInPerson() == null) {
-            this.addSubMenu(addCreate());
-            this.addSubMenu(addLogin());
-        }
-        else this.addSubMenu(addLogout());
+        this.addSubMenu(addCreate());
+        this.addSubMenu(addLogin());
+        this.addSubMenu(addLogout());
 
     }
+
+    @Override
+    public void show() {
+        if(UserSectionController.getLoggedInPerson()==null){
+            System.out.println("Create\n" +
+                    "login\n" +
+                    "back");
+        }
+        else{
+            System.out.println("Logout\n" +
+                    "back");
+        }
+    }
+
     public Menu addCreate(){
         return new Menu(this, "Create") {
             String type;
@@ -98,17 +112,30 @@ public class RegisterLoginMenu extends Menu {
 
             @Override
             public void execute() {
-                userName=scanner.nextLine();
+                userName = scanner.nextLine();
                 System.out.println("Password:");
-                password=scanner.nextLine();
+                password = scanner.nextLine();
 
                 try {
-                    LoginRegisterController.getInstance().login(userName,password);
+                    LoginRegisterController.getInstance().login(userName, password);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     this.superMenu.show();
                     this.superMenu.execute();
                 }
+                System.out.println("Welcome!");
+                Person person = UserSectionController.getLoggedInPerson();
+                if (person instanceof Manager) {
+                    MainMenu.getInstance().addSubMenu(new ManagerSection(this));
+                } else if (person instanceof Seller) {
+                    MainMenu.getInstance().addSubMenu(new SellerSection(this));
+                } else if (person instanceof Buyer) {
+                    MainMenu.getInstance().addSubMenu(new BuyerSection(this));
+                }
+
+
+                this.superMenu.getSuperMenu().show();
+                this.superMenu.getSuperMenu().execute();
             }
         };
     }
@@ -125,4 +152,5 @@ public class RegisterLoginMenu extends Menu {
             }
         };
     }
+
 }
