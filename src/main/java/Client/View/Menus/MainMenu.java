@@ -8,25 +8,21 @@ import Client.Models.Person.Seller;
 import Client.View.Menus.UserSectionMenus.BuyerAccount.BuyerSection;
 import Client.View.Menus.UserSectionMenus.ManagerSection;
 import Client.View.Menus.UserSectionMenus.SellerSection;
+import Server.Controller.LoginRegisterServerController;
 
 public class MainMenu extends Menu {
+    private static MainMenu single_instance = null;
+    public static MainMenu getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new MainMenu();
 
-    public MainMenu() {
+        return single_instance;
+    }
+
+
+    private MainMenu() {
         super(null, "Main");
-        Person person=UserSectionController.getLoggedInPerson();
-        if (person != null) {
-            this.addSubMenu(new RegisterLoginMenu(this, "Logout"));
-            if(person instanceof Manager){
-                this.addSubMenu(new ManagerSection(this));
-            }else if(person instanceof Seller){
-                this.addSubMenu(new SellerSection(this));
-            }else if(person instanceof Buyer){
-                this.addSubMenu(new BuyerSection(this));
-            }
-
-        }else{
-            this.addSubMenu(new RegisterLoginMenu(this,"Register or Login"));
-        }
         addSubMenu(new AllProductsMenu(this));
         addSubMenu(new OffsMenu(this));
 
