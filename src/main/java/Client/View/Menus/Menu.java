@@ -10,6 +10,7 @@ public abstract class Menu {
     protected Menu superMenu;
     protected ArrayList<Menu> subMenus;
     protected String name;
+    protected String command;
     protected static Scanner scanner = new Scanner(System.in);
     public Menu(Menu superMenu, String name) {
         subMenus = new ArrayList<>();
@@ -34,7 +35,7 @@ public abstract class Menu {
         this.execute();
     }
     public void execute(){
-        String command = scanner.nextLine();
+        command = scanner.nextLine();
         if(command.equalsIgnoreCase("help")) {
             this.show();
             this.execute();
