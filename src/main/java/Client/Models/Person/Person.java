@@ -5,6 +5,7 @@ import Client.Models.TradeLogs;
 import java.util.ArrayList;
 
 public abstract class Person {
+
     //start of personal information
     private String userName;
     private String firstName;

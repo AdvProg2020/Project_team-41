@@ -23,4 +23,51 @@ public class Product {
     private ArrayList<Score>scores;//todo add method to calculate average
     private ArrayList<Comment>comments;
     private int views;
+
+
+    public String getProductId() {
+        return productId;
+    }
+
+
+    public Situation getProductSituation() {
+        return productSituation;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public boolean isThereMore() {
+        return isThereMore;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ArrayList<Score> getScores() {
+        return scores;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
 }

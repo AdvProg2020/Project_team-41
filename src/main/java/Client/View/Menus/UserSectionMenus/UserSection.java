@@ -26,6 +26,8 @@ public abstract class UserSection extends Menu {
                 }
                 catch (Exception e){
                     System.out.println("You can't edit username");
+                    this.show();
+                    this.execute();
                 }
             }
 

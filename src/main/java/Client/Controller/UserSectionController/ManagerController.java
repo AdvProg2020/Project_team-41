@@ -1,5 +1,6 @@
 package Client.Controller.UserSectionController;
 
+import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Server.Controller.UserSectionController.ManagerServerController;
 
@@ -21,7 +22,7 @@ public class ManagerController extends UserSectionController{
     public Person getUserByUsername(String username){
         return ManagerServerController.getInstance().getUserByUsername(username);
     }
-    public void deleteUser(String username){
+    public void deleteUser(String username) throws Exception {
         ManagerServerController.getInstance().deleteUser(username);
     }
     public void createManagerProfile(ArrayList<String> userInfo){
@@ -60,11 +61,14 @@ public class ManagerController extends UserSectionController{
     public void editCategory(String category,String field,String editedField){
         ManagerServerController.getInstance().editCategory(category, field,editedField);
     }
-    public void addCategory(String categoryName,ArrayList<String> categoryInformation){
-        ManagerServerController.getInstance().addCategory(categoryName,categoryInformation);
+    public void addCategory(String categoryName,String specialFeatures){
+        ManagerServerController.getInstance().addCategory(categoryName,specialFeatures);
     }
-    public void removeCategory(String categoryName){
+    public void removeCategory(String categoryName) throws Exception {
         ManagerServerController.getInstance().removeCategory(categoryName);
+    }
+    public ArrayList<String> viewAllDiscountCodes(){
+        return ManagerServerController.getInstance().viewAllDiscountCodes();
     }
 
 
