@@ -20,20 +20,28 @@ public abstract class UserSection extends Menu {
                 }
 
             }
-            private void edit(String field,String editedField){
-
+            private void edit(){
+                try {
+                    UserSectionController.edit(scanner.next(),scanner.next());
+                }
+                catch (Exception e){
+                    System.out.println("You can't edit username");
+                }
             }
 
             @Override
             public void show() {
                 super.show();
+                System.out.println("edit");
             }
 
             @Override
             public void execute() {
                 viewPersonalInfo();
                 super.execute();
-
+                if(command.equals("edit")){
+                    edit();
+                }
 
 
             }
