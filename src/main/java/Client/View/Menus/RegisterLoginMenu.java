@@ -9,8 +9,6 @@ import Client.Models.Person.Seller;
 import Client.View.Menus.UserSectionMenus.BuyerAccount.BuyerSection;
 import Client.View.Menus.UserSectionMenus.ManagerSection;
 import Client.View.Menus.UserSectionMenus.SellerSection;
-import Client.View.Menus.UserSectionMenus.UserSection;
-import Server.Controller.LoginRegisterServerController;
 
 public class RegisterLoginMenu extends Menu {
     public RegisterLoginMenu(Menu superMenu,String name) {
@@ -126,11 +124,11 @@ public class RegisterLoginMenu extends Menu {
                 System.out.println("Welcome!");
                 Person person = UserSectionController.getLoggedInPerson();
                 if (person instanceof Manager) {
-                    MainMenu.getInstance().addSubMenu(new ManagerSection(this));
+                    MainMenu.getInstance().addSubMenu(new ManagerSection(MainMenu.getInstance()));
                 } else if (person instanceof Seller) {
-                    MainMenu.getInstance().addSubMenu(new SellerSection(this));
+                    MainMenu.getInstance().addSubMenu(new SellerSection(MainMenu.getInstance()));
                 } else if (person instanceof Buyer) {
-                    MainMenu.getInstance().addSubMenu(new BuyerSection(this));
+                    MainMenu.getInstance().addSubMenu(new BuyerSection(MainMenu.getInstance()));
                 }
 
 

@@ -12,12 +12,12 @@ public abstract class UserSectionController {
             throw new NullPointerException();
         //todo return ArrayList of personal info
         ArrayList<String> personalInfo = new ArrayList<>();
-        personalInfo.add(person.getUserName());
-        personalInfo.add(person.getFirstName());
-        personalInfo.add(person.getLastName());
-        personalInfo.add(Integer.toString(person.getCredit()));
-        personalInfo.add(person.getEmail());
-        personalInfo.add(person.getPhoneNumber());
+        personalInfo.add("UserName: " + person.getUserName());
+        personalInfo.add("FirstName: " + person.getFirstName());
+        personalInfo.add("LastName: " + person.getLastName());
+        personalInfo.add("Credit: " + person.getCredit());
+        personalInfo.add("Email: " + person.getEmail());
+        personalInfo.add("PhoneNumber: " + person.getPhoneNumber());
         //personalInfo.addAll(loggedInPerson.getDiscountCodes());
         //optional to add show discount code or show trade logs here
         //todo check if needed ot print discountCodes

@@ -32,7 +32,6 @@ public abstract class Menu {
         }
         if(superMenu != null)
             System.out.println("back");
-        this.execute();
     }
     public void execute(){
         command = scanner.nextLine();

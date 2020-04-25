@@ -38,32 +38,40 @@ public class ManagerSection extends UserSection {
     }
 
     private Menu addManageCategories(){
-        return new Menu(this,"ManagerCategories") {
+        return new Menu(this,"ManageCategories") {
             private void edit(String Category){
                 System.out.println("change what you want(type field  and edited field");
                 ManagerController.getInstance().editCategory(Category,scanner.next(),scanner.next());
             }
             private void add(String category){
-                ArrayList<String> categoryInformation = new ArrayList<>();
-                System.out.println("ok...  type the name");
-                categoryInformation.add(scanner.nextLine());
-                System.out.println("now type its special features(type them with a comma between each special feature");
-                categoryInformation.add(scanner.nextLine());
-                System.out.println("ok. now tell us what product to put in(type the with a comma between each product");
-                categoryInformation.add(scanner.nextLine());
-                ManagerController.getInstance().addCategory(category,categoryInformation);
+                String specialFeatures;
+                System.out.println("type its special features(type them with a comma between each special feature");
+                specialFeatures = scanner.nextLine();
+                ManagerController.getInstance().addCategory(category,specialFeatures);
             }
             private void remove(String category){
-                ManagerController.getInstance().removeCategory(category);
+                try{
+                    ManagerController.getInstance().removeCategory(category);
+                }
+                catch (Exception e){
+                    System.out.println("no category exists with this name");
+                }
             }
 
 
             @Override
             public void show() {
                 super.show();
-                System.out.println("edit");
-                System.out.println("add");
-                System.out.println("remove");
+                if(ManagerController.getInstance().showCategories().isEmpty())
+                    System.out.println("there is no category to show here");
+                for (String category : ManagerController.getInstance().showCategories()) {
+                    System.out.println(category);
+                }
+                System.out.println();
+                System.out.println("commands:");
+                System.out.println("edit <category>");
+                System.out.println("add <category>");
+                System.out.println("remove <category>");
             }
 
             @Override
@@ -72,11 +80,16 @@ public class ManagerSection extends UserSection {
                 if(command.startsWith("edit")){
                     edit(command.split(" ")[1]);
                 }
-                if(command.startsWith("add")){
+                else if(command.startsWith("add")){
                     add(command.split(" ")[1]);
                 }
-                if(command.startsWith("remove")){
+                else if(command.startsWith("remove")){
                     remove(command.split(" ")[1]);
+                }
+                else{
+                    System.out.println("invalid command");
+                    this.show();
+                    this.execute();
                 }
 
             }
@@ -102,14 +115,16 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
+                if(ManagerController.getInstance().showRequest().isEmpty())
+                    System.out.println("there is no request to show here");
                 for (String request : ManagerController.getInstance().showRequest()) {
                     System.out.println(request);
                 }
                 System.out.println();
                 System.out.println("commands:");
-                System.out.println("details");
-                System.out.println("accept");
-                System.out.println("decline");
+                System.out.println("details <requestId>");
+                System.out.println("accept <requestId>");
+                System.out.println("decline <requestId>");
             }
 
             @Override
@@ -118,11 +133,16 @@ public class ManagerSection extends UserSection {
                 if(command.startsWith("details")){
                     details(command.split(" ")[1]);
                 }
-                if(command.startsWith("accept")){
+                else if(command.startsWith("accept")){
                     accept(command.split(" ")[1]);
                 }
-                if(command.startsWith("decline")){
+                else if(command.startsWith("decline")){
                     decline(command.split(" ")[1]);
+                }
+                else{
+                    System.out.println("invalid command");
+                    this.show();
+                    this.execute();
                 }
 
             }
@@ -135,6 +155,8 @@ public class ManagerSection extends UserSection {
                 for (String discountCode : ManagerController.getInstance().viewDiscountCode(code)) {
                     System.out.println(discountCode);
                 }
+                this.show();
+                this.execute();
             }
             private void editDiscountCode(String code) {
                 HashMap<String, String> edits = new HashMap<>();
@@ -148,14 +170,23 @@ public class ManagerSection extends UserSection {
             }
             private void removeDiscountCode(String code){
                 ManagerController.getInstance().removeDiscountCode(code);
+                this.show();
+                this.execute();
             }
 
             @Override
             public void show() {
                 super.show();
-                System.out.println("view discount code");
-                System.out.println("edit discount code");
-                System.out.println("remove discount code");
+                if(ManagerController.getInstance().viewAllDiscountCodes().isEmpty())
+                    System.out.println("there is no discount code to show here");
+                for (String discountCode : ManagerController.getInstance().viewAllDiscountCodes()) {
+                    System.out.println(discountCode);
+                }
+                System.out.println();
+                System.out.println("commands:");
+                System.out.println("view discount code <code>");
+                System.out.println("edit discount code <code>");
+                System.out.println("remove discount code <code>");
             }
 
             @Override
@@ -169,6 +200,11 @@ public class ManagerSection extends UserSection {
                 }
                 if(command.startsWith("remove discount code")){
                     removeDiscountCode(command.split(" ")[3]);
+                }
+                else{
+                    System.out.println("invalid command");
+                    this.show();
+                    this.execute();
                 }
 
             }
@@ -196,9 +232,9 @@ public class ManagerSection extends UserSection {
 
             @Override
             public void execute() {
+                System.out.println("enter code(or back:-))");
                 super.execute();
                 ArrayList<String> codeInformation = new ArrayList<>();
-                System.out.println("enter code");
                 codeInformation.add(scanner.nextLine());
                 System.out.println("enter exactStartTime");
                 codeInformation.add(scanner.nextLine());
@@ -222,12 +258,15 @@ public class ManagerSection extends UserSection {
         return new Menu(this,"ManageAllProducts") {
             private void remove(String productId){
                 ManagerController.getInstance().removeProduct(productId);
+                this.show();
+                this.execute();
             }
 
             @Override
             public void show() {
                 super.show();
-                System.out.println("remove");
+                //todo show products so manager can remove them easier
+                System.out.println("remove <productId>");
             }
 
             @Override
@@ -235,6 +274,11 @@ public class ManagerSection extends UserSection {
                 super.execute();
                 if(command.startsWith("remove")){
                     remove(command.split(" ")[1]);
+                }
+                else{
+                    System.out.println("invalid command");
+                    this.show();
+                    this.execute();
                 }
             }
 
@@ -249,10 +293,19 @@ public class ManagerSection extends UserSection {
                 for (String field : UserSectionController.getPersonalInfo(user)) {
                     System.out.println(field);
                 }
+                this.show();
+                this.execute();
 
             }
             private void deleteUser(String username){
-                ManagerController.getInstance().deleteUser(username);
+                try{
+                    ManagerController.getInstance().deleteUser(username);
+                }
+                catch (Exception e){
+                    System.out.println("no user exists with this username");
+                }
+                this.show();
+                this.execute();
             }
             private void createManagerProfile(){
                 ArrayList<String> userInfo = new ArrayList<>();
@@ -271,6 +324,9 @@ public class ManagerSection extends UserSection {
                 System.out.println("How much money do you have?");
                 userInfo.add(scanner.nextLine());
                 ManagerController.getInstance().createManagerProfile(userInfo);
+                System.out.println("Successfully created Manager");
+                this.show();
+                this.execute();
 
             }
 
@@ -281,11 +337,16 @@ public class ManagerSection extends UserSection {
                 if(command.equals("create manager profile")){
                     createManagerProfile();
                 }
-                if(command.startsWith("view")){
+                else if(command.startsWith("view")){
                     view(command.split(" ")[1]);
                 }
-                if(command.startsWith("delete user")){
+                else if(command.startsWith("delete user")){
                     deleteUser(command.split(" ")[1]);
+                }
+                else{
+                    System.out.println("invalid command");
+                    this.show();
+                    this.execute();
                 }
 
 
@@ -293,8 +354,8 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
-                System.out.println("view");
-                System.out.println("delete user");
+                System.out.println("view <username>");
+                System.out.println("delete user <username>");
                 System.out.println("create manager profile");
 
             }
