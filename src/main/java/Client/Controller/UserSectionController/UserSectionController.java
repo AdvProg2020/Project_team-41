@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public abstract class UserSectionController {
 
     protected static Person loggedInPerson;
-    public static ArrayList<String> viewPersonalInfo(Person person){
+    public static ArrayList<String> getPersonalInfo(Person person){
         if(person == null)
             throw new NullPointerException();
         //todo return ArrayList of personal info

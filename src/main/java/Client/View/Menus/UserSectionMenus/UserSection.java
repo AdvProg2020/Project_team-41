@@ -14,8 +14,8 @@ public abstract class UserSection extends Menu {
     private Menu addViewPersonalInfo() {
         return new Menu(this,"ViewPersonalInfo") {
             private void viewPersonalInfo(){
-                ArrayList<String> personalInfo = UserSectionController.viewPersonalInfo(UserSectionController.getLoggedInPerson());
-                //todo print arraylist
+                ArrayList<String> personalInfo = UserSectionController.getPersonalInfo(UserSectionController.getLoggedInPerson());
+                System.out.println();
             }
             private void edit(String field){
 
