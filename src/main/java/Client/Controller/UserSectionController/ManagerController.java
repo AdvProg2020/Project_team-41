@@ -1,7 +1,7 @@
 package Client.Controller.UserSectionController;
 
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
+import Server.Controller.UserSectionController.ManagerServerController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,69 +18,53 @@ public class ManagerController extends UserSectionController{
     private ManagerController(){
     }
 
-    public Person viewUser(String username){
-        System.err.println("fail");
-        return new Manager();
+    public Person getUserByUsername(String username){
+        return ManagerServerController.getInstance().getUserByUsername(username);
     }
-    public boolean deleteUser(String username){
-        //returns boolean for error handling
-        System.err.println("fail");
-        return true;
+    public void deleteUser(String username){
+        ManagerServerController.getInstance().deleteUser(username);
     }
     public void createManagerProfile(ArrayList<String> userInfo){
-        //returns String for error handling
-
+        ManagerServerController.getInstance().createManagerProfile(userInfo);
     }
-    public boolean removeProduct(String productId){
-        //returns boolean for error handling
-        System.err.println("fail");
-        return true;
+    public void removeProduct(String productId){
+        ManagerServerController.getInstance().removeProduct(productId);
     }
     public void createDiscountCode(ArrayList<String> codeInformation){
-
+        ManagerServerController.getInstance().createDiscountCode(codeInformation);
     }
     public ArrayList<String> viewDiscountCode(String code){
-        System.err.println("fail");
-        return new ArrayList<>();
+        return ManagerServerController.getInstance().viewDiscountCode(code);
     }
     public void  editDiscountCode(String code,HashMap<String,String> edits){
-        //returns String for error handling
+        ManagerServerController.getInstance().editDiscountCode(code,edits);
     }
-    public boolean removeDiscountCode(String code){
-        System.err.println("fail");
-        return true;
+    public void removeDiscountCode(String code){
+        ManagerServerController.getInstance().removeDiscountCode(code);
     }
     public ArrayList<String> showRequest(){
-        System.err.println("fail");
-        return new ArrayList<>();
+        return ManagerServerController.getInstance().showRequest();
     }
     public ArrayList<String> getRequestDetails(String request){
-        System.err.println("fail");
-        return new ArrayList<>();
+        return ManagerServerController.getInstance().getRequestDetails(request);
     }
-    public boolean acceptRequest(String request){
-        System.err.println("fail");
-        return true;
+    public void acceptRequest(String request){
+        ManagerServerController.getInstance().acceptRequest(request);
     }
-    public boolean declineRequest(String request){
-        System.err.println("fail");
-        return true;
+    public void declineRequest(String request){
+        ManagerServerController.getInstance().declineRequest(request);
     }
     public ArrayList<String> showCategories(){
-        System.err.println("fail");
-        return new ArrayList<>();
+        return ManagerServerController.getInstance().showCategories();
     }
-    public boolean editCategory(String category,HashMap<String,String> edits){
-        System.err.println("fail");
-        return true;
+    public void editCategory(String category,HashMap<String,String> edits){
+        ManagerServerController.getInstance().editCategory(category, edits);
     }
-    public boolean addCategory(String categoryName,ArrayList<String> categoryInformation){
-        System.err.println("fail");
-        return true;
+    public void addCategory(String categoryName,ArrayList<String> categoryInformation){
+        ManagerServerController.getInstance().addCategory(categoryName,categoryInformation);
     }
-    public boolean removeCategory(String categoryName){
-        System.err.println("fail");
-        return true;
+    public void removeCategory(String categoryName){
+        ManagerServerController.getInstance().removeCategory(categoryName);
     }
 
 

@@ -1,8 +1,11 @@
 package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.Models.Person.Manager;
+import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Person;
 import Client.View.Menus.Menu;
+
+import java.util.ArrayList;
 
 public class ManagerSection extends UserSection {
     private ManagerController managerController;
@@ -141,6 +144,10 @@ public class ManagerSection extends UserSection {
         return new Menu(this,"manageUsers") {
 
             private void view(String username){
+                Person user = ManagerController.getInstance().getUserByUsername(username);
+                for (String field : UserSectionController.getPersonalInfo(user)) {
+                    System.out.println(field);
+                }
 
             }
             private void deleteUser(String username){
