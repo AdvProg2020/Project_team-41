@@ -32,6 +32,7 @@ public class Database {
         allDiscountCodes.add(codedDiscount);
     }
     public static void deleteUser(String username) throws Exception {
+
         for (Person user : allUsers) {
             if(user.getUserName().equals(username)){
                 allUsers.remove(user);
