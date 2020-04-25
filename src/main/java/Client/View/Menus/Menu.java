@@ -45,7 +45,7 @@ public abstract class Menu {
                 superMenu.execute();
             }
             else{
-                //todo print invalid command
+                System.out.println("There isn't any back button here");
             }
 
         }

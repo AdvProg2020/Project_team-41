@@ -15,9 +15,12 @@ public abstract class UserSection extends Menu {
         return new Menu(this,"ViewPersonalInfo") {
             private void viewPersonalInfo(){
                 ArrayList<String> personalInfo = UserSectionController.getPersonalInfo(UserSectionController.getLoggedInPerson());
-                System.out.println();
+                for (String info : personalInfo) {
+                    System.out.println(info);
+                }
+
             }
-            private void edit(String field){
+            private void edit(String field,String editedField){
 
             }
 
@@ -30,6 +33,9 @@ public abstract class UserSection extends Menu {
             public void execute() {
                 viewPersonalInfo();
                 super.execute();
+
+
+
             }
         };
        }
