@@ -11,9 +11,18 @@ public abstract class UserSectionController {
         if(person == null)
             throw new NullPointerException();
         //todo return ArrayList of personal info
+        ArrayList<String> personalInfo = new ArrayList<>();
+        personalInfo.add(loggedInPerson.getUserName());
+        personalInfo.add(loggedInPerson.getFirstName());
+        personalInfo.add(loggedInPerson.getLastName());
+        personalInfo.add(Integer.toString(loggedInPerson.getCredit()));
+        personalInfo.add(loggedInPerson.getEmail());
+        personalInfo.add(loggedInPerson.getPhoneNumber());
+        personalInfo.addAll(loggedInPerson.getDiscountCodes());
+        //todo check if it needs tradeLogs
 
-        System.err.println("fail");
-        return new ArrayList<>();
+
+        return personalInfo;
 
     }
     public static void edit(String field){
