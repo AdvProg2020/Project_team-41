@@ -28,4 +28,5 @@ public class Database {
     public static void addUser(Person person){
         allUsers.add(person);
     }
+
 }

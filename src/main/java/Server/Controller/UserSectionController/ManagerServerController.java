@@ -2,6 +2,7 @@ package Server.Controller.UserSectionController;
 
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
+import Server.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,9 +20,13 @@ public class ManagerServerController extends UserSectionServerController {
     private ManagerServerController(){
     }
 
-    public Person viewUser(String username){
-        System.err.println("fail");
-        return new Manager();
+    public Person getUserByUsername(String username){
+        for (Person user : Database.getAllUsers()) {
+            if(user.getUserName().equals(username)){
+                return user;
+            }
+        }
+        return null;
     }
     public void  deleteUser(String username){
     }
