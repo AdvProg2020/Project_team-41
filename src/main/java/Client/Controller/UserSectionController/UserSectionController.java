@@ -12,21 +12,48 @@ public abstract class UserSectionController {
             throw new NullPointerException();
         //todo return ArrayList of personal info
         ArrayList<String> personalInfo = new ArrayList<>();
-        personalInfo.add(loggedInPerson.getUserName());
-        personalInfo.add(loggedInPerson.getFirstName());
-        personalInfo.add(loggedInPerson.getLastName());
-        personalInfo.add(Integer.toString(loggedInPerson.getCredit()));
-        personalInfo.add(loggedInPerson.getEmail());
-        personalInfo.add(loggedInPerson.getPhoneNumber());
-        personalInfo.addAll(loggedInPerson.getDiscountCodes());
+        personalInfo.add(person.getUserName());
+        personalInfo.add(person.getFirstName());
+        personalInfo.add(person.getLastName());
+        personalInfo.add(Integer.toString(person.getCredit()));
+        personalInfo.add(person.getEmail());
+        personalInfo.add(person.getPhoneNumber());
+        //personalInfo.addAll(loggedInPerson.getDiscountCodes());
+        //optional to add show discount code or show trade logs here
+        //todo check if needed ot print discountCodes
         //todo check if it needs tradeLogs
 
 
         return personalInfo;
 
     }
-    public static void edit(String field){
+    public static void edit(String field,String editedField) throws Exception {
         //todo edit fields except username
+        if(field.equals("username"))
+            throw new Exception("can't change username");
+        if(loggedInPerson == null)
+            throw new NullPointerException("There is no one logged in");
+        switch (field){
+            case "password":{
+                loggedInPerson.setPassword(editedField);
+            }
+            case "firstName":{
+                loggedInPerson.setFirstName(editedField);
+            }
+            case "lastName":{
+                loggedInPerson.setLastName(editedField);
+            }
+            case "email":{
+                loggedInPerson.setEmail(editedField);
+            }
+            case "phoneNumber":{
+                loggedInPerson.setPhoneNumber(editedField);
+            }
+            default:{
+                //todo throw exception
+            }
+        }
+
     }
 
     public static Person getLoggedInPerson() {
