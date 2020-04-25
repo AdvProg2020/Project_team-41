@@ -43,7 +43,7 @@ public class ManagerSection extends UserSection {
                 ArrayList<String> categoryInformation = new ArrayList<>();
                 System.out.println("ok...  type the name");
                 categoryInformation.add(scanner.nextLine());
-                System.out.println("now type it's special features(type them with a comma between each special feature");
+                System.out.println("now type its special features(type them with a comma between each special feature");
                 categoryInformation.add(scanner.nextLine());
                 System.out.println("ok. now tell us what product to put in(type the with a comma between each product");
                 categoryInformation.add(scanner.nextLine());
