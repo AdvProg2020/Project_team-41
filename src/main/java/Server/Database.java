@@ -8,6 +8,7 @@ import Client.Models.Request;
 
 import java.util.ArrayList;
 
+
 public class Database {
     private static ArrayList<Category> allCategory=new ArrayList<>();
     private static ArrayList<Request> allRequest=new ArrayList<>();
