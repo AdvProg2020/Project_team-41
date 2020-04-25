@@ -13,6 +13,7 @@ public class Database {
     private static ArrayList<Person> allUsers=new ArrayList<>();
     private static ArrayList<Manager>allManagers=new ArrayList<>();
     //todo move all here
+    
 
     public static ArrayList<Person> getAllUsers(){
         return allUsers;
