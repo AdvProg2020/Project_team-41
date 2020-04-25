@@ -57,8 +57,8 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> showCategories(){
         return ManagerServerController.getInstance().showCategories();
     }
-    public void editCategory(String category,HashMap<String,String> edits){
-        ManagerServerController.getInstance().editCategory(category, edits);
+    public void editCategory(String category,String field,String editedField){
+        ManagerServerController.getInstance().editCategory(category, field,editedField);
     }
     public void addCategory(String categoryName,ArrayList<String> categoryInformation){
         ManagerServerController.getInstance().addCategory(categoryName,categoryInformation);

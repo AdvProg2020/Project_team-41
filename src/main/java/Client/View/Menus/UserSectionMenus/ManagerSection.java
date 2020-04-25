@@ -4,6 +4,7 @@ import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Person;
 import Client.View.Menus.Menu;
+import Client.View.Menus.RegisterLoginMenu;
 
 import java.util.ArrayList;
 
@@ -35,24 +36,39 @@ public class ManagerSection extends UserSection {
     private Menu addManageCategories(){
         return new Menu(this,"ManagerCategories") {
             private void edit(String Category){
-
+                System.out.println("change what you want(type field  and edited field");
+                ManagerController.getInstance().editCategory(Category,scanner.next(),scanner.next());
             }
-            private void add(String Category){
-
+            private void add(String category){
+                ArrayList<String> categoryInformation = new ArrayList<>();
+                System.out.println("ok...  type the name");
+                categoryInformation.add(scanner.nextLine());
+                System.out.println("now type it's special features(type them with a comma between each special feature");
+                categoryInformation.add(scanner.nextLine());
+                System.out.println("ok. now tell us what product to put in(type the with a comma between each product");
+                categoryInformation.add(scanner.nextLine());
+                ManagerController.getInstance().addCategory(category,categoryInformation);
             }
-            private void remove(String Category){
-
+            private void remove(String category){
+                ManagerController.getInstance().removeCategory(category);
             }
 
 
             @Override
             public void show() {
                 super.show();
+                System.out.println("edit");
+                System.out.println("add");
+                System.out.println("remove");
             }
 
             @Override
             public void execute() {
                 super.execute();
+                if(command.startsWith("edit")){
+                    edit(command.split(" ")[1]);
+                }
+
             }
         };
     }
@@ -151,9 +167,11 @@ public class ManagerSection extends UserSection {
 
             }
             private void deleteUser(String username){
-
+                ManagerController.getInstance().deleteUser(username);
             }
             private void createManagerProfile(){
+
+
 
             }
 
@@ -167,6 +185,7 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
+
             }
 
         };

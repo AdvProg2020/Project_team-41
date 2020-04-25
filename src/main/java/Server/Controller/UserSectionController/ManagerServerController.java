@@ -64,7 +64,7 @@ public class ManagerServerController extends UserSectionServerController {
         System.err.println("fail");
         return new ArrayList<>();
     }
-    public void editCategory(String category,HashMap<String,String> edits){
+    public void editCategory(String category,String field,String editedField){
 
     }
     public void addCategory(String categoryName,ArrayList<String> categoryInformation){
