@@ -6,10 +6,11 @@ import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Request;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Database {
+public class Database implements Serializable {
     private static ArrayList<Category> allCategory=new ArrayList<>();
     private static ArrayList<Request> allRequest=new ArrayList<>();
     private static ArrayList<Person> allUsers=new ArrayList<>();
@@ -31,6 +32,27 @@ public class Database {
     public static void addDiscountCodes(CodedDiscount codedDiscount) {
         allDiscountCodes.add(codedDiscount);
     }
+
+    public static void setAllUsers(ArrayList<Person> allUsers) {
+        Database.allUsers = allUsers;
+    }
+
+    public static void setAllCategory(ArrayList<Category> allCategory) {
+        Database.allCategory = allCategory;
+    }
+
+    public static void setAllRequest(ArrayList<Request> allRequest) {
+        Database.allRequest = allRequest;
+    }
+
+    public static void setAllManagers(ArrayList<Manager> allManagers) {
+        Database.allManagers = allManagers;
+    }
+
+    public static void setAllDiscountCodes(ArrayList<CodedDiscount> allDiscountCodes) {
+        Database.allDiscountCodes = allDiscountCodes;
+    }
+
     public static void deleteUser(String username) throws Exception {
 
         for (Person user : allUsers) {
