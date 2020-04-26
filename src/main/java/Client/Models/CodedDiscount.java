@@ -2,10 +2,11 @@ package Client.Models;
 
 import Client.Models.Person.Person;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CodedDiscount {
+public class CodedDiscount implements Serializable {
     public CodedDiscount(String discountCode, Date startDate, Date endDate, int[] amountOfDiscount, int discountRepeatsForEachUser, ArrayList<Person> people) {
         DiscountCode = discountCode;
         this.startDate = startDate;
