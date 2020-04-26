@@ -26,39 +26,39 @@ public class ServerStartProgram {
             readAllRequest();
         }
         catch (Exception e){
-            System.out.println("OH, so it's the first time you run this program... Welcome!");
+            System.out.println("So it's the first time you run this program... Welcome!");
         }
     }
     private static void readAllUsers() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("allUsers.dat");
+        inputStream = new FileInputStream("src/main/resources/allUsers.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllUsers((ArrayList<Person>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllCategory() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("allCategory.dat");
+        inputStream = new FileInputStream("src/main/resources/allCategory.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllCategory((ArrayList<Category>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllDiscountCodes() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("allDiscountCodes.dat");
+        inputStream = new FileInputStream("src/main/resources/allDiscountCodes.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllDiscountCodes((ArrayList<CodedDiscount>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllManagers() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("allManagers.dat");
+        inputStream = new FileInputStream("src/main/resources/allManagers.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllManagers((ArrayList<Manager>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllRequest() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("allRequests.dat");
+        inputStream = new FileInputStream("src/main/resources/allRequests.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllRequest((ArrayList<Request>) objectInputStream.readObject());
         inputStream.close();

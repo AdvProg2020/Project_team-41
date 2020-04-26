@@ -23,35 +23,35 @@ public class ServerEndProgram {
         }
     }
     private static void writeAllCategory() throws IOException {
-         outputStream = new FileOutputStream("allCategory.dat");
+         outputStream = new FileOutputStream("src/main/resources/allCategory.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllCategory());
          objectOutputStream.close();
 
     }
     private static void writeAllUsers() throws IOException {
-         outputStream = new FileOutputStream("allUsers.dat");
+         outputStream = new FileOutputStream("src/main/resources/allUsers.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllUsers());
          objectOutputStream.close();
 
     }
     private static void writeAllRequests() throws IOException {
-         outputStream = new FileOutputStream("allRequests.dat");
+         outputStream = new FileOutputStream("src/main/resources/allRequests.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllRequest());
          objectOutputStream.close();
 
     }
     private static void writeAllDiscountCodes() throws IOException {
-         outputStream = new FileOutputStream("allDiscountCodes.dat");
+         outputStream = new FileOutputStream("src/main/resources/allDiscountCodes.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllDiscountCodes());
          objectOutputStream.close();
 
     }
     private static void writeAllManagers() throws IOException {
-         outputStream = new FileOutputStream("allManagers.dat");
+         outputStream = new FileOutputStream("src/main/resources/allManagers.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllManagers());
          objectOutputStream.close();
