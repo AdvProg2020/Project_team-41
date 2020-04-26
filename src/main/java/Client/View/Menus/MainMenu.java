@@ -20,6 +20,13 @@ public class MainMenu extends Menu {
         return single_instance;
     }
 
+    @Override
+    public void execute() {
+        super.execute();
+        System.out.println("wrong command");
+        this.show();
+        this.execute();
+    }
 
     private MainMenu() {
         super(null, "Main");

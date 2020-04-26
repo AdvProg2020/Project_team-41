@@ -5,8 +5,10 @@ import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Server.Database;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import javafx.util.Pair;
 
 public class FilterController {
     private static FilterController single_instance = null;
@@ -21,10 +23,11 @@ public class FilterController {
     private Category filterCategory ;
     private String name;
     private String companyName;
-    private int price;
+    private int definitePrice;
+    private Pair<Integer, Integer> priceMinMax ;
     private Seller seller;
     private boolean isThereMore;
-//    private HashMap<String ,String> filterFeature;
+    private HashMap<String ,String> filterFeature;
 
     private FilterController(){
     }
@@ -34,6 +37,54 @@ public class FilterController {
 
     public Category getFilterCategory() {
         return filterCategory;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public int getDefinitePrice() {
+        return definitePrice;
+    }
+
+    public void setDefinitePrice(int definitePrice) {
+        this.definitePrice = definitePrice;
+    }
+
+    public void setPriceMinMax(Pair<Integer, Integer> priceMinMax) {
+        this.priceMinMax = priceMinMax;
+    }
+
+    public Pair<Integer, Integer> getPriceMinMax() {
+        return priceMinMax;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String sellerName) throws Exception {
+        this.seller = Database.getSellerByName(sellerName);
+    }
+
+    public boolean isThereMore() {
+        return isThereMore;
+    }
+
+    public void setThereMore(boolean thereMore) {
+        isThereMore = thereMore;
     }
 
     public ArrayList<Product> getFilteredProducts(){

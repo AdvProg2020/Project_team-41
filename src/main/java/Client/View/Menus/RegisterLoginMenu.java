@@ -19,31 +19,28 @@ public class RegisterLoginMenu extends Menu {
 
     }
 
-    @Override
-    public void show() {
-        if(UserSectionController.getLoggedInPerson()==null){
-            System.out.println("Create\n" +
-                    "login\n" +
-                    "back");
-        }
-        else{
-            System.out.println("Logout\n" +
-                    "back");
-        }
-    }
 
     public Menu addCreate(){
         return new Menu(this, "Create") {
             String type;
             @Override
             public void show() {
-                System.out.println("Which type of user do you want to be?(Manager|Seller|Buyer)");
+                if (LoginRegisterController.getInstance().checkIfManagerExists())
+                    System.out.println("Which type of user do you want to be?(Seller|Buyer)");
+                else
+                    System.out.println("Which type of user do you want to be?(Manager|Seller|Buyer)");
+
             }
 
             @Override
             public void execute() {
                 type=scanner.nextLine();
                 if(type.equalsIgnoreCase("Manager")){
+                    if (LoginRegisterController.getInstance().checkIfManagerExists()){
+                        System.out.println("invalid command");
+                        this.show();
+                        this.execute();
+                    }
                     Manager manager=(Manager)makePerson(new Manager());
                     try {
                         LoginRegisterController.getInstance().createAccount(manager);
@@ -53,7 +50,8 @@ public class RegisterLoginMenu extends Menu {
 
                     }
 
-                }else if(type.equalsIgnoreCase("Seller")){
+                }
+                else if(type.equalsIgnoreCase("Seller")){
                     Seller seller=(Seller)makePerson(new Seller());
                     System.out.println("What is your factory name?");
                     seller.setFactoryName(scanner.nextLine());
@@ -148,8 +146,8 @@ public class RegisterLoginMenu extends Menu {
             public void execute() {
                 LoginRegisterController.getInstance().logout();
                 MainMenu.getInstance().removeUserSection();
-                this.superMenu.getSuperMenu().show();
-                this.superMenu.getSuperMenu().execute();
+                MainMenu.getInstance().show();
+                MainMenu.getInstance().execute();
 
             }
         };

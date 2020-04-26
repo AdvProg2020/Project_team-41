@@ -4,17 +4,22 @@ import Client.Models.Category;
 import Client.Models.CodedDiscount;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
+import Client.Models.Person.Seller;
+import Client.Models.Product;
 import Client.Models.Request;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Database {
+public class Database implements Serializable {
     private static ArrayList<Category> allCategory=new ArrayList<>();
     private static ArrayList<Request> allRequest=new ArrayList<>();
     private static ArrayList<Person> allUsers=new ArrayList<>();
     private static ArrayList<Manager>allManagers=new ArrayList<>();
     private static ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
+    private static ArrayList<Product> allProducts=new ArrayList<>();
+    private static ArrayList<Seller> allSellers=new ArrayList<>();
     //todo move all here
 
     public static Category getCategoryByName(String name) throws Exception {
@@ -25,12 +30,47 @@ public class Database {
         }
         throw new Exception("no category found");
     }
+
+    public static Seller getSellerByName(String name) throws Exception {
+        for (Seller seller : allSellers) {
+            if(seller.getUserName().equals(name)){
+                return seller;
+            }
+        }
+        throw new Exception("no seller found");
+    }
+
+    public static ArrayList<Product> getAllProducts() {
+        return allProducts;
+    }
+
     public static ArrayList<CodedDiscount> getAllDiscountCodes() {
         return allDiscountCodes;
     }
     public static void addDiscountCodes(CodedDiscount codedDiscount) {
         allDiscountCodes.add(codedDiscount);
     }
+
+    public static void setAllUsers(ArrayList<Person> allUsers) {
+        Database.allUsers = allUsers;
+    }
+
+    public static void setAllCategory(ArrayList<Category> allCategory) {
+        Database.allCategory = allCategory;
+    }
+
+    public static void setAllRequest(ArrayList<Request> allRequest) {
+        Database.allRequest = allRequest;
+    }
+
+    public static void setAllManagers(ArrayList<Manager> allManagers) {
+        Database.allManagers = allManagers;
+    }
+
+    public static void setAllDiscountCodes(ArrayList<CodedDiscount> allDiscountCodes) {
+        Database.allDiscountCodes = allDiscountCodes;
+    }
+
     public static void deleteUser(String username) throws Exception {
 
         for (Person user : allUsers) {

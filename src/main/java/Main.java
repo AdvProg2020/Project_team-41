@@ -2,6 +2,7 @@ import Client.Models.Category;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.MainMenu;
+import Server.Database;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,7 @@ public class Main {
         biganeh.setSeller(seller_1);
         biganeh.setThereMore(true);
         biganeh.getSpecialFeatures().put("writer" , "alberkamo");
+        Database.getAllProducts().add(biganeh);
 
         Product maskh = new Product();
         maskh.setName("maskh");
@@ -39,6 +41,7 @@ public class Main {
         maskh.setSeller(seller_1);
         maskh.setThereMore(true);
         maskh.getSpecialFeatures().put("writer" , "kafka");
+        Database.getAllProducts().add(maskh);
 
         books.getProducts().add(biganeh);
         books.getProducts().add(maskh);

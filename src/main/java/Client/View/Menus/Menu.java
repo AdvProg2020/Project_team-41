@@ -1,8 +1,9 @@
 package Client.View.Menus;
 
 import Client.Controller.UserSectionController.UserSectionController;
-import Client.View.Menus.UserSectionMenus.UserSection;
+import Client.Controller.EndProgram;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,13 +28,27 @@ public abstract class Menu {
     public void show(){
         setRightNameForLoginMenu();
         for (Menu subMenu : subMenus) {
-
+            if(this instanceof RegisterLoginMenu){
+                break;
+            }
             System.out.println(subMenu.getName());
         }
+
+        if(this instanceof RegisterLoginMenu){
+            if(UserSectionController.getLoggedInPerson()==null){
+                System.out.println("Create\nlogin");
+            }
+            else{
+                System.out.println("Logout");
+            }
+        }
+
         if(superMenu != null)
             System.out.println("back");
+        System.out.println("help");
+        System.out.println("end Program");
     }
-    public void execute(){
+    public void execute() {
         command = scanner.nextLine();
         if(command.equalsIgnoreCase("help")) {
             this.show();
@@ -47,6 +62,9 @@ public abstract class Menu {
             else{
                 System.out.println("There isn't any back button here");
             }
+        }
+        if(command.equalsIgnoreCase("end program")){
+                EndProgram.endProgram();
         }
 
         for (Menu subMenu : subMenus) {
