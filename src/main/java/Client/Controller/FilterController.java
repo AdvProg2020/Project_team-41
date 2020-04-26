@@ -2,6 +2,7 @@ package Client.Controller;
 
 import Client.Models.Category;
 import Client.Models.Product;
+import Server.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +22,8 @@ public class FilterController {
 
     private FilterController(){
     }
-    public void setFilterCategory(String filterCategoryName) {
-        this.filterCategory =  Category.getCategoryByName(filterCategoryName);
+    public void setFilterCategory(String filterCategoryName) throws Exception {
+        this.filterCategory =  Database.getCategoryByName(filterCategoryName);
     }
 
     public void setFilterFeature(HashMap<String, String> filterFeature) {

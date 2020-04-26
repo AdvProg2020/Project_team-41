@@ -52,12 +52,17 @@ public class FilterMenu extends Menu {
             @Override
             public void execute() {
                 String givenFilter = scanner.nextLine();
-                FilterController.getInstance().setFilterCategory(givenFilter);
-
-                System.out.println("filtered products:");
-                for (Product filteredProduct : FilterController.getInstance().getFilteredProducts()) {
-                    System.out.println(filteredProduct.getName());
+                try {
+                    FilterController.getInstance().setFilterCategory(givenFilter);
+                    System.out.println("filtered products:");
+                    for (Product filteredProduct : FilterController.getInstance().getFilteredProducts()) {
+                        System.out.println(filteredProduct.getName());
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
+
+
                 super.execute();
             }
         };
@@ -92,7 +97,11 @@ public class FilterMenu extends Menu {
             @Override
             public void execute() {
                 String filterToBeDisabled = scanner.nextLine();
-                FilterController.getInstance().setFilterCategory(null);
+                try {
+                    FilterController.getInstance().setFilterCategory(null);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 System.out.println("The filter has been disabled");
                 super.execute();
             }
