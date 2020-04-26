@@ -3,7 +3,7 @@
 
 
 #files
-
+*.dat
 # Compiled class file
 *.class
 
@@ -140,3 +140,14 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+!/allCategory.dat
+!/allDiscountCodes.dat
+!/allManagers.dat
+!/allRequests.dat
+src/main/resources/
+!/allCategory.dat
+!/allCategory.dat
+!/allUsers.dat
+!/allRequests.dat
+!/allDiscountCodes.dat
+!/allManagers.dat
