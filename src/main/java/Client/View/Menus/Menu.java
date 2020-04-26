@@ -47,9 +47,7 @@ public abstract class Menu {
             else{
                 System.out.println("There isn't any back button here");
             }
-
         }
-
 
         for (Menu subMenu : subMenus) {
             if(command.equalsIgnoreCase(subMenu.getName())) {
