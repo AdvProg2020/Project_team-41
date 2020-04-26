@@ -146,8 +146,8 @@ public class RegisterLoginMenu extends Menu {
             public void execute() {
                 LoginRegisterController.getInstance().logout();
                 MainMenu.getInstance().removeUserSection();
-                this.superMenu.getSuperMenu().show();
-                this.superMenu.getSuperMenu().execute();
+                MainMenu.getInstance().show();
+                MainMenu.getInstance().execute();
 
             }
         };
