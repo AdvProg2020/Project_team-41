@@ -19,18 +19,6 @@ public class RegisterLoginMenu extends Menu {
 
     }
 
-    @Override
-    public void show() {
-        if(UserSectionController.getLoggedInPerson()==null){
-            System.out.println("Create\n" +
-                    "login\n" +
-                    "back");
-        }
-        else{
-            System.out.println("Logout\n" +
-                    "back");
-        }
-    }
 
     public Menu addCreate(){
         return new Menu(this, "Create") {
