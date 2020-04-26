@@ -26,6 +26,9 @@ public class LoginRegisterController {
         UserSectionController.setLoggedInPerson(null);
         //todo other things
     }
+    public boolean checkIfManagerExists(){
+        return !Database.getAllManagers().isEmpty();
+    }
     private LoginRegisterController(){
     }
 }

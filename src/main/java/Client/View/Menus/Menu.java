@@ -29,15 +29,18 @@ public abstract class Menu {
         setRightNameForLoginMenu();
         for (Menu subMenu : subMenus) {
             if(this instanceof RegisterLoginMenu){
-                if(UserSectionController.getLoggedInPerson()==null){
-                    System.out.println("Create\nlogin");
-                }
-                else{
-                    System.out.println("Logout");
-                }
                 break;
             }
             System.out.println(subMenu.getName());
+        }
+
+        if(this instanceof RegisterLoginMenu){
+            if(UserSectionController.getLoggedInPerson()==null){
+                System.out.println("Create\nlogin");
+            }
+            else{
+                System.out.println("Logout");
+            }
         }
 
         if(superMenu != null)

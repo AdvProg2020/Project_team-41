@@ -27,9 +27,9 @@ public class LoginRegisterServerController {
         }
 
         if (person instanceof Manager) {
-            if (Database.getAllManagers().size()>0) {
+            /*if (Database.getAllManagers().size()>0) {
                 throw new Exception("You can't be a manager!");
-            }
+            }*/
             Database.addManager((Manager) person);
         }
         Database.addUser(person);
