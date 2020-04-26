@@ -28,11 +28,21 @@ public abstract class Menu {
     public void show(){
         setRightNameForLoginMenu();
         for (Menu subMenu : subMenus) {
-
+            if(this instanceof RegisterLoginMenu){
+                if(UserSectionController.getLoggedInPerson()==null){
+                    System.out.println("Create\nlogin");
+                }
+                else{
+                    System.out.println("Logout");
+                }
+                break;
+            }
             System.out.println(subMenu.getName());
         }
+
         if(superMenu != null)
             System.out.println("back");
+        System.out.println("help");
         System.out.println("end Program");
     }
     public void execute() {
