@@ -9,8 +9,7 @@ import java.util.ArrayList;
 public class LoginRegisterServerController {
     private ArrayList<Person> allUsersLoggedIn;
     private static LoginRegisterServerController single_instance = null;
-    public static LoginRegisterServerController getInstance()
-    {
+    public static LoginRegisterServerController getInstance() {
         if (single_instance == null)
             single_instance = new LoginRegisterServerController();
 
