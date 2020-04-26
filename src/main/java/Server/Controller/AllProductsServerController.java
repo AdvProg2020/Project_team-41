@@ -19,7 +19,7 @@ public class AllProductsServerController {
 
     }
     public ArrayList<Category> getAllCategories(){
-        return Database.getAllCategories();
+        return Database.getAllCategory();
     }
     public ArrayList<Product> getAllProducts(){
         System.err.println("fail");
