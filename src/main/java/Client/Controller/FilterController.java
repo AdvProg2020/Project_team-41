@@ -1,6 +1,7 @@
 package Client.Controller;
 
 import Client.Models.Category;
+import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Server.Database;
 
@@ -17,8 +18,13 @@ public class FilterController {
         return single_instance;
     }
 
-    private Category filterCategory = null;
-    private HashMap<String ,String> filterFeature;
+    private Category filterCategory ;
+    private String name;
+    private String companyName;
+    private int price;
+    private Seller seller;
+    private boolean isThereMore;
+//    private HashMap<String ,String> filterFeature;
 
     private FilterController(){
     }
@@ -26,16 +32,8 @@ public class FilterController {
         this.filterCategory =  Database.getCategoryByName(filterCategoryName);
     }
 
-    public void setFilterFeature(HashMap<String, String> filterFeature) {
-        this.filterFeature = filterFeature;
-    }
-
     public Category getFilterCategory() {
         return filterCategory;
-    }
-
-    public HashMap<String, String> getFilterFeature() {
-        return filterFeature;
     }
 
     public ArrayList<Product> getFilteredProducts(){
