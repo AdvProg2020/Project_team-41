@@ -2,9 +2,10 @@ package Client.Models.Person;
 
 import Client.Models.TradeLogs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
 
     //start of personal information
     private String userName;
