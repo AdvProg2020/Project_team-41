@@ -1,5 +1,7 @@
 package Client.Models;
 
+import Server.Database;
+
 import java.util.ArrayList;
 
 public class Category {
@@ -12,6 +14,11 @@ public class Category {
         this.products = new ArrayList<>();
         this.name = name;
         this.specialFeatures = specialFeatures;
+        Database.getAllCategory().add(this);
+    }
+
+    public ArrayList<String> getSpecialFeatures() {
+        return specialFeatures;
     }
 
     public ArrayList<Product> getProducts() {

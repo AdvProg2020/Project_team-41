@@ -31,9 +31,13 @@ public class FilterMenu extends Menu {
        return new Menu(this , "show available filters") {
            @Override
            public void show() {
-               System.out.println("Category Names:");
-               for (Category eachCategory : AllProductsController.getInstance().getAllCategories()) {
-                   System.out.println( eachCategory.getName());}
+               System.out.println("product name/ company name/ price/ seller/ existence");
+               System.out.println("category name");
+               if(FilterController.getInstance().getFilterCategory() != null){
+                   System.out.println("category special features:");
+                   for (String specialFeature : FilterController.getInstance().getFilterCategory().getSpecialFeatures()) {
+                       System.out.println(specialFeature);
+                   }}
            }
            @Override
            public void execute() {
@@ -99,10 +103,10 @@ public class FilterMenu extends Menu {
                 String filterToBeDisabled = scanner.nextLine();
                 try {
                     FilterController.getInstance().setFilterCategory(null);
+                    System.out.println("The filter has been disabled");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-                System.out.println("The filter has been disabled");
                 super.execute();
             }
         };
