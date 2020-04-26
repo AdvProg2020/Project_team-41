@@ -2,6 +2,7 @@ package Server.Controller;
 
 import Client.Models.Category;
 import Client.Models.Product;
+import Server.Database;
 
 import java.util.ArrayList;
 
@@ -18,8 +19,7 @@ public class AllProductsServerController {
 
     }
     public ArrayList<Category> getAllCategories(){
-        System.err.println("fail");
-        return new ArrayList<>();
+        return Database.getAllCategories();
     }
     public ArrayList<Product> getAllProducts(){
         System.err.println("fail");

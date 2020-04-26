@@ -13,6 +13,7 @@ public class BuyerController extends UserSectionController {
         return single_instance;
     }
     private BuyerController(){
+
     }
 
     public static boolean checkDiscountCode(String code){

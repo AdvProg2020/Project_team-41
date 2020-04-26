@@ -70,6 +70,4 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> viewAllDiscountCodes(){
         return ManagerServerController.getInstance().viewAllDiscountCodes();
     }
-
-
 }

@@ -16,13 +16,13 @@ public class FilterController {
         return single_instance;
     }
 
-    private Category filterCategory;
+    private Category filterCategory = null;
     private HashMap<String ,String> filterFeature;
 
     private FilterController(){
     }
-    public void setFilterCategory(Category filterCategory) {
-        this.filterCategory = filterCategory;
+    public void setFilterCategory(String filterCategoryName) {
+        this.filterCategory =  Category.getCategoryByName(filterCategoryName);
     }
 
     public void setFilterFeature(HashMap<String, String> filterFeature) {
@@ -38,7 +38,6 @@ public class FilterController {
     }
 
     public ArrayList<Product> getFilteredProducts(){
-        System.err.println("fail");
-        return new ArrayList<>();
+        return filterCategory.getProducts();
     }
 }

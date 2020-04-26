@@ -4,6 +4,7 @@ import Client.Controller.UserSectionController.BuyerAccountController.BuyerContr
 import Client.View.Menus.Menu;
 
 public class Purchase extends Menu {
+
     public Purchase(Menu superMenu) {
         super(superMenu, "purchase");
         this.addSubMenu(receiverInformation());
@@ -60,4 +61,3 @@ public class Purchase extends Menu {
     };
 }
 }
-
