@@ -1,9 +1,10 @@
 package Client.Models;
 
-import java.io.Serializable;
+import Server.Database;
+
 import java.util.ArrayList;
 
-public class Category implements Serializable {
+public class Category {
 
     private String name;
     private ArrayList<String> specialFeatures;
@@ -13,6 +14,11 @@ public class Category implements Serializable {
         this.products = new ArrayList<>();
         this.name = name;
         this.specialFeatures = specialFeatures;
+        Database.getAllCategory().add(this);
+    }
+
+    public ArrayList<String> getSpecialFeatures() {
+        return specialFeatures;
     }
 
     public ArrayList<Product> getProducts() {

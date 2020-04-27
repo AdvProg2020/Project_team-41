@@ -19,12 +19,35 @@ public class Product implements Serializable {
     // end of common specifics
 
     private Category category;
-    private HashMap<String, String> specialFeatures;//todo new in constructor
+    private HashMap<String, String> specialFeatures = new HashMap<>();//todo new in constructor
     private String description;
     private ArrayList<Score>scores;//todo add method to calculate average
     private ArrayList<Comment>comments;
     private int views;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    public void setThereMore(boolean thereMore) {
+        isThereMore = thereMore;
+    }
+
+    public HashMap<String, String> getSpecialFeatures() {
+        return specialFeatures;
+    }
 
     public String getProductId() {
         return productId;
