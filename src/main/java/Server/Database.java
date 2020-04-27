@@ -1,10 +1,9 @@
 package Server;
 
-import Client.Models.Category;
-import Client.Models.CodedDiscount;
+import Client.Models.*;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
-import Client.Models.Request;
+import Client.Models.Person.Seller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +15,14 @@ public class Database implements Serializable {
     private static ArrayList<Person> allUsers=new ArrayList<>();
     private static ArrayList<Manager>allManagers=new ArrayList<>();
     private static ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
-    //todo move all here
+    private static ArrayList<Product> allProducts=new ArrayList<>();
+    private static ArrayList<Seller> allSellers=new ArrayList<>();
+    private static ArrayList<Off>allOffs=new ArrayList<>();
+
+    public static ArrayList<Off> getAllOffs() {
+        return allOffs;
+    }
+//todo move all here
 
     public static Category getCategoryByName(String name) throws Exception {
         for (Category category : allCategory) {
@@ -40,6 +46,20 @@ public class Database implements Serializable {
         }
         return null;
     }
+
+    public static Seller getSellerByName(String name) throws Exception {
+        for (Seller seller : allSellers) {
+            if(seller.getUserName().equals(name)){
+                return seller;
+            }
+        }
+        throw new Exception("no seller found");
+    }
+
+    public static ArrayList<Product> getAllProducts() {
+        return allProducts;
+    }
+
     public static ArrayList<CodedDiscount> getAllDiscountCodes() {
         return allDiscountCodes;
     }

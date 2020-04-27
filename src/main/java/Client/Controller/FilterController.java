@@ -1,11 +1,14 @@
 package Client.Controller;
 
 import Client.Models.Category;
+import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Server.Database;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import javafx.util.Pair;
 
 public class FilterController {
     private static FilterController single_instance = null;
@@ -17,7 +20,13 @@ public class FilterController {
         return single_instance;
     }
 
-    private Category filterCategory = null;
+    private Category filterCategory ;
+    private String name;
+    private String companyName;
+    private int definitePrice;
+    private Pair<Integer, Integer> priceMinMax ;
+    private Seller seller;
+    private boolean isThereMore;
     private HashMap<String ,String> filterFeature;
 
     private FilterController(){
@@ -26,16 +35,56 @@ public class FilterController {
         this.filterCategory =  Database.getCategoryByName(filterCategoryName);
     }
 
-    public void setFilterFeature(HashMap<String, String> filterFeature) {
-        this.filterFeature = filterFeature;
-    }
-
     public Category getFilterCategory() {
         return filterCategory;
     }
 
-    public HashMap<String, String> getFilterFeature() {
-        return filterFeature;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public int getDefinitePrice() {
+        return definitePrice;
+    }
+
+    public void setDefinitePrice(int definitePrice) {
+        this.definitePrice = definitePrice;
+    }
+
+    public void setPriceMinMax(Pair<Integer, Integer> priceMinMax) {
+        this.priceMinMax = priceMinMax;
+    }
+
+    public Pair<Integer, Integer> getPriceMinMax() {
+        return priceMinMax;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String sellerName) throws Exception {
+        this.seller = Database.getSellerByName(sellerName);
+    }
+
+    public boolean isThereMore() {
+        return isThereMore;
+    }
+
+    public void setThereMore(boolean thereMore) {
+        isThereMore = thereMore;
     }
 
     public ArrayList<Product> getFilteredProducts(){
