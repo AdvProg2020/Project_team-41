@@ -1,4 +1,5 @@
 import Client.Models.Category;
+import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.MainMenu;
@@ -9,8 +10,17 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
+//        for (Category category : Database.getAllCategory()) {
+//            System.out.println("name:" +category.getName());
+//        }
+//        for (Product product : Database.getAllProducts()) {
+//            System.out.println(product.getName());
+//        }
+//        for (Person allUser : Database.getAllUsers()) {
+//            System.out.println(allUser.getUserName());
+//        }
 
-        makeSomeProducts_CategoriesForTest();
+      //  makeSomeProducts_CategoriesForTest();
         startProgram();
         MainMenu.getInstance().show();
         MainMenu.getInstance().execute();

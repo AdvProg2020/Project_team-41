@@ -8,6 +8,8 @@ import Server.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
+
 import javafx.util.Pair;
 
 public class FilterController {
@@ -31,6 +33,11 @@ public class FilterController {
 
     private FilterController(){
     }
+
+//    private ArrayList<Product> filterProducts(){
+////        return Database.getAllProducts().stream().filter( Product -> true);
+////    }
+
     public void setFilterCategory(String filterCategoryName) throws Exception {
         this.filterCategory =  Database.getCategoryByName(filterCategoryName);
     }
