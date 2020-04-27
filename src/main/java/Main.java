@@ -17,13 +17,13 @@ public class Main {
 
     }
 
-    private static void makeSomeProducts_CategoriesForTest(){
+    private static void makeSomeProducts_CategoriesForTest() {
         Seller seller_1 = new Seller();
 
         ArrayList<String> specialFeatures = new ArrayList<>();
         specialFeatures.add("writer");
-        Category books = new Category("books" , specialFeatures);
-        Category shirts = new Category("shirts" , new ArrayList<>());
+        Category books = new Category("books", specialFeatures);
+        Category shirts = new Category("shirts", new ArrayList<>());
 
         Product biganeh = new Product();
         biganeh.setName("biganeh");
@@ -31,7 +31,7 @@ public class Main {
         biganeh.setPrice(10000);
         biganeh.setSeller(seller_1);
         biganeh.setThereMore(true);
-        biganeh.getSpecialFeatures().put("writer" , "alberkamo");
+        biganeh.getSpecialFeatures().put("writer", "alberkamo");
         Database.getAllProducts().add(biganeh);
 
         Product maskh = new Product();
@@ -40,17 +40,18 @@ public class Main {
         maskh.setPrice(5000);
         maskh.setSeller(seller_1);
         maskh.setThereMore(true);
-        maskh.getSpecialFeatures().put("writer" , "kafka");
+        maskh.getSpecialFeatures().put("writer", "kafka");
         Database.getAllProducts().add(maskh);
 
         books.getProducts().add(biganeh);
         books.getProducts().add(maskh);
     }
 
-    private static void startProgram(){
+    private static void startProgram() {
         //todo read files from resources
     }
-    private static void endProgram(){
+
+    private static void endProgram() {
 
     }
 }
