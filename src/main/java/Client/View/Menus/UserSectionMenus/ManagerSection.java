@@ -42,12 +42,16 @@ public class ManagerSection extends UserSection {
             private void edit(String Category){
                 System.out.println("change what you want(type field  and edited field");
                 ManagerController.getInstance().editCategory(Category,scanner.next(),scanner.next());
+                this.show();
+                this.execute();
             }
             private void add(String category){
                 String specialFeatures;
                 System.out.println("type its special features(type them with a comma between each special feature");
                 specialFeatures = scanner.nextLine();
                 ManagerController.getInstance().addCategory(category,specialFeatures);
+                this.show();
+                this.execute();
             }
             private void remove(String category){
                 try{
@@ -56,7 +60,10 @@ public class ManagerSection extends UserSection {
                 catch (Exception e){
                     System.out.println("no category exists with this name");
                 }
+                this.show();
+                this.execute();
             }
+
 
 
             @Override
