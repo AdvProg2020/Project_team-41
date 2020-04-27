@@ -146,8 +146,11 @@ public class ManagerServerController extends UserSectionServerController {
         System.err.println("fail");
     }
     public ArrayList<String> showCategories(){
-        System.err.println("fail");
-        return new ArrayList<>();
+        ArrayList<String> categories = new ArrayList<>();
+        for (Category category : Database.getAllCategory()) {
+            categories.add(category.getName());
+        }
+        return categories;
     }
     public void editCategory(String category,String field,String editedField){
         System.err.println("fail");
