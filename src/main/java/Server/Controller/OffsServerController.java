@@ -1,7 +1,9 @@
 package Server.Controller;
 
 
+import Client.Models.Off;
 import Client.Models.Product;
+import Server.Database;
 
 import java.util.ArrayList;
 
@@ -16,9 +18,8 @@ public class OffsServerController {
     }
     private OffsServerController(){
     }
-    public ArrayList<Product> getOffs(){
-        System.err.println("fail");
-        return new ArrayList<>();
+    public ArrayList<Off> getOffs(){
+        return Database.getAllOffs();
     }
 
 
