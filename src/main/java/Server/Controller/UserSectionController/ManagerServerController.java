@@ -158,7 +158,7 @@ public class ManagerServerController extends UserSectionServerController {
     public void addCategory(String categoryName,String specialFeatures){
         ArrayList<String> specialFeaturesArray = new ArrayList<>();
         Collections.addAll(specialFeaturesArray, specialFeatures.split(","));
-        Database.addCategory(new Category(categoryName,specialFeaturesArray));
+        new Category(categoryName,specialFeaturesArray);
     }
     public void removeCategory(String categoryName) throws Exception {
         Database.deleteCategory(categoryName);
