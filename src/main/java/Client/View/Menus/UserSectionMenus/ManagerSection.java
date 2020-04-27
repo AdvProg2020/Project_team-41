@@ -40,7 +40,7 @@ public class ManagerSection extends UserSection {
     private Menu addManageCategories(){
         return new Menu(this,"ManageCategories") {
             private void edit(String Category){
-                System.out.println("change what you want(type field  and edited field");
+                System.out.println("change what you want(type field and edited field");
                 ManagerController.getInstance().editCategory(Category,scanner.next(),scanner.next());
                 this.show();
                 this.execute();
