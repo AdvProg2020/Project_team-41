@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class CodedDiscount implements Serializable {
-    public CodedDiscount(String discountCode, Date startDate, Date endDate, int[] amountOfDiscount, int discountRepeatsForEachUser, ArrayList<Person> people) {
+    public CodedDiscount(String discountCode, Date startDate, Date endDate, int discountPercentage,int maximumDiscount, int discountRepeatsForEachUser, ArrayList<Person> people) {
         DiscountCode = discountCode;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.amountOfDiscount = amountOfDiscount;
+        this.discountPercentage = discountPercentage;
+        this.maximumDiscount = maximumDiscount;
         this.discountRepeatsForEachUser = discountRepeatsForEachUser;
         this.people = people;
     }
@@ -19,7 +20,8 @@ public class CodedDiscount implements Serializable {
     private String DiscountCode;
     private Date startDate;
     private Date endDate;
-    private int[] amountOfDiscount;// TODO: in the constructor : amountOfDiscount= new int[2];
+    private int discountPercentage;
+    private int maximumDiscount;
     private int discountRepeatsForEachUser;
     private ArrayList<Person> people;
 
@@ -47,12 +49,20 @@ public class CodedDiscount implements Serializable {
         this.endDate = endDate;
     }
 
-    public int[] getAmountOfDiscount() {
-        return amountOfDiscount;
+    public int getDiscountPercentage() {
+        return discountPercentage;
     }
 
-    public void setAmountOfDiscount(int[] amountOfDiscount) {
-        this.amountOfDiscount = amountOfDiscount;
+    public void setDiscountPercentage(int discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
+    public int getMaximumDiscount() {
+        return maximumDiscount;
+    }
+
+    public void setMaximumDiscount(int maximumDiscount) {
+        this.maximumDiscount = maximumDiscount;
     }
 
     public int getDiscountRepeatsForEachUser() {

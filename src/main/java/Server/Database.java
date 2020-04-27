@@ -1,12 +1,9 @@
 package Server;
 
-import Client.Models.Category;
-import Client.Models.CodedDiscount;
+import Client.Models.*;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
-import Client.Models.Product;
-import Client.Models.Request;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +17,12 @@ public class Database implements Serializable {
     private static ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
     private static ArrayList<Product> allProducts=new ArrayList<>();
     private static ArrayList<Seller> allSellers=new ArrayList<>();
-    //todo move all here
+    private static ArrayList<Off>allOffs=new ArrayList<>();
+
+    public static ArrayList<Off> getAllOffs() {
+        return allOffs;
+    }
+//todo move all here
 
     public static Category getCategoryByName(String name) throws Exception {
         for (Category category : allCategory) {
@@ -28,7 +30,21 @@ public class Database implements Serializable {
                 return category;
             }
         }
-        throw new Exception("no category found");
+        return null;
+    }
+    public static Person getPersonByUsername(String username){
+        for (Person user : allUsers) {
+            if(user.getUserName().equalsIgnoreCase(username))
+                return user;
+        }
+        return null;
+    }
+    public static CodedDiscount getCodedDiscountByCode(String code){
+        for (CodedDiscount codedDiscount : allDiscountCodes) {
+            if(codedDiscount.equals(code))
+                return codedDiscount;
+        }
+        return null;
     }
 
     public static Seller getSellerByName(String name) throws Exception {
@@ -83,6 +99,9 @@ public class Database implements Serializable {
     }
     public static ArrayList<Person> getAllUsers(){
         return allUsers;
+    }
+    public static void deleteCodedDiscount(String code){
+        allDiscountCodes.removeIf(discountCode -> discountCode.getDiscountCode().equals(code));
     }
     public static ArrayList<Manager> getAllManagers() {
         return allManagers;

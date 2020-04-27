@@ -160,8 +160,8 @@ public class ManagerSection extends UserSection {
             }
             private void editDiscountCode(String code) {
                 HashMap<String, String> edits = new HashMap<>();
-                System.out.println("what do you want to change?");
-                while (!scanner.hasNext("back")) {
+                System.out.println("what do you want to change?(type end to finish editing");
+                while (!scanner.hasNext("end")) {
                     edits.put(scanner.next(), scanner.next());
                 }
                 ManagerController.getInstance().editDiscountCode(code, edits);
@@ -232,13 +232,17 @@ public class ManagerSection extends UserSection {
 
             @Override
             public void execute() {
+                ArrayList<String> codeInformation = new ArrayList<>();
                 System.out.println("enter code(or back:-))");
                 super.execute();
-                ArrayList<String> codeInformation = new ArrayList<>();
                 codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactStartTime");
+                System.out.println("enter exactStartDate(day/month/year)");
                 codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactEndTime");
+                System.out.println("enter exactStartTime(hour:minute:second)");
+                codeInformation.add(scanner.nextLine());
+                System.out.println("enter exactEndDate(day/month/year)");
+                codeInformation.add(scanner.nextLine());
+                System.out.println("enter exactEndTime(hour:minute:second)");
                 codeInformation.add(scanner.nextLine());
                 System.out.println("enter discount percentage");
                 codeInformation.add(scanner.nextLine());
@@ -248,7 +252,13 @@ public class ManagerSection extends UserSection {
                 codeInformation.add(scanner.nextLine());
                 System.out.println("enter who can use this code(type allUsers to include every person or type usernames inside brackets and separated by commas(example: [mahdi,matin]");
                 codeInformation.add(scanner.nextLine());
-                ManagerController.getInstance().createDiscountCode(codeInformation);
+                try{
+                    ManagerController.getInstance().createDiscountCode(codeInformation);
+                }
+                catch (Exception e){
+                    System.out.println("invalid username");
+                    //todo other errors
+                }
 
             }
         };
