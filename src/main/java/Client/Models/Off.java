@@ -11,4 +11,23 @@ public class Off {
     private Date endDate;
     private int amountOfDiscount;
 
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public String getOffId() {
+        return offId;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public int getAmountOfDiscount() {
+        return amountOfDiscount;
+    }
 }

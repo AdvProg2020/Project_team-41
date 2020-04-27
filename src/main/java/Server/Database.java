@@ -1,12 +1,9 @@
 package Server;
 
-import Client.Models.Category;
-import Client.Models.CodedDiscount;
+import Client.Models.*;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
-import Client.Models.Product;
-import Client.Models.Request;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +17,12 @@ public class Database implements Serializable {
     private static ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
     private static ArrayList<Product> allProducts=new ArrayList<>();
     private static ArrayList<Seller> allSellers=new ArrayList<>();
-    //todo move all here
+    private static ArrayList<Off>allOffs=new ArrayList<>();
+
+    public static ArrayList<Off> getAllOffs() {
+        return allOffs;
+    }
+//todo move all here
 
     public static Category getCategoryByName(String name) throws Exception {
         for (Category category : allCategory) {

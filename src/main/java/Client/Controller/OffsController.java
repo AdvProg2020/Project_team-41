@@ -1,7 +1,9 @@
 package Client.Controller;
 
 
+import Client.Models.Off;
 import Client.Models.Product;
+import Server.Controller.OffsServerController;
 
 import java.util.ArrayList;
 
@@ -16,9 +18,9 @@ public class OffsController {
     }
     private OffsController(){
     }
-    public ArrayList<Product> getOffs(){
-        System.err.println("fail");
-        return new ArrayList<>();
+    public ArrayList<Off> getOffs(){
+
+        return  OffsServerController.getInstance().getOffs();
     }
     public Product getProductId(String id){
         System.err.println("fail");
