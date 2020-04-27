@@ -8,38 +8,49 @@ import Server.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.util.Pair;
 
 public class FilterController {
     private static FilterController single_instance = null;
-    public static FilterController getInstance()
-    {
+
+    public static FilterController getInstance() {
         if (single_instance == null)
             single_instance = new FilterController();
 
         return single_instance;
     }
 
-    private Category filterCategory ;
+    private Category filterCategory;
     private String name;
     private String companyName;
     private int definitePrice;
-    private Pair<Integer, Integer> priceMinMax ;
+    private Pair<Integer, Integer> priceMinMax;
     private Seller seller;
     private boolean isThereMore;
-    private HashMap<String ,String> filterFeature;
+    private HashMap<String, String> filterFeature;
 
-    private FilterController(){
+    private FilterController() {
     }
 
-//    private ArrayList<Product> filterProducts(){
-////        return Database.getAllProducts().stream().filter( Product -> true);
-////    }
+    private List<Product> filterProducts() {
+        return Database.getAllProducts().stream()
+                .filter(Product -> {
+                    if (name != null)
+                        return Product.getName().equals(name);
+                    else if (companyName != null)
+                        return Product.getCompanyName().equals(companyName);
+                    //TODO other fields
+                    else
+                        return true;
+                })
+                .collect(Collectors.toList());
+    }
 
     public void setFilterCategory(String filterCategoryName) throws Exception {
-        this.filterCategory =  Database.getCategoryByName(filterCategoryName);
+        this.filterCategory = Database.getCategoryByName(filterCategoryName);
     }
 
     public Category getFilterCategory() {
@@ -94,7 +105,7 @@ public class FilterController {
         isThereMore = thereMore;
     }
 
-    public ArrayList<Product> getFilteredProducts(){
+    public ArrayList<Product> getFilteredProducts() {
         return filterCategory.getProducts();
     }
 }

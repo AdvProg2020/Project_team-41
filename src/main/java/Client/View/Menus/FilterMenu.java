@@ -65,14 +65,12 @@ public class FilterMenu extends Menu {
                         System.out.println("Enter the name:");
                         String name = scanner.nextLine();
                         FilterController.getInstance().setName(name);
-                        System.out.println("done1");
                         break;
                     }
                     case "company name": {
                         System.out.println("Enter the name:");
                         String name = scanner.nextLine();
                         FilterController.getInstance().setCompanyName(name);
-                        System.out.println("done2");
                         break;
                     }
                     case "price": {
