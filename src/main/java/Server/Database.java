@@ -24,7 +24,21 @@ public class Database implements Serializable {
                 return category;
             }
         }
-        throw new Exception("no category found");
+        return null;
+    }
+    public static Person getPersonByUsername(String username){
+        for (Person user : allUsers) {
+            if(user.getUserName().equalsIgnoreCase(username))
+                return user;
+        }
+        return null;
+    }
+    public static CodedDiscount getCodedDiscountByCode(String code){
+        for (CodedDiscount codedDiscount : allDiscountCodes) {
+            if(codedDiscount.equals(code))
+                return codedDiscount;
+        }
+        return null;
     }
     public static ArrayList<CodedDiscount> getAllDiscountCodes() {
         return allDiscountCodes;
@@ -65,6 +79,9 @@ public class Database implements Serializable {
     }
     public static ArrayList<Person> getAllUsers(){
         return allUsers;
+    }
+    public static void deleteCodedDiscount(String code){
+        allDiscountCodes.removeIf(discountCode -> discountCode.getDiscountCode().equals(code));
     }
     public static ArrayList<Manager> getAllManagers() {
         return allManagers;
