@@ -146,8 +146,11 @@ public class ManagerServerController extends UserSectionServerController {
         System.err.println("fail");
     }
     public ArrayList<String> showCategories(){
-        System.err.println("fail");
-        return new ArrayList<>();
+        ArrayList<String> categories = new ArrayList<>();
+        for (Category category : Database.getAllCategory()) {
+            categories.add(category.getName());
+        }
+        return categories;
     }
     public void editCategory(String category,String field,String editedField){
         System.err.println("fail");
@@ -155,7 +158,7 @@ public class ManagerServerController extends UserSectionServerController {
     public void addCategory(String categoryName,String specialFeatures){
         ArrayList<String> specialFeaturesArray = new ArrayList<>();
         Collections.addAll(specialFeaturesArray, specialFeatures.split(","));
-        Database.addCategory(new Category(categoryName,specialFeaturesArray));
+        new Category(categoryName,specialFeaturesArray);
     }
     public void removeCategory(String categoryName) throws Exception {
         Database.deleteCategory(categoryName);
