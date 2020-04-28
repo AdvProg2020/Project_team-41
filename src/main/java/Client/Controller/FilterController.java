@@ -26,25 +26,58 @@ public class FilterController {
     private Category filterCategory;
     private String name;
     private String companyName;
-    private int definitePrice;
+    private int definitePrice ;
     private Pair<Integer, Integer> priceMinMax;
-    private Seller seller;
-    private boolean isThereMore;
+    private String sellerUserName;
+    //1 for exist ... 0 for not exist ... -1 for not important or filtered
+    private int existence = -1;
     private HashMap<String, String> filterFeature;
 
     private FilterController() {
     }
 
     public List<Product> filterProducts() {
-
+        boolean tOrF = true;
         return Database.getAllProducts().stream()
                 .filter(Product -> {
-                    if (name != null)
-                        return Product.getName().equals(name);
-                    else if (companyName != null)
-                        return Product.getCompanyName().equals(companyName);
-                    //TODO other fields
-                    else
+                    {
+                        if (name != null){
+                             if(!Product.getName().equals(name))
+                                 return false;}
+                    }
+                    { if (companyName != null){
+                        if(!Product.getCompanyName().equals(companyName))
+                            return false;}
+                    }
+                    {
+                        if (definitePrice != 0){
+                            if(Product.getPrice() != definitePrice)
+                                return false;
+                        }
+                    }
+                    {
+                        if (priceMinMax != null){
+                            if(priceMinMax.getKey()>Product.getPrice() || Product.getPrice()>priceMinMax.getValue())
+                                return false;
+                        }
+                    }
+                    {
+                        if (sellerUserName != null){
+                            if(!Product.getSeller().getUserName().equals(sellerUserName))
+                                return false;
+                        }
+                    }
+                    {
+                        if (existence != -1){
+                            boolean isThereMore;
+                            if(existence==1)
+                                isThereMore=true;
+                            else
+                                isThereMore=false;
+                            if(Product.isThereMore() != isThereMore)
+                                return false;
+                        }
+                    }
                         return true;
                 })
                 .collect(Collectors.toList());
@@ -90,20 +123,17 @@ public class FilterController {
         return priceMinMax;
     }
 
-    public Seller getSeller() {
-        return seller;
+    public String getSellerUserName() {
+        return sellerUserName;
     }
 
-    public void setSeller(String sellerName) throws Exception {
-        this.seller = Database.getSellerByName(sellerName);
+    public void setSellerUserName(String sellerUserName) throws Exception {
+      Database.getSellerByUsername(sellerUserName);
+        this.sellerUserName = sellerUserName;
     }
 
-    public boolean isThereMore() {
-        return isThereMore;
-    }
-
-    public void setThereMore(boolean thereMore) {
-        isThereMore = thereMore;
+    public void setExistence(int existence) {
+        this.existence = existence;
     }
 
     public ArrayList<Product> getFilteredProducts() {
