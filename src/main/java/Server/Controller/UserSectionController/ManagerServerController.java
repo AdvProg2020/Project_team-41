@@ -1,10 +1,9 @@
 package Server.Controller.UserSectionController;
 
-import Client.Models.Category;
-import Client.Models.CodedDiscount;
+import Client.Models.*;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
-import Client.Models.Product;
+import Client.Models.Person.Seller;
 import Server.Database;
 import ir.huri.jcal.JalaliCalendar;
 
@@ -132,18 +131,112 @@ public class ManagerServerController extends UserSectionServerController {
         Database.deleteCodedDiscount(code);
     }
     public ArrayList<String> showRequest(){
-        System.err.println("fail");
-        return new ArrayList<>();
+        ArrayList<String> requests = new ArrayList<>();
+        for (Request request : Database.getAllRequest()) {
+            requests.add(request.getRequestId() + " : " + request.getRequestType());
+        }
+        return requests;
     }
-    public ArrayList<String> getRequestDetails(String request){
-        System.err.println("fail");
-        return new ArrayList<>();
+    public ArrayList<String> getRequestDetails(String requestId){
+        ArrayList<String> requestDetails = new ArrayList<>();
+        Request request = Database.getRequestByRequestId(requestId);
+        switch (request.getRequestType()){
+            case "ADD_PRODUCT" :
+            case "REMOVE_PRODUCT" :
+                {
+                    requestDetails.add("product details:");
+                    requestDetails.addAll(getProductDetails(request.getProduct()));
+                 }
+            case "EDIT_PRODUCT" :{
+                requestDetails.add("product details:");
+                requestDetails.addAll(getProductDetails(request.getProduct()));
+                requestDetails.add("product edits:");
+                for (String editRequestKey : request.getEditRequest().keySet()) {
+                    requestDetails.add(editRequestKey + "-" + request.getEditRequest().get(editRequestKey));
+                }
+            }
+            case "ADD_OFF" :{
+                    requestDetails.add("off details:");
+                    requestDetails.addAll(getOffDetails(request.getOff()));
+            }
+            case "EDIT_OFF" : {
+                    requestDetails.add("off details:");
+                    requestDetails.addAll(getOffDetails(request.getOff()));
+                    requestDetails.add("off edits:");
+                for (String editRequestKey : request.getEditRequest().keySet()) {
+                    requestDetails.add(editRequestKey + "-" + request.getEditRequest().get(editRequestKey));
+                }
+            }
+
+            case "REGISTER_SELLER" :{
+                requestDetails.add("seller details:");
+                requestDetails.addAll(getSellerDetails(request.getOff().getSeller()));
+            }
+        }
+
+        return requestDetails;
     }
-    public void  acceptRequest(String request){
-        System.err.println("fail");
+    public void  acceptRequest(String requestId){
+        Request request = Database.getRequestByRequestId(requestId);
+        switch (request.getRequestType()){
+            case "ADD_PRODUCT" :{
+                Database.addProduct(request.getProduct());
+            }
+            case "REMOVE_PRODUCT" : {
+                Database.removeProduct(request.getProduct());
+            }
+            case "EDIT_PRODUCT" :{
+                Product product = request.getProduct();
+                for (String editRequestKey : request.getEditRequest().keySet()) {
+                    String editRequestValue = request.getEditRequest().get(editRequestKey);
+                    switch (editRequestKey){
+                        case "seller" :{
+                            product.setSeller(Database.getSellerByUsername(editRequestValue));
+                        }
+                        case "price" :{
+                            product.setPrice(Integer.parseInt(editRequestValue));
+                        }
+                        case "companyName" :{
+                            product.setCompanyName(editRequestValue);
+                        }
+                        case "description" :{
+                            product.setDescription(editRequestValue);
+                        }
+                        case "name" :{
+                            product.setName(editRequestValue);
+                        }
+                    }
+                }
+            }
+            case "ADD_OFF" :{
+                Database.addOff(request.getOff());
+            }
+            case "EDIT_OFF" : {
+                Off off = request.getOff();
+                for (String editRequestKey : request.getEditRequest().keySet()) {
+                    String editRequestValue = request.getEditRequest().get(editRequestKey);
+                    switch (editRequestKey){
+                        case "startDate" :{
+                            off.setStartDate(getDateByDateTime(editRequestValue.split(",")));
+                        }
+                        case "endDate" :{
+                            off.setEndDate(getDateByDateTime(editRequestValue.split(",")));
+                        }
+                        case "amountOfDiscount" :{
+                            off.setAmountOfDiscount(Integer.parseInt(editRequestValue));
+                        }
+                    }
+                }
+            }
+
+            case "REGISTER_SELLER" :{
+                Database.addUser(request.getSeller());
+            }
+        }
+
     }
-    public void declineRequest(String request){
-        System.err.println("fail");
+    public void declineRequest(String requestId){
+        Request request = Database.getRequestByRequestId(requestId);
     }
     public ArrayList<String> showCategories(){
         ArrayList<String> categories = new ArrayList<>();
@@ -152,8 +245,8 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return categories;
     }
-    public void editCategory(String category,String field,String editedField){
-        System.err.println("fail");
+    public void editCategory(String category,String field,String editedField) throws Exception {
+        Database.getCategoryByName(category).setName(editedField);
     }
     public void addCategory(String categoryName,String specialFeatures){
         ArrayList<String> specialFeaturesArray = new ArrayList<>();
@@ -196,5 +289,41 @@ public class ManagerServerController extends UserSectionServerController {
         hourMinuteSecond = givenTime.split(":");
         Date exactDate = convertJalaliToGregorian(dayMonthYear[0],dayMonthYear[1],dayMonthYear[2],hourMinuteSecond[0],hourMinuteSecond[1],hourMinuteSecond[2]);
         return exactDate;
+    }
+    public ArrayList<String> getProductDetails(Product product){
+        ArrayList<String> productDetails = new ArrayList<>();
+        productDetails.add("Name : " + product.getName());
+        productDetails.add("Description : " + product.getDescription());
+        productDetails.add("Company name : " + product.getCompanyName());
+        productDetails.add("Price : " + product.getPrice());
+        productDetails.add("Product id : " + product.getProductId());
+        productDetails.add("Category : " + product.getCategory().getName());
+        productDetails.add("Seller's Username : " + product.getSeller().getUserName());
+        productDetails.add("Special Features : ");
+        for (String specialFeatureKey : product.getSpecialFeatures().keySet()) {
+            productDetails.add(specialFeatureKey + " - " + product.getSpecialFeatures().get(specialFeatureKey));
+        }
+        return productDetails;
+    }
+    public ArrayList<String> getOffDetails(Off off){
+        ArrayList<String> offDetails  = new ArrayList<>();
+        offDetails.add("off id : " + off.getOffId());
+        offDetails.add("amount of discount : " + off.getAmountOfDiscount());
+        offDetails.add("start date : " + convertGregorianToJalali(off.getStartDate()));
+        offDetails.add("end date : " + convertGregorianToJalali(off.getEndDate()));
+        offDetails.add("products : ");
+        for (Product product : off.getProducts()) {
+            offDetails.add(product.getName());
+        }
+        return offDetails;
+    }
+    public ArrayList<String> getSellerDetails(Seller seller){
+        ArrayList<String> sellerDetails  = new ArrayList<>();
+        sellerDetails.add("username : "+seller.getUserName());
+        sellerDetails.add("first name : "+seller.getFirstName());
+        sellerDetails.add("last name : "+seller.getLastName());
+        sellerDetails.add("email : "+seller.getEmail());
+        sellerDetails.add("phone number : "+seller.getPhoneNumber());
+        return sellerDetails;
     }
 }
