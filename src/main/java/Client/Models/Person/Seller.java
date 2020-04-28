@@ -11,6 +11,25 @@ public class Seller extends Person {
     private ArrayList<Product> products;
     private ArrayList<Off> offs;
 
+    public String getFactoryName() {
+        return factoryName;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
+    public ArrayList<Off> getOffs() {
+        return offs;
+    }
+
+    public void setOffs(ArrayList<Off> offs) {
+        this.offs = offs;
+    }
 
     public void setFactoryName(String factoryName) {
         this.factoryName = factoryName;

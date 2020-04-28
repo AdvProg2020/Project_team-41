@@ -1,6 +1,6 @@
 package Client.Models.Person;
 
-import Client.Models.TradeLogs;
+import Client.Models.TradeLog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ public abstract class Person implements Serializable {
     private String password;
     //end of personal information
 
+    private ArrayList<TradeLog> tradeLogs;
     private ArrayList<String>discountCodes;
     private int credit;
 
@@ -51,11 +52,10 @@ public abstract class Person implements Serializable {
         return credit;
     }
 
-    public ArrayList<TradeLogs> getTradeLogs() {
+    public ArrayList<TradeLog> getTradeLogs() {
         return tradeLogs;
     }
 
-    private ArrayList<TradeLogs> tradeLogs;
 
     @Override
     public String toString() {

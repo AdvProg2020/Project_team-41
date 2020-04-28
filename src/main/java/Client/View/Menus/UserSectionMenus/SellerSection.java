@@ -1,5 +1,8 @@
 package Client.View.Menus.UserSectionMenus;
 
+import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
+import Client.Controller.UserSectionController.SellerController;
+import Client.Models.Person.Seller;
 import Client.View.Menus.Menu;
 
 public class SellerSection extends UserSection {
@@ -20,26 +23,19 @@ public class SellerSection extends UserSection {
         return new Menu(this,"ViewCompanyInfo") {
             @Override
             public void show() {
-                //todo
+                System.out.println(SellerController.getInstance().getFactoryName());
+                //todo make factory class and put other things in it
             }
 
-            @Override
-            public void execute() {
-                //todo
-            }
         };
     }
     public Menu addViewSalesHistory(){
         return new Menu(this,"ViewSalesHistory") {
             @Override
             public void show() {
-                //todo
+
             }
 
-            @Override
-            public void execute() {
-                //todo
-            }
         };
     }
     public Menu addMangeProduct(){
