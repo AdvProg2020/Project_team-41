@@ -84,7 +84,11 @@ public class FilterMenu extends Menu {
                             FilterController.getInstance().setPriceMinMax(new Pair<>(min, max));
                         } else {
                             System.out.println("Enter the price:");
-                            FilterController.getInstance().setDefinitePrice(scanner.nextInt());
+                            try {
+                                FilterController.getInstance().setDefinitePrice(scanner.nextInt());
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
                         }
                         break;
                     }
@@ -118,6 +122,7 @@ public class FilterMenu extends Menu {
                         System.out.println("invalid filter");
                 }
 
+
                 if(FilterController.getInstance().filterProducts().size()==0)
                     System.out.println("Nothing found");
                 else {
@@ -144,12 +149,7 @@ public class FilterMenu extends Menu {
         return new Menu(this, "current filters") {
             @Override
             public void show() {
-                Category filterCategory = FilterController.getInstance().getFilterCategory();
 
-                if (filterCategory != null)
-                    System.out.println(filterCategory.getName());
-                else
-                    System.out.println("No filter is selected");
             }
 
             @Override
@@ -168,10 +168,9 @@ public class FilterMenu extends Menu {
 
             @Override
             public void execute() {
-                String filterToBeDisabled = scanner.nextLine();
                 try {
-                    FilterController.getInstance().setFilterCategory(null);
-                    System.out.println("The filter has been disabled");
+                    FilterController.getInstance().disableFilter(scanner.nextLine());
+                    System.out.println("The filter was successfully disabled");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

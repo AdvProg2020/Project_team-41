@@ -26,7 +26,8 @@ public class FilterController {
     private Category filterCategory;
     private String name;
     private String companyName;
-    private int definitePrice ;
+    // -1 for not important ir filtered:
+    private int definitePrice =-1;
     private Pair<Integer, Integer> priceMinMax;
     private String sellerUserName;
     //1 for exist ... 0 for not exist ... -1 for not important or filtered:
@@ -37,56 +38,92 @@ public class FilterController {
     }
 
     public List<Product> filterProducts() {
-        boolean tOrF = true;
+
         return Database.getAllProducts().stream()
                 .filter(Product -> {
                     {
-                        if (name != null){
-                             if(!Product.getName().equals(name))
-                                 return false;}
-                    }
-                    { if (companyName != null){
-                        if(!Product.getCompanyName().equals(companyName))
-                            return false;}
-                    }
-                    {
-                        if (definitePrice != 0){
-                            if(Product.getPrice() != definitePrice)
+                        if (name != null) {
+                            if (!Product.getName().equals(name))
                                 return false;
                         }
                     }
                     {
-                        if (priceMinMax != null){
-                            if(priceMinMax.getKey()>Product.getPrice() || Product.getPrice()>priceMinMax.getValue())
+                        if (companyName != null) {
+                            if (!Product.getCompanyName().equals(companyName))
                                 return false;
                         }
                     }
                     {
-                        if (sellerUserName != null){
-                            if(!Product.getSeller().getUserName().equals(sellerUserName))
+                        if (definitePrice != -1) {
+                            if (Product.getPrice() != definitePrice)
                                 return false;
                         }
                     }
                     {
-                        if (existence != -1){
+                        if (priceMinMax != null) {
+                            if (priceMinMax.getKey() > Product.getPrice() || Product.getPrice() > priceMinMax.getValue())
+                                return false;
+                        }
+                    }
+                    {
+                        if (sellerUserName != null) {
+                            if (!Product.getSeller().getUserName().equals(sellerUserName))
+                                return false;
+                        }
+                    }
+                    {
+                        if (existence != -1) {
                             boolean isThereMore;
-                            if(existence==1)
-                                isThereMore=true;
+                            if (existence == 1)
+                                isThereMore = true;
                             else
-                                isThereMore=false;
-                            if(Product.isThereMore() != isThereMore)
+                                isThereMore = false;
+                            if (Product.isThereMore() != isThereMore)
                                 return false;
                         }
                     }
                     {
-                        if(filterCategory != null){
-                            if(!Product.getCategory().equals(filterCategory))
+
+                        if (filterCategory != null) {
+                            if (!Product.getCategory().getName().equals(filterCategory.getName()))
                                 return false;
                         }
                     }
-                        return true;
+                    return true;
                 })
                 .collect(Collectors.toList());
+    }
+
+    public void disableFilter(String filterToBeDisabled) throws Exception {
+        switch (filterToBeDisabled) {
+            case "product name": {
+                name = null;
+                break;
+            }
+            case "company name": {
+                companyName = null;
+                break;
+            }
+            case "category name": {
+                filterCategory = null;
+                break;
+            }
+            case "price" :{
+                definitePrice = -1;
+                priceMinMax = null;
+                break;
+            }
+            case "seller": {
+                sellerUserName = null;
+                break;
+            }
+            case "existence": {
+                existence = -1;
+                break;
+            }
+            default:
+                throw new Exception("invalid filter");
+        }
     }
 
     public void setFilterCategory(String filterCategoryName) throws Exception {
@@ -117,8 +154,11 @@ public class FilterController {
         return definitePrice;
     }
 
-    public void setDefinitePrice(int definitePrice) {
-        this.definitePrice = definitePrice;
+    public void setDefinitePrice(int definitePrice) throws Exception {
+        if (definitePrice >= 0)
+            this.definitePrice = definitePrice;
+        else
+            throw new Exception("price should be a positive number");
     }
 
     public void setPriceMinMax(Pair<Integer, Integer> priceMinMax) {
@@ -134,7 +174,7 @@ public class FilterController {
     }
 
     public void setSellerUserName(String sellerUserName) throws Exception {
-      Database.getSellerByUsername(sellerUserName);
+        Database.getSellerByUsername(sellerUserName);
         this.sellerUserName = sellerUserName;
     }
 
@@ -142,7 +182,4 @@ public class FilterController {
         this.existence = existence;
     }
 
-    public ArrayList<Product> getFilteredProducts() {
-        return filterCategory.getProducts();
-    }
 }

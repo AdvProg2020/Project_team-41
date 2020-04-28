@@ -1,6 +1,8 @@
 package Client.Models;
 
-public class SpecialFeature {
+import java.io.Serializable;
+
+public class SpecialFeature implements Serializable {
     private int specialFeatureInt;
     private String specialFeatureString;
 
