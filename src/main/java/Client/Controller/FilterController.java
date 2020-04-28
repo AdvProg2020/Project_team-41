@@ -29,7 +29,7 @@ public class FilterController {
     private int definitePrice ;
     private Pair<Integer, Integer> priceMinMax;
     private String sellerUserName;
-    //1 for exist ... 0 for not exist ... -1 for not important or filtered
+    //1 for exist ... 0 for not exist ... -1 for not important or filtered:
     private int existence = -1;
     private HashMap<String, String> filterFeature;
 
@@ -75,6 +75,12 @@ public class FilterController {
                             else
                                 isThereMore=false;
                             if(Product.isThereMore() != isThereMore)
+                                return false;
+                        }
+                    }
+                    {
+                        if(filterCategory != null){
+                            if(!Product.getCategory().equals(filterCategory))
                                 return false;
                         }
                     }

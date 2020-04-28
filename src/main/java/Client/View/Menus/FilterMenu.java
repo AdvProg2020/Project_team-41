@@ -109,10 +109,6 @@ public class FilterMenu extends Menu {
                         System.out.println("Enter the name:");
                         try {
                             FilterController.getInstance().setFilterCategory(scanner.nextLine());
-//                            System.out.println("filtered products:");
-//                            for (Product filteredProduct : FilterController.getInstance().getFilteredProducts()) {
-//                                System.out.println(filteredProduct.getName());
-//                            }
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
                         }
