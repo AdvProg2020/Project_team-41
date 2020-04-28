@@ -19,7 +19,7 @@ public class Product implements Serializable {
     // end of common specifics
 
     private Category category;
-    private HashMap<String, String> specialFeatures = new HashMap<>();//todo new in constructor
+    private HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();//todo new in constructor
     private String description;
     private ArrayList<Score>scores;//todo add method to calculate average
     private ArrayList<Comment>comments;
@@ -49,7 +49,7 @@ public class Product implements Serializable {
         isThereMore = thereMore;
     }
 
-    public HashMap<String, String> getSpecialFeatures() {
+    public HashMap<String, SpecialFeature> getSpecialFeatures() {
         return specialFeatures;
     }
 

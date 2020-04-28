@@ -53,6 +53,7 @@ public class ManagerSection extends UserSection {
             private void add(String category){
                 String specialFeatures;
                 System.out.println("type its special features(type them with a comma between each special feature");
+                //todo separate two types of special features
                 specialFeatures = scanner.nextLine();
                 ManagerController.getInstance().addCategory(category,specialFeatures);
                 this.show();
