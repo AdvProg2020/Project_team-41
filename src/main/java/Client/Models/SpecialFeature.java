@@ -1,8 +1,9 @@
 package Client.Models;
 
 public class SpecialFeature {
-    int specialFeatureInt;
-    String specialFeatureString;
+    private int specialFeatureInt;
+    private String specialFeatureString;
+
 
     public String StringOrInt(){
         if(specialFeatureString == null)
@@ -12,11 +13,11 @@ public class SpecialFeature {
 
     }
 
-    public SpecialFeature(int specialFeatureInt) {
+    public void setSpecialFeatureInt(int specialFeatureInt) {
         this.specialFeatureInt = specialFeatureInt;
     }
 
-    public SpecialFeature(String specialFeatureString) {
+    public void setSpecialFeatureString(String specialFeatureString) {
         this.specialFeatureString = specialFeatureString;
     }
 

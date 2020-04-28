@@ -25,6 +25,10 @@ public class Product implements Serializable {
     private ArrayList<Comment>comments;
     private int views;
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
