@@ -17,6 +17,10 @@ public class Category {
         Database.getAllCategory().add(this);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public ArrayList<String> getSpecialFeatures() {
         return specialFeatures;
     }

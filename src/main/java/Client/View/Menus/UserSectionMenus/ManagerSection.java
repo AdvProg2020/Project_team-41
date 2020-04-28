@@ -41,7 +41,12 @@ public class ManagerSection extends UserSection {
         return new Menu(this,"ManageCategories") {
             private void edit(String Category){
                 System.out.println("change what you want(type field and edited field");
-                ManagerController.getInstance().editCategory(Category,scanner.next(),scanner.next());
+                try {
+                    ManagerController.getInstance().editCategory(Category, scanner.next(), scanner.next());
+                }
+                catch (Exception e){
+                    System.out.println("no category found");
+                }
                 this.show();
                 this.execute();
             }

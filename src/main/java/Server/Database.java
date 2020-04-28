@@ -131,5 +131,41 @@ public class Database implements Serializable {
     public static ArrayList<Request> getAllRequest() {
         return allRequest;
     }
+    public static void addProduct(Product product){
+        for (Category category : allCategory) {
+            if(category.equals(product.getCategory())){
+                category.addProduct(product);
+                return;
+            }
+        }
+        throw new NullPointerException("no category found while adding product to database");
+    }
+    public static void removeProduct(Product product){
+        for (Category category : allCategory) {
+            if(category.equals(product.getCategory())){
+                category.removeProduct(product);
+                return;
+            }
+        }
+        throw new NullPointerException("no category found while adding product to database");
+    }
+    public static Seller getSellerByUsername(String username){
+        for (Person user : allUsers) {
+            if(user instanceof Seller)
+                if(user.getUserName().equals(username))
+                    return (Seller)user;
+        }
+        return null;
+    }
+    public static void addOff(Off off){
+        allOffs.add(off);
+    }
+    public static Request getRequestByRequestId(String requestId){
+        for (Request request : allRequest) {
+            if(request.getRequestId().equals(requestId))
+                return request;
+        }
+        return null;
+    }
 
 }
