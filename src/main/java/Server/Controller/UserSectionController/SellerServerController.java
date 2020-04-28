@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SellerServerController extends UserSectionServerController {
+
         private static SellerServerController single_instance = null;
         public static SellerServerController getInstance()
         {
