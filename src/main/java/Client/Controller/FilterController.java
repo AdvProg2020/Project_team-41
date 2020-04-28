@@ -35,7 +35,8 @@ public class FilterController {
     private FilterController() {
     }
 
-    private List<Product> filterProducts() {
+    public List<Product> filterProducts() {
+
         return Database.getAllProducts().stream()
                 .filter(Product -> {
                     if (name != null)

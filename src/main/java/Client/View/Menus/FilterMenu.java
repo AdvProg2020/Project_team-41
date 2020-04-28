@@ -121,6 +121,10 @@ public class FilterMenu extends Menu {
                         System.out.println("invalid filter");
                 }
 
+                for (Product filterProduct : FilterController.getInstance().filterProducts()) {
+                    System.out.println(filterProduct.getName());
+                }
+
                 System.out.println("any other filter? (yes/no)");
                 String yesOrNo = scanner.nextLine();
                 if (yesOrNo.equals("yes")) {

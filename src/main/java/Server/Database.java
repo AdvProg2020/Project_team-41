@@ -15,8 +15,6 @@ public class Database implements Serializable {
     private static ArrayList<Person> allUsers=new ArrayList<>();
     private static ArrayList<Manager>allManagers=new ArrayList<>();
     private static ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
-    private static ArrayList<Product> allProducts=new ArrayList<>();
-    private static ArrayList<Seller> allSellers=new ArrayList<>();
     private static ArrayList<Off>allOffs=new ArrayList<>();
 
     public static ArrayList<Off> getAllOffs() {
@@ -24,6 +22,22 @@ public class Database implements Serializable {
     }
 //todo move all here
 
+    public static ArrayList<Product> getAllProducts(){
+        ArrayList<Product> allProducts = new ArrayList<>();
+        for (Category category : allCategory) {
+            allProducts.addAll(category.getProducts());
+        }
+        return allProducts;
+    }
+
+    public static ArrayList<Seller> getAllSellers(){
+         ArrayList<Seller> allSellers=new ArrayList<>();
+        for (Person user : allUsers) {
+            if(user instanceof Seller)
+                allSellers.add((Seller) user);
+        }
+        return allSellers;
+    }
     public static Category getCategoryByName(String name) throws Exception {
         for (Category category : allCategory) {
             if(category.getName().equals(name)){
@@ -48,16 +62,12 @@ public class Database implements Serializable {
     }
 
     public static Seller getSellerByName(String name) throws Exception {
-        for (Seller seller : allSellers) {
+        for (Seller seller :  getAllSellers()) {
             if(seller.getUserName().equals(name)){
                 return seller;
             }
         }
         throw new Exception("no seller found");
-    }
-
-    public static ArrayList<Product> getAllProducts() {
-        return allProducts;
     }
 
     public static ArrayList<CodedDiscount> getAllDiscountCodes() {
