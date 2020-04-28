@@ -1,6 +1,6 @@
 package Server.Controller.UserSectionController.BuyerAccountController;
 
-import Client.Models.TradeLogs;
+import Client.Models.TradeLog;
 
 public class BuyerServerController {
 
@@ -24,9 +24,9 @@ public class BuyerServerController {
         return true;
     }
 
-    public static TradeLogs showTheOrder(String Id){
+    public static TradeLog showTheOrder(String Id){
         //TODO find the order and for example:
-        return new TradeLogs();
+        return null;
     }
 
     public static boolean rateTheProduct(String productId , int score){

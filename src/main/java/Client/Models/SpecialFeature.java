@@ -5,9 +5,9 @@ public class SpecialFeature {
     String specialFeatureString;
     public String StringOrInt(){
         if(specialFeatureString == null)
-            return "String";
-        else
             return "int";
+        else
+            return "String";
 
     }
 

@@ -3,8 +3,9 @@ package Client.Controller.UserSectionController;
 import Client.Models.Category;
 import Client.Models.Off;
 import Client.Models.Person.Buyer;
+import Client.Models.Person.Seller;
 import Client.Models.Product;
-import Client.Models.TradeLogs;
+import Client.Models.TradeLog;
 import Server.Controller.UserSectionController.SellerServerController;
 
 import java.util.ArrayList;
@@ -23,48 +24,43 @@ public class SellerController extends UserSectionController{
 
         }
         public String getFactoryName(){
-                System.err.println("fail");
-                return new String();
+                return SellerServerController.getInstance().getFactoryName((Seller)loggedInPerson);
         }
-        public ArrayList<TradeLogs> getLogs(){
-                System.err.println("fail");
-                return new ArrayList<>();
+        public ArrayList<String> getSalesHistory(){
+                return SellerServerController.getInstance().getSalesHistory((Seller)loggedInPerson);
+        }
+        public ArrayList<TradeLog> getLogs(){
+                return SellerServerController.getInstance().getLogs((Seller)loggedInPerson);
         }
         public ArrayList<Product> getProducts(){
-                System.err.println("fail");
-                return new ArrayList<>();
+                return SellerServerController.getInstance().getProducts((Seller)loggedInPerson);
         }
         public Product getProduct(int id){
-                System.err.println("fail");
-                return new Product();
+                return SellerServerController.getInstance().getProduct((Seller)loggedInPerson,id);
         }
         public ArrayList<Buyer> getBuyers(int id){
-                System.err.println("fail");
-                return new ArrayList<>();
+                return SellerServerController.getInstance().getBuyers((Seller)loggedInPerson,id);
         }
         public void editProduct(HashMap<String ,String> edit){
-
+                SellerServerController.getInstance().editProduct((Seller)loggedInPerson,edit);
         }
         public void addProduct(Product product){
-
+                SellerServerController.getInstance().addProduct((Seller)loggedInPerson,product);
         }
         public void removeProduct(int id){
-
+                SellerServerController.getInstance().removeProduct((Seller)loggedInPerson,id);
         }
         public ArrayList<Category> getCategories(){
-                System.err.println("fail");
-                return new ArrayList<>();
+                return SellerServerController.getInstance().getCategories((Seller)loggedInPerson);
         }
         public ArrayList<Off> getOffs(){
-                System.err.println("fail");
-                return new ArrayList<>();
+                return SellerServerController.getInstance().getOffs((Seller)loggedInPerson);
         }
         public Off getOff(int id){
-                System.err.println("fail");
-                return new Off();
+                return SellerServerController.getInstance().getOff((Seller)loggedInPerson,id);
         }
         public void editOff(HashMap<String ,String> edit){
-
+                SellerServerController.getInstance().editOff((Seller)loggedInPerson,edit);
         }
 
 

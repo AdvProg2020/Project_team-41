@@ -1,10 +1,9 @@
 package Server.Controller.UserSectionController;
 
-import Client.Models.Category;
-import Client.Models.Off;
+import Client.Models.*;
 import Client.Models.Person.Buyer;
-import Client.Models.Product;
-import Client.Models.TradeLogs;
+import Client.Models.Person.Seller;
+import Server.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,24 +21,62 @@ public class SellerServerController extends UserSectionServerController {
 
         }
 
-        public void editProduct(HashMap<String ,String> edit){
+        public void editProduct(Seller seller,HashMap<String ,String> edit){
 
         }
-        public void addProduct(Product product){
+        public ArrayList<String> getSalesHistory(Seller seller){
+                ArrayList<String> salesHistory = new ArrayList<>();
+                for (TradeLog tradeLog : seller.getTradeLogs()) {
+                        salesHistory.add("log id : " + tradeLog.getLogId());
+                        salesHistory.add("buyer : " + tradeLog.getBuyerName());
+                        salesHistory.add("date : " + TimeControl.convertGregorianToJalali(tradeLog.getDate()).toString());
+                        salesHistory.add("delivery situation : " + tradeLog.getDeliverySituation());
+                        salesHistory.add("off Amount : " + tradeLog.getOffAmount());
+                        salesHistory.add("money : " + Integer.toString(tradeLog.getMoney()));
+
+                }
+                return  salesHistory;
+        }
+        public void addProduct(Seller seller,Product product){
+                Database.addRequest(new Request(null,RequestType.ADD_PRODUCT,product,seller,null));
 
         }
-        public void removeProduct(int id){
+        public void removeProduct(Seller seller,int id){
 
         }
-        public ArrayList<Category> getCategories(){
+        public ArrayList<Product> getProducts(Seller seller){
+                System.err.println("failed");
+                return null;
+        }
+        public ArrayList<TradeLog> getLogs(Seller seller){
+                System.err.println("failed");
+                return null;
+        }
+        public String getFactoryName(Seller seller){
+                System.err.println("failed");
+                return null;
+        }
+        public ArrayList<Buyer> getBuyers(Seller seller,int id){
                 System.err.println("fail");
                 return new ArrayList<>();
         }
-        public ArrayList<Off> getOffs(){
+        public Off getOff(Seller seller,int id) {
+                System.err.println("failed");
+                return null;
+        }
+        public Product getProduct(Seller seller,int id){
+                System.err.println("failed");
+                return null;
+        }
+        public ArrayList<Category> getCategories(Seller seller){
                 System.err.println("fail");
                 return new ArrayList<>();
         }
-        public void editOff(HashMap<String ,String> edit){
+        public ArrayList<Off> getOffs(Seller seller){
+                System.err.println("fail");
+                return new ArrayList<>();
+        }
+        public void editOff(Seller seller,HashMap<String ,String> edit){
 
         }
 
