@@ -9,6 +9,7 @@ import ir.huri.jcal.JalaliCalendar;
 
 import java.util.*;
 
+
 public class ManagerServerController extends UserSectionServerController {
     private static ManagerServerController single_instance = null;
     public static ManagerServerController getInstance()
@@ -62,9 +63,9 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
         String[] dateTime = {codeInformation.get(1),codeInformation.get(2)};
-        Date exactStartDate = getDateByDateTime(dateTime);
+        Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
         dateTime = new String[]{codeInformation.get(3), codeInformation.get(4)};
-        Date exactEndDate = getDateByDateTime(dateTime);
+        Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
 
         Database.addDiscountCodes(new CodedDiscount(codeInformation.get(0),
                 exactStartDate,exactEndDate,Integer.parseInt(codeInformation.get(5)),
@@ -78,8 +79,8 @@ public class ManagerServerController extends UserSectionServerController {
 
 
         discountCodeInformation.add("discount code: "+codedDiscount.getDiscountCode());
-        discountCodeInformation.add("start date: "+convertGregorianToJalali(codedDiscount.getStartDate()).toString());
-        discountCodeInformation.add("end date: "+convertGregorianToJalali(codedDiscount.getEndDate()).toString());
+        discountCodeInformation.add("start date: "+TimeControl.convertGregorianToJalali(codedDiscount.getStartDate()).toString());
+        discountCodeInformation.add("end date: "+TimeControl.convertGregorianToJalali(codedDiscount.getEndDate()).toString());
         discountCodeInformation.add("discount percentage: "+Integer.toString(codedDiscount.getDiscountPercentage()));
         discountCodeInformation.add("maximum discount: "+Integer.toString(codedDiscount.getMaximumDiscount()));
         discountCodeInformation.add("discount repeats for each user: "+Integer.toString(codedDiscount.getDiscountRepeatsForEachUser()));
@@ -95,11 +96,11 @@ public class ManagerServerController extends UserSectionServerController {
             switch (edit){
                 case "start date":{
                     String[] dateTime = edits.get("start date").split(",");
-                    codedDiscount.setStartDate(getDateByDateTime(dateTime));
+                    codedDiscount.setStartDate(TimeControl.getDateByDateTime(dateTime));
                 }
                 case "end date":{
                     String[] dateTime = edits.get("end date").split(",");
-                    codedDiscount.setEndDate(getDateByDateTime(dateTime));
+                    codedDiscount.setEndDate(TimeControl.getDateByDateTime(dateTime));
                 }
                 case "discount percentage":{
                     codedDiscount.setDiscountPercentage(Integer.parseInt(edits.get("discount percentage")));
@@ -217,10 +218,10 @@ public class ManagerServerController extends UserSectionServerController {
                     String editRequestValue = request.getEditRequest().get(editRequestKey);
                     switch (editRequestKey){
                         case "startDate" :{
-                            off.setStartDate(getDateByDateTime(editRequestValue.split(",")));
+                            off.setStartDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
                         }
                         case "endDate" :{
-                            off.setEndDate(getDateByDateTime(editRequestValue.split(",")));
+                            off.setEndDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
                         }
                         case "amountOfDiscount" :{
                             off.setAmountOfDiscount(Integer.parseInt(editRequestValue));
@@ -263,34 +264,17 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return allDiscountCodes;
     }
-    public JalaliCalendar convertGregorianToJalali(Date date){
-        JalaliCalendar jalaliCalendar = new JalaliCalendar();
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.setTime(date);
-        jalaliCalendar.fromGregorian(gregorianCalendar);
-        return jalaliCalendar;
-    }
-    public Date convertJalaliToGregorian(String year, String month, String day, String hour, String minute, String second){
 
-        JalaliCalendar jalaliCalendar = new JalaliCalendar();
-        Date date = new Date();
-        jalaliCalendar.set(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
-        date.setTime(jalaliCalendar.toGregorian().getTimeInMillis()+1000*((Integer.parseInt(hour)*60*60)+Integer.parseInt(minute)*60+Integer.parseInt(second)));
-        return date;
+    public ArrayList<String> getSellerDetails(Seller seller){
+        ArrayList<String> sellerDetails  = new ArrayList<>();
+        sellerDetails.add("username : "+seller.getUserName());
+        sellerDetails.add("first name : "+seller.getFirstName());
+        sellerDetails.add("last name : "+seller.getLastName());
+        sellerDetails.add("email : "+seller.getEmail());
+        sellerDetails.add("phone number : "+seller.getPhoneNumber());
+        return sellerDetails;
     }
-    public Date getDateByDateTime(String[] dateTime){
-        String givenDate;
-        String givenTime;
-        String[] dayMonthYear;
-        String[] hourMinuteSecond;
-        givenDate = dateTime[0];
-        givenTime = dateTime[1];
-        dayMonthYear = givenDate.split("/");
-        hourMinuteSecond = givenTime.split(":");
-        Date exactDate = convertJalaliToGregorian(dayMonthYear[0],dayMonthYear[1],dayMonthYear[2],hourMinuteSecond[0],hourMinuteSecond[1],hourMinuteSecond[2]);
-        return exactDate;
-    }
-    public ArrayList<String> getProductDetails(Product product){
+    public  ArrayList<String> getProductDetails(Product product){
         ArrayList<String> productDetails = new ArrayList<>();
         productDetails.add("Name : " + product.getName());
         productDetails.add("Description : " + product.getDescription());
@@ -305,25 +289,16 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return productDetails;
     }
-    public ArrayList<String> getOffDetails(Off off){
+    public  ArrayList<String> getOffDetails(Off off){
         ArrayList<String> offDetails  = new ArrayList<>();
         offDetails.add("off id : " + off.getOffId());
         offDetails.add("amount of discount : " + off.getAmountOfDiscount());
-        offDetails.add("start date : " + convertGregorianToJalali(off.getStartDate()));
-        offDetails.add("end date : " + convertGregorianToJalali(off.getEndDate()));
+        offDetails.add("start date : " + TimeControl.convertGregorianToJalali(off.getStartDate()));
+        offDetails.add("end date : " + TimeControl.convertGregorianToJalali(off.getEndDate()));
         offDetails.add("products : ");
         for (Product product : off.getProducts()) {
             offDetails.add(product.getName());
         }
         return offDetails;
-    }
-    public ArrayList<String> getSellerDetails(Seller seller){
-        ArrayList<String> sellerDetails  = new ArrayList<>();
-        sellerDetails.add("username : "+seller.getUserName());
-        sellerDetails.add("first name : "+seller.getFirstName());
-        sellerDetails.add("last name : "+seller.getLastName());
-        sellerDetails.add("email : "+seller.getEmail());
-        sellerDetails.add("phone number : "+seller.getPhoneNumber());
-        return sellerDetails;
     }
 }

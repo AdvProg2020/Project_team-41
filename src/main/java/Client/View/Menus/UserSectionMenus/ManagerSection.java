@@ -2,18 +2,28 @@ package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.UserSectionController;
-import Client.Models.Category;
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.View.Menus.Menu;
-import Client.View.Menus.RegisterLoginMenu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class ManagerSection extends UserSection {
     private ManagerController managerController;
+
+    @Override
+    public void show() {
+        super.show();
+    }
+
+    @Override
+    public void execute() {
+        super.execute();
+        System.out.println("invalid command");
+        this.show();
+        this.execute();
+
+    }
 
     public ManagerSection(Menu superMenu) {
         super(superMenu, "ManagerSection");
@@ -25,17 +35,6 @@ public class ManagerSection extends UserSection {
         addSubMenu(this.addViewDiscountCodes());
     }
 
-    @Override
-    public void show() {
-        super.show();
-
-    }
-
-    @Override
-    public void execute() {
-        super.execute();
-
-    }
 
     private Menu addManageCategories(){
         return new Menu(this,"ManageCategories") {

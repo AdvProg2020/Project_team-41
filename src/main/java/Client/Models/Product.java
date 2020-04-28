@@ -3,7 +3,9 @@ package Client.Models;
 import Client.Models.Person.Seller;
 
 import java.io.Serializable;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 
 public class Product implements Serializable {
@@ -25,8 +27,20 @@ public class Product implements Serializable {
     private ArrayList<Comment>comments;
     private int views;
 
-    public void setCategory(Category category) {
+    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
+    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
+    //for generating token
+
+    public Product( String name, String companyName, int price, Seller seller, boolean isThereMore, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) {
+        this.productId = generateNewToken();
+        this.name = name;
+        this.companyName = companyName;
+        this.price = price;
+        this.seller = seller;
+        this.isThereMore = isThereMore;
         this.category = category;
+        this.specialFeatures = specialFeatures;
+        this.description = description;
     }
 
     public void setDescription(String description) {
@@ -100,6 +114,11 @@ public class Product implements Serializable {
 
     public int getViews() {
         return views;
+    }
+    public static String generateNewToken() {
+        byte[] randomBytes = new byte[24];
+        secureRandom.nextBytes(randomBytes);
+        return base64Encoder.encodeToString(randomBytes);
     }
 
 }

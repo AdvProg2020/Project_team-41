@@ -28,7 +28,7 @@ public class AllProductsController {
     }
     public Product showProduct(String productId){
         System.err.println("fail");
-        return new Product();
+        return null;
     }
 
 }
