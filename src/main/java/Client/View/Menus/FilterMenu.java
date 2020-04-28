@@ -5,6 +5,7 @@ import Client.Controller.FilterController;
 import Client.Controller.ProductController;
 import Client.Models.Category;
 import Client.Models.Product;
+import Server.Database;
 import javafx.util.Pair;
 
 import java.util.Scanner;
@@ -90,7 +91,7 @@ public class FilterMenu extends Menu {
                     case "seller": {
                         System.out.println("Enter seller username:");
                         try {
-                            FilterController.getInstance().setSeller(scanner.nextLine());
+                            FilterController.getInstance().setSellerUserName(scanner.nextLine());
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
                         }
@@ -99,9 +100,9 @@ public class FilterMenu extends Menu {
                     case "existence": {
                         System.out.println("existed products? (yes/no)");
                         if (scanner.nextLine().equals("yes"))
-                            FilterController.getInstance().setThereMore(true);
+                            FilterController.getInstance().setExistence(1);
                         else
-                            FilterController.getInstance().setThereMore(false);
+                            FilterController.getInstance().setExistence(0);
                         break;
                     }
                     case "category name": {
@@ -121,8 +122,12 @@ public class FilterMenu extends Menu {
                         System.out.println("invalid filter");
                 }
 
-                for (Product filterProduct : FilterController.getInstance().filterProducts()) {
-                    System.out.println(filterProduct.getName());
+                if(FilterController.getInstance().filterProducts().size()==0)
+                    System.out.println("Nothing found");
+                else {
+                    for (Product filterProduct : FilterController.getInstance().filterProducts()) {
+                        System.out.println(filterProduct.getName());
+                    }
                 }
 
                 System.out.println("any other filter? (yes/no)");

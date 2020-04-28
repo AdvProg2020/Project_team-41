@@ -61,15 +61,6 @@ public class Database implements Serializable {
         return null;
     }
 
-    public static Seller getSellerByName(String name) throws Exception {
-        for (Seller seller :  getAllSellers()) {
-            if(seller.getUserName().equals(name)){
-                return seller;
-            }
-        }
-        throw new Exception("no seller found");
-    }
-
     public static ArrayList<CodedDiscount> getAllDiscountCodes() {
         return allDiscountCodes;
     }
@@ -159,13 +150,13 @@ public class Database implements Serializable {
         }
         throw new NullPointerException("no category found while adding product to database");
     }
-    public static Seller getSellerByUsername(String username){
+    public static Seller getSellerByUsername(String username) throws NullPointerException{
         for (Person user : allUsers) {
-            if(user instanceof Seller)
+            if(user instanceof Seller){
                 if(user.getUserName().equals(username))
-                    return (Seller)user;
+                    return (Seller)user;}
         }
-        return null;
+        throw new NullPointerException("No seller found with this userName");
     }
     public static void addOff(Off off){
         allOffs.add(off);

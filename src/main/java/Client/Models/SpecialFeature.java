@@ -3,11 +3,12 @@ package Client.Models;
 public class SpecialFeature {
     int specialFeatureInt;
     String specialFeatureString;
+
     public String StringOrInt(){
         if(specialFeatureString == null)
-            return "String";
-        else
             return "int";
+        else
+            return "String";
 
     }
 
