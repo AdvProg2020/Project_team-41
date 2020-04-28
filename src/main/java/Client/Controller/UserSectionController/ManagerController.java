@@ -58,7 +58,7 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> showCategories(){
         return ManagerServerController.getInstance().showCategories();
     }
-    public void editCategory(String category,String field,String editedField){
+    public void editCategory(String category,String field,String editedField) throws Exception {
         ManagerServerController.getInstance().editCategory(category, field,editedField);
     }
     public void addCategory(String categoryName,String specialFeatures){

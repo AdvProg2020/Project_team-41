@@ -22,6 +22,18 @@ public class Off {
         this.seller = seller;
     }
 
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setAmountOfDiscount(int amountOfDiscount) {
+        this.amountOfDiscount = amountOfDiscount;
+    }
+
     public ArrayList<Product> getProducts() {
         return products;
     }

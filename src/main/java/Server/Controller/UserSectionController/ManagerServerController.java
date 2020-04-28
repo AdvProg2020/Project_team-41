@@ -132,15 +132,14 @@ public class ManagerServerController extends UserSectionServerController {
     }
     public ArrayList<String> showRequest(){
         ArrayList<String> requests = new ArrayList<>();
-        int i= 0;
         for (Request request : Database.getAllRequest()) {
-            requests.add(++i + " : " + request.getRequestType());
+            requests.add(request.getRequestId() + " : " + request.getRequestType());
         }
         return requests;
     }
-    public ArrayList<String> getRequestDetails(int requestNumber){
+    public ArrayList<String> getRequestDetails(String requestId){
         ArrayList<String> requestDetails = new ArrayList<>();
-        Request request = Database.getAllRequest().get(requestNumber-1);
+        Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
             case "ADD_PRODUCT" :
             case "REMOVE_PRODUCT" :
@@ -177,11 +176,67 @@ public class ManagerServerController extends UserSectionServerController {
 
         return requestDetails;
     }
-    public void  acceptRequest(String request){
-        System.err.println("fail");
+    public void  acceptRequest(String requestId){
+        Request request = Database.getRequestByRequestId(requestId);
+        switch (request.getRequestType()){
+            case "ADD_PRODUCT" :{
+                Database.addProduct(request.getProduct());
+            }
+            case "REMOVE_PRODUCT" : {
+                Database.removeProduct(request.getProduct());
+            }
+            case "EDIT_PRODUCT" :{
+                Product product = request.getProduct();
+                for (String editRequestKey : request.getEditRequest().keySet()) {
+                    String editRequestValue = request.getEditRequest().get(editRequestKey);
+                    switch (editRequestKey){
+                        case "seller" :{
+                            product.setSeller(Database.getSellerByUsername(editRequestValue));
+                        }
+                        case "price" :{
+                            product.setPrice(Integer.parseInt(editRequestValue));
+                        }
+                        case "companyName" :{
+                            product.setCompanyName(editRequestValue);
+                        }
+                        case "description" :{
+                            product.setDescription(editRequestValue);
+                        }
+                        case "name" :{
+                            product.setName(editRequestValue);
+                        }
+                    }
+                }
+            }
+            case "ADD_OFF" :{
+                Database.addOff(request.getOff());
+            }
+            case "EDIT_OFF" : {
+                Off off = request.getOff();
+                for (String editRequestKey : request.getEditRequest().keySet()) {
+                    String editRequestValue = request.getEditRequest().get(editRequestKey);
+                    switch (editRequestKey){
+                        case "startDate" :{
+                            off.setStartDate(getDateByDateTime(editRequestValue.split(",")));
+                        }
+                        case "endDate" :{
+                            off.setEndDate(getDateByDateTime(editRequestValue.split(",")));
+                        }
+                        case "amountOfDiscount" :{
+                            off.setAmountOfDiscount(Integer.parseInt(editRequestValue));
+                        }
+                    }
+                }
+            }
+
+            case "REGISTER_SELLER" :{
+                Database.addUser(request.getSeller());
+            }
+        }
+
     }
-    public void declineRequest(String request){
-        System.err.println("fail");
+    public void declineRequest(String requestId){
+        Request request = Database.getRequestByRequestId(requestId);
     }
     public ArrayList<String> showCategories(){
         ArrayList<String> categories = new ArrayList<>();
@@ -190,8 +245,8 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return categories;
     }
-    public void editCategory(String category,String field,String editedField){
-        System.err.println("fail");
+    public void editCategory(String category,String field,String editedField) throws Exception {
+        Database.getCategoryByName(category).setName(editedField);
     }
     public void addCategory(String categoryName,String specialFeatures){
         ArrayList<String> specialFeaturesArray = new ArrayList<>();
