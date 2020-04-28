@@ -24,7 +24,7 @@ public class OffsController {
     }
     public Product getProductId(String id){
         System.err.println("fail");
-        return new Product();
+        return null;
     }
 
 }

@@ -2,9 +2,10 @@ package Client.Models;
 
 import Server.Database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Category {
+public class Category implements Serializable {
 
     private String name;
     private ArrayList<String> specialFeatures;
