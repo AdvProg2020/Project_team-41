@@ -1,5 +1,7 @@
 package Client.Models;
 
+import Client.Models.Person.Seller;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,6 +12,27 @@ public class Off {
     private Date startDate;
     private Date endDate;
     private int amountOfDiscount;
+    private Seller seller;
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setAmountOfDiscount(int amountOfDiscount) {
+        this.amountOfDiscount = amountOfDiscount;
+    }
 
     public ArrayList<Product> getProducts() {
         return products;
@@ -30,4 +53,5 @@ public class Off {
     public int getAmountOfDiscount() {
         return amountOfDiscount;
     }
+
 }
