@@ -44,7 +44,7 @@ public class Database implements Serializable {
                 return category;
             }
         }
-        return null;
+        throw new Exception("No category found with this name");
     }
     public static Person getPersonByUsername(String username){
         for (Person user : allUsers) {

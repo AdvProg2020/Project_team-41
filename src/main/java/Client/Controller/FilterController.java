@@ -3,6 +3,7 @@ package Client.Controller;
 import Client.Models.Category;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
+import Client.Models.SpecialFeature;
 import Server.Database;
 
 
@@ -27,18 +28,19 @@ public class FilterController {
     private String name;
     private String companyName;
     // -1 for not important ir filtered:
-    private int definitePrice =-1;
+    private int definitePrice = -1;
     private Pair<Integer, Integer> priceMinMax;
     private String sellerUserName;
     //1 for exist ... 0 for not exist ... -1 for not important or filtered:
     private int existence = -1;
-    private HashMap<String, String> filterFeature;
+    private HashMap<String, String> definiteStringFeatures = new HashMap<>();
+    private HashMap<String, Integer> definiteIntFeatures = new HashMap<>();
+    private HashMap<String, Pair<Integer, Integer>> rangeFeatures = new HashMap<>();
 
     private FilterController() {
     }
 
     public List<Product> filterProducts() {
-
         return Database.getAllProducts().stream()
                 .filter(Product -> {
                     {
@@ -83,10 +85,53 @@ public class FilterController {
                         }
                     }
                     {
-
                         if (filterCategory != null) {
                             if (!Product.getCategory().getName().equals(filterCategory.getName()))
                                 return false;
+                        }
+                    }
+                    {
+                        if (!definiteStringFeatures.isEmpty()) {
+                            for (String featureNameGiven : definiteStringFeatures.keySet()) {
+                                for (String productFeatureName : Product.getSpecialFeatures().keySet()) {
+                                    if (featureNameGiven.equals(productFeatureName)) {
+                                        if (!Product.getSpecialFeatures().get(productFeatureName).getSpecialFeatureString()
+                                                .equals(definiteStringFeatures.get(featureNameGiven))) {
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    {
+                        if (!definiteIntFeatures.isEmpty()) {
+                            for (String featureNameGiven : definiteIntFeatures.keySet()) {
+                                for (String productFeatureName : Product.getSpecialFeatures().keySet()) {
+                                    if (featureNameGiven.equals(productFeatureName)) {
+                                        if (Product.getSpecialFeatures().get(productFeatureName).getSpecialFeatureInt()
+                                                != definiteIntFeatures.get(featureNameGiven)) {
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    {
+                        if (!rangeFeatures.isEmpty()) {
+                            for (String featureNameGiven : rangeFeatures.keySet()) {
+                                for (String productFeatureName : Product.getSpecialFeatures().keySet()) {
+                                    if (featureNameGiven.equals(productFeatureName)) {
+                                        if (Product.getSpecialFeatures().get(productFeatureName).getSpecialFeatureInt()
+                                                < rangeFeatures.get(featureNameGiven).getKey() ||
+                                                Product.getSpecialFeatures().get(productFeatureName).getSpecialFeatureInt()
+                                                        > rangeFeatures.get(featureNameGiven).getValue()) {
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     return true;
@@ -108,7 +153,7 @@ public class FilterController {
                 filterCategory = null;
                 break;
             }
-            case "price" :{
+            case "price": {
                 definitePrice = -1;
                 priceMinMax = null;
                 break;
@@ -124,6 +169,54 @@ public class FilterController {
             default:
                 throw new Exception("invalid filter");
         }
+    }
+
+    public void disableSpecialFeature(String feature) throws ClassNotFoundException, NullPointerException {
+        if (isTheFeatureNumeric(feature)) {
+            definiteIntFeatures.clear();
+            rangeFeatures.clear();
+        } else
+            definiteStringFeatures.clear();
+    }
+
+    public boolean isTheFeatureNumeric(String featureNameToFind) throws ClassNotFoundException, NullPointerException {
+        if (FilterController.getInstance().getFilterCategory().getProducts().size() == 0) {
+            throw new ClassNotFoundException("Category doest't have any product");
+        } else {
+            for (String specialFeatureName : FilterController.getInstance().getFilterCategory().getSpecialFeatures()) {
+                if (specialFeatureName.equals(featureNameToFind)) {
+                    if (FilterController.getInstance().getFilterCategory().getProducts().get(0).getSpecialFeatures().get(specialFeatureName).StringOrInt().equals("int"))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            throw new NullPointerException("NO feature found with this name");
+        }
+    }
+
+    public HashMap<String, String> getDefiniteStringFeatures() {
+        return definiteStringFeatures;
+    }
+
+    public void setDefiniteStringFeatures(HashMap<String, String> definiteStringFeatures) {
+        this.definiteStringFeatures = definiteStringFeatures;
+    }
+
+    public HashMap<String, Integer> getDefiniteIntFeatures() {
+        return definiteIntFeatures;
+    }
+
+    public void setDefiniteIntFeatures(HashMap<String, Integer> definiteIntFeatures) {
+        this.definiteIntFeatures = definiteIntFeatures;
+    }
+
+    public HashMap<String, Pair<Integer, Integer>> getRangeFeatures() {
+        return rangeFeatures;
+    }
+
+    public void setRangeFeatures(HashMap<String, Pair<Integer, Integer>> rangeFeatures) {
+        this.rangeFeatures = rangeFeatures;
     }
 
     public void setFilterCategory(String filterCategoryName) throws Exception {
@@ -182,4 +275,48 @@ public class FilterController {
         this.existence = existence;
     }
 
+
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+         if (filterCategory != null)
+            result.append("\n" + "filterCategory: " + filterCategory.getName());
+         if (name != null)
+            result.append("\n" + "name: " + name);
+         if (companyName != null)
+            result.append("\n" + "companyName: " + companyName);
+         if (definitePrice != -1)
+            result.append("\n" + "price: " + definitePrice);
+         if (priceMinMax != null)
+            result.append("\n" + "price range: between " + priceMinMax.getKey() + " and " + priceMinMax.getValue());
+         if (sellerUserName != null)
+            result.append("\n" + "seller username: " + sellerUserName);
+         if (existence != -1) {
+            if (existence == 1)
+                result.append("\n" + "existence: " + "should be exist");
+            else
+                result.append("\n" + "existence: " + "should NOT be exist");
+        }
+         if (!definiteStringFeatures.isEmpty()) {
+            result.append("\n");
+            for (String featureName : definiteStringFeatures.keySet()) {
+                result.append("feature name: " + featureName + "/ feature value: " + definiteStringFeatures.get(featureName) + "     ");
+            }
+        }
+         if (!definiteIntFeatures.isEmpty()) {
+            result.append("\n");
+            for (String featureName : definiteIntFeatures.keySet()) {
+                result.append("feature name: " + featureName + "/ feature value: " + definiteStringFeatures.get(featureName) + "     ");
+            }
+        }
+         if (!rangeFeatures.isEmpty()) {
+            result.append("\n");
+            for (String featureName : rangeFeatures.keySet()) {
+                result.append("feature name: " + featureName + "/ feature value: between " + rangeFeatures.get(featureName).getKey() + " and " + rangeFeatures.get(featureName).getValue() + "    ");
+            }
+        }
+        return result.toString();
+    }
 }

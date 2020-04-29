@@ -3,9 +3,9 @@ package Client.Models;
 import java.io.Serializable;
 
 public class SpecialFeature implements Serializable {
+    String featureName;
     private int specialFeatureInt;
     private String specialFeatureString;
-
 
     public String StringOrInt(){
         if(specialFeatureString == null)
@@ -13,6 +13,10 @@ public class SpecialFeature implements Serializable {
         else
             return "String";
 
+    }
+
+    public String getFeatureByName() {
+        return featureName;
     }
 
     public void setSpecialFeatureInt(int specialFeatureInt) {
