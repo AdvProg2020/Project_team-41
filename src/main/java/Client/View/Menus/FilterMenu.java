@@ -87,17 +87,17 @@ public class FilterMenu extends Menu {
                             try {
                                 FilterController.getInstance().setDefinitePrice(scanner.nextInt());
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                System.err.println(e.getMessage());
                             }
                         }
-                        break;
+                      break;
                     }
                     case "seller": {
                         System.out.println("Enter seller username:");
                         try {
                             FilterController.getInstance().setSellerUserName(scanner.nextLine());
                         } catch (Exception e) {
-                            System.out.println(e.getMessage());
+                            System.err.println(e.getMessage());
                         }
                         break;
                     }
@@ -114,18 +114,53 @@ public class FilterMenu extends Menu {
                         try {
                             FilterController.getInstance().setFilterCategory(scanner.nextLine());
                         } catch (Exception e) {
-                            System.out.println(e.getMessage());
+                            System.err.println(e.getMessage());
                         }
                         break;
+                    }
+                    case "category special features": {
+                        if (FilterController.getInstance().getFilterCategory() == null) {
+                            System.err.println("No category is selected yet");
+                            break;
+                        } else {
+                            System.out.println("Enter feature name:");
+                            String featureName = scanner.nextLine();
+                            try {
+                                if (FilterController.getInstance().isTheFeatureNumeric(featureName)) {
+                                    System.out.println("range or definite?");
+                                    if (scanner.nextLine().equals("range")) {
+                                        System.out.println("Enter Min:");
+                                        int min = scanner.nextInt();
+                                        System.out.println("Enter Max:");
+                                        int max = scanner.nextInt();
+                                        FilterController.getInstance().getRangeFeatures().put(featureName, new Pair<>(min, max));
+
+                                    } else {
+                                        System.out.println("Enter feature value to filter:");
+                                        FilterController.getInstance().getDefiniteIntFeatures().put(featureName, scanner.nextInt());
+                                    }
+                                } else {
+                                    System.out.println("Enter feature value to filter:");
+                                    FilterController.getInstance().getDefiniteStringFeatures().put(featureName, scanner.nextLine());
+                                }
+                            } catch (ClassNotFoundException e) {
+                                System.err.println(e.getMessage());
+                            } catch (NullPointerException e) {
+                                System.err.println(e.getMessage());
+                            }
+                            break;
+                        }
                     }
                     default:
                         System.out.println("invalid filter");
                 }
 
 
-                if(FilterController.getInstance().filterProducts().size()==0)
+                if (FilterController.getInstance().filterProducts().size() == 0)
                     System.out.println("Nothing found");
                 else {
+                    System.out.println("");
+                    System.out.println("Filtered Products Are:");
                     for (Product filterProduct : FilterController.getInstance().filterProducts()) {
                         System.out.println(filterProduct.getName());
                     }
@@ -149,7 +184,7 @@ public class FilterMenu extends Menu {
         return new Menu(this, "current filters") {
             @Override
             public void show() {
-
+                System.out.println(FilterController.getInstance().toString());
             }
 
             @Override
@@ -168,14 +203,31 @@ public class FilterMenu extends Menu {
 
             @Override
             public void execute() {
-                try {
-                    FilterController.getInstance().disableFilter(scanner.nextLine());
-                    System.out.println("The filter was successfully disabled");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
+                String filterToBeDisabled = scanner.nextLine();
+                if (filterToBeDisabled.equals("category special features")) {
+                    System.out.println("Enter the feature:");
+                    try {
+                        if (FilterController.getInstance().getFilterCategory() == null)
+                            System.err.println("Not any category is selected yet");
+                        else
+                            FilterController.getInstance().disableSpecialFeature(scanner.nextLine());
+                        System.out.println("The filtered feature was successfully disabled");
+                    } catch (ClassNotFoundException e) {
+                        System.err.println(e.getMessage());
+                    } catch (NullPointerException e) {
+                        System.err.println(e.getMessage());
+                    }
+                } else
+                    try {
+                        FilterController.getInstance().disableFilter(filterToBeDisabled);
+                        System.out.println("The filter was successfully disabled");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 super.execute();
             }
         };
     }
+
+
 }

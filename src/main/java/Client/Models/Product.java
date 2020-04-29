@@ -31,16 +31,20 @@ public class Product implements Serializable {
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     //for generating token
 
-    public Product( String name, String companyName, int price, Seller seller, boolean isThereMore, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) {
-        this.productId = generateNewToken();
-        this.name = name;
-        this.companyName = companyName;
-        this.price = price;
-        this.seller = seller;
-        this.isThereMore = isThereMore;
+//    public Product( String name, String companyName, int price, Seller seller, boolean isThereMore, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) {
+//        this.productId = generateNewToken();
+//        this.name = name;
+//        this.companyName = companyName;
+//        this.price = price;
+//        this.seller = seller;
+//        this.isThereMore = isThereMore;
+//        this.category = category;
+//        this.specialFeatures = specialFeatures;
+//        this.description = description;
+//    }
+
+    public void setCategory(Category category) {
         this.category = category;
-        this.specialFeatures = specialFeatures;
-        this.description = description;
     }
 
     public void setDescription(String description) {
