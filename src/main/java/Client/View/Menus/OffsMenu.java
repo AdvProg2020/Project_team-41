@@ -7,7 +7,9 @@ import Client.Models.Product;
 public class OffsMenu extends Menu {
     public OffsMenu(Menu superMenu) {
         super(superMenu, "Offs");
-        addSubMenu(new ProductMenu(this));
+        addSubMenu(addShowProduct());
+        addSubMenu(new FilterMenu(this));
+        addSubMenu(new SortView(this));
     }
 
     @Override
@@ -22,11 +24,30 @@ public class OffsMenu extends Menu {
             }
         }
         System.out.print("+------------------+------------+------------+---------------------+------------+-----------+\n");
+        super.show();
 
     }
 
     @Override
     public void execute() {
 
+        //(subMenus.get(0)).set
+    }
+    private Menu addShowProduct(){
+        return new Menu(this,"Show product") {
+            @Override
+            public void show() {
+                System.out.println("enter the productId:");
+            }
+
+            @Override
+            public void execute() {
+                ProductMenu productMenu = new ProductMenu(this);
+                String productId = scanner.nextLine();
+                productMenu.setId(productId);
+                productMenu.show();
+                productMenu.execute();
+            }
+        };
     }
 }
