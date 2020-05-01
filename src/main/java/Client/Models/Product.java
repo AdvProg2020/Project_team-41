@@ -23,7 +23,7 @@ public class Product implements Serializable {
     private Category category;
     private HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();//todo new in constructor
     private String description;
-    private ArrayList<Score>scores;//todo add method to calculate average
+    private ArrayList<Score>scores;
     private ArrayList<Comment>comments;
     private int views;
 
@@ -42,6 +42,14 @@ public class Product implements Serializable {
 //        this.specialFeatures = specialFeatures;
 //        this.description = description;
 //    }
+
+    public Integer calculateAverageScore(){
+        Integer sum = 0;
+        for (Score score : scores) {
+            sum += score.getScore();
+        }
+        return sum/scores.size();
+    }
 
     public void setCategory(Category category) {
         this.category = category;
@@ -92,7 +100,7 @@ public class Product implements Serializable {
         return companyName;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -116,7 +124,7 @@ public class Product implements Serializable {
         return scores;
     }
 
-    public int getViews() {
+    public Integer getViews() {
         return views;
     }
     public static String generateNewToken() {
