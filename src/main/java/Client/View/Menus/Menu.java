@@ -1,5 +1,6 @@
 package Client.View.Menus;
 
+import Client.Controller.FilterController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Controller.EndProgram;
 
@@ -59,12 +60,17 @@ public abstract class Menu {
             this.execute();
         }else if(command.equalsIgnoreCase("back")) {
             if (superMenu != null) {
+                if (this instanceof AllProductsMenu || this instanceof OffsMenu) {
+                    FilterController.resetFilterController();
+                }
+
                 superMenu.show();
                 superMenu.execute();
             }
             else{
                 System.out.println("There isn't any back button here");
             }
+
         }else if(command.equalsIgnoreCase("end program")){
                 EndProgram.endProgram();
         }else {

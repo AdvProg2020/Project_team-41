@@ -1,5 +1,6 @@
 package Client.View.Menus;
 
+import Client.Controller.AllProductsController;
 import Client.Controller.OffsController;
 import Client.Models.Off;
 import Client.Models.Product;
@@ -41,9 +42,15 @@ public class OffsMenu extends Menu {
 
             @Override
             public void execute() {
-                ProductMenu productMenu = new ProductMenu(this);
+                ProductMenu productMenu = new ProductMenu(this.superMenu);
                 String productId = scanner.nextLine();
-                productMenu.setId(productId);
+                try {
+                    productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.superMenu.show();
+                    this.superMenu.execute();
+                }
                 productMenu.show();
                 productMenu.execute();
             }

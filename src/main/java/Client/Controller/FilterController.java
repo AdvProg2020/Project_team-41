@@ -320,4 +320,7 @@ public class FilterController {
         }
         return result.toString();
     }
+    public static void resetFilterController(){
+        single_instance=null;
+    }
 }
