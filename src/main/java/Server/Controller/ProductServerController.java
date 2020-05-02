@@ -12,9 +12,8 @@ public class ProductServerController {
     private ProductServerController(){
     }
 
-    public static void  addToCart(String Id){
+    public static void addToCart(String Id){
 
-        //TODO add the product to cart
     }
 
     public static void addComment(String title , String content){
