@@ -23,7 +23,7 @@ public class MainMenu extends Menu {
     @Override
     public void execute() {
         super.execute();
-        System.out.println("wrong command");
+        System.out.println("invalid command");
         this.show();
         this.execute();
     }

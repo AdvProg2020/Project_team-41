@@ -18,8 +18,8 @@ public class ServerEndProgram {
             System.exit(0);
         }
         catch (Exception e){
-            System.err.println(e.getMessage());
-            e.printStackTrace();
+            System.out.println("there were no resources folder recognized. but is it created now? : " + new File("src/main/resources").mkdir());
+            endProgram();
         }
     }
     private static void writeAllCategory() throws IOException {
