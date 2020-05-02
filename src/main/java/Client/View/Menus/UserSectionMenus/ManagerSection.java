@@ -39,7 +39,7 @@ public class ManagerSection extends UserSection {
     private Menu addManageCategories(){
         return new Menu(this,"ManageCategories") {
             private void edit(String Category){
-                System.out.println("change what you want(type field and edited field");
+                System.out.println("change what you want(type field and edited field)");
                 try {
                     ManagerController.getInstance().editCategory(Category, scanner.next(), scanner.next());
                 }
@@ -51,10 +51,16 @@ public class ManagerSection extends UserSection {
             }
             private void add(String category){
                 String specialFeatures;
-                System.out.println("type its special features(type them with a comma between each special feature");
+                System.out.println("type its special features(type them with a comma between each special feature)");
                 //todo separate two types of special features
                 specialFeatures = scanner.nextLine();
-                ManagerController.getInstance().addCategory(category,specialFeatures);
+                try{
+                    ManagerController.getInstance().addCategory(category,specialFeatures);
+                    System.out.println("category " + category + " is created");
+                }
+                catch (Exception e){
+                    System.out.println("category could not be created");
+                }
                 this.show();
                 this.execute();
             }
