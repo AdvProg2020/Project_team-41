@@ -22,8 +22,11 @@ public class SellerServerController extends UserSectionServerController {
         private SellerServerController(){
 
         }
-
-        public void editProduct(Seller seller,HashMap<String ,String> edit){
+        public ArrayList<String> getProductBuyers(int id){
+                System.err.println("failed");
+                return null;
+        }
+        public void editProduct(Seller seller,int productId,HashMap<String ,String> edit){
 
         }
         public ArrayList<String> getSalesHistory(Seller seller){
