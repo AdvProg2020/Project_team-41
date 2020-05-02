@@ -23,6 +23,9 @@ public class SellerController extends UserSectionController{
         private SellerController(){
 
         }
+        public ArrayList<String> getProductBuyers(int id){
+                return SellerServerController.getInstance().getProductBuyers(id);
+        }
         public String getFactoryName(){
                 return SellerServerController.getInstance().getFactoryName((Seller)loggedInPerson);
         }
@@ -41,8 +44,8 @@ public class SellerController extends UserSectionController{
         public ArrayList<Buyer> getBuyers(int id){
                 return SellerServerController.getInstance().getBuyers((Seller)loggedInPerson,id);
         }
-        public void editProduct(HashMap<String ,String> edit){
-                SellerServerController.getInstance().editProduct((Seller)loggedInPerson,edit);
+        public void editProduct(int productId,HashMap<String ,String> edit){
+                SellerServerController.getInstance().editProduct((Seller)loggedInPerson,productId,edit);
         }
         public void addProduct(Product product){
                 SellerServerController.getInstance().addProduct((Seller)loggedInPerson,product);

@@ -53,12 +53,21 @@ public class Database implements Serializable {
         }
         return null;
     }
+
     public static CodedDiscount getCodedDiscountByCode(String code){
         for (CodedDiscount codedDiscount : allDiscountCodes) {
             if(codedDiscount.equals(code))
                 return codedDiscount;
         }
         return null;
+    }
+
+    public static Product getProductById(String id) throws Exception {
+        for (Product product : getAllProducts()) {
+           if(product.getProductId().equals(id))
+               return product;
+        }
+        throw new Exception("No product found with this id");
     }
 
     public static ArrayList<CodedDiscount> getAllDiscountCodes() {

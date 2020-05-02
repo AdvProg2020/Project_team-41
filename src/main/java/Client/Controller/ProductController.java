@@ -1,5 +1,9 @@
 package Client.Controller;
 
+import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Buyer;
+import Client.Models.Product;
+
 public class ProductController {
     private static ProductController single_instance = null;
     public static ProductController getInstance()
@@ -12,11 +16,14 @@ public class ProductController {
     private ProductController(){
     }
 
-    public static boolean addToCart(String Id){
+    public static void addToCart(Product product) throws Exception {
 
-        //TODO add the product to cart
-        //Return false if the user is not logged in
-        return true;
+        if(UserSectionController.getLoggedInPerson() != null){
+        Buyer theBuyer = (Buyer)UserSectionController.getLoggedInPerson();
+        theBuyer.getCart().getProducts().add(product);}
+        else
+            throw new Exception("First you must log in");
+
     }
 
     public static void addComment(String title , String content){
