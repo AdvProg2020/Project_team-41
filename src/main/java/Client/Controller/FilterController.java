@@ -4,6 +4,7 @@ import Client.Models.Category;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.Models.SpecialFeature;
+import Server.Controller.AllProductsServerController;
 import Server.Database;
 
 
@@ -41,7 +42,7 @@ public class FilterController {
     }
 
     public List<Product> filterProducts() {
-        return Database.getAllProducts().stream()
+        return AllProductsServerController.getInstance().getAllProducts().stream()
                 .filter(Product -> {
                     {
                         if (name != null) {

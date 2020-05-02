@@ -22,12 +22,10 @@ public class AllProductsServerController {
         return Database.getAllCategory();
     }
     public ArrayList<Product> getAllProducts(){
-        System.err.println("fail");
-        return new ArrayList<>();
+        return Database.getAllProducts();
     }
-    public Product showProduct(String productId){
-        System.err.println("fail");
-        return null;
+    public Product getProduct(String productId) throws Exception {
+        return Database.getProductById(productId);
     }
 
 }

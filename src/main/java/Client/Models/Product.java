@@ -127,6 +127,7 @@ public class Product implements Serializable {
     public Integer getViews() {
         return views;
     }
+
     public static String generateNewToken() {
         byte[] randomBytes = new byte[24];
         secureRandom.nextBytes(randomBytes);
