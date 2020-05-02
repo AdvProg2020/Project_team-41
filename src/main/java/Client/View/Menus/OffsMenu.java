@@ -30,8 +30,7 @@ public class OffsMenu extends Menu {
 
     @Override
     public void execute() {
-
-        //(subMenus.get(0)).set
+        super.execute();
     }
     private Menu addShowProduct(){
         return new Menu(this,"Show product") {
