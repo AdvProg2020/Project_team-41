@@ -17,3 +17,4 @@ public class Main {
         MainMenu.getInstance().execute();
     }
 }
+//todo: check every over ride to ensure super is called first

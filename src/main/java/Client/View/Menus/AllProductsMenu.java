@@ -1,7 +1,10 @@
 package Client.View.Menus;
 
 import Client.Controller.AllProductsController;
+import Client.Controller.SortController;
 import Client.Models.Category;
+import Client.Models.Product;
+import Server.Database;
 
 public class AllProductsMenu extends Menu {
     public AllProductsMenu(Menu superMenu) {
@@ -44,12 +47,14 @@ public class AllProductsMenu extends Menu {
         return new Menu(this,"ShowProducts") {
             @Override
             public void show() {
-                //todo
+                for (Product sortedProduct : SortController.getInstance().getSortedProducts()) {
+                    System.out.println(sortedProduct.getName());
+                }
             }
 
             @Override
             public void execute() {
-                //todo
+                super.execute();
             }
         };
     }
@@ -63,9 +68,15 @@ public class AllProductsMenu extends Menu {
 
             @Override
             public void execute() {
-                ProductMenu productMenu = new ProductMenu(this);
+                ProductMenu productMenu = new ProductMenu(this.superMenu);
                 String productId = scanner.nextLine();
-                productMenu.setId(productId);
+                try {
+                    productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    super.show();
+                    super.execute();
+                }
                 productMenu.show();
                 productMenu.execute();
             }
