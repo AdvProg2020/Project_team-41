@@ -1,4 +1,4 @@
-package Server.Controller.UserSectionController;
+package Server.Controller;
 
 import Client.Models.Off;
 import Client.Models.Product;
