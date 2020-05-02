@@ -1,5 +1,7 @@
 package Client.Models;
 
+import Client.Models.Person.Buyer;
+import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 
 import java.io.Serializable;
@@ -42,6 +44,7 @@ public class Product implements Serializable {
 //        this.specialFeatures = specialFeatures;
 //        this.description = description;
 //    }
+    public ArrayList<Person> buyers = new ArrayList<>();
 
     public Integer calculateAverageScore(){
         Integer sum = 0;
@@ -126,6 +129,14 @@ public class Product implements Serializable {
 
     public Integer getViews() {
         return views;
+    }
+
+    public ArrayList<Person> getBuyers() {
+        return buyers;
+    }
+
+    public void addBuyer(Buyer buyer){
+        buyers.add(buyer);
     }
 
     public static String generateNewToken() {
