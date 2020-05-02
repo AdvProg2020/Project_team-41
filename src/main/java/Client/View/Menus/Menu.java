@@ -3,7 +3,6 @@ package Client.View.Menus;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Controller.EndProgram;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,11 +49,15 @@ public abstract class Menu {
     }
     public void execute() {
         command = scanner.nextLine();
+        if(this instanceof RegisterLoginMenu) {
+            handelLogoutInRegisterMenu();
+        }
+
+
         if(command.equalsIgnoreCase("help")) {
             this.show();
             this.execute();
-        }
-        if(command.equalsIgnoreCase("back")) {
+        }else if(command.equalsIgnoreCase("back")) {
             if (superMenu != null) {
                 superMenu.show();
                 superMenu.execute();
@@ -62,15 +65,14 @@ public abstract class Menu {
             else{
                 System.out.println("There isn't any back button here");
             }
-        }
-        if(command.equalsIgnoreCase("end program")){
+        }else if(command.equalsIgnoreCase("end program")){
                 EndProgram.endProgram();
-        }
-
-        for (Menu subMenu : subMenus) {
-            if(command.equalsIgnoreCase(subMenu.getName())) {
-                subMenu.show();
-                subMenu.execute();
+        }else {
+            for (Menu subMenu : subMenus) {
+                if (command.equalsIgnoreCase(subMenu.getName())) {
+                    subMenu.show();
+                    subMenu.execute();
+                }
             }
         }
         //todo if not valid
@@ -98,6 +100,15 @@ public abstract class Menu {
     }
     public void setName(String name){
         this.name=name;
+    }
+    public void handelLogoutInRegisterMenu(){
+        if(UserSectionController.getLoggedInPerson()==null){
+            if(command.equalsIgnoreCase("logout")){
+                System.out.println("Invalid command!");
+                this.show();
+                this.execute();
+            }
+        }
     }
 
 }
