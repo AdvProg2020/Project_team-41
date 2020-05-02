@@ -91,8 +91,15 @@ public class RegisterLoginMenu extends Menu {
                 person.setEmail(scanner.nextLine());
                 System.out.println("What is your phone number?");
                 person.setPhoneNumber(scanner.nextLine());
-                System.out.println("How much money do you have?");
-                person.setCredit(Integer.parseInt(scanner.nextLine()));
+                while(true) {
+                    System.out.println("How much money do you have?");
+                    String credit= scanner.nextLine();
+                    if(credit.matches("\\d+")) {
+                        person.setCredit(Integer.parseInt(credit));
+                        break;
+                    }
+                    System.out.println("Please enter a valid number!");
+                }
                 return person;
             }
         };

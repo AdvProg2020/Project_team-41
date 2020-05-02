@@ -17,7 +17,7 @@ public abstract class Menu {
         subMenus = new ArrayList<>();
         this.superMenu = superMenu;
         this.name = name;
-        if(!(this.superMenu instanceof RegisterLoginMenu)){
+        if(!(this.superMenu instanceof RegisterLoginMenu)&&!(this instanceof RegisterLoginMenu)){
             this.addSubMenu(new RegisterLoginMenu(this,"Register or Login"));
         }
     }
@@ -88,7 +88,7 @@ public abstract class Menu {
         return superMenu;
     }
     public void setRightNameForLoginMenu(){
-        if(!(this.superMenu instanceof RegisterLoginMenu)){
+        if(!(this.superMenu instanceof RegisterLoginMenu)&&!(this instanceof RegisterLoginMenu)){
             if(UserSectionController.getLoggedInPerson()==null){
                 this.subMenus.get(0).setName("Register or Login");
             }else{
