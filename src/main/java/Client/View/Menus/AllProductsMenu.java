@@ -47,7 +47,7 @@ public class AllProductsMenu extends Menu {
         return new Menu(this,"ShowProducts") {
             @Override
             public void show() {
-                for (Product sortedProduct : SortController.getInstance().getSortedProducts()) {
+                for (Product sortedProduct : SortController.getInstance().getSortedProducts(false)) {
                     System.out.println(sortedProduct.getName());
                 }
             }
