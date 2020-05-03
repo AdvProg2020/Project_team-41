@@ -180,5 +180,14 @@ public class Database implements Serializable {
     public static void addRequest(Request request){
         allRequest.add(request);
     }
+    public static ArrayList<Product> getAllOffProducts(){
+        ArrayList<Product> allOffProducts=new ArrayList();
+        for (Off off : allOffs) {
+            for (Product product : off.getProducts()) {
+                allOffProducts.add(product);
+            }
+        }
+        return allOffProducts;
+    }
 
 }
