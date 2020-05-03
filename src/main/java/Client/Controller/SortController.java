@@ -31,8 +31,8 @@ public class SortController {
         this.sortFeature = sortFeature;
     }
 
-    public List<Product> getSortedProducts() {
-        List<Product> sortedFilter = FilterController.getInstance().filterProducts();
+    public List<Product> getSortedProducts(boolean offOrNot) {
+        List<Product> sortedFilter = FilterController.getInstance().filterProducts(offOrNot);
         switch (sortFeature) {
             case "product name": {
                 Collections.sort(sortedFilter, new ByName());

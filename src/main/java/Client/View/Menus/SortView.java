@@ -48,7 +48,7 @@ public class SortView extends Menu{
                 SortController.getInstance().setSortFeature(scanner.nextLine());
 
                 System.out.println("\n" + "Sorted Products:");
-                for (Product sortedProduct : SortController.getInstance().getSortedProducts()) {
+                for (Product sortedProduct : SortController.getInstance().getSortedProducts(this.superMenu instanceof OffsMenu)) {
                     System.out.println(sortedProduct.getName());
                 }
                 super.execute();
