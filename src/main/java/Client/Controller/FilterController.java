@@ -5,6 +5,7 @@ import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.Models.SpecialFeature;
 import Server.Controller.AllProductsServerController;
+import Server.Controller.OffsServerController;
 import Server.Database;
 
 
@@ -41,8 +42,14 @@ public class FilterController {
     private FilterController() {
     }
 
-    public List<Product> filterProducts() {
-        return AllProductsServerController.getInstance().getAllProducts().stream()
+    public List<Product> filterProducts(boolean offOrNot) {
+        ArrayList<Product> allProducts;
+        if(offOrNot){
+            allProducts= OffsServerController.getInstance().getAllOffProducts();
+        }else{
+            allProducts=AllProductsServerController.getInstance().getAllProducts();
+        }
+        return allProducts.stream()
                 .filter(Product -> {
                     {
                         if (name != null) {

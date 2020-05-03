@@ -156,12 +156,12 @@ public class FilterMenu extends Menu {
                 }
 
 
-                if (FilterController.getInstance().filterProducts().size() == 0)
+                if (FilterController.getInstance().filterProducts(this.superMenu instanceof OffsMenu).size() == 0)
                     System.out.println("Nothing found");
                 else {
                     System.out.println("");
                     System.out.println("Filtered Products Are:");
-                    for (Product filterProduct : FilterController.getInstance().filterProducts()) {
+                    for (Product filterProduct : FilterController.getInstance().filterProducts(this.superMenu instanceof OffsMenu)) {
                         System.out.println(filterProduct.getName());
                     }
                 }

@@ -21,6 +21,9 @@ public class OffsServerController {
     public ArrayList<Off> getOffs(){
         return Database.getAllOffs();
     }
+    public ArrayList<Product> getAllOffProducts(){
+        return Database.getAllOffProducts();
+    }
 
 
 }
