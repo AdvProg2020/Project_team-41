@@ -36,7 +36,7 @@ public abstract class Menu {
 
 
         if(command.equalsIgnoreCase("help")) {
-            this.help();
+            this.commands();
             this.execute();
         }else if(command.equalsIgnoreCase("back")) {
             if (superMenu != null) {
@@ -96,9 +96,7 @@ public abstract class Menu {
             }
         }
     }
-    public void help(){
-        this.commands();
-    }
+
     public void commands(){
         setRightNameForLoginMenu();
         for (Menu subMenu : subMenus) {

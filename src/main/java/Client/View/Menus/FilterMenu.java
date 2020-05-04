@@ -29,7 +29,7 @@ public class FilterMenu extends Menu {
     public void execute() {
         super.execute();
         System.out.println("Invalid Command!");
-        this.show();
+        this.commands();
         this.execute();
     }
 
