@@ -28,6 +28,9 @@ public class FilterMenu extends Menu {
     @Override
     public void execute() {
         super.execute();
+        System.out.println("Invalid Command!");
+        this.show();
+        this.execute();
     }
 
     private Menu showAvailableFilters() {
