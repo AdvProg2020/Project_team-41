@@ -145,4 +145,5 @@ public class Product implements Serializable {
         return base64Encoder.encodeToString(randomBytes);
     }
 
+
 }
