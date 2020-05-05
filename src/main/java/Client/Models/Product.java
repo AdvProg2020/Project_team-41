@@ -145,5 +145,15 @@ public class Product implements Serializable {
         return base64Encoder.encodeToString(randomBytes);
     }
 
-
+    @Override
+    public String toString() {
+        return
+                "productSituation=" + productSituation +
+                ", name='" + name + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", price=" + price +
+                ", seller=" + seller +
+                ", isThereMore=" + isThereMore
+                ;
+    }
 }

@@ -78,15 +78,7 @@ public class ProductMenu extends Menu {
         return new Menu(this, "attributes") {
             @Override
             public void show() {
-                System.out.println(
-                        "productSituation: " + theProduct.getProductSituation() +
-                                ", name: " + theProduct.getName() +
-                                ", companyName: " + theProduct.getCompanyName() +
-                                ", price: " + theProduct.getPrice() +
-                                ", seller: " + theProduct.getSeller() +
-                                ", isThereMore: " + theProduct.isThereMore() +
-                                ", category: " + theProduct.getCompanyName()
-                );
+                System.out.println(theProduct + ", category: " + theProduct.getCompanyName());
                 for (String featureName : theProduct.getSpecialFeatures().keySet()) {
                     System.out.print("feature name: " + featureName );
                     SpecialFeature productSpecialFeature = theProduct.getSpecialFeatures().get(featureName);
