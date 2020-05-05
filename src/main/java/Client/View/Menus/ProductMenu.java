@@ -2,6 +2,7 @@ package Client.View.Menus;
 
 import Client.Controller.ProductController;
 import Client.Models.Product;
+import Client.Models.SpecialFeature;
 
 public class ProductMenu extends Menu {
     private Product theProduct;
@@ -38,12 +39,12 @@ public class ProductMenu extends Menu {
             @Override
             public void show() {
                 System.out.println(
-                        theProduct.getName() + "\n" +
-                        theProduct.getDescription() + "\n" +
-                        theProduct.getPrice() + "\n" +
-                        theProduct.getCategory().getName() + "\n" +
-                        theProduct.getSeller().getUserName() + "\n" +
-                        theProduct.calculateAverageScore()
+                        "name: " + theProduct.getName() + "\n" +
+                                "description: " + theProduct.getDescription() + "\n" +
+                                "price: " + theProduct.getPrice() + "\n" +
+                                "category: " + theProduct.getCategory().getName() + "\n" +
+                                "seller: " + theProduct.getSeller().getUserName() + "\n" +
+                                "average score: " + theProduct.calculateAverageScore()
                         //TODO print product discount ...
                 );
             }
@@ -77,7 +78,23 @@ public class ProductMenu extends Menu {
         return new Menu(this, "attributes") {
             @Override
             public void show() {
-                super.show();
+                System.out.println(
+                        "productSituation: " + theProduct.getProductSituation() +
+                                ", name: " + theProduct.getName() +
+                                ", companyName: " + theProduct.getCompanyName() +
+                                ", price: " + theProduct.getPrice() +
+                                ", seller: " + theProduct.getSeller() +
+                                ", isThereMore: " + theProduct.isThereMore() +
+                                ", category: " + theProduct.getCompanyName()
+                );
+                for (String featureName : theProduct.getSpecialFeatures().keySet()) {
+                    System.out.print("feature name: " + featureName );
+                    SpecialFeature productSpecialFeature = theProduct.getSpecialFeatures().get(featureName);
+                    if(productSpecialFeature.StringOrInt().equalsIgnoreCase("int"))
+                        System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureInt());
+                    else
+                        System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureString());
+                }
             }
 
             @Override
