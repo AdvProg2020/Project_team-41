@@ -26,27 +26,7 @@ public abstract class Menu {
     }
 
     public void show(){
-        setRightNameForLoginMenu();
-        for (Menu subMenu : subMenus) {
-            if(this instanceof RegisterLoginMenu){
-                break;
-            }
-            System.out.println(subMenu.getName());
-        }
-
-        if(this instanceof RegisterLoginMenu){
-            if(UserSectionController.getLoggedInPerson()==null){
-                System.out.println("Create\nlogin");
-            }
-            else{
-                System.out.println("Logout");
-            }
-        }
-
-        if(superMenu != null)
-            System.out.println("back");
-        System.out.println("help");
-        System.out.println("end Program");
+        this.commands();
     }
     public void execute() {
         command = scanner.nextLine();
@@ -56,7 +36,7 @@ public abstract class Menu {
 
 
         if(command.equalsIgnoreCase("help")) {
-            this.show();
+            this.commands();
             this.execute();
         }else if(command.equalsIgnoreCase("back")) {
             if (superMenu != null) {
@@ -115,6 +95,30 @@ public abstract class Menu {
                 this.execute();
             }
         }
+    }
+
+    public void commands(){
+        setRightNameForLoginMenu();
+        for (Menu subMenu : subMenus) {
+            if(this instanceof RegisterLoginMenu){
+                break;
+            }
+            System.out.println(subMenu.getName());
+        }
+
+        if(this instanceof RegisterLoginMenu){
+            if(UserSectionController.getLoggedInPerson()==null){
+                System.out.println("Create\nlogin");
+            }
+            else{
+                System.out.println("Logout");
+            }
+        }
+
+        if(superMenu != null)
+            System.out.println("back");
+        System.out.println("help");
+        System.out.println("end Program");
     }
 
 }

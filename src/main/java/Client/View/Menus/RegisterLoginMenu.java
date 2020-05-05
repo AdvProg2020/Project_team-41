@@ -19,6 +19,13 @@ public class RegisterLoginMenu extends Menu {
 
     }
 
+    @Override
+    public void execute() {
+        super.execute();
+        System.out.println("Invalid Command!");
+        this.show();
+        this.execute();
+    }
 
     public Menu addCreate(){
         return new Menu(this, "Create") {

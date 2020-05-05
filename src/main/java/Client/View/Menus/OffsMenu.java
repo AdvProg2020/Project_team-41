@@ -32,6 +32,9 @@ public class OffsMenu extends Menu {
     @Override
     public void execute() {
         super.execute();
+        System.out.println("Invalid Command!");
+        this.commands();
+        this.execute();
     }
     private Menu addShowProduct(){
         return new Menu(this,"Show product") {
@@ -48,7 +51,7 @@ public class OffsMenu extends Menu {
                     productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
-                    this.superMenu.show();
+                    this.superMenu.commands();
                     this.superMenu.execute();
                 }
                 productMenu.show();
