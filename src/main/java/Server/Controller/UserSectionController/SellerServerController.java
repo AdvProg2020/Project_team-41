@@ -42,7 +42,9 @@ public class SellerServerController extends UserSectionServerController {
                 }
                 return  salesHistory;
         }
-        public void addProduct(Seller seller,Product product){
+        public void addProduct(Seller seller,ArrayList<String> productDetails){
+                Product product = new Product();
+                //todo make product
                 Database.addRequest(new Request(null,RequestType.ADD_PRODUCT,product,seller,null));
 
         }

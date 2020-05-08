@@ -3,10 +3,12 @@ package Client.View.Menus.UserSectionMenus;
 import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.SellerController;
+import Client.Models.Category;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SellerSection extends UserSection {
@@ -120,33 +122,84 @@ public class SellerSection extends UserSection {
         return new Menu(this,"AddProduct") {
             @Override
             public void show() {
-                //todo
+                super.show();
+                System.out.println("enter new product's details");
             }
 
             @Override
             public void execute() {
-                //todo
+                ArrayList<String> productDetails = new ArrayList<>();
+                System.out.println("enter name");
+                productDetails.add(scanner.nextLine());
+                System.out.println("now enter company name");
+                productDetails.add(scanner.nextLine());
+                System.out.println("ok... now enter the price");
+                productDetails.add(scanner.nextLine());
+                SellerController.getInstance().addProduct(productDetails);
+                System.out.println("ok, the manager has lots to do :-)");
+                super.show();
+                super.execute();
             }
         };
     }
     public Menu addViewOffs(){
         return new Menu(this,"ViewOffs") {
+
+
             @Override
             public void show() {
-                //todo
+                SellerController.getInstance().getOffs();
+                System.out.println("view [offId]");
+                System.out.println("edit [offId]");
+                System.out.println("add off");
+                super.show();
             }
 
             @Override
             public void execute() {
-                //todo
-            }
-            public void viewOff(int id){
+                super.execute();
+                if(command.startsWith("view")){
+                    viewOff(command.split(" ")[1]);
+                }
+                else if(command.startsWith("edit")){
+                    editOff(command.split(" ")[1]);
+                }
+                else if (command.equals("add off")){
+                    addOff();
+                }
+                else
+                    System.out.println("invalid command");
+
+
 
             }
-            public void editOff(int id){
-
+            private void viewOff(String offId){
+                SellerController.getInstance().getOff(Integer.parseInt(offId));
             }
-            public void addOff(){
+            private void editOff(String offId){
+                HashMap<String, String> edits = new HashMap<>();
+                System.out.println("enter edits then type end");
+                while (!scanner.hasNext("end")) {
+                    edits.put(scanner.next(), scanner.next());
+                }
+                SellerController.getInstance().editOff(edits);
+            }
+            private void addOff(){
+                ArrayList<String> offDetails = new ArrayList<>();
+                System.out.println("enter offId");
+                offDetails.add(scanner.nextLine());
+                System.out.println("now enter start date");
+                offDetails.add(scanner.nextLine());
+                System.out.println("enter end date");
+                offDetails.add(scanner.nextLine());
+                System.out.println("enter amount of discount");
+                offDetails.add(scanner.nextLine());
+                System.out.println("enter product Id's you want to be included(type end to end this");
+                while (!scanner.hasNext("end")) {
+                    offDetails.add(scanner.next());
+                }
+                SellerController.getInstance().addProduct(offDetails);
+                System.out.println("ok, the manager has lots to do :-)");
 
             }
         };
@@ -155,25 +208,22 @@ public class SellerSection extends UserSection {
         return new Menu(this,"ShowCategories") {
             @Override
             public void show() {
-                //todo
+                for (Category category : SellerController.getInstance().getCategories())
+                    System.out.println(category.getName());
             }
 
-            @Override
-            public void execute() {
-                //todo
-            }
         };
     }
     public Menu addRemoveProduct(){
         return new Menu(this,"RemoveProduct") {
             @Override
             public void show() {
-                //todo
+                System.out.println("type the product Id you want to be removed");
             }
 
             @Override
             public void execute() {
-                //todo
+                SellerController.getInstance().removeProduct(Integer.parseInt(scanner.nextLine()));
             }
         };
     }
@@ -181,14 +231,12 @@ public class SellerSection extends UserSection {
         return new Menu(this,"ViewBalance") {
             @Override
             public void show() {
-                //todo
+                System.out.println(SellerController.getLoggedInPerson().getCredit());
             }
 
-            @Override
-            public void execute() {
-                //todo
-            }
         };
     }
 
 }
+
+//todo edit edits. it may cause problem in graphics. you can add a class for all of them

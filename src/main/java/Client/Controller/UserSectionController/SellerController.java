@@ -47,8 +47,8 @@ public class SellerController extends UserSectionController{
         public void editProduct(int productId,HashMap<String ,String> edit){
                 SellerServerController.getInstance().editProduct((Seller)loggedInPerson,productId,edit);
         }
-        public void addProduct(Product product){
-                SellerServerController.getInstance().addProduct((Seller)loggedInPerson,product);
+        public void addProduct(ArrayList<String> productDetails){
+                SellerServerController.getInstance().addProduct((Seller)loggedInPerson,productDetails);
         }
         public void removeProduct(int id){
                 SellerServerController.getInstance().removeProduct((Seller)loggedInPerson,id);
