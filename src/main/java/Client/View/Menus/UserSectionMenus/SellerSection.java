@@ -141,6 +141,8 @@ public class SellerSection extends UserSection {
                 ArrayList<String> productDetails = new ArrayList<>();
                 System.out.println("enter name");
                 productDetails.add(scanner.nextLine());
+                System.out.println("How many do you have?");
+                productDetails.add(scanner.nextLine());
                 System.out.println("now enter company name");
                 productDetails.add(scanner.nextLine());
                 System.out.println("ok... now enter the price");

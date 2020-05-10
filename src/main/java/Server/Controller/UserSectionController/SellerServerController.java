@@ -54,10 +54,11 @@ public class SellerServerController extends UserSectionServerController {
         public void addProduct(Seller seller,ArrayList<String> productDetails) throws Exception {
                 Product product = new Product();
                 product.setName(productDetails.get(0));
-                product.setCompanyName(productDetails.get(1));
-                product.setPrice(Integer.parseInt(productDetails.get(2)));
-                product.setCategory(Database.getCategoryByName(productDetails.get(3)));
-                product.setDescription(productDetails.get(4));
+                product.setQuantity(Integer.parseInt(productDetails.get(1)));
+                product.setCompanyName(productDetails.get(2));
+                product.setPrice(Integer.parseInt(productDetails.get(3)));
+                product.setCategory(Database.getCategoryByName(productDetails.get(4)));
+                product.setDescription(productDetails.get(5));
                 product.setSeller(seller);
                 Database.addRequest(new Request(null,RequestType.ADD_PRODUCT,product,seller,null));
         }

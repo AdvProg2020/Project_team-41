@@ -2,6 +2,7 @@ package Client.Models.Person;
 
 import Client.Models.Off;
 import Client.Models.Product;
+import Client.Models.TradeLog;
 
 import java.util.ArrayList;
 
@@ -33,5 +34,12 @@ public class Seller extends Person {
 
     public void setFactoryName(String factoryName) {
         this.factoryName = factoryName;
+    }
+
+    public void addCredit(int money){
+        this.setCredit(getCredit()+money);
+    }
+    public void addTradeLog(TradeLog tradeLog){
+        getTradeLogs().add(tradeLog);
     }
 }

@@ -1,9 +1,7 @@
 package Client.Controller;
 
 import Client.Models.Category;
-import Client.Models.Person.Seller;
 import Client.Models.Product;
-import Client.Models.SpecialFeature;
 import Server.Controller.AllProductsServerController;
 import Server.Controller.OffsServerController;
 import Server.Database;
@@ -88,7 +86,7 @@ public class FilterController {
                                 isThereMore = true;
                             else
                                 isThereMore = false;
-                            if (Product.isThereMore() != isThereMore)
+                            if ((Product.getQuantity()!=0) != isThereMore)
                                 return false;
                         }
                     }
