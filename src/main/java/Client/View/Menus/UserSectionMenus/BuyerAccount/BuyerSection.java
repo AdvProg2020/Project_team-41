@@ -19,13 +19,19 @@ public class BuyerSection extends UserSection {
         return new Menu(this, "view order") {
             private void showOrder(String orderId){
                 System.out.println(BuyerController.getInstance().showTheOrder(orderId));
+                this.show();
+                this.execute();
+
             }
             private void rate(String productId,int rate){
                 try {
                     BuyerController.getInstance().rateTheProduct(productId,rate);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
+                this.show();
+                this.execute();
+
             }
             @Override
             public void show() {
@@ -50,6 +56,9 @@ public class BuyerSection extends UserSection {
                 }
                 else
                     System.out.println("invalid command");
+                this.show();
+                this.execute();
+
             }
         };
     }
