@@ -27,7 +27,7 @@ public class BuyerController extends UserSectionController {
         return loggedInPerson.getDiscountCodes();
     }
 
-    public void payForTheShop(){
+    public void payForTheShop() throws Exception {
         BuyerServerController.payForTheShop((Buyer)loggedInPerson);
     }
 

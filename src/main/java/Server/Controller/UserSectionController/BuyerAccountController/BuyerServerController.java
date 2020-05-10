@@ -7,6 +7,7 @@ import Client.Models.Person.Person;
 import Server.Database;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BuyerServerController {
 
@@ -20,8 +21,16 @@ public class BuyerServerController {
     private BuyerServerController(){
     }
 
-    public static void payForTheShop(Buyer buyer){
+    public static void payForTheShop(Buyer buyer) throws Exception {
+        int offAmount = 0;//todo offAmount
         Cart cart = buyer.getCart();
+        for (Product product : cart.getProducts().keySet()) {
+            product.decreaseQuantity();
+            product.getSeller().addCredit(product.getPrice());
+        }
+        buyer.decreaseCredit(cart.totalPrice());
+
+        //todo make tradelogs
         //TODO paying process
     }
 

@@ -1,7 +1,6 @@
 package Client.Models;
 
 import Client.Models.Person.Buyer;
-import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 
 import java.io.Serializable;
@@ -19,7 +18,7 @@ public class Product implements Serializable {
     private String companyName;
     private int price;
     private Seller seller;
-    private boolean isThereMore;
+    private int quantity;
     // end of common specifics
 
     private Category category;
@@ -78,8 +77,8 @@ public class Product implements Serializable {
         this.seller = seller;
     }
 
-    public void setThereMore(boolean thereMore) {
-        isThereMore = thereMore;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public HashMap<String, SpecialFeature> getSpecialFeatures() {
@@ -111,8 +110,8 @@ public class Product implements Serializable {
         return seller;
     }
 
-    public boolean isThereMore() {
-        return isThereMore;
+    public int getQuantity() {
+        return quantity;
     }
 
     public Category getCategory() {
@@ -142,6 +141,13 @@ public class Product implements Serializable {
         buyers.add(buyer);
     }
 
+    public void decreaseQuantity() throws Exception {
+        if(quantity > 0)
+            quantity--;
+        else
+            throw new Exception("out of stock");
+    }
+
     public static String generateNewToken() {
         byte[] randomBytes = new byte[24];
         secureRandom.nextBytes(randomBytes);
@@ -156,7 +162,7 @@ public class Product implements Serializable {
                 ", companyName='" + companyName + '\'' +
                 ", price=" + price +
                 ", seller=" + seller +
-                ", isThereMore=" + isThereMore
+                ", isThereMore=" + quantity
                 ;
     }
 }
