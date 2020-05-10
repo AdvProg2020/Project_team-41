@@ -207,9 +207,13 @@ public class SellerSection extends UserSection {
             }
             private void addOff(){
                 ArrayList<String> offDetails = new ArrayList<>();
-                System.out.println("enter start date");
+                System.out.println("enter exactStartDate(day/month/year)");
                 offDetails.add(scanner.nextLine());
-                System.out.println("now enter end date");
+                System.out.println("enter exactStartTime(hour:minute:second)");
+                offDetails.add(scanner.nextLine());
+                System.out.println("enter exactEndDate(day/month/year)");
+                offDetails.add(scanner.nextLine());
+                System.out.println("enter exactEndTime(hour:minute:second)");
                 offDetails.add(scanner.nextLine());
                 System.out.println("enter amount of discount");
                 offDetails.add(scanner.nextLine());

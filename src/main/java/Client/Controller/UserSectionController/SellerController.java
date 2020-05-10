@@ -65,7 +65,7 @@ public class SellerController extends UserSectionController{
         public void editOff(String offId,HashMap<String ,String> edit){
                 SellerServerController.getInstance().editOff(offId,(Seller)loggedInPerson,edit);
         }
-        public void addOff(ArrayList<String> offDetails){
+        public void addOff(ArrayList<String> offDetails) throws Exception {
                 SellerServerController.getInstance().addOff((Seller)loggedInPerson,offDetails);
         }
 
