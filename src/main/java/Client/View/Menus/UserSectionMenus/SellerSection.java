@@ -67,13 +67,13 @@ public class SellerSection extends UserSection {
             public void execute() {
                 super.execute();
                 if(command.startsWith("viewProduct")){
-                    viewProduct(Integer.parseInt(command.split(" ")[1]));
+                    viewProduct(command.split(" ")[1]);
                 }
                 else if(command.startsWith("viewProductBuyers")){
-                    viewProductBuyers(Integer.parseInt(command.split(" ")[1]));
+                    viewProductBuyers(command.split(" ")[1]);
                 }
                 else if(command.startsWith("editProduct")){
-                    editProduct(Integer.parseInt(command.split(" ")[1]));
+                    editProduct(command.split(" ")[1]);
                 }
                 else{
                     System.out.println("invalid command");
@@ -82,7 +82,7 @@ public class SellerSection extends UserSection {
                 }
 
             }
-            public void viewProduct(int id){
+            public void viewProduct(String id){
                 Product product = SellerController.getInstance().getProduct(id);
                 System.out.println("id : " + product.getProductId());
                 System.out.println("name : " + product.getName());
@@ -99,20 +99,30 @@ public class SellerSection extends UserSection {
                 this.execute();
 
             }
-            public void viewProductBuyers(int id){
-                for (String buyer : SellerController.getInstance().getProductBuyers(id)) {
-                    System.out.println("buyer : " + buyer);
+            public void viewProductBuyers(String id) {
+                try {
+                    for (String buyer : SellerController.getInstance().getProductBuyers(id)) {
+                        System.out.println("buyer : " + buyer);
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                    // TODO: catch better
                 }
                 this.show();
                 this.execute();
             }
-            public void editProduct(int id){
+            public void editProduct(String id){
                 HashMap<String,String> edits = new HashMap<>();
                 System.out.println("what do you want to change?(type end to finish editing");
                 while (!scanner.hasNext("end")) {
                     edits.put(scanner.next(), scanner.next());
                 }
-                SellerController.getInstance().editProduct(id,edits);
+                try {
+                    SellerController.getInstance().editProduct(id,edits);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 this.show();
                 this.execute();
             }
@@ -135,7 +145,16 @@ public class SellerSection extends UserSection {
                 productDetails.add(scanner.nextLine());
                 System.out.println("ok... now enter the price");
                 productDetails.add(scanner.nextLine());
-                SellerController.getInstance().addProduct(productDetails);
+                System.out.println("enter the category name");
+                productDetails.add(scanner.nextLine());
+                System.out.println("enter the description");
+                productDetails.add(scanner.nextLine());
+
+                try {
+                    SellerController.getInstance().addProduct(productDetails);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println("ok, the manager has lots to do :-)");
                 super.show();
                 super.execute();
@@ -174,7 +193,7 @@ public class SellerSection extends UserSection {
 
             }
             private void viewOff(String offId){
-                SellerController.getInstance().getOff(Integer.parseInt(offId));
+                SellerController.getInstance().getOff(offId);
             }
             private void editOff(String offId){
                 HashMap<String, String> edits = new HashMap<>();
@@ -182,7 +201,7 @@ public class SellerSection extends UserSection {
                 while (!scanner.hasNext("end")) {
                     edits.put(scanner.next(), scanner.next());
                 }
-                SellerController.getInstance().editOff(edits);
+                SellerController.getInstance().editOff(offId,edits);
             }
             private void addOff(){
                 ArrayList<String> offDetails = new ArrayList<>();
@@ -198,7 +217,11 @@ public class SellerSection extends UserSection {
                 while (!scanner.hasNext("end")) {
                     offDetails.add(scanner.next());
                 }
-                SellerController.getInstance().addProduct(offDetails);
+                try {
+                    SellerController.getInstance().addProduct(offDetails);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println("ok, the manager has lots to do :-)");
 
             }
@@ -223,7 +246,12 @@ public class SellerSection extends UserSection {
 
             @Override
             public void execute() {
-                SellerController.getInstance().removeProduct(Integer.parseInt(scanner.nextLine()));
+                try {
+                    SellerController.getInstance().removeProduct(scanner.nextLine());
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         };
     }
