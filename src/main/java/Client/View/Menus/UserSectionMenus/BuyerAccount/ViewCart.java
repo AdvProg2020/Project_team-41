@@ -37,13 +37,25 @@ public class ViewCart extends Menu {
             showTotalPrice();
         }
         else if(command.startsWith("view")){
-            viewProduct(command.split(" ")[1]);
+            try {
+                viewProduct(command.split(" ")[1]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else if(command.startsWith("increase")){
-            increase(command.split(" ")[1]);
+            try {
+                increase(command.split(" ")[1]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else if(command.startsWith("decrease")){
-            decrease(command.split(" ")[1]);
+            try {
+                decrease(command.split(" ")[1]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else{
             System.out.println("invalid command");
@@ -66,19 +78,19 @@ public class ViewCart extends Menu {
         this.show();
         this.execute();
     }
-    private void viewProduct(String productId){
+    private void viewProduct(String productId) throws Exception {
         ProductMenu productMenu = new ProductMenu(this);
         productMenu.setTheProduct(BuyerController.getInstance().getProduct(productId));
         productMenu.show();
         productMenu.execute();
     }
-    private void increase(String productId){
+    private void increase(String productId) throws Exception {
         Product product = BuyerController.getInstance().getProduct(productId);
         BuyerController.getInstance().getCart().increaseProductQuantity(product);
         this.show();
         this.execute();
     }
-    private void decrease(String productId) {
+    private void decrease(String productId) throws Exception {
         Product product = BuyerController.getInstance().getProduct(productId);
         BuyerController.getInstance().getCart().decreaseProductQuantity(product);
         this.show();

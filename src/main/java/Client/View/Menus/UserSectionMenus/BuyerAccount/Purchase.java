@@ -7,53 +7,52 @@ public class Purchase extends Menu {
 
     public Purchase(Menu superMenu) {
         super(superMenu, "purchase");
-        this.addSubMenu(receiverInformation());
     }
 
-    private Menu receiverInformation(){
-        return new Menu(this , "receiver information") {
+    @Override
+    public void execute() {
+        super.execute();
+        payment().show();
+        payment().execute();
+    }
+
+    private Menu receiverInformation() {
+        return new Menu(this, "receiver information") {
             @Override
             public void show() {
-                //TODO print sth for user to enter information
+                System.out.println("ok. now you must enter your information");
             }
 
             @Override
             public void execute() {
-                //TODO get information from user
-                //TODO ability to back to past menu(Purchase)
 
-
-
-                //going to next menu:
-                this.addSubMenu(new Menu(this, "discount code") {
-                    @Override
-                    public void show() {
-                        //TODO print sth for user to enter information
-                    }
-
-                    @Override
-                    public void execute() {
-                        // get discount code from user:
-                        String input = scanner.nextLine();
-                        BuyerController.checkDiscountCode(input);
-                        //TODO print result of validation of the code
-                        //TODO ability to back to past menu(receiver information)
-
-
-
-                        //go to next menu:
-                        this.addSubMenu(new Menu(this, "payment") {
-                            @Override
-                            public void show() {
-                            }
-
-                            @Override
-                            public void execute() {
-                            }
-                        });
-                    }
-                });
             }
-    };
-}
+        };
+    }
+    private Menu payment() {
+        return new Menu(this, "payment") {
+            @Override
+            public void show() {
+
+            }
+
+            @Override
+            public void execute() {
+
+            }
+        };
+    }
+    private Menu discountCode() {
+        return new Menu(this, "discountCode") {
+            @Override
+            public void show() {
+
+            }
+
+            @Override
+            public void execute() {
+
+            }
+        };
+    }
 }

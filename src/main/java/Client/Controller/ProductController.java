@@ -20,7 +20,7 @@ public class ProductController {
 
         if(UserSectionController.getLoggedInPerson() != null){
         Buyer theBuyer = (Buyer)UserSectionController.getLoggedInPerson();
-        theBuyer.getCart().getProducts().add(product);}
+        theBuyer.getCart().getProducts().put(product,1);}
         else
             throw new Exception("First you must log in");
 

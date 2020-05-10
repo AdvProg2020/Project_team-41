@@ -1,11 +1,8 @@
 package Client.Controller.UserSectionController.BuyerAccountController;
 
 import Client.Controller.UserSectionController.UserSectionController;
-import Client.Models.Cart;
-import Client.Models.CodedDiscount;
+import Client.Models.*;
 import Client.Models.Person.Buyer;
-import Client.Models.Product;
-import Client.Models.TradeLog;
 import Server.Controller.UserSectionController.BuyerAccountController.BuyerServerController;
 
 import java.util.ArrayList;
@@ -26,26 +23,31 @@ public class BuyerController extends UserSectionController {
     public int getBalance(){
         return loggedInPerson.getCredit();
     }
-    public ArrayList<CodedDiscount> getCodedDiscounts(){
-        return BuyerServerController.getCodedDiscounts();
+    public ArrayList<String> getCodedDiscounts(){
+        return loggedInPerson.getDiscountCodes();
     }
 
-    public boolean payForTheShop(){
-        return BuyerServerController.payForTheShop();
+    public void payForTheShop(){
+        BuyerServerController.payForTheShop((Buyer)loggedInPerson);
     }
 
     public ArrayList<TradeLog> getTradeLogs(){
         return loggedInPerson.getTradeLogs();
     }
 
-    public TradeLog showTheOrder(String Id){
-        return BuyerServerController.showTheOrder(Id);
+    public TradeLog showTheOrder(String id){
+        for (TradeLog tradeLog : loggedInPerson.getTradeLogs()) {
+            if(tradeLog.getLogId().equals(id))
+                return tradeLog;
+        }
+        return null;
     }
 
-    public boolean rateTheProduct(String productId , int score){
-        return BuyerServerController.rateTheProduct(productId,score);
+    public void rateTheProduct(String productId , int score) throws Exception {
+        Score scoreObject = new Score(loggedInPerson,score,getProduct(productId));
+        BuyerServerController.rateTheProduct(productId,scoreObject);
     }
-    public Product getProduct(String productId){
+    public Product getProduct(String productId) throws Exception {
         return BuyerServerController.getInstance().getProduct(productId);
     }
     public Cart getCart(){
