@@ -46,13 +46,13 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> showRequest(){
         return ManagerServerController.getInstance().showRequest();
     }
-    public ArrayList<String> getRequestDetails(String request){
+    public ArrayList<String> getRequestDetails(String request) throws Exception {
         return ManagerServerController.getInstance().getRequestDetails(request);
     }
-    public void acceptRequest(String request){
+    public void acceptRequest(String request) throws Exception {
         ManagerServerController.getInstance().acceptRequest(request);
     }
-    public void declineRequest(String request){
+    public void declineRequest(String request) throws Exception {
         ManagerServerController.getInstance().declineRequest(request);
     }
     public ArrayList<String> showCategories(){

@@ -170,12 +170,12 @@ public class Database implements Serializable {
     public static void addOff(Off off){
         allOffs.add(off);
     }
-    public static Request getRequestByRequestId(String requestId){
+    public static Request getRequestByRequestId(String requestId) throws Exception {
         for (Request request : allRequest) {
             if(request.getRequestId().equals(requestId))
                 return request;
         }
-        return null;
+        throw new Exception("no request matched");
     }
     public static void addRequest(Request request){
         allRequest.add(request);
