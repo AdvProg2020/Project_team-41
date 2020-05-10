@@ -1,6 +1,7 @@
 package Client.Models;
 
 import Client.Models.Person.Seller;
+import Server.Controller.TimeControl;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -76,5 +77,20 @@ public class Off {
         return base64Encoder.encodeToString(randomBytes);
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder products = new StringBuilder();
+        for (Product item : this.products) {
+            products.append(item.getName()+ "\n");
+        }
+        return "Off{" +
+                "offId='" + offId + '\'' +
+                ", situation=" + situation +
+                ", startDate=" + TimeControl.convertGregorianToJalali(startDate) +
+                ", endDate=" + TimeControl.convertGregorianToJalali(endDate) +
+                ", amountOfDiscount=" + amountOfDiscount +
+                ", seller=" + seller.getUserName() +
+                ", products=" + products +
+                '}';
+    }
 }

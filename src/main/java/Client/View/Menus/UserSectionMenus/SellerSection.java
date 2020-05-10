@@ -190,12 +190,16 @@ public class SellerSection extends UserSection {
                 }
                 else
                     System.out.println("invalid command");
+                this.show();
+                this.execute();
 
 
 
             }
             private void viewOff(String offId){
-                SellerController.getInstance().getOff(offId);
+                System.out.println(SellerController.getInstance().getOff(offId));
+                this.show();
+                this.execute();
             }
             private void editOff(String offId){
                 HashMap<String, String> edits = new HashMap<>();
@@ -204,6 +208,8 @@ public class SellerSection extends UserSection {
                     edits.put(scanner.next(), scanner.next());
                 }
                 SellerController.getInstance().editOff(offId,edits);
+                this.show();
+                this.execute();
             }
             private void addOff(){
                 ArrayList<String> offDetails = new ArrayList<>();
@@ -225,8 +231,12 @@ public class SellerSection extends UserSection {
                     SellerController.getInstance().addOff(offDetails);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
                 }
                 System.out.println("ok, the manager has lots to do :-)");
+                this.show();
+                this.execute();
 
             }
         };
@@ -254,8 +264,12 @@ public class SellerSection extends UserSection {
                     SellerController.getInstance().removeProduct(scanner.nextLine());
                 }
                 catch (Exception e){
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
                 }
+                super.show();
+                super.execute();
             }
         };
     }
@@ -264,6 +278,7 @@ public class SellerSection extends UserSection {
             @Override
             public void show() {
                 System.out.println(SellerController.getLoggedInPerson().getCredit());
+
             }
 
         };

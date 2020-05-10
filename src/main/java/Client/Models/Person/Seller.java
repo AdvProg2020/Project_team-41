@@ -42,4 +42,5 @@ public class Seller extends Person {
     public void addTradeLog(TradeLog tradeLog){
         getTradeLogs().add(tradeLog);
     }
+
 }
