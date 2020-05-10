@@ -2,7 +2,9 @@ package Client.Models;
 
 import Client.Models.Person.Seller;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 
 public class Off {
@@ -13,6 +15,20 @@ public class Off {
     private Date endDate;
     private int amountOfDiscount;
     private Seller seller;
+    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
+    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
+    //for generating token
+
+    public Off(ArrayList<Product> products, Situation situation, Date startDate, Date endDate, int amountOfDiscount, Seller seller) {
+
+        this.offId = generateNewToken();
+        this.products = products;
+        this.situation = situation;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.amountOfDiscount = amountOfDiscount;
+        this.seller = seller;
+    }
 
     public Seller getSeller() {
         return seller;
@@ -53,5 +69,12 @@ public class Off {
     public int getAmountOfDiscount() {
         return amountOfDiscount;
     }
+
+    public static String generateNewToken() {
+        byte[] randomBytes = new byte[4];
+        secureRandom.nextBytes(randomBytes);
+        return base64Encoder.encodeToString(randomBytes);
+    }
+
 
 }

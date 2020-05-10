@@ -269,7 +269,7 @@ public class ManagerSection extends UserSection {
                 ArrayList<String> codeInformation = new ArrayList<>();
                 System.out.println("enter code(or back:-))");
                 super.execute();
-                codeInformation.add(scanner.nextLine());
+                codeInformation.add(command);
                 System.out.println("enter exactStartDate(day/month/year)");
                 codeInformation.add(scanner.nextLine());
                 System.out.println("enter exactStartTime(hour:minute:second)");

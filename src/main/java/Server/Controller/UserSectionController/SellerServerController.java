@@ -103,6 +103,14 @@ public class SellerServerController extends UserSectionServerController {
                 Request request = new Request(edit,RequestType.EDIT_OFF,null,seller,Database.getOffById(offId));
                 Database.addRequest(request);
         }
+        public void addOff(Seller seller,ArrayList<String> offDetails){
+                Off off ;
+                        //= new Off(,,TimeControl.);
+
+                //Database.addRequest(new Request(null,RequestType.ADD_OFF,null,seller,off));
+
+        }
+
 
 
 }
