@@ -85,4 +85,20 @@ public class TradeLog {
         return base64Encoder.encodeToString(randomBytes);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder products = new StringBuilder();
+        for (Product item : items) {
+            products.append(item.getName()+ "\n");
+        }
+
+        return "TradeLog{" +
+                "logId='" + logId + '\'' +
+                ", date=" + date +
+                ", money=" + money +
+                ", offAmount=" + offAmount +
+                ", items=" + products +
+                ", deliverySituation='" + deliverySituation + '\'' +
+                '}';
+    }
 }
