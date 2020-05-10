@@ -249,7 +249,6 @@ public class ManagerSection extends UserSection {
         return new Menu(this,"CreateDiscountCode") {
             @Override
             public void show() {
-                super.show();
                 System.out.println("you must enter these things:");
                 System.out.println("code" +
                         "\n" +
@@ -267,9 +266,8 @@ public class ManagerSection extends UserSection {
             @Override
             public void execute() {
                 ArrayList<String> codeInformation = new ArrayList<>();
-                System.out.println("enter code(or back:-))");
-                super.execute();
-                codeInformation.add(command);
+                System.out.println("enter code");
+                codeInformation.add(scanner.nextLine());
                 System.out.println("enter exactStartDate(day/month/year)");
                 codeInformation.add(scanner.nextLine());
                 System.out.println("enter exactStartTime(hour:minute:second)");

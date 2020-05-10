@@ -11,6 +11,7 @@ import Server.Database;
 import javax.xml.crypto.Data;
 import java.awt.image.DataBuffer;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class SellerServerController extends UserSectionServerController {
@@ -103,11 +104,19 @@ public class SellerServerController extends UserSectionServerController {
                 Request request = new Request(edit,RequestType.EDIT_OFF,null,seller,Database.getOffById(offId));
                 Database.addRequest(request);
         }
-        public void addOff(Seller seller,ArrayList<String> offDetails){
-                Off off ;
-                        //= new Off(,,TimeControl.);
+        public void addOff(Seller seller,ArrayList<String> offDetails) throws Exception {
+                ArrayList<Product> allProducts = new ArrayList<>();
+                for (int i = 5; i < offDetails.size(); i++) {
+                        allProducts.add(Database.getProductById(offDetails.get(i)));
+                }
+                String[] dateTime = {offDetails.get(0),offDetails.get(1)};
+                Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
+                dateTime = new String[]{offDetails.get(2), offDetails.get(3)};
+                Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
 
-                //Database.addRequest(new Request(null,RequestType.ADD_OFF,null,seller,off));
+                Off off  = new Off(allProducts,Situation.CREATING,exactStartDate,exactEndDate,Integer.parseInt(offDetails.get(4)),seller);
+
+                Database.addRequest(new Request(null,RequestType.ADD_OFF,null,seller,off));
 
         }
 
