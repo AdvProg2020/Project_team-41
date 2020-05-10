@@ -1,6 +1,10 @@
 package Server.Controller.UserSectionController.BuyerAccountController;
 
+import Client.Models.CodedDiscount;
+import Client.Models.Product;
 import Client.Models.TradeLog;
+
+import java.util.ArrayList;
 
 public class BuyerServerController {
 
@@ -14,9 +18,9 @@ public class BuyerServerController {
     private BuyerServerController(){
     }
 
-    public static boolean checkDiscountCode(String code){
+    public static ArrayList<CodedDiscount> getCodedDiscounts(){
         //TODO checking the validation
-        return true;
+        return null;
     }
 
     public static boolean payForTheShop(){
@@ -33,4 +37,8 @@ public class BuyerServerController {
         //TODO process and return false if the buyer hadn't bought the product
         return true;
     }
+    public Product getProduct(String productId){
+
+    }
+
 }

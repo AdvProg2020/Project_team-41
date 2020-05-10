@@ -1,62 +1,88 @@
 package Client.View.Menus.UserSectionMenus.BuyerAccount;
 
+import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
 import Client.Controller.UserSectionController.BuyerAccountController.CartController;
+import Client.Models.Person.Buyer;
+import Client.Models.Product;
 import Client.View.Menus.Menu;
 import Client.View.Menus.ProductMenu;
 
 public class ViewCart extends Menu {
 
-   // private Product productPage = new Product(this);
-
     public ViewCart(Menu superMenu) {
         super(superMenu, "view cart");
+        addSubMenu(new Purchase(this));
 
     }
 
     @Override
     public void show() {
         super.show();
+        System.out.println();
+        System.out.println("commands : ");
+        System.out.println("show Products");
+        System.out.println("view [productId]");
+        System.out.println("increase [productId]");
+        System.out.println("decrease [productId]");
+        System.out.println("show total price");
     }
 
     @Override
     public void execute() {
-        String input = scanner.nextLine();
-        if(input.equals("back")){
-            this.superMenu.show();
-            this.superMenu.execute();
+        super.execute();
+        if(command.equalsIgnoreCase("show products")){
+            showProducts();
         }
-        else if(input.equals("show products")){
-            //todo print products in the cart
+        else if(command.equalsIgnoreCase("show total price")){
+            showTotalPrice();
         }
-        else if(input.startsWith("view")){
-            //todo initialize productIdThatIsGiven
-            String productIdThatIsGiven = "";
-            ProductMenu productPage = new ProductMenu(this);
-            this.addSubMenu( productPage );
-            productPage.show();
-            productPage.execute();
+        else if(command.startsWith("view")){
+            viewProduct(command.split(" ")[1]);
         }
-        else if(input.startsWith("increase")){
-            //TODO initialize num & productId
-            int num = -1;
-            String productId = "";
-            CartController.increaseProduct(num , productId);
+        else if(command.startsWith("increase")){
+            increase(command.split(" ")[1]);
         }
-        else if(input.startsWith("decrease")){
-            //TODO initialize num & productId
-            int num = -1;
-            String productId = "";
-            CartController.decreaseProduct(num , productId);
+        else if(command.startsWith("decrease")){
+            decrease(command.split(" ")[1]);
         }
-        else if(input.equals("show total price")){
-            System.out.println(CartController.calculateTotalPrice());
+        else{
+            System.out.println("invalid command");
+            this.show();
+            this.execute();
         }
-        else if(input.equals("purchase")){
-            //todo
-            Purchase purchasePage = new Purchase(this );
-            this.addSubMenu( purchasePage );
-            purchasePage.show();
-            purchasePage.execute();
-        }
+
     }
+    private void showProducts(){
+        Buyer buyer = (Buyer)BuyerController.getLoggedInPerson();
+        for (Product product : BuyerController.getInstance().getCart().getProducts().keySet()) {
+            System.out.println(product.getProductId());
+        }
+        this.show();
+        this.execute();
+    }
+    private void showTotalPrice(){
+        int totalPrice = BuyerController.getInstance().getCart().totalPrice();
+        System.out.println(totalPrice);
+        this.show();
+        this.execute();
+    }
+    private void viewProduct(String productId){
+        ProductMenu productMenu = new ProductMenu(this);
+        productMenu.setTheProduct(BuyerController.getInstance().getProduct(productId));
+        productMenu.show();
+        productMenu.execute();
+    }
+    private void increase(String productId){
+        Product product = BuyerController.getInstance().getProduct(productId);
+        BuyerController.getInstance().getCart().increaseProductQuantity(product);
+        this.show();
+        this.execute();
+    }
+    private void decrease(String productId) {
+        Product product = BuyerController.getInstance().getProduct(productId);
+        BuyerController.getInstance().getCart().decreaseProductQuantity(product);
+        this.show();
+        this.execute();
+    }
+
 }

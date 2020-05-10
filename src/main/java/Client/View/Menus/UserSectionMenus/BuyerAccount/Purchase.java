@@ -45,14 +45,10 @@ public class Purchase extends Menu {
                         this.addSubMenu(new Menu(this, "payment") {
                             @Override
                             public void show() {
-                                //TODO print sth for user to show what he/she should do
                             }
 
                             @Override
                             public void execute() {
-                                BuyerController.payForTheShop();
-                                //TODO print the result of payment
-                                //TODO ability to back to past menu(receiver information)
                             }
                         });
                     }
