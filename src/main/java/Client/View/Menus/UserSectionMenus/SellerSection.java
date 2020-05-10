@@ -207,11 +207,9 @@ public class SellerSection extends UserSection {
             }
             private void addOff(){
                 ArrayList<String> offDetails = new ArrayList<>();
-                System.out.println("enter offId");
+                System.out.println("enter start date");
                 offDetails.add(scanner.nextLine());
-                System.out.println("now enter start date");
-                offDetails.add(scanner.nextLine());
-                System.out.println("enter end date");
+                System.out.println("now enter end date");
                 offDetails.add(scanner.nextLine());
                 System.out.println("enter amount of discount");
                 offDetails.add(scanner.nextLine());
@@ -220,9 +218,9 @@ public class SellerSection extends UserSection {
                     offDetails.add(scanner.next());
                 }
                 try {
-                    SellerController.getInstance().addProduct(offDetails);
+                    SellerController.getInstance().addOff(offDetails);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
                 System.out.println("ok, the manager has lots to do :-)");
 
