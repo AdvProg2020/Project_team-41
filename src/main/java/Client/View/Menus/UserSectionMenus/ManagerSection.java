@@ -125,9 +125,9 @@ public class ManagerSection extends UserSection {
                 }
                 catch (Exception e) {
                     System.out.println(e.getMessage());
+                }
                     this.show();
                     this.execute();
-                }
 
             }
             private void accept(String requestId){
@@ -136,6 +136,8 @@ public class ManagerSection extends UserSection {
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
+                this.show();
+                this.execute();
             }
             private void decline(String requestId){
                 try {
@@ -143,6 +145,9 @@ public class ManagerSection extends UserSection {
                 } catch (Exception e) {
                     e.getMessage();
                 }
+                this.show();
+                this.execute();
+
             }
 
 
@@ -288,9 +293,10 @@ public class ManagerSection extends UserSection {
                     ManagerController.getInstance().createDiscountCode(codeInformation);
                 }
                 catch (Exception e){
-                    System.out.println("invalid username");
-                    //todo other errors
+                    System.out.println(e.getMessage());
                 }
+                super.show();
+                super.execute();
 
             }
         };
