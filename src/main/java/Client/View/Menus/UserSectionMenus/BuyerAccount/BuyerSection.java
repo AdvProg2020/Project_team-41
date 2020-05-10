@@ -1,8 +1,6 @@
 package Client.View.Menus.UserSectionMenus.BuyerAccount;
 
 import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
-import Client.Models.CodedDiscount;
-import Client.Models.Person.Buyer;
 import Client.Models.TradeLog;
 import Client.View.Menus.Menu;
 import Client.View.Menus.UserSectionMenus.UserSection;
@@ -23,7 +21,11 @@ public class BuyerSection extends UserSection {
                 System.out.println(BuyerController.getInstance().showTheOrder(orderId));
             }
             private void rate(String productId,int rate){
-                BuyerController.getInstance().rateTheProduct(productId,rate);
+                try {
+                    BuyerController.getInstance().rateTheProduct(productId,rate);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             @Override
             public void show() {
@@ -66,8 +68,8 @@ public class BuyerSection extends UserSection {
         return new Menu(this , "view discount codes") {
             @Override
             public void show() {
-                for (CodedDiscount codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
-                    codedDiscount.getDiscountCode();
+                for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
+                    System.out.println(codedDiscount);
                 }
             }
 

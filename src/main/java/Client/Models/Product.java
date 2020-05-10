@@ -126,6 +126,9 @@ public class Product implements Serializable {
     public ArrayList<Score> getScores() {
         return scores;
     }
+    public void addScore(Score score){
+        scores.add(score);
+    }
 
     public Integer getViews() {
         return views;

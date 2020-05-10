@@ -1,8 +1,10 @@
 package Server.Controller.UserSectionController.BuyerAccountController;
 
-import Client.Models.CodedDiscount;
-import Client.Models.Product;
-import Client.Models.TradeLog;
+import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
+import Client.Models.*;
+import Client.Models.Person.Buyer;
+import Client.Models.Person.Person;
+import Server.Database;
 
 import java.util.ArrayList;
 
@@ -18,27 +20,16 @@ public class BuyerServerController {
     private BuyerServerController(){
     }
 
-    public static ArrayList<CodedDiscount> getCodedDiscounts(){
-        //TODO checking the validation
-        return null;
-    }
-
-    public static boolean payForTheShop(){
+    public static void payForTheShop(Buyer buyer){
+        Cart cart = buyer.getCart();
         //TODO paying process
-        return true;
     }
 
-    public static TradeLog showTheOrder(String Id){
-        //TODO find the order and for example:
-        return null;
+    public static void rateTheProduct(String productId , Score score) throws Exception {
+        Database.getProductById(productId).addScore(score);
     }
-
-    public static boolean rateTheProduct(String productId , int score){
-        //TODO process and return false if the buyer hadn't bought the product
-        return true;
-    }
-    public Product getProduct(String productId){
-
+    public Product getProduct(String productId) throws Exception {
+        return Database.getProductById(productId);
     }
 
 }

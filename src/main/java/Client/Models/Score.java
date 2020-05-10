@@ -10,4 +10,10 @@ public class Score {
     public int getScore() {
         return score;
     }
+
+    public Score(Person person, int score, Product product) {
+        this.person = person;
+        this.score = score;
+        this.product = product;
+    }
 }
