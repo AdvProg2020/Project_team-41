@@ -32,17 +32,20 @@ public class Product implements Serializable {
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     //for generating token
 
-//    public Product( String name, String companyName, int price, Seller seller, boolean isThereMore, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) {
-//        this.productId = generateNewToken();
-//        this.name = name;
-//        this.companyName = companyName;
-//        this.price = price;
-//        this.seller = seller;
-//        this.isThereMore = isThereMore;
-//        this.category = category;
-//        this.specialFeatures = specialFeatures;
-//        this.description = description;
-//    }
+    public Product( String name, String companyName, int price, Seller seller, int quantity, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) {
+        this.productId = generateNewToken();
+        this.name = name;
+        this.companyName = companyName;
+        this.price = price;
+        this.seller = seller;
+        this.quantity = quantity;
+        this.category = category;
+        this.specialFeatures = specialFeatures;
+        this.description = description;
+    }
+    public Product(){
+        this.productId = generateNewToken();
+    }
     public ArrayList<Buyer> buyers = new ArrayList<>();
 
     public Integer calculateAverageScore(){
@@ -149,7 +152,7 @@ public class Product implements Serializable {
     }
 
     public static String generateNewToken() {
-        byte[] randomBytes = new byte[24];
+        byte[] randomBytes = new byte[4];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }

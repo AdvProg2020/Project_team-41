@@ -81,9 +81,9 @@ public class ManagerServerController extends UserSectionServerController {
         discountCodeInformation.add("discount code: "+codedDiscount.getDiscountCode());
         discountCodeInformation.add("start date: "+TimeControl.convertGregorianToJalali(codedDiscount.getStartDate()).toString());
         discountCodeInformation.add("end date: "+TimeControl.convertGregorianToJalali(codedDiscount.getEndDate()).toString());
-        discountCodeInformation.add("discount percentage: "+Integer.toString(codedDiscount.getDiscountPercentage()));
-        discountCodeInformation.add("maximum discount: "+Integer.toString(codedDiscount.getMaximumDiscount()));
-        discountCodeInformation.add("discount repeats for each user: "+Integer.toString(codedDiscount.getDiscountRepeatsForEachUser()));
+        discountCodeInformation.add("discount percentage: "+ codedDiscount.getDiscountPercentage());
+        discountCodeInformation.add("maximum discount: "+ codedDiscount.getMaximumDiscount());
+        discountCodeInformation.add("discount repeats for each user: "+ codedDiscount.getDiscountRepeatsForEachUser());
         discountCodeInformation.add("people who can use it: ");
         for (Person person : codedDiscount.getPeople()) {
         discountCodeInformation.add(person.getUserName());
@@ -138,7 +138,7 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return requests;
     }
-    public ArrayList<String> getRequestDetails(String requestId){
+    public ArrayList<String> getRequestDetails(String requestId) throws Exception {
         ArrayList<String> requestDetails = new ArrayList<>();
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
@@ -177,7 +177,7 @@ public class ManagerServerController extends UserSectionServerController {
 
         return requestDetails;
     }
-    public void  acceptRequest(String requestId){
+    public void  acceptRequest(String requestId) throws Exception {
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
             case "ADD_PRODUCT" :{
@@ -236,7 +236,7 @@ public class ManagerServerController extends UserSectionServerController {
         }
 
     }
-    public void declineRequest(String requestId){
+    public void declineRequest(String requestId) throws Exception {
         Request request = Database.getRequestByRequestId(requestId);
     }
     public ArrayList<String> showCategories(){

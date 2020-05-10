@@ -118,15 +118,31 @@ public class ManagerSection extends UserSection {
         return new Menu(this,"ManageRequests") {
 
             private void details(String requestId){
-                for (String requestDetail : ManagerController.getInstance().getRequestDetails(requestId)) {
-                    System.out.println(requestDetail);
+                try {
+                    for (String requestDetail : ManagerController.getInstance().getRequestDetails(requestId)) {
+                        System.out.println(requestDetail);
+                    }
                 }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
+
             }
             private void accept(String requestId){
-                ManagerController.getInstance().acceptRequest(requestId);
+                try {
+                    ManagerController.getInstance().acceptRequest(requestId);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
             private void decline(String requestId){
-                ManagerController.getInstance().declineRequest(requestId);
+                try {
+                    ManagerController.getInstance().declineRequest(requestId);
+                } catch (Exception e) {
+                    e.getMessage();
+                }
             }
 
 
