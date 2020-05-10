@@ -44,7 +44,7 @@ public class Product implements Serializable {
 //        this.specialFeatures = specialFeatures;
 //        this.description = description;
 //    }
-    public ArrayList<Person> buyers = new ArrayList<>();
+    public ArrayList<Buyer> buyers = new ArrayList<>();
 
     public Integer calculateAverageScore(){
         Integer sum = 0;
@@ -131,7 +131,7 @@ public class Product implements Serializable {
         return views;
     }
 
-    public ArrayList<Person> getBuyers() {
+    public ArrayList<Buyer> getBuyers() {
         return buyers;
     }
 

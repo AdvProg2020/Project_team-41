@@ -189,5 +189,12 @@ public class Database implements Serializable {
         }
         return allOffProducts;
     }
+    public static Off getOffById(String Id){
+        for (Off off : allOffs) {
+            if(off.getOffId().equals(Id))
+                return off;
+        }
+        return null;
+    }
 
 }

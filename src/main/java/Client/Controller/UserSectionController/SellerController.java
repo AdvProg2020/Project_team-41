@@ -23,7 +23,7 @@ public class SellerController extends UserSectionController{
         private SellerController(){
 
         }
-        public ArrayList<String> getProductBuyers(int id){
+        public ArrayList<String> getProductBuyers(String id) throws Exception {
                 return SellerServerController.getInstance().getProductBuyers(id);
         }
         public String getFactoryName(){
@@ -38,19 +38,19 @@ public class SellerController extends UserSectionController{
         public ArrayList<Product> getProducts(){
                 return SellerServerController.getInstance().getProducts((Seller)loggedInPerson);
         }
-        public Product getProduct(int id){
+        public Product getProduct(String id){
                 return SellerServerController.getInstance().getProduct((Seller)loggedInPerson,id);
         }
-        public ArrayList<Buyer> getBuyers(int id){
+        public ArrayList<Buyer> getBuyers(String id) throws Exception {
                 return SellerServerController.getInstance().getBuyers((Seller)loggedInPerson,id);
         }
-        public void editProduct(int productId,HashMap<String ,String> edit){
+        public void editProduct(String productId,HashMap<String ,String> edit) throws Exception {
                 SellerServerController.getInstance().editProduct((Seller)loggedInPerson,productId,edit);
         }
-        public void addProduct(ArrayList<String> productDetails){
+        public void addProduct(ArrayList<String> productDetails) throws Exception {
                 SellerServerController.getInstance().addProduct((Seller)loggedInPerson,productDetails);
         }
-        public void removeProduct(int id){
+        public void removeProduct(String id) throws Exception {
                 SellerServerController.getInstance().removeProduct((Seller)loggedInPerson,id);
         }
         public ArrayList<Category> getCategories(){
@@ -59,11 +59,11 @@ public class SellerController extends UserSectionController{
         public ArrayList<Off> getOffs(){
                 return SellerServerController.getInstance().getOffs((Seller)loggedInPerson);
         }
-        public Off getOff(int id){
+        public Off getOff(String id){
                 return SellerServerController.getInstance().getOff((Seller)loggedInPerson,id);
         }
-        public void editOff(HashMap<String ,String> edit){
-                SellerServerController.getInstance().editOff((Seller)loggedInPerson,edit);
+        public void editOff(String offId,HashMap<String ,String> edit){
+                SellerServerController.getInstance().editOff(offId,(Seller)loggedInPerson,edit);
         }
 
 
