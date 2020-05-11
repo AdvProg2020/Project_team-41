@@ -3,6 +3,8 @@ package Client.View.Menus.UserSectionMenus.BuyerAccount;
 import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
 import Client.View.Menus.Menu;
 
+import java.util.ArrayList;
+
 public class Purchase extends Menu {
 
     public Purchase(Menu superMenu) {
@@ -25,6 +27,14 @@ public class Purchase extends Menu {
 
             @Override
             public void execute() {
+                ArrayList<String> userInformation = new ArrayList<>();
+                System.out.println("enter your address");
+                userInformation.add(scanner.nextLine());
+                System.out.println("enter your phone number");
+                userInformation.add(scanner.nextLine());
+                System.out.println("enter your ");
+                userInformation.add(scanner.nextLine());
+
 
             }
         };

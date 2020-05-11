@@ -77,7 +77,7 @@ public class Request implements Serializable {
 
 
     public static String generateNewToken() {
-        byte[] randomBytes = new byte[24];
+        byte[] randomBytes = new byte[4];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }
