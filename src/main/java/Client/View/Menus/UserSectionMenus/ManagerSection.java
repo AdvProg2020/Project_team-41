@@ -346,7 +346,7 @@ public class ManagerSection extends UserSection {
                     ManagerController.getInstance().deleteUser(username);
                 }
                 catch (Exception e){
-                    System.out.println("no user exists with this username");
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
@@ -384,7 +384,7 @@ public class ManagerSection extends UserSection {
                 else if(command.startsWith("view")){
                     view(command.split(" ")[1]);
                 }
-                else if(command.startsWith("delete user")){
+                else if(command.startsWith("delete")){
                     deleteUser(command.split(" ")[1]);
                 }
                 else{
@@ -398,8 +398,14 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
+                System.out.println("users : ");
+                for (String user : ManagerController.getInstance().getAllUsers()) {
+                    System.out.println(user);
+                }
+                System.out.println();
+                System.out.println("commands : ");
                 System.out.println("view <username>");
-                System.out.println("delete user <username>");
+                System.out.println("delete <username>");
                 System.out.println("create manager profile");
 
             }
