@@ -40,28 +40,28 @@ public class ViewCart extends Menu {
             try {
                 viewProduct(command.split(" ")[1]);
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
         else if(command.startsWith("increase")){
             try {
                 increase(command.split(" ")[1]);
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
         else if(command.startsWith("decrease")){
             try {
                 decrease(command.split(" ")[1]);
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
         else{
             System.out.println("invalid command");
+        }
             this.show();
             this.execute();
-        }
 
     }
     private void showProducts(){

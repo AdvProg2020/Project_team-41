@@ -70,7 +70,9 @@ public class SellerSection extends UserSection {
         try {
             SellerController.getInstance().addProduct(productDetails);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            super.show();
+            super.execute();
         }
         System.out.println("ok, the manager has lots to do :-)");
         super.show();
@@ -160,8 +162,7 @@ public class SellerSection extends UserSection {
                     }
                 }
                 catch (Exception e){
-                    e.printStackTrace();
-                    // TODO: catch better
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
@@ -175,7 +176,7 @@ public class SellerSection extends UserSection {
                 try {
                     SellerController.getInstance().editProduct(id,edits);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
