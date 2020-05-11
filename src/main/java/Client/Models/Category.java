@@ -4,6 +4,7 @@ import Server.Database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Category implements Serializable {
 
@@ -40,5 +41,20 @@ public class Category implements Serializable {
     public void removeProduct(Product product){
         products.remove(product);
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Category)) return false;
+        Category category = (Category) o;
+        return name.equals(category.name) &&
+                specialFeatures.equals(category.specialFeatures) &&
+                products.equals(category.products);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, specialFeatures, products);
     }
 }

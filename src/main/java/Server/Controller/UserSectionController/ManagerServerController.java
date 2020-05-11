@@ -259,10 +259,11 @@ public class ManagerServerController extends UserSectionServerController {
                 break;
             }
         }
+        Database.removeRequest(requestId);
 
     }
     public void declineRequest(String requestId) throws Exception {
-        Request request = Database.getRequestByRequestId(requestId);
+        Database.removeRequest(requestId);
     }
     public ArrayList<String> showCategories(){
         ArrayList<String> categories = new ArrayList<>();

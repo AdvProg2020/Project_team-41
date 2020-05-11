@@ -143,7 +143,7 @@ public class Database implements Serializable {
     }
     public static void addProduct(Product product){
         for (Category category : allCategory) {
-            if(category.getName().equals(product.getCategory().getName())){
+            if(category.equals(product.getCategory())){
                 category.addProduct(product);
                 return;
             }
@@ -196,5 +196,8 @@ public class Database implements Serializable {
         }
         throw new Exception("wrong off Id");
     }
+    public static void removeRequest(String requestId){
+        allRequest.remove(requestId);
 
+    }
 }
