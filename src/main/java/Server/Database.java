@@ -143,7 +143,7 @@ public class Database implements Serializable {
     }
     public static void addProduct(Product product){
         for (Category category : allCategory) {
-            if(category.equals(product.getCategory())){
+            if(category.getName().equals(product.getCategory().getName())){
                 category.addProduct(product);
                 return;
             }

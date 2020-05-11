@@ -95,7 +95,7 @@ public class SellerSection extends UserSection {
         };
     }
     public Menu addMangeProduct(){
-        return new Menu(this,"MangeProduct") {
+        return new Menu(this,"ManageProducts") {
             @Override
             public void show() {
                 super.show();
