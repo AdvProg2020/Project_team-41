@@ -36,18 +36,23 @@ public abstract class UserSectionController {
         switch (field){
             case "password":{
                 loggedInPerson.setPassword(editedField);
+                break;
             }
             case "firstName":{
                 loggedInPerson.setFirstName(editedField);
+                break;
             }
             case "lastName":{
                 loggedInPerson.setLastName(editedField);
+                break;
             }
             case "email":{
                 loggedInPerson.setEmail(editedField);
+                break;
             }
             case "phoneNumber":{
                 loggedInPerson.setPhoneNumber(editedField);
+                break;
             }
             default:{
                 //todo throw exception
