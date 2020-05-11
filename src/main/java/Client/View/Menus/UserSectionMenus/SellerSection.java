@@ -15,26 +15,68 @@ public class SellerSection extends UserSection {
 
     public SellerSection(Menu superMenu) {
         super(superMenu, "SellerSection");
-        addSubMenu(addViewCompanyInfo());
         addSubMenu(addViewSalesHistory());
         addSubMenu(addMangeProduct());
-        addSubMenu(addAddProduct());
         addSubMenu(addViewOffs());
         addSubMenu(addShowCategories());
-        addSubMenu(addRemoveProduct());
         addSubMenu(addViewBalance());
     }
 
-    public Menu addViewCompanyInfo(){
-        return new Menu(this,"ViewCompanyInfo") {
-            @Override
-            public void show() {
-                System.out.println(SellerController.getInstance().getFactoryName());
-                //todo make factory class and put other things in it
-            }
+    @Override
+    public void show() {
+        System.out.println("view company info");
+        System.out.println("add product");
+        System.out.println("remove product");
+        super.show();
 
-        };
     }
+
+    @Override
+    public void execute() {
+        super.execute();
+        if(command.equalsIgnoreCase("view company info"))
+            viewCompanyInfo();
+        else if(command.equalsIgnoreCase("add product"))
+            addProduct();
+        else if(command.equalsIgnoreCase("remove product"))
+            removeProduct();
+        System.out.println("invalid command");
+        this.show();
+        this.execute();
+    }
+
+    private void viewCompanyInfo(){
+        System.out.println(SellerController.getInstance().getFactoryName());
+        System.out.println("\n");
+        this.show();
+        this.execute();
+        //todo make factory class and put other things in it
+    }
+    private void addProduct(){
+        ArrayList<String> productDetails = new ArrayList<>();
+        System.out.println("enter name");
+        productDetails.add(scanner.nextLine());
+        System.out.println("How many do you have?");
+        productDetails.add(scanner.nextLine());
+        System.out.println("now enter company name");
+        productDetails.add(scanner.nextLine());
+        System.out.println("ok... now enter the price");
+        productDetails.add(scanner.nextLine());
+        System.out.println("enter the category name");
+        productDetails.add(scanner.nextLine());
+        System.out.println("enter the description");
+        productDetails.add(scanner.nextLine());
+
+        try {
+            SellerController.getInstance().addProduct(productDetails);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("ok, the manager has lots to do :-)");
+        super.show();
+        super.execute();
+    }
+    //todo check if viewSalesHistory really needs to be a menu
     public Menu addViewSalesHistory(){
         return new Menu(this,"ViewSalesHistory") {
             @Override
@@ -128,41 +170,7 @@ public class SellerSection extends UserSection {
             }
         };
     }
-    public Menu addAddProduct(){
-        return new Menu(this,"AddProduct") {
-            @Override
-            public void show() {
-                super.show();
-                System.out.println("enter new product's details");
-            }
 
-            @Override
-            public void execute() {
-                ArrayList<String> productDetails = new ArrayList<>();
-                System.out.println("enter name");
-                productDetails.add(scanner.nextLine());
-                System.out.println("How many do you have?");
-                productDetails.add(scanner.nextLine());
-                System.out.println("now enter company name");
-                productDetails.add(scanner.nextLine());
-                System.out.println("ok... now enter the price");
-                productDetails.add(scanner.nextLine());
-                System.out.println("enter the category name");
-                productDetails.add(scanner.nextLine());
-                System.out.println("enter the description");
-                productDetails.add(scanner.nextLine());
-
-                try {
-                    SellerController.getInstance().addProduct(productDetails);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                System.out.println("ok, the manager has lots to do :-)");
-                super.show();
-                super.execute();
-            }
-        };
-    }
     public Menu addViewOffs(){
         return new Menu(this,"ViewOffs") {
 
@@ -247,38 +255,30 @@ public class SellerSection extends UserSection {
             public void show() {
                 for (Category category : SellerController.getInstance().getCategories())
                     System.out.println(category.getName());
+                super.show();
             }
 
         };
     }
-    public Menu addRemoveProduct(){
-        return new Menu(this,"RemoveProduct") {
-            @Override
-            public void show() {
-                System.out.println("type the product Id you want to be removed");
-            }
-
-            @Override
-            public void execute() {
-                try {
-                    SellerController.getInstance().removeProduct(scanner.nextLine());
-                }
-                catch (Exception e){
-                    System.out.println(e.getMessage());
-                    this.show();
-                    this.execute();
-                }
-                super.show();
-                super.execute();
-            }
-        };
+    private void removeProduct(){
+        System.out.println("type the product Id you want to be removed");
+        try {
+            SellerController.getInstance().removeProduct(scanner.nextLine());
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            this.show();
+            this.execute();
+        }
+        super.show();
+        super.execute();
     }
     public Menu addViewBalance(){
         return new Menu(this,"ViewBalance") {
             @Override
             public void show() {
                 System.out.println(SellerController.getLoggedInPerson().getCredit());
-
+                super.show();
             }
 
         };
