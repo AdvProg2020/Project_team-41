@@ -47,5 +47,17 @@ public class Seller extends Person {
     public void addTradeLog(TradeLog tradeLog){
         getTradeLogs().add(tradeLog);
     }
+    public void addProduct(Product product){
+        products.add(product);
+    }
+    public void addOff(Off off){
+        offs.add(off);
+    }
+    public void removeProduct(Product product){
+        products.remove(product);
+    }
+    public void removeOff(Off off){
+        offs.remove(off);
+    }
 
 }

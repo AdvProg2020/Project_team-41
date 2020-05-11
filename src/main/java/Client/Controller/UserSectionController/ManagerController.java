@@ -18,7 +18,9 @@ public class ManagerController extends UserSectionController{
     }
     private ManagerController(){
     }
-
+    public ArrayList<String> getAllUsers(){
+        return ManagerServerController.getInstance().getAllUsers();
+    }
     public Person getUserByUsername(String username) throws Exception {
         return ManagerServerController.getInstance().getUserByUsername(username);
     }

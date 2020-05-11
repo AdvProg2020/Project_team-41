@@ -22,6 +22,13 @@ public class ManagerServerController extends UserSectionServerController {
 
     private ManagerServerController(){
     }
+    public ArrayList<String> getAllUsers(){
+        ArrayList<String> allUsers = new ArrayList<>();
+        for (Person user : Database.getAllUsers()) {
+            allUsers.add(user.getUserName());
+        }
+        return allUsers;
+    }
 
     public Person getUserByUsername(String username) throws Exception {
         return Database.getPersonByUsername(username);
@@ -193,10 +200,12 @@ public class ManagerServerController extends UserSectionServerController {
         switch (request.getRequestType()){
             case "ADD_PRODUCT" :{
                 Database.addProduct(request.getProduct());
+                request.getSeller().addProduct(request.getProduct());
                 break;
             }
             case "REMOVE_PRODUCT" : {
                 Database.removeProduct(request.getProduct());
+                request.getSeller().removeProduct(request.getProduct());
                 break;
             }
             case "EDIT_PRODUCT" :{
@@ -230,6 +239,7 @@ public class ManagerServerController extends UserSectionServerController {
             }
             case "ADD_OFF" :{
                 Database.addOff(request.getOff());
+                request.getSeller().addOff(request.getOff());
                 break;
             }
             case "EDIT_OFF" : {
