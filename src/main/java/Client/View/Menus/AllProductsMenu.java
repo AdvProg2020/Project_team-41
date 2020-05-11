@@ -1,8 +1,10 @@
 package Client.View.Menus;
 
 import Client.Controller.AllProductsController;
+import Client.Controller.OffsController;
 import Client.Controller.SortController;
 import Client.Models.Category;
+import Client.Models.Off;
 import Client.Models.Product;
 import Server.Database;
 
@@ -47,9 +49,14 @@ public class AllProductsMenu extends Menu {
         return new Menu(this,"ShowProducts") {
             @Override
             public void show() {
+                System.out.print("+------------------+------------+------------+\n");
+                System.out.print("| Product id       | Name       | Price      |\n");
+                System.out.print("+------------------+------------+------------+\n");
                 for (Product sortedProduct : SortController.getInstance().getSortedProducts(false)) {
-                    System.out.println(sortedProduct.getName());
+                    System.out.format("| %-16s | %-10s | %-10d |\n",sortedProduct.getProductId(),sortedProduct.getName(),sortedProduct.getPrice() );
                 }
+                System.out.print("+------------------+------------+------------+\n");
+
             }
 
             @Override
