@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Seller extends Person {
 
     private String factoryName;
-    private ArrayList<Product> products;
-    private ArrayList<Off> offs;
+    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<Off> offs = new ArrayList<>();
 
     public String getFactoryName() {
         return factoryName;

@@ -22,11 +22,11 @@ public class Product implements Serializable {
     // end of common specifics
 
     private Category category;
-    private HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();//todo new in constructor
+    private HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
     private String description;
-    private ArrayList<Score>scores;
-    private ArrayList<Comment>comments;
-    private int views;
+    private ArrayList<Score>scores = new ArrayList<>();
+    private ArrayList<Comment>comments = new ArrayList<>();
+    private int views = 0;
 
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
@@ -49,7 +49,7 @@ public class Product implements Serializable {
     public ArrayList<Buyer> buyers = new ArrayList<>();
 
     public Integer calculateAverageScore(){
-        Integer sum = 0;
+        int sum = 0;
         for (Score score : scores) {
             sum += score.getScore();
         }
@@ -72,7 +72,9 @@ public class Product implements Serializable {
         this.companyName = companyName;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(int price) throws Exception {
+        if(price < 0)
+            throw new Exception("price cant be negative!");
         this.price = price;
     }
 
@@ -80,8 +82,11 @@ public class Product implements Serializable {
         this.seller = seller;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(int quantity) throws Exception {
+        if(quantity < 0)
+            throw new Exception("quantity can't be negative!");
         this.quantity = quantity;
+
     }
 
     public HashMap<String, SpecialFeature> getSpecialFeatures() {
