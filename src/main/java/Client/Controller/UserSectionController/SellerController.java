@@ -38,7 +38,7 @@ public class SellerController extends UserSectionController{
         public ArrayList<Product> getProducts(){
                 return SellerServerController.getInstance().getProducts((Seller)loggedInPerson);
         }
-        public Product getProduct(String id){
+        public Product getProduct(String id) throws Exception {
                 return SellerServerController.getInstance().getProduct((Seller)loggedInPerson,id);
         }
         public ArrayList<Buyer> getBuyers(String id) throws Exception {
@@ -59,10 +59,10 @@ public class SellerController extends UserSectionController{
         public ArrayList<Off> getOffs(){
                 return SellerServerController.getInstance().getOffs((Seller)loggedInPerson);
         }
-        public Off getOff(String id){
+        public Off getOff(String id) throws Exception {
                 return SellerServerController.getInstance().getOff((Seller)loggedInPerson,id);
         }
-        public void editOff(String offId,HashMap<String ,String> edit){
+        public void editOff(String offId,HashMap<String ,String> edit) throws Exception {
                 SellerServerController.getInstance().editOff(offId,(Seller)loggedInPerson,edit);
         }
         public void addOff(ArrayList<String> offDetails) throws Exception {

@@ -130,7 +130,14 @@ public class SellerSection extends UserSection {
 
             }
             public void viewProduct(String id){
-                Product product = SellerController.getInstance().getProduct(id);
+                Product product = null;
+                try {
+                    product = SellerController.getInstance().getProduct(id);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
                 System.out.println("id : " + product.getProductId());
                 System.out.println("name : " + product.getName());
                 System.out.println("price : " + product.getPrice());
@@ -210,7 +217,11 @@ public class SellerSection extends UserSection {
 
             }
             private void viewOff(String offId){
-                System.out.println(SellerController.getInstance().getOff(offId));
+                try {
+                    System.out.println(SellerController.getInstance().getOff(offId));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 this.show();
                 this.execute();
             }
@@ -220,7 +231,11 @@ public class SellerSection extends UserSection {
                 while (!scanner.hasNext("end")) {
                     edits.put(scanner.next(), scanner.next());
                 }
-                SellerController.getInstance().editOff(offId,edits);
+                try {
+                    SellerController.getInstance().editOff(offId,edits);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 this.show();
                 this.execute();
             }

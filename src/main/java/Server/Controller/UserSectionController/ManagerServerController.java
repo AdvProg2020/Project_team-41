@@ -23,7 +23,7 @@ public class ManagerServerController extends UserSectionServerController {
     private ManagerServerController(){
     }
 
-    public Person getUserByUsername(String username){
+    public Person getUserByUsername(String username) throws Exception {
         return Database.getPersonByUsername(username);
     }
     public void  deleteUser(String username) throws Exception {
@@ -52,7 +52,7 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
     }
-    public void createDiscountCode(ArrayList<String> codeInformation){
+    public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ArrayList<Person> people = new ArrayList<>();
         if((codeInformation.get(8).length() == 1) && (codeInformation.get(8).equalsIgnoreCase("allUsers"))){
             people.addAll(Database.getAllUsers());
@@ -73,7 +73,7 @@ public class ManagerServerController extends UserSectionServerController {
                 Integer.parseInt(codeInformation.get(7)),people));
 
     }
-    public ArrayList<String> viewDiscountCode(String code){
+    public ArrayList<String> viewDiscountCode(String code) throws Exception {
         CodedDiscount codedDiscount = Database.getCodedDiscountByCode(code);
         ArrayList<String> discountCodeInformation = new ArrayList<>();
 
@@ -90,7 +90,7 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return discountCodeInformation;
     }
-    public void  editDiscountCode(String code,HashMap<String,String> edits) {
+    public void  editDiscountCode(String code,HashMap<String,String> edits) throws Exception {
         CodedDiscount codedDiscount = Database.getCodedDiscountByCode(code);
         for (String edit : edits.values()) {
             switch (edit){

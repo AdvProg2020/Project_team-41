@@ -46,20 +46,20 @@ public class Database implements Serializable {
         }
         throw new Exception("No category found with this name");
     }
-    public static Person getPersonByUsername(String username){
+    public static Person getPersonByUsername(String username) throws Exception {
         for (Person user : allUsers) {
             if(user.getUserName().equalsIgnoreCase(username))
                 return user;
         }
-        return null;
+        throw new Exception("wrong username");
     }
 
-    public static CodedDiscount getCodedDiscountByCode(String code){
+    public static CodedDiscount getCodedDiscountByCode(String code) throws Exception {
         for (CodedDiscount codedDiscount : allDiscountCodes) {
             if(codedDiscount.equals(code))
                 return codedDiscount;
         }
-        return null;
+        throw new Exception("wrong discount code");
     }
 
     public static Product getProductById(String id) throws Exception {
@@ -189,12 +189,12 @@ public class Database implements Serializable {
         }
         return allOffProducts;
     }
-    public static Off getOffById(String Id){
+    public static Off getOffById(String Id) throws Exception {
         for (Off off : allOffs) {
             if(off.getOffId().equals(Id))
                 return off;
         }
-        return null;
+        throw new Exception("wrong off Id");
     }
 
 }

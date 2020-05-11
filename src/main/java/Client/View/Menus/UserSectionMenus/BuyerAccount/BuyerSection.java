@@ -18,7 +18,11 @@ public class BuyerSection extends UserSection {
     private Menu addViewOrders() {
         return new Menu(this, "view order") {
             private void showOrder(String orderId){
-                System.out.println(BuyerController.getInstance().showTheOrder(orderId));
+                try {
+                    System.out.println(BuyerController.getInstance().showTheOrder(orderId));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 this.show();
                 this.execute();
 

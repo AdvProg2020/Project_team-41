@@ -82,19 +82,19 @@ public class SellerServerController extends UserSectionServerController {
         public ArrayList<Buyer> getBuyers(Seller seller,String id) throws Exception {
                 return Database.getProductById(id).getBuyers();
         }
-        public Off getOff(Seller seller,String id) {
+        public Off getOff(Seller seller,String id) throws Exception {
                 for (Off off : seller.getOffs()) {
                         if(off.getOffId().equals(id))
                                 return off;
                 }
-                return null;
+                throw new Exception("wrong off Id");
         }
-        public Product getProduct(Seller seller,String id){
+        public Product getProduct(Seller seller,String id) throws Exception {
                 for (Product product : seller.getProducts()) {
                         if(product.getProductId().equals(id))
                                 return product;
                 }
-                return null;
+                throw new Exception("wrong product id");
         }
         public ArrayList<Category> getCategories(Seller seller){
                 return Database.getAllCategory();
@@ -102,7 +102,7 @@ public class SellerServerController extends UserSectionServerController {
         public ArrayList<Off> getOffs(Seller seller){
                 return seller.getOffs();
         }
-        public void editOff(String offId,Seller seller,HashMap<String ,String> edit){
+        public void editOff(String offId,Seller seller,HashMap<String ,String> edit) throws Exception {
                 Request request = new Request(edit,RequestType.EDIT_OFF,null,seller,Database.getOffById(offId));
                 Database.addRequest(request);
         }
