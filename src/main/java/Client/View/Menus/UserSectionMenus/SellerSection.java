@@ -81,8 +81,13 @@ public class SellerSection extends UserSection {
         return new Menu(this,"ViewSalesHistory") {
             @Override
             public void show() {
+                try {
+                    System.out.println(SellerController.getInstance().getSalesHistory());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 super.show();
-                System.out.println(SellerController.getInstance().getSalesHistory());
+                super.execute();
             }
 
         };

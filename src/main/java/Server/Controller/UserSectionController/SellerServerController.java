@@ -39,8 +39,10 @@ public class SellerServerController extends UserSectionServerController {
                 Request request = new Request(edit,RequestType.EDIT_PRODUCT,Database.getProductById(productId),seller,null);
                 Database.addRequest(request);
         }
-        public ArrayList<String> getSalesHistory(Seller seller){
+        public ArrayList<String> getSalesHistory(Seller seller) throws Exception {
                 ArrayList<String> salesHistory = new ArrayList<>();
+                if (seller.getTradeLogs().size() == 0)
+                        throw new Exception("no sale history available");
                 for (TradeLog tradeLog : seller.getTradeLogs()) {
                         salesHistory.add("log id : " + tradeLog.getLogId());
                         salesHistory.add("buyer : " + tradeLog.getBuyerName());
