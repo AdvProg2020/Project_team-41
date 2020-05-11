@@ -13,12 +13,15 @@ public class ManagerSection extends UserSection {
 
     @Override
     public void show() {
+        System.out.println("create discount code");
         super.show();
     }
 
     @Override
     public void execute() {
         super.execute();
+        if(command.equalsIgnoreCase("create discount code"))
+            createDiscountCode();
         System.out.println("invalid command");
         this.show();
         this.execute();
@@ -28,7 +31,6 @@ public class ManagerSection extends UserSection {
     public ManagerSection(Menu superMenu) {
         super(superMenu, "ManagerSection");
         addSubMenu(this.addManageUsers());
-        addSubMenu(this.addCreateDiscountCode());
         addSubMenu(this.addManageAllProducts());
         addSubMenu(this.addManageCategories());
         addSubMenu(this.addManageRequests());
@@ -250,56 +252,35 @@ public class ManagerSection extends UserSection {
         };
     }
 
-    private Menu addCreateDiscountCode(){
-        return new Menu(this,"CreateDiscountCode") {
-            @Override
-            public void show() {
-                System.out.println("you must enter these things:");
-                System.out.println("code" +
-                        "\n" +
-                        "exactStartTime" +
-                        "\n" +
-                        "exactEndTime" +
-                        "\n" +
-                        "discountAmount(which is made from percentage and maximum discount" +
-                        "\n" +
-                        "numberOfRepeatsPerEachUser" +
-                        "\n" +
-                        "who can use this code");
-            }
+    private void createDiscountCode(){
+        ArrayList<String> codeInformation = new ArrayList<>();
+        System.out.println("enter code");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter exactStartDate(day/month/year)");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter exactStartTime(hour:minute:second)");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter exactEndDate(day/month/year)");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter exactEndTime(hour:minute:second)");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter discount percentage");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter maximum discount");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter numberOfRepeatsPerEachUser");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter who can use this code(type allUsers to include every person or type usernames inside brackets and separated by commas(example: [mahdi,matin]");
+        codeInformation.add(scanner.nextLine());
+        try{
+            ManagerController.getInstance().createDiscountCode(codeInformation);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        this.show();
+        this.execute();
 
-            @Override
-            public void execute() {
-                ArrayList<String> codeInformation = new ArrayList<>();
-                System.out.println("enter code");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactStartDate(day/month/year)");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactStartTime(hour:minute:second)");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactEndDate(day/month/year)");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactEndTime(hour:minute:second)");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter discount percentage");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter maximum discount");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter numberOfRepeatsPerEachUser");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter who can use this code(type allUsers to include every person or type usernames inside brackets and separated by commas(example: [mahdi,matin]");
-                codeInformation.add(scanner.nextLine());
-                try{
-                    ManagerController.getInstance().createDiscountCode(codeInformation);
-                }
-                catch (Exception e){
-                    System.out.println(e.getMessage());
-                }
-                super.show();
-                super.execute();
-
-            }
-        };
     }
 
     private Menu addManageAllProducts(){
