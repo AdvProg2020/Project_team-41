@@ -97,19 +97,24 @@ public class ManagerServerController extends UserSectionServerController {
                 case "start date":{
                     String[] dateTime = edits.get("start date").split(",");
                     codedDiscount.setStartDate(TimeControl.getDateByDateTime(dateTime));
+                    break;
                 }
                 case "end date":{
                     String[] dateTime = edits.get("end date").split(",");
                     codedDiscount.setEndDate(TimeControl.getDateByDateTime(dateTime));
+                    break;
                 }
                 case "discount percentage":{
                     codedDiscount.setDiscountPercentage(Integer.parseInt(edits.get("discount percentage")));
+                    break;
                 }
                 case "maximum discount":{
                     codedDiscount.setMaximumDiscount(Integer.parseInt(edits.get("maximum discount")));
+                    break;
                 }
                 case "discount repeats for each user":{
                     codedDiscount.setDiscountRepeatsForEachUser(Integer.parseInt(edits.get("discount repeats for each user")));
+                    break;
                 }
                 case "people who can use it":{
                     ArrayList<Person> people = new ArrayList<>();
@@ -122,6 +127,7 @@ public class ManagerServerController extends UserSectionServerController {
                         }
                     }
                     codedDiscount.setPeople(people);
+                    break;
                 }
 
             }
@@ -147,6 +153,7 @@ public class ManagerServerController extends UserSectionServerController {
                 {
                     requestDetails.add("product details:");
                     requestDetails.addAll(getProductDetails(request.getProduct()));
+                    break;
                  }
             case "EDIT_PRODUCT" :{
                 requestDetails.add("product details:");
@@ -155,10 +162,12 @@ public class ManagerServerController extends UserSectionServerController {
                 for (String editRequestKey : request.getEditRequest().keySet()) {
                     requestDetails.add(editRequestKey + "-" + request.getEditRequest().get(editRequestKey));
                 }
+                break;
             }
             case "ADD_OFF" :{
                     requestDetails.add("off details:");
                     requestDetails.addAll(getOffDetails(request.getOff()));
+                    break;
             }
             case "EDIT_OFF" : {
                     requestDetails.add("off details:");
@@ -167,11 +176,13 @@ public class ManagerServerController extends UserSectionServerController {
                 for (String editRequestKey : request.getEditRequest().keySet()) {
                     requestDetails.add(editRequestKey + "-" + request.getEditRequest().get(editRequestKey));
                 }
+                break;
             }
 
             case "REGISTER_SELLER" :{
                 requestDetails.add("seller details:");
                 requestDetails.addAll(getSellerDetails(request.getOff().getSeller()));
+                break;
             }
         }
 
@@ -182,9 +193,11 @@ public class ManagerServerController extends UserSectionServerController {
         switch (request.getRequestType()){
             case "ADD_PRODUCT" :{
                 Database.addProduct(request.getProduct());
+                break;
             }
             case "REMOVE_PRODUCT" : {
                 Database.removeProduct(request.getProduct());
+                break;
             }
             case "EDIT_PRODUCT" :{
                 Product product = request.getProduct();
@@ -193,24 +206,31 @@ public class ManagerServerController extends UserSectionServerController {
                     switch (editRequestKey){
                         case "seller" :{
                             product.setSeller(Database.getSellerByUsername(editRequestValue));
+                            break;
                         }
                         case "price" :{
                             product.setPrice(Integer.parseInt(editRequestValue));
+                            break;
                         }
                         case "companyName" :{
                             product.setCompanyName(editRequestValue);
+                            break;
                         }
                         case "description" :{
                             product.setDescription(editRequestValue);
+                            break;
                         }
                         case "name" :{
                             product.setName(editRequestValue);
+                            break;
                         }
                     }
                 }
+                break;
             }
             case "ADD_OFF" :{
                 Database.addOff(request.getOff());
+                break;
             }
             case "EDIT_OFF" : {
                 Off off = request.getOff();
@@ -219,19 +239,24 @@ public class ManagerServerController extends UserSectionServerController {
                     switch (editRequestKey){
                         case "startDate" :{
                             off.setStartDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
+                            break;
                         }
                         case "endDate" :{
                             off.setEndDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
+                            break;
                         }
                         case "amountOfDiscount" :{
                             off.setAmountOfDiscount(Integer.parseInt(editRequestValue));
+                            break;
                         }
                     }
                 }
+                break;
             }
 
             case "REGISTER_SELLER" :{
                 Database.addUser(request.getSeller());
+                break;
             }
         }
 
