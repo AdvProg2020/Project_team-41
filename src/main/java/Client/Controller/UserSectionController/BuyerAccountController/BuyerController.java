@@ -35,12 +35,12 @@ public class BuyerController extends UserSectionController {
         return loggedInPerson.getTradeLogs();
     }
 
-    public TradeLog showTheOrder(String id){
+    public TradeLog showTheOrder(String id) throws Exception {
         for (TradeLog tradeLog : loggedInPerson.getTradeLogs()) {
             if(tradeLog.getLogId().equals(id))
                 return tradeLog;
         }
-        return null;
+        throw new Exception("wrong order Id");
     }
 
     public void rateTheProduct(String productId , int score) throws Exception {

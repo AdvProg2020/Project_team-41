@@ -19,7 +19,7 @@ public class ManagerController extends UserSectionController{
     private ManagerController(){
     }
 
-    public Person getUserByUsername(String username){
+    public Person getUserByUsername(String username) throws Exception {
         return ManagerServerController.getInstance().getUserByUsername(username);
     }
     public void deleteUser(String username) throws Exception {
@@ -31,13 +31,13 @@ public class ManagerController extends UserSectionController{
     public void removeProduct(String productId){
         ManagerServerController.getInstance().removeProduct(productId);
     }
-    public void createDiscountCode(ArrayList<String> codeInformation){
+    public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ManagerServerController.getInstance().createDiscountCode(codeInformation);
     }
-    public ArrayList<String> viewDiscountCode(String code){
+    public ArrayList<String> viewDiscountCode(String code) throws Exception {
         return ManagerServerController.getInstance().viewDiscountCode(code);
     }
-    public void  editDiscountCode(String code,HashMap<String,String> edits){
+    public void  editDiscountCode(String code,HashMap<String,String> edits) throws Exception {
         ManagerServerController.getInstance().editDiscountCode(code,edits);
     }
     public void removeDiscountCode(String code){

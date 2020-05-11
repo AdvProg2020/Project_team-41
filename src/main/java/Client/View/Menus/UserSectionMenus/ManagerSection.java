@@ -145,7 +145,7 @@ public class ManagerSection extends UserSection {
                 try {
                     ManagerController.getInstance().declineRequest(requestId);
                 } catch (Exception e) {
-                    e.getMessage();
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
@@ -193,8 +193,12 @@ public class ManagerSection extends UserSection {
     private Menu addViewDiscountCodes(){
         return new Menu(this,"ViewDiscountCodes") {
             private void viewDiscountCode(String code){
-                for (String discountCode : ManagerController.getInstance().viewDiscountCode(code)) {
-                    System.out.println(discountCode);
+                try {
+                    for (String discountCode : ManagerController.getInstance().viewDiscountCode(code)) {
+                        System.out.println(discountCode);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
@@ -205,7 +209,11 @@ public class ManagerSection extends UserSection {
                 while (!scanner.hasNext("end")) {
                     edits.put(scanner.next(), scanner.next());
                 }
-                ManagerController.getInstance().editDiscountCode(code, edits);
+                try {
+                    ManagerController.getInstance().editDiscountCode(code, edits);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 this.show();
                 this.execute();
             }
@@ -318,7 +326,14 @@ public class ManagerSection extends UserSection {
         return new Menu(this,"manageUsers") {
 
             private void view(String username){
-                Person user = ManagerController.getInstance().getUserByUsername(username);
+                Person user = null;
+                try {
+                    user = ManagerController.getInstance().getUserByUsername(username);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
                 for (String field : UserSectionController.getPersonalInfo(user)) {
                     System.out.println(field);
                 }
