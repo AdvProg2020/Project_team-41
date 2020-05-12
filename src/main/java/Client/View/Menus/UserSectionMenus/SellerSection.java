@@ -271,9 +271,8 @@ public class SellerSection extends UserSection {
                 offDetails.add(scanner.nextLine());
                 System.out.println("enter product Id's you want to be included(type end to end this");
                 while (!scanner.hasNext("end")) {
-                    offDetails.add(scanner.next());
+                    offDetails.add(scanner.nextLine());
                 }
-                scanner.nextLine();
                 try {
                     SellerController.getInstance().addOff(offDetails);
                 } catch (Exception e) {
