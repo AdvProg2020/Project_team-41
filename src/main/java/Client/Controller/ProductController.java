@@ -1,8 +1,11 @@
 package Client.Controller;
 
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Comment;
+import Client.Models.CommentSituation;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
+import Client.View.Menus.UserSectionMenus.UserSection;
 
 public class ProductController {
     private static ProductController single_instance = null;
@@ -26,7 +29,16 @@ public class ProductController {
 
     }
 
-    public static void addComment(String title , String content){
-        //TODO add the comment
+    public static void addComment(String title , String content , Product product){
+        Comment comment = new Comment(UserSectionController.getLoggedInPerson() , product , title , content , CommentSituation.WAITING);
+        product.getComments().add( comment );
+
+
+        for (Product tradedProduct : UserSectionController.getLoggedInPerson().getAllProductsHeTraded()) {
+            if(product.equals(tradedProduct)){
+                comment.setHasHeBought(true);
+            }
+        }
+        comment.setHasHeBought(false);
     }
 }

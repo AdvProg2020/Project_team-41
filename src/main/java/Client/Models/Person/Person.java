@@ -1,5 +1,6 @@
 package Client.Models.Person;
 
+import Client.Models.Product;
 import Client.Models.TradeLog;
 
 import java.io.Serializable;
@@ -19,6 +20,14 @@ public abstract class Person implements Serializable {
     private ArrayList<TradeLog> tradeLogs = new ArrayList<>();
     private ArrayList<String>discountCodes = new ArrayList<>();
     private int credit;
+
+    public ArrayList<Product> getAllProductsHeTraded(){
+        ArrayList<Product> AllProductsHeTraded = new ArrayList<>();
+        for (TradeLog tradeLog : tradeLogs) {
+            AllProductsHeTraded.addAll(tradeLog.getItems());
+        }
+        return AllProductsHeTraded;
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;
