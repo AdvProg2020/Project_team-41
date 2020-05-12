@@ -196,8 +196,8 @@ public class Database implements Serializable {
         }
         throw new Exception("wrong off Id");
     }
-    public static void removeRequest(String requestId){
-        allRequest.remove(requestId);
+    public static void removeRequest(Request request){
+        allRequest.remove(request);
 
 
     }

@@ -2,6 +2,7 @@ package Client.Controller.UserSectionController;
 
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
+import Client.Models.Product;
 import Server.Controller.UserSectionController.ManagerServerController;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class ManagerController extends UserSectionController{
         return single_instance;
     }
     private ManagerController(){
+    }
+    public ArrayList<Product> getAllProducts(){
+        return ManagerServerController.getInstance().getAllProducts();
     }
     public ArrayList<String> getAllUsers(){
         return ManagerServerController.getInstance().getAllUsers();

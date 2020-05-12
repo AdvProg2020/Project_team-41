@@ -3,6 +3,7 @@ package Client.View.Menus.UserSectionMenus;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Person;
+import Client.Models.Product;
 import Client.View.Menus.Menu;
 
 import java.util.ArrayList;
@@ -302,7 +303,12 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
-                //todo show products so manager can remove them easier
+                    System.out.println("<<name - product Id>>");
+                for (Product product : ManagerController.getInstance().getAllProducts()) {
+                    System.out.println(product.getName() + " - " + product.getProductId());
+                }
+                System.out.println();
+                System.out.println("commands : ");
                 System.out.println("remove <productId>");
             }
 
