@@ -111,7 +111,7 @@ public abstract class Menu {
                 System.out.println("Create\nlogin");
             }
             else{
-                System.out.println("Logout");
+                System.out.println("Are you sure you want to logout?(logout/back)");
             }
         }
 

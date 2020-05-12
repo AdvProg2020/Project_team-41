@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.BuyerAccount;
 
 import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
+import Client.Models.TradeLog;
 import Client.View.Menus.Menu;
 import Client.View.Menus.UserSectionMenus.UserSection;
 
@@ -9,65 +10,82 @@ public class BuyerSection extends UserSection {
         super(superMenu, "BuyerSection");
         this.addSubMenu(new ViewCart(this));
         this.addSubMenu(new Purchase(this));
-        this.addSubMenu(viewOrders());
-        this.addSubMenu(viewBalance());
-        this.addSubMenu(viewDiscountCodes());
+        this.addSubMenu(addViewOrders());
+        this.addSubMenu(addViewBalance());
+        this.addSubMenu(addViewDiscountCodes());
     }
 
-    private Menu viewOrders() {
+    private Menu addViewOrders() {
         return new Menu(this, "view order") {
+            private void showOrder(String orderId){
+                try {
+                    System.out.println(BuyerController.getInstance().showTheOrder(orderId));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                this.show();
+                this.execute();
+
+            }
+            private void rate(String productId,int rate){
+                try {
+                    BuyerController.getInstance().rateTheProduct(productId,rate);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                this.show();
+                this.execute();
+
+            }
             @Override
             public void show() {
-                //TODO show shopping history
+                int i = 1;
+                for (TradeLog tradeLog : BuyerController.getInstance().getTradeLogs()) {
+                    System.out.println(i + " : ");
+                    System.out.println(tradeLog.getLogId());
+                }
+                System.out.println();
+                System.out.println("commands : ");
+                System.out.println("showOrder");
+                System.out.println("rate");
             }
 
             @Override
             public void execute() {
-                String input;
-                while (!(input = scanner.nextLine()).equals("back")) {
-                    if (input.startsWith("show order")) {
-                        String orderId = "";
-                        BuyerController.showTheOrder(orderId);
-                        //TODO print the details
-                    } else if (input.startsWith("rate")) {
-                        //TODO get productID & score
-                        String productId = "";
-                        int score = -1;
-                        BuyerController.rateTheProduct(productId, score);
-                        //TODO print the result
-                    }
-                    this.superMenu.show();
-                    this.superMenu.execute();
+                if(command.startsWith("view")){
+                    showOrder(command.split(" ")[1]);
                 }
+                else if(command.startsWith("edit")) {
+                    rate(command.split(" ")[1], Integer.parseInt(command.split(" ")[2]));
+                }
+                else
+                    System.out.println("invalid command");
+                this.show();
+                this.execute();
+
             }
         };
     }
 
-    private Menu viewBalance(){
+    private Menu addViewBalance(){
         return new Menu(this , "view balance") {
             @Override
             public void show() {
-                //TODO print the balance
+                System.out.println("your current balance is : " + BuyerController.getInstance().getBalance());
             }
 
-            @Override
-            public void execute() {
-                super.execute();
-            }
         };
     }
 
-    private Menu viewDiscountCodes(){
+    private Menu addViewDiscountCodes(){
         return new Menu(this , "view discount codes") {
             @Override
             public void show() {
-                //TODO print discount codes
+                for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
+                    System.out.println(codedDiscount);
+                }
             }
 
-            @Override
-            public void execute() {
-                super.execute();
-            }
         };
     }
 }

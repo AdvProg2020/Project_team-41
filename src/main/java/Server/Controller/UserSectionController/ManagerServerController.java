@@ -22,8 +22,15 @@ public class ManagerServerController extends UserSectionServerController {
 
     private ManagerServerController(){
     }
+    public ArrayList<String> getAllUsers(){
+        ArrayList<String> allUsers = new ArrayList<>();
+        for (Person user : Database.getAllUsers()) {
+            allUsers.add(user.getUserName());
+        }
+        return allUsers;
+    }
 
-    public Person getUserByUsername(String username){
+    public Person getUserByUsername(String username) throws Exception {
         return Database.getPersonByUsername(username);
     }
     public void  deleteUser(String username) throws Exception {
@@ -52,7 +59,7 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
     }
-    public void createDiscountCode(ArrayList<String> codeInformation){
+    public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ArrayList<Person> people = new ArrayList<>();
         if((codeInformation.get(8).length() == 1) && (codeInformation.get(8).equalsIgnoreCase("allUsers"))){
             people.addAll(Database.getAllUsers());
@@ -73,7 +80,7 @@ public class ManagerServerController extends UserSectionServerController {
                 Integer.parseInt(codeInformation.get(7)),people));
 
     }
-    public ArrayList<String> viewDiscountCode(String code){
+    public ArrayList<String> viewDiscountCode(String code) throws Exception {
         CodedDiscount codedDiscount = Database.getCodedDiscountByCode(code);
         ArrayList<String> discountCodeInformation = new ArrayList<>();
 
@@ -81,35 +88,40 @@ public class ManagerServerController extends UserSectionServerController {
         discountCodeInformation.add("discount code: "+codedDiscount.getDiscountCode());
         discountCodeInformation.add("start date: "+TimeControl.convertGregorianToJalali(codedDiscount.getStartDate()).toString());
         discountCodeInformation.add("end date: "+TimeControl.convertGregorianToJalali(codedDiscount.getEndDate()).toString());
-        discountCodeInformation.add("discount percentage: "+Integer.toString(codedDiscount.getDiscountPercentage()));
-        discountCodeInformation.add("maximum discount: "+Integer.toString(codedDiscount.getMaximumDiscount()));
-        discountCodeInformation.add("discount repeats for each user: "+Integer.toString(codedDiscount.getDiscountRepeatsForEachUser()));
+        discountCodeInformation.add("discount percentage: "+ codedDiscount.getDiscountPercentage());
+        discountCodeInformation.add("maximum discount: "+ codedDiscount.getMaximumDiscount());
+        discountCodeInformation.add("discount repeats for each user: "+ codedDiscount.getDiscountRepeatsForEachUser());
         discountCodeInformation.add("people who can use it: ");
         for (Person person : codedDiscount.getPeople()) {
         discountCodeInformation.add(person.getUserName());
         }
         return discountCodeInformation;
     }
-    public void  editDiscountCode(String code,HashMap<String,String> edits) {
+    public void  editDiscountCode(String code,HashMap<String,String> edits) throws Exception {
         CodedDiscount codedDiscount = Database.getCodedDiscountByCode(code);
         for (String edit : edits.values()) {
             switch (edit){
                 case "start date":{
                     String[] dateTime = edits.get("start date").split(",");
                     codedDiscount.setStartDate(TimeControl.getDateByDateTime(dateTime));
+                    break;
                 }
                 case "end date":{
                     String[] dateTime = edits.get("end date").split(",");
                     codedDiscount.setEndDate(TimeControl.getDateByDateTime(dateTime));
+                    break;
                 }
                 case "discount percentage":{
                     codedDiscount.setDiscountPercentage(Integer.parseInt(edits.get("discount percentage")));
+                    break;
                 }
                 case "maximum discount":{
                     codedDiscount.setMaximumDiscount(Integer.parseInt(edits.get("maximum discount")));
+                    break;
                 }
                 case "discount repeats for each user":{
                     codedDiscount.setDiscountRepeatsForEachUser(Integer.parseInt(edits.get("discount repeats for each user")));
+                    break;
                 }
                 case "people who can use it":{
                     ArrayList<Person> people = new ArrayList<>();
@@ -122,6 +134,7 @@ public class ManagerServerController extends UserSectionServerController {
                         }
                     }
                     codedDiscount.setPeople(people);
+                    break;
                 }
 
             }
@@ -138,7 +151,7 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return requests;
     }
-    public ArrayList<String> getRequestDetails(String requestId){
+    public ArrayList<String> getRequestDetails(String requestId) throws Exception {
         ArrayList<String> requestDetails = new ArrayList<>();
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
@@ -147,6 +160,7 @@ public class ManagerServerController extends UserSectionServerController {
                 {
                     requestDetails.add("product details:");
                     requestDetails.addAll(getProductDetails(request.getProduct()));
+                    break;
                  }
             case "EDIT_PRODUCT" :{
                 requestDetails.add("product details:");
@@ -155,10 +169,12 @@ public class ManagerServerController extends UserSectionServerController {
                 for (String editRequestKey : request.getEditRequest().keySet()) {
                     requestDetails.add(editRequestKey + "-" + request.getEditRequest().get(editRequestKey));
                 }
+                break;
             }
             case "ADD_OFF" :{
                     requestDetails.add("off details:");
                     requestDetails.addAll(getOffDetails(request.getOff()));
+                    break;
             }
             case "EDIT_OFF" : {
                     requestDetails.add("off details:");
@@ -167,24 +183,30 @@ public class ManagerServerController extends UserSectionServerController {
                 for (String editRequestKey : request.getEditRequest().keySet()) {
                     requestDetails.add(editRequestKey + "-" + request.getEditRequest().get(editRequestKey));
                 }
+                break;
             }
 
             case "REGISTER_SELLER" :{
                 requestDetails.add("seller details:");
                 requestDetails.addAll(getSellerDetails(request.getOff().getSeller()));
+                break;
             }
         }
 
         return requestDetails;
     }
-    public void  acceptRequest(String requestId){
+    public void  acceptRequest(String requestId) throws Exception {
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
             case "ADD_PRODUCT" :{
                 Database.addProduct(request.getProduct());
+                request.getSeller().addProduct(request.getProduct());
+                break;
             }
             case "REMOVE_PRODUCT" : {
                 Database.removeProduct(request.getProduct());
+                request.getSeller().removeProduct(request.getProduct());
+                break;
             }
             case "EDIT_PRODUCT" :{
                 Product product = request.getProduct();
@@ -193,24 +215,32 @@ public class ManagerServerController extends UserSectionServerController {
                     switch (editRequestKey){
                         case "seller" :{
                             product.setSeller(Database.getSellerByUsername(editRequestValue));
+                            break;
                         }
                         case "price" :{
                             product.setPrice(Integer.parseInt(editRequestValue));
+                            break;
                         }
                         case "companyName" :{
                             product.setCompanyName(editRequestValue);
+                            break;
                         }
                         case "description" :{
                             product.setDescription(editRequestValue);
+                            break;
                         }
                         case "name" :{
                             product.setName(editRequestValue);
+                            break;
                         }
                     }
                 }
+                break;
             }
             case "ADD_OFF" :{
                 Database.addOff(request.getOff());
+                request.getSeller().addOff(request.getOff());
+                break;
             }
             case "EDIT_OFF" : {
                 Off off = request.getOff();
@@ -219,25 +249,31 @@ public class ManagerServerController extends UserSectionServerController {
                     switch (editRequestKey){
                         case "startDate" :{
                             off.setStartDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
+                            break;
                         }
                         case "endDate" :{
                             off.setEndDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
+                            break;
                         }
                         case "amountOfDiscount" :{
                             off.setAmountOfDiscount(Integer.parseInt(editRequestValue));
+                            break;
                         }
                     }
                 }
+                break;
             }
 
             case "REGISTER_SELLER" :{
                 Database.addUser(request.getSeller());
+                break;
             }
         }
+        Database.removeRequest(requestId);
 
     }
-    public void declineRequest(String requestId){
-        Request request = Database.getRequestByRequestId(requestId);
+    public void declineRequest(String requestId) throws Exception {
+        Database.removeRequest(requestId);
     }
     public ArrayList<String> showCategories(){
         ArrayList<String> categories = new ArrayList<>();

@@ -46,20 +46,20 @@ public class Database implements Serializable {
         }
         throw new Exception("No category found with this name");
     }
-    public static Person getPersonByUsername(String username){
+    public static Person getPersonByUsername(String username) throws Exception {
         for (Person user : allUsers) {
             if(user.getUserName().equalsIgnoreCase(username))
                 return user;
         }
-        return null;
+        throw new Exception("wrong username");
     }
 
-    public static CodedDiscount getCodedDiscountByCode(String code){
+    public static CodedDiscount getCodedDiscountByCode(String code) throws Exception {
         for (CodedDiscount codedDiscount : allDiscountCodes) {
             if(codedDiscount.equals(code))
                 return codedDiscount;
         }
-        return null;
+        throw new Exception("wrong discount code");
     }
 
     public static Product getProductById(String id) throws Exception {
@@ -170,12 +170,12 @@ public class Database implements Serializable {
     public static void addOff(Off off){
         allOffs.add(off);
     }
-    public static Request getRequestByRequestId(String requestId){
+    public static Request getRequestByRequestId(String requestId) throws Exception {
         for (Request request : allRequest) {
             if(request.getRequestId().equals(requestId))
                 return request;
         }
-        return null;
+        throw new Exception("no request matched");
     }
     public static void addRequest(Request request){
         allRequest.add(request);
@@ -189,5 +189,16 @@ public class Database implements Serializable {
         }
         return allOffProducts;
     }
+    public static Off getOffById(String Id) throws Exception {
+        for (Off off : allOffs) {
+            if(off.getOffId().equals(Id))
+                return off;
+        }
+        throw new Exception("wrong off Id");
+    }
+    public static void removeRequest(String requestId){
+        allRequest.remove(requestId);
 
+
+    }
 }

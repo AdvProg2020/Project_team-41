@@ -18,8 +18,10 @@ public class ManagerController extends UserSectionController{
     }
     private ManagerController(){
     }
-
-    public Person getUserByUsername(String username){
+    public ArrayList<String> getAllUsers(){
+        return ManagerServerController.getInstance().getAllUsers();
+    }
+    public Person getUserByUsername(String username) throws Exception {
         return ManagerServerController.getInstance().getUserByUsername(username);
     }
     public void deleteUser(String username) throws Exception {
@@ -31,13 +33,13 @@ public class ManagerController extends UserSectionController{
     public void removeProduct(String productId){
         ManagerServerController.getInstance().removeProduct(productId);
     }
-    public void createDiscountCode(ArrayList<String> codeInformation){
+    public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ManagerServerController.getInstance().createDiscountCode(codeInformation);
     }
-    public ArrayList<String> viewDiscountCode(String code){
+    public ArrayList<String> viewDiscountCode(String code) throws Exception {
         return ManagerServerController.getInstance().viewDiscountCode(code);
     }
-    public void  editDiscountCode(String code,HashMap<String,String> edits){
+    public void  editDiscountCode(String code,HashMap<String,String> edits) throws Exception {
         ManagerServerController.getInstance().editDiscountCode(code,edits);
     }
     public void removeDiscountCode(String code){
@@ -46,13 +48,13 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> showRequest(){
         return ManagerServerController.getInstance().showRequest();
     }
-    public ArrayList<String> getRequestDetails(String request){
+    public ArrayList<String> getRequestDetails(String request) throws Exception {
         return ManagerServerController.getInstance().getRequestDetails(request);
     }
-    public void acceptRequest(String request){
+    public void acceptRequest(String request) throws Exception {
         ManagerServerController.getInstance().acceptRequest(request);
     }
-    public void declineRequest(String request){
+    public void declineRequest(String request) throws Exception {
         ManagerServerController.getInstance().declineRequest(request);
     }
     public ArrayList<String> showCategories(){

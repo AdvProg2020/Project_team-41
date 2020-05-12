@@ -16,8 +16,8 @@ public abstract class Person implements Serializable {
     private String password;
     //end of personal information
 
-    private ArrayList<TradeLog> tradeLogs;
-    private ArrayList<String>discountCodes;
+    private ArrayList<TradeLog> tradeLogs = new ArrayList<>();
+    private ArrayList<String>discountCodes = new ArrayList<>();
     private int credit;
 
     public void setUserName(String userName) {

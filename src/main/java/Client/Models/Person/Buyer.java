@@ -11,4 +11,10 @@ public class Buyer extends Person {
     public Cart getCart() {
         return cart;
     }
+    public void decreaseCredit(int money) throws Exception {
+        if(money<getCredit())
+            setCredit(getCredit()-money);
+        else
+            throw new Exception("there isn't enough credit");
+    }
 }
