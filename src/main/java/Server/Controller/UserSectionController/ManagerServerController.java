@@ -22,6 +22,10 @@ public class ManagerServerController extends UserSectionServerController {
 
     private ManagerServerController(){
     }
+    public ArrayList<Product> getAllProducts(){
+        return Database.getAllProducts();
+    }
+
     public ArrayList<String> getAllUsers(){
         ArrayList<String> allUsers = new ArrayList<>();
         for (Person user : Database.getAllUsers()) {
@@ -269,11 +273,12 @@ public class ManagerServerController extends UserSectionServerController {
                 break;
             }
         }
-        Database.removeRequest(requestId);
+        Database.removeRequest(request);
 
     }
     public void declineRequest(String requestId) throws Exception {
-        Database.removeRequest(requestId);
+        Request request = Database.getRequestByRequestId(requestId);
+        Database.removeRequest(request);
     }
     public ArrayList<String> showCategories(){
         ArrayList<String> categories = new ArrayList<>();
