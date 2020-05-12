@@ -8,4 +8,5 @@ public class Comment {
     private String Comment;
     private CommentSituation commentSituation;
     private boolean hasHeBought;
+
 }

@@ -1,7 +1,12 @@
 package Client.Controller.UserSectionController.BuyerAccountController;
 
 import Client.Controller.UserSectionController.UserSectionController;
-import Client.Models.TradeLog;
+import Client.Models.*;
+import Client.Models.Person.Buyer;
+import Server.Controller.UserSectionController.BuyerAccountController.BuyerServerController;
+
+import java.util.ArrayList;
+import java.util.Dictionary;
 
 public class BuyerController extends UserSectionController {
 
@@ -15,24 +20,39 @@ public class BuyerController extends UserSectionController {
     private BuyerController(){
 
     }
-
-    public static boolean checkDiscountCode(String code){
-        //TODO checking the validation
-        return true;
+    public int getBalance(){
+        return loggedInPerson.getCredit();
+    }
+    public ArrayList<String> getCodedDiscounts(){
+        return loggedInPerson.getDiscountCodes();
     }
 
-    public static boolean payForTheShop(){
-        //TODO paying process
-        return true;
+    public void payForTheShop() throws Exception {
+        BuyerServerController.payForTheShop((Buyer)loggedInPerson);
     }
 
-    public static TradeLog showTheOrder(String Id){
-        //TODO find the order and for example:
-        return null;
+    public ArrayList<TradeLog> getTradeLogs(){
+        return loggedInPerson.getTradeLogs();
     }
 
-    public static boolean rateTheProduct(String productId , int score){
-        //TODO process and return false if the buyer hadn't bought the product
-        return true;
+    public TradeLog showTheOrder(String id) throws Exception {
+        for (TradeLog tradeLog : loggedInPerson.getTradeLogs()) {
+            if(tradeLog.getLogId().equals(id))
+                return tradeLog;
+        }
+        throw new Exception("wrong order Id");
+    }
+
+    public void rateTheProduct(String productId , int score) throws Exception {
+        Score scoreObject = new Score(loggedInPerson,score,getProduct(productId));
+        BuyerServerController.rateTheProduct(productId,scoreObject);
+    }
+    public Product getProduct(String productId) throws Exception {
+        return BuyerServerController.getInstance().getProduct(productId);
+    }
+    public Cart getCart(){
+        Buyer buyer = (Buyer)getLoggedInPerson();
+        return buyer.getCart();
+
     }
 }

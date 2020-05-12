@@ -10,6 +10,9 @@ import Client.View.Menus.UserSectionMenus.BuyerAccount.BuyerSection;
 import Client.View.Menus.UserSectionMenus.ManagerSection;
 import Client.View.Menus.UserSectionMenus.SellerSection;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterLoginMenu extends Menu {
     public RegisterLoginMenu(Menu superMenu,String name) {
         super(superMenu, name);
@@ -85,7 +88,7 @@ public class RegisterLoginMenu extends Menu {
                 this.superMenu.execute();
 
             }
-            private Person makePerson(Person person){
+            private Person makePerson(Person person) {
                 System.out.println("UserName:");
                 person.setUserName(scanner.nextLine());
                 System.out.println("Password:");
@@ -94,20 +97,19 @@ public class RegisterLoginMenu extends Menu {
                 person.setFirstName(scanner.nextLine());
                 System.out.println("What is your last name?");
                 person.setLastName(scanner.nextLine());
-                System.out.println("What is your email?");
-                person.setEmail(scanner.nextLine());
-                System.out.println("What is your phone number?");
-                person.setPhoneNumber(scanner.nextLine());
-                while(true) {
-                    System.out.println("How much money do you have?");
-                    String credit= scanner.nextLine();
-                    if(credit.matches("\\d+")) {
-                        person.setCredit(Integer.parseInt(credit));
-                        break;
-                    }
-                    System.out.println("Please enter a valid number!");
-                }
+
+                person.setEmail(getInputInFormatWithError("What is your email?","\\S+@\\S+\\.\\S+",
+                        "Please enter a valid email!"));
+
+                person.setPhoneNumber(getInputInFormatWithError("What is your phone number?","\\d+",
+                        "Please enter a valid number!"));
+
+                person.setCredit(Integer.parseInt(getInputInFormatWithError("How much money do you have?",
+                        "\\d+", "Please enter a valid number!")));
+
+
                 return person;
+
             }
         };
     }
@@ -165,6 +167,22 @@ public class RegisterLoginMenu extends Menu {
 
             }
         };
+    }
+
+    private static String getInputInFormatWithError(String helpText, String regex, String error) {
+        Pattern pattern = Pattern.compile(regex);
+        boolean inputIsInvalid;
+        String line;
+        do {
+            System.out.println(helpText);
+            line = scanner.nextLine().trim();
+            Matcher matcher = pattern.matcher(line);
+            inputIsInvalid = !matcher.find();
+            if (inputIsInvalid)
+                System.out.println(error);
+        } while (inputIsInvalid);
+        return line;
+
     }
 
 }

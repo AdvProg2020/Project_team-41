@@ -13,12 +13,15 @@ public class ManagerSection extends UserSection {
 
     @Override
     public void show() {
+        System.out.println("create discount code");
         super.show();
     }
 
     @Override
     public void execute() {
         super.execute();
+        if(command.equalsIgnoreCase("create discount code"))
+            createDiscountCode();
         System.out.println("invalid command");
         this.show();
         this.execute();
@@ -28,7 +31,6 @@ public class ManagerSection extends UserSection {
     public ManagerSection(Menu superMenu) {
         super(superMenu, "ManagerSection");
         addSubMenu(this.addManageUsers());
-        addSubMenu(this.addCreateDiscountCode());
         addSubMenu(this.addManageAllProducts());
         addSubMenu(this.addManageCategories());
         addSubMenu(this.addManageRequests());
@@ -118,15 +120,36 @@ public class ManagerSection extends UserSection {
         return new Menu(this,"ManageRequests") {
 
             private void details(String requestId){
-                for (String requestDetail : ManagerController.getInstance().getRequestDetails(requestId)) {
-                    System.out.println(requestDetail);
+                try {
+                    for (String requestDetail : ManagerController.getInstance().getRequestDetails(requestId)) {
+                        System.out.println(requestDetail);
+                    }
                 }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                    this.show();
+                    this.execute();
+
             }
             private void accept(String requestId){
-                ManagerController.getInstance().acceptRequest(requestId);
+                try {
+                    ManagerController.getInstance().acceptRequest(requestId);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                this.show();
+                this.execute();
             }
             private void decline(String requestId){
-                ManagerController.getInstance().declineRequest(requestId);
+                try {
+                    ManagerController.getInstance().declineRequest(requestId);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                this.show();
+                this.execute();
+
             }
 
 
@@ -170,8 +193,12 @@ public class ManagerSection extends UserSection {
     private Menu addViewDiscountCodes(){
         return new Menu(this,"ViewDiscountCodes") {
             private void viewDiscountCode(String code){
-                for (String discountCode : ManagerController.getInstance().viewDiscountCode(code)) {
-                    System.out.println(discountCode);
+                try {
+                    for (String discountCode : ManagerController.getInstance().viewDiscountCode(code)) {
+                        System.out.println(discountCode);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
@@ -182,7 +209,11 @@ public class ManagerSection extends UserSection {
                 while (!scanner.hasNext("end")) {
                     edits.put(scanner.next(), scanner.next());
                 }
-                ManagerController.getInstance().editDiscountCode(code, edits);
+                try {
+                    ManagerController.getInstance().editDiscountCode(code, edits);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 this.show();
                 this.execute();
             }
@@ -229,57 +260,35 @@ public class ManagerSection extends UserSection {
         };
     }
 
-    private Menu addCreateDiscountCode(){
-        return new Menu(this,"CreateDiscountCode") {
-            @Override
-            public void show() {
-                super.show();
-                System.out.println("you must enter these things:");
-                System.out.println("code" +
-                        "\n" +
-                        "exactStartTime" +
-                        "\n" +
-                        "exactEndTime" +
-                        "\n" +
-                        "discountAmount(which is made from percentage and maximum discount" +
-                        "\n" +
-                        "numberOfRepeatsPerEachUser" +
-                        "\n" +
-                        "who can use this code");
-            }
+    private void createDiscountCode(){
+        ArrayList<String> codeInformation = new ArrayList<>();
+        System.out.println("enter code");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter exactStartDate(day/month/year)");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter exactStartTime(hour:minute:second)");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter exactEndDate(day/month/year)");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter exactEndTime(hour:minute:second)");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter discount percentage");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter maximum discount");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter numberOfRepeatsPerEachUser");
+        codeInformation.add(scanner.nextLine());
+        System.out.println("enter who can use this code(type allUsers to include every person or type usernames inside brackets and separated by commas(example: [mahdi,matin]");
+        codeInformation.add(scanner.nextLine());
+        try{
+            ManagerController.getInstance().createDiscountCode(codeInformation);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        this.show();
+        this.execute();
 
-            @Override
-            public void execute() {
-                ArrayList<String> codeInformation = new ArrayList<>();
-                System.out.println("enter code(or back:-))");
-                super.execute();
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactStartDate(day/month/year)");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactStartTime(hour:minute:second)");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactEndDate(day/month/year)");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter exactEndTime(hour:minute:second)");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter discount percentage");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter maximum discount");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter numberOfRepeatsPerEachUser");
-                codeInformation.add(scanner.nextLine());
-                System.out.println("enter who can use this code(type allUsers to include every person or type usernames inside brackets and separated by commas(example: [mahdi,matin]");
-                codeInformation.add(scanner.nextLine());
-                try{
-                    ManagerController.getInstance().createDiscountCode(codeInformation);
-                }
-                catch (Exception e){
-                    System.out.println("invalid username");
-                    //todo other errors
-                }
-
-            }
-        };
     }
 
     private Menu addManageAllProducts(){
@@ -317,7 +326,14 @@ public class ManagerSection extends UserSection {
         return new Menu(this,"manageUsers") {
 
             private void view(String username){
-                Person user = ManagerController.getInstance().getUserByUsername(username);
+                Person user = null;
+                try {
+                    user = ManagerController.getInstance().getUserByUsername(username);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
                 for (String field : UserSectionController.getPersonalInfo(user)) {
                     System.out.println(field);
                 }
@@ -330,7 +346,7 @@ public class ManagerSection extends UserSection {
                     ManagerController.getInstance().deleteUser(username);
                 }
                 catch (Exception e){
-                    System.out.println("no user exists with this username");
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
@@ -368,7 +384,7 @@ public class ManagerSection extends UserSection {
                 else if(command.startsWith("view")){
                     view(command.split(" ")[1]);
                 }
-                else if(command.startsWith("delete user")){
+                else if(command.startsWith("delete")){
                     deleteUser(command.split(" ")[1]);
                 }
                 else{
@@ -382,8 +398,14 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
+                System.out.println("users : ");
+                for (String user : ManagerController.getInstance().getAllUsers()) {
+                    System.out.println(user);
+                }
+                System.out.println();
+                System.out.println("commands : ");
                 System.out.println("view <username>");
-                System.out.println("delete user <username>");
+                System.out.println("delete <username>");
                 System.out.println("create manager profile");
 
             }

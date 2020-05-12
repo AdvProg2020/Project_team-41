@@ -80,9 +80,25 @@ public class TradeLog {
         this.deliverySituation = deliverySituation;
     }
     public static String generateNewToken() {
-        byte[] randomBytes = new byte[24];
+        byte[] randomBytes = new byte[4];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder products = new StringBuilder();
+        for (Product item : items) {
+            products.append(item.getName()+ "\n");
+        }
+
+        return "TradeLog{" +
+                "logId='" + logId + '\'' +
+                ", date=" + date +
+                ", money=" + money +
+                ", offAmount=" + offAmount +
+                ", items=" + products +
+                ", deliverySituation='" + deliverySituation + '\'' +
+                '}';
+    }
 }
