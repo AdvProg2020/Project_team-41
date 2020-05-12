@@ -48,7 +48,9 @@ public class Product implements Serializable {
     }
     public ArrayList<Buyer> buyers = new ArrayList<>();
 
-    public Integer calculateAverageScore(){
+    public Integer calculateAverageScore() {
+        if(scores.size() == 0)
+            return 0;
         int sum = 0;
         if(scores.size()==0)
             return sum;

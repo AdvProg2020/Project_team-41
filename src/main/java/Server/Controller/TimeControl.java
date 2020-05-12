@@ -36,6 +36,9 @@ public abstract class TimeControl {
         Date exactDate = convertJalaliToGregorian(dayMonthYear[0],dayMonthYear[1],dayMonthYear[2],hourMinuteSecond[0],hourMinuteSecond[1],hourMinuteSecond[2]);
         return exactDate;
     }
+    public static String getJalaliDateAndTimeForPrint(Date date){
+        return convertGregorianToJalali(date).toString()+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+    }
 
 
 }
