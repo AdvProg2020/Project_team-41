@@ -41,16 +41,37 @@ public class ManagerSection extends UserSection {
 
     private Menu addManageCategories(){
         return new Menu(this,"ManageCategories") {
-            private void edit(String Category){
-                System.out.println("change what you want(type field and edited field)");
-                try {
-                    ManagerController.getInstance().editCategory(Category, scanner.next(), scanner.next());
+            private void edit(String category){
+                System.out.println("what do you want to change?(name,special features)");
+                command = scanner.nextLine();
+                if(command.equalsIgnoreCase("name")){
+                    try {
+                        System.out.println("ok. enter category's new name");
+                        ManagerController.getInstance().editCategoryName(category,  scanner.nextLine());
+                    }
+                    catch (Exception e){
+                        System.out.println("no category found");
+                    }
+                    this.show();
+                    this.execute();
                 }
-                catch (Exception e){
-                    System.out.println("no category found");
+                else if(command.equalsIgnoreCase("special features")){
+                    System.out.println("type its special features(type them with a comma between each special feature)");
+                    //todo separate two types of special features
+
+                    try {
+                        ManagerController.getInstance().editCategorySpecialFeatures(category,scanner.nextLine());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+
                 }
-                this.show();
-                this.execute();
+                else {
+                    System.out.println("invalid command");
+                    this.show();
+                    this.execute();
+                }
             }
             private void add(String category){
                 String specialFeatures;
