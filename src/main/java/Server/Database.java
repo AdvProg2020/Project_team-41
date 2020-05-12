@@ -38,6 +38,7 @@ public class Database implements Serializable {
         }
         return allSellers;
     }
+
     public static Category getCategoryByName(String name) throws Exception {
         for (Category category : allCategory) {
             if(category.getName().equals(name)){

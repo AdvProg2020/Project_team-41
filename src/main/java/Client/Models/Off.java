@@ -87,8 +87,8 @@ public class Off implements Serializable {
         return "Off{" +
                 "offId='" + offId + '\'' +
                 ", situation=" + situation +
-                ", startDate=" + TimeControl.convertGregorianToJalali(startDate) +
-                ", endDate=" + TimeControl.convertGregorianToJalali(endDate) +
+                ", startDate=" + TimeControl.getJalaliDateAndTimeForPrint(startDate) +
+                ", endDate=" + TimeControl.getJalaliDateAndTimeForPrint(endDate) +
                 ", amountOfDiscount=" + amountOfDiscount +
                 ", seller=" + seller.getUserName() +
                 ", products=" + products +
