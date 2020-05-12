@@ -54,7 +54,7 @@ public class CodedDiscount implements Serializable {
     }
 
     public void setDiscountPercentage(int discountPercentage) throws Exception {
-        if((discountPercentage<0)&&(discountPercentage>100))
+        if((discountPercentage<0) || (discountPercentage>100))
             throw new Exception("percentage should be between 0 and 100");
         this.discountPercentage = discountPercentage;
     }

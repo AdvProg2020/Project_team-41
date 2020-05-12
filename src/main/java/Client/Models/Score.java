@@ -13,9 +13,12 @@ public class Score implements Serializable {
         return score;
     }
 
-    public Score(Person person, int score, Product product) {
+    public Score(Person person, int score, Product product) throws Exception {
         this.person = person;
+        if((score > 5) || (score < 0))
+            throw new Exception("invalid score");
         this.score = score;
         this.product = product;
     }
+
 }

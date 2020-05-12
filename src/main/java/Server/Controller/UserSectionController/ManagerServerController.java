@@ -271,6 +271,13 @@ public class ManagerServerController extends UserSectionServerController {
                             off.setAmountOfDiscount(Integer.parseInt(editRequestValue));
                             break;
                         }
+                        case "products" :{
+                            ArrayList<Product> products = new ArrayList<>();
+                            for (String productId : editRequestValue.split(",")) {
+                                products.add(Database.getProductById(productId));
+                            }
+                            off.setProducts(products);
+                        }
                     }
                 }
                 break;

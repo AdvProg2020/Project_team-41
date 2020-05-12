@@ -47,6 +47,7 @@ public class SellerSection extends UserSection {
         this.execute();
     }
 
+
     private void viewCompanyInfo(){
         System.out.println(SellerController.getInstance().getFactoryName());
         System.out.println("\n");
@@ -245,12 +246,18 @@ public class SellerSection extends UserSection {
             }
             private void editOff(String offId){
                 HashMap<String, String> edits = new HashMap<>();
-                System.out.println("enter edits then type end");
-                while (!scanner.hasNext("end")) {
-                    edits.put(scanner.next(), scanner.next());
+                System.out.println("what do you want to change?(type end to finish editing)");
+                System.out.println("you can edit (start date,end date,amount of discount,products)");
+                System.out.println("to change products, type product id's separated by comma");
+                System.out.println("edit like this:(field,edited field)");
+                String input;
+                while (!(input = scanner.nextLine()).equals("end")) {
+                    String[] splitInput = input.split(",");
+                    edits.put(splitInput[0], splitInput[1]);
                 }
                 try {
                     SellerController.getInstance().editOff(offId,edits);
+                    System.out.println("edited fields successfully");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
