@@ -153,6 +153,12 @@ public class Product implements Serializable {
         return views;
     }
 
+    public void setViews(int views) throws Exception {
+        if(views < 0)
+            throw new Exception("views can't be negative!");
+        this.views = views;
+    }
+
     public ArrayList<Buyer> getBuyers() {
         return buyers;
     }
