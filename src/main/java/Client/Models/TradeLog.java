@@ -1,11 +1,12 @@
 package Client.Models;
 
+import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 
-public class TradeLog {
+public class TradeLog implements Serializable {
     private String logId;
     private Date date;
     private int money;

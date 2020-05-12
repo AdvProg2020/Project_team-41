@@ -53,7 +53,9 @@ public class CodedDiscount implements Serializable {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(int discountPercentage) {
+    public void setDiscountPercentage(int discountPercentage) throws Exception {
+        if((discountPercentage<0)&&(discountPercentage>100))
+            throw new Exception("percentage should be between 0 and 100");
         this.discountPercentage = discountPercentage;
     }
 
@@ -61,7 +63,9 @@ public class CodedDiscount implements Serializable {
         return maximumDiscount;
     }
 
-    public void setMaximumDiscount(int maximumDiscount) {
+    public void setMaximumDiscount(int maximumDiscount) throws Exception {
+        if(maximumDiscount<1)
+            throw new Exception("maximum discount should be positive :/ ");
         this.maximumDiscount = maximumDiscount;
     }
 
@@ -69,7 +73,9 @@ public class CodedDiscount implements Serializable {
         return discountRepeatsForEachUser;
     }
 
-    public void setDiscountRepeatsForEachUser(int discountRepeatsForEachUser) {
+    public void setDiscountRepeatsForEachUser(int discountRepeatsForEachUser) throws Exception {
+        if(discountRepeatsForEachUser<1)
+            throw new Exception("discount repeats should be positive :/ ");
         this.discountRepeatsForEachUser = discountRepeatsForEachUser;
     }
 

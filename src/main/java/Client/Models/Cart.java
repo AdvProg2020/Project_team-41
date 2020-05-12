@@ -2,10 +2,11 @@ package Client.Models;
 
 import Client.Models.Person.Buyer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Cart {
+public class Cart implements Serializable {
     private Buyer buyer;
     private HashMap<Product,Integer> products;
 

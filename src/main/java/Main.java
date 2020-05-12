@@ -91,7 +91,7 @@ public class Main {
 
         try {
             StartProgram.startProgram();
-
+            
             for (Category category : Database.getAllCategory()) {
                 System.out.println(category.getName());
             }

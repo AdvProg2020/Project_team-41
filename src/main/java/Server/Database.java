@@ -57,7 +57,7 @@ public class Database implements Serializable {
 
     public static CodedDiscount getCodedDiscountByCode(String code) throws Exception {
         for (CodedDiscount codedDiscount : allDiscountCodes) {
-            if(codedDiscount.equals(code))
+            if(codedDiscount.getDiscountCode().equals(code))
                 return codedDiscount;
         }
         throw new Exception("wrong discount code");
@@ -111,8 +111,14 @@ public class Database implements Serializable {
     public static ArrayList<Person> getAllUsers(){
         return allUsers;
     }
-    public static void deleteCodedDiscount(String code){
-        allDiscountCodes.removeIf(discountCode -> discountCode.getDiscountCode().equals(code));
+    public static void deleteCodedDiscount(String code) throws Exception {
+        for (CodedDiscount discountCode : allDiscountCodes) {
+            if(discountCode.getDiscountCode().equals(code)) {
+                allDiscountCodes.remove(discountCode);
+                return;
+            }
+        }
+        throw new Exception("invalid discount code");
     }
     public static ArrayList<Manager> getAllManagers() {
         return allManagers;

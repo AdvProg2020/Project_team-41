@@ -21,14 +21,25 @@ public abstract class UserSection extends Menu {
 
             }
             private void edit(){
+                String field;
+                String edit;
+                System.out.println("what field do you want to edit?(it can be password too)");
+                field = scanner.nextLine();
+                System.out.println("what do you want it to be?(if it's password:(currentPassword,newPassword))");
+                edit = scanner.nextLine();
+
+
                 try {
-                    UserSectionController.edit(scanner.next(),scanner.next());
+                    UserSectionController.edit(field,edit);
                 }
                 catch (Exception e){
-                    System.out.println("You can't edit username");
+                    System.out.println(e.getMessage());
                     this.show();
                     this.execute();
                 }
+                System.out.println("successfully edited " + field);
+                this.show();
+                this.execute();
             }
 
             @Override

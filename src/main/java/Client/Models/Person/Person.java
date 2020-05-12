@@ -86,11 +86,15 @@ public abstract class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws Exception {
+        if(!email.matches("\\S+@\\S+\\.\\S+"))
+            throw new Exception("please enter a valid email address");
         this.email = email;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) throws Exception {
+        if(!phoneNumber.matches("\\d+"))
+            throw new Exception("please enter a valid phone number");
         this.phoneNumber = phoneNumber;
     }
 
@@ -98,7 +102,9 @@ public abstract class Person implements Serializable {
         this.password = password;
     }
 
-    public void setCredit(int credit) {
+    public void setCredit(int credit) throws Exception {
+        if(credit<0)
+            throw new Exception("credit can't be negative!");
         this.credit = credit;
     }
 

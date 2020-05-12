@@ -48,6 +48,7 @@ public class ManagerSection extends UserSection {
                     try {
                         System.out.println("ok. enter category's new name");
                         ManagerController.getInstance().editCategoryName(category,  scanner.nextLine());
+                        System.out.println("category name edited successfully");
                     }
                     catch (Exception e){
                         System.out.println("no category found");
@@ -61,9 +62,12 @@ public class ManagerSection extends UserSection {
 
                     try {
                         ManagerController.getInstance().editCategorySpecialFeatures(category,scanner.nextLine());
+                        System.out.println("edited special features successfully");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
+                    this.show();
+                    this.execute();
 
 
                 }
@@ -157,6 +161,7 @@ public class ManagerSection extends UserSection {
             private void accept(String requestId){
                 try {
                     ManagerController.getInstance().acceptRequest(requestId);
+                    System.out.println("request accepted");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -166,6 +171,7 @@ public class ManagerSection extends UserSection {
             private void decline(String requestId){
                 try {
                     ManagerController.getInstance().declineRequest(requestId);
+                    System.out.println("request declined");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -227,20 +233,34 @@ public class ManagerSection extends UserSection {
             }
             private void editDiscountCode(String code) {
                 HashMap<String, String> edits = new HashMap<>();
-                System.out.println("what do you want to change?(type end to finish editing");
-                while (!scanner.hasNext("end")) {
-                    edits.put(scanner.next(), scanner.next());
+                System.out.println("what do you want to change?(type end to finish editing)");
+                System.out.println("you can edit (start date,end date,discount percentage,maximum discount,discount repeats for each user,people who can use it)");
+                System.out.println("edit like this:(field,edited field)");
+                String input;
+                while (!(input = scanner.nextLine()).equals("end")) {
+                    String[] splitInput = input.split(",");
+                    edits.put(splitInput[0], splitInput[1]);
                 }
                 try {
                     ManagerController.getInstance().editDiscountCode(code, edits);
+                    System.out.println("edited fields successfully");
+                    this.show();
+                    this.execute();
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
                 }
-                this.show();
-                this.execute();
             }
             private void removeDiscountCode(String code){
-                ManagerController.getInstance().removeDiscountCode(code);
+                try {
+                    ManagerController.getInstance().removeDiscountCode(code);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
+                System.out.println("removed discount code successfully");
                 this.show();
                 this.execute();
             }
@@ -255,22 +275,22 @@ public class ManagerSection extends UserSection {
                 }
                 System.out.println();
                 System.out.println("commands:");
-                System.out.println("view discount code <code>");
-                System.out.println("edit discount code <code>");
-                System.out.println("remove discount code <code>");
+                System.out.println("view <code>");
+                System.out.println("edit <code>");
+                System.out.println("remove <code>");
             }
 
             @Override
             public void execute() {
                 super.execute();
-                if(command.startsWith("view discount code")){
-                    viewDiscountCode(command.split(" ")[3]);
+                if(command.startsWith("view")){
+                    viewDiscountCode(command.split(" ")[1]);
                 }
-                if(command.startsWith("edit discount code")){
-                    editDiscountCode(command.split(" ")[3]);
+                if(command.startsWith("edit")){
+                    editDiscountCode(command.split(" ")[1]);
                 }
-                if(command.startsWith("remove discount code")){
-                    removeDiscountCode(command.split(" ")[3]);
+                if(command.startsWith("remove")){
+                    removeDiscountCode(command.split(" ")[1]);
                 }
                 else{
                     System.out.println("invalid command");
@@ -300,16 +320,19 @@ public class ManagerSection extends UserSection {
         codeInformation.add(scanner.nextLine());
         System.out.println("enter numberOfRepeatsPerEachUser");
         codeInformation.add(scanner.nextLine());
-        System.out.println("enter who can use this code(type allUsers to include every person or type usernames inside brackets and separated by commas(example: [mahdi,matin]");
+        System.out.println("enter who can use this code(type allUsers to include every person or type username's inside brackets and separated by commas(example: [mahdi,matin])");
         codeInformation.add(scanner.nextLine());
         try{
             ManagerController.getInstance().createDiscountCode(codeInformation);
         }
         catch (Exception e){
             System.out.println(e.getMessage());
+            this.show();
+            this.execute();
         }
+        System.out.println("created discount code successfully");
         this.show();
-        this.execute();
+         this.execute();
 
     }
 
@@ -374,7 +397,10 @@ public class ManagerSection extends UserSection {
                 }
                 catch (Exception e){
                     System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
                 }
+                System.out.println("deleted user " + username + " successfully");
                 this.show();
                 this.execute();
             }
@@ -394,7 +420,13 @@ public class ManagerSection extends UserSection {
                 userInfo.add(scanner.nextLine());
                 System.out.println("How much money do you have?");
                 userInfo.add(scanner.nextLine());
-                ManagerController.getInstance().createManagerProfile(userInfo);
+                try {
+                    ManagerController.getInstance().createManagerProfile(userInfo);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
                 System.out.println("Successfully created Manager");
                 this.show();
                 this.execute();

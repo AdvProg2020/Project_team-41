@@ -73,12 +73,12 @@ public class SellerSection extends UserSection {
             SellerController.getInstance().addProduct(productDetails);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            super.show();
-            super.execute();
+            this.show();
+            this.execute();
         }
         System.out.println("ok, the manager has lots to do :-)");
-        super.show();
-        super.execute();
+        this.show();
+        this.execute();
     }
     //todo check if viewSalesHistory really needs to be a menu
     public Menu addViewSalesHistory(){
@@ -269,9 +269,10 @@ public class SellerSection extends UserSection {
                 offDetails.add(scanner.nextLine());
                 System.out.println("enter amount of discount");
                 offDetails.add(scanner.nextLine());
-                System.out.println("enter product Id's you want to be included(type end to end this");
-                while (!scanner.hasNext("end")) {
-                    offDetails.add(scanner.nextLine());
+                System.out.println("enter product Id's you want to be included(type end to end this)");
+                String input;
+                while (!(input = scanner.nextLine()).equalsIgnoreCase("end")) {
+                    offDetails.add(input);
                 }
                 try {
                     SellerController.getInstance().addOff(offDetails);
