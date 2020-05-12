@@ -1,6 +1,7 @@
 package Client.View.Menus;
 
 import Client.Controller.ProductController;
+import Client.Models.Comment;
 import Client.Models.Product;
 import Client.Models.SpecialFeature;
 
@@ -69,7 +70,7 @@ public class ProductMenu extends Menu {
                         }
                     }
                 });
-
+                   // super.execute();
             }
         };
     }
@@ -100,7 +101,15 @@ public class ProductMenu extends Menu {
         return new Menu(this, "comments") {
             @Override
             public void show() {
-                //TODO print comments
+                System.out.println("comments:");
+                for (Comment comment : theProduct.getComments()) {
+                    // TODO not certain about this syntax:
+                    if(comment.getCommentSituation().equals("CONFIRMED")){
+                        System.out.println(comment);
+                    }
+                }
+                System.out.println("score:");
+                System.out.println(theProduct.calculateAverageScore());
             }
 
             @Override
@@ -108,15 +117,16 @@ public class ProductMenu extends Menu {
                 this.addSubMenu(new Menu(this, "add comment") {
                     @Override
                     public void show() {
-                        //TODO print sth for user to enter comment
+                        System.out.println("Enter title of your comment");
                     }
 
                     @Override
                     public void execute() {
-                        //TODO get title and content:
-                        String title = "";
-                        String content = "";
-                        ProductController.addComment(title, content);
+                        String title = scanner.nextLine();
+                        System.out.println("Enter your comment");
+                        String content = scanner.nextLine();
+                        ProductController.addComment(title, content , theProduct);
+                        System.out.println("Thanks for your comment");
                     }
                 });
             }

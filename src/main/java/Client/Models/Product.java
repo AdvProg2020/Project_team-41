@@ -50,10 +50,17 @@ public class Product implements Serializable {
 
     public Integer calculateAverageScore(){
         int sum = 0;
+        if(scores.size()==0)
+            return sum;
+        else{
         for (Score score : scores) {
             sum += score.getScore();
         }
-        return sum/scores.size();
+        return sum/scores.size();}
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public void setCategory(Category category) {
@@ -97,6 +104,9 @@ public class Product implements Serializable {
         return productId;
     }
 
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
 
     public Situation getProductSituation() {
         return productSituation;
@@ -170,7 +180,7 @@ public class Product implements Serializable {
                 ", companyName='" + companyName + '\'' +
                 ", price=" + price +
                 ", seller=" + seller +
-                ", isThereMore=" + quantity
+                ", quantity=" + quantity
                 ;
     }
 }
