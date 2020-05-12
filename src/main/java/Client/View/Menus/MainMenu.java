@@ -1,5 +1,6 @@
 package Client.View.Menus;
 
+import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
@@ -9,6 +10,7 @@ import Client.View.Menus.UserSectionMenus.BuyerAccount.BuyerSection;
 import Client.View.Menus.UserSectionMenus.ManagerSection;
 import Client.View.Menus.UserSectionMenus.SellerSection;
 import Server.Controller.LoginRegisterServerController;
+import Server.Controller.UserSectionController.ManagerServerController;
 
 public class MainMenu extends Menu {
     private static MainMenu single_instance = null;
@@ -23,6 +25,16 @@ public class MainMenu extends Menu {
     @Override
     public void execute() {
         super.execute();
+        //todo remove code between comments
+        //
+        if(command.equalsIgnoreCase("showUsers")){
+            for (String user : ManagerController.getInstance().getAllUsers()) {
+                System.out.println(user);
+            }
+            this.show();
+            this.execute();
+        }
+        //
         System.out.println("invalid command");
         this.show();
         this.execute();
