@@ -3,12 +3,13 @@ package Client.Models;
 import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
 
+import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 
-public class Off {
+public class Off implements Serializable {
     private String offId;
     private ArrayList<Product>products;
     private Situation situation;
@@ -86,8 +87,8 @@ public class Off {
         return "Off{" +
                 "offId='" + offId + '\'' +
                 ", situation=" + situation +
-                ", startDate=" + TimeControl.convertGregorianToJalali(startDate) +
-                ", endDate=" + TimeControl.convertGregorianToJalali(endDate) +
+                ", startDate=" + TimeControl.getJalaliDateAndTimeForPrint(startDate) +
+                ", endDate=" + TimeControl.getJalaliDateAndTimeForPrint(endDate) +
                 ", amountOfDiscount=" + amountOfDiscount +
                 ", seller=" + seller.getUserName() +
                 ", products=" + products +

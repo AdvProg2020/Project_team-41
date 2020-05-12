@@ -1,7 +1,7 @@
 package Client.Controller.UserSectionController;
 
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
+import Client.Models.Product;
 import Server.Controller.UserSectionController.ManagerServerController;
 
 import java.util.ArrayList;
@@ -17,6 +17,12 @@ public class ManagerController extends UserSectionController{
         return single_instance;
     }
     private ManagerController(){
+    }
+    public void editCategorySpecialFeatures(String category,String editedField) throws Exception {
+        ManagerServerController.getInstance().editCategorySpecialFeatures(category,editedField);
+    }
+    public ArrayList<Product> getAllProducts(){
+        return ManagerServerController.getInstance().getAllProducts();
     }
     public ArrayList<String> getAllUsers(){
         return ManagerServerController.getInstance().getAllUsers();
@@ -60,8 +66,8 @@ public class ManagerController extends UserSectionController{
     public ArrayList<String> showCategories(){
         return ManagerServerController.getInstance().showCategories();
     }
-    public void editCategory(String category,String field,String editedField) throws Exception {
-        ManagerServerController.getInstance().editCategory(category, field,editedField);
+    public void editCategoryName(String category, String editedField) throws Exception {
+        ManagerServerController.getInstance().editCategoryName(category, editedField);
     }
     public void addCategory(String categoryName,String specialFeatures){
         ManagerServerController.getInstance().addCategory(categoryName,specialFeatures);

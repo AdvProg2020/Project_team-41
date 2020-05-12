@@ -1,9 +1,11 @@
 package Client.View.Menus.UserSectionMenus;
 
+import Client.Controller.OffsController;
 import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Category;
+import Client.Models.Off;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
@@ -190,11 +192,26 @@ public class SellerSection extends UserSection {
 
             @Override
             public void show() {
-                SellerController.getInstance().getOffs();
+
+                System.out.print("+--------------+\n");
+                System.out.print("|    Off id    |\n");
+                System.out.print("+--------------+\n");
+
+                for (Off off : SellerController.getInstance().getOffs()) {
+                    System.out.format("| %-12s |\n", off.getOffId());
+                }
+
+                System.out.print("+--------------+\n");
+                super.show();
+            }
+
+            @Override
+            public void commands() {
+                super.commands();
                 System.out.println("view [offId]");
                 System.out.println("edit [offId]");
                 System.out.println("add off");
-                super.show();
+
             }
 
             @Override
@@ -254,7 +271,7 @@ public class SellerSection extends UserSection {
                 offDetails.add(scanner.nextLine());
                 System.out.println("enter product Id's you want to be included(type end to end this");
                 while (!scanner.hasNext("end")) {
-                    offDetails.add(scanner.next());
+                    offDetails.add(scanner.nextLine());
                 }
                 try {
                     SellerController.getInstance().addOff(offDetails);

@@ -22,6 +22,17 @@ public class ManagerServerController extends UserSectionServerController {
 
     private ManagerServerController(){
     }
+    public void editCategorySpecialFeatures(String category,String editedField) throws Exception {
+        ArrayList<String> specialFeatures = new ArrayList<>();
+        for (String specialFeature : editedField.split(",")) {
+            specialFeatures.add(specialFeature);
+        }
+        Database.getCategoryByName(category).setSpecialFeatures(specialFeatures);
+    }
+    public ArrayList<Product> getAllProducts(){
+        return Database.getAllProducts();
+    }
+
     public ArrayList<String> getAllUsers(){
         ArrayList<String> allUsers = new ArrayList<>();
         for (Person user : Database.getAllUsers()) {
@@ -86,8 +97,8 @@ public class ManagerServerController extends UserSectionServerController {
 
 
         discountCodeInformation.add("discount code: "+codedDiscount.getDiscountCode());
-        discountCodeInformation.add("start date: "+TimeControl.convertGregorianToJalali(codedDiscount.getStartDate()).toString());
-        discountCodeInformation.add("end date: "+TimeControl.convertGregorianToJalali(codedDiscount.getEndDate()).toString());
+        discountCodeInformation.add("start date: "+TimeControl.getJalaliDateAndTimeForPrint(codedDiscount.getStartDate()));
+        discountCodeInformation.add("end date: "+TimeControl.getJalaliDateAndTimeForPrint(codedDiscount.getEndDate()));
         discountCodeInformation.add("discount percentage: "+ codedDiscount.getDiscountPercentage());
         discountCodeInformation.add("maximum discount: "+ codedDiscount.getMaximumDiscount());
         discountCodeInformation.add("discount repeats for each user: "+ codedDiscount.getDiscountRepeatsForEachUser());
@@ -269,11 +280,12 @@ public class ManagerServerController extends UserSectionServerController {
                 break;
             }
         }
-        Database.removeRequest(requestId);
+        Database.removeRequest(request);
 
     }
     public void declineRequest(String requestId) throws Exception {
-        Database.removeRequest(requestId);
+        Request request = Database.getRequestByRequestId(requestId);
+        Database.removeRequest(request);
     }
     public ArrayList<String> showCategories(){
         ArrayList<String> categories = new ArrayList<>();
@@ -282,7 +294,7 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return categories;
     }
-    public void editCategory(String category,String field,String editedField) throws Exception {
+    public void editCategoryName(String category, String editedField) throws Exception {
         Database.getCategoryByName(category).setName(editedField);
     }
     public void addCategory(String categoryName,String specialFeatures){
@@ -329,8 +341,8 @@ public class ManagerServerController extends UserSectionServerController {
         ArrayList<String> offDetails  = new ArrayList<>();
         offDetails.add("off id : " + off.getOffId());
         offDetails.add("amount of discount : " + off.getAmountOfDiscount());
-        offDetails.add("start date : " + TimeControl.convertGregorianToJalali(off.getStartDate()));
-        offDetails.add("end date : " + TimeControl.convertGregorianToJalali(off.getEndDate()));
+        offDetails.add("start date : " + TimeControl.getJalaliDateAndTimeForPrint(off.getStartDate()));
+        offDetails.add("end date : " + TimeControl.getJalaliDateAndTimeForPrint(off.getEndDate()));
         offDetails.add("products : ");
         for (Product product : off.getProducts()) {
             offDetails.add(product.getName());
