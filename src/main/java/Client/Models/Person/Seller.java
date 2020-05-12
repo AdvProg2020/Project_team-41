@@ -41,7 +41,7 @@ public class Seller extends Person {
         this.factoryName = factoryName;
     }
 
-    public void addCredit(int money){
+    public void addCredit(int money) throws Exception {
         this.setCredit(getCredit()+money);
     }
     public void addTradeLog(TradeLog tradeLog){

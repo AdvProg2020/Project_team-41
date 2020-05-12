@@ -98,14 +98,26 @@ public class RegisterLoginMenu extends Menu {
                 System.out.println("What is your last name?");
                 person.setLastName(scanner.nextLine());
 
-                person.setEmail(getInputInFormatWithError("What is your email?","\\S+@\\S+\\.\\S+",
-                        "Please enter a valid email!"));
+                try {
+                    person.setEmail(getInputInFormatWithError("What is your email?","\\S+@\\S+\\.\\S+",
+                            "Please enter a valid email!"));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
 
-                person.setPhoneNumber(getInputInFormatWithError("What is your phone number?","\\d+",
-                        "Please enter a valid number!"));
+                try {
+                    person.setPhoneNumber(getInputInFormatWithError("What is your phone number?","\\d+",
+                            "Please enter a valid number!"));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
 
-                person.setCredit(Integer.parseInt(getInputInFormatWithError("How much money do you have?",
-                        "\\d+", "Please enter a valid number!")));
+                try {
+                    person.setCredit(Integer.parseInt(getInputInFormatWithError("How much money do you have?",
+                            "\\d+", "Please enter a valid number!")));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
 
 
                 return person;
@@ -169,7 +181,7 @@ public class RegisterLoginMenu extends Menu {
         };
     }
 
-    private static String getInputInFormatWithError(String helpText, String regex, String error) {
+    public static String getInputInFormatWithError(String helpText, String regex, String error) {
         Pattern pattern = Pattern.compile(regex);
         boolean inputIsInvalid;
         String line;

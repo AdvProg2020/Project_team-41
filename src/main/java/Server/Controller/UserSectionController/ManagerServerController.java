@@ -47,7 +47,7 @@ public class ManagerServerController extends UserSectionServerController {
     public void  deleteUser(String username) throws Exception {
             Database.deleteUser(username);
     }
-    public void createManagerProfile(ArrayList<String> userInfo){
+    public void createManagerProfile(ArrayList<String> userInfo) throws Exception {
         Manager manager = new Manager();
         manager.setUserName(userInfo.get(0));
         manager.setPassword(userInfo.get(1));
@@ -72,7 +72,7 @@ public class ManagerServerController extends UserSectionServerController {
     }
     public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ArrayList<Person> people = new ArrayList<>();
-        if((codeInformation.get(8).length() == 1) && (codeInformation.get(8).equalsIgnoreCase("allUsers"))){
+        if((codeInformation.get(8).split(",").length == 1) && (codeInformation.get(8).equalsIgnoreCase("allUsers"))){
             people.addAll(Database.getAllUsers());
         }
         else {
@@ -81,6 +81,7 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
         String[] dateTime = {codeInformation.get(1),codeInformation.get(2)};
+        //todo check if this code does not exists
         Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
         dateTime = new String[]{codeInformation.get(3), codeInformation.get(4)};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
@@ -152,7 +153,7 @@ public class ManagerServerController extends UserSectionServerController {
 
         }
     }
-    public void  removeDiscountCode(String code){
+    public void  removeDiscountCode(String code) throws Exception {
         Database.deleteCodedDiscount(code);
     }
     public ArrayList<String> showRequest(){
@@ -297,7 +298,12 @@ public class ManagerServerController extends UserSectionServerController {
     public void editCategoryName(String category, String editedField) throws Exception {
         Database.getCategoryByName(category).setName(editedField);
     }
-    public void addCategory(String categoryName,String specialFeatures){
+    public void addCategory(String categoryName,String specialFeatures) throws Exception {
+        try {
+            Database.getCategoryByName(categoryName);
+        } catch (Exception e) {
+            throw new Exception("category exists with this name");
+        }
         ArrayList<String> specialFeaturesArray = new ArrayList<>();
         Collections.addAll(specialFeaturesArray, specialFeatures.split(","));
         new Category(categoryName,specialFeaturesArray);
