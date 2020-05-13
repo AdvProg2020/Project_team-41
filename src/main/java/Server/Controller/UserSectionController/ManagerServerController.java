@@ -306,14 +306,24 @@ public class ManagerServerController extends UserSectionServerController {
         Database.getCategoryByName(category).setName(editedField);
     }
     public void addCategory(String categoryName,String specialFeatures) throws Exception {
+        Category category;
         try {
             Database.getCategoryByName(categoryName);
-        } catch (Exception e) {
-            throw new Exception("category exists with this name");
         }
-        ArrayList<String> specialFeaturesArray = new ArrayList<>();
-        Collections.addAll(specialFeaturesArray, specialFeatures.split(","));
-        new Category(categoryName,specialFeaturesArray);
+        catch (Exception e) {
+            if(e.getMessage().equals("No category found with this name")) {
+                ArrayList<String> specialFeaturesArray = new ArrayList<>();
+                Collections.addAll(specialFeaturesArray, specialFeatures.split(","));
+                category = new Category(categoryName, specialFeaturesArray);
+                Database.addCategory(category);
+                return;
+            }
+            else{
+                throw new Exception("unknown problem occurred while creating category");
+            }
+        }
+            throw new Exception("category exists with this name");
+
     }
     public void removeCategory(String categoryName) throws Exception {
         Database.deleteCategory(categoryName);

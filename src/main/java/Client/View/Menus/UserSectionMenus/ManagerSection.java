@@ -87,7 +87,7 @@ public class ManagerSection extends UserSection {
                     System.out.println("category " + category + " is created");
                 }
                 catch (Exception e){
-                    System.out.println("category could not be created");
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
