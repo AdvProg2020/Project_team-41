@@ -1,5 +1,6 @@
 package Client.View.Menus;
 
+import Client.Controller.AllProductsController;
 import Client.Controller.ProductController;
 import Client.Models.Comment;
 import Client.Models.Product;
@@ -70,7 +71,7 @@ public class ProductMenu extends Menu {
                         }
                     }
                 });
-                   // super.execute();
+                  super.execute();
             }
         };
     }
@@ -79,15 +80,7 @@ public class ProductMenu extends Menu {
         return new Menu(this, "attributes") {
             @Override
             public void show() {
-                System.out.println(theProduct + ", category: " + theProduct.getCompanyName());
-                for (String featureName : theProduct.getSpecialFeatures().keySet()) {
-                    System.out.print("feature name: " + featureName );
-                    SpecialFeature productSpecialFeature = theProduct.getSpecialFeatures().get(featureName);
-                    if(productSpecialFeature.StringOrInt().equalsIgnoreCase("int"))
-                        System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureInt());
-                    else
-                        System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureString());
-                }
+                printProductAttributes(theProduct);
             }
 
             @Override
@@ -127,8 +120,10 @@ public class ProductMenu extends Menu {
                         String content = scanner.nextLine();
                         ProductController.addComment(title, content , theProduct);
                         System.out.println("Thanks for your comment");
+                        super.execute();
                     }
                 });
+            super.execute();
             }
         };
     }
@@ -139,14 +134,41 @@ public class ProductMenu extends Menu {
 
             @Override
             public void show() {
-                super.show();
+                System.out.println("Enter another product ID");
             }
 
             @Override
             public void execute() {
+                String secondId = scanner.nextLine();
+                System.out.println("product(you entered just now) details:");
+                try {
+                    Product secondProduct = AllProductsController.getInstance().getProduct(secondId);
+                    printProductAttributes(secondProduct);
+                    System.out.println("average score: " + secondProduct.calculateAverageScore());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
+                System.out.println("\nproduct(whose page you are in) details:");
+                printProductAttributes(theProduct);
+                System.out.println("average score: " + theProduct.calculateAverageScore());
+
                 super.execute();
             }
 
         };
+    }
+
+    private void printProductAttributes(Product theProduct){
+
+        System.out.println(theProduct + ", category: " + theProduct.getCategory());
+        for (String featureName : theProduct.getSpecialFeatures().keySet()) {
+            System.out.print("feature name: " + featureName );
+            SpecialFeature productSpecialFeature = theProduct.getSpecialFeatures().get(featureName);
+            if(productSpecialFeature.StringOrInt().equalsIgnoreCase("int"))
+                System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureInt());
+            else
+                System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureString());
+        }
     }
 }
