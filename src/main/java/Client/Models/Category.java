@@ -16,7 +16,6 @@ public class Category implements Serializable {
         this.products = new ArrayList<>();
         this.name = name;
         this.specialFeatures = specialFeatures;
-        Database.getAllCategory().add(this);
     }
 
     public void setSpecialFeatures(ArrayList<String> specialFeatures) {
