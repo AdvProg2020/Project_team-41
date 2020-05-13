@@ -1,15 +1,67 @@
 package Server.Controller.UserSectionController;
 
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Person;
 
 import java.util.ArrayList;
 
 public abstract class UserSectionServerController {
+    public static ArrayList<String> getPersonalInfo(Person person){
+        if(person == null)
+            throw new NullPointerException();
+        //todo return ArrayList of personal info
+        ArrayList<String> personalInfo = new ArrayList<>();
+        personalInfo.add("UserName: " + person.getUserName());
+        personalInfo.add("FirstName: " + person.getFirstName());
+        personalInfo.add("LastName: " + person.getLastName());
+        personalInfo.add("Credit: " + person.getCredit());
+        personalInfo.add("Email: " + person.getEmail());
+        personalInfo.add("PhoneNumber: " + person.getPhoneNumber());
+        //personalInfo.addAll(loggedInPerson.getDiscountCodes());
+        //optional to add show discount code or show trade logs here
+        //todo check if needed ot print discountCodes
+        //todo check if it needs tradeLogs
 
 
-    public static void edit(Person person,String username){
-        //todo edit fields except username
+        return personalInfo;
+
     }
+    public static void edit(Person person,String field,String editedField) throws Exception {
+        //todo edit fields except username
+        if(field.equals("username"))
+            throw new Exception("can't change username");
+        if(person == null)
+            throw new NullPointerException("There is no one logged in");
+        switch (field){
+            case "password":{
+                if(editedField.split(",")[0].equals(person))
+                    person.setPassword(editedField.split(",")[1]);
+                else
+                    throw new Exception("wrong password");
 
+                break;
+            }
+            case "FirstName":{
+                person.setFirstName(editedField);
+                break;
+            }
+            case "LastName":{
+                person.setLastName(editedField);
+                break;
+            }
+            case "Email":{
+                person.setEmail(editedField);
+                break;
+            }
+            case "PhoneNumber":{
+                person.setPhoneNumber(editedField);
+                break;
+            }
+            default:{
+                throw new Exception("there is no field with this name!");
+            }
+        }
+
+    }
 
 }

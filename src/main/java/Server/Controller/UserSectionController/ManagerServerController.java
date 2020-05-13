@@ -47,7 +47,7 @@ public class ManagerServerController extends UserSectionServerController {
     public void  deleteUser(String username) throws Exception {
             Database.deleteUser(username);
     }
-    public void createManagerProfile(ArrayList<String> userInfo){
+    public void createManagerProfile(ArrayList<String> userInfo) throws Exception {
         Manager manager = new Manager();
         manager.setUserName(userInfo.get(0));
         manager.setPassword(userInfo.get(1));
@@ -72,7 +72,7 @@ public class ManagerServerController extends UserSectionServerController {
     }
     public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ArrayList<Person> people = new ArrayList<>();
-        if((codeInformation.get(8).length() == 1) && (codeInformation.get(8).equalsIgnoreCase("allUsers"))){
+        if((codeInformation.get(8).split(",").length == 1) && (codeInformation.get(8).equalsIgnoreCase("allUsers"))){
             people.addAll(Database.getAllUsers());
         }
         else {
@@ -81,6 +81,7 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
         String[] dateTime = {codeInformation.get(1),codeInformation.get(2)};
+        //todo check if this code does not exists
         Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
         dateTime = new String[]{codeInformation.get(3), codeInformation.get(4)};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
@@ -152,7 +153,7 @@ public class ManagerServerController extends UserSectionServerController {
 
         }
     }
-    public void  removeDiscountCode(String code){
+    public void  removeDiscountCode(String code) throws Exception {
         Database.deleteCodedDiscount(code);
     }
     public ArrayList<String> showRequest(){
@@ -270,6 +271,13 @@ public class ManagerServerController extends UserSectionServerController {
                             off.setAmountOfDiscount(Integer.parseInt(editRequestValue));
                             break;
                         }
+                        case "products" :{
+                            ArrayList<Product> products = new ArrayList<>();
+                            for (String productId : editRequestValue.split(",")) {
+                                products.add(Database.getProductById(productId));
+                            }
+                            off.setProducts(products);
+                        }
                     }
                 }
                 break;
@@ -297,10 +305,25 @@ public class ManagerServerController extends UserSectionServerController {
     public void editCategoryName(String category, String editedField) throws Exception {
         Database.getCategoryByName(category).setName(editedField);
     }
-    public void addCategory(String categoryName,String specialFeatures){
-        ArrayList<String> specialFeaturesArray = new ArrayList<>();
-        Collections.addAll(specialFeaturesArray, specialFeatures.split(","));
-        new Category(categoryName,specialFeaturesArray);
+    public void addCategory(String categoryName,String specialFeatures) throws Exception {
+        Category category;
+        try {
+            Database.getCategoryByName(categoryName);
+        }
+        catch (Exception e) {
+            if(e.getMessage().equals("No category found with this name")) {
+                ArrayList<String> specialFeaturesArray = new ArrayList<>();
+                Collections.addAll(specialFeaturesArray, specialFeatures.split(","));
+                category = new Category(categoryName, specialFeaturesArray);
+                Database.addCategory(category);
+                return;
+            }
+            else{
+                throw new Exception("unknown problem occurred while creating category");
+            }
+        }
+            throw new Exception("category exists with this name");
+
     }
     public void removeCategory(String categoryName) throws Exception {
         Database.deleteCategory(categoryName);

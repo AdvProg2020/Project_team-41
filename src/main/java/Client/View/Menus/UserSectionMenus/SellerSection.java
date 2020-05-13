@@ -26,10 +26,16 @@ public class SellerSection extends UserSection {
 
     @Override
     public void show() {
+        super.show();
+
+    }
+
+    @Override
+    public void commands() {
+        super.commands();
         System.out.println("view company info");
         System.out.println("add product");
         System.out.println("remove product");
-        super.show();
 
     }
 
@@ -46,6 +52,7 @@ public class SellerSection extends UserSection {
         this.show();
         this.execute();
     }
+
 
     private void viewCompanyInfo(){
         System.out.println(SellerController.getInstance().getFactoryName());
@@ -73,12 +80,12 @@ public class SellerSection extends UserSection {
             SellerController.getInstance().addProduct(productDetails);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            super.show();
-            super.execute();
+            this.show();
+            this.execute();
         }
         System.out.println("ok, the manager has lots to do :-)");
-        super.show();
-        super.execute();
+        this.show();
+        this.execute();
     }
     //todo check if viewSalesHistory really needs to be a menu
     public Menu addViewSalesHistory(){
@@ -245,12 +252,18 @@ public class SellerSection extends UserSection {
             }
             private void editOff(String offId){
                 HashMap<String, String> edits = new HashMap<>();
-                System.out.println("enter edits then type end");
-                while (!scanner.hasNext("end")) {
-                    edits.put(scanner.next(), scanner.next());
+                System.out.println("what do you want to change?(type end to finish editing)");
+                System.out.println("you can edit (start date,end date,amount of discount,products)");
+                System.out.println("to change products, type product id's separated by comma");
+                System.out.println("edit like this:(field,edited field)");
+                String input;
+                while (!(input = scanner.nextLine()).equals("end")) {
+                    String[] splitInput = input.split(",");
+                    edits.put(splitInput[0], splitInput[1]);
                 }
                 try {
                     SellerController.getInstance().editOff(offId,edits);
+                    System.out.println("edited fields successfully");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -269,9 +282,10 @@ public class SellerSection extends UserSection {
                 offDetails.add(scanner.nextLine());
                 System.out.println("enter amount of discount");
                 offDetails.add(scanner.nextLine());
-                System.out.println("enter product Id's you want to be included(type end to end this");
-                while (!scanner.hasNext("end")) {
-                    offDetails.add(scanner.nextLine());
+                System.out.println("enter product Id's you want to be included(type end to end this)");
+                String input;
+                while (!(input = scanner.nextLine()).equalsIgnoreCase("end")) {
+                    offDetails.add(input);
                 }
                 try {
                     SellerController.getInstance().addOff(offDetails);

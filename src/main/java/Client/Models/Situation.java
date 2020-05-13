@@ -1,5 +1,7 @@
 package Client.Models;
 
-public enum Situation {
+import java.io.Serializable;
+
+public enum Situation implements Serializable {
     EDITING,CREATING,CONFIRMED;
 }
