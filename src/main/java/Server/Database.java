@@ -13,7 +13,6 @@ public class Database implements Serializable {
     private static ArrayList<Category> allCategory=new ArrayList<>();
     private static ArrayList<Request> allRequest=new ArrayList<>();
     private static ArrayList<Person> allUsers=new ArrayList<>();
-    private static ArrayList<Manager>allManagers=new ArrayList<>();
     private static ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
     private static ArrayList<Off>allOffs=new ArrayList<>();
 
@@ -29,6 +28,15 @@ public class Database implements Serializable {
         }
         return allProducts;
     }
+    public static ArrayList<Manager> getAllManagers(){
+        ArrayList<Manager> allManagers=new ArrayList<>();
+        for (Person user : allUsers) {
+            if(user instanceof Manager)
+                allManagers.add((Manager) user);
+        }
+        return allManagers;
+    }
+
 
     public static ArrayList<Seller> getAllSellers(){
          ArrayList<Seller> allSellers=new ArrayList<>();
@@ -90,10 +98,6 @@ public class Database implements Serializable {
         Database.allRequest = allRequest;
     }
 
-    public static void setAllManagers(ArrayList<Manager> allManagers) {
-        Database.allManagers = allManagers;
-    }
-
     public static void setAllDiscountCodes(ArrayList<CodedDiscount> allDiscountCodes) {
         Database.allDiscountCodes = allDiscountCodes;
     }
@@ -119,12 +123,6 @@ public class Database implements Serializable {
             }
         }
         throw new Exception("invalid discount code");
-    }
-    public static ArrayList<Manager> getAllManagers() {
-        return allManagers;
-    }
-    public static void addManager(Manager manager){
-        allManagers.add(manager);
     }
     public static void addUser(Person person){
         allUsers.add(person);
