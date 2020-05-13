@@ -4,6 +4,7 @@ import Client.Controller.AllProductsController;
 import Client.Controller.OffsController;
 import Client.Models.Off;
 import Client.Models.Product;
+import Server.Controller.TimeControl;
 
 public class OffsMenu extends Menu {
     public OffsMenu(Menu superMenu) {
@@ -15,16 +16,17 @@ public class OffsMenu extends Menu {
 
     @Override
     public void show() {
-        System.out.print("+------------------+------------+------------+---------------------+------------+-----------+\n");
-        System.out.print("| Product id       | Name       | Price      | Price with discount | Start date | End date  |\n");
-        System.out.print("+------------------+------------+------------+---------------------+------------+-----------+\n");
+        System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
+        System.out.print("| Product id       | Name       | Price      | Price with discount |     Start date     |      End date     |\n");
+        System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
         for (Off off : OffsController.getInstance().getOffs()) {
             for (Product product : off.getProducts()) {
-                System.out.format("| %-16s | %-10s | %-10d | %-19s | %-10s | %10s |\n", product.getProductId(), product.getName(),
-                        product.getPrice(),(product.getPrice()*(100-off.getAmountOfDiscount()))/100,off.getStartDate(),off.getEndDate());
+                System.out.format("| %-16s | %-10s | %-10d | %-19s | %-18s | %18s |\n", product.getProductId(), product.getName(),
+                        product.getPrice(),(product.getPrice()*(100-off.getAmountOfDiscount()))/100,
+                        TimeControl.getJalaliDateAndTimeForPrint(off.getStartDate()),TimeControl.getJalaliDateAndTimeForPrint(off.getEndDate()));
             }
         }
-        System.out.print("+------------------+------------+------------+---------------------+------------+-----------+\n");
+        System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
         super.show();
 
     }
