@@ -21,14 +21,14 @@ public class Off implements Serializable {
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     //for generating token
 
-    public Off(ArrayList<Product> products, Situation situation, Date startDate, Date endDate, int amountOfDiscount, Seller seller) {
+    public Off(ArrayList<Product> products, Situation situation, Date startDate, Date endDate, int amountOfDiscount, Seller seller) throws Exception {
 
         this.offId = generateNewToken();
         this.products = products;
         this.situation = situation;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.amountOfDiscount = amountOfDiscount;
+        this.setAmountOfDiscount(amountOfDiscount);
         this.seller = seller;
     }
 
@@ -48,7 +48,9 @@ public class Off implements Serializable {
         this.endDate = endDate;
     }
 
-    public void setAmountOfDiscount(int amountOfDiscount) {
+    public void setAmountOfDiscount(int amountOfDiscount) throws Exception {
+        if(amountOfDiscount < 0)
+            throw new Exception("amount fo discount should be positive");
         this.amountOfDiscount = amountOfDiscount;
     }
 
@@ -78,20 +80,24 @@ public class Off implements Serializable {
         return base64Encoder.encodeToString(randomBytes);
     }
 
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         StringBuilder products = new StringBuilder();
         for (Product item : this.products) {
             products.append(item.getName()+ "\n");
         }
-        return "Off{" +
-                "offId='" + offId + '\'' +
-                ", situation=" + situation +
-                ", startDate=" + TimeControl.getJalaliDateAndTimeForPrint(startDate) +
-                ", endDate=" + TimeControl.getJalaliDateAndTimeForPrint(endDate) +
-                ", amountOfDiscount=" + amountOfDiscount +
-                ", seller=" + seller.getUserName() +
-                ", products=" + products +
+        return
+                "offId : '" + offId + '\'' +
+                ", situation : " + situation +
+                ", startDate : " + TimeControl.getJalaliDateAndTimeForPrint(startDate) +
+                ", endDate : " + TimeControl.getJalaliDateAndTimeForPrint(endDate) +
+                ", amountOfDiscount : " + amountOfDiscount +
+                ", seller : " + seller.getUserName() +
+                ", products : {" + products +
                 '}';
     }
 }

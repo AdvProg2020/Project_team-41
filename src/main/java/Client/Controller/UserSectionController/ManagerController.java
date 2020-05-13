@@ -33,7 +33,7 @@ public class ManagerController extends UserSectionController{
     public void deleteUser(String username) throws Exception {
         ManagerServerController.getInstance().deleteUser(username);
     }
-    public void createManagerProfile(ArrayList<String> userInfo){
+    public void createManagerProfile(ArrayList<String> userInfo) throws Exception {
         ManagerServerController.getInstance().createManagerProfile(userInfo);
     }
     public void removeProduct(String productId){
@@ -48,7 +48,7 @@ public class ManagerController extends UserSectionController{
     public void  editDiscountCode(String code,HashMap<String,String> edits) throws Exception {
         ManagerServerController.getInstance().editDiscountCode(code,edits);
     }
-    public void removeDiscountCode(String code){
+    public void removeDiscountCode(String code) throws Exception {
         ManagerServerController.getInstance().removeDiscountCode(code);
     }
     public ArrayList<String> showRequest(){
@@ -69,7 +69,7 @@ public class ManagerController extends UserSectionController{
     public void editCategoryName(String category, String editedField) throws Exception {
         ManagerServerController.getInstance().editCategoryName(category, editedField);
     }
-    public void addCategory(String categoryName,String specialFeatures){
+    public void addCategory(String categoryName,String specialFeatures) throws Exception {
         ManagerServerController.getInstance().addCategory(categoryName,specialFeatures);
     }
     public void removeCategory(String categoryName) throws Exception {
