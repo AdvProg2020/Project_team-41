@@ -6,6 +6,7 @@ import Client.Models.CommentSituation;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
 import Client.View.Menus.UserSectionMenus.UserSection;
+import Server.Controller.ProductServerController;
 
 public class ProductController {
     private static ProductController single_instance = null;
@@ -45,5 +46,8 @@ public class ProductController {
             }
             comment.setHasHeBought(false);
         }
+    }
+    public int amountOfDiscount(String productId) throws Exception {
+        return ProductServerController.getInstance().amountOfDiscount(productId);
     }
 }

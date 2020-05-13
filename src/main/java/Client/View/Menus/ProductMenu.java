@@ -44,6 +44,7 @@ public class ProductMenu extends Menu {
                         "name: " + theProduct.getName() + "\n" +
                                 "description: " + theProduct.getDescription() + "\n" +
                                 "price: " + theProduct.getPrice() + "\n" +
+                                amountOfDiscount()+
                                 "category: " + theProduct.getCategory().getName() + "\n" +
                                 "seller: " + theProduct.getSeller().getUserName() + "\n" +
                                 "average score: " + theProduct.calculateAverageScore()
@@ -169,6 +170,14 @@ public class ProductMenu extends Menu {
                 System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureInt());
             else
                 System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureString());
+        }
+    }
+    private String amountOfDiscount(){
+        try {
+            int amountOfDiscount=ProductController.getInstance().amountOfDiscount(theProduct.getProductId());
+            return "price with discount: "+(theProduct.getPrice()*(100-amountOfDiscount))/100+"\n";
+        } catch (Exception e) {
+            return e.getMessage()+"\n";
         }
     }
 }
