@@ -27,7 +27,7 @@ public class LoginRegisterController {
         //todo other things
     }
     public boolean checkIfManagerExists(){
-        return !Database.getAllManagers().isEmpty();
+        return LoginRegisterServerController.getInstance().checkIfManagerExists();
     }
     private LoginRegisterController(){
     }
