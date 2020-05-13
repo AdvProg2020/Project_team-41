@@ -167,6 +167,11 @@ public class ManagerServerController extends UserSectionServerController {
         ArrayList<String> requestDetails = new ArrayList<>();
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
+            case "ADD_COMMENT" :{
+                requestDetails.add("comment details:");
+                requestDetails.add(request.getComment().toString());
+                break;
+            }
             case "ADD_PRODUCT" :
             case "REMOVE_PRODUCT" :
                 {
@@ -210,6 +215,11 @@ public class ManagerServerController extends UserSectionServerController {
     public void  acceptRequest(String requestId) throws Exception {
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
+            case "ADD_COMMENT" :{
+                Comment comment = request.getComment();
+                comment.getProduct().addComment(comment);
+                break;
+            }
             case "ADD_PRODUCT" :{
                 Database.addProduct(request.getProduct());
                 request.getSeller().addProduct(request.getProduct());
