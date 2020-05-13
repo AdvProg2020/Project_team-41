@@ -26,10 +26,16 @@ public class SellerSection extends UserSection {
 
     @Override
     public void show() {
+        super.show();
+
+    }
+
+    @Override
+    public void commands() {
+        super.commands();
         System.out.println("view company info");
         System.out.println("add product");
         System.out.println("remove product");
-        super.show();
 
     }
 
