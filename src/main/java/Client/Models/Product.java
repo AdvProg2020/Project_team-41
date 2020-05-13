@@ -43,6 +43,7 @@ public class Product implements Serializable {
         this.specialFeatures = specialFeatures;
         this.description = description;
     }
+
     public Product(){
         this.productId = generateNewToken();
     }
@@ -147,6 +148,9 @@ public class Product implements Serializable {
     }
     public void addScore(Score score){
         scores.add(score);
+    }
+    public void addComment(Comment comment){
+        this.comments.add(comment);
     }
 
     public Integer getViews() {

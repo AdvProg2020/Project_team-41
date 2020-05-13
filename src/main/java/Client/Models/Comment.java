@@ -24,18 +24,36 @@ public class Comment implements Serializable {
         this.commentSituation = commentSituation;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return Content;
+    }
+
+    public boolean isHasHeBought() {
+        return hasHeBought;
+    }
+
     public void setHasHeBought(boolean hasHeBought) {
         this.hasHeBought = hasHeBought;
     }
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "person=" + person +
-                ", title='" + title + '\'' +
-                ", Content='" + Content + '\'' +
-                ", commentSituation=" + commentSituation +
-                ", hasHeBought=" + hasHeBought +
-                '}';
+        return "person : " + person.getUserName() +
+                "\ntitle :'" + title + '\'' +
+                "\nContent :'" + Content + '\'' +
+                "\ncommentSituation :" + commentSituation +
+                "\nhasHeBought :" + hasHeBought;
     }
 }

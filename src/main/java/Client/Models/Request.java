@@ -21,6 +21,7 @@ public class Request implements Serializable {
     private Seller seller;
     private Off off;
     private String requestId;
+    private Comment comment;
 
     public Request(HashMap<String, String> editRequest, RequestType requestType, Product product, Seller seller, Off off) {
         this.editRequest = editRequest;
@@ -29,6 +30,18 @@ public class Request implements Serializable {
         this.seller = seller;
         this.off = off;
         this.requestId = generateNewToken();
+    }
+    public Request(Comment comment){
+        this.requestType = RequestType.ADD_COMMENT;
+        this.requestId = generateNewToken();
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 
     public String getRequestId() {
