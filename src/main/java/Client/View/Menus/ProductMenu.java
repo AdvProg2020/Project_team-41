@@ -137,8 +137,12 @@ public class ProductMenu extends Menu {
                         String title = scanner.nextLine();
                         System.out.println("Enter your comment");
                         String content = scanner.nextLine();
-                        ProductController.addComment(title, content , theProduct);
-                        System.out.println("Thanks for your comment");
+                        try {
+                            ProductController.addComment(title, content , theProduct);
+                            System.out.println("Thanks for your comment");
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
                         superMenu.show();
                         superMenu.execute();
                     }
