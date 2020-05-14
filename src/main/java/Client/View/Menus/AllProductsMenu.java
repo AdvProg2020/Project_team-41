@@ -28,6 +28,9 @@ public class AllProductsMenu extends Menu {
     @Override
     public void execute() {
         super.execute();
+        System.out.println("Invalid command!");
+        this.show();
+        this.execute();
     }
 
     private Menu addViewCategories() {
@@ -56,12 +59,16 @@ public class AllProductsMenu extends Menu {
                     System.out.format("| %-16s | %-10s | %-10d |\n",sortedProduct.getProductId(),sortedProduct.getName(),sortedProduct.getPrice() );
                 }
                 System.out.print("+------------------+------------+------------+\n");
+                super.show();
 
             }
 
             @Override
             public void execute() {
                 super.execute();
+                System.out.println("Invalid command!");
+                this.commands();
+                this.execute();
             }
         };
     }
