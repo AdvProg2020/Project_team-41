@@ -5,7 +5,6 @@ import Client.Models.Comment;
 import Client.Models.CommentSituation;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
-import Client.Models.Request;
 import Client.View.Menus.UserSectionMenus.UserSection;
 import Server.Controller.ProductServerController;
 
@@ -32,14 +31,14 @@ public class ProductController {
 
     }
 
+
     public static void addComment(String title, String content, Product product) throws Exception {
 
         if (UserSectionController.getLoggedInPerson() == null) {
             throw new Exception("You must first login!");
         }
 
-        Comment comment = new Comment(UserSectionController.getLoggedInPerson(), product, title, content, CommentSituation.WAITING);
-        comment.setHasHeBought(false);
+        Comment comment = new Comment(UserSectionController.getLoggedInPerson(), product, title, content, CommentSituation.WAITING , false);
         for (Product tradedProduct : UserSectionController.getLoggedInPerson().getAllProductsHeTraded()) {
             if (product.equals(tradedProduct)) {
                 comment.setHasHeBought(true);
@@ -52,4 +51,5 @@ public class ProductController {
     public int amountOfDiscount(String productId) throws Exception {
         return ProductServerController.getInstance().amountOfDiscount(productId);
     }
-}
+    }
+

@@ -21,6 +21,7 @@ public class ServerStartProgram {
         try {
             readAllCategory();
             readAllDiscountCodes();
+            readAllManagers();
             readAllUsers();
             readAllRequest();
         }
@@ -46,6 +47,13 @@ public class ServerStartProgram {
         inputStream = new FileInputStream("src/main/resources/allDiscountCodes.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllDiscountCodes((ArrayList<CodedDiscount>) objectInputStream.readObject());
+        inputStream.close();
+
+    }
+    private static void readAllManagers() throws IOException, ClassNotFoundException {
+        inputStream = new FileInputStream("src/main/resources/allManagers.dat");
+        objectInputStream = new ObjectInputStream(inputStream);
+        Database.setAllManagers((ArrayList<Manager>) objectInputStream.readObject());
         inputStream.close();
 
     }
