@@ -124,15 +124,16 @@ public class SellerSection extends UserSection {
             @Override
             public void execute() {
                 super.execute();
-                command = command.toLowerCase();
-                if(command.startsWith("view product")){
-                    viewProduct(command.split(" ")[2]);
+
+                String lowerCaseCommand = command.toLowerCase();
+                if(lowerCaseCommand.startsWith("viewProduct")){
+                    viewProduct(command.split(" ")[1]);
                 }
-                else if(command.startsWith("view product buyers")){
-                    viewProductBuyers(command.split(" ")[3]);
+                else if(lowerCaseCommand.startsWith("viewProductBuyers")){
+                    viewProductBuyers(command.split(" ")[1]);
                 }
-                else if(command.startsWith("edit product")){
-                    editProduct(command.split(" ")[2]);
+                else if(lowerCaseCommand.startsWith("editProduct")){
+                    editProduct(command.split(" ")[1]);
                 }
                 else{
                     System.out.println("invalid command");
@@ -231,7 +232,7 @@ public class SellerSection extends UserSection {
                 else if(command.startsWith("edit")){
                     editOff(command.split(" ")[1]);
                 }
-                else if (command.equals("add off")){
+                else if (command.equals("addOff")){
                     addOff();
                 }
                 else
