@@ -186,11 +186,9 @@ public class Database implements Serializable {
         allRequest.add(request);
     }
     public static ArrayList<Product> getAllOffProducts(){
-        ArrayList<Product> allOffProducts=new ArrayList();
+        ArrayList<Product> allOffProducts=new ArrayList<>();
         for (Off off : allOffs) {
-            for (Product product : off.getProducts()) {
-                allOffProducts.add(product);
-            }
+            allOffProducts.addAll(off.getProducts());
         }
         return allOffProducts;
     }
