@@ -81,7 +81,7 @@ public class TradeLog implements Serializable {
         this.deliverySituation = deliverySituation;
     }
     public static String generateNewToken() {
-        byte[] randomBytes = new byte[4];
+        byte[] randomBytes = new byte[2];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }
@@ -90,7 +90,7 @@ public class TradeLog implements Serializable {
     public String toString() {
         StringBuilder products = new StringBuilder();
         for (Product item : items) {
-            products.append(item.getName()+ "\n");
+            products.append(item.getName()).append("\n");
         }
 
         return "TradeLog{" +

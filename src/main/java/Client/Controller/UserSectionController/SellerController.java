@@ -54,7 +54,7 @@ public class SellerController extends UserSectionController{
                 SellerServerController.getInstance().removeProduct((Seller)loggedInPerson,id);
         }
         public ArrayList<Category> getCategories(){
-                return SellerServerController.getInstance().getCategories((Seller)loggedInPerson);
+                return SellerServerController.getInstance().getCategories();
         }
         public ArrayList<Off> getOffs(){
                 return SellerServerController.getInstance().getOffs((Seller)loggedInPerson);

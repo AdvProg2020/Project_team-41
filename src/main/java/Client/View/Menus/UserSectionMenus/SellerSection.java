@@ -116,22 +116,23 @@ public class SellerSection extends UserSection {
                 }
                 System.out.println();
                 System.out.println("commands:");
-                System.out.println("viewProduct <product id>");
-                System.out.println("viewProductBuyers <product id>");
-                System.out.println("editProduct <product id>");
+                System.out.println("view product <product id>");
+                System.out.println("view product buyers <product id>");
+                System.out.println("edit product <product id>");
             }
 
             @Override
             public void execute() {
                 super.execute();
-                if(command.startsWith("viewProduct")){
-                    viewProduct(command.split(" ")[1]);
+                command = command.toLowerCase();
+                if(command.startsWith("view product")){
+                    viewProduct(command.split(" ")[2]);
                 }
-                else if(command.startsWith("viewProductBuyers")){
-                    viewProductBuyers(command.split(" ")[1]);
+                else if(command.startsWith("view product buyers")){
+                    viewProductBuyers(command.split(" ")[3]);
                 }
-                else if(command.startsWith("editProduct")){
-                    editProduct(command.split(" ")[1]);
+                else if(command.startsWith("edit product")){
+                    editProduct(command.split(" ")[2]);
                 }
                 else{
                     System.out.println("invalid command");
@@ -251,6 +252,7 @@ public class SellerSection extends UserSection {
                 this.execute();
             }
             private void editOff(String offId){
+
                 HashMap<String, String> edits = new HashMap<>();
                 System.out.println("what do you want to change?(type end to finish editing)");
                 System.out.println("you can edit (start date,end date,amount of discount,products)");

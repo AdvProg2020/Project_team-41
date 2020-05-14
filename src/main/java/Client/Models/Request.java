@@ -15,26 +15,55 @@ public class Request implements Serializable {
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     //for generating token
-    private HashMap<String,String> editRequest;
     private RequestType requestType;
     private Product product;
+    private Product editedProduct;
     private Seller seller;
     private Off off;
+    private Off editedOff;
     private String requestId;
     private Comment comment;
 
-    public Request(HashMap<String, String> editRequest, RequestType requestType, Product product, Seller seller, Off off) {
-        this.editRequest = editRequest;
+    public Request(Seller seller,Product product, Product editedProduct) {
+        requestId = generateNewToken();
+        requestType = RequestType.EDIT_PRODUCT;
+        this.product = product;
+        this.editedProduct = editedProduct;
+        this.seller = seller;
+    }
+
+    public Request(Seller seller, Off off, Off editedOff) {
+        requestId = generateNewToken();
+        requestType = RequestType.EDIT_OFF;
+        this.seller = seller;
+        this.off = off;
+        this.editedOff = editedOff;
+    }
+
+    public Request(Seller seller,Product product, RequestType requestType) {
+        requestId = generateNewToken();
         this.requestType = requestType;
         this.product = product;
         this.seller = seller;
-        this.off = off;
-        this.requestId = generateNewToken();
     }
+
+    public Request(Seller seller) {
+        requestId = generateNewToken();
+        requestType = RequestType.REGISTER_SELLER;
+        this.seller = seller;
+    }
+
+    public Request(Seller seller, Off off) {
+        requestId = generateNewToken();
+        requestType = RequestType.ADD_OFF;
+        this.seller = seller;
+        this.off = off;
+    }
+
     public Request(Comment comment){
+        this.requestId = generateNewToken();
         this.requestType = RequestType.ADD_COMMENT;
         this.comment = comment;
-        this.requestId = generateNewToken();
     }
 
     public Comment getComment() {
@@ -47,14 +76,6 @@ public class Request implements Serializable {
 
     public String getRequestId() {
         return requestId;
-    }
-
-    public HashMap<String, String> getEditRequest() {
-        return editRequest;
-    }
-
-    public void setEditRequest(HashMap<String, String> editRequest) {
-        this.editRequest = editRequest;
     }
 
     public String getRequestType() {
@@ -89,9 +110,24 @@ public class Request implements Serializable {
         this.off = off;
     }
 
+    public Product getEditedProduct() {
+        return editedProduct;
+    }
+
+    public void setEditedProduct(Product editedProduct) {
+        this.editedProduct = editedProduct;
+    }
+
+    public Off getEditedOff() {
+        return editedOff;
+    }
+
+    public void setEditedOff(Off editedOff) {
+        this.editedOff = editedOff;
+    }
 
     public static String generateNewToken() {
-        byte[] randomBytes = new byte[4];
+        byte[] randomBytes = new byte[2];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }
