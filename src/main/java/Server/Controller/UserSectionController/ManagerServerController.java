@@ -56,7 +56,6 @@ public class ManagerServerController extends UserSectionServerController {
         manager.setEmail(userInfo.get(4));
         manager.setPhoneNumber(userInfo.get(5));
         manager.setCredit(Integer.parseInt(userInfo.get(6)));
-        Database.addManager(manager);
         Database.addUser(manager);
 
 
