@@ -16,12 +16,14 @@ public class Comment implements Serializable {
         return commentSituation;
     }
 
-    public Comment(Person person, Product product, String title, String content, CommentSituation commentSituation) {
+    public Comment(Person person, Product product, String title, String content, CommentSituation commentSituation,boolean hasHeBought) {
         this.person = person;
         this.product = product;
         this.title = title;
         Content = content;
         this.commentSituation = commentSituation;
+        this.hasHeBought = hasHeBought;
+
     }
 
     public Person getPerson() {
