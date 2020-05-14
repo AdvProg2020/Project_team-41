@@ -29,7 +29,7 @@ public class LoginRegisterServerController {
             /*if (Database.getAllManagers().size()>0) {
                 throw new Exception("You can't be a manager!");
             }*/
-            Database.addUser(person);
+            Database.addManager((Manager) person);
         }
         Database.addUser(person);
         //todo file coding
