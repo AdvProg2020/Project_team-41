@@ -1,7 +1,9 @@
 package Server.Controller;
 
+import Client.Models.Comment;
 import Client.Models.Off;
 import Client.Models.Product;
+import Client.Models.Request;
 import Server.Database;
 
 public class ProductServerController {
@@ -32,6 +34,10 @@ public class ProductServerController {
             }
         }
         throw new Exception("There is no discount for this product at this time.");
+    }
+    public void addComment(Comment comment){
+        Request request=new Request(comment);
+        Database.addRequest(request);
     }
 
 }
