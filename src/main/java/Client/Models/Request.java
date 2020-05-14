@@ -33,6 +33,7 @@ public class Request implements Serializable {
     }
     public Request(Comment comment){
         this.requestType = RequestType.ADD_COMMENT;
+        this.comment = comment;
         this.requestId = generateNewToken();
     }
 
