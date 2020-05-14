@@ -2,7 +2,9 @@ package Client.View.Menus;
 
 import Client.Controller.AllProductsController;
 import Client.Controller.ProductController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Comment;
+import Client.Models.CommentSituation;
 import Client.Models.Product;
 import Client.Models.SpecialFeature;
 
@@ -47,7 +49,8 @@ public class ProductMenu extends Menu {
                                 amountOfDiscount()+
                                 "category: " + theProduct.getCategory().getName() + "\n" +
                                 "seller: " + theProduct.getSeller().getUserName() + "\n" +
-                                "average score: " + theProduct.calculateAverageScore()+"\n"
+                                "average score: " + theProduct.calculateAverageScore()
+                        //TODO print product discount ...
                 );
                 super.show();
             }
@@ -68,7 +71,10 @@ public class ProductMenu extends Menu {
                             super.execute();
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
-                            //TODO go to register/login menu
+                            Menu registerMenu = new RegisterLoginMenu(this , "Register or Login");
+                            this.addSubMenu(registerMenu);
+                            registerMenu.show();
+                            registerMenu.execute();
                         }
                     }
                 });
@@ -108,8 +114,7 @@ public class ProductMenu extends Menu {
                 }
                 System.out.println("comments:");
                 for (Comment comment : theProduct.getComments()) {
-                    // TODO not certain about this syntax:
-                    if(comment.getCommentSituation().equals("CONFIRMED")){
+                    if(comment.getCommentSituation().equals(CommentSituation.CONFIRMED)) {
                         System.out.println(comment);
                     }
                 }
@@ -138,11 +143,11 @@ public class ProductMenu extends Menu {
                         System.out.println("Enter your comment");
                         String content = scanner.nextLine();
                         try {
-                            ProductController.addComment(title, content , theProduct);
+                        ProductController.addComment(title, content , theProduct);
                             System.out.println("Thanks for your comment");
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
-                        }
+                    }
                         superMenu.show();
                         superMenu.execute();
                     }
@@ -184,7 +189,7 @@ public class ProductMenu extends Menu {
 
     private void printProductAttributes(Product theProduct){
 
-        System.out.println(theProduct + ", category: " + theProduct.getCategory());
+        System.out.println(theProduct + ", category: " + theProduct.getCategory().getName());
         for (String featureName : theProduct.getSpecialFeatures().keySet()) {
             System.out.print("feature name: " + featureName );
             SpecialFeature productSpecialFeature = theProduct.getSpecialFeatures().get(featureName);
