@@ -20,6 +20,9 @@ public class SortView extends Menu{
     @Override
     public void execute() {
         super.execute();
+        System.out.println("Invalid command!");
+        this.show();
+        this.execute();
     }
 
     private Menu showAvailableSorts() {
@@ -32,6 +35,9 @@ public class SortView extends Menu{
         @Override
         public void execute() {
             super.execute();
+            System.out.println("Invalid command!");
+            super.show();
+            this.execute();
         }
     };
     }
@@ -48,9 +54,14 @@ public class SortView extends Menu{
                 SortController.getInstance().setSortFeature(scanner.nextLine());
 
                 System.out.println("\n" + "Sorted Products:");
+                System.out.print("+------------------+------------+------------+\n");
+                System.out.print("| Product id       | Name       | Price      |\n");
+                System.out.print("+------------------+------------+------------+\n");
                 for (Product sortedProduct : SortController.getInstance().getSortedProducts(this.superMenu instanceof OffsMenu)) {
-                    System.out.println(sortedProduct.getName());
+                    System.out.format("| %-16s | %-10s | %-10d |\n",sortedProduct.getProductId(),sortedProduct.getName(),sortedProduct.getPrice() );
                 }
+                System.out.print("+------------------+------------+------------+\n");
+
                 super.execute();
             }
         };
