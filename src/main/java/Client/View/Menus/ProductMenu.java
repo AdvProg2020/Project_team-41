@@ -44,11 +44,12 @@ public class ProductMenu extends Menu {
                         "name: " + theProduct.getName() + "\n" +
                                 "description: " + theProduct.getDescription() + "\n" +
                                 "price: " + theProduct.getPrice() + "\n" +
+                                amountOfDiscount()+
                                 "category: " + theProduct.getCategory().getName() + "\n" +
                                 "seller: " + theProduct.getSeller().getUserName() + "\n" +
-                                "average score: " + theProduct.calculateAverageScore()
-                        //TODO print product discount ...
+                                "average score: " + theProduct.calculateAverageScore()+"\n"
                 );
+                super.show();
             }
 
             @Override
@@ -72,7 +73,11 @@ public class ProductMenu extends Menu {
                     }
                 });
                   super.execute();
+                  System.out.println("Invalid command!");
+                  this.commands();
+                  this.execute();
             }
+
         };
     }
 
@@ -81,11 +86,15 @@ public class ProductMenu extends Menu {
             @Override
             public void show() {
                 printProductAttributes(theProduct);
+                super.show();
             }
 
             @Override
             public void execute() {
                 super.execute();
+                System.out.println("Invalid command!");
+                this.commands();
+                this.execute();
             }
         };
     }
@@ -94,6 +103,9 @@ public class ProductMenu extends Menu {
         return new Menu(this, "comments") {
             @Override
             public void show() {
+                if(this.subMenus.size()<2) {
+                    this.addSubMenu(addAddComment());
+                }
                 System.out.println("comments:");
                 for (Comment comment : theProduct.getComments()) {
                     // TODO not certain about this syntax:
@@ -101,13 +113,20 @@ public class ProductMenu extends Menu {
                         System.out.println(comment);
                     }
                 }
-                System.out.println("score:");
-                System.out.println(theProduct.calculateAverageScore());
+                System.out.println("score:"+theProduct.calculateAverageScore()+"\n");
+                super.show();
+
             }
 
             @Override
             public void execute() {
-                this.addSubMenu(new Menu(this, "add comment") {
+                super.execute();
+                System.out.println("Invalid command");
+                this.commands();
+                this.execute();
+            }
+            private Menu addAddComment(){
+                return new Menu(this, "add comment") {
                     @Override
                     public void show() {
                         System.out.println("Enter title of your comment");
@@ -118,12 +137,16 @@ public class ProductMenu extends Menu {
                         String title = scanner.nextLine();
                         System.out.println("Enter your comment");
                         String content = scanner.nextLine();
-                        ProductController.addComment(title, content , theProduct);
-                        System.out.println("Thanks for your comment");
-                        super.execute();
+                        try {
+                            ProductController.addComment(title, content , theProduct);
+                            System.out.println("Thanks for your comment");
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                        superMenu.show();
+                        superMenu.execute();
                     }
-                });
-            super.execute();
+                };
             }
         };
     }
@@ -169,6 +192,14 @@ public class ProductMenu extends Menu {
                 System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureInt());
             else
                 System.out.println(", feature value: " + productSpecialFeature.getSpecialFeatureString());
+        }
+    }
+    private String amountOfDiscount(){
+        try {
+            int amountOfDiscount=ProductController.getInstance().amountOfDiscount(theProduct.getProductId());
+            return "price with discount: "+(theProduct.getPrice()*(100-amountOfDiscount))/100+"\n";
+        } catch (Exception e) {
+            return e.getMessage()+"\n";
         }
     }
 }

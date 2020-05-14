@@ -1,5 +1,11 @@
 package Server.Controller;
 
+import Client.Models.Comment;
+import Client.Models.Off;
+import Client.Models.Product;
+import Client.Models.Request;
+import Server.Database;
+
 public class ProductServerController {
     private static ProductServerController single_instance = null;
     public static ProductServerController getInstance()
@@ -18,6 +24,20 @@ public class ProductServerController {
 
     public static void addComment(String title , String content){
         //TODO add the comment
+    }
+    public int amountOfDiscount(String productId) throws Exception {
+        for (Off off : Database.getAllOffs()) {
+            for (Product product : off.getProducts()) {
+                if(product.getProductId().equals(productId)){
+                    return off.getAmountOfDiscount();
+                }
+            }
+        }
+        throw new Exception("There is no discount for this product at this time.");
+    }
+    public void addComment(Comment comment){
+        Request request=new Request(comment);
+        Database.addRequest(request);
     }
 
 }

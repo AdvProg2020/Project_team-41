@@ -50,4 +50,8 @@ public class LoginRegisterServerController {
     public void logout(){
 
     }
+    public boolean checkIfManagerExists(){
+        return !Database.getAllManagers().isEmpty();
+    }
+
 }
