@@ -12,7 +12,6 @@ public class ServerEndProgram {
         try{
             writeAllCategory();
             writeAllDiscountCodes();
-            writeAllManagers();
             writeAllRequests();
             writeAllUsers();
             System.exit(0);
@@ -47,13 +46,6 @@ public class ServerEndProgram {
          outputStream = new FileOutputStream("src/main/resources/allDiscountCodes.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllDiscountCodes());
-         objectOutputStream.close();
-
-    }
-    private static void writeAllManagers() throws IOException {
-         outputStream = new FileOutputStream("src/main/resources/allManagers.dat");
-         objectOutputStream = new ObjectOutputStream(outputStream);
-         objectOutputStream.writeObject(Database.getAllManagers());
          objectOutputStream.close();
 
     }
