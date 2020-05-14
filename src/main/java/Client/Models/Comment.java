@@ -56,6 +56,10 @@ public class Comment implements Serializable {
                 "\ntitle :'" + title + '\'' +
                 "\nContent :'" + Content + '\'' +
                 "\ncommentSituation :" + commentSituation +
-                "\nhasHeBought :" + hasHeBought;
+                "\nhasHeBought :" + hasHeBought+"\n";
+    }
+
+    public void setCommentSituation(CommentSituation commentSituation) {
+        this.commentSituation = commentSituation;
     }
 }

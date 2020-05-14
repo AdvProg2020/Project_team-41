@@ -34,7 +34,7 @@ public abstract class UserSectionServerController {
             throw new NullPointerException("There is no one logged in");
         switch (field){
             case "password":{
-                if(editedField.split(",")[0].equals(person))
+                if(editedField.split(",")[0].equals(person.getPassword()))
                     person.setPassword(editedField.split(",")[1]);
                 else
                     throw new Exception("wrong password");
