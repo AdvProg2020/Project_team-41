@@ -31,18 +31,6 @@ public class ProductController {
 
     }
 
-//    public static void addComment(String title, String content, Product product) {
-//        Comment comment = new Comment(UserSectionController.getLoggedInPerson(), product, title, content, CommentSituation.WAITING);
-//        product.getComments().add(comment);
-//
-//            for (Product tradedProduct : UserSectionController.getLoggedInPerson().getAllProductsHeTraded()) {
-//                if (product.equals(tradedProduct)) {
-//                    comment.setHasHeBought(true);
-//                }
-//            }
-//            comment.setHasHeBought(false);
-//        }
-
 
     public static void addComment(String title, String content, Product product) throws Exception {
 
