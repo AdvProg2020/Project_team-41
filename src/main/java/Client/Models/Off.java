@@ -22,7 +22,6 @@ public class Off implements Serializable {
     //for generating token
 
     public Off(ArrayList<Product> products, Situation situation, Date startDate, Date endDate, int amountOfDiscount, Seller seller) throws Exception {
-
         this.offId = generateNewToken();
         this.products = products;
         this.situation = situation;
@@ -30,6 +29,24 @@ public class Off implements Serializable {
         this.endDate = endDate;
         this.setAmountOfDiscount(amountOfDiscount);
         this.seller = seller;
+    }
+
+    public Off cloneOff() throws Exception{
+            Off off =  new Off((ArrayList<Product>) products.clone(),situation,(Date) startDate.clone(),(Date) endDate.clone(),amountOfDiscount,seller);
+            off.setOffId(offId);
+            return off;
+    }
+
+    public void setOffId(String offId) {
+        this.offId = offId;
+    }
+
+    public boolean hasProduct(Product product){
+        for (Product offProduct : getProducts()) {
+            if(offProduct.equals(product))
+                return true;
+        }
+        return false;
     }
 
     public Seller getSeller() {
@@ -75,7 +92,7 @@ public class Off implements Serializable {
     }
 
     public static String generateNewToken() {
-        byte[] randomBytes = new byte[4];
+        byte[] randomBytes = new byte[2];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }

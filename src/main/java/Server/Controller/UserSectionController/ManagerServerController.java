@@ -181,10 +181,11 @@ public class ManagerServerController extends UserSectionServerController {
             case "EDIT_PRODUCT" :{
                 requestDetails.add("product details:");
                 requestDetails.addAll(getProductDetails(request.getProduct()));
-                requestDetails.add("product edits:");
-                for (String editRequestKey : request.getEditRequest().keySet()) {
-                    requestDetails.add(editRequestKey + "-" + request.getEditRequest().get(editRequestKey));
-                }
+                requestDetails.add("original product:");
+                requestDetails.add(request.getProduct().toString());
+                requestDetails.add("edited product:");
+                requestDetails.add(request.getEditedProduct().toString());
+
                 break;
             }
             case "ADD_OFF" :{
@@ -195,10 +196,11 @@ public class ManagerServerController extends UserSectionServerController {
             case "EDIT_OFF" : {
                     requestDetails.add("off details:");
                     requestDetails.addAll(getOffDetails(request.getOff()));
-                    requestDetails.add("off edits:");
-                for (String editRequestKey : request.getEditRequest().keySet()) {
-                    requestDetails.add(editRequestKey + "-" + request.getEditRequest().get(editRequestKey));
-                }
+                    requestDetails.add("original off:");
+                    requestDetails.add(request.getOff().toString());
+                    requestDetails.add("edited off:");
+                    requestDetails.add(request.getEditedOff().toString());
+
                 break;
             }
 
@@ -230,67 +232,37 @@ public class ManagerServerController extends UserSectionServerController {
                 break;
             }
             case "EDIT_PRODUCT" :{
-                Product product = request.getProduct();
-                for (String editRequestKey : request.getEditRequest().keySet()) {
-                    String editRequestValue = request.getEditRequest().get(editRequestKey);
-                    switch (editRequestKey){
-                        case "seller" :{
-                            product.setSeller(Database.getSellerByUsername(editRequestValue));
-                            break;
-                        }
-                        case "price" :{
-                            product.setPrice(Integer.parseInt(editRequestValue));
-                            break;
-                        }
-                        case "companyName" :{
-                            product.setCompanyName(editRequestValue);
-                            break;
-                        }
-                        case "description" :{
-                            product.setDescription(editRequestValue);
-                            break;
-                        }
-                        case "name" :{
-                            product.setName(editRequestValue);
-                            break;
-                        }
-                    }
-                }
+
+                Database.getAllProducts().remove(request.getProduct());
+                Database.addProduct(request.getEditedProduct());
+                request.getSeller().removeProduct(request.getProduct());
+                request.getSeller().addProduct(request.getEditedProduct());
+
                 break;
             }
             case "ADD_OFF" :{
+                for (Product product : request.getOff().getProducts()) {
+                    product.setIsItInOff(true);
+                }
                 Database.addOff(request.getOff());
                 request.getSeller().addOff(request.getOff());
                 break;
             }
             case "EDIT_OFF" : {
-                Off off = request.getOff();
-                for (String editRequestKey : request.getEditRequest().keySet()) {
-                    String editRequestValue = request.getEditRequest().get(editRequestKey);
-                    switch (editRequestKey){
-                        case "startDate" :{
-                            off.setStartDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
-                            break;
-                        }
-                        case "endDate" :{
-                            off.setEndDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
-                            break;
-                        }
-                        case "amountOfDiscount" :{
-                            off.setAmountOfDiscount(Integer.parseInt(editRequestValue));
-                            break;
-                        }
-                        case "products" :{
-                            ArrayList<Product> products = new ArrayList<>();
-                            for (String productId : editRequestValue.split(",")) {
-                                products.add(Database.getProductById(productId));
-                            }
-                            off.setProducts(products);
-                        }
-                    }
+                for (Product product : request.getOff().getProducts()) {
+                    product.setIsItInOff(false);
                 }
+                for (Product product : request.getEditedOff().getProducts()) {
+                    product.setIsItInOff(true);
+                }
+
+                Database.getAllOffs().remove(request.getOff());
+                Database.addOff(request.getEditedOff());
+                request.getSeller().removeOff(request.getOff());
+                request.getSeller().addOff(request.getEditedOff());
                 break;
             }
+            //todo add remove off and remember to set every product isItInOff to false
 
             case "REGISTER_SELLER" :{
                 Database.addUser(request.getSeller());

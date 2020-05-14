@@ -20,7 +20,7 @@ public class Product implements Serializable {
     private Seller seller;
     private int quantity;
     // end of common specifics
-
+    private boolean isItInOff;
     private Category category;
     private HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
     private String description;
@@ -32,7 +32,7 @@ public class Product implements Serializable {
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     //for generating token
 
-    public Product( String name, String companyName, int price, Seller seller, int quantity, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) {
+    public Product(String name, String companyName, int price, Seller seller, int quantity, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) {
         this.productId = generateNewToken();
         this.name = name;
         this.companyName = companyName;
@@ -44,14 +44,22 @@ public class Product implements Serializable {
         this.description = description;
     }
 
+    public Product cloneProduct(){
+        Product product = this;
+        Product clonedProduct = new Product(product.getName(),product.getCompanyName(),product.getPrice(),product.getSeller(),product.getQuantity(),product.getCategory(),(HashMap<String, SpecialFeature>) product.getSpecialFeatures().clone(),product.getDescription());
+        clonedProduct.setProductId(product.getProductId());
+        clonedProduct.setBuyers(product.getBuyers());
+        clonedProduct.setComments(product.getComments());
+        clonedProduct.setScores(product.getScores());
+        return clonedProduct;
+    }
+
     public Product(){
         this.productId = generateNewToken();
     }
     public ArrayList<Buyer> buyers = new ArrayList<>();
 
     public Integer calculateAverageScore() {
-        if(scores.size() == 0)
-            return 0;
         int sum = 0;
         if(scores.size()==0)
             return sum;
@@ -60,6 +68,14 @@ public class Product implements Serializable {
             sum += score.getScore();
         }
         return sum/scores.size();}
+    }
+
+    public boolean getIsItInOff() {
+        return isItInOff;
+    }
+
+    public void setIsItInOff(boolean itInOff) {
+        isItInOff = itInOff;
     }
 
     public void setProductId(String productId) {
@@ -178,8 +194,24 @@ public class Product implements Serializable {
             throw new Exception("out of stock");
     }
 
+    public void setProductSituation(Situation productSituation) {
+        this.productSituation = productSituation;
+    }
+
+    public void setScores(ArrayList<Score> scores) {
+        this.scores = scores;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void setBuyers(ArrayList<Buyer> buyers) {
+        this.buyers = buyers;
+    }
+
     public static String generateNewToken() {
-        byte[] randomBytes = new byte[4];
+        byte[] randomBytes = new byte[2];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }
