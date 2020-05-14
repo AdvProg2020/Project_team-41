@@ -115,7 +115,7 @@ public class ProductMenu extends Menu {
                 System.out.println("comments:");
                 for (Comment comment : theProduct.getComments()) {
                     if(comment.getCommentSituation().equals(CommentSituation.CONFIRMED)) {
-                        System.out.println(comment);
+                        System.out.println(comment.toString());
                     }
                 }
                 System.out.println("score:"+theProduct.calculateAverageScore()+"\n");

@@ -3,6 +3,7 @@ package Client.View.Menus;
 import Client.Controller.AllProductsController;
 import Client.Controller.FilterController;
 import Client.Controller.ProductController;
+import Client.Controller.SortController;
 import Client.Models.Category;
 import Client.Models.Product;
 import Server.Database;
@@ -164,9 +165,14 @@ public class FilterMenu extends Menu {
                 else {
                     System.out.println("");
                     System.out.println("Filtered Products Are:");
+                    System.out.print("+------------------+------------+------------+\n");
+                    System.out.print("| Product id       | Name       | Price      |\n");
+                    System.out.print("+------------------+------------+------------+\n");
                     for (Product filterProduct : FilterController.getInstance().filterProducts(this.superMenu instanceof OffsMenu)) {
-                        System.out.println(filterProduct.getName());
+                        System.out.format("| %-16s | %-10s | %-10d |\n",filterProduct.getProductId(),filterProduct.getName(),filterProduct.getPrice() );
                     }
+                    System.out.print("+------------------+------------+------------+\n");
+
                 }
 
                 System.out.println("any other filter? (yes/no)");

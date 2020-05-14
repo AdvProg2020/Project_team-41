@@ -219,6 +219,7 @@ public class ManagerServerController extends UserSectionServerController {
             case "ADD_COMMENT" :{
                 Comment comment = request.getComment();
                 comment.getProduct().addComment(comment);
+                comment.setCommentSituation(CommentSituation.CONFIRMED);
                 break;
             }
             case "ADD_PRODUCT" :{
