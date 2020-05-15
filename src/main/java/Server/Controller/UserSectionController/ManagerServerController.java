@@ -110,7 +110,7 @@ public class ManagerServerController extends UserSectionServerController {
     }
     public void  editDiscountCode(String code,HashMap<String,String> edits) throws Exception {
         CodedDiscount codedDiscount = Database.getCodedDiscountByCode(code);
-        for (String edit : edits.values()) {
+        for (String edit : edits.keySet()) {
             switch (edit){
                 case "start date":{
                     String[] dateTime = edits.get("start date").split(",");
@@ -146,6 +146,9 @@ public class ManagerServerController extends UserSectionServerController {
                     }
                     codedDiscount.setPeople(people);
                     break;
+                }
+                default:{
+                    throw new Exception("wrong field");
                 }
 
             }

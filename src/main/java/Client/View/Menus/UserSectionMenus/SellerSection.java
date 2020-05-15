@@ -1,12 +1,8 @@
 package Client.View.Menus.UserSectionMenus;
 
-import Client.Controller.OffsController;
-import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
-import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Category;
 import Client.Models.Off;
-import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
 
@@ -18,7 +14,7 @@ public class SellerSection extends UserSection {
     public SellerSection(Menu superMenu) {
         super(superMenu, "SellerSection");
         addSubMenu(addViewSalesHistory());
-        addSubMenu(addMangeProduct());
+        addSubMenu(addManageProduct());
         addSubMenu(addViewOffs());
         addSubMenu(addShowCategories());
         addSubMenu(addViewBalance());
@@ -103,7 +99,7 @@ public class SellerSection extends UserSection {
 
         };
     }
-    public Menu addMangeProduct(){
+    public Menu addManageProduct(){
         return new Menu(this,"ManageProducts") {
             @Override
             public void show() {
@@ -125,14 +121,13 @@ public class SellerSection extends UserSection {
             public void execute() {
                 super.execute();
 
-                String lowerCaseCommand = command.toLowerCase();
-                if(lowerCaseCommand.startsWith("viewProduct")){
+                if(command.startsWith("viewProduct")){
                     viewProduct(command.split(" ")[1]);
                 }
-                else if(lowerCaseCommand.startsWith("viewProductBuyers")){
+                else if(command.startsWith("viewProductBuyers")){
                     viewProductBuyers(command.split(" ")[1]);
                 }
-                else if(lowerCaseCommand.startsWith("editProduct")){
+                else if(command.startsWith("editProduct")){
                     editProduct(command.split(" ")[1]);
                 }
                 else{
@@ -219,7 +214,7 @@ public class SellerSection extends UserSection {
                 super.commands();
                 System.out.println("view [offId]");
                 System.out.println("edit [offId]");
-                System.out.println("add off");
+                System.out.println("addOff");
 
             }
 
@@ -232,7 +227,7 @@ public class SellerSection extends UserSection {
                 else if(command.startsWith("edit")){
                     editOff(command.split(" ")[1]);
                 }
-                else if (command.equals("addOff")){
+                else if (command.equalsIgnoreCase("addOff")){
                     addOff();
                 }
                 else
@@ -274,6 +269,14 @@ public class SellerSection extends UserSection {
                 this.show();
                 this.execute();
             }
+            private void showProducts(){
+                if(SellerController.getInstance().getProducts().isEmpty())
+                    System.out.println("there is no product to show here");
+                for (Product product : SellerController.getInstance().getProducts()) {
+                    System.out.println("product name: "+product.getName());
+                    System.out.println("product id: "+product.getProductId());
+                }
+            }
             private void addOff(){
                 ArrayList<String> offDetails = new ArrayList<>();
                 System.out.println("enter exactStartDate(day/month/year)");
@@ -286,10 +289,16 @@ public class SellerSection extends UserSection {
                 offDetails.add(scanner.nextLine());
                 System.out.println("enter amount of discount");
                 offDetails.add(scanner.nextLine());
-                System.out.println("enter product Id's you want to be included(type end to end this)");
+                System.out.println("enter product Id's you want to be included(type end to end this)(you can view products you can include by entering showProducts)");
                 String input;
+
                 while (!(input = scanner.nextLine()).equalsIgnoreCase("end")) {
-                    offDetails.add(input);
+                    if(input.equalsIgnoreCase("showProducts")){
+                        showProducts();
+                    }
+                    else {
+                        offDetails.add(input);
+                    }
                 }
                 try {
                     SellerController.getInstance().addOff(offDetails);
