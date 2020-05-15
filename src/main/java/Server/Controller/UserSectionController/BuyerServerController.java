@@ -1,13 +1,8 @@
-package Server.Controller.UserSectionController.BuyerAccountController;
+package Server.Controller.UserSectionController;
 
-import Client.Controller.UserSectionController.BuyerAccountController.BuyerController;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
-import Client.Models.Person.Person;
 import Server.Database;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 public class BuyerServerController {
 
@@ -39,6 +34,18 @@ public class BuyerServerController {
     }
     public Product getProduct(String productId) throws Exception {
         return Database.getProductById(productId);
+    }
+    public static void increaseProduct(int num , String productId){
+        //TODO increase number of the product
+    }
+
+    public static void decreaseProduct(int num , String productId){
+        //TODO decrease number of the product
+    }
+    public static int calculateTotalPrice(){
+        //TODO calculate the price
+        int price = -1;
+        return price;
     }
 
 }

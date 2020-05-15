@@ -1,0 +1,240 @@
+package Client.View.Menus.UserSectionMenus;
+
+import Client.Controller.UserSectionController.BuyerController;
+import Client.Models.Person.Buyer;
+import Client.Models.Product;
+import Client.Models.TradeLog;
+import Client.View.Menus.Menu;
+import Client.View.Menus.ProductMenu;
+
+import java.util.ArrayList;
+
+public class BuyerSection extends UserSection {
+    public BuyerSection(Menu superMenu) {
+        super(superMenu, "BuyerSection");
+        this.addSubMenu(addViewCart());
+        this.addSubMenu(addPurchase());
+        this.addSubMenu(addViewOrders());
+        this.addSubMenu(addViewBalance());
+        this.addSubMenu(addViewDiscountCodes());
+    }
+
+    private Menu addViewCart(){
+        return new Menu(this,"view cart") {
+            @Override
+            public void show() {
+                super.show();
+                System.out.println();
+                System.out.println("commands : ");
+                System.out.println("show Products");
+                System.out.println("view [productId]");
+                System.out.println("increase [productId]");
+                System.out.println("decrease [productId]");
+                System.out.println("show total price");
+            }
+
+            @Override
+            public void execute() {
+                super.execute();
+                if(command.equalsIgnoreCase("show products")){
+                    showProducts();
+                }
+                else if(command.equalsIgnoreCase("show total price")){
+                    showTotalPrice();
+                }
+                else if(command.startsWith("view")){
+                    try {
+                        viewProduct(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                else if(command.startsWith("increase")){
+                    try {
+                        increase(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                else if(command.startsWith("decrease")){
+                    try {
+                        decrease(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                else{
+                    System.out.println("invalid command");
+                }
+                this.show();
+                this.execute();
+
+            }
+            private void showProducts(){
+                Buyer buyer = (Buyer)BuyerController.getLoggedInPerson();
+                for (Product product : BuyerController.getInstance().getCart().getProducts().keySet()) {
+                    System.out.println(product.getProductId());
+                }
+                this.show();
+                this.execute();
+            }
+            private void showTotalPrice(){
+                int totalPrice = BuyerController.getInstance().getCart().totalPrice();
+                System.out.println(totalPrice);
+                this.show();
+                this.execute();
+            }
+            private void viewProduct(String productId) throws Exception {
+                ProductMenu productMenu = new ProductMenu(this);
+                productMenu.setTheProduct(BuyerController.getInstance().getProduct(productId));
+                productMenu.show();
+                productMenu.execute();
+            }
+            private void increase(String productId) throws Exception {
+                Product product = BuyerController.getInstance().getProduct(productId);
+                BuyerController.getInstance().getCart().increaseProductQuantity(product);
+                this.show();
+                this.execute();
+            }
+            private void decrease(String productId) throws Exception {
+                Product product = BuyerController.getInstance().getProduct(productId);
+                BuyerController.getInstance().getCart().decreaseProductQuantity(product);
+                this.show();
+                this.execute();
+            }
+        };
+    }
+
+    private Menu addPurchase(){
+        return new Menu(this,"Purchase") {
+            @Override
+            public void execute() {
+                super.execute();
+                payment().show();
+                payment().execute();
+            }
+
+            private Menu receiverInformation() {
+                return new Menu(this, "receiver information") {
+                    @Override
+                    public void show() {
+                        System.out.println("ok. now you must enter your information");
+                    }
+
+                    @Override
+                    public void execute() {
+                        ArrayList<String> userInformation = new ArrayList<>();
+                        System.out.println("enter your address");
+                        userInformation.add(scanner.nextLine());
+                        System.out.println("enter your phone number");
+                        userInformation.add(scanner.nextLine());
+                        System.out.println("enter your ");
+                        userInformation.add(scanner.nextLine());
+
+
+                    }
+                };
+            }
+            private Menu payment() {
+                return new Menu(this, "payment") {
+                    @Override
+                    public void show() {
+
+                    }
+
+                    @Override
+                    public void execute() {
+
+                    }
+                };
+            }
+            private Menu discountCode() {
+                return new Menu(this, "discountCode") {
+                    @Override
+                    public void show() {
+
+                    }
+
+                    @Override
+                    public void execute() {
+
+                    }
+                };
+            }
+        };
+    }
+
+    private Menu addViewOrders() {
+        return new Menu(this, "view order") {
+            private void showOrder(String orderId){
+                try {
+                    System.out.println(BuyerController.getInstance().showTheOrder(orderId));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                this.show();
+                this.execute();
+
+            }
+            private void rate(String productId,int rate){
+                try {
+                    BuyerController.getInstance().rateTheProduct(productId,rate);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                this.show();
+                this.execute();
+
+            }
+            @Override
+            public void show() {
+                int i = 1;
+                for (TradeLog tradeLog : BuyerController.getInstance().getTradeLogs()) {
+                    System.out.println(i + " : ");
+                    System.out.println(tradeLog.getLogId());
+                }
+                System.out.println();
+                System.out.println("commands : ");
+                System.out.println("showOrder");
+                System.out.println("rate");
+            }
+
+            @Override
+            public void execute() {
+                if(command.startsWith("view")){
+                    showOrder(command.split(" ")[1]);
+                }
+                else if(command.startsWith("edit")) {
+                    rate(command.split(" ")[1], Integer.parseInt(command.split(" ")[2]));
+                }
+                else
+                    System.out.println("invalid command");
+                this.show();
+                this.execute();
+
+            }
+        };
+    }
+
+    private Menu addViewBalance(){
+        return new Menu(this , "view balance") {
+            @Override
+            public void show() {
+                System.out.println("your current balance is : " + BuyerController.getInstance().getBalance());
+            }
+
+        };
+    }
+
+    private Menu addViewDiscountCodes(){
+        return new Menu(this , "view discount codes") {
+            @Override
+            public void show() {
+                for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
+                    System.out.println(codedDiscount);
+                }
+            }
+
+        };
+    }
+}
