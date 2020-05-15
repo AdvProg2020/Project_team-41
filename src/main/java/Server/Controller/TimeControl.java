@@ -1,10 +1,7 @@
 package Server.Controller;
 
-import Client.Models.Off;
-import Client.Models.Product;
 import ir.huri.jcal.JalaliCalendar;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -32,8 +29,8 @@ public abstract class TimeControl {
             throw new Exception("Sigh, you entered one of these wrong : day,month,year,hour,minute,second");
         JalaliCalendar jalaliCalendar = new JalaliCalendar();
         Date date = new Date();
-        jalaliCalendar.set(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
-        date.setTime(jalaliCalendar.toGregorian().getTimeInMillis()+1000*((Integer.parseInt(hour)*60*60)+Integer.parseInt(minute)*60+Integer.parseInt(second)));
+        jalaliCalendar.set(yearInt,monthInt,dayInt);
+        date.setTime(jalaliCalendar.toGregorian().getTimeInMillis()+1000*((hourInt*60*60)+minuteInt*60+secondInt));
         return date;
     }
     public static Date getDateByDateTime(String[] dateTime) throws Exception {
@@ -44,7 +41,11 @@ public abstract class TimeControl {
         givenDate = dateTime[0];
         givenTime = dateTime[1];
         dayMonthYear = givenDate.split("/");
+        if(dayMonthYear.length != 3)
+            throw new Exception("please enter correct date format");
         hourMinuteSecond = givenTime.split(":");
+        if (hourMinuteSecond.length != 3)
+            throw new Exception("please enter correct time format");
         Date exactDate = convertJalaliToGregorian(dayMonthYear[2],dayMonthYear[1],dayMonthYear[0],hourMinuteSecond[0],hourMinuteSecond[1],hourMinuteSecond[2]);
         return exactDate;
     }

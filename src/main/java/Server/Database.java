@@ -135,9 +135,6 @@ public class Database implements Serializable {
     public static void addCategory(Category category){
         allCategory.add(category);
     }
-    public static void deleteRequest(Request request){
-        allRequest.remove(request);
-    }
 
     public static ArrayList<Category> getAllCategory() {
         return allCategory;
@@ -148,7 +145,7 @@ public class Database implements Serializable {
     }
     public static void addProduct(Product product){
         for (Category category : allCategory) {
-            if(category.equals(product.getCategory())){
+            if(category.getName().equals(product.getCategory().getName())){
                 category.addProduct(product);
                 return;
             }
@@ -157,7 +154,7 @@ public class Database implements Serializable {
     }
     public static void removeProduct(Product product){
         for (Category category : allCategory) {
-            if(category.equals(product.getCategory())){
+            if(category.getName().equals(product.getCategory().getName())){
                 category.removeProduct(product);
                 return;
             }

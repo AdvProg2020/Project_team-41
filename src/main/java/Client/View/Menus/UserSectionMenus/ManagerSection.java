@@ -235,11 +235,16 @@ public class ManagerSection extends UserSection {
                 HashMap<String, String> edits = new HashMap<>();
                 System.out.println("what do you want to change?(type end to finish editing)");
                 System.out.println("you can edit (start date,end date,discount percentage,maximum discount,discount repeats for each user,people who can use it)");
+                System.out.println("to edit dates, edited field should look like this:(d/m/y,h:m:s)");
                 System.out.println("edit like this:(field,edited field)");
                 String input;
                 while (!(input = scanner.nextLine()).equals("end")) {
                     String[] splitInput = input.split(",");
-                    edits.put(splitInput[0], splitInput[1]);
+                    try {
+                        edits.put(splitInput[0], splitInput[1]);
+                    } catch (Exception e) {
+                        System.out.println("enter like i said. please...");
+                    }
                 }
                 try {
                     ManagerController.getInstance().editDiscountCode(code, edits);
@@ -320,7 +325,7 @@ public class ManagerSection extends UserSection {
         codeInformation.add(scanner.nextLine());
         System.out.println("enter numberOfRepeatsPerEachUser");
         codeInformation.add(scanner.nextLine());
-        System.out.println("enter who can use this code(type allUsers to include every person or type username's inside brackets and separated by commas(example: [mahdi,matin])");
+        System.out.println("enter who can use this code(type allUsers to include every person or type username's separated by commas(example: mahdi,matin)");
         codeInformation.add(scanner.nextLine());
         try{
             ManagerController.getInstance().createDiscountCode(codeInformation);

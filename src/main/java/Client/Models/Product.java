@@ -8,6 +8,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Product implements Serializable {
 
@@ -226,5 +227,32 @@ public class Product implements Serializable {
                 ", seller=" + seller +
                 ", quantity=" + quantity
                 ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return price == product.price &&
+                quantity == product.quantity &&
+                isItInOff == product.isItInOff &&
+                views == product.views &&
+                Objects.equals(productId, product.productId) &&
+                productSituation == product.productSituation &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(companyName, product.companyName) &&
+                Objects.equals(seller, product.seller) &&
+                Objects.equals(category, product.category) &&
+                Objects.equals(specialFeatures, product.specialFeatures) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(scores, product.scores) &&
+                Objects.equals(comments, product.comments) &&
+                Objects.equals(buyers, product.buyers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, productSituation, name, companyName, price, seller, quantity, isItInOff, category, specialFeatures, description, scores, comments, views, buyers);
     }
 }
