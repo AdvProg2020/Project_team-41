@@ -6,7 +6,7 @@ import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
-import Client.View.Menus.UserSectionMenus.BuyerAccount.BuyerSection;
+import Client.View.Menus.UserSectionMenus.BuyerSection;
 import Client.View.Menus.UserSectionMenus.ManagerSection;
 import Client.View.Menus.UserSectionMenus.SellerSection;
 

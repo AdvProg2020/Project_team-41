@@ -1,12 +1,10 @@
-package Client.Controller.UserSectionController.BuyerAccountController;
+package Client.Controller.UserSectionController;
 
-import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
-import Server.Controller.UserSectionController.BuyerAccountController.BuyerServerController;
+import Server.Controller.UserSectionController.BuyerServerController;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 
 public class BuyerController extends UserSectionController {
 
@@ -54,5 +52,17 @@ public class BuyerController extends UserSectionController {
         Buyer buyer = (Buyer)getLoggedInPerson();
         return buyer.getCart();
 
+    }
+    public static void increaseProduct(int num , String productId){
+        //TODO increase number of the product
+    }
+
+    public static void decreaseProduct(int num , String productId){
+        //TODO decrease number of the product
+    }
+    public static int calculateTotalPrice(){
+        //TODO calculate the price
+        int price = -1;
+        return price;
     }
 }
