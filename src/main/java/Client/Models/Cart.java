@@ -26,6 +26,7 @@ public class Cart implements Serializable {
         int productQuantity = products.get(product);
         products.put(product,productQuantity-1);
     }
+
     public int totalPrice(){
         int totalPrice = 0;
         for (Product product : products.keySet()) {
@@ -34,4 +35,15 @@ public class Cart implements Serializable {
         return totalPrice;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder products = new StringBuilder();
+        for (Product product : this.products.keySet()) {
+            products.append("\nname: ").append(product.getName());
+            products.append("\nquantity: ").append(this.products.get(product));
+        }
+        return "Cart : " +
+                "\nproducts : " + products  +
+                '}';
+    }
 }
