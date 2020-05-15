@@ -24,9 +24,7 @@ public class ManagerServerController extends UserSectionServerController {
     }
     public void editCategorySpecialFeatures(String category,String editedField) throws Exception {
         ArrayList<String> specialFeatures = new ArrayList<>();
-        for (String specialFeature : editedField.split(",")) {
-            specialFeatures.add(specialFeature);
-        }
+        Collections.addAll(specialFeatures, editedField.split(","));
         Database.getCategoryByName(category).setSpecialFeatures(specialFeatures);
     }
     public ArrayList<Product> getAllProducts(){

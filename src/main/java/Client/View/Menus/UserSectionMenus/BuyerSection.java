@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.Models.Cart;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
 import Client.Models.TradeLog;
@@ -24,6 +25,13 @@ public class BuyerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
+                Cart cart = BuyerController.getInstance().getCart();
+                if(cart.getProducts().isEmpty()){
+                    System.out.println("cart is empty");
+                }
+                else{
+                    System.out.println(cart);
+                }
                 System.out.println();
                 System.out.println("commands : ");
                 System.out.println("show Products");
@@ -39,29 +47,32 @@ public class BuyerSection extends UserSection {
                 if(command.equalsIgnoreCase("show products")){
                     showProducts();
                 }
-                else if(command.equalsIgnoreCase("show total price")){
-                    showTotalPrice();
-                }
                 else if(command.startsWith("view")){
                     try {
                         viewProduct(command.split(" ")[1]);
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                 }
                 else if(command.startsWith("increase")){
                     try {
                         increase(command.split(" ")[1]);
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                 }
                 else if(command.startsWith("decrease")){
                     try {
                         decrease(command.split(" ")[1]);
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
+                }
+                else if(command.equalsIgnoreCase("show total price")){
+                    showTotalPrice();
                 }
                 else{
                     System.out.println("invalid command");
