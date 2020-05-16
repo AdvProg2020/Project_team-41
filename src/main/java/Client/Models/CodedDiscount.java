@@ -5,6 +5,7 @@ import Client.Models.Person.Person;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class CodedDiscount implements Serializable {
     public CodedDiscount(String discountCode, Date startDate, Date endDate, int discountPercentage,int maximumDiscount, int discountRepeatsForEachUser, ArrayList<Person> people) {
@@ -14,7 +15,9 @@ public class CodedDiscount implements Serializable {
         this.discountPercentage = discountPercentage;
         this.maximumDiscount = maximumDiscount;
         this.discountRepeatsForEachUser = discountRepeatsForEachUser;
-        this.people = people;
+        for (Person person : people) {
+            this.people.put(person,discountRepeatsForEachUser);
+        }
     }
 
     private String DiscountCode;
@@ -23,7 +26,7 @@ public class CodedDiscount implements Serializable {
     private int discountPercentage;
     private int maximumDiscount;
     private int discountRepeatsForEachUser;
-    private ArrayList<Person> people;
+    private HashMap<Person,Integer> people;
 
     public String getDiscountCode() {
         return DiscountCode;
@@ -79,11 +82,14 @@ public class CodedDiscount implements Serializable {
         this.discountRepeatsForEachUser = discountRepeatsForEachUser;
     }
 
-    public ArrayList<Person> getPeople() {
+    public HashMap<Person, Integer> getPeople() {
         return people;
     }
 
-    public void setPeople(ArrayList<Person> people) {
+    public void setPeople(HashMap<Person, Integer> people) {
         this.people = people;
+    }
+    public boolean hasPerson(Person person){
+        return people.get(person) != null;
     }
 }
