@@ -23,7 +23,7 @@ public abstract class Person implements Serializable {
     public ArrayList<Product> getAllProductsHeTraded(){
         ArrayList<Product> AllProductsHeTraded = new ArrayList<>();
         for (TradeLog tradeLog : tradeLogs) {
-            AllProductsHeTraded.addAll(tradeLog.getItems());
+            AllProductsHeTraded.addAll(tradeLog.getItems().keySet());
         }
         return AllProductsHeTraded;
     }
@@ -58,6 +58,10 @@ public abstract class Person implements Serializable {
 
     public ArrayList<TradeLog> getTradeLogs() {
         return tradeLogs;
+    }
+
+    public void addTradeLog(TradeLog tradeLog){
+        tradeLogs.add(tradeLog);
     }
 
 
@@ -95,6 +99,18 @@ public abstract class Person implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void addCredit(int credit) throws Exception {
+        if(credit<0)
+            throw new Exception("credit can't be negative!");
+        this.credit += credit;
+    }
+    public void decreaseCredit(int credit) throws Exception {
+        if(credit<getCredit())
+            setCredit(getCredit()-credit);
+        else
+            throw new Exception("there isn't enough credit");
     }
 
     public void setCredit(int credit) throws Exception {

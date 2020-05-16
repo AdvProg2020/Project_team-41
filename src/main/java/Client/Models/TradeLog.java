@@ -5,13 +5,14 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
 
 public class TradeLog implements Serializable {
     private String logId;
     private Date date;
     private int money;
     private int offAmount; //if existed
-    private ArrayList<Product> items;
+    private HashMap<Product,Integer> items;
     private String buyerName;
     private String deliverySituation;
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
@@ -19,7 +20,7 @@ public class TradeLog implements Serializable {
     //for generating token
 
 
-    public TradeLog(Date date, int money, int offAmount, ArrayList<Product> items, String buyerName, String deliverySituation) {
+    public TradeLog(Date date, int money, int offAmount, HashMap<Product,Integer> items, String buyerName, String deliverySituation) {
         this.logId = generateNewToken();
         this.date = date;
         this.money = money;
@@ -57,11 +58,11 @@ public class TradeLog implements Serializable {
         this.offAmount = offAmount;
     }
 
-    public ArrayList<Product> getItems() {
+    public HashMap<Product, Integer> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<Product> items) {
+    public void setItems(HashMap<Product, Integer> items) {
         this.items = items;
     }
 
@@ -89,8 +90,8 @@ public class TradeLog implements Serializable {
     @Override
     public String toString() {
         StringBuilder products = new StringBuilder();
-        for (Product item : items) {
-            products.append(item.getName()).append("\n");
+        for (Product item : items.keySet()) {
+            products.append("name :").append(item.getName()).append(" - quantity :").append(items.get(item));
         }
 
         return "TradeLog{" +
