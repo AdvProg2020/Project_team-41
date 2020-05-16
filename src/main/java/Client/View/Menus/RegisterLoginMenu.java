@@ -9,6 +9,7 @@ import Client.Models.Person.Seller;
 import Client.View.Menus.UserSectionMenus.BuyerSection;
 import Client.View.Menus.UserSectionMenus.ManagerSection;
 import Client.View.Menus.UserSectionMenus.SellerSection;
+import Client.View.Menus.UserSectionMenus.UserSection;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -174,8 +175,13 @@ public class RegisterLoginMenu extends Menu {
             public void execute() {
                 LoginRegisterController.getInstance().logout();
                 MainMenu.getInstance().removeUserSection();
-                MainMenu.getInstance().show();
-                MainMenu.getInstance().execute();
+                if(this.superMenu.getSuperMenu() instanceof UserSection || this.superMenu.getSuperMenu().getSuperMenu() instanceof UserSection) {
+                    MainMenu.getInstance().show();
+                    MainMenu.getInstance().execute();
+                }else{
+                    this.superMenu.getSuperMenu().show();
+                    this.superMenu.getSuperMenu().execute();
+                }
 
             }
         };
