@@ -140,6 +140,7 @@ public class BuyerSection extends UserSection {
                 }
             }
 
+
             private Menu addReceiverInformation() {
                 return new Menu(this, "receiver information") {
                     @Override
