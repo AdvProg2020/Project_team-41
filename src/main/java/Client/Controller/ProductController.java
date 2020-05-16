@@ -21,13 +21,16 @@ public class ProductController {
     private ProductController() {
     }
 
-    public static void addToCart(Product product) throws Exception {
-
+    public static void addToCart(Product product) throws ClassCastException , NullPointerException {
         if (UserSectionController.getLoggedInPerson() != null) {
+            if(UserSectionController.getLoggedInPerson() instanceof Buyer){
             Buyer theBuyer = (Buyer) UserSectionController.getLoggedInPerson();
-            theBuyer.getCart().getProducts().put(product, 1);
+            theBuyer.getCart().getProducts().put(product , 2);}
+            else
+                throw new ClassCastException("Sorry, only buyers can buy!");
+
         } else
-            throw new Exception("First you must log in");
+            throw new NullPointerException("First you must log in");
 
     }
 

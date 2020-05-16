@@ -224,7 +224,7 @@ public class Product implements Serializable {
                 ", name='" + name + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", price=" + price +
-                ", seller=" + seller +
+                ", seller=" + seller.getUserName() +
                 ", quantity=" + quantity
                 ;
     }
