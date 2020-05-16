@@ -2,6 +2,7 @@ package Client.View.Menus;
 
 import Client.Controller.AllProductsController;
 import Client.Controller.ProductController;
+import Client.Controller.SortController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Comment;
 import Client.Models.CommentSituation;
@@ -62,28 +63,28 @@ public class ProductMenu extends Menu {
             public void execute() {
                   super.execute();
                   System.out.println("Invalid command!");
-                  this.commands();
+                  this.show();
                   this.execute();
             }
             private Menu addAddToCart(){
                 return new Menu(this, "add to cart") {
-                    @Override
-                    public void show() {
-                        super.show();
-                    }
+
 
                     @Override
                     public void execute() {
+
                         try {
                             ProductController.addToCart(theProduct);
                             System.out.println("The product added to cart successfully");
+                            super.show();
                             super.execute();
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
-
-                            subMenus.get(0).show();
-                            subMenus.get(0).execute();
+                            Menu loginRegister=new RegisterLoginMenu(this.superMenu,"Login Register Menu");
+                            loginRegister.show();
+                            loginRegister.execute();
                         }
+
                     }
                 };
             }
@@ -172,7 +173,21 @@ public class ProductMenu extends Menu {
             @Override
             public void execute() {
                 String secondId = scanner.nextLine();
-                System.out.println("product(you entered just now) details:");
+                Product secondProduct = null;
+                try {
+                    secondProduct = AllProductsController.getInstance().getProduct(secondId);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    superMenu.show();
+                    superMenu.execute();
+                }
+                if(!theProduct.getCategory().getName().equals(secondProduct.getCategory().getName())){
+                    System.out.println("You can only compare products of a same category!");
+                    superMenu.show();
+                    superMenu.execute();
+                }
+                compareTable(theProduct,secondProduct);
+                /*System.out.println("product(you entered just now) details:");
                 try {
                     Product secondProduct = AllProductsController.getInstance().getProduct(secondId);
                     printProductAttributes(secondProduct);
@@ -185,6 +200,7 @@ public class ProductMenu extends Menu {
                 printProductAttributes(theProduct);
                 System.out.println("average score: " + theProduct.calculateAverageScore());
 
+                 */
                 super.execute();
                 System.out.println("Invalid command!");
                 this.commands();
@@ -213,5 +229,35 @@ public class ProductMenu extends Menu {
         } catch (Exception e) {
             return e.getMessage()+"\n";
         }
+    }
+    public void compareTable(Product product1,Product product2){
+        System.out.print("+------------------+----------------+----------------+\n");
+        System.out.print("|                  |   Product 1    |    Product 2   |\n");
+        System.out.print("+------------------+----------------+----------------+\n");
+        System.out.format("| Product Id       | %-14s | %-14s |\n",product1.getProductId(),product2.getProductId());
+        System.out.format("| Product Name     | %-14s | %-14s |\n",product1.getName(),product2.getName());
+        System.out.format("| Category         | %-14s | %-14s |\n",product1.getCategory().getName(),product2.getCategory().getName());
+        System.out.format("| Product Price    | %-14d | %-14d |\n",product1.getPrice(),product2.getPrice());
+        System.out.format("| Seller           | %-14s | %-14s |\n",product1.getSeller().getUserName(),product2.getSeller().getUserName());
+        System.out.format("| Average Score    | %-14d | %-14d |\n",product1.calculateAverageScore(),product2.calculateAverageScore());
+        try {
+            for (String featureName : product1.getCategory().getSpecialFeatures()) {
+                SpecialFeature productSpecialFeature = product1.getSpecialFeatures().get(featureName);
+                if(productSpecialFeature.StringOrInt().equalsIgnoreCase("int"))
+                    System.out.format("| %-16s | %-14d | %-14d |\n",featureName,product1.getSpecialFeatures().get(featureName).getSpecialFeatureInt()
+                            ,product2.getSpecialFeatures().get(featureName).getSpecialFeatureInt());
+
+                else
+                    System.out.format("| %-16s | %-14s | %-14s |\n",featureName,product1.getSpecialFeatures().get(featureName).getSpecialFeatureString()
+                            ,product2.getSpecialFeatures().get(featureName).getSpecialFeatureString());
+
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.print("+------------------+----------------+----------------+\n");
     }
 }
