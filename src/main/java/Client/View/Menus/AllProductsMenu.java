@@ -1,14 +1,13 @@
 package Client.View.Menus;
 
 import Client.Controller.AllProductsController;
-import Client.Controller.OffsController;
 import Client.Controller.SortController;
 import Client.Models.Category;
-import Client.Models.Off;
 import Client.Models.Product;
-import Server.Database;
 
 public class AllProductsMenu extends Menu {
+    ProductMenu productMenu;
+
     public AllProductsMenu(Menu superMenu) {
         super(superMenu, "AllProducts");
         addSubMenu(new FilterMenu(this));
@@ -16,9 +15,8 @@ public class AllProductsMenu extends Menu {
         addSubMenu(addViewCategories());
         addSubMenu(addShowProducts());
         addSubMenu(addShowProduct());
+        productMenu = new ProductMenu(this);
     }
-
-    //todo getter for unnamed subclasses
 
     @Override
     public void show() {
@@ -54,6 +52,7 @@ public class AllProductsMenu extends Menu {
             }
         };
     }
+
     private Menu addShowProducts(){
         return new Menu(this,"ShowProducts") {
             @Override
@@ -88,20 +87,19 @@ public class AllProductsMenu extends Menu {
 
             @Override
             public void execute() {
-                ProductMenu productMenu = new ProductMenu(this.superMenu);
                 String productId = scanner.nextLine();
                 try {
                     productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
+                    productMenu.show();
+                    productMenu.execute();
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     super.show();
                     super.execute();
                 }
-                productMenu.show();
-                productMenu.execute();
+
             }
         };
     }
-
 
 }
