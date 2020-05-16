@@ -2,13 +2,16 @@ package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.BuyerController;
 import Client.Models.Cart;
+import Client.Models.CodedDiscount;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
 import Client.Models.TradeLog;
+import Client.View.Menus.MainMenu;
 import Client.View.Menus.Menu;
 import Client.View.Menus.ProductMenu;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BuyerSection extends UserSection {
     public BuyerSection(Menu superMenu) {
@@ -25,15 +28,6 @@ public class BuyerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
-                Cart cart = BuyerController.getInstance().getCart();
-                if(cart.getProducts().isEmpty()){
-                    System.out.println("cart is empty");
-                }
-                else{
-                    System.out.println(cart);
-                }
-                System.out.println();
-                System.out.println("commands : ");
                 System.out.println("show Products");
                 System.out.println("view [productId]");
                 System.out.println("increase [productId]");
@@ -82,9 +76,12 @@ public class BuyerSection extends UserSection {
 
             }
             private void showProducts(){
-                Buyer buyer = (Buyer)BuyerController.getLoggedInPerson();
-                for (Product product : BuyerController.getInstance().getCart().getProducts().keySet()) {
-                    System.out.println(product.getProductId());
+                Cart cart = BuyerController.getInstance().getCart();
+                if(cart.getProducts().isEmpty()){
+                    System.out.println("cart is empty");
+                }
+                else{
+                    System.out.println(cart);
                 }
                 this.show();
                 this.execute();
@@ -121,53 +118,132 @@ public class BuyerSection extends UserSection {
             @Override
             public void execute() {
                 super.execute();
-                payment().show();
-                payment().execute();
+                Menu receiverInformationMenu = addReceiverInformation();
+                receiverInformationMenu.show();
+                receiverInformationMenu.execute();
             }
 
-            private Menu receiverInformation() {
+            private Menu addReceiverInformation() {
                 return new Menu(this, "receiver information") {
                     @Override
                     public void show() {
+                        super.show();
                         System.out.println("ok. now you must enter your information");
+                        System.out.println("do you want to proceed?[y/n]");
                     }
 
                     @Override
                     public void execute() {
-                        ArrayList<String> userInformation = new ArrayList<>();
-                        System.out.println("enter your address");
-                        userInformation.add(scanner.nextLine());
-                        System.out.println("enter your phone number");
-                        userInformation.add(scanner.nextLine());
-                        System.out.println("enter your ");
-                        userInformation.add(scanner.nextLine());
-
+                        super.execute();
+                        if(!command.equalsIgnoreCase("y") && !command.equalsIgnoreCase("n")) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                        else if(command.equalsIgnoreCase("n")){
+                            super.show();
+                            super.execute();
+                        }
+                        else if (command.equalsIgnoreCase("y")) {
+                            ArrayList<String> receiverInformation = new ArrayList<>();
+                            System.out.println("enter your address");
+                            receiverInformation.add(scanner.nextLine());
+                            System.out.println("enter your phone number");
+                            receiverInformation.add(scanner.nextLine());
+                            BuyerController.getInstance().setReceiverInformation(receiverInformation);
+                            Menu discountCodeMenu = addDiscountCode();
+                            discountCodeMenu.show();
+                            discountCodeMenu.execute();
+                        }
+                        else{
+                            System.out.println("unexpected error");
+                            this.show();
+                            this.execute();
+                        }
 
                     }
                 };
             }
-            private Menu payment() {
-                return new Menu(this, "payment") {
+            private Menu addDiscountCode() {
+                return new Menu(addReceiverInformation(), "discountCode") {
                     @Override
                     public void show() {
+                        super.show();
+                        System.out.println("do you have any discount codes?[y/n]");
 
                     }
 
                     @Override
                     public void execute() {
+                        super.execute();
+                        Menu paymentMenu = addPayment();
+                        if(!command.equalsIgnoreCase("y") && !command.equalsIgnoreCase("n")) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                        else if(command.equalsIgnoreCase("n")){
+                            paymentMenu.show();
+                            paymentMenu.execute();
+
+                        }
+                        else if (command.equalsIgnoreCase("y")) {
+                            System.out.println("ok. what is it?");
+                            addDiscountCode(scanner.nextLine());
+                            paymentMenu.show();
+                            paymentMenu.execute();
+                        }
+                        else{
+                            System.out.println("unexpected error");
+                            this.show();
+                            this.execute();
+                        }
 
                     }
+                    private void addDiscountCode(String discountCode){
+                        try {
+                            BuyerController.getInstance().addCodedDiscountToCart(discountCode);
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                            this.show();
+                            this.execute();
+                        }
+                    }
+
+
                 };
             }
-            private Menu discountCode() {
-                return new Menu(this, "discountCode") {
+            private Menu addPayment() {
+                return new Menu(addDiscountCode(), "payment") {
                     @Override
                     public void show() {
-
+                        super.show();
+                        System.out.println("did you pay or not?[y/n]");
                     }
 
                     @Override
                     public void execute() {
+                        super.execute();
+                        if(command.equalsIgnoreCase("n")){
+                            System.out.println("if you want it,you must pay for it");
+                            this.show();
+                            this.execute();
+                        }
+                        else if(command.equalsIgnoreCase("y")){
+                            try {
+                                BuyerController.getInstance().payForTheShop();
+                                System.out.println("congratulation! you bought the products");
+                                MainMenu.getInstance().show();
+                                MainMenu.getInstance().execute();
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                this.show();
+                                this.execute();
+                            }
+                        }
+                        else{
+                            System.out.println("invalid command");
+                        }
 
                     }
                 };

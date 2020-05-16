@@ -18,7 +18,6 @@ public abstract class Person implements Serializable {
     //end of personal information
 
     private ArrayList<TradeLog> tradeLogs = new ArrayList<>();
-    private ArrayList<String>discountCodes = new ArrayList<>();
     private int credit;
 
     public ArrayList<Product> getAllProductsHeTraded(){
@@ -51,10 +50,6 @@ public abstract class Person implements Serializable {
 
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public ArrayList<String> getDiscountCodes() {
-        return discountCodes;
     }
 
     public int getCredit() {
@@ -107,7 +102,6 @@ public abstract class Person implements Serializable {
             throw new Exception("credit can't be negative!");
         this.credit = credit;
     }
-
     public String getPassword() {
         return password;
     }

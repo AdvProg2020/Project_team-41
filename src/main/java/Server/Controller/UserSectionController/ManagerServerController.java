@@ -101,7 +101,7 @@ public class ManagerServerController extends UserSectionServerController {
         discountCodeInformation.add("maximum discount: "+ codedDiscount.getMaximumDiscount());
         discountCodeInformation.add("discount repeats for each user: "+ codedDiscount.getDiscountRepeatsForEachUser());
         discountCodeInformation.add("people who can use it: ");
-        for (Person person : codedDiscount.getPeople()) {
+        for (Person person : codedDiscount.getPeople().keySet()) {
         discountCodeInformation.add(person.getUserName());
         }
         return discountCodeInformation;
@@ -133,13 +133,15 @@ public class ManagerServerController extends UserSectionServerController {
                     break;
                 }
                 case "people who can use it":{
-                    ArrayList<Person> people = new ArrayList<>();
+                    HashMap<Person,Integer> people = new HashMap<>();
                     if((edits.get("people who can use it").length() == 1) && (edits.get("people who can use it").equalsIgnoreCase("allUsers"))){
-                        people.addAll(Database.getAllUsers());
+                        for (Person user : Database.getAllUsers()) {
+                            people.put(user,codedDiscount.getDiscountRepeatsForEachUser());
+                        }
                     }
                     else {
                         for (String username : edits.get("people who can use it").split(",")) {
-                            people.add(Database.getPersonByUsername(username));
+                            people.put(Database.getPersonByUsername(username),codedDiscount.getDiscountRepeatsForEachUser());
                         }
                     }
                     codedDiscount.setPeople(people);
