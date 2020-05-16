@@ -51,7 +51,7 @@ public class BuyerController extends UserSectionController {
 
     public void rateTheProduct(String productId , int score) throws Exception {
         Score scoreObject = new Score(loggedInPerson,score,getProduct(productId));
-        BuyerServerController.rateTheProduct(productId,scoreObject);
+        BuyerServerController.rateTheProduct((Buyer) loggedInPerson,productId,scoreObject);
     }
     public Product getProduct(String productId) throws Exception {
         return BuyerServerController.getInstance().getProduct(productId);
