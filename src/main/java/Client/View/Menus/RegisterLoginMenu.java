@@ -175,7 +175,7 @@ public class RegisterLoginMenu extends Menu {
             public void execute() {
                 LoginRegisterController.getInstance().logout();
                 MainMenu.getInstance().removeUserSection();
-                if(this.superMenu.getSuperMenu() instanceof UserSection || this.superMenu.getSuperMenu().getSuperMenu() instanceof UserSection) {
+                if(checkUserSection(this.superMenu)) {
                     MainMenu.getInstance().show();
                     MainMenu.getInstance().execute();
                 }else{
@@ -183,6 +183,15 @@ public class RegisterLoginMenu extends Menu {
                     this.superMenu.getSuperMenu().execute();
                 }
 
+            }
+            private boolean checkUserSection(Menu menu){
+                if(menu.getSuperMenu()==null){
+                    return false;
+                }else if(menu.getSuperMenu() instanceof UserSection){
+                    return true;
+                }else{
+                    return checkUserSection(menu.getSuperMenu());
+                }
             }
         };
     }
