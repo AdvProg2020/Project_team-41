@@ -25,7 +25,7 @@ public class ProductController {
         if (UserSectionController.getLoggedInPerson() != null) {
             if(UserSectionController.getLoggedInPerson() instanceof Buyer){
             Buyer theBuyer = (Buyer) UserSectionController.getLoggedInPerson();
-            theBuyer.getCart().put(product , 2);}
+            theBuyer.getCart().getProducts().put(product , 2);}
             else
                 throw new ClassCastException("Sorry, only buyers can buy!");
 
