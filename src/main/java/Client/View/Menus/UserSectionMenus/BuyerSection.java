@@ -25,15 +25,6 @@ public class BuyerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
-                Cart cart = BuyerController.getInstance().getCart();
-                if(cart.getProducts().isEmpty()){
-                    System.out.println("cart is empty");
-                }
-                else{
-                    System.out.println(cart);
-                }
-                System.out.println();
-                System.out.println("commands : ");
                 System.out.println("show Products");
                 System.out.println("view [productId]");
                 System.out.println("increase [productId]");
@@ -82,9 +73,12 @@ public class BuyerSection extends UserSection {
 
             }
             private void showProducts(){
-                Buyer buyer = (Buyer)BuyerController.getLoggedInPerson();
-                for (Product product : BuyerController.getInstance().getCart().getProducts().keySet()) {
-                    System.out.println(product.getProductId());
+                Cart cart = BuyerController.getInstance().getCart();
+                if(cart.getProducts().isEmpty()){
+                    System.out.println("cart is empty");
+                }
+                else{
+                    System.out.println(cart);
                 }
                 this.show();
                 this.execute();
@@ -121,8 +115,8 @@ public class BuyerSection extends UserSection {
             @Override
             public void execute() {
                 super.execute();
-                payment().show();
-                payment().execute();
+                receiverInformation().show();
+                receiverInformation().execute();
             }
 
             private Menu receiverInformation() {
@@ -138,8 +132,6 @@ public class BuyerSection extends UserSection {
                         System.out.println("enter your address");
                         userInformation.add(scanner.nextLine());
                         System.out.println("enter your phone number");
-                        userInformation.add(scanner.nextLine());
-                        System.out.println("enter your ");
                         userInformation.add(scanner.nextLine());
 
 
