@@ -65,8 +65,19 @@ public class BuyerServerController {
         }
         return codedDiscounts;
     }
-    public static void rateTheProduct(String productId , Score score) throws Exception {
-        Database.getProductById(productId).addScore(score);
+    public static void rateTheProduct(Buyer buyer,String productId , Score score) throws Exception {
+        boolean flag = false;
+        Product product = Database.getProductById(productId);
+        for (TradeLog tradeLog : buyer.getTradeLogs()) {
+            if (tradeLog.getItems().containsKey(product)) {
+                flag = true;
+                break;
+            }
+        }
+        if(flag)
+            product.addScore(score);
+        else
+            throw new Exception("sorry,only people who bought the product can rate it");
     }
     public Product getProduct(String productId) throws Exception {
         return Database.getProductById(productId);
