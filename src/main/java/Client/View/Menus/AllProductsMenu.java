@@ -94,8 +94,8 @@ public class AllProductsMenu extends Menu {
                     productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
-                    super.show();
-                    super.execute();
+                    superMenu.show();
+                    superMenu.execute();
                 }
                 productMenu.show();
                 productMenu.execute();
