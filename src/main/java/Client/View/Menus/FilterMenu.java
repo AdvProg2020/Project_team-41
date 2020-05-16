@@ -1,15 +1,8 @@
 package Client.View.Menus;
 
-import Client.Controller.AllProductsController;
 import Client.Controller.FilterController;
-import Client.Controller.ProductController;
-import Client.Controller.SortController;
-import Client.Models.Category;
 import Client.Models.Product;
-import Server.Database;
 import javafx.util.Pair;
-
-import java.util.Scanner;
 
 public class FilterMenu extends Menu {
 
