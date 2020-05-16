@@ -94,8 +94,8 @@ public class AllProductsMenu extends Menu {
                     productMenu.execute();
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
-                    super.show();
-                    super.execute();
+                    superMenu.show();
+                    superMenu.execute();
                 }
 
             }

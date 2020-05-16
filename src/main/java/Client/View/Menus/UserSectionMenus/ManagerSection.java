@@ -97,7 +97,7 @@ public class ManagerSection extends UserSection {
                     ManagerController.getInstance().removeCategory(category);
                 }
                 catch (Exception e){
-                    System.out.println("no category exists with this name");
+                    System.out.println(e.getMessage());
                 }
                 this.show();
                 this.execute();
@@ -239,7 +239,7 @@ public class ManagerSection extends UserSection {
                 System.out.println("edit like this:(field,edited field)");
                 String input;
                 while (!(input = scanner.nextLine()).equals("end")) {
-                    String[] splitInput = input.split(",");
+                    String[] splitInput = input.split(",",2);
                     try {
                         edits.put(splitInput[0], splitInput[1]);
                     } catch (Exception e) {
