@@ -188,9 +188,9 @@ public class Product implements Serializable {
         buyers.add(buyer);
     }
 
-    public void decreaseQuantity() throws Exception {
-        if(quantity > 0)
-            quantity--;
+    public void decreaseQuantity(int quantity) throws Exception {
+        if(this.quantity > 0)
+            this.quantity -= quantity;
         else
             throw new Exception("out of stock");
     }

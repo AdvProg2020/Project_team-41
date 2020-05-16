@@ -18,13 +18,12 @@ public abstract class Person implements Serializable {
     //end of personal information
 
     private ArrayList<TradeLog> tradeLogs = new ArrayList<>();
-    private ArrayList<String>discountCodes = new ArrayList<>();
     private int credit;
 
     public ArrayList<Product> getAllProductsHeTraded(){
         ArrayList<Product> AllProductsHeTraded = new ArrayList<>();
         for (TradeLog tradeLog : tradeLogs) {
-            AllProductsHeTraded.addAll(tradeLog.getItems());
+            AllProductsHeTraded.addAll(tradeLog.getItems().keySet());
         }
         return AllProductsHeTraded;
     }
@@ -53,16 +52,16 @@ public abstract class Person implements Serializable {
         return phoneNumber;
     }
 
-    public ArrayList<String> getDiscountCodes() {
-        return discountCodes;
-    }
-
     public int getCredit() {
         return credit;
     }
 
     public ArrayList<TradeLog> getTradeLogs() {
         return tradeLogs;
+    }
+
+    public void addTradeLog(TradeLog tradeLog){
+        tradeLogs.add(tradeLog);
     }
 
 
@@ -102,12 +101,23 @@ public abstract class Person implements Serializable {
         this.password = password;
     }
 
+    public void addCredit(int credit) throws Exception {
+        if(credit<0)
+            throw new Exception("credit can't be negative!");
+        this.credit += credit;
+    }
+    public void decreaseCredit(int credit) throws Exception {
+        if(credit<getCredit())
+            setCredit(getCredit()-credit);
+        else
+            throw new Exception("there isn't enough credit");
+    }
+
     public void setCredit(int credit) throws Exception {
         if(credit<0)
             throw new Exception("credit can't be negative!");
         this.credit = credit;
     }
-
     public String getPassword() {
         return password;
     }
