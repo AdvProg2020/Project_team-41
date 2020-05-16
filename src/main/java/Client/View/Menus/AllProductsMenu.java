@@ -37,14 +37,20 @@ public class AllProductsMenu extends Menu {
         return new Menu(this, "ViewCategories") {
             @Override
             public void show() {
+                System.out.println("Categories are:");
                 for (Category category : AllProductsController.getInstance().getAllCategories()) {
                     System.out.println(category.getName());
                 }
+                System.out.println("");
+                super.show();
             }
 
             @Override
             public void execute() {
                 super.execute();
+                System.out.println("Invalid command!");
+                this.commands();
+                this.execute();
             }
         };
     }

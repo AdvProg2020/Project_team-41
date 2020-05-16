@@ -42,6 +42,9 @@ public class ProductMenu extends Menu {
         return new Menu(this, "digest") {
             @Override
             public void show() {
+                if(this.subMenus.size()<2) {
+                    this.addSubMenu(addAddToCart());
+                }
                 System.out.println(
                         "name: " + theProduct.getName() + "\n" +
                                 "description: " + theProduct.getDescription() + "\n" +
@@ -57,7 +60,13 @@ public class ProductMenu extends Menu {
 
             @Override
             public void execute() {
-                this.addSubMenu(new Menu(this, "add to cart") {
+                  super.execute();
+                  System.out.println("Invalid command!");
+                  this.commands();
+                  this.execute();
+            }
+            private Menu addAddToCart(){
+                return new Menu(this, "add to cart") {
                     @Override
                     public void show() {
                         super.show();
@@ -71,17 +80,12 @@ public class ProductMenu extends Menu {
                             super.execute();
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
-                            Menu registerMenu = new RegisterLoginMenu(this , "Register or Login");
-                            this.addSubMenu(registerMenu);
-                            registerMenu.show();
-                            registerMenu.execute();
+
+                            subMenus.get(0).show();
+                            subMenus.get(0).execute();
                         }
                     }
-                });
-                  super.execute();
-                  System.out.println("Invalid command!");
-                  this.commands();
-                  this.execute();
+                };
             }
 
         };
@@ -182,6 +186,9 @@ public class ProductMenu extends Menu {
                 System.out.println("average score: " + theProduct.calculateAverageScore());
 
                 super.execute();
+                System.out.println("Invalid command!");
+                this.commands();
+                this.execute();
             }
 
         };
