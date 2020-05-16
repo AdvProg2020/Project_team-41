@@ -9,11 +9,27 @@ import java.util.HashMap;
 public class Cart implements Serializable {
     private Buyer buyer;
     private HashMap<Product,Integer> products;
-    private ArrayList<String> recieverInformation;
-
+    private ArrayList<String> receiverInformation;
+    private CodedDiscount codedDiscount;
     public Cart(Buyer buyer) {
         this.buyer = buyer;
         products = new HashMap<Product, Integer>();
+    }
+
+    public ArrayList<String> getReceiverInformation() {
+        return receiverInformation;
+    }
+
+    public CodedDiscount getCodedDiscount() {
+        return codedDiscount;
+    }
+
+    public void setCodedDiscount(CodedDiscount codedDiscount) {
+        this.codedDiscount = codedDiscount;
+    }
+
+    public void setReceiverInformation(ArrayList<String> receiverInformation) {
+        this.receiverInformation = receiverInformation;
     }
 
     public HashMap<Product,Integer> getProducts() {

@@ -3,6 +3,7 @@ package Client.Controller.UserSectionController;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
 import Server.Controller.UserSectionController.BuyerServerController;
+import Server.Database;
 
 import java.util.ArrayList;
 
@@ -22,11 +23,18 @@ public class BuyerController extends UserSectionController {
         return loggedInPerson.getCredit();
     }
     public ArrayList<String> getCodedDiscounts(){
-        return loggedInPerson.getDiscountCodes();
+        return BuyerServerController.getInstance().getCodedDiscounts(loggedInPerson);
     }
 
     public void payForTheShop() throws Exception {
         BuyerServerController.payForTheShop((Buyer)loggedInPerson);
+    }
+    public void setReceiverInformation(ArrayList<String> receiverInformation){
+        Buyer buyer = (Buyer)getLoggedInPerson();
+        buyer.getCart().setReceiverInformation(receiverInformation);
+    }
+    public void addCodedDiscountToCart(String discountCode) throws Exception {
+        BuyerServerController.getInstance().addCodedDiscountToCart((Buyer) loggedInPerson,discountCode);
     }
 
     public ArrayList<TradeLog> getTradeLogs(){
@@ -53,16 +61,17 @@ public class BuyerController extends UserSectionController {
         return buyer.getCart();
 
     }
-    public static void increaseProduct(int num , String productId){
-        //TODO increase number of the product
+    public void increaseProduct(int num , String productId) throws Exception {
+        Buyer buyer = (Buyer) loggedInPerson;
+        BuyerServerController.getInstance().increaseProduct(buyer,num,productId);
     }
 
-    public static void decreaseProduct(int num , String productId){
-        //TODO decrease number of the product
+    public void decreaseProduct(int num , String productId) throws Exception {
+        Buyer buyer = (Buyer) loggedInPerson;
+        BuyerServerController.getInstance().decreaseProduct(buyer,num,productId);
     }
-    public static int calculateTotalPrice(){
-        //TODO calculate the price
-        int price = -1;
-        return price;
+    public int calculateTotalPrice(){
+        Buyer buyer = (Buyer) loggedInPerson;
+        return ((Buyer) loggedInPerson).getCart().totalPrice();
     }
 }
