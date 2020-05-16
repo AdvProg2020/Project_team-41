@@ -67,10 +67,8 @@ public class ProductMenu extends Menu {
                   this.show();
                   this.execute();
             }
-            private Menu addAddToCart(){
+            private Menu addToCart(){
                 return new Menu(this, "add to cart") {
-
-
                     @Override
                     public void execute() {
                         try {
@@ -94,10 +92,6 @@ public class ProductMenu extends Menu {
 
                     }
                 };
-//                  super.execute();
-//                  System.out.println("Invalid command!");
-//                  this.commands();
-//                  this.execute();
             }
 
         };

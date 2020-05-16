@@ -93,7 +93,7 @@ public class AllProductsMenu extends Menu {
                     productMenu.show();
                     productMenu.execute();
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.out.println(e.getMessage() + "\n");
                     superMenu.show();
                     superMenu.execute();
                 }

@@ -21,10 +21,7 @@ public class AllProductsController {
     public ArrayList<Category> getAllCategories(){
         return AllProductsServerController.getInstance().getAllCategories();
     }
-    public ArrayList<Product> getAllProducts(){
-        System.err.println("fail");
-        return new ArrayList<>();
-    }
+
     public Product getProduct(String productId) throws Exception {
        return AllProductsServerController.getInstance().getProduct(productId);
     }
