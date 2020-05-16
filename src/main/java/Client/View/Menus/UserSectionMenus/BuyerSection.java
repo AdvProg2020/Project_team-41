@@ -116,12 +116,30 @@ public class BuyerSection extends UserSection {
     private Menu addPurchase(){
         return new Menu(this,"Purchase") {
             @Override
+            public void show() {
+                super.show();
+                System.out.println("you are going to purchase products, are you willing to proceed?[y/n]");
+            }
+
+            @Override
             public void execute() {
                 super.execute();
-                Menu receiverInformationMenu = addReceiverInformation();
-                receiverInformationMenu.show();
-                receiverInformationMenu.execute();
+                if(command.equalsIgnoreCase("y")) {
+                    Menu receiverInformationMenu = addReceiverInformation();
+                    receiverInformationMenu.show();
+                    receiverInformationMenu.execute();
+                }
+                else if(command.equalsIgnoreCase("n")){
+                    this.superMenu.show();
+                    this.superMenu.execute();
+                }
+                else{
+                    System.out.println("invalid command");
+                    this.show();
+                    this.execute();
+                }
             }
+
 
             private Menu addReceiverInformation() {
                 return new Menu(this, "receiver information") {
@@ -276,6 +294,7 @@ public class BuyerSection extends UserSection {
             }
             @Override
             public void show() {
+                super.show();
                 int i = 1;
                 for (TradeLog tradeLog : BuyerController.getInstance().getTradeLogs()) {
                     System.out.println(i + " : ");
@@ -289,6 +308,7 @@ public class BuyerSection extends UserSection {
 
             @Override
             public void execute() {
+                super.execute();
                 if(command.startsWith("view")){
                     showOrder(command.split(" ")[1]);
                 }
