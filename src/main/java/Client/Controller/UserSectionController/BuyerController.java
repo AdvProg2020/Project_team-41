@@ -70,6 +70,7 @@ public class BuyerController extends UserSectionController {
         Buyer buyer = (Buyer) loggedInPerson;
         BuyerServerController.getInstance().decreaseProduct(buyer,num,productId);
     }
+
     public int calculateTotalPrice(){
         Buyer buyer = (Buyer) loggedInPerson;
         return ((Buyer) loggedInPerson).getCart().totalPrice();
