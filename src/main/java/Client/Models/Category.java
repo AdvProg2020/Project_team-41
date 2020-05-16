@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Category implements Serializable {
-
     private String name;
     private ArrayList<String> specialFeatures;
     private ArrayList<Product>products;

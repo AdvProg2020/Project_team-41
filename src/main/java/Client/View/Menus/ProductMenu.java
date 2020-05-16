@@ -11,6 +11,7 @@ import Client.Models.SpecialFeature;
 
 public class ProductMenu extends Menu {
     private Product theProduct;
+    private Menu registerMenu;
 
     public ProductMenu(Menu superMenu) {
         super(superMenu, "Product");
@@ -18,6 +19,7 @@ public class ProductMenu extends Menu {
         addSubMenu(addAttribute());
         addSubMenu(addComments());
         addSubMenu(addCompare());
+       registerMenu = new RegisterLoginMenu(addDigest(), "Register or Login");
     }
 
     public Product getTheProduct() {
@@ -43,18 +45,17 @@ public class ProductMenu extends Menu {
         return new Menu(this, "digest") {
             @Override
             public void show() {
-                if(this.subMenus.size()<2) {
-                    this.addSubMenu(addAddToCart());
+                if (this.subMenus.size() < 2) {
+                    this.addSubMenu(addToCart());
                 }
                 System.out.println(
                         "name: " + theProduct.getName() + "\n" +
                                 "description: " + theProduct.getDescription() + "\n" +
                                 "price: " + theProduct.getPrice() + "\n" +
-                                amountOfDiscount()+
+                                amountOfDiscount() +
                                 "category: " + theProduct.getCategory().getName() + "\n" +
                                 "seller: " + theProduct.getSeller().getUserName() + "\n" +
-                                "average score: " + theProduct.calculateAverageScore()
-                        //TODO print product discount ...
+                                "average score: " + theProduct.calculateAverageScore() + "\n"
                 );
                 super.show();
             }
@@ -66,23 +67,27 @@ public class ProductMenu extends Menu {
                   this.show();
                   this.execute();
             }
-            private Menu addAddToCart(){
+            private Menu addToCart(){
                 return new Menu(this, "add to cart") {
-
-
                     @Override
                     public void execute() {
-
                         try {
+                            //TODO fix StackOverFlow error:
                             ProductController.addToCart(theProduct);
                             System.out.println("The product added to cart successfully");
                             super.show();
                             super.execute();
-                        } catch (Exception e) {
+                        } catch (NullPointerException e) {
                             System.out.println(e.getMessage());
-                            Menu loginRegister=new RegisterLoginMenu(this.superMenu,"Login Register Menu");
-                            loginRegister.show();
-                            loginRegister.execute();
+
+                            if (this.subMenus.size() < 2) {
+                                this.addSubMenu(registerMenu);}
+                            registerMenu.show();
+                            registerMenu.execute();
+                        }
+                        catch (ClassCastException e){
+                            System.out.println(e.getMessage());
+
                         }
 
                     }
@@ -97,6 +102,7 @@ public class ProductMenu extends Menu {
             @Override
             public void show() {
                 printProductAttributes(theProduct);
+                System.out.println();
                 super.show();
             }
 
