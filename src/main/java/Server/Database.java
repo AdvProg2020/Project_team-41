@@ -128,7 +128,11 @@ public class Database implements Serializable {
         allUsers.add(person);
     }
     public static void deleteCategory(String categoryName) throws Exception {
-        allCategory.removeIf(category -> category.getName().equals(categoryName));
+        for (Category category : allCategory) {
+            if(category.getName().equalsIgnoreCase(categoryName))
+                allCategory.remove(category);
+                return;
+        }
         throw new Exception("no category found");
 
     }
@@ -196,8 +200,9 @@ public class Database implements Serializable {
         }
         throw new Exception("wrong off Id");
     }
-    public static void removeRequest(Request request){
-        allRequest.remove(request);
+    public static void removeRequest(Request request) throws Exception {
+        if(!allRequest.remove(request))
+            throw new Exception("no request exists like this anymore");
 
 
     }
