@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class Cart implements Serializable {
     private Buyer buyer;
     private HashMap<Product,Integer> products;
+    private ArrayList<String> recieverInformation;
 
     public Cart(Buyer buyer) {
         this.buyer = buyer;
@@ -18,12 +19,24 @@ public class Cart implements Serializable {
     public HashMap<Product,Integer> getProducts() {
         return products;
     }
-    public void increaseProductQuantity(Product product){
-        int productQuantity = products.get(product);
+    public void increaseProductQuantity(Product product) throws Exception {
+        int productQuantity = 0;
+        try {
+            productQuantity = products.get(product);
+        } catch (Exception e) {
+            throw new Exception("there is no such product in the cart");
+        }
         products.put(product,productQuantity+1);
     }
-    public void decreaseProductQuantity(Product product){
-        int productQuantity = products.get(product);
+    public void decreaseProductQuantity(Product product) throws Exception {
+        int productQuantity;
+        try {
+            productQuantity = products.get(product);
+        } catch (Exception e) {
+            throw new Exception("there is no such product in the cart");
+        }
+        if(productQuantity == 1)
+            products.remove(product,productQuantity);
         products.put(product,productQuantity-1);
     }
 
@@ -40,6 +53,7 @@ public class Cart implements Serializable {
         StringBuilder products = new StringBuilder();
         for (Product product : this.products.keySet()) {
             products.append("\nname: ").append(product.getName());
+            products.append("\nid: ").append(product.getProductId());
             products.append("\nquantity: ").append(this.products.get(product));
         }
         return "Cart : " +
