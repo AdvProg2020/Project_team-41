@@ -295,6 +295,7 @@ public class BuyerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
+
                 int i = 1;
                 for (TradeLog tradeLog : BuyerController.getInstance().getTradeLogs()) {
                     System.out.println(i + " : ");
