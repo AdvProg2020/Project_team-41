@@ -21,7 +21,7 @@ public class Product implements Serializable {
     private Seller seller;
     private int quantity;
     // end of common specifics
-    private boolean isItInOff;
+    private Off off;
     private Category category;
     private HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
     private String description;
@@ -71,12 +71,12 @@ public class Product implements Serializable {
         return sum/scores.size();}
     }
 
-    public boolean getIsItInOff() {
-        return isItInOff;
+    public boolean isItInOff() {
+        return off != null;
     }
 
-    public void setIsItInOff(boolean itInOff) {
-        isItInOff = itInOff;
+    public void setOff(Off off) {
+        this.off = off;
     }
 
     public void setProductId(String productId) {
@@ -142,6 +142,13 @@ public class Product implements Serializable {
 
     public Integer getPrice() {
         return price;
+    }
+
+    public Integer getPriceWithOff(){
+        if(isItInOff())
+            return price*(off.getAmountOfDiscount()/100);
+        else
+            return price;
     }
 
     public Seller getSeller() {
@@ -241,7 +248,7 @@ public class Product implements Serializable {
         Product product = (Product) o;
         return price == product.price &&
                 quantity == product.quantity &&
-                isItInOff == product.isItInOff &&
+                off == product.off &&
                 views == product.views &&
                 Objects.equals(productId, product.productId) &&
                 productSituation == product.productSituation &&
@@ -258,6 +265,6 @@ public class Product implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, productSituation, name, companyName, price, seller, quantity, isItInOff, category, specialFeatures, description, scores, comments, views, buyers);
+        return Objects.hash(productId, productSituation, name, companyName, price, seller, quantity, off, category, specialFeatures, description, scores, comments, views, buyers);
     }
 }

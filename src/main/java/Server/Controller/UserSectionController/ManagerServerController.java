@@ -245,7 +245,7 @@ public class ManagerServerController extends UserSectionServerController {
             }
             case "ADD_OFF" :{
                 for (Product product : request.getOff().getProducts()) {
-                    product.setIsItInOff(true);
+                    product.setOff(request.getOff());
                 }
                 Database.addOff(request.getOff());
                 request.getSeller().addOff(request.getOff());
@@ -253,10 +253,10 @@ public class ManagerServerController extends UserSectionServerController {
             }
             case "EDIT_OFF" : {
                 for (Product product : request.getOff().getProducts()) {
-                    product.setIsItInOff(false);
+                    product.setOff(null);
                 }
                 for (Product product : request.getEditedOff().getProducts()) {
-                    product.setIsItInOff(true);
+                    product.setOff(request.getEditedOff());
                 }
 
                 Database.getAllOffs().remove(request.getOff());

@@ -36,7 +36,7 @@ public class ManagerController extends UserSectionController{
     public void createManagerProfile(ArrayList<String> userInfo) throws Exception {
         ManagerServerController.getInstance().createManagerProfile(userInfo);
     }
-    public void removeProduct(String productId){
+    public void removeProduct(String productId) throws Exception {
         ManagerServerController.getInstance().removeProduct(productId);
     }
     public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
