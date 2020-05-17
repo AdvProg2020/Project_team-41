@@ -23,9 +23,10 @@ public class ProductController {
 
     public static void addToCart(Product product) throws ClassCastException , NullPointerException {
         if (UserSectionController.getLoggedInPerson() != null) {
-            if(UserSectionController.getLoggedInPerson() instanceof Buyer){
-            Buyer theBuyer = (Buyer) UserSectionController.getLoggedInPerson();
-            theBuyer.getCart().getProducts().put(product , 2);}
+            if(UserSectionController.getLoggedInPerson() instanceof Buyer) {
+                Buyer theBuyer = (Buyer) UserSectionController.getLoggedInPerson();
+                theBuyer.getCart().addProduct(product);
+            }
             else
                 throw new ClassCastException("Sorry, only buyers can buy!");
 

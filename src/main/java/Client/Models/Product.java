@@ -266,8 +266,4 @@ public class Product implements Serializable {
                 Objects.equals(buyers, product.buyers);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productSituation, name, companyName, price, seller, quantity, off, category, specialFeatures, description, scores, comments, views, buyers);
-    }
 }
