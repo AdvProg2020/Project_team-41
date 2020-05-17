@@ -344,7 +344,11 @@ public class ManagerSection extends UserSection {
     private Menu addManageAllProducts(){
         return new Menu(this,"ManageAllProducts") {
             private void remove(String productId){
-                ManagerController.getInstance().removeProduct(productId);
+                try {
+                    ManagerController.getInstance().removeProduct(productId);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 this.show();
                 this.execute();
             }

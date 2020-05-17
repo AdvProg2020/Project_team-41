@@ -212,7 +212,7 @@ public class SellerServerController extends UserSectionServerController {
 
                                         for (String productId : editRequestValue.split(",")) {
                                                 Product product = Database.getProductById(productId);
-                                                if(product.getIsItInOff() && !off.hasProduct(product))
+                                                if(product.isItInOff() && !off.hasProduct(product))
                                                         throw new Exception("a product is already in an off");
                                                 products.add(product);
 
@@ -229,7 +229,7 @@ public class SellerServerController extends UserSectionServerController {
                 ArrayList<Product> allProducts = new ArrayList<>();
                 for (int i = 5; i < offDetails.size(); i++) {
                         Product product = Database.getProductById(offDetails.get(i));
-                        if(product.getIsItInOff())
+                        if(product.isItInOff())
                                 throw new Exception("a product is already in an off");
                         allProducts.add(product);
                 }
