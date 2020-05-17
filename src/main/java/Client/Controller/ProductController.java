@@ -5,7 +5,6 @@ import Client.Models.Comment;
 import Client.Models.CommentSituation;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
-import Client.View.Menus.UserSectionMenus.UserSection;
 import Server.Controller.ProductServerController;
 
 public class ProductController {
