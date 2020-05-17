@@ -226,6 +226,10 @@ public class ManagerServerController extends UserSectionServerController {
                 break;
             }
             case "ADD_PRODUCT" :{
+                for (Product otherProduct : Database.getAllProducts()) {
+                    if(otherProduct.getName().equals(request.getProduct().getName()))
+                        throw new Exception("name is already chosen for another product");
+                }
                 Database.addProduct(request.getProduct());
                 request.getSeller().addProduct(request.getProduct());
                 break;

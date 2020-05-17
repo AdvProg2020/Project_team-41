@@ -26,9 +26,11 @@ public class BuyerServerController {
 
     public static void payForTheShop(Buyer buyer) throws Exception {
         Cart cart = buyer.getCart();
+        int cashToPay = cart.getCodedDiscount().howMuchWillItCost(cart.totalPrice());
         HashMap<Seller,HashMap<Product,Integer>> sellerProducts = new HashMap<>();
-        if(buyer.getCredit()<cart.totalPrice())
+        if(buyer.getCredit()<cashToPay)
             throw new Exception("you don't have enough credit");
+
         for (Product product : cart.getProducts().keySet()) {
             int productQuantity = cart.getProducts().get(product);
             if(product.getQuantity()<productQuantity)
@@ -40,7 +42,7 @@ public class BuyerServerController {
             sellerProducts.computeIfAbsent(seller, k -> new HashMap<>());
             sellerProducts.get(seller).put(product,productQuantity);
         }
-        buyer.decreaseCredit(cart.totalPrice());
+        buyer.decreaseCredit(cashToPay);
         for (Seller seller : sellerProducts.keySet()) {
             int money = 0;
             for (Product product : sellerProducts.get(seller).keySet()) {
@@ -52,7 +54,7 @@ public class BuyerServerController {
             }
                 seller.addTradeLog(new TradeLog(new Date(),money,0,sellerProducts.get(seller),buyer.getUserName(),"waiting"));
         }
-        buyer.addTradeLog(new TradeLog(new Date(),cart.totalPrice(),0,cart.getProducts(),buyer.getUserName(),"waiting"));
+        buyer.addTradeLog(new TradeLog(new Date(),cart.totalPrice(),cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(),"waiting"));
 
         //todo check offAmount and deliverySituation
 
@@ -85,6 +87,10 @@ public class BuyerServerController {
     public void addCodedDiscountToCart(Buyer buyer,String discountCode) throws Exception {
         CodedDiscount codedDiscount = Database.getCodedDiscountByCode(discountCode);
         if(codedDiscount.hasPerson(buyer)) {
+            if(new Date().before(codedDiscount.getStartDate()))
+                throw new Exception("this discount code is not started yet");
+            if(new Date().after(codedDiscount.getEndDate()))
+                throw new Exception("sorry, this discount code is expired");
             buyer.getCart().setCodedDiscount(codedDiscount);
         }
         else {

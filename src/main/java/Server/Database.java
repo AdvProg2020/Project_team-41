@@ -124,7 +124,11 @@ public class Database implements Serializable {
         }
         throw new Exception("invalid discount code");
     }
-    public static void addUser(Person person){
+    public static void addUser(Person person) throws Exception {
+        for (Person user : allUsers) {
+            if(user.getUserName().equalsIgnoreCase(person.getUserName()))
+                throw new Exception("username Exists");
+        }
         allUsers.add(person);
     }
     public static void deleteCategory(String categoryName) throws Exception {
