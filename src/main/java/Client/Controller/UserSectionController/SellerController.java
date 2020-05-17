@@ -3,9 +3,11 @@ package Client.Controller.UserSectionController;
 import Client.Models.Category;
 import Client.Models.Off;
 import Client.Models.Person.Buyer;
+import Client.Models.Person.Manager;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.Models.TradeLog;
+import Server.Controller.UserSectionController.ManagerServerController;
 import Server.Controller.UserSectionController.SellerServerController;
 
 import java.util.ArrayList;
@@ -23,6 +25,10 @@ public class SellerController extends UserSectionController{
         private SellerController(){
 
         }
+        public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {
+                return SellerServerController.getInstance().getCategorySpecialFeatures(categoryName);
+        }
+
         public ArrayList<String> getProductBuyers(String id) throws Exception {
                 return SellerServerController.getInstance().getProductBuyers(id);
         }

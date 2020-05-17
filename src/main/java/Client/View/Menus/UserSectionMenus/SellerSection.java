@@ -20,12 +20,6 @@ public class SellerSection extends UserSection {
     }
 
     @Override
-    public void show() {
-        super.show();
-
-    }
-
-    @Override
     public void commands() {
         super.commands();
         System.out.println("view sales history");
@@ -70,11 +64,26 @@ public class SellerSection extends UserSection {
         System.out.println("ok... now enter the price");
         productDetails.add(scanner.nextLine());
         System.out.println("enter the category name");
-        productDetails.add(scanner.nextLine());
+        String categoryName = scanner.nextLine();
+        productDetails.add(categoryName);
         System.out.println("enter the description");
         productDetails.add(scanner.nextLine());
-        System.out.println("enter it's special features(e.g. (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2))");
-        productDetails.add(scanner.nextLine());
+        System.out.println("enter it's special features(e.g. (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2))(you can view category's special feature by entering viewSpecialFeatures)");
+        String input = scanner.nextLine();
+        while (input.equalsIgnoreCase("viewSpecialFeatures")) {
+            try {
+                for (String categorySpecialFeature : SellerController.getInstance().getCategorySpecialFeatures(categoryName)) {
+                    System.out.println(categorySpecialFeature);
+                }
+                System.out.println("ok. now enter it's special features(like i said)");
+                input = scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                this.show();
+                this.execute();
+            }
+        }
+        productDetails.add(input);
 
         try {
             SellerController.getInstance().addProduct(productDetails);
@@ -119,12 +128,12 @@ public class SellerSection extends UserSection {
             public void execute() {
                 super.execute();
 
-                if(command.startsWith("viewProduct")){
-                    viewProduct(command.split(" ")[1]);
-                }
-                else if(command.startsWith("viewProductBuyers")){
+                if(command.startsWith("viewProductBuyers")){
                     viewProductBuyers(command.split(" ")[1]);
                 }
+                else if(command.startsWith("viewProduct")){
+                        viewProduct(command.split(" ")[1]);
+                    }
                 else if(command.startsWith("editProduct")){
                     editProduct(command.split(" ")[1]);
                 }
@@ -187,6 +196,17 @@ public class SellerSection extends UserSection {
                 this.execute();
             }
         };
+    }
+    private void removeProduct(){
+        System.out.println("type the product Id you want to be removed");
+        try {
+            SellerController.getInstance().removeProduct(scanner.nextLine());
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        this.show();
+        this.execute();
     }
 
     public Menu addViewOffs(){
@@ -324,19 +344,6 @@ public class SellerSection extends UserSection {
 
         };
     }
-    private void removeProduct(){
-        System.out.println("type the product Id you want to be removed");
-        try {
-            SellerController.getInstance().removeProduct(scanner.nextLine());
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            this.show();
-            this.execute();
-        }
-        super.show();
-        super.execute();
-    }
     public Menu addViewBalance(){
         return new Menu(this,"ViewBalance") {
             @Override
@@ -349,5 +356,3 @@ public class SellerSection extends UserSection {
     }
 
 }
-
-//todo edit edits. it may cause problem in graphics. you can add a class for all of them

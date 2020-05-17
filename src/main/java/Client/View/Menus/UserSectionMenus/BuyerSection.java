@@ -19,8 +19,28 @@ public class BuyerSection extends UserSection {
         this.addSubMenu(addViewCart());
         this.addSubMenu(addPurchase());
         this.addSubMenu(addViewOrders());
-        this.addSubMenu(addViewBalance());
-        this.addSubMenu(addViewDiscountCodes());
+    }
+
+    @Override
+    public void commands() {
+        System.out.println("view balance");
+        System.out.println("view discount codes");
+        super.commands();
+    }
+
+    @Override
+    public void execute() {
+        super.execute();
+        if(command.equalsIgnoreCase("view balance")){
+            viewBalance();
+        }
+        else if(command.equalsIgnoreCase("view discount codes")){
+            viewDiscountCodes();
+        }
+
+        System.out.println("invalid command");
+        this.show();
+        this.execute();
     }
 
     private Menu addViewCart(){
@@ -326,25 +346,15 @@ public class BuyerSection extends UserSection {
         };
     }
 
-    private Menu addViewBalance(){
-        return new Menu(this , "view balance") {
-            @Override
-            public void show() {
-                System.out.println("your current balance is : " + BuyerController.getInstance().getBalance());
-            }
-
-        };
+    private void viewBalance(){
+        System.out.println("your current balance is : " + BuyerController.getInstance().getBalance());
+        this.show();
+        this.execute();
+    }
+    private void viewDiscountCodes(){
+        for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
+            System.out.println(codedDiscount);
+        }
     }
 
-    private Menu addViewDiscountCodes(){
-        return new Menu(this , "view discount codes") {
-            @Override
-            public void show() {
-                for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
-                    System.out.println(codedDiscount);
-                }
-            }
-
-        };
-    }
 }

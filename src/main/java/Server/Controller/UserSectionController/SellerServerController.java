@@ -152,10 +152,12 @@ public class SellerServerController extends UserSectionServerController {
                 product.setSpecialFeatures(specialFeatures);
                 Database.addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
         }
+        public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {
+                return Database.getCategoryByName(categoryName).getSpecialFeatures();
+        }
         public void removeProduct(Seller seller,String id) throws Exception {
                 Product productToBeRemoved = Database.getProductById(id);
-                Request request = new Request(seller,productToBeRemoved,RequestType.REMOVE_PRODUCT);
-                Database.addRequest(request);
+                Database.removeProduct(productToBeRemoved);
         }
         public ArrayList<Product> getProducts(Seller seller){
                 return seller.getProducts();
