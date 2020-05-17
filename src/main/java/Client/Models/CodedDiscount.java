@@ -15,6 +15,7 @@ public class CodedDiscount implements Serializable {
         this.discountPercentage = discountPercentage;
         this.maximumDiscount = maximumDiscount;
         this.discountRepeatsForEachUser = discountRepeatsForEachUser;
+        this.people = new HashMap<>();
         for (Person person : people) {
             this.people.put(person,discountRepeatsForEachUser);
         }
