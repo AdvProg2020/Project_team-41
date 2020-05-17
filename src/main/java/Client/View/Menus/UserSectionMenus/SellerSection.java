@@ -13,7 +13,6 @@ public class SellerSection extends UserSection {
 
     public SellerSection(Menu superMenu) {
         super(superMenu, "SellerSection");
-        addSubMenu(addViewSalesHistory());
         addSubMenu(addManageProduct());
         addSubMenu(addViewOffs());
         addSubMenu(addShowCategories());
@@ -29,6 +28,7 @@ public class SellerSection extends UserSection {
     @Override
     public void commands() {
         super.commands();
+        System.out.println("view sales history");
         System.out.println("view company info");
         System.out.println("add product");
         System.out.println("remove product");
@@ -42,6 +42,8 @@ public class SellerSection extends UserSection {
             viewCompanyInfo();
         else if(command.equalsIgnoreCase("add product"))
             addProduct();
+        else if(command.equalsIgnoreCase("view sales history"))
+            viewSalesHistory();
         else if(command.equalsIgnoreCase("remove product"))
             removeProduct();
         System.out.println("invalid command");
@@ -86,20 +88,14 @@ public class SellerSection extends UserSection {
         this.execute();
     }
     //todo check if viewSalesHistory really needs to be a menu
-    public Menu addViewSalesHistory(){
-        return new Menu(this,"ViewSalesHistory") {
-            @Override
-            public void show() {
-                try {
-                    System.out.println(SellerController.getInstance().getSalesHistory());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                super.show();
-                super.execute();
-            }
-
-        };
+    private void viewSalesHistory(){
+        try {
+            System.out.println(SellerController.getInstance().getSalesHistory());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        this.show();
+        this.execute();
     }
     public Menu addManageProduct(){
         return new Menu(this,"ManageProducts") {
