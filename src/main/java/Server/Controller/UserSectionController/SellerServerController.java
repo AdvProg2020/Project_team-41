@@ -36,7 +36,7 @@ public class SellerServerController extends UserSectionServerController {
                 Product editedProduct = product.cloneProduct();
                 for (String editRequestKey : edit.keySet()) {
                         String editRequestValue = edit.get(editRequestKey);
-                        switch (editRequestKey){
+                        switch (editRequestKey.toLowerCase()){
                                 case "seller" :{
                                         editedProduct.setSeller(Database.getSellerByUsername(editRequestValue));
                                         break;
@@ -45,7 +45,7 @@ public class SellerServerController extends UserSectionServerController {
                                         editedProduct.setPrice(Integer.parseInt(editRequestValue));
                                         break;
                                 }
-                                case "companyName" :{
+                                case "companyname" :{
                                         editedProduct.setCompanyName(editRequestValue);
                                         break;
                                 }
@@ -143,16 +143,16 @@ public class SellerServerController extends UserSectionServerController {
                 Off editedOff = off.cloneOff();
                 for (String editRequestKey : edit.keySet()) {
                         String editRequestValue = edit.get(editRequestKey);
-                        switch (editRequestKey){
-                                case "startDate" :{
+                        switch (editRequestKey.toLowerCase()){
+                                case "startdate" :{
                                         editedOff.setStartDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
                                         break;
                                 }
-                                case "endDate" :{
+                                case "enddate" :{
                                         editedOff.setEndDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
                                         break;
                                 }
-                                case "amountOfDiscount" :{
+                                case "amountdfdiscount" :{
                                         editedOff.setAmountOfDiscount(Integer.parseInt(editRequestValue));
                                         break;
                                 }

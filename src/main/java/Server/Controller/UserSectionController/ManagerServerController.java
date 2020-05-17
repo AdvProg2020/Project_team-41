@@ -109,7 +109,7 @@ public class ManagerServerController extends UserSectionServerController {
     public void  editDiscountCode(String code,HashMap<String,String> edits) throws Exception {
         CodedDiscount codedDiscount = Database.getCodedDiscountByCode(code);
         for (String edit : edits.keySet()) {
-            switch (edit){
+            switch (edit.toLowerCase()){
                 case "start date":{
                     String[] dateTime = edits.get("start date").split(",");
                     codedDiscount.setStartDate(TimeControl.getDateByDateTime(dateTime));
