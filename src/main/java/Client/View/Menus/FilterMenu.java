@@ -74,20 +74,22 @@ public class FilterMenu extends Menu {
                     case "price": {
                         System.out.println("range or definite?");
                         if (scanner.nextLine().equals("range")) {
+
                             System.out.println("Enter Min:");
-                            int min = scanner.nextInt();
+                            int min = enterAnInteger();
                             System.out.println("Enter Max:");
-                            int max = scanner.nextInt();
+                            int max = enterAnInteger();
+
                             FilterController.getInstance().setPriceMinMax(new Pair<>(min, max));
                         } else {
                             System.out.println("Enter the price:");
                             try {
-                                FilterController.getInstance().setDefinitePrice(scanner.nextInt());
+                                FilterController.getInstance().setDefinitePrice(enterAnInteger());
                             } catch (Exception e) {
                                 System.err.println(e.getMessage());
                             }
                         }
-                      break;
+                        break;
                     }
                     case "seller": {
                         System.out.println("Enter seller username:");
@@ -127,14 +129,14 @@ public class FilterMenu extends Menu {
                                     System.out.println("range or definite?");
                                     if (scanner.nextLine().equals("range")) {
                                         System.out.println("Enter Min:");
-                                        int min = scanner.nextInt();
+                                        int min = enterAnInteger();
                                         System.out.println("Enter Max:");
-                                        int max = scanner.nextInt();
+                                        int max = enterAnInteger();
                                         FilterController.getInstance().getRangeFeatures().put(featureName, new Pair<>(min, max));
 
                                     } else {
                                         System.out.println("Enter feature value to filter:");
-                                        FilterController.getInstance().getDefiniteIntFeatures().put(featureName, scanner.nextInt());
+                                        FilterController.getInstance().getDefiniteIntFeatures().put(featureName, enterAnInteger());
                                     }
                                 } else {
                                     System.out.println("Enter feature value to filter:");
@@ -162,7 +164,7 @@ public class FilterMenu extends Menu {
                     System.out.print("| Product id       | Name       | Price      |\n");
                     System.out.print("+------------------+------------+------------+\n");
                     for (Product filterProduct : FilterController.getInstance().filterProducts(this.superMenu instanceof OffsMenu)) {
-                        System.out.format("| %-16s | %-10s | %-10d |\n",filterProduct.getProductId(),filterProduct.getName(),filterProduct.getPrice() );
+                        System.out.format("| %-16s | %-10s | %-10d |\n", filterProduct.getProductId(), filterProduct.getName(), filterProduct.getPrice());
                     }
                     System.out.print("+------------------+------------+------------+\n");
 
@@ -174,6 +176,7 @@ public class FilterMenu extends Menu {
                     this.show();
                     this.execute();
                 } else {
+                    System.out.println("yORn: " + yesOrNo);
                     this.superMenu.show();
                     this.superMenu.execute();
                 }
@@ -181,6 +184,7 @@ public class FilterMenu extends Menu {
             }
         };
     }
+
 
     private Menu currentFilters() {
         return new Menu(this, "current filters") {
@@ -231,5 +235,18 @@ public class FilterMenu extends Menu {
         };
     }
 
+    private int enterAnInteger( ) {
+        int number = 0;
+        boolean again = true;
+        while (again) {
+            try {
+                number = Integer.parseInt(scanner.nextLine());
+                again = false;
+            } catch (Exception e) {
+                System.out.println("You must enter an integer:");
+            }
+        }
+        return number;
+    }
 
 }
