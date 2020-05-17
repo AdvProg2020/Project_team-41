@@ -151,6 +151,10 @@ public class Product implements Serializable {
             return price;
     }
 
+    public Off getOff() {
+        return off;
+    }
+
     public Seller getSeller() {
         return seller;
     }
