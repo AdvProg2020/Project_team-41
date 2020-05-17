@@ -5,10 +5,7 @@ import Client.Models.Person.Seller;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 
 public class Product implements Serializable {
 
@@ -48,6 +45,7 @@ public class Product implements Serializable {
     public Product cloneProduct(){
         Product product = this;
         Product clonedProduct = new Product(product.getName(),product.getCompanyName(),product.getPrice(),product.getSeller(),product.getQuantity(),product.getCategory(),(HashMap<String, SpecialFeature>) product.getSpecialFeatures().clone(),product.getDescription());
+        clonedProduct.setOff(product.getOff());
         clonedProduct.setProductId(product.getProductId());
         clonedProduct.setBuyers(product.getBuyers());
         clonedProduct.setComments(product.getComments());
@@ -145,10 +143,11 @@ public class Product implements Serializable {
     }
 
     public Integer getPriceWithOff(){
-        if(isItInOff())
-            return price*(off.getAmountOfDiscount()/100);
-        else
-            return price;
+        if(isItInOff()) {
+            if (new Date().after(off.getStartDate()) && new Date().before(off.getEndDate()))
+                return price * (off.getAmountOfDiscount() / 100);
+        }
+        return price;
     }
 
     public Off getOff() {

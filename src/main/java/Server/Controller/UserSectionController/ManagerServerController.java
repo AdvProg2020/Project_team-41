@@ -335,6 +335,8 @@ public class ManagerServerController extends UserSectionServerController {
         productDetails.add("Description : " + product.getDescription());
         productDetails.add("Company name : " + product.getCompanyName());
         productDetails.add("Price : " + product.getPrice());
+        if(product.getPrice()!=product.getPriceWithOff())
+            productDetails.add("Price with Off =) : " + product.getPriceWithOff());
         productDetails.add("Product id : " + product.getProductId());
         productDetails.add("Category : " + product.getCategory().getName());
         productDetails.add("Seller's Username : " + product.getSeller().getUserName());

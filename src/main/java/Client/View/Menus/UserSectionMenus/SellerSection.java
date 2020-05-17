@@ -148,6 +148,7 @@ public class SellerSection extends UserSection {
                     this.show();
                     this.execute();
                 }
+                assert product != null;
                 System.out.println("id : " + product.getProductId());
                 System.out.println("name : " + product.getName());
                 System.out.println("price : " + product.getPrice());

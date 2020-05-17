@@ -41,15 +41,16 @@ public class BuyerServerController {
             int productQuantity = cart.getProducts().get(product);
             sellerProducts.computeIfAbsent(seller, k -> new HashMap<>());
             sellerProducts.get(seller).put(product,productQuantity);
+            product.addBuyer(buyer);
         }
         buyer.decreaseCredit(cashToPay);
         for (Seller seller : sellerProducts.keySet()) {
             int money = 0;
             for (Product product : sellerProducts.get(seller).keySet()) {
                 int productQuantity = sellerProducts.get(seller).get(product);
-                money += product.getPrice() * productQuantity;
+                money += product.getPriceWithOff() * productQuantity;
                 product.decreaseQuantity(productQuantity);
-                seller.addCredit(product.getPrice() * productQuantity);
+                seller.addCredit(product.getPriceWithOff() * productQuantity);
 
             }
                 seller.addTradeLog(new TradeLog(new Date(),money,0,sellerProducts.get(seller),buyer.getUserName(),"waiting"));

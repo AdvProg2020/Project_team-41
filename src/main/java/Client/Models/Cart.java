@@ -59,7 +59,7 @@ public class Cart implements Serializable {
     public int totalPrice(){
         int totalPrice = 0;
         for (Product product : products.keySet()) {
-            totalPrice += (product.getPrice()*products.get(product));
+            totalPrice += (product.getPriceWithOff()*products.get(product));
         }
         return totalPrice;
     }
