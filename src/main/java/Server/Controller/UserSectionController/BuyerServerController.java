@@ -54,6 +54,7 @@ public class BuyerServerController {
 
             }
                 seller.addTradeLog(new TradeLog(new Date(),money,0,sellerProducts.get(seller),buyer.getUserName(),"waiting"));
+
         }
         buyer.addTradeLog(new TradeLog(new Date(),cart.totalPrice(),cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(),"waiting"));
         buyer.renewCart();

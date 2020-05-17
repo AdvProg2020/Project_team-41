@@ -179,6 +179,16 @@ public class ManagerSection extends UserSection {
                 this.execute();
 
             }
+            private void acceptAll(){
+                try {
+                    ManagerController.getInstance().acceptAllRequests();
+                    System.out.println("all requests accepted");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                this.show();
+                this.execute();
+            }
 
 
             @Override
@@ -191,6 +201,7 @@ public class ManagerSection extends UserSection {
                 }
                 System.out.println();
                 System.out.println("commands:");
+                System.out.println("accept all");
                 System.out.println("details <requestId>");
                 System.out.println("accept <requestId>");
                 System.out.println("decline <requestId>");
@@ -199,7 +210,10 @@ public class ManagerSection extends UserSection {
             @Override
             public void execute() {
                 super.execute();
-                if(command.startsWith("details")){
+                if(command.equalsIgnoreCase("accept all")){
+                    acceptAll();
+                }
+                else if(command.startsWith("details")){
                     details(command.split(" ")[1]);
                 }
                 else if(command.startsWith("accept")){

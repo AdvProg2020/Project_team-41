@@ -211,6 +211,74 @@ public class ManagerServerController extends UserSectionServerController {
 
         return requestDetails;
     }
+    public void acceptAllRequests() throws Exception {
+        ArrayList<Request> toBeRemoved = new ArrayList<>();
+        for (Request request : Database.getAllRequest()) {
+        switch (request.getRequestType()){
+            case "ADD_COMMENT" :{
+                Comment comment = request.getComment();
+                comment.getProduct().addComment(comment);
+                comment.setCommentSituation(CommentSituation.CONFIRMED);
+                break;
+            }
+            case "ADD_PRODUCT" :{
+                for (Product otherProduct : Database.getAllProducts()) {
+                    if(otherProduct.getName().equals(request.getProduct().getName()))
+                        throw new Exception("in request with id "+ request.getRequestId() + " ,name is already chosen for another product");
+                }
+                Database.addProduct(request.getProduct());
+                request.getSeller().addProduct(request.getProduct());
+                break;
+            }
+            case "REMOVE_PRODUCT" : {
+                Database.removeProduct(request.getProduct());
+                request.getSeller().removeProduct(request.getProduct());
+                break;
+            }
+            case "EDIT_PRODUCT" :{
+
+                Database.getAllProducts().remove(request.getProduct());
+                Database.addProduct(request.getEditedProduct());
+                request.getSeller().removeProduct(request.getProduct());
+                request.getSeller().addProduct(request.getEditedProduct());
+
+                break;
+            }
+            case "ADD_OFF" :{
+                for (Product product : request.getOff().getProducts()) {
+                    product.setOff(request.getOff());
+                }
+                Database.addOff(request.getOff());
+                request.getSeller().addOff(request.getOff());
+                break;
+            }
+            case "EDIT_OFF" : {
+                for (Product product : request.getOff().getProducts()) {
+                    product.setOff(null);
+                }
+                for (Product product : request.getEditedOff().getProducts()) {
+                    product.setOff(request.getEditedOff());
+                }
+
+                Database.getAllOffs().remove(request.getOff());
+                Database.addOff(request.getEditedOff());
+                request.getSeller().removeOff(request.getOff());
+                request.getSeller().addOff(request.getEditedOff());
+                break;
+            }
+            //todo add remove off and remember to set every product off to null
+
+            case "REGISTER_SELLER" :{
+                Database.addUser(request.getSeller());
+                break;
+            }
+        }
+        toBeRemoved.add(request);
+        }
+        for (Request request : toBeRemoved) {
+        Database.removeRequest(request);
+        }
+    }
     public void  acceptRequest(String requestId) throws Exception {
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
