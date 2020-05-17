@@ -2,6 +2,7 @@ package Server.Controller;
 
 import Client.Models.Category;
 import Client.Models.CodedDiscount;
+import Client.Models.Off;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Request;
@@ -20,6 +21,7 @@ public class ServerStartProgram {
     public static void startProgram() {
         try {
             readAllCategory();
+            readAllOffs();
             readAllDiscountCodes();
             readAllUsers();
             readAllRequest();
@@ -28,10 +30,18 @@ public class ServerStartProgram {
             System.out.println("So it's the first time you run this program... Welcome!");
         }
     }
+
     private static void readAllUsers() throws IOException, ClassNotFoundException {
         inputStream = new FileInputStream("src/main/resources/allUsers.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllUsers((ArrayList<Person>) objectInputStream.readObject());
+        inputStream.close();
+
+    }
+    private static void readAllOffs() throws IOException, ClassNotFoundException {
+        inputStream = new FileInputStream("src/main/resources/allOffs.dat");
+        objectInputStream = new ObjectInputStream(inputStream);
+        Database.setAllOffs((ArrayList<Off>) objectInputStream.readObject());
         inputStream.close();
 
     }

@@ -11,6 +11,7 @@ public class ServerEndProgram {
 
         try{
             writeAllCategory();
+            writeAllOffs();
             writeAllDiscountCodes();
             writeAllRequests();
             writeAllUsers();
@@ -25,6 +26,13 @@ public class ServerEndProgram {
          outputStream = new FileOutputStream("src/main/resources/allCategory.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllCategory());
+         objectOutputStream.close();
+
+    }
+    private static void writeAllOffs() throws IOException {
+         outputStream = new FileOutputStream("src/main/resources/allOffs.dat");
+         objectOutputStream = new ObjectOutputStream(outputStream);
+         objectOutputStream.writeObject(Database.getAllOffs());
          objectOutputStream.close();
 
     }
