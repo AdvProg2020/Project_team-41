@@ -95,6 +95,13 @@ public abstract class Menu {
                 this.execute();
             }
         }
+        if(UserSectionController.getLoggedInPerson()!=null){
+            if(command.equalsIgnoreCase("create")||command.equalsIgnoreCase("login")){
+                System.out.println("Invalid command!");
+                this.show();
+                this.execute();
+            }
+        }
     }
 
     public void commands(){
