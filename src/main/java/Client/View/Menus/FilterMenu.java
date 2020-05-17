@@ -174,7 +174,6 @@ public class FilterMenu extends Menu {
                     this.show();
                     this.execute();
                 } else {
-                    System.out.println("yORn: " + yesOrNo);
                     this.superMenu.show();
                     this.superMenu.execute();
                 }
@@ -182,7 +181,6 @@ public class FilterMenu extends Menu {
             }
         };
     }
-
 
     private Menu currentFilters() {
         return new Menu(this, "current filters") {
