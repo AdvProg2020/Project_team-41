@@ -89,7 +89,7 @@ public class AllProductsMenu extends Menu {
             public void execute() {
                 String productId = scanner.nextLine();
                 try {
-                    productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
+                    AllProductsController.getInstance().goToProductPage(productId , productMenu);
                     productMenu.show();
                     productMenu.execute();
                 } catch (Exception e) {

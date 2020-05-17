@@ -52,6 +52,8 @@ public class ProductController {
 
 
     }
+
+
     public int amountOfDiscount(String productId) throws Exception {
         return ProductServerController.getInstance().amountOfDiscount(productId);
     }

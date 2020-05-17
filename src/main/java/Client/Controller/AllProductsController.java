@@ -2,6 +2,8 @@ package Client.Controller;
 
 import Client.Models.Category;
 import Client.Models.Product;
+import Client.View.Menus.Menu;
+import Client.View.Menus.ProductMenu;
 import Server.Controller.AllProductsServerController;
 import Server.Controller.LoginRegisterServerController;
 
@@ -20,6 +22,12 @@ public class AllProductsController {
     }
     public ArrayList<Category> getAllCategories(){
         return AllProductsServerController.getInstance().getAllCategories();
+    }
+
+    public void goToProductPage(String productId , ProductMenu productMenu) throws Exception {
+        productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
+        AllProductsController.getInstance().getProduct(productId).setViews
+                (AllProductsController.getInstance().getProduct(productId).getViews()+1);
     }
 
     public Product getProduct(String productId) throws Exception {

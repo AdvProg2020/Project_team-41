@@ -69,6 +69,10 @@ public class ProductMenu extends Menu {
             }
             private Menu addToCart(){
                 return new Menu(this, "add to cart") {
+
+                    @Override
+                    public  void show(){}
+
                     @Override
                     public void execute() {
                         try {
