@@ -3,7 +3,6 @@ package Client.Models;
 import java.io.Serializable;
 
 public class SpecialFeature implements Serializable {
-    String featureName;
     private int specialFeatureInt;
     private String specialFeatureString;
 
@@ -15,8 +14,12 @@ public class SpecialFeature implements Serializable {
 
     }
 
-    public String getFeatureByName() {
-        return featureName;
+    public SpecialFeature(String specialFeatureString) {
+        try {
+            this.specialFeatureInt = Integer.parseInt(specialFeatureString);
+        } catch (NumberFormatException e) {
+            this.specialFeatureString = specialFeatureString;
+        }
     }
 
     public void setSpecialFeatureInt(int specialFeatureInt) {

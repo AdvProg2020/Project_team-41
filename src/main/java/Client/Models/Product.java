@@ -211,6 +211,11 @@ public class Product implements Serializable {
         this.buyers = buyers;
     }
 
+    public void setSpecialFeatures(HashMap<String, SpecialFeature> specialFeatures) {
+
+        this.specialFeatures = specialFeatures;
+    }
+
     public static String generateNewToken() {
         byte[] randomBytes = new byte[2];
         secureRandom.nextBytes(randomBytes);

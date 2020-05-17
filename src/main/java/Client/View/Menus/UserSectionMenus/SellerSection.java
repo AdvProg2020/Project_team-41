@@ -71,6 +71,8 @@ public class SellerSection extends UserSection {
         productDetails.add(scanner.nextLine());
         System.out.println("enter the description");
         productDetails.add(scanner.nextLine());
+        System.out.println("enter it's special features(e.g. (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2))");
+        productDetails.add(scanner.nextLine());
 
         try {
             SellerController.getInstance().addProduct(productDetails);
@@ -175,7 +177,7 @@ public class SellerSection extends UserSection {
             }
             public void editProduct(String id){
                 HashMap<String,String> edits = new HashMap<>();
-                System.out.println("what do you want to change?(type end to finish editing");
+                System.out.println("what do you want to change?(type end to finish editing)(you can edit (seller,price,companyName,description,name,specialFeature(e.g. (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2))))");
                 while (!scanner.hasNext("end")) {
                     edits.put(scanner.next(), scanner.next());
                 }

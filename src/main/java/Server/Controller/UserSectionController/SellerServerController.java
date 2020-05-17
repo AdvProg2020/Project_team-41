@@ -57,6 +57,31 @@ public class SellerServerController extends UserSectionServerController {
                                         editedProduct.setName(editRequestValue);
                                         break;
                                 }
+                                case "specialfeature" : {
+                                        Boolean flagForCategoryName = false;
+                                        HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
+                                        for (String rawSpecialFeature : editRequestValue.split(",")) {
+                                                String[] specialFeature = rawSpecialFeature.split("-");
+                                                for (String feature : product.getCategory().getSpecialFeatures()) {
+                                                        if(feature.equalsIgnoreCase(specialFeature[0])){
+                                                                try {
+                                                                        String productSpecialFeature = specialFeature[1];
+                                                                        if(specialFeatures.put(feature,new SpecialFeature(specialFeature[1])) != null)
+                                                                                throw new Exception("you entered more than one specialFeature for one category specialFeature");
+                                                                        flagForCategoryName = true;
+                                                                        break;
+
+                                                                } catch (Exception e) {
+                                                                        throw new Exception("please enter special features as i said");
+                                                                }
+                                                        }
+
+                                                }
+                                                if(!flagForCategoryName)
+                                                        throw new Exception("no category specialFeature matched what you gave us");
+                                                flagForCategoryName = false;
+                                        }
+                                }
                         }
                 Request request = new Request(seller,product,editedProduct);
                 Database.addRequest(request);
@@ -80,6 +105,31 @@ public class SellerServerController extends UserSectionServerController {
         public void addProduct(Seller seller,ArrayList<String> productDetails) throws Exception {
                 Product product = new Product();
                 String productName = productDetails.get(0);
+                Boolean flagForCategoryName = false;
+                Category category = Database.getCategoryByName(productDetails.get(4));
+                HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
+                for (String rawSpecialFeature : productDetails.get(6).split(",")) {
+                        String[] specialFeature = rawSpecialFeature.split("-");
+                        for (String feature : category.getSpecialFeatures()) {
+                                if(feature.equalsIgnoreCase(specialFeature[0])){
+                                        try {
+                                                String productSpecialFeature = specialFeature[1];
+                                                if(specialFeatures.put(feature,new SpecialFeature(specialFeature[1])) != null)
+                                                        throw new Exception("you entered more than one specialFeature for one category specialFeature");
+                                                flagForCategoryName = true;
+                                                break;
+
+                                        } catch (Exception e) {
+                                                throw new Exception("please enter special features as i said");
+                                        }
+                                }
+
+                        }
+                        if(!flagForCategoryName)
+                                throw new Exception("no category specialFeature matched what you gave us");
+                        flagForCategoryName = false;
+                }
+
                 int productQuantity;
                 int productPrice;
                 try {
@@ -96,9 +146,10 @@ public class SellerServerController extends UserSectionServerController {
                 product.setQuantity(productQuantity);
                 product.setCompanyName(productDetails.get(2));
                 product.setPrice(productPrice);
-                product.setCategory(Database.getCategoryByName(productDetails.get(4)));
+                product.setCategory(category);
                 product.setDescription(productDetails.get(5));
                 product.setSeller(seller);
+                product.setSpecialFeatures(specialFeatures);
                 Database.addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
         }
         public void removeProduct(Seller seller,String id) throws Exception {
