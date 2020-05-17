@@ -225,6 +225,10 @@ public class Product implements Serializable {
 
         this.specialFeatures = specialFeatures;
     }
+    public void removeProduct() {
+        category.removeProduct(this);
+    }
+
 
     public static String generateNewToken() {
         byte[] randomBytes = new byte[2];

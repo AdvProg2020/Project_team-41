@@ -60,7 +60,7 @@ public class ManagerServerController extends UserSectionServerController {
     }
     public void  removeProduct(String productId) throws Exception {
         Product product = Database.getProductById(productId);
-        product.getCategory().removeProduct(product);
+        product.removeProduct();
     }
     public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ArrayList<Person> people = new ArrayList<>();
@@ -232,7 +232,6 @@ public class ManagerServerController extends UserSectionServerController {
             }
             case "REMOVE_PRODUCT" : {
                 Database.removeProduct(request.getProduct());
-                request.getSeller().removeProduct(request.getProduct());
                 break;
             }
             case "EDIT_PRODUCT" :{
@@ -299,7 +298,6 @@ public class ManagerServerController extends UserSectionServerController {
             }
             case "REMOVE_PRODUCT" : {
                 Database.removeProduct(request.getProduct());
-                request.getSeller().removeProduct(request.getProduct());
                 break;
             }
             case "EDIT_PRODUCT" :{

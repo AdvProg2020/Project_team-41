@@ -41,6 +41,10 @@ public class Category implements Serializable {
         return name;
     }
     public void removeProduct(Product product){
+        Off off = product.getOff();
+        product.getSeller().removeProduct(product);
+        if (off != null)
+            off.removeProduct(product);
         products.remove(product);
 
     }
