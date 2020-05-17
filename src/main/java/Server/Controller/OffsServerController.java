@@ -24,6 +24,12 @@ public class OffsServerController {
     public ArrayList<Product> getAllOffProducts(){
         return Database.getAllOffProducts();
     }
+    public void deleteOffs(ArrayList<Off>offs){
+        Database.deleteOutOfDateOffs(offs);
+        for (Off off : offs) {
+            off.deleteOff();
+        }
+    }
 
 
 }

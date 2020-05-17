@@ -100,12 +100,18 @@ public class Off implements Serializable {
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
+    public void deleteOff(){
+        for (Product product : products) {
+            product.setOff(null);
+            seller.removeOff(this);
+        }
+    }
 
     @Override
     public String toString() {
         StringBuilder products = new StringBuilder();
         for (Product item : this.products) {
-            products.append(item.getName()+ "\n");
+            products.append(item.getName()).append("\n");
         }
         return
                 "offId : '" + offId + '\'' +

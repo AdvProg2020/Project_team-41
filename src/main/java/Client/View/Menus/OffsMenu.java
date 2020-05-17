@@ -5,6 +5,10 @@ import Client.Controller.OffsController;
 import Client.Models.Off;
 import Client.Models.Product;
 import Server.Controller.TimeControl;
+import Server.Database;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class OffsMenu extends Menu {
     public OffsMenu(Menu superMenu) {
@@ -19,7 +23,13 @@ public class OffsMenu extends Menu {
         System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
         System.out.print("| Product id       | Name       | Price      | Price with discount |     Start date     |      End date     |\n");
         System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
+        ArrayList<Off> offsToDelete=new ArrayList<>();
+        Date date=new Date();
         for (Off off : OffsController.getInstance().getOffs()) {
+            if(date.after(off.getEndDate())){
+                offsToDelete.add(off);
+                continue;
+            }
             for (Product product : off.getProducts()) {
                 System.out.format("| %-16s | %-10s | %-10d | %-19s | %-18s | %18s |\n", product.getProductId(), product.getName(),
                         product.getPrice(),(product.getPrice()*(100-off.getAmountOfDiscount()))/100,
@@ -27,6 +37,7 @@ public class OffsMenu extends Menu {
             }
         }
         System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
+        OffsController.getInstance().deleteOffs(offsToDelete);
         super.show();
 
     }
