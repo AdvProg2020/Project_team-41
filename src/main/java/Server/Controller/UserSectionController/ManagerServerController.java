@@ -58,14 +58,9 @@ public class ManagerServerController extends UserSectionServerController {
 
 
     }
-    public void  removeProduct(String productId){
-        for (Category category : Database.getAllCategory()) {
-            for (Product product : category.getProducts()) {
-                if(product.getProductId().equals(productId)){
-                    category.removeProduct(product);
-                }
-            }
-        }
+    public void  removeProduct(String productId) throws Exception {
+        Product product = Database.getProductById(productId);
+        product.getCategory().removeProduct(product);
     }
     public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ArrayList<Person> people = new ArrayList<>();
