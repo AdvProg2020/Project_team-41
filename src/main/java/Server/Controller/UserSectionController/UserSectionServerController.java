@@ -32,7 +32,7 @@ public abstract class UserSectionServerController {
             throw new Exception("can't change username");
         if(person == null)
             throw new NullPointerException("There is no one logged in");
-        switch (field){
+        switch (field.toLowerCase()){
             case "password":{
                 if(editedField.split(",")[0].equals(person.getPassword()))
                     person.setPassword(editedField.split(",")[1]);
@@ -41,19 +41,19 @@ public abstract class UserSectionServerController {
 
                 break;
             }
-            case "FirstName":{
+            case "firstname":{
                 person.setFirstName(editedField);
                 break;
             }
-            case "LastName":{
+            case "lastname":{
                 person.setLastName(editedField);
                 break;
             }
-            case "Email":{
+            case "email":{
                 person.setEmail(editedField);
                 break;
             }
-            case "PhoneNumber":{
+            case "phonenumber":{
                 person.setPhoneNumber(editedField);
                 break;
             }
