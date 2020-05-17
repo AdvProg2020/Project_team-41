@@ -142,9 +142,7 @@ public class FilterMenu extends Menu {
                                     System.out.println("Enter feature value to filter:");
                                     FilterController.getInstance().getDefiniteStringFeatures().put(featureName, scanner.nextLine());
                                 }
-                            } catch (ClassNotFoundException e) {
-                                System.err.println(e.getMessage());
-                            } catch (NullPointerException e) {
+                            } catch (ClassNotFoundException | NullPointerException e) {
                                 System.err.println(e.getMessage());
                             }
                             break;

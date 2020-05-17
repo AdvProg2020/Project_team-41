@@ -133,9 +133,14 @@ public class Database implements Serializable {
     }
     public static void deleteCategory(String categoryName) throws Exception {
         for (Category category : allCategory) {
-            if(category.getName().equalsIgnoreCase(categoryName))
+            if(category.getName().equalsIgnoreCase(categoryName)) {
+                for (Product product : category.getProducts()) {
+                    product.removeProduct();
+                }
+
                 allCategory.remove(category);
                 return;
+            }
         }
         throw new Exception("no category found");
 
@@ -151,23 +156,23 @@ public class Database implements Serializable {
     public static ArrayList<Request> getAllRequest() {
         return allRequest;
     }
-    public static void addProduct(Product product){
+    public static void addProduct(Product product) throws Exception {
         for (Category category : allCategory) {
             if(category.getName().equals(product.getCategory().getName())){
                 category.addProduct(product);
                 return;
             }
         }
-        throw new NullPointerException("no category found while adding product to database");
+        throw new Exception("no category found while adding product to database");
     }
-    public static void removeProduct(Product product){
+    public static void removeProduct(Product product) throws Exception {
         for (Category category : allCategory) {
             if(category.getName().equals(product.getCategory().getName())){
                 category.removeProduct(product);
                 return;
             }
         }
-        throw new NullPointerException("no category found while adding product to database");
+        throw new Exception("no category found while adding product to database");
     }
     public static Seller getSellerByUsername(String username) throws NullPointerException{
         for (Person user : allUsers) {

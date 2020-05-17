@@ -13,7 +13,7 @@ public class Cart implements Serializable {
     private CodedDiscount codedDiscount;
     public Cart(Buyer buyer) {
         this.buyer = buyer;
-        products = new HashMap<Product, Integer>();
+        products = new HashMap<>();
     }
 
     public ArrayList<String> getReceiverInformation() {
@@ -36,7 +36,7 @@ public class Cart implements Serializable {
         return products;
     }
     public void increaseProductQuantity(Product product) throws Exception {
-        int productQuantity = 0;
+        int productQuantity;
         try {
             productQuantity = products.get(product);
         } catch (Exception e) {
@@ -75,5 +75,8 @@ public class Cart implements Serializable {
         return "Cart : " +
                 "\nproducts : " + products  +
                 '}';
+    }
+    public void addProduct(Product product){
+        products.put(product,1);
     }
 }

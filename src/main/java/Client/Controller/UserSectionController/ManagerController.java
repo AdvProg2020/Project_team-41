@@ -16,6 +16,9 @@ public class ManagerController extends UserSectionController{
 
         return single_instance;
     }
+    public void acceptAllRequests() throws Exception {
+        ManagerServerController.getInstance().acceptAllRequests();
+    }
     private ManagerController(){
     }
     public void editCategorySpecialFeatures(String category,String editedField) throws Exception {

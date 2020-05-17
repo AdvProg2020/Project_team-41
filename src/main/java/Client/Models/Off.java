@@ -106,6 +106,9 @@ public class Off implements Serializable {
             seller.removeOff(this);
         }
     }
+    public void removeProduct(Product product){
+        products.remove(product);
+    }
 
     @Override
     public String toString() {

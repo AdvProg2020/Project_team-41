@@ -82,6 +82,13 @@ public class CodedDiscount implements Serializable {
             throw new Exception("discount repeats should be positive :/ ");
         this.discountRepeatsForEachUser = discountRepeatsForEachUser;
     }
+    public void reduceDiscountCodeForUser(Person person){
+        int codesLeft = people.get(person)-1;
+        if (codesLeft == 0)
+            people.remove(person);
+        else
+            people.put(person,codesLeft);
+    }
 
     public HashMap<Person, Integer> getPeople() {
         return people;

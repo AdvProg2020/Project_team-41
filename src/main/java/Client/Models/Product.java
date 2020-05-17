@@ -10,7 +10,6 @@ import java.util.*;
 public class Product implements Serializable {
 
     private String productId;
-    private Situation productSituation;
     // start of common specifics
     private String name;
     private String companyName;
@@ -126,10 +125,6 @@ public class Product implements Serializable {
         return comments;
     }
 
-    public Situation getProductSituation() {
-        return productSituation;
-    }
-
     public String getName() {
         return name;
     }
@@ -205,10 +200,6 @@ public class Product implements Serializable {
             throw new Exception("out of stock");
     }
 
-    public void setProductSituation(Situation productSituation) {
-        this.productSituation = productSituation;
-    }
-
     public void setScores(ArrayList<Score> scores) {
         this.scores = scores;
     }
@@ -225,6 +216,10 @@ public class Product implements Serializable {
 
         this.specialFeatures = specialFeatures;
     }
+    public void removeProduct() {
+        category.removeProduct(this);
+    }
+
 
     public static String generateNewToken() {
         byte[] randomBytes = new byte[2];
@@ -235,8 +230,7 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return
-                "productSituation=" + productSituation +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", price=" + price +
                 ", seller=" + seller.getUserName() +
@@ -254,7 +248,6 @@ public class Product implements Serializable {
                 off == product.off &&
                 views == product.views &&
                 Objects.equals(productId, product.productId) &&
-                productSituation == product.productSituation &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(companyName, product.companyName) &&
                 Objects.equals(seller, product.seller) &&
@@ -266,8 +259,4 @@ public class Product implements Serializable {
                 Objects.equals(buyers, product.buyers);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productSituation, name, companyName, price, seller, quantity, off, category, specialFeatures, description, scores, comments, views, buyers);
-    }
 }

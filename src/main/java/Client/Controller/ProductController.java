@@ -5,6 +5,7 @@ import Client.Models.Comment;
 import Client.Models.CommentSituation;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
+import Client.View.Menus.UserSectionMenus.UserSection;
 import Server.Controller.ProductServerController;
 
 public class ProductController {
@@ -22,10 +23,10 @@ public class ProductController {
 
     public static void addToCart(Product product) throws ClassCastException , NullPointerException {
         if (UserSectionController.getLoggedInPerson() != null) {
-            if(UserSectionController.getLoggedInPerson() instanceof Buyer){
-            Buyer theBuyer = (Buyer) UserSectionController.getLoggedInPerson();
-            theBuyer.getCart().getProducts().put(product , 1);
-              }
+            if(UserSectionController.getLoggedInPerson() instanceof Buyer) {
+                Buyer theBuyer = (Buyer) UserSectionController.getLoggedInPerson();
+                theBuyer.getCart().addProduct(product);
+            }
             else
                 throw new ClassCastException("Sorry, only buyers can buy!");
 

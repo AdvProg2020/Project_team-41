@@ -8,5 +8,8 @@ public class Buyer extends Person {
     public Cart getCart() {
         return cart;
     }
+    public void renewCart(){
+        cart = new Cart(this);
+    }
 
 }
