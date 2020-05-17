@@ -214,4 +214,8 @@ public class Database implements Serializable {
     public static void setAllOffs(ArrayList<Off> allOffs) {
         Database.allOffs = allOffs;
     }
+    public static void deleteOutOfDateOffs(ArrayList<Off> offsToDelete){
+        allOffs.removeAll(offsToDelete);
+    }
+
 }

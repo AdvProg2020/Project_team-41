@@ -26,5 +26,8 @@ public class OffsController {
         System.err.println("fail");
         return null;
     }
+    public void deleteOffs(ArrayList<Off> offs){
+        OffsServerController.getInstance().deleteOffs(offs);
+    }
 
 }
