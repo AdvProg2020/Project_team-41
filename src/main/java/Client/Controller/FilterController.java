@@ -7,6 +7,7 @@ import Server.Controller.OffsServerController;
 import Server.Database;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -180,20 +181,32 @@ public class FilterController {
         }
     }
 
-    public void disableSpecialFeature(String feature) throws ClassNotFoundException, NullPointerException {
+    public void disableSpecialFeature(String feature) throws ClassNotFoundException, NullPointerException, FileNotFoundException {
         if (isTheFeatureNumeric(feature)) {
-            deleteASpecialFeatureFromHashMap(feature , rangeFeatures);
+
+            if(isFeatureAmongDefiniteIntSpecialFeatures(feature))
             deleteASpecialFeatureFromHashMap(feature , definiteIntFeatures);
+            else
+            deleteASpecialFeatureFromHashMap(feature , rangeFeatures);
+
         } else
            deleteASpecialFeatureFromHashMap(feature , definiteStringFeatures);
     }
 
-    private void deleteASpecialFeatureFromHashMap(String featureToDelete , HashMap featureList){
+    private boolean isFeatureAmongDefiniteIntSpecialFeatures(String feature){
+        for (String featureName : definiteIntFeatures.keySet()) {
+            if(featureName.equalsIgnoreCase(feature))
+                return true;
+        }
+        return false;
+    }
+    private void deleteASpecialFeatureFromHashMap(String featureToDelete , HashMap featureList) throws FileNotFoundException {
         for (Object featureName : featureList.keySet()) {
             if(featureName.equals(featureToDelete)){
                featureList.remove(featureName);
             return;}
         }
+        throw new FileNotFoundException("the specialFeature had not been selected already to be disabled now");
     }
 
     public boolean isTheFeatureNumeric(String featureNameToFind) throws ClassNotFoundException, NullPointerException {

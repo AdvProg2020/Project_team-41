@@ -4,6 +4,8 @@ import Client.Controller.FilterController;
 import Client.Models.Product;
 import javafx.util.Pair;
 
+import java.io.FileNotFoundException;
+
 public class FilterMenu extends Menu {
 
     public FilterMenu(Menu superMenu) {
@@ -213,9 +215,7 @@ public class FilterMenu extends Menu {
                             FilterController.getInstance().disableSpecialFeature(scanner.nextLine());
                             System.out.println("The filtered feature was successfully disabled\n");
                         }
-                    } catch (ClassNotFoundException e) {
-                        System.err.println(e.getMessage());
-                    } catch (NullPointerException e) {
+                    } catch (ClassNotFoundException | NullPointerException | FileNotFoundException e) {
                         System.err.println(e.getMessage());
                     }
                 } else {
