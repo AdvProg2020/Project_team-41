@@ -27,8 +27,16 @@ public class SortController {
         return sortFeature;
     }
 
-    public void setSortFeature(String sortFeature) {
+    public void setSortFeature(String sortFeature) throws NullPointerException {
+        if(sortFeature.equalsIgnoreCase("product name")||
+        sortFeature.equalsIgnoreCase("company name")||
+        sortFeature.equalsIgnoreCase("price")||
+        sortFeature.equalsIgnoreCase("seller username")||
+        sortFeature.equalsIgnoreCase("score")||
+       sortFeature.equalsIgnoreCase("view"))
         this.sortFeature = sortFeature;
+        else
+            throw new NullPointerException("please enter a valid sort type:");
     }
 
     public List<Product> getSortedProducts(boolean offOrNot) {

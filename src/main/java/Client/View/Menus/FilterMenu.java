@@ -43,6 +43,8 @@ public class FilterMenu extends Menu {
 
             @Override
             public void execute() {
+                System.out.println();
+                super.show();
                 super.execute();
             }
         };
@@ -191,6 +193,8 @@ public class FilterMenu extends Menu {
 
             @Override
             public void execute() {
+                System.out.println();
+                super.show();
                 super.execute();
             }
         };
@@ -207,31 +211,36 @@ public class FilterMenu extends Menu {
             public void execute() {
                 String filterToBeDisabled = scanner.nextLine();
                 if (filterToBeDisabled.equals("category special features")) {
-                    System.out.println("Enter the feature:");
                     try {
                         if (FilterController.getInstance().getFilterCategory() == null)
-                            System.err.println("Not any category is selected yet");
-                        else
+                            System.err.println("Not any category is selected yet\n");
+                        else {
+                            System.out.println("Enter the feature:");
                             FilterController.getInstance().disableSpecialFeature(scanner.nextLine());
-                        System.out.println("The filtered feature was successfully disabled");
+                            System.out.println("The filtered feature was successfully disabled\n");
+                        }
                     } catch (ClassNotFoundException e) {
                         System.err.println(e.getMessage());
                     } catch (NullPointerException e) {
                         System.err.println(e.getMessage());
                     }
-                } else
+                } else {
                     try {
                         FilterController.getInstance().disableFilter(filterToBeDisabled);
-                        System.out.println("The filter was successfully disabled");
+                        System.out.println("The filter was successfully disabled\n");
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        System.err.println(e.getMessage());
                     }
+                }
+
+                super.show();
                 super.execute();
+
             }
         };
     }
 
-    private int enterAnInteger( ) {
+    private int enterAnInteger() {
         int number = 0;
         boolean again = true;
         while (again) {

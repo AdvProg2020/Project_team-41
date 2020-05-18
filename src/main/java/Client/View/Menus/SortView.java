@@ -29,14 +29,14 @@ public class SortView extends Menu{
     return new Menu(this , "show available sorts") {
         @Override
         public void show() {
-            System.out.println("product name/ company name/ price/ seller username/ score/ view");
+            System.out.println("product name/ company name/ price/ seller username/ score/ view\n");
         }
 
         @Override
         public void execute() {
+            super.show();
             super.execute();
             System.out.println("Invalid command!");
-            super.show();
             this.execute();
         }
     };
@@ -51,7 +51,15 @@ public class SortView extends Menu{
 
             @Override
             public void execute() {
-                SortController.getInstance().setSortFeature(scanner.nextLine());
+                boolean again = true;
+
+                while (again){
+                try {
+                    SortController.getInstance().setSortFeature(scanner.nextLine());
+                    again = false;
+                } catch (NullPointerException e) {
+                    System.out.println(e.getMessage());
+                }}
 
                 System.out.println("\n" + "Sorted Products:");
                 System.out.print("+------------------+------------+------------+\n");
@@ -62,6 +70,7 @@ public class SortView extends Menu{
                 }
                 System.out.print("+------------------+------------+------------+\n");
 
+                super.show();
                 super.execute();
             }
         };
@@ -71,11 +80,12 @@ public class SortView extends Menu{
         return new Menu(this , "current sort") {
             @Override
             public void show() {
-                System.out.println(SortController.getInstance().getSortFeature());
+                System.out.println(SortController.getInstance().getSortFeature()+ "\n");
             }
 
             @Override
             public void execute() {
+                super.show();
                 super.execute();
             }
         };
@@ -85,13 +95,15 @@ public class SortView extends Menu{
         return new Menu(this, "disable sort") {
             @Override
             public void show() {
-                super.show();
+
             }
 
             @Override
             public void execute() {
                 SortController.getInstance().setSortFeature("view");
-                System.out.println("Sorting is by default(view) now");
+                System.out.println("Sorting is by default(view) now\n");
+
+                super.show();
                 super.execute();
             }
         };
