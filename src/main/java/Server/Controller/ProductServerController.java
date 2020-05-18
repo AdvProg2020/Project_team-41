@@ -6,6 +6,8 @@ import Client.Models.Product;
 import Client.Models.Request;
 import Server.Database;
 
+import java.util.Date;
+
 public class ProductServerController {
     private static ProductServerController single_instance = null;
     public static ProductServerController getInstance()
@@ -26,9 +28,13 @@ public class ProductServerController {
         //TODO add the comment
     }
     public int amountOfDiscount(String productId) throws Exception {
+        Date date=new Date();
         for (Off off : Database.getAllOffs()) {
             for (Product product : off.getProducts()) {
                 if(product.getProductId().equals(productId)){
+                    if(date.before(off.getStartDate())){
+                        throw new Exception("There is no discount for this product at this time.");
+                    }
                     return off.getAmountOfDiscount();
                 }
             }
