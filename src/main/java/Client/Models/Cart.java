@@ -79,8 +79,7 @@ public class Cart implements Serializable {
             products.append("\nquantity: ").append(this.products.get(product));
         }
         return "Cart : " +
-                "\nproducts : " + products  +
-                '}';
+                "\nproducts : " + products;
     }
     public void addProduct(Product product){
         products.put(product,1);
