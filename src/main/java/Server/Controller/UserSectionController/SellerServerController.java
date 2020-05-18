@@ -82,6 +82,9 @@ public class SellerServerController extends UserSectionServerController {
                                                 flagForCategoryName = false;
                                         }
                                 }
+                                default:{
+                                        throw new Exception("wrong field");
+                                }
                         }
                         product.setSituation(Situation.EDITING);
                 Request request = new Request(seller,product,editedProduct);
