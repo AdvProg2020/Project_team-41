@@ -73,9 +73,8 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
         String[] dateTime = {codeInformation.get(1),codeInformation.get(2)};
-        Database.getCodedDiscountByCode(codeInformation.get(0));
-        for (CodedDiscount discountCode : Database.getAllDiscountCodes()) {
-            if(discountCode.getDiscountCode().equals(codeInformation.get(0)))
+        for (CodedDiscount codedDiscount : Database.getAllDiscountCodes()) {
+            if(codedDiscount.getDiscountCode().equals(codeInformation.get(0)))
                 throw new Exception("code is used already");
         }
         Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
