@@ -23,10 +23,29 @@ public class ManagerServerController extends UserSectionServerController {
 
     private ManagerServerController(){
     }
-    public void editCategorySpecialFeatures(String category,String editedField) throws Exception {
+    public void editCategorySpecialFeatures(String categoryName,String editedField) throws Exception {
+        ArrayList<String> removedSpecialFeatures = new ArrayList<>();
         ArrayList<String> specialFeatures = new ArrayList<>();
         Collections.addAll(specialFeatures, editedField.split(","));
-        Database.getCategoryByName(category).setSpecialFeatures(specialFeatures);
+        Category category = Database.getCategoryByName(categoryName);
+        for (String specialFeature : category.getSpecialFeatures()) {
+            if(!specialFeatures.contains(specialFeature)){
+                removedSpecialFeatures.add(specialFeature);
+            }
+
+        }
+        for (Product product : category.getProducts()) {
+            for (String removedSpecialFeature : removedSpecialFeatures) {
+                if(product.getSpecialFeatures().containsKey(removedSpecialFeature)){
+                    try {
+                        product.removeSpecialFeature(removedSpecialFeature);
+                    } catch (Exception ignored) {
+                    }
+
+                }
+            }
+        }
+        category.setSpecialFeatures(specialFeatures);
     }
     public ArrayList<Product> getAllProducts(){
         return Database.getAllProducts();

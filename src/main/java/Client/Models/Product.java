@@ -250,6 +250,9 @@ public class Product implements Serializable {
         category.removeProduct(this);
         ServerSaver.write(AllCommands.allData);
     }
+    public void removeSpecialFeature(String categorySpecialFeature){
+        specialFeatures.remove(categorySpecialFeature);
+    }
 
 
 
