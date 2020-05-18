@@ -12,7 +12,6 @@ public class AllProductsMenu extends Menu {
         super(superMenu, "AllProducts");
         addSubMenu(new FilterMenu(this));
         addSubMenu(new SortView(this));
-        addSubMenu(addViewCategories());
         addSubMenu(addShowProducts());
         addSubMenu(addShowProduct());
         productMenu = new ProductMenu(this);
@@ -24,34 +23,36 @@ public class AllProductsMenu extends Menu {
     }
 
     @Override
+    public void commands() {
+        super.commands();
+        System.out.println("ViewCategories");
+
+    }
+
+    @Override
     public void execute() {
         super.execute();
+        if(command.equalsIgnoreCase("ViewCategories")){
+            viewCategories();
+        }
         System.out.println("Invalid command!");
         this.show();
         this.execute();
     }
 
-    private Menu addViewCategories() {
-        return new Menu(this, "ViewCategories") {
-            @Override
-            public void show() {
+    private void viewCategories() {
+
                 System.out.println("Categories are:");
                 for (Category category : AllProductsController.getInstance().getAllCategories()) {
                     System.out.println(category.getName());
                 }
                 System.out.println("");
-                super.show();
+                this.show();
+                this.execute();
+
             }
 
-            @Override
-            public void execute() {
-                super.execute();
-                System.out.println("Invalid command!");
-                this.commands();
-                this.execute();
-            }
-        };
-    }
+
 
     private Menu addShowProducts(){
         return new Menu(this,"ShowProducts") {
