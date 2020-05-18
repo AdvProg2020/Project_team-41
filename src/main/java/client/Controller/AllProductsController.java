@@ -2,10 +2,8 @@ package Client.Controller;
 
 import Client.Models.Category;
 import Client.Models.Product;
-import Client.View.Menus.Menu;
 import Client.View.Menus.ProductMenu;
 import Server.Controller.AllProductsServerController;
-import Server.Controller.LoginRegisterServerController;
 
 import java.util.ArrayList;
 

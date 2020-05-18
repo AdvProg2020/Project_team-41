@@ -7,9 +7,7 @@ import Server.Controller.ServerSaver;
 import Server.Controller.TimeControl;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
 
 public class Off implements Serializable {

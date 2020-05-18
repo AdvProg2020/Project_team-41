@@ -2,7 +2,6 @@ package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.UserSectionController;
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
@@ -128,9 +127,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
 
                 }
@@ -140,9 +142,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else if(command.startsWith("remove")){
@@ -151,9 +156,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else{
@@ -243,9 +251,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else if(command.startsWith("accept")){
@@ -254,9 +265,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else if(command.startsWith("decline")){
@@ -265,9 +279,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else{
@@ -356,9 +373,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 if(command.startsWith("edit")){
@@ -367,9 +387,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 if(command.startsWith("remove")){
@@ -378,9 +401,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else{
@@ -460,9 +486,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else{
@@ -549,9 +578,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else if(command.startsWith("delete")){
@@ -560,9 +592,12 @@ public class ManagerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else{

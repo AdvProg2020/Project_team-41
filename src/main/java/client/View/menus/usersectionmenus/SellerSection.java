@@ -5,7 +5,6 @@ import Client.Models.Category;
 import Client.Models.Off;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
-import Server.Controller.ServerSaver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -134,9 +133,12 @@ public class SellerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else if(command.startsWith("viewProduct")){
@@ -145,9 +147,12 @@ public class SellerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else if(command.startsWith("editProduct")){
@@ -156,9 +161,12 @@ public class SellerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else{
@@ -294,9 +302,12 @@ public class SellerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else if(command.startsWith("edit")){
@@ -305,9 +316,12 @@ public class SellerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("invalid command");
-                            this.show();
-                            this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                        }
+                        this.show();
+                        this.execute();
                     }
                 }
                 else if (command.equalsIgnoreCase("addOff")){
@@ -345,6 +359,9 @@ public class SellerSection extends UserSection {
                     } catch (Exception e) {
                         if(e instanceof ArrayIndexOutOfBoundsException) {
                             System.out.println("enter like i said");
+                        }
+                        else{
+                            System.out.println(e.getMessage());
                         }
                     }
                 }

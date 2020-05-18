@@ -1,6 +1,5 @@
 package Server.Controller;
 
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Server.Database;
 

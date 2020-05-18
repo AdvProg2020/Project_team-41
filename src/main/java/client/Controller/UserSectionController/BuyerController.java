@@ -3,7 +3,6 @@ package Client.Controller.UserSectionController;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
 import Server.Controller.UserSectionController.BuyerServerController;
-import Server.Database;
 
 import java.util.ArrayList;
 

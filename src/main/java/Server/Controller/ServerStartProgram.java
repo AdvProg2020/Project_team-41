@@ -3,7 +3,6 @@ package Server.Controller;
 import Client.Models.Category;
 import Client.Models.CodedDiscount;
 import Client.Models.Off;
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Request;
 import Server.Database;

@@ -1,7 +1,5 @@
 package Client.View.Menus;
 
-import Client.Controller.UserSectionController.ManagerController;
-
 public class MainMenu extends Menu {
     private static MainMenu single_instance = null;
     public static MainMenu getInstance()

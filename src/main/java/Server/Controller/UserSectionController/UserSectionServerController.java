@@ -1,6 +1,5 @@
 package Server.Controller.UserSectionController;
 
-import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Person;
 
 import java.util.ArrayList;
