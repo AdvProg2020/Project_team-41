@@ -194,8 +194,6 @@ public class FilterMenu extends Menu {
         this.execute();
     }
 
-
-
     private Menu disableFilter() {
         return new Menu(this, "disable filter") {
             @Override

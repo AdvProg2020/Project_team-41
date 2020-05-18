@@ -1,5 +1,14 @@
 import Client.Controller.StartProgram;
+import Client.Models.Category;
+import Client.Models.Person.Person;
+import Client.Models.Person.Seller;
+import Client.Models.Product;
+import Client.Models.SpecialFeature;
 import Client.View.Menus.MainMenu;
+import Server.Database;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
 
@@ -17,6 +26,7 @@ public class Main {
 //            ArrayList<String> specialFeatures = new ArrayList<>();
 //            specialFeatures.add("writer");
 //            specialFeatures.add("pages");
+//            specialFeatures.add("edition");
 //            Category books = new Category("books" , specialFeatures);
 //            Category shirts = new Category("shirts" , new ArrayList<>());
 //            Database.getAllCategory().add(books);
@@ -31,8 +41,10 @@ public class Main {
 //            biganeh.setProductId("b");
 //            SpecialFeature biganehWriter =new SpecialFeature("alberkamo");
 //            SpecialFeature biganehPages =new SpecialFeature("100");
+//            SpecialFeature biganehEdition =new SpecialFeature("1");
 //            biganeh.getSpecialFeatures().put("writer" , biganehWriter);
 //            biganeh.getSpecialFeatures().put("pages" , biganehPages);
+//            biganeh.getSpecialFeatures().put("edition" , biganehEdition);
 //            biganeh.setCategory(books);
 //
 //            Product maskh = new Product();
@@ -44,8 +56,10 @@ public class Main {
 //            maskh.setProductId("m");
 //            SpecialFeature maskhWriter =new SpecialFeature("kafka");
 //            SpecialFeature maskhPages =new SpecialFeature("200");
+//            SpecialFeature maskhEdition =new SpecialFeature("2");
 //            maskh.getSpecialFeatures().put("writer" , maskhWriter);
 //            maskh.getSpecialFeatures().put("pages" , maskhPages);
+//            maskh.getSpecialFeatures().put("edition" , maskhEdition);
 //            maskh.setCategory(books);
 //
 //            Product adl = new Product();
@@ -57,8 +71,10 @@ public class Main {
 //            adl.setProductId("a");
 //            SpecialFeature adlWriter =new SpecialFeature("motahari");
 //            SpecialFeature adlPages =new SpecialFeature("300");
+//            SpecialFeature adlEdition =new SpecialFeature("2");
 //            adl.getSpecialFeatures().put("writer" , adlWriter);
 //            adl.getSpecialFeatures().put("pages" , adlPages);
+//            adl.getSpecialFeatures().put("edition" , adlEdition);
 //            adl.setCategory(books);
 //
 //            Product T_shirt = new Product();

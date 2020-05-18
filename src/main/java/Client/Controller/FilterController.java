@@ -148,8 +148,11 @@ public class FilterController {
     public void disableFilter(String filterToBeDisabled) throws Exception {
         switch (filterToBeDisabled) {
             case "product name": {
+                if(name == null)
+                    throw new RuntimeException("the filter had not been selected already to be disabled now");
+                else{
                 name = null;
-                break;
+                break;}
             }
             case "company name": {
                 companyName = null;
@@ -179,10 +182,18 @@ public class FilterController {
 
     public void disableSpecialFeature(String feature) throws ClassNotFoundException, NullPointerException {
         if (isTheFeatureNumeric(feature)) {
-            definiteIntFeatures.clear();
-            rangeFeatures.clear();
+            deleteASpecialFeatureFromHashMap(feature , rangeFeatures);
+            deleteASpecialFeatureFromHashMap(feature , definiteIntFeatures);
         } else
-            definiteStringFeatures.clear();
+           deleteASpecialFeatureFromHashMap(feature , definiteStringFeatures);
+    }
+
+    private void deleteASpecialFeatureFromHashMap(String featureToDelete , HashMap featureList){
+        for (Object featureName : featureList.keySet()) {
+            if(featureName.equals(featureToDelete)){
+               featureList.remove(featureName);
+            return;}
+        }
     }
 
     public boolean isTheFeatureNumeric(String featureNameToFind) throws ClassNotFoundException, NullPointerException {
