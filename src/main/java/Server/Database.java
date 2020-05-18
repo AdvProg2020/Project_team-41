@@ -4,6 +4,8 @@ import Client.Models.*;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
+import Server.Controller.AllCommands;
+import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +21,6 @@ public class Database implements Serializable {
     public static ArrayList<Off> getAllOffs() {
         return allOffs;
     }
-//todo move all here
 
     public static ArrayList<Product> getAllProducts(){
         ArrayList<Product> allProducts = new ArrayList<>();
@@ -84,6 +85,7 @@ public class Database implements Serializable {
     }
     public static void addDiscountCodes(CodedDiscount codedDiscount) {
         allDiscountCodes.add(codedDiscount);
+        ServerSaver.write(AllCommands.allDiscountCodes);
     }
 
     public static void setAllUsers(ArrayList<Person> allUsers) {
@@ -102,11 +104,15 @@ public class Database implements Serializable {
         Database.allDiscountCodes = allDiscountCodes;
     }
 
+    public static void setAllOffs(ArrayList<Off> allOffs) {
+        Database.allOffs = allOffs;
+    }
     public static void deleteUser(String username) throws Exception {
 
         for (Person user : allUsers) {
             if(user.getUserName().equals(username)){
                 allUsers.remove(user);
+                ServerSaver.write(AllCommands.allUsers);
                 return;
             }
         }
@@ -119,6 +125,7 @@ public class Database implements Serializable {
         for (CodedDiscount discountCode : allDiscountCodes) {
             if(discountCode.getDiscountCode().equals(code)) {
                 allDiscountCodes.remove(discountCode);
+                ServerSaver.write(AllCommands.allDiscountCodes);
                 return;
             }
         }
@@ -130,6 +137,7 @@ public class Database implements Serializable {
                 throw new Exception("username Exists");
         }
         allUsers.add(person);
+        ServerSaver.write(AllCommands.allUsers);
     }
     public static void deleteCategory(String categoryName) throws Exception {
         for (Category category : allCategory) {
@@ -139,20 +147,23 @@ public class Database implements Serializable {
                 }
 
                 allCategory.remove(category);
+                ServerSaver.write(AllCommands.allCategory);
                 return;
             }
         }
         throw new Exception("no category found");
 
     }
+
     public static void addCategory(Category category){
+
         allCategory.add(category);
+        ServerSaver.write(AllCommands.allCategory);
     }
 
     public static ArrayList<Category> getAllCategory() {
         return allCategory;
     }
-
     public static ArrayList<Request> getAllRequest() {
         return allRequest;
     }
@@ -160,6 +171,7 @@ public class Database implements Serializable {
         for (Category category : allCategory) {
             if(category.getName().equals(product.getCategory().getName())){
                 category.addProduct(product);
+                ServerSaver.write(AllCommands.allCategory);
                 return;
             }
         }
@@ -169,6 +181,7 @@ public class Database implements Serializable {
         for (Category category : allCategory) {
             if(category.getName().equals(product.getCategory().getName())){
                 category.removeProduct(product);
+                ServerSaver.write(AllCommands.allCategory);
                 return;
             }
         }
@@ -184,6 +197,7 @@ public class Database implements Serializable {
     }
     public static void addOff(Off off){
         allOffs.add(off);
+        ServerSaver.write(AllCommands.allOffs);
     }
     public static Request getRequestByRequestId(String requestId) throws Exception {
         for (Request request : allRequest) {
@@ -194,6 +208,7 @@ public class Database implements Serializable {
     }
     public static void addRequest(Request request){
         allRequest.add(request);
+        ServerSaver.write(AllCommands.allRequests);
     }
     public static ArrayList<Product> getAllOffProducts(){
         ArrayList<Product> allOffProducts=new ArrayList<>();
@@ -209,18 +224,17 @@ public class Database implements Serializable {
         }
         throw new Exception("wrong off Id");
     }
+
     public static void removeRequest(Request request) throws Exception {
         if(!allRequest.remove(request))
             throw new Exception("no request exists like this anymore");
+        else
+            ServerSaver.write(AllCommands.allRequests);
 
-
-    }
-
-    public static void setAllOffs(ArrayList<Off> allOffs) {
-        Database.allOffs = allOffs;
     }
     public static void deleteOutOfDateOffs(ArrayList<Off> offsToDelete){
         allOffs.removeAll(offsToDelete);
+        ServerSaver.write(AllCommands.allOffs);
     }
 
 }

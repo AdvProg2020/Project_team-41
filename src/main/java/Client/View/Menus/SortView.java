@@ -6,9 +6,7 @@ import Client.Models.Product;
 public class SortView extends Menu{
     public SortView(Menu superMenu) {
         super(superMenu,"Sort");
-        addSubMenu(showAvailableSorts());
         addSubMenu(sortAnAvailableSort());
-        addSubMenu(currentSort());
         addSubMenu(disableSort());
     }
 
@@ -18,29 +16,34 @@ public class SortView extends Menu{
     }
 
     @Override
+    public void commands() {
+
+        super.commands();
+        System.out.println("show available sorts");
+        System.out.println("current sort");
+    }
+
+    @Override
     public void execute() {
         super.execute();
+        if(command.equalsIgnoreCase("show available sorts")){
+            showAvailableSorts();
+        }
+        else if(command.equalsIgnoreCase("current sort")){
+            currentSort();
+        }
         System.out.println("Invalid command!");
         this.show();
         this.execute();
     }
 
-    private Menu showAvailableSorts() {
-    return new Menu(this , "show available sorts") {
-        @Override
-        public void show() {
+    private void showAvailableSorts() {
             System.out.println("product name/ company name/ price/ seller username/ score/ view\n");
-        }
-
-        @Override
-        public void execute() {
-            super.show();
-            super.execute();
-            System.out.println("Invalid command!");
+            this.show();
             this.execute();
         }
-    };
-    }
+
+
 
     private Menu sortAnAvailableSort() {
         return new Menu(this, "sort") {
@@ -76,20 +79,11 @@ public class SortView extends Menu{
         };
     }
 
-    private Menu currentSort() {
-        return new Menu(this , "current sort") {
-            @Override
-            public void show() {
-                System.out.println(SortController.getInstance().getSortFeature()+ "\n");
+    private void currentSort() {
+                System.out.println(SortController.getInstance().getSortFeature()+"\n");
+                this.show();
+                this.execute();
             }
-
-            @Override
-            public void execute() {
-                super.show();
-                super.execute();
-            }
-        };
-    }
 
     private Menu disableSort() {
         return new Menu(this, "disable sort") {

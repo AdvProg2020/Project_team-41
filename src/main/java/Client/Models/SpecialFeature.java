@@ -20,14 +20,8 @@ public class SpecialFeature implements Serializable {
         } catch (NumberFormatException e) {
             this.specialFeatureString = specialFeatureString;
         }
-    }
 
-    public void setSpecialFeatureInt(int specialFeatureInt) {
-        this.specialFeatureInt = specialFeatureInt;
-    }
 
-    public void setSpecialFeatureString(String specialFeatureString) {
-        this.specialFeatureString = specialFeatureString;
     }
 
     public int getSpecialFeatureInt() {

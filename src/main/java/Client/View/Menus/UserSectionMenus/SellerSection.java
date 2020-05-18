@@ -96,7 +96,6 @@ public class SellerSection extends UserSection {
         this.show();
         this.execute();
     }
-    //todo check if viewSalesHistory really needs to be a menu
     private void viewSalesHistory(){
         try {
             System.out.println(SellerController.getInstance().getSalesHistory());

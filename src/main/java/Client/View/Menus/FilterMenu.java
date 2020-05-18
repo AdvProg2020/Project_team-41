@@ -8,9 +8,7 @@ public class FilterMenu extends Menu {
 
     public FilterMenu(Menu superMenu) {
         super(superMenu, "Filter");
-        addSubMenu(showAvailableFilters());
         addSubMenu(filterAnAvailableFilter());
-        addSubMenu(currentFilters());
         addSubMenu(disableFilter());
     }
 
@@ -20,35 +18,41 @@ public class FilterMenu extends Menu {
     }
 
     @Override
+    public void commands() {
+        super.commands();
+        System.out.println("show available filters");
+        System.out.println("current filters");
+    }
+
+    @Override
     public void execute() {
         super.execute();
+        if(command.equalsIgnoreCase("show available filters")){
+            showAvailableFilters();
+        }
+        else if(command.equalsIgnoreCase("current filters")){
+            currentFilters();
+        }
         System.out.println("Invalid Command!");
         this.commands();
         this.execute();
     }
 
-    private Menu showAvailableFilters() {
-        return new Menu(this, "show available filters") {
-            @Override
-            public void show() {
-                System.out.println("product name/ company name/ price/ seller/ existence");
-                System.out.println("category name");
-                if (FilterController.getInstance().getFilterCategory() != null) {
-                    System.out.println("category special features:");
-                    for (String specialFeature : FilterController.getInstance().getFilterCategory().getSpecialFeatures()) {
-                        System.out.println(specialFeature);
-                    }
-                }
+    private void showAvailableFilters() {
+        System.out.println("product name/ company name/ price/ seller/ existence");
+        System.out.println("category name");
+        if (FilterController.getInstance().getFilterCategory() != null) {
+            System.out.println("category special features:");
+            for (String specialFeature : FilterController.getInstance().getFilterCategory().getSpecialFeatures()) {
+                System.out.println(specialFeature);
             }
-
-            @Override
-            public void execute() {
-                System.out.println();
-                super.show();
-                super.execute();
-            }
-        };
+        }
+        System.out.println("");
+        this.show();
+        this.execute();
     }
+
+
 
     private Menu filterAnAvailableFilter() {
         return new Menu(this, "filter") {
@@ -184,21 +188,13 @@ public class FilterMenu extends Menu {
         };
     }
 
-    private Menu currentFilters() {
-        return new Menu(this, "current filters") {
-            @Override
-            public void show() {
-                System.out.println(FilterController.getInstance().toString());
-            }
-
-            @Override
-            public void execute() {
-                System.out.println();
-                super.show();
-                super.execute();
-            }
-        };
+    private void currentFilters() {
+        System.out.println(FilterController.getInstance().toString()+"\n");
+        this.show();
+        this.execute();
     }
+
+
 
     private Menu disableFilter() {
         return new Menu(this, "disable filter") {
@@ -240,7 +236,7 @@ public class FilterMenu extends Menu {
         };
     }
 
-    private int enterAnInteger() {
+    private int enterAnInteger( ) {
         int number = 0;
         boolean again = true;
         while (again) {

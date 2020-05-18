@@ -4,22 +4,40 @@ import Server.Database;
 
 import java.io.*;
 
-public class ServerEndProgram {
+public class ServerSaver {
     private static OutputStream outputStream;
     private static ObjectOutputStream objectOutputStream;
-    public static void endProgram()  {
-
-        try{
+    public static void write(AllCommands command)  {
+        try {
+        if(command.equals(AllCommands.allCategory)){
             writeAllCategory();
+        }
+        else if(command.equals(AllCommands.allDiscountCodes)){
+            writeAllDiscountCodes();
+        }
+        else if(command.equals(AllCommands.allOffs)){
+            writeAllOffs();
+        }
+        else if(command.equals(AllCommands.allRequests)){
+            writeAllRequests();
+        }
+        else if(command.equals(AllCommands.allUsers)){
+            writeAllUsers();
+        }
+        else if(command.equals(AllCommands.allData)){
+            writeAllUsers();
+            writeAllRequests();
             writeAllOffs();
             writeAllDiscountCodes();
-            writeAllRequests();
-            writeAllUsers();
-            System.exit(0);
+            writeAllCategory();
+        }
+        else{
+            System.err.println("invalid command in database");
+        }
         }
         catch (Exception e){
             System.out.println("there were no resources folder recognized. but is it created now? : " + new File("src/main/resources").mkdir());
-            endProgram();
+            write(command);
         }
     }
     private static void writeAllCategory() throws IOException {

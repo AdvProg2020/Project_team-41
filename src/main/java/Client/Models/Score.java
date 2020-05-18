@@ -19,6 +19,7 @@ public class Score implements Serializable {
             throw new Exception("invalid score");
         this.score = score;
         this.product = product;
+
     }
 
 }

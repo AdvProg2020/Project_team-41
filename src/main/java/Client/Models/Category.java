@@ -1,28 +1,36 @@
 package Client.Models;
 
-import Server.Database;
+import Server.Controller.AllCommands;
+import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Category implements Serializable {
     private String name;
     private ArrayList<String> specialFeatures;
     private ArrayList<Product>products;
 
-    public Category(String name, ArrayList<String> specialFeatures) {
+    public Category(String name, ArrayList<String> specialFeatures) throws Exception {
         this.products = new ArrayList<>();
-        this.name = name;
-        this.specialFeatures = specialFeatures;
+        this.setName(name);
+        this.setSpecialFeatures(specialFeatures);
     }
 
-    public void setSpecialFeatures(ArrayList<String> specialFeatures) {
+    public void setSpecialFeatures(ArrayList<String> specialFeatures) throws Exception {
+        for (String specialFeature : specialFeatures) {
+            if(specialFeature.isBlank())
+                throw new Exception("special features can't be blank!");
+        }
         this.specialFeatures = specialFeatures;
+        ServerSaver.write(AllCommands.allData);
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws Exception {
+        if(name.isBlank())
+            throw new Exception("category name can't be blank!");
         this.name = name;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public ArrayList<String> getSpecialFeatures() {
@@ -35,6 +43,7 @@ public class Category implements Serializable {
 
     public void addProduct(Product product) {
         products.add(product);
+        ServerSaver.write(AllCommands.allData);
     }
 
     public String getName() {
@@ -46,6 +55,7 @@ public class Category implements Serializable {
         if (off != null)
             off.removeProduct(product);
         products.remove(product);
+        ServerSaver.write(AllCommands.allData);
 
     }
 

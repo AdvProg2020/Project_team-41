@@ -145,6 +145,11 @@ public class BuyerSection extends UserSection {
             public void execute() {
                 super.execute();
                 if(command.equalsIgnoreCase("y")) {
+                    if(BuyerController.getInstance().getCart().getProducts().isEmpty()) {
+                        System.out.println("you haven't selected any products yet");
+                        this.superMenu.show();
+                        this.superMenu.execute();
+                    }
                     Menu receiverInformationMenu = addReceiverInformation();
                     receiverInformationMenu.show();
                     receiverInformationMenu.execute();
@@ -324,8 +329,8 @@ public class BuyerSection extends UserSection {
                 }
                 System.out.println();
                 System.out.println("commands : ");
-                System.out.println("showOrder");
-                System.out.println("rate");
+                System.out.println("view <orderId>");
+                System.out.println("rate <productId [1-5]>");
             }
 
             @Override
@@ -334,7 +339,7 @@ public class BuyerSection extends UserSection {
                 if(command.startsWith("view")){
                     showOrder(command.split(" ")[1]);
                 }
-                else if(command.startsWith("edit")) {
+                else if(command.startsWith("rate")) {
                     rate(command.split(" ")[1], Integer.parseInt(command.split(" ")[2]));
                 }
                 else
