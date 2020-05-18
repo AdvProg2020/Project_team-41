@@ -110,7 +110,7 @@ public class ManagerServerController extends UserSectionServerController {
         dateTime = new String[]{codeInformation.get(3), codeInformation.get(4)};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
         if(exactEndDate.before(exactStartDate)){
-            throw new Exception("end date should be before start date");
+            throw new Exception("start date should be before end date");
         }
 
         Database.addDiscountCodes(new CodedDiscount(codeInformation.get(0),
