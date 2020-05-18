@@ -31,6 +31,10 @@ public class Off implements Serializable {
         this.seller = seller;
     }
 
+    public void setSituation(Situation situation) {
+        this.situation = situation;
+    }
+
     public Off cloneOff() throws Exception{
             Off off =  new Off((ArrayList<Product>) products.clone(),situation,(Date) startDate.clone(),(Date) endDate.clone(),amountOfDiscount,seller);
             off.setOffId(offId);

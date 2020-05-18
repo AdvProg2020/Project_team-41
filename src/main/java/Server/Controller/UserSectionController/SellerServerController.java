@@ -83,6 +83,7 @@ public class SellerServerController extends UserSectionServerController {
                                         }
                                 }
                         }
+                        product.setSituation(Situation.EDITING);
                 Request request = new Request(seller,product,editedProduct);
                 Database.addRequest(request);
                 }
@@ -151,6 +152,7 @@ public class SellerServerController extends UserSectionServerController {
                 product.setDescription(productDetails.get(5));
                 product.setSeller(seller);
                 product.setSpecialFeatures(specialFeatures);
+                product.setSituation(Situation.CREATING);
                 Database.addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
         }
         public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {
@@ -224,7 +226,7 @@ public class SellerServerController extends UserSectionServerController {
                                 }
                         }
                 }
-
+                off.setSituation(Situation.EDITING);
                 Request request = new Request(seller,off,editedOff);
                 Database.addRequest(request);
         }

@@ -13,6 +13,7 @@ import java.util.*;
 public class Product implements Serializable {
 
     private String productId;
+    private Situation situation;
     // start of common specifics
     private String name;
     private String companyName;
@@ -31,6 +32,7 @@ public class Product implements Serializable {
 
     public Product(String name, String companyName, int price, Seller seller, int quantity, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) throws Exception {
         this.productId = RandomNumberGenerator.getToken(5);
+        this.situation = Situation.CREATING;
         this.setName(name);
         this.setCompanyName(companyName);
         this.setPrice(price);
@@ -50,6 +52,10 @@ public class Product implements Serializable {
         clonedProduct.setComments(product.getComments());
         clonedProduct.setScores(product.getScores());
         return clonedProduct;
+    }
+
+    public void setSituation(Situation situation) {
+        this.situation = situation;
     }
 
     public Product(){
@@ -110,7 +116,7 @@ public class Product implements Serializable {
 
     public void setPrice(int price) throws Exception {
         if(price < 0)
-            throw new Exception("price cant be negative!");
+            throw new Exception("price can't be negative!");
         this.price = price;
         ServerSaver.write(AllCommands.allData);
     }
@@ -271,6 +277,7 @@ public class Product implements Serializable {
                 Objects.equals(name, product.name) &&
                 Objects.equals(companyName, product.companyName) &&
                 Objects.equals(seller, product.seller) &&
+                Objects.equals(situation,product.situation) &&
                 Objects.equals(category, product.category) &&
                 Objects.equals(specialFeatures, product.specialFeatures) &&
                 Objects.equals(description, product.description) &&
