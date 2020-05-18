@@ -70,7 +70,7 @@ public class TradeLog implements Serializable {
     public String toString() {
         StringBuilder products = new StringBuilder();
         for (Product item : items.keySet()) {
-            products.append("name :").append(item.getName()).append(" - quantity :").append(items.get(item));
+            products.append("id :").append(item.getProductId()).append(" - name :").append(item.getName()).append(" - quantity :").append(items.get(item));
         }
 
         return "TradeLog{" +
