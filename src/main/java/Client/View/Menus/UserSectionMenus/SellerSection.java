@@ -393,6 +393,14 @@ public class SellerSection extends UserSection {
                 super.show();
             }
 
+            @Override
+            public void execute() {
+                super.execute();
+                System.out.println("invalid command");
+                this.show();
+                this.execute();
+
+            }
         };
     }
     public Menu addViewBalance(){
@@ -403,6 +411,13 @@ public class SellerSection extends UserSection {
                 super.show();
             }
 
+            @Override
+            public void execute() {
+                super.execute();
+                System.out.println("invalid command");
+                this.show();
+                this.execute();
+            }
         };
     }
 

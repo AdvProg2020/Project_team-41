@@ -377,8 +377,7 @@ public class BuyerSection extends UserSection {
                         }
                     }
                 }
-                else
-                    System.out.println("invalid command");
+                System.out.println("invalid command");
                 this.show();
                 this.execute();
 

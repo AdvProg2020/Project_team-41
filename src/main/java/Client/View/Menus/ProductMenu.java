@@ -38,6 +38,9 @@ public class ProductMenu extends Menu {
     @Override
     public void execute() {
         super.execute();
+        System.out.println("invalid command");
+        this.show();
+        this.execute();
     }
 
 
