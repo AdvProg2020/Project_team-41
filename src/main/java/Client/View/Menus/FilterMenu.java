@@ -145,6 +145,7 @@ public class FilterMenu extends Menu {
                                     } else {
                                         System.out.println("Enter feature value to filter:");
                                         FilterController.getInstance().getDefiniteIntFeatures().put(featureName, enterAnInteger());
+
                                     }
                                 } else {
                                     System.out.println("Enter feature value to filter:");

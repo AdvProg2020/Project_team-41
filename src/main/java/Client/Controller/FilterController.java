@@ -338,7 +338,7 @@ public class FilterController {
          if (!definiteIntFeatures.isEmpty()) {
             result.append("\n");
             for (String featureName : definiteIntFeatures.keySet()) {
-                result.append("feature name: " + featureName + "/ feature value: " + definiteStringFeatures.get(featureName) + "     ");
+                result.append("feature name: " + featureName + "/ feature value: " + definiteIntFeatures.get(featureName) + "     ");
             }
         }
          if (!rangeFeatures.isEmpty()) {
