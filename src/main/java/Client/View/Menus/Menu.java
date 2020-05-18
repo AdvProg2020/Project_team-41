@@ -2,7 +2,6 @@ package Client.View.Menus;
 
 import Client.Controller.FilterController;
 import Client.Controller.UserSectionController.UserSectionController;
-import Client.Controller.EndProgram;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -52,7 +51,7 @@ public abstract class Menu {
             }
 
         }else if(command.equalsIgnoreCase("end program")){
-                EndProgram.endProgram();
+                System.exit(0);
         }else {
             for (Menu subMenu : subMenus) {
                 if (command.equalsIgnoreCase(subMenu.getName())) {

@@ -138,15 +138,15 @@ public class SellerServerController extends UserSectionServerController {
                 } catch (NumberFormatException e) {
                         throw new Exception("please enter a valid number");
                 }
+                product.setQuantity(productQuantity);
+                product.setPrice(productPrice);
                 product.setName(productName);
                 for (Product otherProduct : Database.getAllProducts()) {
                         if(otherProduct.getName().equals(productName))
                                 throw new Exception("name is already chosen for another product");
                 }
-                product.setQuantity(productQuantity);
-                product.setCompanyName(productDetails.get(2));
-                product.setPrice(productPrice);
                 product.setCategory(category);
+                product.setCompanyName(productDetails.get(2));
                 product.setDescription(productDetails.get(5));
                 product.setSeller(seller);
                 product.setSpecialFeatures(specialFeatures);
