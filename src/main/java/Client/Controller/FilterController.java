@@ -58,7 +58,7 @@ public class FilterController {
                     }
                     {
                         if (companyName != null) {
-                            if (!Product.getCompanyName().equals(companyName))
+                            if (Product.getCompanyName()==null || !Product.getCompanyName().equals(companyName))
                                 return false;
                         }
                     }

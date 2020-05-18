@@ -34,7 +34,7 @@ public class Main {
 //
 //            Product biganeh = new Product();
 //            biganeh.setName("biganeh");
-//            biganeh.setCompanyName("company_1");
+//         //   biganeh.setCompanyName("company_1");
 //            biganeh.setPrice(10000);
 //            biganeh.setSeller(seller_1);
 //            biganeh.setQuantity(2);

@@ -1,5 +1,6 @@
 package Client.View.Menus;
 
+import Client.Controller.FilterController;
 import Client.Controller.SortController;
 import Client.Models.Product;
 
@@ -64,12 +65,15 @@ public class SortView extends Menu{
                     System.out.println(e.getMessage());
                 }}
 
+
                 System.out.println("\n" + "Sorted Products:");
                 System.out.print("+------------------+------------+------------+\n");
                 System.out.print("| Product id       | Name       | Price      |\n");
                 System.out.print("+------------------+------------+------------+\n");
+
+
                 for (Product sortedProduct : SortController.getInstance().getSortedProducts(this.superMenu instanceof OffsMenu)) {
-                    System.out.format("| %-16s | %-10s | %-10d |\n",sortedProduct.getProductId(),sortedProduct.getName(),sortedProduct.getPrice() );
+                    System.out.format("| %-16s | %-10s | %-10d |%d\n",sortedProduct.getProductId(),sortedProduct.getName(),sortedProduct.getPrice() , sortedProduct.getViews() );
                 }
                 System.out.print("+------------------+------------+------------+\n");
 

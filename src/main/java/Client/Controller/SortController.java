@@ -107,6 +107,6 @@ class ByScore implements Comparator<Product> {
 class ByView implements Comparator<Product> {
     @Override
     public int compare(Product o1, Product o2) {
-        return o1.getViews().compareTo(o2.getViews());
+        return o2.getViews().compareTo(o1.getViews());
     }
 }

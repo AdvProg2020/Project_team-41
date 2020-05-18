@@ -1,6 +1,7 @@
 package Client.View.Menus;
 
 import Client.Controller.FilterController;
+import Client.Controller.SortController;
 import Client.Models.Product;
 import javafx.util.Pair;
 
@@ -168,8 +169,8 @@ public class FilterMenu extends Menu {
                     System.out.print("+------------------+------------+------------+\n");
                     System.out.print("| Product id       | Name       | Price      |\n");
                     System.out.print("+------------------+------------+------------+\n");
-                    for (Product filterProduct : FilterController.getInstance().filterProducts(this.superMenu instanceof OffsMenu)) {
-                        System.out.format("| %-16s | %-10s | %-10d |\n", filterProduct.getProductId(), filterProduct.getName(), filterProduct.getPrice());
+                    for (Product filterProduct : SortController.getInstance().getSortedProducts(this.superMenu instanceof OffsMenu)) {
+                        System.out.format("| %-16s | %-10s | %-10d |%d\n", filterProduct.getProductId(), filterProduct.getName(), filterProduct.getPrice() , filterProduct.getViews());
                     }
                     System.out.print("+------------------+------------+------------+\n");
 
