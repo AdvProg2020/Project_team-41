@@ -39,7 +39,7 @@ public class Product implements Serializable {
         this.setQuantity(quantity);
         this.setDescription(description);
         this.category = category;
-        this.specialFeatures = specialFeatures;
+        this.setSpecialFeatures(specialFeatures);
         this.description = description;
     }
 
@@ -242,8 +242,10 @@ public class Product implements Serializable {
     }
 
     public void setSpecialFeatures(HashMap<String, SpecialFeature> specialFeatures) {
-
-        this.specialFeatures = specialFeatures;
+        for (String specialFeature : category.getSpecialFeatures()) {
+            specialFeatures.put(specialFeature,new SpecialFeature(""));
+        }
+        this.specialFeatures.putAll(specialFeatures);
         ServerSaver.write(AllCommands.allData);
     }
     public void removeProduct() {
@@ -251,7 +253,7 @@ public class Product implements Serializable {
         ServerSaver.write(AllCommands.allData);
     }
     public void removeSpecialFeature(String categorySpecialFeature){
-        specialFeatures.remove(categorySpecialFeature);
+        specialFeatures.put(categorySpecialFeature,new SpecialFeature(""));
     }
 
 
