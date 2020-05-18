@@ -5,6 +5,7 @@ import Client.Models.Category;
 import Client.Models.Off;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
+import Server.Controller.ServerSaver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -118,9 +119,9 @@ public class SellerSection extends UserSection {
                 }
                 System.out.println();
                 System.out.println("commands:");
-                System.out.println("view product <product id>");
-                System.out.println("view product buyers <product id>");
-                System.out.println("edit product <product id>");
+                System.out.println("viewProduct <product id>");
+                System.out.println("viewProductBuyers <product id>");
+                System.out.println("editProduct <product id>");
             }
 
             @Override
@@ -128,13 +129,37 @@ public class SellerSection extends UserSection {
                 super.execute();
 
                 if(command.startsWith("viewProductBuyers")){
-                    viewProductBuyers(command.split(" ")[1]);
+                    try {
+                        viewProductBuyers(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if(command.startsWith("viewProduct")){
+                    try {
                         viewProduct(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
                     }
+                }
                 else if(command.startsWith("editProduct")){
-                    editProduct(command.split(" ")[1]);
+                    try {
+                        editProduct(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else{
                     System.out.println("invalid command");
@@ -162,7 +187,7 @@ public class SellerSection extends UserSection {
                 System.out.println("views : " + product.getViews());
                 System.out.println("special features : ");
                 for (String key : product.getSpecialFeatures().keySet()) {
-                    System.out.println(key + product.getSpecialFeatures().get(key));
+                    System.out.println(key + " : " + product.getSpecialFeatures().get(key));
                 }
                 this.show();
                 this.execute();
@@ -170,7 +195,13 @@ public class SellerSection extends UserSection {
             }
             public void viewProductBuyers(String id) {
                 try {
-                    for (String buyer : SellerController.getInstance().getProductBuyers(id)) {
+                    ArrayList<String> productBuyers = SellerController.getInstance().getProductBuyers(id);
+                    if(productBuyers.isEmpty()) {
+                        System.out.println("no one has bought this product yet");
+                        this.show();
+                        this.execute();
+                    }
+                    for (String buyer : productBuyers) {
                         System.out.println("buyer : " + buyer);
                     }
                 }
@@ -240,10 +271,26 @@ public class SellerSection extends UserSection {
             public void execute() {
                 super.execute();
                 if(command.startsWith("view")){
-                    viewOff(command.split(" ")[1]);
+                    try {
+                        viewOff(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if(command.startsWith("edit")){
-                    editOff(command.split(" ")[1]);
+                    try {
+                        editOff(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if (command.equalsIgnoreCase("addOff")){
                     addOff();
@@ -275,7 +322,13 @@ public class SellerSection extends UserSection {
                 String input;
                 while (!(input = scanner.nextLine()).equals("end")) {
                     String[] splitInput = input.split(",");
-                    edits.put(splitInput[0], splitInput[1]);
+                    try {
+                        edits.put(splitInput[0], splitInput[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("enter like i said");
+                        }
+                    }
                 }
                 try {
                     SellerController.getInstance().editOff(offId,edits);

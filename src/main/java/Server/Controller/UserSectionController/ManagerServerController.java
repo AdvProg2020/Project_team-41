@@ -110,36 +110,36 @@ public class ManagerServerController extends UserSectionServerController {
         for (String edit : edits.keySet()) {
             switch (edit.toLowerCase()){
                 case "start date":{
-                    String[] dateTime = edits.get("start date").split(",");
+                    String[] dateTime = edits.get(edit).split(",");
                     codedDiscount.setStartDate(TimeControl.getDateByDateTime(dateTime));
                     break;
                 }
                 case "end date":{
-                    String[] dateTime = edits.get("end date").split(",");
+                    String[] dateTime = edits.get(edit).split(",");
                     codedDiscount.setEndDate(TimeControl.getDateByDateTime(dateTime));
                     break;
                 }
                 case "discount percentage":{
-                    codedDiscount.setDiscountPercentage(Integer.parseInt(edits.get("discount percentage")));
+                    codedDiscount.setDiscountPercentage(Integer.parseInt(edits.get(edit)));
                     break;
                 }
                 case "maximum discount":{
-                    codedDiscount.setMaximumDiscount(Integer.parseInt(edits.get("maximum discount")));
+                    codedDiscount.setMaximumDiscount(Integer.parseInt(edits.get(edit)));
                     break;
                 }
                 case "discount repeats for each user":{
-                    codedDiscount.setDiscountRepeatsForEachUser(Integer.parseInt(edits.get("discount repeats for each user")));
+                    codedDiscount.setDiscountRepeatsForEachUser(Integer.parseInt(edits.get(edit)));
                     break;
                 }
                 case "people who can use it":{
                     HashMap<Person,Integer> people = new HashMap<>();
-                    if((edits.get("people who can use it").length() == 1) && (edits.get("people who can use it").equalsIgnoreCase("allUsers"))){
+                    if((edits.get(edit).length() == 1) && (edits.get(edit).equalsIgnoreCase("allUsers"))){
                         for (Person user : Database.getAllUsers()) {
                             people.put(user,codedDiscount.getDiscountRepeatsForEachUser());
                         }
                     }
                     else {
-                        for (String username : edits.get("people who can use it").split(",")) {
+                        for (String username : edits.get(edit).split(",")) {
                             people.put(Database.getPersonByUsername(username),codedDiscount.getDiscountRepeatsForEachUser());
                         }
                     }

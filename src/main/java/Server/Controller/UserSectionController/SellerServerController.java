@@ -58,7 +58,7 @@ public class SellerServerController extends UserSectionServerController {
                                         break;
                                 }
                                 case "specialfeature" : {
-                                        Boolean flagForCategoryName = false;
+                                        boolean flagForCategoryName = false;
                                         HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
                                         for (String rawSpecialFeature : editRequestValue.split(",")) {
                                                 String[] specialFeature = rawSpecialFeature.split("-");
