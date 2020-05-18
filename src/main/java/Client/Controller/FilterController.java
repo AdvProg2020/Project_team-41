@@ -28,7 +28,7 @@ public class FilterController {
     private Category filterCategory;
     private String name;
     private String companyName;
-    // -1 for not important ir filtered:
+    // -1 for not important or filtered:
     private int definitePrice = -1;
     private Pair<Integer, Integer> priceMinMax;
     private String sellerUserName;

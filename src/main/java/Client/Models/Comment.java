@@ -70,7 +70,6 @@ public class Comment implements Serializable {
         return "person : " + person.getUserName() +
                 "\ntitle :'" + title + '\'' +
                 "\nContent :'" + content + '\'' +
-                "\ncommentSituation :" + commentSituation +
                 "\nhasHeBought :" + hasHeBought+"\n";
     }
 
