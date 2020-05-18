@@ -1,6 +1,7 @@
 package Server.Controller.UserSectionController;
 
 import Client.Models.*;
+import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
@@ -34,7 +35,14 @@ public class ManagerServerController extends UserSectionServerController {
     public ArrayList<String> getAllUsers(){
         ArrayList<String> allUsers = new ArrayList<>();
         for (Person user : Database.getAllUsers()) {
-            allUsers.add(user.getUserName());
+            String userType;
+            if(user instanceof Manager)
+                userType = "manager";
+            else if(user instanceof Buyer)
+                userType = "buyer";
+            else
+                userType = "seller";
+            allUsers.add(userType + " : " + user.getUserName());
         }
         return allUsers;
     }

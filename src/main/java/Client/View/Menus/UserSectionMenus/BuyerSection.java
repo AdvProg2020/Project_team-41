@@ -277,7 +277,7 @@ public class BuyerSection extends UserSection {
                     public void show() {
                         super.show();
                         System.out.println("you must pay " + BuyerController.getInstance().calculateTotalPrice() + "Rials");
-                        System.out.println("did you pay or not?[y/n]");
+                        System.out.println("do you want to pay or not?[y/n]");
                     }
 
                     @Override

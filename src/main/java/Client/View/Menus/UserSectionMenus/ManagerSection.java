@@ -2,6 +2,7 @@ package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
