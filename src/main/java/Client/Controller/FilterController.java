@@ -199,7 +199,7 @@ public class FilterController {
     public void disableSpecialFeature(String feature) throws ClassNotFoundException, NullPointerException, FileNotFoundException {
         if (isTheFeatureNumeric(feature)) {
 
-            if(isFeatureAmongDefiniteIntSpecialFeatures(feature))
+            if(getFeatureIfAmongDefiniteIntSpecialFeatures(feature) != null)
             deleteASpecialFeatureFromHashMap(feature , definiteIntFeatures);
             else
             deleteASpecialFeatureFromHashMap(feature , rangeFeatures);
@@ -208,12 +208,12 @@ public class FilterController {
            deleteASpecialFeatureFromHashMap(feature , definiteStringFeatures);
     }
 
-    private boolean isFeatureAmongDefiniteIntSpecialFeatures(String feature){
+    private String getFeatureIfAmongDefiniteIntSpecialFeatures(String feature){
         for (String featureName : definiteIntFeatures.keySet()) {
             if(featureName.equalsIgnoreCase(feature))
-                return true;
+                return featureName;
         }
-        return false;
+        return null;
     }
     private void deleteASpecialFeatureFromHashMap(String featureToDelete , HashMap featureList) throws FileNotFoundException {
         for (Object featureName : featureList.keySet()) {
@@ -252,17 +252,12 @@ public class FilterController {
         return definiteIntFeatures;
     }
 
-    public void setDefiniteIntFeatures(HashMap<String, Integer> definiteIntFeatures) {
-        this.definiteIntFeatures = definiteIntFeatures;
-    }
+
 
     public HashMap<String, Pair<Integer, Integer>> getRangeFeatures() {
         return rangeFeatures;
     }
 
-    public void setRangeFeatures(HashMap<String, Pair<Integer, Integer>> rangeFeatures) {
-        this.rangeFeatures = rangeFeatures;
-    }
 
     public void setFilterCategory(String filterCategoryName) throws Exception {
         this.filterCategory = Database.getCategoryByName(filterCategoryName);
@@ -293,14 +288,29 @@ public class FilterController {
     }
 
     public void setDefinitePrice(int definitePrice) throws Exception {
-        if (definitePrice >= 0)
-            this.definitePrice = definitePrice;
+        if (definitePrice >= 0){
+            priceMinMax = null;
+            this.definitePrice = definitePrice;}
         else
             throw new Exception("price should be a positive number");
     }
 
     public void setPriceMinMax(Pair<Integer, Integer> priceMinMax) {
+        definitePrice = -1;
         this.priceMinMax = priceMinMax;
+    }
+
+    public void setRangeIntFeatures(String featureName, Pair<Integer, Integer> valueRange){
+        definiteIntFeatures.remove(getFeatureIfAmongDefiniteIntSpecialFeatures(featureName));
+        rangeFeatures.put(featureName , valueRange);
+    }
+
+    public void setDefiniteIntFeatures(String featureName , int featureValue) {
+        for (String feature : rangeFeatures.keySet()) {
+            if(feature.equalsIgnoreCase(featureName))
+                rangeFeatures.remove(feature);
+        }
+        definiteIntFeatures.put(featureName , featureValue);
     }
 
     public Pair<Integer, Integer> getPriceMinMax() {

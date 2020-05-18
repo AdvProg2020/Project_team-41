@@ -139,11 +139,11 @@ public class FilterMenu extends Menu {
                                         int min = enterAnInteger();
                                         System.out.println("Enter Max:");
                                         int max = enterAnInteger();
-                                        FilterController.getInstance().getRangeFeatures().put(featureName, new Pair<>(min, max));
+                                        FilterController.getInstance().setRangeIntFeatures(featureName, new Pair<>(min, max));
 
                                     } else {
                                         System.out.println("Enter feature value to filter:");
-                                        FilterController.getInstance().getDefiniteIntFeatures().put(featureName, enterAnInteger());
+                                        FilterController.getInstance().setDefiniteIntFeatures(featureName, enterAnInteger());
 
                                     }
                                 } else {
@@ -170,7 +170,7 @@ public class FilterMenu extends Menu {
                     System.out.print("| Product id       | Name       | Price      |\n");
                     System.out.print("+------------------+------------+------------+\n");
                     for (Product filterProduct : SortController.getInstance().getSortedProducts(this.superMenu instanceof OffsMenu)) {
-                        System.out.format("| %-16s | %-10s | %-10d |%d\n", filterProduct.getProductId(), filterProduct.getName(), filterProduct.getPrice() , filterProduct.getViews());
+                        System.out.format("| %-16s | %-10s | %-10d |\n", filterProduct.getProductId(), filterProduct.getName(), filterProduct.getPrice() );
                     }
                     System.out.print("+------------------+------------+------------+\n");
 
