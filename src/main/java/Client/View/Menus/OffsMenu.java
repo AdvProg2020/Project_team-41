@@ -11,18 +11,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class OffsMenu extends Menu {
+    ProductMenu productMenu;
     public OffsMenu(Menu superMenu) {
         super(superMenu, "Offs");
         addSubMenu(addShowProduct());
         addSubMenu(new FilterMenu(this));
         addSubMenu(new SortView(this));
+        productMenu=new ProductMenu(this);
     }
 
     @Override
     public void show() {
-        System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
-        System.out.print("| Product id       | Name       | Price      | Price with discount |     Start date     |      End date     |\n");
-        System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
+        System.out.print("+------------------+------------+------------+---------------------+---------------------+--------------------+\n");
+        System.out.print("| Product id       | Name       | Price      | Price with discount |      Start date     |       End date     |\n");
+        System.out.print("+------------------+------------+------------+---------------------+---------------------+--------------------+\n");
         ArrayList<Off> offsToDelete=new ArrayList<>();
         Date date=new Date();
         for (Off off : OffsController.getInstance().getOffs()) {
@@ -31,12 +33,12 @@ public class OffsMenu extends Menu {
                 continue;
             }
             for (Product product : off.getProducts()) {
-                System.out.format("| %-16s | %-10s | %-10d | %-19s | %-18s | %18s |\n", product.getProductId(), product.getName(),
+                System.out.format("| %-16s | %-10s | %-10d | %-19s | %-19s | %19s |\n", product.getProductId(), product.getName(),
                         product.getPrice(),(product.getPrice()*(100-off.getAmountOfDiscount()))/100,
                         TimeControl.getJalaliDateAndTimeForPrint(off.getStartDate()),TimeControl.getJalaliDateAndTimeForPrint(off.getEndDate()));
             }
         }
-        System.out.print("+------------------+------------+------------+---------------------+--------------------+-------------------+\n");
+        System.out.print("+------------------+------------+------------+---------------------+---------------------+--------------------+\n");
         OffsController.getInstance().deleteOffs(offsToDelete);
         super.show();
 
@@ -58,10 +60,9 @@ public class OffsMenu extends Menu {
 
             @Override
             public void execute() {
-                ProductMenu productMenu = new ProductMenu(this.superMenu);
                 String productId = scanner.nextLine();
                 try {
-                    productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
+                    AllProductsController.getInstance().goToProductPage(productId , productMenu);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     this.superMenu.commands();

@@ -12,7 +12,6 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-
             StartProgram.startProgram();
             MainMenu.getInstance().show();
             MainMenu.getInstance().execute();

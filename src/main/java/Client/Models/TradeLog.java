@@ -1,6 +1,7 @@
 package Client.Models;
 
 import Server.Controller.AllCommands;
+import Server.Controller.RandomNumberGenerator;
 import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
@@ -18,13 +19,10 @@ public class TradeLog implements Serializable {
     private HashMap<Product,Integer> items;
     private String buyerName;
     private String deliverySituation;
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
-    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-    //for generating token
 
 
     public TradeLog(Date date, int money, int offAmount, HashMap<Product,Integer> items, String buyerName, String deliverySituation) {
-        this.logId = generateNewToken();
+        this.logId = RandomNumberGenerator.getToken(5);
         this.date = date;
         this.money = money;
         this.offAmount = offAmount;
@@ -67,17 +65,12 @@ public class TradeLog implements Serializable {
         return deliverySituation;
     }
 
-    public static String generateNewToken() {
-        byte[] randomBytes = new byte[2];
-        secureRandom.nextBytes(randomBytes);
-        return base64Encoder.encodeToString(randomBytes);
-    }
 
     @Override
     public String toString() {
         StringBuilder products = new StringBuilder();
         for (Product item : items.keySet()) {
-            products.append("name :").append(item.getName()).append(" - quantity :").append(items.get(item));
+            products.append("id :").append(item.getProductId()).append(" - name :").append(item.getName()).append(" - quantity :").append(items.get(item));
         }
 
         return "TradeLog{" +

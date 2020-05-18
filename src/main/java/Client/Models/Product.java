@@ -3,6 +3,7 @@ package Client.Models;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Seller;
 import Server.Controller.AllCommands;
+import Server.Controller.RandomNumberGenerator;
 import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.*;
 public class Product implements Serializable {
 
     private String productId;
+    private Situation situation;
     // start of common specifics
     private String name;
     private String companyName;
@@ -27,19 +29,17 @@ public class Product implements Serializable {
     private ArrayList<Comment>comments = new ArrayList<>();
     private int views = 0;
 
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
-    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-    //for generating token
 
     public Product(String name, String companyName, int price, Seller seller, int quantity, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) throws Exception {
-        this.productId = generateNewToken();
+        this.productId = RandomNumberGenerator.getToken(5);
+        this.situation = Situation.CREATING;
         this.setName(name);
         this.setCompanyName(companyName);
         this.setPrice(price);
         this.setQuantity(quantity);
         this.setDescription(description);
         this.category = category;
-        this.specialFeatures = specialFeatures;
+        this.setSpecialFeatures(specialFeatures);
         this.description = description;
     }
 
@@ -54,8 +54,12 @@ public class Product implements Serializable {
         return clonedProduct;
     }
 
+    public void setSituation(Situation situation) {
+        this.situation = situation;
+    }
+
     public Product(){
-        this.productId = generateNewToken();
+        this.productId = RandomNumberGenerator.getToken(5);
     }
     public ArrayList<Buyer> buyers = new ArrayList<>();
 
@@ -112,7 +116,7 @@ public class Product implements Serializable {
 
     public void setPrice(int price) throws Exception {
         if(price < 0)
-            throw new Exception("price cant be negative!");
+            throw new Exception("price can't be negative!");
         this.price = price;
         ServerSaver.write(AllCommands.allData);
     }
@@ -150,7 +154,7 @@ public class Product implements Serializable {
         return companyName;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -238,21 +242,21 @@ public class Product implements Serializable {
     }
 
     public void setSpecialFeatures(HashMap<String, SpecialFeature> specialFeatures) {
-
-        this.specialFeatures = specialFeatures;
+        for (String specialFeature : category.getSpecialFeatures()) {
+            this.specialFeatures.put(specialFeature,new SpecialFeature(""));
+        }
+        this.specialFeatures.putAll(specialFeatures);
         ServerSaver.write(AllCommands.allData);
     }
     public void removeProduct() {
         category.removeProduct(this);
         ServerSaver.write(AllCommands.allData);
     }
-
-
-    public static String generateNewToken() {
-        byte[] randomBytes = new byte[2];
-        secureRandom.nextBytes(randomBytes);
-        return base64Encoder.encodeToString(randomBytes);
+    public void removeSpecialFeature(String categorySpecialFeature){
+        this.specialFeatures.put(categorySpecialFeature,new SpecialFeature(""));
     }
+
+
 
     @Override
     public String toString() {
@@ -278,6 +282,7 @@ public class Product implements Serializable {
                 Objects.equals(name, product.name) &&
                 Objects.equals(companyName, product.companyName) &&
                 Objects.equals(seller, product.seller) &&
+                Objects.equals(situation,product.situation) &&
                 Objects.equals(category, product.category) &&
                 Objects.equals(specialFeatures, product.specialFeatures) &&
                 Objects.equals(description, product.description) &&

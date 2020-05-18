@@ -66,6 +66,11 @@ public class BuyerSection extends UserSection {
                         viewProduct(command.split(" ")[1]);
                     }
                     catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
                         System.out.println(e.getMessage());
                     }
                 }
@@ -74,6 +79,11 @@ public class BuyerSection extends UserSection {
                         increase(command.split(" ")[1]);
                     }
                     catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
                         System.out.println(e.getMessage());
                     }
                 }
@@ -82,6 +92,11 @@ public class BuyerSection extends UserSection {
                         decrease(command.split(" ")[1]);
                     }
                     catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
                         System.out.println(e.getMessage());
                     }
                 }
@@ -262,7 +277,7 @@ public class BuyerSection extends UserSection {
                     public void show() {
                         super.show();
                         System.out.println("you must pay " + BuyerController.getInstance().calculateTotalPrice() + "Rials");
-                        System.out.println("did you pay or not?[y/n]");
+                        System.out.println("do you want to pay or not?[y/n]");
                     }
 
                     @Override
@@ -337,13 +352,32 @@ public class BuyerSection extends UserSection {
             public void execute() {
                 super.execute();
                 if(command.startsWith("view")){
-                    showOrder(command.split(" ")[1]);
+                    try {
+                        showOrder(command.split(" ")[1]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+
+                    }
                 }
                 else if(command.startsWith("rate")) {
-                    rate(command.split(" ")[1], Integer.parseInt(command.split(" ")[2]));
+                    try {
+                        rate(command.split(" ")[1], Integer.parseInt(command.split(" ")[2]));
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                        if(e instanceof NumberFormatException) {
+                            System.out.println("invalid number");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
-                else
-                    System.out.println("invalid command");
+                System.out.println("invalid command");
                 this.show();
                 this.execute();
 

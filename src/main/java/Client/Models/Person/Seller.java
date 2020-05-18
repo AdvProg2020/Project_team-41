@@ -45,10 +45,6 @@ public class Seller extends Person {
         this.setCredit(getCredit()+money);
         ServerSaver.write(AllCommands.allData);
     }
-    public void addTradeLog(TradeLog tradeLog){
-        getTradeLogs().add(tradeLog);
-        ServerSaver.write(AllCommands.allData);
-    }
     public void addProduct(Product product){
         products.add(product);
         ServerSaver.write(AllCommands.allData);

@@ -1,6 +1,7 @@
 package Client.Models;
 
 import Client.Models.Person.Seller;
+import Server.Controller.RandomNumberGenerator;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
@@ -12,9 +13,6 @@ import java.util.HashMap;
 
 public class Request implements Serializable {
 
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
-    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-    //for generating token
     private RequestType requestType;
     private Product product;
     private Product editedProduct;
@@ -25,7 +23,7 @@ public class Request implements Serializable {
     private Comment comment;
 
     public Request(Seller seller,Product product, Product editedProduct) {
-        requestId = generateNewToken();
+        requestId = RandomNumberGenerator.getToken(5);
         requestType = RequestType.EDIT_PRODUCT;
         this.product = product;
         this.editedProduct = editedProduct;
@@ -34,7 +32,7 @@ public class Request implements Serializable {
     }
 
     public Request(Seller seller, Off off, Off editedOff) {
-        requestId = generateNewToken();
+        requestId = RandomNumberGenerator.getToken(5);
         requestType = RequestType.EDIT_OFF;
         this.seller = seller;
         this.off = off;
@@ -42,27 +40,27 @@ public class Request implements Serializable {
     }
 
     public Request(Seller seller,Product product, RequestType requestType) {
-        requestId = generateNewToken();
+        requestId = RandomNumberGenerator.getToken(5);
         this.requestType = requestType;
         this.product = product;
         this.seller = seller;
     }
 
     public Request(Seller seller) {
-        requestId = generateNewToken();
+        requestId = RandomNumberGenerator.getToken(5);
         requestType = RequestType.REGISTER_SELLER;
         this.seller = seller;
     }
 
     public Request(Seller seller, Off off) {
-        requestId = generateNewToken();
+        requestId = RandomNumberGenerator.getToken(5);
         requestType = RequestType.ADD_OFF;
         this.seller = seller;
         this.off = off;
     }
 
     public Request(Comment comment){
-        this.requestId = generateNewToken();
+        this.requestId = RandomNumberGenerator.getToken(5);
         this.requestType = RequestType.ADD_COMMENT;
         this.comment = comment;
     }
@@ -127,11 +125,6 @@ public class Request implements Serializable {
         this.editedOff = editedOff;
     }
 
-    public static String generateNewToken() {
-        byte[] randomBytes = new byte[2];
-        secureRandom.nextBytes(randomBytes);
-        return base64Encoder.encodeToString(randomBytes);
-    }
 
 }
 

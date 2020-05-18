@@ -36,6 +36,9 @@ public class ProductMenu extends Menu {
     @Override
     public void execute() {
         super.execute();
+        System.out.println("invalid command");
+        this.show();
+        this.execute();
     }
 
 
@@ -224,31 +227,31 @@ public class ProductMenu extends Menu {
             return e.getMessage()+"\n";
         }
     }
-    public void compareTable(Product product1,Product product2){
+    public void compareTable(Product product1,Product product2) {
         System.out.print("+------------------+----------------+----------------+\n");
         System.out.print("|                  |   Product 1    |    Product 2   |\n");
         System.out.print("+------------------+----------------+----------------+\n");
-        System.out.format("| Product Id       | %-14s | %-14s |\n",product1.getProductId(),product2.getProductId());
-        System.out.format("| Product Name     | %-14s | %-14s |\n",product1.getName(),product2.getName());
-        System.out.format("| Category         | %-14s | %-14s |\n",product1.getCategory().getName(),product2.getCategory().getName());
-        System.out.format("| Product Price    | %-14d | %-14d |\n",product1.getPrice(),product2.getPrice());
-        System.out.format("| Seller           | %-14s | %-14s |\n",product1.getSeller().getUserName(),product2.getSeller().getUserName());
-        System.out.format("| Average Score    | %-14d | %-14d |\n",product1.calculateAverageScore(),product2.calculateAverageScore());
-        try {
-            for (String featureName : product1.getCategory().getSpecialFeatures()) {
+        System.out.format("| Product Id       | %-14s | %-14s |\n", product1.getProductId(), product2.getProductId());
+        System.out.format("| Product Name     | %-14s | %-14s |\n", product1.getName(), product2.getName());
+        System.out.format("| Category         | %-14s | %-14s |\n", product1.getCategory().getName(), product2.getCategory().getName());
+        System.out.format("| Product Price    | %-14d | %-14d |\n", product1.getPrice(), product2.getPrice());
+        System.out.format("| Seller           | %-14s | %-14s |\n", product1.getSeller().getUserName(), product2.getSeller().getUserName());
+        System.out.format("| Average Score    | %-14d | %-14d |\n", product1.calculateAverageScore(), product2.calculateAverageScore());
+        for (String featureName : product1.getCategory().getSpecialFeatures()) {
+            try {
                 SpecialFeature productSpecialFeature = product1.getSpecialFeatures().get(featureName);
-                if(productSpecialFeature.StringOrInt().equalsIgnoreCase("int"))
-                    System.out.format("| %-16s | %-14d | %-14d |\n",featureName,product1.getSpecialFeatures().get(featureName).getSpecialFeatureInt()
-                            ,product2.getSpecialFeatures().get(featureName).getSpecialFeatureInt());
+                if (productSpecialFeature.StringOrInt().equalsIgnoreCase("int"))
+                    System.out.format("| %-16s | %-14d | %-14d |\n", featureName, product1.getSpecialFeatures().get(featureName).getSpecialFeatureInt()
+                            , product2.getSpecialFeatures().get(featureName).getSpecialFeatureInt());
 
                 else
-                    System.out.format("| %-16s | %-14s | %-14s |\n",featureName,product1.getSpecialFeatures().get(featureName).getSpecialFeatureString()
-                            ,product2.getSpecialFeatures().get(featureName).getSpecialFeatureString());
-
-
+                    System.out.format("| %-16s | %-14s | %-14s |\n", featureName, product1.getSpecialFeatures().get(featureName).getSpecialFeatureString()
+                            , product2.getSpecialFeatures().get(featureName).getSpecialFeatureString());
+            }catch (Exception e){
+                System.out.print("");
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+
+
         }
 
 

@@ -58,7 +58,7 @@ public class SellerServerController extends UserSectionServerController {
                                         break;
                                 }
                                 case "specialfeature" : {
-                                        Boolean flagForCategoryName = false;
+                                        boolean flagForCategoryName = false;
                                         HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
                                         for (String rawSpecialFeature : editRequestValue.split(",")) {
                                                 String[] specialFeature = rawSpecialFeature.split("-");
@@ -82,7 +82,11 @@ public class SellerServerController extends UserSectionServerController {
                                                 flagForCategoryName = false;
                                         }
                                 }
+                                default:{
+                                        throw new Exception("wrong field");
+                                }
                         }
+                        product.setSituation(Situation.EDITING);
                 Request request = new Request(seller,product,editedProduct);
                 Database.addRequest(request);
                 }
@@ -151,6 +155,7 @@ public class SellerServerController extends UserSectionServerController {
                 product.setDescription(productDetails.get(5));
                 product.setSeller(seller);
                 product.setSpecialFeatures(specialFeatures);
+                product.setSituation(Situation.CREATING);
                 Database.addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
         }
         public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {
@@ -206,7 +211,7 @@ public class SellerServerController extends UserSectionServerController {
                                         editedOff.setEndDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
                                         break;
                                 }
-                                case "amountdfdiscount" :{
+                                case "amountofdiscount" :{
                                         editedOff.setAmountOfDiscount(Integer.parseInt(editRequestValue));
                                         break;
                                 }
@@ -222,9 +227,12 @@ public class SellerServerController extends UserSectionServerController {
                                         }
                                         editedOff.setProducts(products);
                                 }
+                                default:{
+                                        throw new Exception("invalid field");
+                                }
                         }
                 }
-
+                off.setSituation(Situation.EDITING);
                 Request request = new Request(seller,off,editedOff);
                 Database.addRequest(request);
         }

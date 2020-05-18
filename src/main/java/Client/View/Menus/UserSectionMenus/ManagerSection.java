@@ -2,6 +2,7 @@ package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
@@ -58,7 +59,6 @@ public class ManagerSection extends UserSection {
                 }
                 else if(command.equalsIgnoreCase("special features")){
                     System.out.println("type its special features(type them with a comma between each special feature)");
-                    //todo separate two types of special features
 
                     try {
                         ManagerController.getInstance().editCategorySpecialFeatures(category,scanner.nextLine());
@@ -80,7 +80,6 @@ public class ManagerSection extends UserSection {
             private void add(String category){
                 String specialFeatures;
                 System.out.println("type its special features(type them with a comma between each special feature)");
-                //todo separate two types of special features
                 specialFeatures = scanner.nextLine();
                 try{
                     ManagerController.getInstance().addCategory(category,specialFeatures);
@@ -124,13 +123,38 @@ public class ManagerSection extends UserSection {
             public void execute() {
                 super.execute();
                 if(command.startsWith("edit")){
-                    edit(command.split(" ")[1]);
+                    try {
+                        edit(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
+
                 }
                 else if(command.startsWith("add")){
-                    add(command.split(" ")[1]);
+                    try {
+                        add(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if(command.startsWith("remove")){
-                    remove(command.split(" ")[1]);
+                    try {
+                        remove(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else{
                     System.out.println("invalid command");
@@ -214,13 +238,37 @@ public class ManagerSection extends UserSection {
                     acceptAll();
                 }
                 else if(command.startsWith("details")){
-                    details(command.split(" ")[1]);
+                    try {
+                        details(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if(command.startsWith("accept")){
-                    accept(command.split(" ")[1]);
+                    try {
+                        accept(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if(command.startsWith("decline")){
-                    decline(command.split(" ")[1]);
+                    try {
+                        decline(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else{
                     System.out.println("invalid command");
@@ -303,13 +351,37 @@ public class ManagerSection extends UserSection {
             public void execute() {
                 super.execute();
                 if(command.startsWith("view")){
-                    viewDiscountCode(command.split(" ")[1]);
+                    try {
+                        viewDiscountCode(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 if(command.startsWith("edit")){
-                    editDiscountCode(command.split(" ")[1]);
+                    try {
+                        editDiscountCode(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 if(command.startsWith("remove")){
-                    removeDiscountCode(command.split(" ")[1]);
+                    try {
+                        removeDiscountCode(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else{
                     System.out.println("invalid command");
@@ -383,7 +455,15 @@ public class ManagerSection extends UserSection {
             public void execute() {
                 super.execute();
                 if(command.startsWith("remove")){
-                    remove(command.split(" ")[1]);
+                    try {
+                        remove(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else{
                     System.out.println("invalid command");
@@ -441,7 +521,7 @@ public class ManagerSection extends UserSection {
                 userInfo.add(scanner.nextLine());
                 System.out.println("What is your phone number?");
                 userInfo.add(scanner.nextLine());
-                System.out.println("How much money do you have?");
+                System.out.println("enter the money");
                 userInfo.add(scanner.nextLine());
                 try {
                     ManagerController.getInstance().createManagerProfile(userInfo);
@@ -464,10 +544,26 @@ public class ManagerSection extends UserSection {
                     createManagerProfile();
                 }
                 else if(command.startsWith("view")){
-                    view(command.split(" ")[1]);
+                    try {
+                        view(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if(command.startsWith("delete")){
-                    deleteUser(command.split(" ")[1]);
+                    try {
+                        deleteUser(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else{
                     System.out.println("invalid command");

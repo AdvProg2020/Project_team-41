@@ -55,14 +55,13 @@ public abstract class UserSection extends Menu {
                 if(command.equals("edit")){
                     edit();
                 }
+                System.out.println("invalid command");
+                this.show();
+                this.execute();
 
 
             }
         };
        }
 
-    @Override
-    public void execute() {
-        super.execute();
-    }
 }

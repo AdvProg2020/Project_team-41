@@ -5,6 +5,7 @@ import Client.Models.Category;
 import Client.Models.Off;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
+import Server.Controller.ServerSaver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -118,9 +119,9 @@ public class SellerSection extends UserSection {
                 }
                 System.out.println();
                 System.out.println("commands:");
-                System.out.println("view product <product id>");
-                System.out.println("view product buyers <product id>");
-                System.out.println("edit product <product id>");
+                System.out.println("viewProduct <product id>");
+                System.out.println("viewProductBuyers <product id>");
+                System.out.println("editProduct <product id>");
             }
 
             @Override
@@ -128,13 +129,37 @@ public class SellerSection extends UserSection {
                 super.execute();
 
                 if(command.startsWith("viewProductBuyers")){
-                    viewProductBuyers(command.split(" ")[1]);
+                    try {
+                        viewProductBuyers(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if(command.startsWith("viewProduct")){
+                    try {
                         viewProduct(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
                     }
+                }
                 else if(command.startsWith("editProduct")){
-                    editProduct(command.split(" ")[1]);
+                    try {
+                        editProduct(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else{
                     System.out.println("invalid command");
@@ -162,7 +187,7 @@ public class SellerSection extends UserSection {
                 System.out.println("views : " + product.getViews());
                 System.out.println("special features : ");
                 for (String key : product.getSpecialFeatures().keySet()) {
-                    System.out.println(key + product.getSpecialFeatures().get(key));
+                    System.out.println(key + " : " + product.getSpecialFeatures().get(key));
                 }
                 this.show();
                 this.execute();
@@ -170,7 +195,13 @@ public class SellerSection extends UserSection {
             }
             public void viewProductBuyers(String id) {
                 try {
-                    for (String buyer : SellerController.getInstance().getProductBuyers(id)) {
+                    ArrayList<String> productBuyers = SellerController.getInstance().getProductBuyers(id);
+                    if(productBuyers.isEmpty()) {
+                        System.out.println("no one has bought this product yet");
+                        this.show();
+                        this.execute();
+                    }
+                    for (String buyer : productBuyers) {
                         System.out.println("buyer : " + buyer);
                     }
                 }
@@ -182,12 +213,29 @@ public class SellerSection extends UserSection {
             }
             public void editProduct(String id){
                 HashMap<String,String> edits = new HashMap<>();
-                System.out.println("what do you want to change?(type end to finish editing)(you can edit (seller,price,companyName,description,name,specialFeature(e.g. (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2))))");
-                while (!scanner.hasNext("end")) {
-                    edits.put(scanner.next(), scanner.next());
+                System.out.println("what do you want to change?");
+                System.out.println("type end to finish editing");
+                System.out.println("edit like this: (field editedField)");
+                System.out.println("you can edit (seller,price,companyName,description,name,specialFeature)");
+                System.out.println("special feature edited field looks like this: (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2)");
+                String input;
+                String[] inputs;
+                while (!(input = scanner.nextLine()).equals("end")) {
+                    inputs = input.split(" ");
+                    if(inputs.length != 2) {
+                        System.out.println("wrong input");
+                        continue;
+                    }
+                    edits.put(inputs[0], inputs[1]);
+                }
+                if(edits.isEmpty()){
+                    System.out.println("you didn't edit anything!");
+                    this.show();
+                    this.execute();
                 }
                 try {
                     SellerController.getInstance().editProduct(id,edits);
+                    System.out.println("successfully edited product");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -200,6 +248,7 @@ public class SellerSection extends UserSection {
         System.out.println("type the product Id you want to be removed");
         try {
             SellerController.getInstance().removeProduct(scanner.nextLine());
+            System.out.println("successfully removed product");
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -240,10 +289,26 @@ public class SellerSection extends UserSection {
             public void execute() {
                 super.execute();
                 if(command.startsWith("view")){
-                    viewOff(command.split(" ")[1]);
+                    try {
+                        viewOff(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if(command.startsWith("edit")){
-                    editOff(command.split(" ")[1]);
+                    try {
+                        editOff(command.split(" ")[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    }
                 }
                 else if (command.equalsIgnoreCase("addOff")){
                     addOff();
@@ -275,12 +340,17 @@ public class SellerSection extends UserSection {
                 String input;
                 while (!(input = scanner.nextLine()).equals("end")) {
                     String[] splitInput = input.split(",");
-                    edits.put(splitInput[0], splitInput[1]);
+                    try {
+                        edits.put(splitInput[0], splitInput[1]);
+                    } catch (Exception e) {
+                        if(e instanceof ArrayIndexOutOfBoundsException) {
+                            System.out.println("enter like i said");
+                        }
+                    }
                 }
-                //todo optimize editing to handle used products in request
                 try {
                     SellerController.getInstance().editOff(offId,edits);
-                    System.out.println("edited fields successfully");
+                    System.out.println("ok. manager has lots to do:)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -341,6 +411,14 @@ public class SellerSection extends UserSection {
                 super.show();
             }
 
+            @Override
+            public void execute() {
+                super.execute();
+                System.out.println("invalid command");
+                this.show();
+                this.execute();
+
+            }
         };
     }
     public Menu addViewBalance(){
@@ -351,7 +429,15 @@ public class SellerSection extends UserSection {
                 super.show();
             }
 
+            @Override
+            public void execute() {
+                super.execute();
+                System.out.println("invalid command");
+                this.show();
+                this.execute();
+            }
         };
     }
 
 }
+//todo check every overrided show and replace them with commands

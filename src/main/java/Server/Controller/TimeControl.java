@@ -38,6 +38,8 @@ public abstract class TimeControl {
         String givenTime;
         String[] dayMonthYear;
         String[] hourMinuteSecond;
+        if(dateTime.length != 2)
+            throw new Exception("wrong dateTimeFormat");
         givenDate = dateTime[0];
         givenTime = dateTime[1];
         dayMonthYear = givenDate.split("/");

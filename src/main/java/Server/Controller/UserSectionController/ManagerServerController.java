@@ -1,6 +1,7 @@
 package Server.Controller.UserSectionController;
 
 import Client.Models.*;
+import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
@@ -22,10 +23,29 @@ public class ManagerServerController extends UserSectionServerController {
 
     private ManagerServerController(){
     }
-    public void editCategorySpecialFeatures(String category,String editedField) throws Exception {
+    public void editCategorySpecialFeatures(String categoryName,String editedField) throws Exception {
+        ArrayList<String> removedSpecialFeatures = new ArrayList<>();
         ArrayList<String> specialFeatures = new ArrayList<>();
         Collections.addAll(specialFeatures, editedField.split(","));
-        Database.getCategoryByName(category).setSpecialFeatures(specialFeatures);
+        Category category = Database.getCategoryByName(categoryName);
+        for (String specialFeature : category.getSpecialFeatures()) {
+            if(!specialFeatures.contains(specialFeature)){
+                removedSpecialFeatures.add(specialFeature);
+            }
+
+        }
+        for (Product product : category.getProducts()) {
+            for (String removedSpecialFeature : removedSpecialFeatures) {
+                if(product.getSpecialFeatures().containsKey(removedSpecialFeature)){
+                    try {
+                        product.removeSpecialFeature(removedSpecialFeature);
+                    } catch (Exception ignored) {
+                    }
+
+                }
+            }
+        }
+        category.setSpecialFeatures(specialFeatures);
     }
     public ArrayList<Product> getAllProducts(){
         return Database.getAllProducts();
@@ -34,7 +54,14 @@ public class ManagerServerController extends UserSectionServerController {
     public ArrayList<String> getAllUsers(){
         ArrayList<String> allUsers = new ArrayList<>();
         for (Person user : Database.getAllUsers()) {
-            allUsers.add(user.getUserName());
+            String userType;
+            if(user instanceof Manager)
+                userType = "manager";
+            else if(user instanceof Buyer)
+                userType = "buyer";
+            else
+                userType = "seller";
+            allUsers.add(userType + " : " + user.getUserName());
         }
         return allUsers;
     }
@@ -73,10 +100,16 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
         String[] dateTime = {codeInformation.get(1),codeInformation.get(2)};
-        //todo check if this code does not exists
+        for (CodedDiscount codedDiscount : Database.getAllDiscountCodes()) {
+            if(codedDiscount.getDiscountCode().equals(codeInformation.get(0)))
+                throw new Exception("code is used already");
+        }
         Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
         dateTime = new String[]{codeInformation.get(3), codeInformation.get(4)};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
+        if(exactEndDate.before(exactStartDate)){
+            throw new Exception("end date should be before start date");
+        }
 
         Database.addDiscountCodes(new CodedDiscount(codeInformation.get(0),
                 exactStartDate,exactEndDate,Integer.parseInt(codeInformation.get(5)),
@@ -106,36 +139,36 @@ public class ManagerServerController extends UserSectionServerController {
         for (String edit : edits.keySet()) {
             switch (edit.toLowerCase()){
                 case "start date":{
-                    String[] dateTime = edits.get("start date").split(",");
+                    String[] dateTime = edits.get(edit).split(",");
                     codedDiscount.setStartDate(TimeControl.getDateByDateTime(dateTime));
                     break;
                 }
                 case "end date":{
-                    String[] dateTime = edits.get("end date").split(",");
+                    String[] dateTime = edits.get(edit).split(",");
                     codedDiscount.setEndDate(TimeControl.getDateByDateTime(dateTime));
                     break;
                 }
                 case "discount percentage":{
-                    codedDiscount.setDiscountPercentage(Integer.parseInt(edits.get("discount percentage")));
+                    codedDiscount.setDiscountPercentage(Integer.parseInt(edits.get(edit)));
                     break;
                 }
                 case "maximum discount":{
-                    codedDiscount.setMaximumDiscount(Integer.parseInt(edits.get("maximum discount")));
+                    codedDiscount.setMaximumDiscount(Integer.parseInt(edits.get(edit)));
                     break;
                 }
                 case "discount repeats for each user":{
-                    codedDiscount.setDiscountRepeatsForEachUser(Integer.parseInt(edits.get("discount repeats for each user")));
+                    codedDiscount.setDiscountRepeatsForEachUser(Integer.parseInt(edits.get(edit)));
                     break;
                 }
                 case "people who can use it":{
                     HashMap<Person,Integer> people = new HashMap<>();
-                    if((edits.get("people who can use it").length() == 1) && (edits.get("people who can use it").equalsIgnoreCase("allUsers"))){
+                    if((edits.get(edit).length() == 1) && (edits.get(edit).equalsIgnoreCase("allUsers"))){
                         for (Person user : Database.getAllUsers()) {
                             people.put(user,codedDiscount.getDiscountRepeatsForEachUser());
                         }
                     }
                     else {
-                        for (String username : edits.get("people who can use it").split(",")) {
+                        for (String username : edits.get(edit).split(",")) {
                             people.put(Database.getPersonByUsername(username),codedDiscount.getDiscountRepeatsForEachUser());
                         }
                     }
@@ -212,70 +245,9 @@ public class ManagerServerController extends UserSectionServerController {
         return requestDetails;
     }
     public void acceptAllRequests() throws Exception {
-        ArrayList<Request> toBeRemoved = new ArrayList<>();
-        for (Request request : Database.getAllRequest()) {
-        switch (request.getRequestType()){
-            case "ADD_COMMENT" :{
-                Comment comment = request.getComment();
-                comment.getProduct().addComment(comment);
-                comment.setCommentSituation(CommentSituation.CONFIRMED);
-                break;
-            }
-            case "ADD_PRODUCT" :{
-                for (Product otherProduct : Database.getAllProducts()) {
-                    if(otherProduct.getName().equals(request.getProduct().getName()))
-                        throw new Exception("in request with id "+ request.getRequestId() + " ,name is already chosen for another product");
-                }
-                Database.addProduct(request.getProduct());
-                request.getSeller().addProduct(request.getProduct());
-                break;
-            }
-            case "REMOVE_PRODUCT" : {
-                Database.removeProduct(request.getProduct());
-                break;
-            }
-            case "EDIT_PRODUCT" :{
-
-                Database.getAllProducts().remove(request.getProduct());
-                Database.addProduct(request.getEditedProduct());
-                request.getSeller().removeProduct(request.getProduct());
-                request.getSeller().addProduct(request.getEditedProduct());
-
-                break;
-            }
-            case "ADD_OFF" :{
-                for (Product product : request.getOff().getProducts()) {
-                    product.setOff(request.getOff());
-                }
-                Database.addOff(request.getOff());
-                request.getSeller().addOff(request.getOff());
-                break;
-            }
-            case "EDIT_OFF" : {
-                for (Product product : request.getOff().getProducts()) {
-                    product.setOff(null);
-                }
-                for (Product product : request.getEditedOff().getProducts()) {
-                    product.setOff(request.getEditedOff());
-                }
-
-                Database.getAllOffs().remove(request.getOff());
-                Database.addOff(request.getEditedOff());
-                request.getSeller().removeOff(request.getOff());
-                request.getSeller().addOff(request.getEditedOff());
-                break;
-            }
-            //todo add remove off and remember to set every product off to null
-
-            case "REGISTER_SELLER" :{
-                Database.addUser(request.getSeller());
-                break;
-            }
-        }
-        toBeRemoved.add(request);
-        }
-        for (Request request : toBeRemoved) {
-        Database.removeRequest(request);
+        ArrayList<Request> clonedAllRequest = (ArrayList<Request>) Database.getAllRequest().clone();
+        for (Request request : clonedAllRequest) {
+            acceptRequest(request.getRequestId());
         }
     }
     public void  acceptRequest(String requestId) throws Exception {
@@ -290,8 +262,9 @@ public class ManagerServerController extends UserSectionServerController {
             case "ADD_PRODUCT" :{
                 for (Product otherProduct : Database.getAllProducts()) {
                     if(otherProduct.getName().equals(request.getProduct().getName()))
-                        throw new Exception("name is already chosen for another product");
+                        throw new Exception("in request with id "+ request.getRequestId() + " ,name is already chosen for another product");
                 }
+                request.getProduct().setSituation(Situation.CONFIRMED);
                 Database.addProduct(request.getProduct());
                 request.getSeller().addProduct(request.getProduct());
                 break;
@@ -304,6 +277,7 @@ public class ManagerServerController extends UserSectionServerController {
 
                 Database.getAllProducts().remove(request.getProduct());
                 Database.addProduct(request.getEditedProduct());
+                request.getEditedProduct().setSituation(Situation.CONFIRMED);
                 request.getSeller().removeProduct(request.getProduct());
                 request.getSeller().addProduct(request.getEditedProduct());
 
@@ -313,6 +287,7 @@ public class ManagerServerController extends UserSectionServerController {
                 for (Product product : request.getOff().getProducts()) {
                     product.setOff(request.getOff());
                 }
+                request.getOff().setSituation(Situation.CONFIRMED);
                 Database.addOff(request.getOff());
                 request.getSeller().addOff(request.getOff());
                 break;
@@ -327,11 +302,11 @@ public class ManagerServerController extends UserSectionServerController {
 
                 Database.getAllOffs().remove(request.getOff());
                 Database.addOff(request.getEditedOff());
+                request.getOff().setSituation(Situation.CONFIRMED);
                 request.getSeller().removeOff(request.getOff());
                 request.getSeller().addOff(request.getEditedOff());
                 break;
             }
-            //todo add remove off and remember to set every product isItInOff to false
 
             case "REGISTER_SELLER" :{
                 Database.addUser(request.getSeller());
