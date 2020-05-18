@@ -10,20 +10,20 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class CodedDiscount implements Serializable {
-    public CodedDiscount(String discountCode, Date startDate, Date endDate, int discountPercentage,int maximumDiscount, int discountRepeatsForEachUser, ArrayList<Person> people) {
-        DiscountCode = discountCode;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.discountPercentage = discountPercentage;
-        this.maximumDiscount = maximumDiscount;
-        this.discountRepeatsForEachUser = discountRepeatsForEachUser;
+    public CodedDiscount(String discountCode, Date startDate, Date endDate, int discountPercentage,int maximumDiscount, int discountRepeatsForEachUser, ArrayList<Person> people) throws Exception {
+        this.setDiscountCode(discountCode);
+        this.setStartDate(startDate);
+        this.setEndDate(endDate);
+        this.setDiscountPercentage(discountPercentage);
+        this.setMaximumDiscount(maximumDiscount);
+        this.setDiscountRepeatsForEachUser(discountRepeatsForEachUser);
         this.people = new HashMap<>();
         for (Person person : people) {
             this.people.put(person,discountRepeatsForEachUser);
         }
     }
 
-    private String DiscountCode;
+    private String discountCode;
     private Date startDate;
     private Date endDate;
     private int discountPercentage;
@@ -31,13 +31,14 @@ public class CodedDiscount implements Serializable {
     private int discountRepeatsForEachUser;
     private HashMap<Person,Integer> people;
 
-    public String getDiscountCode() {
-        return DiscountCode;
+    public void setDiscountCode(String discountCode) throws Exception {
+        if(discountCode.isBlank())
+            throw new Exception("discount code can't be blank!");
+        this.discountCode = discountCode;
     }
 
-    public void setDiscountCode(String discountCode) {
-        DiscountCode = discountCode;
-        ServerSaver.write(AllCommands.allData);
+    public String getDiscountCode() {
+        return discountCode;
     }
 
     public Date getStartDate() {

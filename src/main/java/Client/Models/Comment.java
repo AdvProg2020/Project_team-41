@@ -10,7 +10,7 @@ public class Comment implements Serializable {
     private Person person;
     private Product product;
     private String title;
-    private String Content;
+    private String content;
     private CommentSituation commentSituation;
     private boolean hasHeBought;
 
@@ -18,11 +18,11 @@ public class Comment implements Serializable {
         return commentSituation;
     }
 
-    public Comment(Person person, Product product, String title, String content, CommentSituation commentSituation,boolean hasHeBought) {
+    public Comment(Person person, Product product, String title, String content, CommentSituation commentSituation,boolean hasHeBought) throws Exception {
         this.person = person;
         this.product = product;
-        this.title = title;
-        Content = content;
+        this.setTitle(title);
+        this.setContent(content);
         this.commentSituation = commentSituation;
         this.hasHeBought = hasHeBought;
 
@@ -36,12 +36,24 @@ public class Comment implements Serializable {
         return product;
     }
 
+    public void setTitle(String title) throws Exception {
+        if(title.isBlank())
+            throw new Exception("title can't be blank!");
+        this.title = title;
+    }
+
+    public void setContent(String content) throws Exception {
+        if(content.isBlank())
+            throw new Exception("content can't be blank!");
+        this.content = content;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public boolean isHasHeBought() {
@@ -57,7 +69,7 @@ public class Comment implements Serializable {
     public String toString() {
         return "person : " + person.getUserName() +
                 "\ntitle :'" + title + '\'' +
-                "\nContent :'" + Content + '\'' +
+                "\nContent :'" + content + '\'' +
                 "\ncommentSituation :" + commentSituation +
                 "\nhasHeBought :" + hasHeBought+"\n";
     }

@@ -5,9 +5,7 @@ import Client.Models.Person.Buyer;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Database;
-import com.ibm.icu.text.ArabicShaping;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -55,7 +53,7 @@ public class BuyerServerController {
                 int productQuantity = sellerProducts.get(seller).get(product);
                 money += product.getPriceWithOff() * productQuantity;
                 product.decreaseQuantity(productQuantity);
-                seller.addCredit(product.getPriceWithOff() * productQuantity);
+                seller.increaseCredit(product.getPriceWithOff() * productQuantity);
 
             }
                 seller.addTradeLog(new TradeLog(new Date(),money,0,sellerProducts.get(seller),buyer.getUserName(),"waiting"));

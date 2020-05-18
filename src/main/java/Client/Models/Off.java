@@ -27,8 +27,8 @@ public class Off implements Serializable {
         this.offId = generateNewToken();
         this.products = products;
         this.situation = situation;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.setStartDate(startDate);
+        this.setEndDate(endDate);
         this.setAmountOfDiscount(amountOfDiscount);
         this.seller = seller;
     }

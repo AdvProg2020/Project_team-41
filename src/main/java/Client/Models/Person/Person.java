@@ -30,7 +30,9 @@ public abstract class Person implements Serializable {
         return AllProductsHeTraded;
     }
 
-    public void setUserName(String userName) {
+    public void setUserName(String userName) throws Exception {
+        if(userName.isBlank())
+            throw new Exception("username can't be blank!");
         this.userName = userName;
         ServerSaver.write(AllCommands.allData);
     }
@@ -81,12 +83,16 @@ public abstract class Person implements Serializable {
                 '}';
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) throws Exception {
+        if(firstName.isBlank())
+            throw new Exception("first name can't be blank!");
         this.firstName = firstName;
         ServerSaver.write(AllCommands.allData);
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) throws Exception {
+        if(lastName.isBlank())
+            throw new Exception("last name can't be blank!");
         this.lastName = lastName;
         ServerSaver.write(AllCommands.allData);
     }
@@ -105,12 +111,14 @@ public abstract class Person implements Serializable {
         ServerSaver.write(AllCommands.allData);
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) throws Exception {
+        if(password.isBlank())
+            throw new Exception("password can't be blank!");
         this.password = password;
         ServerSaver.write(AllCommands.allData);
     }
 
-    public void addCredit(int credit) throws Exception {
+    public void increaseCredit(int credit) throws Exception {
         if(credit<0)
             throw new Exception("credit can't be negative!");
         this.credit += credit;

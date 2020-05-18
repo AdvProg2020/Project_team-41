@@ -105,7 +105,7 @@ public class SellerServerController extends UserSectionServerController {
         public void addProduct(Seller seller,ArrayList<String> productDetails) throws Exception {
                 Product product = new Product();
                 String productName = productDetails.get(0);
-                Boolean flagForCategoryName = false;
+                boolean flagForCategoryName = false;
                 Category category = Database.getCategoryByName(productDetails.get(4));
                 HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
                 for (String rawSpecialFeature : productDetails.get(6).split(",")) {
@@ -114,7 +114,7 @@ public class SellerServerController extends UserSectionServerController {
                                 if(feature.equalsIgnoreCase(specialFeature[0])){
                                         try {
                                                 String productSpecialFeature = specialFeature[1];
-                                                if(specialFeatures.put(feature,new SpecialFeature(specialFeature[1])) != null)
+                                                if(specialFeatures.put(feature,new SpecialFeature(productSpecialFeature)) != null)
                                                         throw new Exception("you entered more than one specialFeature for one category specialFeature");
                                                 flagForCategoryName = true;
                                                 break;
@@ -141,6 +141,7 @@ public class SellerServerController extends UserSectionServerController {
                 product.setQuantity(productQuantity);
                 product.setPrice(productPrice);
                 product.setName(productName);
+
                 for (Product otherProduct : Database.getAllProducts()) {
                         if(otherProduct.getName().equals(productName))
                                 throw new Exception("name is already chosen for another product");

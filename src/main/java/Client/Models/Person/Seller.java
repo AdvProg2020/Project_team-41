@@ -36,17 +36,12 @@ public class Seller extends Person {
         return offs;
     }
 
-    public void setOffs(ArrayList<Off> offs) {
-        this.offs = offs;
-        ServerSaver.write(AllCommands.allData);
-    }
-
     public void setFactoryName(String factoryName) {
         this.factoryName = factoryName;
         ServerSaver.write(AllCommands.allData);
     }
 
-    public void addCredit(int money) throws Exception {
+    public void increaseCredit(int money) throws Exception {
         this.setCredit(getCredit()+money);
         ServerSaver.write(AllCommands.allData);
     }

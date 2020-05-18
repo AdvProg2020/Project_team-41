@@ -31,19 +31,19 @@ public class Product implements Serializable {
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     //for generating token
 
-    public Product(String name, String companyName, int price, Seller seller, int quantity, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) {
+    public Product(String name, String companyName, int price, Seller seller, int quantity, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) throws Exception {
         this.productId = generateNewToken();
-        this.name = name;
-        this.companyName = companyName;
-        this.price = price;
-        this.seller = seller;
-        this.quantity = quantity;
+        this.setName(name);
+        this.setCompanyName(companyName);
+        this.setPrice(price);
+        this.setQuantity(quantity);
+        this.setDescription(description);
         this.category = category;
         this.specialFeatures = specialFeatures;
         this.description = description;
     }
 
-    public Product cloneProduct(){
+    public Product cloneProduct() throws Exception {
         Product product = this;
         Product clonedProduct = new Product(product.getName(),product.getCompanyName(),product.getPrice(),product.getSeller(),product.getQuantity(),product.getCategory(),(HashMap<String, SpecialFeature>) product.getSpecialFeatures().clone(),product.getDescription());
         clonedProduct.setOff(product.getOff());
@@ -90,16 +90,22 @@ public class Product implements Serializable {
     }
 
     public void setDescription(String description) {
+
         this.description = description;
         ServerSaver.write(AllCommands.allData);
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws Exception {
+        if(name.isBlank())
+            throw new Exception("product name can't be blank!");
         this.name = name;
+
         ServerSaver.write(AllCommands.allData);
     }
 
-    public void setCompanyName(String companyName) {
+    public void setCompanyName(String companyName) throws Exception {
+        if(companyName.isBlank())
+            throw new Exception("company name can't be blank!");
         this.companyName = companyName;
         ServerSaver.write(AllCommands.allData);
     }

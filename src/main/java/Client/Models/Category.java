@@ -11,18 +11,24 @@ public class Category implements Serializable {
     private ArrayList<String> specialFeatures;
     private ArrayList<Product>products;
 
-    public Category(String name, ArrayList<String> specialFeatures) {
+    public Category(String name, ArrayList<String> specialFeatures) throws Exception {
         this.products = new ArrayList<>();
-        this.name = name;
-        this.specialFeatures = specialFeatures;
+        this.setName(name);
+        this.setSpecialFeatures(specialFeatures);
     }
 
-    public void setSpecialFeatures(ArrayList<String> specialFeatures) {
+    public void setSpecialFeatures(ArrayList<String> specialFeatures) throws Exception {
+        for (String specialFeature : specialFeatures) {
+            if(specialFeature.isBlank())
+                throw new Exception("special features can't be blank!");
+        }
         this.specialFeatures = specialFeatures;
         ServerSaver.write(AllCommands.allData);
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws Exception {
+        if(name.isBlank())
+            throw new Exception("category name can't be blank!");
         this.name = name;
         ServerSaver.write(AllCommands.allData);
     }
