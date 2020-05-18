@@ -3,6 +3,7 @@ package Client.Models;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Seller;
 import Server.Controller.AllCommands;
+import Server.Controller.RandomNumberGenerator;
 import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
@@ -27,12 +28,9 @@ public class Product implements Serializable {
     private ArrayList<Comment>comments = new ArrayList<>();
     private int views = 0;
 
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
-    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-    //for generating token
 
     public Product(String name, String companyName, int price, Seller seller, int quantity, Category category, HashMap<String, SpecialFeature> specialFeatures, String description) throws Exception {
-        this.productId = generateNewToken();
+        this.productId = RandomNumberGenerator.getToken(5);
         this.setName(name);
         this.setCompanyName(companyName);
         this.setPrice(price);
@@ -55,7 +53,7 @@ public class Product implements Serializable {
     }
 
     public Product(){
-        this.productId = generateNewToken();
+        this.productId = RandomNumberGenerator.getToken(5);
     }
     public ArrayList<Buyer> buyers = new ArrayList<>();
 
@@ -248,11 +246,6 @@ public class Product implements Serializable {
     }
 
 
-    public static String generateNewToken() {
-        byte[] randomBytes = new byte[2];
-        secureRandom.nextBytes(randomBytes);
-        return base64Encoder.encodeToString(randomBytes);
-    }
 
     @Override
     public String toString() {

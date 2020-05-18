@@ -2,6 +2,7 @@ package Client.Models;
 
 import Client.Models.Person.Seller;
 import Server.Controller.AllCommands;
+import Server.Controller.RandomNumberGenerator;
 import Server.Controller.ServerSaver;
 import Server.Controller.TimeControl;
 
@@ -19,12 +20,9 @@ public class Off implements Serializable {
     private Date endDate;
     private int amountOfDiscount;
     private Seller seller;
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
-    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-    //for generating token
 
     public Off(ArrayList<Product> products, Situation situation, Date startDate, Date endDate, int amountOfDiscount, Seller seller) throws Exception {
-        this.offId = generateNewToken();
+        this.offId = RandomNumberGenerator.getToken(5);
         this.products = products;
         this.situation = situation;
         this.setStartDate(startDate);
@@ -98,11 +96,6 @@ public class Off implements Serializable {
         return amountOfDiscount;
     }
 
-    public static String generateNewToken() {
-        byte[] randomBytes = new byte[2];
-        secureRandom.nextBytes(randomBytes);
-        return base64Encoder.encodeToString(randomBytes);
-    }
 
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
