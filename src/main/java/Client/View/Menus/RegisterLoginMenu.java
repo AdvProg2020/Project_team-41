@@ -91,13 +91,37 @@ public class RegisterLoginMenu extends Menu {
             }
             private Person makePerson(Person person) {
                 System.out.println("UserName:");
-                person.setUserName(scanner.nextLine());
+                try {
+                    person.setUserName(scanner.nextLine());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
                 System.out.println("Password:");
-                person.setPassword(scanner.nextLine());
+                try {
+                    person.setPassword(scanner.nextLine());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
                 System.out.println("What is your first name?");
-                person.setFirstName(scanner.nextLine());
+                try {
+                    person.setFirstName(scanner.nextLine());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
                 System.out.println("What is your last name?");
-                person.setLastName(scanner.nextLine());
+                try {
+                    person.setLastName(scanner.nextLine());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    this.show();
+                    this.execute();
+                }
 
                 try {
                     person.setEmail(getInputInFormatWithError("What is your email?","\\S+@\\S+\\.\\S+",
