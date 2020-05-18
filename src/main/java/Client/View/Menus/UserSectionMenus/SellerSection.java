@@ -213,12 +213,29 @@ public class SellerSection extends UserSection {
             }
             public void editProduct(String id){
                 HashMap<String,String> edits = new HashMap<>();
-                System.out.println("what do you want to change?(type end to finish editing)(you can edit (seller,price,companyName,description,name,specialFeature(e.g. (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2))))");
-                while (!scanner.hasNext("end")) {
-                    edits.put(scanner.next(), scanner.next());
+                System.out.println("what do you want to change?");
+                System.out.println("type end to finish editing");
+                System.out.println("edit like this: (field editedField)");
+                System.out.println("you can edit (seller,price,companyName,description,name,specialFeature)");
+                System.out.println("special feature edited field looks like this: (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2)");
+                String input;
+                String[] inputs;
+                while (!(input = scanner.nextLine()).equals("end")) {
+                    inputs = input.split(" ");
+                    if(inputs.length != 2) {
+                        System.out.println("wrong input");
+                        continue;
+                    }
+                    edits.put(inputs[0], inputs[1]);
+                }
+                if(edits.isEmpty()){
+                    System.out.println("you didn't edit anything!");
+                    this.show();
+                    this.execute();
                 }
                 try {
                     SellerController.getInstance().editProduct(id,edits);
+                    System.out.println("successfully edited product");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -231,6 +248,7 @@ public class SellerSection extends UserSection {
         System.out.println("type the product Id you want to be removed");
         try {
             SellerController.getInstance().removeProduct(scanner.nextLine());
+            System.out.println("successfully removed product");
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -422,3 +440,4 @@ public class SellerSection extends UserSection {
     }
 
 }
+//todo check every overrided show and replace them with commands
