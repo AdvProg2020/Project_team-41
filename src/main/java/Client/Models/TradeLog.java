@@ -1,5 +1,8 @@
 package Client.Models;
 
+import Server.Controller.AllCommands;
+import Server.Controller.ServerSaver;
+
 import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ public class TradeLog implements Serializable {
         this.items = items;
         this.buyerName = buyerName;
         this.deliverySituation = deliverySituation;
+
     }
 
     public String getLogId() {
@@ -40,47 +44,29 @@ public class TradeLog implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public int getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
     public int getOffAmount() {
         return offAmount;
-    }
-
-    public void setOffAmount(int offAmount) {
-        this.offAmount = offAmount;
     }
 
     public HashMap<Product, Integer> getItems() {
         return items;
     }
 
-    public void setItems(HashMap<Product, Integer> items) {
-        this.items = items;
-    }
-
     public String getBuyerName() {
         return buyerName;
-    }
-
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
     }
 
     public String getDeliverySituation() {
         return deliverySituation;
     }
 
-    public void setDeliverySituation(String deliverySituation) {
-        this.deliverySituation = deliverySituation;
-    }
     public static String generateNewToken() {
         byte[] randomBytes = new byte[2];
         secureRandom.nextBytes(randomBytes);

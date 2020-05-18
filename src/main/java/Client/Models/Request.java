@@ -30,6 +30,7 @@ public class Request implements Serializable {
         this.product = product;
         this.editedProduct = editedProduct;
         this.seller = seller;
+
     }
 
     public Request(Seller seller, Off off, Off editedOff) {

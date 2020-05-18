@@ -1,6 +1,8 @@
 package Client.Models;
 
 import Client.Models.Person.Person;
+import Server.Controller.AllCommands;
+import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class CodedDiscount implements Serializable {
 
     public void setDiscountCode(String discountCode) {
         DiscountCode = discountCode;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public Date getStartDate() {
@@ -43,6 +46,7 @@ public class CodedDiscount implements Serializable {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public Date getEndDate() {
@@ -51,6 +55,7 @@ public class CodedDiscount implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public int getDiscountPercentage() {
@@ -61,6 +66,7 @@ public class CodedDiscount implements Serializable {
         if((discountPercentage<0) || (discountPercentage>100))
             throw new Exception("percentage should be between 0 and 100");
         this.discountPercentage = discountPercentage;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public int getMaximumDiscount() {
@@ -71,6 +77,7 @@ public class CodedDiscount implements Serializable {
         if(maximumDiscount<1)
             throw new Exception("maximum discount should be positive :/ ");
         this.maximumDiscount = maximumDiscount;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public int getDiscountRepeatsForEachUser() {
@@ -81,6 +88,7 @@ public class CodedDiscount implements Serializable {
         if(discountRepeatsForEachUser<1)
             throw new Exception("discount repeats should be positive :/ ");
         this.discountRepeatsForEachUser = discountRepeatsForEachUser;
+        ServerSaver.write(AllCommands.allData);
     }
     public void reduceDiscountCodeForUser(Person person){
         int codesLeft = people.get(person)-1;
@@ -88,6 +96,7 @@ public class CodedDiscount implements Serializable {
             people.remove(person);
         else
             people.put(person,codesLeft);
+        ServerSaver.write(AllCommands.allData);
     }
 
     public HashMap<Person, Integer> getPeople() {
@@ -96,6 +105,7 @@ public class CodedDiscount implements Serializable {
 
     public void setPeople(HashMap<Person, Integer> people) {
         this.people = people;
+        ServerSaver.write(AllCommands.allData);
     }
     public boolean hasPerson(Person person){
         return people.get(person) != null;

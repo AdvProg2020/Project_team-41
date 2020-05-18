@@ -1,10 +1,10 @@
 package Client.Models;
 
-import Server.Database;
+import Server.Controller.AllCommands;
+import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Category implements Serializable {
     private String name;
@@ -19,10 +19,12 @@ public class Category implements Serializable {
 
     public void setSpecialFeatures(ArrayList<String> specialFeatures) {
         this.specialFeatures = specialFeatures;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setName(String name) {
         this.name = name;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public ArrayList<String> getSpecialFeatures() {
@@ -35,6 +37,7 @@ public class Category implements Serializable {
 
     public void addProduct(Product product) {
         products.add(product);
+        ServerSaver.write(AllCommands.allData);
     }
 
     public String getName() {
@@ -46,6 +49,7 @@ public class Category implements Serializable {
         if (off != null)
             off.removeProduct(product);
         products.remove(product);
+        ServerSaver.write(AllCommands.allData);
 
     }
 

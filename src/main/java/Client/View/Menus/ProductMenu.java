@@ -76,7 +76,6 @@ public class ProductMenu extends Menu {
                     @Override
                     public void execute() {
                         try {
-                            //TODO fix StackOverFlow error:
                             ProductController.addToCart(theProduct);
                             System.out.println("The product added to cart successfully");
                             super.show();

@@ -26,7 +26,12 @@ public class BuyerServerController {
 
     public static void payForTheShop(Buyer buyer) throws Exception {
         Cart cart = buyer.getCart();
-        int cashToPay = cart.getCodedDiscount().howMuchWillItCost(cart.totalPrice());
+        int cashToPay;
+        if(cart.getCodedDiscount() == null)
+            cashToPay = cart.totalPrice();
+        else {
+            cashToPay = cart.getCodedDiscount().howMuchWillItCost(cart.totalPrice());
+        }
         HashMap<Seller,HashMap<Product,Integer>> sellerProducts = new HashMap<>();
         if(buyer.getCredit()<cashToPay)
             throw new Exception("you don't have enough credit");

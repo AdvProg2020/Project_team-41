@@ -1,6 +1,8 @@
 package Client.Models;
 
 import Client.Models.Person.Person;
+import Server.Controller.AllCommands;
+import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 
@@ -48,6 +50,7 @@ public class Comment implements Serializable {
 
     public void setHasHeBought(boolean hasHeBought) {
         this.hasHeBought = hasHeBought;
+        ServerSaver.write(AllCommands.allData);
     }
 
     @Override
@@ -61,5 +64,6 @@ public class Comment implements Serializable {
 
     public void setCommentSituation(CommentSituation commentSituation) {
         this.commentSituation = commentSituation;
+        ServerSaver.write(AllCommands.allData);
     }
 }

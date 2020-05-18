@@ -1,6 +1,5 @@
 package Server.Controller;
 
-import Server.AllCommands;
 import Server.Database;
 
 import java.io.*;
@@ -24,6 +23,13 @@ public class ServerSaver {
         }
         else if(command.equals(AllCommands.allUsers)){
             writeAllUsers();
+        }
+        else if(command.equals(AllCommands.allData)){
+            writeAllUsers();
+            writeAllRequests();
+            writeAllOffs();
+            writeAllDiscountCodes();
+            writeAllCategory();
         }
         else{
             System.err.println("invalid command in database");

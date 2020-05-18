@@ -2,6 +2,8 @@ package Client.Models;
 
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Seller;
+import Server.Controller.AllCommands;
+import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.security.SecureRandom;
@@ -74,42 +76,51 @@ public class Product implements Serializable {
 
     public void setOff(Off off) {
         this.off = off;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setProductId(String productId) {
         this.productId = productId;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setCategory(Category category) {
         this.category = category;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setDescription(String description) {
         this.description = description;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setName(String name) {
         this.name = name;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setPrice(int price) throws Exception {
         if(price < 0)
             throw new Exception("price cant be negative!");
         this.price = price;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setSeller(Seller seller) {
         this.seller = seller;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setQuantity(int quantity) throws Exception {
         if(quantity < 0)
             throw new Exception("quantity can't be negative!");
         this.quantity = quantity;
+        ServerSaver.write(AllCommands.allData);
 
     }
 
@@ -170,9 +181,11 @@ public class Product implements Serializable {
     }
     public void addScore(Score score){
         scores.add(score);
+        ServerSaver.write(AllCommands.allData);
     }
     public void addComment(Comment comment){
         this.comments.add(comment);
+        ServerSaver.write(AllCommands.allData);
     }
 
     public Integer getViews() {
@@ -183,6 +196,7 @@ public class Product implements Serializable {
         if(views < 0)
             throw new Exception("views can't be negative!");
         this.views = views;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public ArrayList<Buyer> getBuyers() {
@@ -191,6 +205,7 @@ public class Product implements Serializable {
 
     public void addBuyer(Buyer buyer){
         buyers.add(buyer);
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void decreaseQuantity(int quantity) throws Exception {
@@ -198,26 +213,32 @@ public class Product implements Serializable {
             this.quantity -= quantity;
         else
             throw new Exception("out of stock");
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setScores(ArrayList<Score> scores) {
         this.scores = scores;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setBuyers(ArrayList<Buyer> buyers) {
         this.buyers = buyers;
+        ServerSaver.write(AllCommands.allData);
     }
 
     public void setSpecialFeatures(HashMap<String, SpecialFeature> specialFeatures) {
 
         this.specialFeatures = specialFeatures;
+        ServerSaver.write(AllCommands.allData);
     }
     public void removeProduct() {
         category.removeProduct(this);
+        ServerSaver.write(AllCommands.allData);
     }
 
 

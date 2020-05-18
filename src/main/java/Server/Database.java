@@ -4,6 +4,7 @@ import Client.Models.*;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
+import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
