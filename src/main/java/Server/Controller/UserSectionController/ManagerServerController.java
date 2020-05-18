@@ -73,7 +73,11 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
         String[] dateTime = {codeInformation.get(1),codeInformation.get(2)};
-        //todo check if this code does not exists
+        Database.getCodedDiscountByCode(codeInformation.get(0));
+        for (CodedDiscount discountCode : Database.getAllDiscountCodes()) {
+            if(discountCode.getDiscountCode().equals(codeInformation.get(0)))
+                throw new Exception("code is used already");
+        }
         Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
         dateTime = new String[]{codeInformation.get(3), codeInformation.get(4)};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
@@ -265,7 +269,6 @@ public class ManagerServerController extends UserSectionServerController {
                 request.getSeller().addOff(request.getEditedOff());
                 break;
             }
-            //todo add remove off and remember to set every product off to null
 
             case "REGISTER_SELLER" :{
                 Database.addUser(request.getSeller());
@@ -331,7 +334,6 @@ public class ManagerServerController extends UserSectionServerController {
                 request.getSeller().addOff(request.getEditedOff());
                 break;
             }
-            //todo add remove off and remember to set every product isItInOff to false
 
             case "REGISTER_SELLER" :{
                 Database.addUser(request.getSeller());

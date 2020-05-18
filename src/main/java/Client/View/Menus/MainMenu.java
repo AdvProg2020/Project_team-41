@@ -15,16 +15,6 @@ public class MainMenu extends Menu {
     @Override
     public void execute() {
         super.execute();
-        //todo remove code between comments
-        //
-        if(command.equalsIgnoreCase("showUsers")){
-            for (String user : ManagerController.getInstance().getAllUsers()) {
-                System.out.println(user);
-            }
-            this.show();
-            this.execute();
-        }
-        //
         System.out.println("invalid command");
         this.show();
         this.execute();

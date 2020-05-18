@@ -277,7 +277,6 @@ public class SellerSection extends UserSection {
                     String[] splitInput = input.split(",");
                     edits.put(splitInput[0], splitInput[1]);
                 }
-                //todo optimize editing to handle used products in request
                 try {
                     SellerController.getInstance().editOff(offId,edits);
                     System.out.println("edited fields successfully");

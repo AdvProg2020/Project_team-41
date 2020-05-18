@@ -58,7 +58,6 @@ public class ManagerSection extends UserSection {
                 }
                 else if(command.equalsIgnoreCase("special features")){
                     System.out.println("type its special features(type them with a comma between each special feature)");
-                    //todo separate two types of special features
 
                     try {
                         ManagerController.getInstance().editCategorySpecialFeatures(category,scanner.nextLine());
@@ -80,7 +79,6 @@ public class ManagerSection extends UserSection {
             private void add(String category){
                 String specialFeatures;
                 System.out.println("type its special features(type them with a comma between each special feature)");
-                //todo separate two types of special features
                 specialFeatures = scanner.nextLine();
                 try{
                     ManagerController.getInstance().addCategory(category,specialFeatures);

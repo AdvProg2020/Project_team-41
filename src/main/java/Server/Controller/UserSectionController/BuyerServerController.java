@@ -49,14 +49,16 @@ public class BuyerServerController {
         buyer.decreaseCredit(cashToPay);
         for (Seller seller : sellerProducts.keySet()) {
             int money = 0;
+            int moneyWithoutOff = 0;
             for (Product product : sellerProducts.get(seller).keySet()) {
                 int productQuantity = sellerProducts.get(seller).get(product);
+                moneyWithoutOff += product.getPrice() * productQuantity;
                 money += product.getPriceWithOff() * productQuantity;
                 product.decreaseQuantity(productQuantity);
                 seller.increaseCredit(product.getPriceWithOff() * productQuantity);
 
             }
-                seller.addTradeLog(new TradeLog(new Date(),money,0,sellerProducts.get(seller),buyer.getUserName(),"waiting"));
+                seller.addTradeLog(new TradeLog(new Date(),money,moneyWithoutOff - money,sellerProducts.get(seller),buyer.getUserName(),"waiting"));
 
         }
         if(cart.getCodedDiscount() != null)
@@ -64,7 +66,6 @@ public class BuyerServerController {
         buyer.addTradeLog(new TradeLog(new Date(),cart.totalPrice(),cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(),"waiting"));
         buyer.renewCart();
 
-        //todo check offAmount and deliverySituation
 
     }
     public ArrayList<String> getCodedDiscounts(Person person){
