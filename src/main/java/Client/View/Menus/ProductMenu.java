@@ -71,7 +71,7 @@ public class ProductMenu extends Menu {
                 return new Menu(this, "add to cart") {
 
                     @Override
-                    public  void show(){}
+                    public void show(){}
 
                     @Override
                     public void execute() {
@@ -89,10 +89,10 @@ public class ProductMenu extends Menu {
                             registerMenu.execute();
                         }
                         catch (ClassCastException e){
-                            System.out.println(e.getMessage());
-
+                            System.out.println(e.getMessage()+ "\n");
+                            this.superMenu.commands();
+                            this.superMenu.execute();
                         }
-
                     }
                 };
             }

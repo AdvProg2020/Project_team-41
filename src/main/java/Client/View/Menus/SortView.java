@@ -73,7 +73,7 @@ public class SortView extends Menu{
 
 
                 for (Product sortedProduct : SortController.getInstance().getSortedProducts(this.superMenu instanceof OffsMenu)) {
-                    System.out.format("| %-16s | %-10s | %-10d |%d\n",sortedProduct.getProductId(),sortedProduct.getName(),sortedProduct.getPrice() , sortedProduct.getViews() );
+                    System.out.format("| %-16s | %-10s | %-10d |\n",sortedProduct.getProductId(),sortedProduct.getName(),sortedProduct.getPrice());
                 }
                 System.out.print("+------------------+------------+------------+\n");
 
