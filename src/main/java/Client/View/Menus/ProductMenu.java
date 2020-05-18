@@ -64,7 +64,7 @@ public class ProductMenu extends Menu {
             public void execute() {
                   super.execute();
                   System.out.println("Invalid command!");
-                  this.show();
+                  this.commands();
                   this.execute();
             }
             private Menu addToCart(){
@@ -76,7 +76,6 @@ public class ProductMenu extends Menu {
                     @Override
                     public void execute() {
                         try {
-                            //TODO fix StackOverFlow error:
                             ProductController.addToCart(theProduct);
                             System.out.println("The product added to cart successfully");
                             super.show();
@@ -173,15 +172,10 @@ public class ProductMenu extends Menu {
 
     public Menu addCompare() {
         return new Menu(this, "compare") {
-            private int id;
 
             @Override
             public void show() {
                 System.out.println("Enter another product ID");
-            }
-
-            @Override
-            public void execute() {
                 String secondId = scanner.nextLine();
                 Product secondProduct = null;
                 try {
@@ -197,20 +191,12 @@ public class ProductMenu extends Menu {
                     superMenu.execute();
                 }
                 compareTable(theProduct,secondProduct);
-                /*System.out.println("product(you entered just now) details:");
-                try {
-                    Product secondProduct = AllProductsController.getInstance().getProduct(secondId);
-                    printProductAttributes(secondProduct);
-                    System.out.println("average score: " + secondProduct.calculateAverageScore());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
+                super.show();
+            }
 
-                System.out.println("\nproduct(whose page you are in) details:");
-                printProductAttributes(theProduct);
-                System.out.println("average score: " + theProduct.calculateAverageScore());
+            @Override
+            public void execute() {
 
-                 */
                 super.execute();
                 System.out.println("Invalid command!");
                 this.commands();
