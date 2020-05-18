@@ -148,7 +148,7 @@ public class Product implements Serializable {
         return companyName;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 

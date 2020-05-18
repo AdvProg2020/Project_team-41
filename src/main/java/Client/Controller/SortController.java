@@ -78,7 +78,7 @@ class ByCompanyName implements Comparator<Product> {
 class ByPrice implements Comparator<Product> {
     @Override
     public int compare(Product o1, Product o2) {
-        return o1.getPrice().compareTo(o2.getPrice());
+        return o1.getPrice() - (o2.getPrice());
     }
 }
 
