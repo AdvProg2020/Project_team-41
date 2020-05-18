@@ -24,15 +24,7 @@ public class LoginRegisterServerController {
                 throw new Exception("Invalid UserName!");
             }
         }
-        //todo looks like it's redundant so it's commented
-        /*if (person instanceof Manager) {
-            *//*if (Database.getAllManagers().size()>0) {
-                throw new Exception("You can't be a manager!");
-            }*//*
-            Database.addUser(person);
-        }*/
         Database.addUser(person);
-        //todo file coding
     }
     public Person login (String username,String password) throws Exception {
         ArrayList<Person> allUsers = Database.getAllUsers();
