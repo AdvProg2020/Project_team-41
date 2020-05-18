@@ -54,8 +54,6 @@ public class FilterMenu extends Menu {
         this.execute();
     }
 
-
-
     private Menu filterAnAvailableFilter() {
         return new Menu(this, "filter") {
             @Override

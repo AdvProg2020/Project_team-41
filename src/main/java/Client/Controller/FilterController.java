@@ -156,25 +156,40 @@ public class FilterController {
                 break;}
             }
             case "company name": {
+                if(companyName == null)
+                    throw new RuntimeException("the filter had not been selected already to be disabled now");
+                else{
                 companyName = null;
-                break;
+                break;}
             }
             case "category name": {
+                if(filterCategory == null)
+                    throw new RuntimeException("the filter had not been selected already to be disabled now");
+                else{
                 filterCategory = null;
-                break;
+                break;}
             }
             case "price": {
+                if(definitePrice == -1 && priceMinMax == null)
+                    throw new RuntimeException("the filter had not been selected already to be disabled now");
+                else{
                 definitePrice = -1;
                 priceMinMax = null;
-                break;
+                break;}
             }
             case "seller": {
+                if(sellerUserName == null)
+                    throw new RuntimeException("the filter had not been selected already to be disabled now");
+                else{
                 sellerUserName = null;
-                break;
+                break;}
             }
             case "existence": {
+                if(existence == -1)
+                    throw new RuntimeException("the filter had not been selected already to be disabled now");
+                else{
                 existence = -1;
-                break;
+                break;}
             }
             default:
                 throw new Exception("invalid filter");
@@ -304,8 +319,6 @@ public class FilterController {
     public void setExistence(int existence) {
         this.existence = existence;
     }
-
-
 
     @Override
     public String toString() {
