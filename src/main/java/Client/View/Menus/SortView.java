@@ -1,6 +1,5 @@
 package Client.View.Menus;
 
-import Client.Controller.FilterController;
 import Client.Controller.SortController;
 import Client.Models.Product;
 

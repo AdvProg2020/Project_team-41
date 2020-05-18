@@ -2,8 +2,6 @@ package Client.View.Menus;
 
 import Client.Controller.AllProductsController;
 import Client.Controller.ProductController;
-import Client.Controller.SortController;
-import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Comment;
 import Client.Models.CommentSituation;
 import Client.Models.Product;
