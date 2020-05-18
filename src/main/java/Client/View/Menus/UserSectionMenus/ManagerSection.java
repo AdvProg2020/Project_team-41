@@ -521,7 +521,7 @@ public class ManagerSection extends UserSection {
                 userInfo.add(scanner.nextLine());
                 System.out.println("What is your phone number?");
                 userInfo.add(scanner.nextLine());
-                System.out.println("How much money do you have?");
+                System.out.println("enter the money");
                 userInfo.add(scanner.nextLine());
                 try {
                     ManagerController.getInstance().createManagerProfile(userInfo);

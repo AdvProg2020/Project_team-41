@@ -350,7 +350,7 @@ public class SellerSection extends UserSection {
                 }
                 try {
                     SellerController.getInstance().editOff(offId,edits);
-                    System.out.println("edited fields successfully");
+                    System.out.println("ok. manager has lots to do:)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

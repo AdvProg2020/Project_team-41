@@ -208,7 +208,7 @@ public class SellerServerController extends UserSectionServerController {
                                         editedOff.setEndDate(TimeControl.getDateByDateTime(editRequestValue.split(",")));
                                         break;
                                 }
-                                case "amountdfdiscount" :{
+                                case "amountofdiscount" :{
                                         editedOff.setAmountOfDiscount(Integer.parseInt(editRequestValue));
                                         break;
                                 }
@@ -223,6 +223,9 @@ public class SellerServerController extends UserSectionServerController {
 
                                         }
                                         editedOff.setProducts(products);
+                                }
+                                default:{
+                                        throw new Exception("invalid field");
                                 }
                         }
                 }
