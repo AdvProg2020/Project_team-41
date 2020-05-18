@@ -109,8 +109,8 @@ public class ManagerServerController extends UserSectionServerController {
         Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
         dateTime = new String[]{codeInformation.get(3), codeInformation.get(4)};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
-        if(exactEndDate.before(exactStartDate)){
-            throw new Exception("start date should be before end date");
+        if(!exactEndDate.after(exactStartDate)){
+            throw new Exception("end date should be after start date");
         }
 
         Database.addDiscountCodes(new CodedDiscount(codeInformation.get(0),
@@ -249,7 +249,11 @@ public class ManagerServerController extends UserSectionServerController {
     public void acceptAllRequests() throws Exception {
         ArrayList<Request> clonedAllRequest = (ArrayList<Request>) Database.getAllRequest().clone();
         for (Request request : clonedAllRequest) {
-            acceptRequest(request.getRequestId());
+            try {
+                acceptRequest(request.getRequestId());
+            } catch (Exception e) {
+                throw new Exception("error in request with id : "+request.getRequestId()+"\nerror : "+e.getMessage());
+            }
         }
     }
     public void  acceptRequest(String requestId) throws Exception {
@@ -264,7 +268,7 @@ public class ManagerServerController extends UserSectionServerController {
             case "ADD_PRODUCT" :{
                 for (Product otherProduct : Database.getAllProducts()) {
                     if(otherProduct.getName().equals(request.getProduct().getName()))
-                        throw new Exception("in request with id "+ request.getRequestId() + " ,name is already chosen for another product");
+                        throw new Exception("name is already chosen for another product");
                 }
                 request.getProduct().setSituation(Situation.CONFIRMED);
                 Database.addProduct(request.getProduct());
@@ -286,7 +290,10 @@ public class ManagerServerController extends UserSectionServerController {
                 break;
             }
             case "ADD_OFF" :{
+
                 for (Product product : request.getOff().getProducts()) {
+                    if(product.isItInOff())
+                        throw new Exception("one of the products is already in another off");
                     product.setOff(request.getOff());
                 }
                 request.getOff().setSituation(Situation.CONFIRMED);

@@ -37,12 +37,12 @@ public class SellerServerController extends UserSectionServerController {
                 for (String editRequestKey : edit.keySet()) {
                         String editRequestValue = edit.get(editRequestKey);
                         switch (editRequestKey.toLowerCase()){
-                                case "seller" :{
-                                        editedProduct.setSeller(Database.getSellerByUsername(editRequestValue));
-                                        break;
-                                }
                                 case "price" :{
-                                        editedProduct.setPrice(Integer.parseInt(editRequestValue));
+                                        try {
+                                                editedProduct.setPrice(Integer.parseInt(editRequestValue));
+                                        } catch (NumberFormatException e) {
+                                                throw new Exception("wrong price!");
+                                        }
                                         break;
                                 }
                                 case "companyname" :{
@@ -54,6 +54,10 @@ public class SellerServerController extends UserSectionServerController {
                                         break;
                                 }
                                 case "name" :{
+                                        for (Product otherProduct : Database.getAllProducts()) {
+                                                if(otherProduct.getName().equals(editRequestValue))
+                                                        throw new Exception("product name is used");
+                                        }
                                         editedProduct.setName(editRequestValue);
                                         break;
                                 }
@@ -72,6 +76,8 @@ public class SellerServerController extends UserSectionServerController {
                                                                         break;
 
                                                                 } catch (Exception e) {
+                                                                        if(e.getMessage().equals("you entered more than one specialFeature for one category specialFeature"))
+                                                                                throw e;
                                                                         throw new Exception("please enter special features as i said");
                                                                 }
                                                         }
@@ -244,6 +250,8 @@ public class SellerServerController extends UserSectionServerController {
                                 throw new Exception("a product is already in an off");
                         allProducts.add(product);
                 }
+                if(allProducts.isEmpty())
+                        throw new Exception("off should have at least one product");
 
                 int discountAmount;
                 try {
@@ -255,6 +263,10 @@ public class SellerServerController extends UserSectionServerController {
                 Date exactStartDate = TimeControl.getDateByDateTime(dateTime);
                 dateTime = new String[]{offDetails.get(2), offDetails.get(3)};
                 Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
+                if(!exactEndDate.after(exactStartDate)){
+                        throw new Exception("end date should be after start date");
+                }
+
 
                 Off off  = new Off(allProducts,Situation.CREATING,exactStartDate,exactEndDate,discountAmount,seller);
 
