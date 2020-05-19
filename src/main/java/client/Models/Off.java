@@ -123,12 +123,12 @@ public class Off implements Serializable {
         }
         return
                 "offId : '" + offId + '\'' +
-                ", situation : " + situation +
-                ", startDate : " + TimeControl.getJalaliDateAndTimeForPrint(startDate) +
-                ", endDate : " + TimeControl.getJalaliDateAndTimeForPrint(endDate) +
-                ", amountOfDiscount : " + amountOfDiscount +
-                ", seller : " + seller.getUserName() +
-                ", products : {" + products +
+                "\nsituation : " + situation +
+                "\nstartDate : " + TimeControl.getJalaliDateAndTimeForPrint(startDate) +
+                "\nendDate : " + TimeControl.getJalaliDateAndTimeForPrint(endDate) +
+                "\namountOfDiscount : " + amountOfDiscount +
+                "\nseller : " + seller.getUserName() +
+                "\nproducts : {" + products +
                 '}';
     }
 }

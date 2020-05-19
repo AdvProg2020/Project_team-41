@@ -224,7 +224,7 @@ public class SellerSection extends UserSection {
                 System.out.println("what do you want to change?");
                 System.out.println("type end to finish editing");
                 System.out.println("edit like this: (field editedField)");
-                System.out.println("you can edit (seller,price,companyName,description,name,specialFeature)");
+                System.out.println("you can edit (price,companyName,description,name,specialFeature)");
                 System.out.println("special feature edited field looks like this: (categorySpecialFeature1-productSpecialFeature1,categorySpecialFeature2-productSpecialFeature2)");
                 String input;
                 String[] inputs;
