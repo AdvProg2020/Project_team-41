@@ -37,6 +37,8 @@ public class ManagerServerController extends UserSectionServerController {
         for (Product product : category.getProducts()) {
             for (String removedSpecialFeature : removedSpecialFeatures) {
                 if(product.getSpecialFeatures().containsKey(removedSpecialFeature)){
+                    if(product.getSpecialFeatures().get(removedSpecialFeature).toString().isBlank())
+                        continue;
                     try {
                         product.removeSpecialFeature(removedSpecialFeature);
                     } catch (Exception ignored) {
@@ -383,6 +385,8 @@ public class ManagerServerController extends UserSectionServerController {
         productDetails.add("Seller's Username : " + product.getSeller().getUserName());
         productDetails.add("Special Features : ");
         for (String specialFeatureKey : product.getSpecialFeatures().keySet()) {
+            if(product.getSpecialFeatures().get(specialFeatureKey).toString().isBlank())
+                continue;
             productDetails.add(specialFeatureKey + " - " + product.getSpecialFeatures().get(specialFeatureKey));
         }
         return productDetails;

@@ -7,7 +7,6 @@ import Server.Controller.RandomNumberGenerator;
 import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
 import java.util.*;
 
 public class Product implements Serializable {

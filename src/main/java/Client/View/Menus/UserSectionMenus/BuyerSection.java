@@ -2,8 +2,6 @@ package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.BuyerController;
 import Client.Models.Cart;
-import Client.Models.CodedDiscount;
-import Client.Models.Person.Buyer;
 import Client.Models.Product;
 import Client.Models.TradeLog;
 import Client.View.Menus.MainMenu;
@@ -11,7 +9,6 @@ import Client.View.Menus.Menu;
 import Client.View.Menus.ProductMenu;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BuyerSection extends UserSection {
     public BuyerSection(Menu superMenu) {
@@ -370,11 +367,17 @@ public class BuyerSection extends UserSection {
                             this.show();
                             this.execute();
                         }
-                        if(e instanceof NumberFormatException) {
+                        else if(e instanceof NumberFormatException) {
                             System.out.println("invalid number");
                             this.show();
                             this.execute();
                         }
+                        else{
+                            System.out.println(e.getMessage());
+                            this.show();
+                            this.execute();
+                        }
+
                     }
                 }
                 System.out.println("invalid command");

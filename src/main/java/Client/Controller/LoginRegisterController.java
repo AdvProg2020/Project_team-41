@@ -1,10 +1,8 @@
 package Client.Controller;
 
 import Client.Controller.UserSectionController.UserSectionController;
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Server.Controller.LoginRegisterServerController;
-import Server.Database;
 
 public class LoginRegisterController {
     private static LoginRegisterController single_instance = null;

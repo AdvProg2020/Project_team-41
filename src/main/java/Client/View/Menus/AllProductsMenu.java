@@ -46,7 +46,7 @@ public class AllProductsMenu extends Menu {
                 for (Category category : AllProductsController.getInstance().getAllCategories()) {
                     System.out.println(category.getName());
                 }
-                System.out.println("");
+                System.out.println();
                 this.show();
                 this.execute();
 

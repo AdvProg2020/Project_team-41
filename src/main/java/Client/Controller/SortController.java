@@ -42,27 +42,27 @@ public class SortController {
         List<Product> sortedFilter = FilterController.getInstance().filterProducts(offOrNot);
         switch (sortFeature) {
             case "product name": {
-                Collections.sort(sortedFilter, new ByName());
+                sortedFilter.sort(new ByName());
                 break;
             }
             case "company name": {
-                Collections.sort(sortedFilter, new ByCompanyName());
+                sortedFilter.sort(new ByCompanyName());
                 break;
             }
             case "price": {
-                Collections.sort(sortedFilter, new ByPrice());
+                sortedFilter.sort(new ByPrice());
                 break;
             }
             case "seller username": {
-                Collections.sort(sortedFilter, new BySellerUsername());
+                sortedFilter.sort(new BySellerUsername());
                 break;
             }
             case "score": {
-                Collections.sort(sortedFilter, new ByScore());
+                sortedFilter.sort(new ByScore());
                 break;
             }
             default:
-                Collections.sort(sortedFilter, new ByView());
+                sortedFilter.sort(new ByView());
         }
         return sortedFilter;
     }

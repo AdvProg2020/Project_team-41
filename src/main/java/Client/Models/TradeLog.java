@@ -5,9 +5,6 @@ import Server.Controller.RandomNumberGenerator;
 import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 

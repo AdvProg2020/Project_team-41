@@ -4,11 +4,6 @@ import Client.Models.Person.Seller;
 import Server.Controller.RandomNumberGenerator;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
-
 
 
 public class Request implements Serializable {

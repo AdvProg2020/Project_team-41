@@ -2,7 +2,6 @@ package Client.Models.Person;
 
 import Client.Models.Off;
 import Client.Models.Product;
-import Client.Models.TradeLog;
 import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
 
