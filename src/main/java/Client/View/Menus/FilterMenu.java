@@ -47,7 +47,7 @@ public class FilterMenu extends Menu {
                 System.out.println(specialFeature);
             }
         }
-        System.out.println();
+        System.out.println("");
         this.show();
         this.execute();
     }
@@ -162,7 +162,7 @@ public class FilterMenu extends Menu {
                 if (FilterController.getInstance().filterProducts(this.superMenu instanceof OffsMenu).size() == 0)
                     System.out.println("Nothing found");
                 else {
-                    System.out.println();
+                    System.out.println("");
                     System.out.println("Filtered Products Are:");
                     System.out.print("+------------------+------------+------------+\n");
                     System.out.print("| Product id       | Name       | Price      |\n");
@@ -214,7 +214,9 @@ public class FilterMenu extends Menu {
                         else
                             FilterController.getInstance().disableSpecialFeature(scanner.nextLine());
                         System.out.println("The filtered feature was successfully disabled");
-                    } catch (ClassNotFoundException | NullPointerException e) {
+                    } catch (ClassNotFoundException e) {
+                        System.err.println(e.getMessage());
+                    } catch (NullPointerException e) {
                         System.err.println(e.getMessage());
                     }
                 } else

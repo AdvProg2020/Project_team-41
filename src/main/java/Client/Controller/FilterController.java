@@ -82,8 +82,11 @@ public class FilterController {
                     {
                         if (existence != -1) {
                             boolean isThereMore;
-                            isThereMore = existence == 1;
-                            if ((Product.getQuantity() == 0) == isThereMore)
+                            if (existence == 1)
+                                isThereMore = true;
+                            else
+                                isThereMore = false;
+                            if ((Product.getQuantity()!=0) != isThereMore)
                                 return false;
                         }
                     }
@@ -188,7 +191,10 @@ public class FilterController {
         } else {
             for (String specialFeatureName : FilterController.getInstance().getFilterCategory().getSpecialFeatures()) {
                 if (specialFeatureName.equals(featureNameToFind)) {
-                    return FilterController.getInstance().getFilterCategory().getProducts().get(0).getSpecialFeatures().get(specialFeatureName).StringOrInt().equals("int");
+                    if (FilterController.getInstance().getFilterCategory().getProducts().get(0).getSpecialFeatures().get(specialFeatureName).StringOrInt().equals("int"))
+                        return true;
+                    else
+                        return false;
                 }
             }
             throw new NullPointerException("NO feature found with this name");
@@ -282,17 +288,17 @@ public class FilterController {
         StringBuilder result = new StringBuilder();
 
          if (filterCategory != null)
-            result.append("\n" + "filterCategory: ").append(filterCategory.getName());
+            result.append("\n" + "filterCategory: " + filterCategory.getName());
          if (name != null)
-            result.append("\n" + "name: ").append(name);
+            result.append("\n" + "name: " + name);
          if (companyName != null)
-            result.append("\n" + "companyName: ").append(companyName);
+            result.append("\n" + "companyName: " + companyName);
          if (definitePrice != -1)
-            result.append("\n" + "price: ").append(definitePrice);
+            result.append("\n" + "price: " + definitePrice);
          if (priceMinMax != null)
-            result.append("\n" + "price range: between ").append(priceMinMax.getKey()).append(" and ").append(priceMinMax.getValue());
+            result.append("\n" + "price range: between " + priceMinMax.getKey() + " and " + priceMinMax.getValue());
          if (sellerUserName != null)
-            result.append("\n" + "seller username: ").append(sellerUserName);
+            result.append("\n" + "seller username: " + sellerUserName);
          if (existence != -1) {
             if (existence == 1)
                 result.append("\n" + "existence: " + "should be exist");
@@ -302,19 +308,19 @@ public class FilterController {
          if (!definiteStringFeatures.isEmpty()) {
             result.append("\n");
             for (String featureName : definiteStringFeatures.keySet()) {
-                result.append("feature name: ").append(featureName).append("/ feature value: ").append(definiteStringFeatures.get(featureName)).append("     ");
+                result.append("feature name: " + featureName + "/ feature value: " + definiteStringFeatures.get(featureName) + "     ");
             }
         }
          if (!definiteIntFeatures.isEmpty()) {
             result.append("\n");
             for (String featureName : definiteIntFeatures.keySet()) {
-                result.append("feature name: ").append(featureName).append("/ feature value: ").append(definiteStringFeatures.get(featureName)).append("     ");
+                result.append("feature name: " + featureName + "/ feature value: " + definiteStringFeatures.get(featureName) + "     ");
             }
         }
          if (!rangeFeatures.isEmpty()) {
             result.append("\n");
             for (String featureName : rangeFeatures.keySet()) {
-                result.append("feature name: ").append(featureName).append("/ feature value: between ").append(rangeFeatures.get(featureName).getKey()).append(" and ").append(rangeFeatures.get(featureName).getValue()).append("    ");
+                result.append("feature name: " + featureName + "/ feature value: between " + rangeFeatures.get(featureName).getKey() + " and " + rangeFeatures.get(featureName).getValue() + "    ");
             }
         }
         return result.toString();
