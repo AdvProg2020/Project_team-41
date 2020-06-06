@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="748.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSection">
+   <left>
+      <ScrollPane prefHeight="332.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="740.0" prefWidth="323.0">
+               <children>
+                  <Button onMouseClicked="#viewPersonalInfoButtonClicked" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="view personal info">
+                     <font>
+                        <Font name="Times New Roman" size="25.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button onMouseClicked="#manageUsersButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage users">
+                     <font>
+                        <Font name="Times New Roman" size="25.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button onMouseClicked="#manageAllProductsButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage all products">
+                     <font>
+                        <Font name="Times New Roman" size="25.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button onMouseClicked="#manageCategoriesButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage categories">
+                     <font>
+                        <Font name="Times New Roman" size="25.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button onMouseClicked="#manageRequestsButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage requests">
+                     <font>
+                        <Font name="Times New Roman" size="25.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button onMouseClicked="#manageDiscountCodesButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="view discount codes">
+                     <font>
+                        <Font name="Times New Roman" size="25.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button onMouseClicked="#createDiscountCodeButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="create discount code">
+                     <font>
+                        <Font name="Times New Roman" size="25.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #754d34 #754d34; -fx-border-width: 2px 2px 2px 2px;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

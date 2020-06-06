@@ -36,40 +36,40 @@ public class ServerSaver {
         }
         }
         catch (Exception e){
-            System.out.println("there were no resources folder recognized. but is it created now? : " + new File("src/main/resources").mkdir());
+            System.out.println("there were no data folder recognized. but is it created now? : " + new File("src/main/resources/data").mkdir());
             write(command);
         }
     }
     private static void writeAllCategory() throws IOException {
-         outputStream = new FileOutputStream("src/main/resources/allCategory.dat");
+         outputStream = new FileOutputStream("src/main/resources/data/allCategory.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllCategory());
          objectOutputStream.close();
 
     }
     private static void writeAllOffs() throws IOException {
-         outputStream = new FileOutputStream("src/main/resources/allOffs.dat");
+         outputStream = new FileOutputStream("src/main/resources/data/allOffs.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllOffs());
          objectOutputStream.close();
 
     }
     private static void writeAllUsers() throws IOException {
-         outputStream = new FileOutputStream("src/main/resources/allUsers.dat");
+         outputStream = new FileOutputStream("src/main/resources/data/allUsers.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllUsers());
          objectOutputStream.close();
 
     }
     private static void writeAllRequests() throws IOException {
-         outputStream = new FileOutputStream("src/main/resources/allRequests.dat");
+         outputStream = new FileOutputStream("src/main/resources/data/allRequests.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllRequest());
          objectOutputStream.close();
 
     }
     private static void writeAllDiscountCodes() throws IOException {
-         outputStream = new FileOutputStream("src/main/resources/allDiscountCodes.dat");
+         outputStream = new FileOutputStream("src/main/resources/data/allDiscountCodes.dat");
          objectOutputStream = new ObjectOutputStream(outputStream);
          objectOutputStream.writeObject(Database.getAllDiscountCodes());
          objectOutputStream.close();

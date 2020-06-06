@@ -31,35 +31,35 @@ public class ServerStartProgram {
     }
 
     private static void readAllUsers() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("src/main/resources/allUsers.dat");
+        inputStream = new FileInputStream("src/main/resources/data/allUsers.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllUsers((ArrayList<Person>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllOffs() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("src/main/resources/allOffs.dat");
+        inputStream = new FileInputStream("src/main/resources/data/allOffs.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllOffs((ArrayList<Off>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllCategory() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("src/main/resources/allCategory.dat");
+        inputStream = new FileInputStream("src/main/resources/data/allCategory.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllCategory((ArrayList<Category>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllDiscountCodes() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("src/main/resources/allDiscountCodes.dat");
+        inputStream = new FileInputStream("src/main/resources/data/allDiscountCodes.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllDiscountCodes((ArrayList<CodedDiscount>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllRequest() throws IOException, ClassNotFoundException {
-        inputStream = new FileInputStream("src/main/resources/allRequests.dat");
+        inputStream = new FileInputStream("src/main/resources/data/allRequests.dat");
         objectInputStream = new ObjectInputStream(inputStream);
         Database.setAllRequest((ArrayList<Request>) objectInputStream.readObject());
         inputStream.close();

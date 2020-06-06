@@ -5,6 +5,7 @@ import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -627,4 +628,25 @@ public class ManagerSection extends UserSection {
         };
     }
 
+    public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {
+
+    }
+
+    public void manageUsersButton(MouseEvent mouseEvent) {
+    }
+
+    public void manageAllProductsButton(MouseEvent mouseEvent) {
+    }
+
+    public void manageCategoriesButton(MouseEvent mouseEvent) {
+    }
+
+    public void manageRequestsButton(MouseEvent mouseEvent) {
+    }
+
+    public void manageDiscountCodesButton(MouseEvent mouseEvent) {
+    }
+
+    public void createDiscountCodeButton(MouseEvent mouseEvent) {
+    }
 }
