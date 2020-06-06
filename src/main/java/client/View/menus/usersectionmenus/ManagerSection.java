@@ -9,6 +9,7 @@ import Client.View.Menus.Menu;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class ManagerSection extends UserSection {
     private ManagerController managerController;
 
