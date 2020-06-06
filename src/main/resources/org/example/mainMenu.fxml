@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="814.0" style="-fx-background-image:bk;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="76.0" prefWidth="814.0">
+               <children>
+
+                  <Label prefHeight="62.0" prefWidth="451.0" text="Perfect Market">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="Register/Login">
+                     <HBox.margin>
+                        <Insets left="200.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <ToolBar prefHeight="40.0" prefWidth="200.0">
+              <items>
+                <Button alignment="CENTER" minHeight="18.0" mnemonicParsing="false" prefHeight="35.0" text="All Products" />
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Offs" />
+              </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
