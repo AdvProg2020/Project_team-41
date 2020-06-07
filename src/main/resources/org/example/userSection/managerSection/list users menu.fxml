@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="517.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ListUsersMenu">
+   <children>
+       <Button layoutX="140.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#createManagerProfileClicked" prefHeight="27.0" prefWidth="233.0" stylesheets="@/org/example/styles/commandButton.css" text="create manager profile">
+           <textFill>
+               <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                   <stops>
+                       <Stop color="BLACK" />
+                       <Stop color="#dd813f" offset="1.0" />
+                   </stops>
+               </LinearGradient>
+           </textFill>
+       </Button>
+       <Text fx:id="informationText" layoutX="21.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
+      <ScrollPane layoutX="63.0" layoutY="92.0" prefHeight="410.0" prefWidth="388.0">
+         <content>
+            <VBox fx:id="usersVBox" prefHeight="406.0" prefWidth="386.0">
+               <children>
+                  <SplitMenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="27.0" prefWidth="389.0" text="user">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="view" />
+                      <MenuItem mnemonicParsing="false" text="edit" />
+                    </items>
+                  </SplitMenuButton>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

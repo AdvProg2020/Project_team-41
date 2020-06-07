@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="394.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ListUsersMenu">
+   <children>
+      <SplitMenuButton fx:id="userButton" contentDisplay="CENTER" layoutY="1.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="27.0" prefWidth="389.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="user">
+        <items>
+          <MenuItem mnemonicParsing="false" text="view" />
+          <MenuItem mnemonicParsing="false" text="edit" />
+        </items>
+      </SplitMenuButton>
+   </children>
+</AnchorPane>

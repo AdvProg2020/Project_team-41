@@ -5,14 +5,14 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="457.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.UserSectionMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="534.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.UserSectionMenu">
    <children>
-      <VBox layoutX="21.0" layoutY="80.0" prefHeight="420.0" prefWidth="416.0">
+      <VBox layoutX="21.0" layoutY="80.0" prefHeight="420.0" prefWidth="474.0">
          <children>
             <GridPane prefHeight="429.0" prefWidth="410.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="117.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="177.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="324.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -112,7 +112,7 @@
             </GridPane>
          </children>
       </VBox>
-       <Button layoutX="229.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#editButtonClicked" prefHeight="27.0" prefWidth="68.0" stylesheets="@/org/example/styles/commandButton.css" text="edit">
+       <Button layoutX="304.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#editButtonClicked" prefHeight="27.0" prefWidth="68.0" stylesheets="@/org/example/styles/commandButton.css" text="edit">
            <textFill>
                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                    <stops>
@@ -122,7 +122,6 @@
                </LinearGradient>
            </textFill>
        </Button>
-       <Text fx:id="informationText" layoutX="21.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0"
-             textAlignment="CENTER" wrappingWidth="416.0"/>
+       <Text fx:id="informationText" layoutX="21.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
    </children>
 </AnchorPane>
