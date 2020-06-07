@@ -22,7 +22,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField editable="false" stylesheets="@/org/example/styles/textFill.css" />
+                        <TextField fx:id="usernameTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" />
                     </children>
                 </GridPane>
             </children>

@@ -31,7 +31,7 @@ public class ListUsersMenu {
     private void makeUserSplitButton(String username) {
         Parent root = null;
         try {
-            root = App.loadFXML("userSection/userSplitButton");
+            root = App.loadFXML("userSection/managerSection/userSplitButton");
         } catch (IOException e) {
             e.printStackTrace();
         }
