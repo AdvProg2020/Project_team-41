@@ -30,8 +30,10 @@ public class userButtonController {
         else{
             usersShown.add(usernameTextField.getText());
             showUser();
+
         }
     }
+
 
     public void removeUserClicked(MouseEvent mouseEvent) {
 
