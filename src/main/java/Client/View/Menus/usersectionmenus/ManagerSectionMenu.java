@@ -1,7 +1,8 @@
 package Client.View.Menus.UserSectionMenus;
 
+import Client.Controller.UserSectionController.UserSectionController;
+import Server.Database;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
@@ -16,15 +17,17 @@ public class ManagerSectionMenu {
 
     @FXML
     public void initialize(){
+        UserSectionController.setLoggedInPerson(Database.getAllUsers().get(0));
         managerSectionButtonScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         managerSectionButtonScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
-    public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) throws IOException {
+    public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {
         setSubPage("userSection/view personal info");
     }
 
     public void manageUsersButtonClicked(MouseEvent mouseEvent) {
+
     }
 
     public void manageAllProductsButtonClicked(MouseEvent mouseEvent) {

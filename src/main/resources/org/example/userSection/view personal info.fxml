@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="457.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="457.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.UserSectionMenu">
    <children>
-      <VBox layoutX="18.0" layoutY="22.0" prefHeight="420.0" prefWidth="416.0">
+      <VBox layoutX="21.0" layoutY="80.0" prefHeight="420.0" prefWidth="416.0">
          <children>
             <GridPane prefHeight="429.0" prefWidth="410.0">
               <columnConstraints>
@@ -108,15 +102,27 @@
                           </LinearGradient>
                       </fill>
                   </Text>
-                  <TextField editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
-                  <TextField alignment="CENTER" style="-fx-background-color: transparent;" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField style="-fx-background-color: transparent;" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField style="-fx-background-color: transparent;" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField style="-fx-background-color: transparent;" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField style="-fx-background-color: transparent;" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="userNameTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+                  <TextField fx:id="firstNameTextField" promptText="first name can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="lastNameTextField" promptText="last name can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="creditTextField" editable="false" promptText="credit can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="emailTextField" promptText="email can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="phoneNumberTextField" promptText="phone number can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </children>
       </VBox>
+       <Button layoutX="229.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#editButtonClicked" prefHeight="27.0" prefWidth="68.0" stylesheets="@/org/example/styles/commandButton.css" text="edit">
+           <textFill>
+               <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                   <stops>
+                       <Stop color="BLACK" />
+                       <Stop color="#dd813f" offset="1.0" />
+                   </stops>
+               </LinearGradient>
+           </textFill>
+       </Button>
+       <Text fx:id="informationText" layoutX="21.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0"
+             textAlignment="CENTER" wrappingWidth="416.0"/>
    </children>
 </AnchorPane>

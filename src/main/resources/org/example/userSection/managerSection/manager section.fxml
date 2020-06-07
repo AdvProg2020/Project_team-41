@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="managerSectionBoarderPane" prefHeight="748.0" prefWidth="1162.0" style="-fx-border-width: 4px 4px 4px 4px; -fx-border-color: #754d34;-fx-background-color: #f5f1ec;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenu">
    <left>

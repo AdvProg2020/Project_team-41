@@ -26,7 +26,6 @@ public abstract class UserSectionServerController {
 
     }
     public static void edit(Person person,String field,String editedField) throws Exception {
-        //todo edit fields except username
         if(field.equals("username"))
             throw new Exception("can't change username");
         if(person == null)

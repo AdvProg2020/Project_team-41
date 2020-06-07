@@ -1,5 +1,6 @@
 package org.example;
 
+import Client.Controller.StartProgram;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        StartProgram.startProgram();
         scene = new Scene(loadFXML("userSection/managerSection/manager section"));
         stage.setScene(scene);
         stage.show();
