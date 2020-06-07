@@ -5,13 +5,18 @@ import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class ManagerSection extends UserSection {
+    public BorderPane managerSectionBoarderPane;
     private ManagerController managerController;
 
     @Override
@@ -629,24 +634,35 @@ public class ManagerSection extends UserSection {
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("view personal info");
+    }
+
+    public void manageUsersButtonClicked(MouseEvent mouseEvent) {
 
     }
 
-    public void manageUsersButton(MouseEvent mouseEvent) {
+    public void manageAllProductsButtonClicked(MouseEvent mouseEvent) {
     }
 
-    public void manageAllProductsButton(MouseEvent mouseEvent) {
+    public void manageCategoriesButtonClicked(MouseEvent mouseEvent) {
     }
 
-    public void manageCategoriesButton(MouseEvent mouseEvent) {
+    public void manageRequestsButtonClicked(MouseEvent mouseEvent) {
     }
 
-    public void manageRequestsButton(MouseEvent mouseEvent) {
+    public void manageDiscountCodesButtonClicked(MouseEvent mouseEvent) {
     }
 
-    public void manageDiscountCodesButton(MouseEvent mouseEvent) {
+    public void createDiscountCodeButtonClicked(MouseEvent mouseEvent) {
     }
+    private void setSubPage(String name){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(name + ".fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        managerSectionBoarderPane.setCenter(root);
 
-    public void createDiscountCodeButton(MouseEvent mouseEvent) {
     }
 }

@@ -9,9 +9,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="748.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSection">
+<BorderPane fx:id="managerSectionBoarderPane" prefHeight="748.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenu">
    <left>
-      <ScrollPane prefHeight="332.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="managerSectionButtonScrollPane" prefHeight="332.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" BorderPane.alignment="CENTER">
          <content>
             <VBox prefHeight="740.0" prefWidth="323.0">
                <children>
@@ -28,7 +28,7 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <Button onMouseClicked="#manageUsersButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage users">
+                  <Button onMouseClicked="#manageUsersButtonClicked" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage users">
                      <font>
                         <Font name="Times New Roman" size="25.0" />
                      </font>
@@ -41,7 +41,7 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <Button onMouseClicked="#manageAllProductsButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage all products">
+                  <Button onMouseClicked="#manageAllProductsButtonClicked" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage all products">
                      <font>
                         <Font name="Times New Roman" size="25.0" />
                      </font>
@@ -54,7 +54,7 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <Button onMouseClicked="#manageCategoriesButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage categories">
+                  <Button onMouseClicked="#manageCategoriesButtonClicked" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage categories">
                      <font>
                         <Font name="Times New Roman" size="25.0" />
                      </font>
@@ -67,7 +67,7 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <Button onMouseClicked="#manageRequestsButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage requests">
+                  <Button onMouseClicked="#manageRequestsButtonClicked" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="manage requests">
                      <font>
                         <Font name="Times New Roman" size="25.0" />
                      </font>
@@ -80,7 +80,7 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <Button onMouseClicked="#manageDiscountCodesButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="view discount codes">
+                  <Button onMouseClicked="#manageDiscountCodesButtonClicked" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="view discount codes">
                      <font>
                         <Font name="Times New Roman" size="25.0" />
                      </font>
@@ -93,7 +93,7 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <Button onMouseClicked="#createDiscountCodeButton" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="create discount code">
+                  <Button onMouseClicked="#createDiscountCodeButtonClicked" stylesheets="@/org/example/styles/UserSectionButton.css" mnemonicParsing="false" prefHeight="133.0" prefWidth="378.0" text="create discount code">
                      <font>
                         <Font name="Times New Roman" size="25.0" />
                      </font>
