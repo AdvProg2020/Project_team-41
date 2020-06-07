@@ -39,26 +39,3 @@ public enum MessageType {
 }
 
 
-
-//  <LinearGradient endX="0.15347721822541963" endY="1.0" startX="0.7386091127098321">
-//                  <stops>
-//                      <Stop>
-//                     <color>
-//                        <Color red="0.0470588244497776" green="0.1411764770746231" blue="0.07058823853731155" />
-//                     </color></Stop>
-//                      <Stop offset="1.0">
-//                     <color>
-//                        <Color red="1.0" />
-//                     </color></Stop>
-//                  </stops>
-//              </LinearGradient>
-
-
-
-
-//<LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
-//                   <stops>
-//                       <Stop color="BLACK" />
-//                       <Stop color="#dd813f" offset="1.0" />
-//                   </stops>
-//               </LinearGradient>

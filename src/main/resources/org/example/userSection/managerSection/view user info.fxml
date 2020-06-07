@@ -5,9 +5,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="534.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.UserSectionMenu">
+<AnchorPane fx:id="userInformation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="480.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.viewUserInfoController">
    <children>
-      <VBox layoutX="21.0" layoutY="80.0" prefHeight="420.0" prefWidth="474.0">
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="420.0" prefWidth="462.0">
          <children>
             <GridPane prefHeight="429.0" prefWidth="410.0">
               <columnConstraints>
@@ -103,25 +103,14 @@
                       </fill>
                   </Text>
                   <TextField fx:id="userNameTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
-                  <TextField fx:id="firstNameTextField" promptText="first name can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="lastNameTextField" promptText="last name can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="firstNameTextField" editable="false" promptText="first name can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="lastNameTextField" editable="false" promptText="last name can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="creditTextField" editable="false" promptText="credit can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="emailTextField" promptText="email can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="phoneNumberTextField" promptText="phone number can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="emailTextField" editable="false" promptText="email can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="phoneNumberTextField" editable="false" promptText="phone number can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </children>
       </VBox>
-       <Button layoutX="304.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#editButtonClicked" prefHeight="27.0" prefWidth="68.0" stylesheets="@/org/example/styles/commandButton.css" text="edit">
-           <textFill>
-               <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
-                   <stops>
-                       <Stop color="BLACK" />
-                       <Stop color="#dd813f" offset="1.0" />
-                   </stops>
-               </LinearGradient>
-           </textFill>
-       </Button>
-       <Text fx:id="informationText" layoutX="21.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
    </children>
 </AnchorPane>
