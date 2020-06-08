@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -42,5 +44,16 @@ public class ManageCategoriesMenu {
         textField.setText(categoryName);
 
         categoriesVBox.getChildren().add(root);
+    }
+
+    public void createCategoryClicked(MouseEvent mouseEvent) {
+        BorderPane managerSectionBoarderPane = (BorderPane)manageCategoriesAnchorPane.getParent();
+        Parent root = null;
+        try {
+            root = App.loadFXML("userSection/managerSection/manageCategoriesMenu/create category");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        managerSectionBoarderPane.setCenter(root);
     }
 }
