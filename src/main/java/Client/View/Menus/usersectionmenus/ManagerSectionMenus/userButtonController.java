@@ -61,7 +61,7 @@ public class userButtonController {
     }
     private void showUser() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
-        vBox.getChildren().add(getIndexOfUser() + 1, App.loadFXML("userSection/managerSection/view user info"));
+        vBox.getChildren().add(getIndexOfUser() + 1, App.loadFXML("userSection/managerSection/listUsersMenu/view user info"));
         AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(getIndexOfUser()+1);
         VBox vBox1 = (VBox) anchorPane.getChildren().get(0);
         double anchorPaneHeight = anchorPane.getPrefHeight();

@@ -26,14 +26,15 @@ public class ManagerSectionMenu {
     }
 
     public void manageUsersButtonClicked(MouseEvent mouseEvent) {
-        setSubPage("userSection/managerSection/list users menu");
+        setSubPage("userSection/managerSection/listUsersMenu/list users menu");
     }
 
     public void manageAllProductsButtonClicked(MouseEvent mouseEvent) {
-        setSubPage("userSection/managerSection/manage products menu");
+        setSubPage("userSection/managerSection/manageProductsMenu/manage products menu");
     }
 
     public void manageCategoriesButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/managerSection/manageCategoriesMenu/manage categories menu");
     }
 
     public void manageRequestsButtonClicked(MouseEvent mouseEvent) {

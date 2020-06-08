@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="manageCategoriesAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="792.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManageCategoriesMenu">
+   <children>
+      <ScrollPane stylesheets="/org/example/styles/scrollBar.css" fx:id="categoriesScrollPane" layoutX="42.0" layoutY="74.0" prefHeight="446.0" prefWidth="578.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
+         <content>
+            <VBox fx:id="categoriesVBox" prefHeight="454.0" prefWidth="558.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
+               <children>
+
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+       <Text fx:id="informationText" layoutX="71.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
+   </children>
+</AnchorPane>

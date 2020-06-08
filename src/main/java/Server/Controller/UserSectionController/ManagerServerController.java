@@ -362,6 +362,9 @@ public class ManagerServerController extends UserSectionServerController {
     public void removeCategory(String categoryName) throws Exception {
         Database.deleteCategory(categoryName);
     }
+    public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {
+        return Database.getCategoryByName(categoryName).getSpecialFeatures();
+    }
     public ArrayList<String> viewAllDiscountCodes(){
         ArrayList<String> allDiscountCodes = new ArrayList<>();
         for (CodedDiscount discountCode : Database.getAllDiscountCodes()) {

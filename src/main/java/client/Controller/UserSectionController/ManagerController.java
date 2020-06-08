@@ -78,6 +78,9 @@ public class ManagerController extends UserSectionController{
     public void removeCategory(String categoryName) throws Exception {
         ManagerServerController.getInstance().removeCategory(categoryName);
     }
+    public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {
+        return ManagerServerController.getInstance().getCategorySpecialFeatures(categoryName);
+    }
     public ArrayList<String> viewAllDiscountCodes(){
         return ManagerServerController.getInstance().viewAllDiscountCodes();
     }

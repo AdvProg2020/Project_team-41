@@ -1,7 +1,6 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.Models.Product;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -14,33 +13,34 @@ import org.example.App;
 
 import java.io.IOException;
 
-public class ManageProductsMenu {
-
-    public ScrollPane productsScrollPane;
-    public VBox productsVBox;
+public class ManageCategoriesMenu {
     public Text informationText;
+    public ScrollPane categoriesScrollPane;
+    public VBox categoriesVBox;
+    public AnchorPane manageCategoriesAnchorPane;
 
     @FXML
     public void initialize(){
-        for (Product product : ManagerController.getInstance().getAllProducts()) {
-            makeProductSplitButton(product.getName(),product.getProductId());
+        if(ManagerController.getInstance().showCategories().isEmpty())
+            System.out.println("there is no category to show here");
+        for (String category : ManagerController.getInstance().showCategories()) {
+            makeCategorySplitButton(category);
         }
     }
 
-    private void makeProductSplitButton(String productName,String productId) {
+    private void makeCategorySplitButton(String categoryName) {
         Parent root = null;
         try {
-            root = App.loadFXML("userSection/managerSection/manageProductsMenu/productSplitButton");
+            root = App.loadFXML("userSection/managerSection/manageCategoriesMenu/categorySplitButton");
         } catch (IOException e) {
             e.printStackTrace();
         }
         AnchorPane anchorPane = (AnchorPane) root;
         VBox vBox = (VBox) anchorPane.getChildren().get(0);
         GridPane gridPane = (GridPane) vBox.getChildren().get(0);
-        TextField productNameTextField = (TextField) gridPane.getChildren().get(0);
-        productNameTextField.setText(productName);
-        TextField productIdTextField = (TextField) gridPane.getChildren().get(1);
-        productIdTextField.setText(productId);
-        productsVBox.getChildren().add(root);
+        TextField textField = (TextField) gridPane.getChildren().get(0);
+        textField.setText(categoryName);
+
+        categoriesVBox.getChildren().add(root);
     }
 }

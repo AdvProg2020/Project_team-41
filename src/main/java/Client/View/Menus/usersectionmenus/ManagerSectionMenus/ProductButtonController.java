@@ -58,7 +58,7 @@ public class ProductButtonController {
     private void showProduct() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
         //vBox.getChildren().add(getIndexOfProduct() + 1, App.loadFXML("userSection/managerSection/view user info"));
-        AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(getIndexOfProduct()+1);
+        AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(getIndexOfProduct() + 1);
         VBox vBox1 = (VBox) anchorPane.getChildren().get(0);
         double anchorPaneHeight = anchorPane.getPrefHeight();
         double vBoxHeight = vBox1.getPrefHeight();
