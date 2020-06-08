@@ -38,6 +38,7 @@ public class ManagerSectionMenu {
     }
 
     public void manageRequestsButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/managerSection/manageRequestsMenu/manage requests menu");
     }
 
     public void manageDiscountCodesButtonClicked(MouseEvent mouseEvent) {
