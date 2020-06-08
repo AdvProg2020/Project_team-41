@@ -19,8 +19,6 @@ public class ManagerSectionMenu {
     public void initialize(){
         //todo remove nextLine
         UserSectionController.setLoggedInPerson(Database.getAllUsers().get(0));
-        managerSectionButtonScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        managerSectionButtonScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {

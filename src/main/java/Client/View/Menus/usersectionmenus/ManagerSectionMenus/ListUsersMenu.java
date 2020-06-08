@@ -20,8 +20,7 @@ public class ListUsersMenu {
 
     @FXML
     public void initialize(){
-        listUsersScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        listUsersScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
         for (String user : ManagerController.getInstance().getAllUsers()) {
                 makeUserSplitButton(user);
         }
