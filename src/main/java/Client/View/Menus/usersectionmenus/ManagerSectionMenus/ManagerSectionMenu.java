@@ -30,6 +30,7 @@ public class ManagerSectionMenu {
     }
 
     public void manageAllProductsButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/managerSection/manage products menu");
     }
 
     public void manageCategoriesButtonClicked(MouseEvent mouseEvent) {
