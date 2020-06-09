@@ -42,9 +42,11 @@ public class ManagerSectionMenu {
     }
 
     public void manageDiscountCodesButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/managerSection/viewDiscountCodesMenu/view discount codes menu");
     }
 
     public void createDiscountCodeButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/managerSection/viewDiscountCodesMenu/create discount code");
     }
 
     private void setSubPage(String name){

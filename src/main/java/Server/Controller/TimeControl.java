@@ -52,7 +52,7 @@ public abstract class TimeControl {
         return exactDate;
     }
     public static String getJalaliDateAndTimeForPrint(Date date){
-        return convertGregorianToJalali(date).toString() + "\t" +date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+        return convertGregorianToJalali(date).toString() + "    " +date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
     }
 
 
