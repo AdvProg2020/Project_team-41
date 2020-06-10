@@ -2,7 +2,6 @@ package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Person;
-//import animatefx.animation.AnimationFX;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
