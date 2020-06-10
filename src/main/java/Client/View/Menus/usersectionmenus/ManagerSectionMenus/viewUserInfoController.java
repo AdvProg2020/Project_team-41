@@ -2,14 +2,12 @@ package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Person;
-import animatefx.animation.AnimationFX;
+//import animatefx.animation.AnimationFX;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class viewUserInfoController {
     static Person user;

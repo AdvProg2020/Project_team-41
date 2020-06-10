@@ -1,6 +1,7 @@
 package org.example;
 
 import Client.Controller.StartProgram;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 
 /**
  * JavaFX App
@@ -19,7 +21,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         StartProgram.startProgram();
-        scene = new Scene(loadFXML("ProductPage/ProductDetails"));
+        scene = new Scene(loadFXML("userSection/managerSection/manager section"));
         stage.setScene(scene);
         stage.show();
     }
@@ -33,7 +35,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         launch();
     }
 
