@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ProductDetails {
 
-    private Product theProduct;
+    private static Product theProduct;
 
     public TextField nameTextField;
     public TextField companyNameTextField;
@@ -30,5 +30,9 @@ public class ProductDetails {
             productSpecialFeatures.append(featureName + theProduct.getSpecialFeatures().get(featureName) + "\n");
         }
         specialFeaturesTextField.setText(String.valueOf(productSpecialFeatures));
+    }
+
+    public static void setTheProduct(Product theProduct) {
+        ProductDetails.theProduct = theProduct;
     }
 }

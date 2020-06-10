@@ -413,4 +413,7 @@ public class ManagerServerController extends UserSectionServerController {
         }
         return offDetails;
     }
+    public Product getProductById(String productId) throws Exception {
+        return Database.getProductById(productId);
+    }
 }
