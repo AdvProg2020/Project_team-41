@@ -69,6 +69,7 @@ public class ProductButtonController {
 
 
 
+
     }
     private void hideProduct() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
