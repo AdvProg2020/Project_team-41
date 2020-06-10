@@ -3,7 +3,6 @@ package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Person.Person;
 import Client.View.Menus.MessageType;
-import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewUserInfoController;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
