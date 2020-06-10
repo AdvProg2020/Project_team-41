@@ -1,5 +1,6 @@
 package Client.Controller.UserSectionController;
 
+import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Server.Controller.UserSectionController.ManagerServerController;
@@ -83,5 +84,8 @@ public class ManagerController extends UserSectionController{
     }
     public ArrayList<String> viewAllDiscountCodes(){
         return ManagerServerController.getInstance().viewAllDiscountCodes();
+    }
+    public Product getProductById(String productId) throws Exception {
+        return ManagerServerController.getInstance().getProductById(productId);
     }
 }
