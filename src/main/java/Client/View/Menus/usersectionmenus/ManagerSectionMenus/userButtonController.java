@@ -3,6 +3,7 @@ package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Person.Person;
 import Client.View.Menus.MessageType;
+import Client.View.Menus.NodeFinder;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -47,18 +48,18 @@ public class userButtonController {
             System.out.println(e.getMessage());
         }
         ManagerController.getInstance().deleteUser(user.getUserName());
-        VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
+        VBox vBox = (VBox) NodeFinder.getParentById(gridPane,"usersVBox");
         if(usersShown.contains(usernameTextField.getText()))
             vBox.getChildren().remove(getIndexOfUser()+1);
         vBox.getChildren().remove(getIndexOfUser());
-        AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
+        AnchorPane anchorPane = (AnchorPane) NodeFinder.getParentById(vBox,"usersAnchorPane");
         Text text = (Text) anchorPane.getChildren().get(2);
         showMessage(text,MessageType.SUCCESS,"successfully removed user");
 
 
     }
     private void showUser() throws IOException {
-        VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
+        VBox vBox = (VBox) NodeFinder.getParentById(gridPane,"usersVBox");
         vBox.getChildren().add(getIndexOfUser() + 1, App.loadFXML("userSection/managerSection/listUsersMenu/view user info"));
         AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(getIndexOfUser()+1);
         VBox vBox1 = (VBox) anchorPane.getChildren().get(0);
@@ -91,7 +92,7 @@ public class userButtonController {
 
     }
     private void hideUser() throws IOException {
-        VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
+        VBox vBox = (VBox) NodeFinder.getParentById(gridPane,"usersVBox");
         vBox.getChildren().remove(getIndexOfUser()+1);
     }
     private int getIndexOfUser(){
@@ -102,14 +103,14 @@ public class userButtonController {
             System.out.println(e.getMessage());
         }
         viewUserInfoController.user = user;
-        VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
+        VBox vBox = (VBox) NodeFinder.getParentById(gridPane,"usersVBox");
         for (int i = 0; i < vBox.getChildren().size(); i++) {
             AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(i);
             VBox innerVBox = (VBox) anchorPane.getChildren().get(0);
             GridPane gridPane = (GridPane) innerVBox.getChildren().get(0);
             if (gridPane.getChildren().get(0) instanceof Text)
                 continue;
-            TextField textField = (TextField) gridPane.getChildren().get(0);
+            TextField textField = (TextField) NodeFinder.getChildById(gridPane, "usernameTextField");
             if (textField.getText().equals(usernameTextField.getText())) {
                 return i;
             }
