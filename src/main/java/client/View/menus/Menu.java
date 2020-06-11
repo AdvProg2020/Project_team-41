@@ -2,11 +2,16 @@ package Client.View.Menus;
 
 import Client.Controller.FilterController;
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.View.Menus.LoginRegister.LoginForm;
+import Client.View.Menus.LoginRegister.Logout;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.App;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -131,18 +136,42 @@ public abstract class Menu {
         System.out.println("end Program");
     }
 
-    Scene scene;
+    private static Scene scene;
+    private static Stage window;
 
-    public void login() throws IOException {
-        Stage window = new Stage();
+    public void login(String fxmlAddress) throws IOException {
+        LoginForm.father=fxmlAddress;
+        window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Login or register");
 
-
-        scene = new Scene(App.loadFXML("loginForm"));
+        scene = new Scene(loadFXML("loginForm"));
         window.setScene(scene);
         window.showAndWait();
     }
+    public static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+    public static void closeWindow(){
+        window.close();
+    }
+    public void logout(String fxmlAddress) throws IOException {
+        Logout.father=fxmlAddress;
+        window = new Stage();
+
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Logout");
+
+        scene = new Scene(loadFXML("logout"));
+        window.setScene(scene);
+        window.showAndWait();
+    }
+
 
 }
