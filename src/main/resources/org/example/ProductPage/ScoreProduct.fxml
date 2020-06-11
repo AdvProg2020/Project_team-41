@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.">
+    <children>
+        <Text layoutX="192.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLease enter the score (1-5):" wrappingWidth="203.22900390625">
+            <font>
+                <Font name="Times New Roman" size="17.0" />
+            </font>
+            <fill>
+                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                    <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="#dd813f" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+
+        <TextField fx:id="scoreTextField" editable="false" layoutX="189.0" layoutY="101.0" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+
+    </children>
+
+
+</AnchorPane>

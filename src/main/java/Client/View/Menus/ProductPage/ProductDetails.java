@@ -2,13 +2,14 @@ package Client.View.Menus.ProductPage;
 
 import Client.Models.Product;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 
 public class ProductDetails {
 
-    private static Product theProduct;
+
 
     public TextField nameTextField;
     public TextField companyNameTextField;
@@ -17,22 +18,20 @@ public class ProductDetails {
     public TextField quantityTextField;
     public TextField specialFeaturesTextField;
 
+
     @FXML
     public void initialize(){
-        nameTextField.setText(theProduct.getName());
-        companyNameTextField.setText(theProduct.getCompanyName());
-        priceTextField.setText(String.valueOf(theProduct.getPrice()));
-        sellerTextField.setText(theProduct.getSeller().getUserName());
-        quantityTextField.setText(String.valueOf(theProduct.getQuantity()));
+        nameTextField.setText(ProductPageGeneralButtons.getTheProduct().getName());
+        companyNameTextField.setText(ProductPageGeneralButtons.getTheProduct().getCompanyName());
+        priceTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().getPrice()));
+        sellerTextField.setText(ProductPageGeneralButtons.getTheProduct().getSeller().getUserName());
+        quantityTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().getQuantity()));
 
         StringBuilder productSpecialFeatures = new StringBuilder();
-        for (String featureName : theProduct.getSpecialFeatures().keySet()) {
-            productSpecialFeatures.append(featureName + theProduct.getSpecialFeatures().get(featureName) + "\n");
+        for (String featureName : ProductPageGeneralButtons.getTheProduct().getSpecialFeatures().keySet()) {
+                productSpecialFeatures.append(featureName + ":" + ProductPageGeneralButtons.getTheProduct().getSpecialFeatures().get(featureName) + "   ");
         }
         specialFeaturesTextField.setText(String.valueOf(productSpecialFeatures));
     }
 
-    public static void setTheProduct(Product theProduct) {
-        ProductDetails.theProduct = theProduct;
-    }
 }
