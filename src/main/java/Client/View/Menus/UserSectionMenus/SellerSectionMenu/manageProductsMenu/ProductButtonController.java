@@ -1,6 +1,6 @@
-package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
+package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu;
 
-import Client.Controller.UserSectionController.ManagerController;
+import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;
 import Client.View.Menus.ProductPage.ProductDetails;
@@ -15,8 +15,6 @@ import org.example.App;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ProductButtonController {
     public AnchorPane productNameAnchorPane;
@@ -43,7 +41,7 @@ public class ProductButtonController {
     public void removeProductClicked(MouseEvent mouseEvent) throws Exception {
 
         try {
-            ManagerController.getInstance().removeProduct(productIdTextField.getText());
+            SellerController.getInstance().removeProduct(productIdTextField.getText());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -53,14 +51,14 @@ public class ProductButtonController {
         vBox.getChildren().remove(getIndexOfProduct());
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(1);
-        showMessage(text, MessageType.SUCCESS,"successfully removed product");
+        showMessage(text, MessageType.SUCCESS,"your request will be processed");
 
 
     }
     private void showProduct() throws IOException {
         Product product = null;
         try {
-            product = ManagerController.getInstance().getProductById(productIdTextField.getText());
+            product = SellerController.getInstance().getProduct(productIdTextField.getText());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -78,7 +76,7 @@ public class ProductButtonController {
     private int getIndexOfProduct(){
         String productId = productIdTextField.getText();
         Product product;
-        for (Product oneProduct : ManagerController.getInstance().getAllProducts()) {
+        for (Product oneProduct : SellerController.getInstance().getProducts()) {
             if(oneProduct.getProductId().equals(productId))
                 product = oneProduct;
         }

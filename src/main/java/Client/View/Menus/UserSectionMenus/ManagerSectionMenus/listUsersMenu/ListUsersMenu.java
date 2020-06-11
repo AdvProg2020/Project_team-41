@@ -1,4 +1,4 @@
-package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
+package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.listUsersMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
 import javafx.fxml.FXML;
@@ -17,6 +17,7 @@ public class ListUsersMenu {
     public VBox usersVBox;
     public ScrollPane listUsersScrollPane;
     public Text informationText;
+    public AnchorPane usersAnchorPane;
 
     @FXML
     public void initialize(){

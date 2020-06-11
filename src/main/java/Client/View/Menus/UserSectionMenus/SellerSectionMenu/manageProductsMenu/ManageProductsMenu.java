@@ -1,6 +1,6 @@
-package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
+package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu;
 
-import Client.Controller.UserSectionController.ManagerController;
+import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Product;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -22,7 +22,7 @@ public class ManageProductsMenu {
 
     @FXML
     public void initialize(){
-        for (Product product : ManagerController.getInstance().getAllProducts()) {
+        for (Product product : SellerController.getInstance().getProducts()) {
             makeProductSplitButton(product.getName(),product.getProductId());
         }
     }
@@ -30,7 +30,7 @@ public class ManageProductsMenu {
     private void makeProductSplitButton(String productName,String productId) {
         Parent root = null;
         try {
-            root = App.loadFXML("userSection/managerSection/manageProductsMenu/productSplitButton");
+            root = App.loadFXML("userSection/sellerSection/manageProductsMenu/productSplitButton");
         } catch (IOException e) {
             e.printStackTrace();
         }

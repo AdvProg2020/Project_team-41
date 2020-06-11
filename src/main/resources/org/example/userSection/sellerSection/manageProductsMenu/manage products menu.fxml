@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="792.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageProductsMenu.ManageProductsMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="792.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu.ManageProductsMenu">
    <children>
       <ScrollPane stylesheets="/org/example/styles/scrollBar.css" fx:id="productsScrollPane" layoutX="42.0" layoutY="74.0" prefHeight="446.0" prefWidth="578.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
          <content>
