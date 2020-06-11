@@ -1,5 +1,6 @@
 package Client.View.Menus.ProductPage;
 
+import Client.Models.Comment;
 import Client.Models.Product;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
@@ -23,6 +24,14 @@ public class ProductPageGeneralButtons {
 
     public void viewComments(MouseEvent mouseEvent) {
         setSubPage("ProductPage/ViewComments");
+    }
+
+    public void addComment(MouseEvent mouseEvent) {
+        setSubPage("ProductPage/AddComment");
+    }
+
+    public void backToPreviousPage(MouseEvent mouseEvent) {
+       //TODO
     }
 
     private void setSubPage(String name){

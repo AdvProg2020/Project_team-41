@@ -1,6 +1,7 @@
 package Client.View.Menus.ProductPage;
 
 import Client.Models.Comment;
+import Client.Models.CommentSituation;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -20,6 +21,7 @@ public class ViewComments {
     @FXML
     public void initialize(){
         for (Comment comment : ProductPageGeneralButtons.getTheProduct().getComments()) {
+            if (comment.getCommentSituation().equals(CommentSituation.CONFIRMED))
             addEachComment(comment.getTitle() , comment.getContent() , comment.getPerson().getUserName());
         }
     }

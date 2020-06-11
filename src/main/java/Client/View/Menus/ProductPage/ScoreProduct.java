@@ -22,7 +22,7 @@ public class ScoreProduct {
                     scoreResult.setText("Thanks, we got the score");
                 }
             }
-            scoreResult.setText("Oh sorry, only buyers can rate");
+            scoreResult.setText("Oh sorry, only those who has bought the product can rate it");
         } catch (Exception e) {
             scoreResult.setText("invalid score!");
         }

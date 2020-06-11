@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Client.View.Menus.ProductPage.ViewComments" prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.ViewComments">
 
 
     <children>
-        <ScrollPane stylesheets="/org/example/styles/scrollBar.css" fx:id="productsScrollPane" layoutX="42.0" layoutY="74.0" prefHeight="446.0" prefWidth="578.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
+        <ScrollPane fx:id="productsScrollPane" layoutX="42.0" layoutY="74.0" prefHeight="446.0" prefWidth="578.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;" stylesheets="/org/example/styles/scrollBar.css">
             <content>
                 <VBox fx:id="commentsVBox" prefHeight="454.0" prefWidth="558.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
                     <children>

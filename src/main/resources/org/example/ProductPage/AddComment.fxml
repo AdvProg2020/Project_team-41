@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.AddComment">
    <children>
-       <Text layoutX="90.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title :" wrappingWidth="96.22900390625">
+       <Text layoutX="131.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title :" wrappingWidth="96.22900390625">
            <font>
                <Font name="Times New Roman" size="17.0" />
            </font>
@@ -20,7 +21,7 @@
            </fill>
        </Text>
 
-       <Text layoutX="90.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content :" wrappingWidth="96.22900390625">
+       <Text layoutX="121.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content :" wrappingWidth="96.22900390625">
            <font>
                <Font name="Times New Roman" size="17.0" />
            </font>
@@ -33,6 +34,16 @@
                </LinearGradient>
            </fill>
        </Text>
+
+       <TextField fx:id="titleTextField" layoutX="200.0" layoutY="46.0" prefHeight="34.0" prefWidth="244.0" stylesheets="@/org/example/styles/textFill.css" />
+      <TextArea fx:id="contentTextArea" layoutX="200.0" layoutY="112.0" prefHeight="200.0" prefWidth="244.0" style="-fx-font-family: 'Times New Roman'; -fx-background-color: transparent; -fx-border-color: #754d34; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 7; -fx-background-radius: 7 ; -fx-font-style: italic; -fx-opacity: 0.9; -fx-font-size: 17;" />
+
+       <Button layoutX="470.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#addComment" prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #704d10 ; -fx-background-image: url('org/example/images/checkIcon.png');">
+           <font>
+               <Font size="1.0" />
+           </font>
+       </Button>
+      <Label fx:id="commentResultLabel" alignment="CENTER" layoutX="203.0" layoutY="334.0" prefHeight="26.0" prefWidth="244.0" />
 
    </children>
 </AnchorPane>

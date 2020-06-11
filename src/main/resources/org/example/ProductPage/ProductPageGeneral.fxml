@@ -37,7 +37,7 @@
                                     </LinearGradient>
                                 </textFill>
                             </Button>
-                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="add a comment">
+                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" onMouseClicked="#addComment" text="add a comment">
                                 <textFill>
                                     <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                                         <stops>
@@ -58,6 +58,16 @@
                                 </textFill>
                             </Button>
                             <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="add to card">
+                                <textFill>
+                                    <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                                        <stops>
+                                            <Stop color="BLACK" />
+                                            <Stop color="#dd813f" offset="1.0" />
+                                        </stops>
+                                    </LinearGradient>
+                                </textFill>
+                            </Button>
+                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" onMouseClicked="#backToPreviousPage" text="Back">
                                 <textFill>
                                     <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                                         <stops>

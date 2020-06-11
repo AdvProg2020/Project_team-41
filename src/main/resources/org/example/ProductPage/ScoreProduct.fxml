@@ -22,7 +22,7 @@
         </Text>
 
         <TextField fx:id="scoreTextField" layoutX="189.0" layoutY="108.0" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
-      <Label fx:id="scoreResult" alignment="CENTER" layoutX="194.0" layoutY="173.0" prefHeight="27.0" prefWidth="190.0" />
+      <Label fx:id="scoreResult" alignment="CENTER" layoutX="95.0" layoutY="173.0" prefHeight="27.0" prefWidth="389.0" />
         <Button fx:id="scoreSendingButton" layoutX="393.0" layoutY="118.0" mnemonicParsing="false" onMouseClicked="#scoreTheProduct" prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/checkIcon.png')">
             <font>
                 <Font size="1.0" />
