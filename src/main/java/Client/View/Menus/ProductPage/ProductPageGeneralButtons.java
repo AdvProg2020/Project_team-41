@@ -30,6 +30,10 @@ public class ProductPageGeneralButtons {
         setSubPage("ProductPage/AddComment");
     }
 
+    public void addToCard(MouseEvent mouseEvent) {
+        setSubPage("ProductPage/AddToCard");
+    }
+
     public void backToPreviousPage(MouseEvent mouseEvent) {
        //TODO
     }
