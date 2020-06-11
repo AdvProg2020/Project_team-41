@@ -21,6 +21,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="96.22900390625">
@@ -89,7 +91,35 @@
                                 </LinearGradient>
                             </fill>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special features:" wrappingWidth="135.22900390625" GridPane.rowIndex="5">
+
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" wrappingWidth="96.22900390625" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Times New Roman" size="17.0" />
+                            </font>
+                            <fill>
+                                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                                    <stops>
+                                        <Stop color="BLACK" />
+                                        <Stop color="#dd813f" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Score:" wrappingWidth="96.22900390625" GridPane.rowIndex="6">
+                            <font>
+                                <Font name="Times New Roman" size="17.0" />
+                            </font>
+                            <fill>
+                                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                                    <stops>
+                                        <Stop color="BLACK" />
+                                        <Stop color="#dd813f" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special features:" wrappingWidth="135.22900390625" GridPane.rowIndex="7">
                             <font>
                                 <Font name="Times New Roman" size="17.0" />
                             </font>
@@ -107,7 +137,9 @@
                         <TextField fx:id="priceTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="sellerTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="quantityTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="specialFeaturesTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="descriptionTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="scoreTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="specialFeaturesTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                     </children>
                 </GridPane>
             </children>

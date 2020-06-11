@@ -38,7 +38,7 @@ public class ProductController {
     public static void addComment(String title, String content, Product product) throws Exception {
 
         if (UserSectionController.getLoggedInPerson() == null) {
-            throw new Exception("You must first login!");
+            throw new NullPointerException("You must first login!");
         }
 
         Comment comment = new Comment(UserSectionController.getLoggedInPerson(), product, title, content, CommentSituation.WAITING , false);
@@ -48,8 +48,6 @@ public class ProductController {
             }
         }
         ProductServerController.getInstance().addComment(comment);
-
-
     }
 
 

@@ -11,13 +11,13 @@
 
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Button?>
-<BorderPane prefHeight="748.0" prefWidth="1162.0" style="-fx-border-width: 4px 4px 4px 4px; -fx-border-color: #754d34;-fx-background-color: #f5f1ec;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="productPageBorderPane" prefHeight="748.0" prefWidth="1162.0" style="-fx-border-width: 4px 4px 4px 4px; -fx-border-color: #754d34;-fx-background-color: #f5f1ec;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.ProductPageGeneralButtons">
         <left>
             <ScrollPane stylesheets="/org/example/styles/scrollBar.css" fx:id="managerSectionButtonScrollPane" prefHeight="332.0" prefWidth="327.0" style="-fx-background-color: #f5f1ed; -fx-border-color: transparent;" BorderPane.alignment="CENTER">
                 <content>
                     <VBox prefHeight="735.0" prefWidth="323.0" style="-fx-background-color: #f5f1ec;">
                         <children>
-                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="view product details">
+                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="view product details" onMouseClicked="#showProductDetails">
                                 <textFill>
                                     <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                                         <stops>
@@ -27,7 +27,7 @@
                                     </LinearGradient>
                                 </textFill>
                             </Button>
-                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="view comments">
+                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" onMouseClicked="#viewComments" text="view comments">
                                 <textFill>
                                     <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                                         <stops>
@@ -37,7 +37,7 @@
                                     </LinearGradient>
                                 </textFill>
                             </Button>
-                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="add a comment">
+                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" onMouseClicked="#addComment" text="add a comment">
                                 <textFill>
                                     <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                                         <stops>
@@ -47,7 +47,7 @@
                                     </LinearGradient>
                                 </textFill>
                             </Button>
-                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="score the product">
+                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" onMouseClicked="#scoreTheProduct" text="score the product">
                                 <textFill>
                                     <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                                         <stops>
@@ -57,7 +57,17 @@
                                     </LinearGradient>
                                 </textFill>
                             </Button>
-                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="add to card">
+                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" onMouseClicked="#addToCard" text="add to card">
+                                <textFill>
+                                    <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                                        <stops>
+                                            <Stop color="BLACK" />
+                                            <Stop color="#dd813f" offset="1.0" />
+                                        </stops>
+                                    </LinearGradient>
+                                </textFill>
+                            </Button>
+                            <Button mnemonicParsing="false"  prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" onMouseClicked="#backToPreviousPage" text="Back">
                                 <textFill>
                                     <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                                         <stops>

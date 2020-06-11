@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.AddToCard">
+   <children>
+      <Text fx:id="addToCardResult" layoutX="168.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="232.13671875" />
+   </children>
+</AnchorPane>
