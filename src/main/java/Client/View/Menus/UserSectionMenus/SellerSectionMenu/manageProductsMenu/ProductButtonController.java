@@ -4,6 +4,7 @@ import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;
 import Client.View.Menus.ProductPage.ProductDetails;
+import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -62,7 +63,7 @@ public class ProductButtonController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        ProductDetails.setTheProduct(product);
+        ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");
 
 
