@@ -17,6 +17,8 @@ public class ProductDetails {
     public TextField sellerTextField;
     public TextField quantityTextField;
     public TextField specialFeaturesTextField;
+    public TextField descriptionTextField;
+    public TextField scoreTextField;
 
 
     @FXML
@@ -26,6 +28,8 @@ public class ProductDetails {
         priceTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().getPrice()));
         sellerTextField.setText(ProductPageGeneralButtons.getTheProduct().getSeller().getUserName());
         quantityTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().getQuantity()));
+        descriptionTextField.setText(ProductPageGeneralButtons.getTheProduct().getDescription());
+        scoreTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().calculateAverageScore()));
 
         StringBuilder productSpecialFeatures = new StringBuilder();
         for (String featureName : ProductPageGeneralButtons.getTheProduct().getSpecialFeatures().keySet()) {

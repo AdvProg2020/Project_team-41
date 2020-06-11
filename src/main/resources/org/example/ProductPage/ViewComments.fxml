@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Client.View.Menus.ProductPage.ViewComments" prefHeight="400.0" prefWidth="600.0">
+
+
+    <children>
+        <ScrollPane stylesheets="/org/example/styles/scrollBar.css" fx:id="productsScrollPane" layoutX="42.0" layoutY="74.0" prefHeight="446.0" prefWidth="578.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
+            <content>
+                <VBox fx:id="commentsVBox" prefHeight="454.0" prefWidth="558.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
+                    <children>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+        <Text fx:id="informationText" layoutX="71.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
+    </children>
+</AnchorPane>

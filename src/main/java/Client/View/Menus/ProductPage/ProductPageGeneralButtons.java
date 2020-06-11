@@ -21,6 +21,10 @@ public class ProductPageGeneralButtons {
         setSubPage("ProductPage/ScoreProduct");
     }
 
+    public void viewComments(MouseEvent mouseEvent) {
+        setSubPage("ProductPage/ViewComments");
+    }
+
     private void setSubPage(String name){
         Parent root = null;
         try {
@@ -38,6 +42,7 @@ public class ProductPageGeneralButtons {
     public static Product getTheProduct() {
         return theProduct;
     }
+
 
 
 }
