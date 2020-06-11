@@ -1,39 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="814.0" style="-fx-background-image: url('org/example/images/bk.jpg')" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: #5e0070;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.gMainMenu">
    <top>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="76.0" prefWidth="814.0">
+            <AnchorPane prefHeight="100.0" prefWidth="1471.0" style="-fx-background-color: #5e0070;">
                <children>
-
-                  <Label prefHeight="62.0" prefWidth="451.0" text="Perfect Market">
+                  <Label layoutX="26.0" layoutY="14.0" text="Perfect Market" textFill="GOLD">
                      <font>
-                        <Font size="42.0" />
+                        <Font size="45.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
                   </Label>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="Register/Login">
-                     <HBox.margin>
-                        <Insets left="200.0" top="20.0" />
-                     </HBox.margin>
-                  </Button>
+                  <Button layoutX="1173.0" layoutY="23.0" mnemonicParsing="false" onAction="#registerOrLogin" prefHeight="53.0" prefWidth="186.0" style="-fx-background-color: #FF0000;" text="Register/login" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
                </children>
-            </HBox>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                <Button alignment="CENTER" minHeight="18.0" mnemonicParsing="false" prefHeight="35.0" text="All Products" />
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Offs" />
-              </items>
-            </ToolBar>
+            </AnchorPane>
          </children>
-      </VBox>
+      </HBox>
    </top>
+   <left>
+      <AnchorPane prefHeight="650.0" prefWidth="453.0" style="-fx-background-color: #87CEFA;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="334.0" fitWidth="405.0" layoutX="24.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/allProducts.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="132.0" layoutY="510.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="186.0" style="-fx-background-color: #FF0000;" text="All prouducts" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Label layoutX="96.0" layoutY="417.0" text="See our products">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="650.0" prefWidth="717.0" style="-fx-background-color: #800080;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="161.0" layoutY="516.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="186.0" style="-fx-background-color: #FF0000;" text="Offs" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="299.0" fitWidth="445.0" layoutX="33.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/sale.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="95.0" layoutY="422.0" text="What's on sale today?">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <AnchorPane prefHeight="650.0" prefWidth="434.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="139.0" layoutY="511.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="186.0" style="-fx-background-color: #FF0000;" text="User section" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="340.0" fitWidth="352.0" layoutX="57.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/userSection.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="63.0" layoutY="426.0" text="Visit your user section">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </right>
 </BorderPane>

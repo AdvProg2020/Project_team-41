@@ -132,7 +132,7 @@ public abstract class Menu {
     }
 
     Scene scene;
-
+    
     public void login() throws IOException {
         Stage window = new Stage();
 
@@ -144,5 +144,8 @@ public abstract class Menu {
         window.setScene(scene);
         window.showAndWait();
     }
+
+
+
 
 }
