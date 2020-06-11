@@ -1,11 +1,7 @@
 package Client.View.Menus.ProductPage;
 
 import Client.Controller.ProductController;
-import Client.Controller.UserSectionController.UserSectionController;
-import Client.Models.Comment;
-import Client.Models.CommentSituation;
 import Client.View.Menus.MessageType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -29,7 +25,6 @@ public class AddComment {
         }
         catch (Exception e) {
             showMessage(commentResultLabel , MessageType.ERROR , "Please fill all fields!");
-
         }
 
       }
