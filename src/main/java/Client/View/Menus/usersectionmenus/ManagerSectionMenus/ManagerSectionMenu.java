@@ -47,7 +47,6 @@ public class ManagerSectionMenu {
 
     public void createDiscountCodeButtonClicked(MouseEvent mouseEvent) {
         setSubPage("userSection/managerSection/viewDiscountCodesMenu/create discount code");
-
     }
 
     private void setSubPage(String name){
@@ -58,6 +57,5 @@ public class ManagerSectionMenu {
             e.printStackTrace();
         }
         managerSectionBoarderPane.setCenter(root);
-
     }
 }

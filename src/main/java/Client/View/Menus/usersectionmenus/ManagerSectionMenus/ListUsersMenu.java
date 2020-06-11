@@ -17,6 +17,7 @@ public class ListUsersMenu {
     public VBox usersVBox;
     public ScrollPane listUsersScrollPane;
     public Text informationText;
+    public AnchorPane usersAnchorPane;
 
     @FXML
     public void initialize(){
