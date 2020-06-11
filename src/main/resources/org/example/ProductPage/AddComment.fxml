@@ -43,7 +43,7 @@
                <Font size="1.0" />
            </font>
        </Button>
-      <Label fx:id="commentResultLabel" alignment="CENTER" layoutX="203.0" layoutY="334.0" prefHeight="26.0" prefWidth="244.0" />
+      <Text fx:id="commentResultLabel" layoutX="168.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="326.13671875" textAlignment="CENTER" />
 
    </children>
 </AnchorPane>

@@ -2,9 +2,11 @@ package Client.View.Menus.ProductPage;
 
 import Client.Models.Comment;
 import Client.Models.Product;
+import Client.View.Menus.MessageType;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
@@ -56,6 +58,10 @@ public class ProductPageGeneralButtons {
         return theProduct;
     }
 
+    public static void showMessage(Text text, MessageType messageType, String message) {
+        text.setFill(messageType.getLinearGradient());
+        text.setText(message);
+    }
 
 
 }

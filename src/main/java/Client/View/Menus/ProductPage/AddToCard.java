@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import static Client.View.Menus.ProductPage.ProductPageGeneralButtons.showMessage;
 
 public class AddToCard {
 
@@ -17,7 +18,7 @@ public class AddToCard {
         ProductController.addToCart(ProductPageGeneralButtons.getTheProduct());
             showMessage(addToCardResult , MessageType.SUCCESS , "The product was added to card successfully");}
         catch (ClassCastException e){
-          showMessage(addToCardResult , MessageType.ERROR , e.getMessage());
+         showMessage(addToCardResult , MessageType.ERROR , e.getMessage());
         }
         catch(NullPointerException e){
             showMessage(addToCardResult , MessageType.ERROR , e.getMessage());
@@ -25,8 +26,5 @@ public class AddToCard {
         }
     }
 
-    private void showMessage(Text text, MessageType messageType, String message) {
-        text.setFill(messageType.getLinearGradient());
-        text.setText(message);
-    }
+
 }
