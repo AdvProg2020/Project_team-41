@@ -2,6 +2,7 @@ package Client.View.Menus;
 
 import Client.Controller.UserSectionController.UserSectionController;
 import javafx.scene.control.Button;
+import org.example.App;
 
 import java.io.IOException;
 
@@ -24,6 +25,9 @@ public class gMainMenu extends Menu {
         }else{
             logout("mainMenu");
         }
+    }
+    public void allProducts() throws IOException {
+        App.setRoot("AllProducts/AllProductsGeneralButtons");
     }
 
 

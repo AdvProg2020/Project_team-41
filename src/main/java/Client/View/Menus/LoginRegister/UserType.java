@@ -15,14 +15,14 @@ public class UserType {
         if(LoginRegisterController.getInstance().checkIfManagerExists()){
             managerError.setVisible(true);
         }else{
-            Menu.setRoot("managerRegister");
+            Menu.setRootForNewWindow("managerRegister");
         }
     }
     public void seller() throws IOException {
-        Menu.setRoot("sellerRegister");
+        Menu.setRootForNewWindow("sellerRegister");
     }
     public void buyer() throws IOException {
-        Menu.setRoot("buyerRegister");
+        Menu.setRootForNewWindow("buyerRegister");
 
     }
 }

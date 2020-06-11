@@ -24,7 +24,7 @@ public class LoginForm {
         passError.setVisible(false);
         try {
             LoginRegisterController.getInstance().login(username.getText(), password.getText());
-            Menu.setRoot("welcomeLogin");
+            Menu.setRootForNewWindow("welcomeLogin");
         } catch (Exception e) {
             if(e.getMessage().equals("Invalid Password")){
                 passError.setVisible(true);
@@ -36,6 +36,6 @@ public class LoginForm {
 
     }
     public void register() throws IOException {
-        Menu.setRoot("userType");
+        Menu.setRootForNewWindow("userType");
     }
 }
