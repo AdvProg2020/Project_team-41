@@ -1,11 +1,15 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu;
 
+import Client.Controller.UserSectionController.SellerController;
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Person;
 import Server.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.example.App;
 
@@ -14,11 +18,15 @@ import java.io.IOException;
 public class SellerSectionMenu {
     public BorderPane sellerSectionBoarderPane;
     public ScrollPane sellerSectionButtonScrollPane;
+    public TextField creditTextField;
+    public AnchorPane insideAnchorPane;
+    public AnchorPane outsideAnchorPane;
 
     @FXML
     public void initialize(){
         //todo remove nextLine
         UserSectionController.setLoggedInPerson(Database.getAllUsers().get(1));
+        creditTextField.setText(SellerController.getLoggedInPerson().getCredit() +"$");
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {
@@ -56,7 +64,8 @@ public class SellerSectionMenu {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        sellerSectionBoarderPane.setCenter(root);
+        insideAnchorPane.getChildren().add(root);
+//        sellerSectionBoarderPane.setCenter(root);
     }
 
 }

@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.View.Menus.Menu;
 import Server.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -11,12 +12,13 @@ import org.example.App;
 
 import java.io.IOException;
 
-public class ManagerSectionMenu {
+public class ManagerSectionMenu extends Menu {
     public BorderPane managerSectionBoarderPane;
     public ScrollPane managerSectionButtonScrollPane;
 
     @FXML
     public void initialize(){
+        super.initialize();
         //todo remove nextLine
         UserSectionController.setLoggedInPerson(Database.getAllUsers().get(0));
     }
