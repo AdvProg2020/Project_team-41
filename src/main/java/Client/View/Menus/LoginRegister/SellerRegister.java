@@ -49,7 +49,7 @@ public class SellerRegister {
             setVariables(seller);
             try {
                 LoginRegisterController.getInstance().createAccount(seller);
-                Menu.setRoot("welcomeRegister");
+                Menu.setRootForNewWindow("welcomeRegister");
             } catch (Exception e) {
                 if(e.getMessage().equals("Invalid UserName!")){
                     userError.setText("This username exists");

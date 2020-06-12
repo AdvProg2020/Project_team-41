@@ -48,7 +48,7 @@ public class BuyerRegister {
             setVariables(buyer);
             try {
                 LoginRegisterController.getInstance().createAccount(buyer);
-                Menu.setRoot("welcomeRegister");
+                Menu.setRootForNewWindow("welcomeRegister");
             } catch (Exception e) {
                 if (e.getMessage().equals("Invalid UserName!")) {
                     userError.setText("This username exists");

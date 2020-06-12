@@ -137,7 +137,7 @@ public abstract class Menu {
     }
 
     private static Scene scene;
-    private static Stage window;
+    public static Stage window;
 
     public void login(String fxmlAddress) throws IOException {
         LoginForm.father=fxmlAddress;
@@ -150,7 +150,7 @@ public abstract class Menu {
         window.setScene(scene);
         window.showAndWait();
     }
-    public static void setRoot(String fxml) throws IOException {
+    public static void setRootForNewWindow(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

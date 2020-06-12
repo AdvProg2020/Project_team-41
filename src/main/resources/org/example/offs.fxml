@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TableView prefHeight="590.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="114.66666769981384" text="Product id" />
+          <TableColumn minWidth="9.066688537597656" prefWidth="121.06668090820312" text="Name" />
+            <TableColumn prefWidth="125.066650390625" text="Price" />
+            <TableColumn prefWidth="151.73342895507812" text="Price with discount" />
+            <TableColumn prefWidth="181.066650390625" text="Start date" />
+            <TableColumn prefWidth="173.06658935546875" text="End date" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+      <AnchorPane prefHeight="75.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
+         <children>
+            <ChoiceBox layoutX="239.0" layoutY="24.0" prefWidth="150.0" />
+            <Label layoutX="136.0" layoutY="21.0" text="Sort by:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <right>
+      <ScrollPane prefHeight="590.0" prefWidth="452.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="828.0" prefWidth="429.0">
+               <children>
+                  <AnchorPane prefHeight="137.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
+                     <children>
+                        <CheckBox layoutX="288.0" layoutY="21.0" mnemonicParsing="false" text="Enable filter">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutX="288.0" layoutY="52.0" mnemonicParsing="false" text="Disable filter">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="26.0" layoutY="21.0" prefHeight="44.0" prefWidth="217.0" text="Filter by product name:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField editable="false" layoutX="174.0" layoutY="100.0" prefHeight="26.0" prefWidth="190.0" promptText="Name" />
+                        <Label layoutX="43.0" layoutY="101.0" text="Product name:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="137.0" prefWidth="430.0" style="-fx-background-color: #F0FFFF;">
+                     <children>
+                        <CheckBox layoutX="288.0" layoutY="21.0" mnemonicParsing="false" text="Enable filter">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutX="288.0" layoutY="52.0" mnemonicParsing="false" text="Disable filter">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="26.0" layoutY="21.0" prefHeight="44.0" prefWidth="217.0" text="Filter by company name:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField editable="false" layoutX="174.0" layoutY="100.0" prefHeight="26.0" prefWidth="190.0" promptText="Name" />
+                        <Label layoutX="28.0" layoutY="98.0" text="Company name:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="137.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
+                     <children>
+                        <CheckBox layoutX="288.0" layoutY="21.0" mnemonicParsing="false" text="Enable filter">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutX="288.0" layoutY="52.0" mnemonicParsing="false" text="Disable filter">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="26.0" layoutY="21.0" prefHeight="44.0" prefWidth="217.0" text="Filter by seller username:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField editable="false" layoutX="174.0" layoutY="100.0" prefHeight="26.0" prefWidth="190.0" promptText="Username" />
+                        <Label layoutX="37.0" layoutY="101.0" text="Seller username:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="196.0" prefWidth="430.0" style="-fx-background-color: #F0FFFF;">
+                     <children>
+                        <CheckBox layoutX="292.0" layoutY="31.0" mnemonicParsing="false" text="Disable filter">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="26.0" layoutY="21.0" prefHeight="44.0" prefWidth="217.0" text="Filter by price:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <HBox layoutX="13.0" layoutY="60.0" prefHeight="116.0" prefWidth="411.0">
+                           <children>
+                              <AnchorPane prefHeight="114.0" prefWidth="208.0" style="-fx-background-color: #00FA9A;">
+                                 <children>
+                                    <TextField layoutX="78.0" layoutY="40.0" prefHeight="26.0" prefWidth="123.0" promptText="Min" />
+                                    <TextField layoutX="77.0" layoutY="77.0" prefHeight="26.0" prefWidth="123.0" promptText="Max" />
+                                    <Label layoutX="7.0" layoutY="44.0" text="Min price:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="7.0" layoutY="81.0" text="Max price:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox layoutX="88.0" layoutY="10.0" mnemonicParsing="false" text="Enable filter">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #98FB98;">
+                                 <children>
+                                    <Label layoutX="51.0" layoutY="35.0" prefWidth="109.0" text="Definite Price:">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="26.0" layoutY="66.0" promptText="Difinite price" />
+                                    <CheckBox layoutX="87.0" layoutY="10.0" mnemonicParsing="false" text="Enable filter">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children></VBox>
+         </content>
+      </ScrollPane>
+   </right>
+   <bottom>
+      <AnchorPane prefHeight="85.0" prefWidth="1400.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

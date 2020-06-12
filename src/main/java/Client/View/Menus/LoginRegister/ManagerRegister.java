@@ -47,7 +47,7 @@ public class ManagerRegister {
             setVariables(manager);
             try {
                 LoginRegisterController.getInstance().createAccount(manager);
-                Menu.setRoot("welcomeRegister");
+                Menu.setRootForNewWindow("welcomeRegister");
             } catch (Exception e) {
                 if(e.getMessage().equals("Invalid UserName!")){
                     userError.setText("This username exists");
