@@ -21,10 +21,6 @@ public class ViewComments {
     @FXML
     public void initialize(){
         for (Comment comment : ProductPageGeneralButtons.getTheProduct().getComments()) {
-                System.out.println(comment.getTitle());
-                System.out.println(comment.getContent());
-                System.out.println(comment.getPerson().getUserName());
-                System.out.println(comment.getCommentSituation());
             if (comment.getCommentSituation().equals(CommentSituation.CONFIRMED)) {
                 addEachComment(comment.getTitle(), comment.getContent(), comment.getPerson().getUserName());
             }

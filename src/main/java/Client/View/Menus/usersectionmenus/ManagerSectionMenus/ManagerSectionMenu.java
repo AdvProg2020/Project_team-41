@@ -12,13 +12,12 @@ import org.example.App;
 
 import java.io.IOException;
 
-public class ManagerSectionMenu extends Menu {
+public class ManagerSectionMenu {
     public BorderPane managerSectionBoarderPane;
     public ScrollPane managerSectionButtonScrollPane;
 
     @FXML
     public void initialize(){
-        super.initialize();
         //todo remove nextLine
         UserSectionController.setLoggedInPerson(Database.getAllUsers().get(0));
     }
