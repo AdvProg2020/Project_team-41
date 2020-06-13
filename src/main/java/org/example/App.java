@@ -23,6 +23,7 @@ public class App extends Application {
         StartProgram.startProgram();
  //      scene = new Scene(loadFXML("userSection/sellerSection/seller section"));
         scene = new Scene(loadFXML("userSection/managerSection/manager section"));
+
         stage.setScene(scene);
         stage.show();
     }

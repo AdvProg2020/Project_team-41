@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.ViewComments">
 
 
     <children>
-        <ScrollPane fx:id="productsScrollPane" layoutX="42.0" layoutY="74.0" prefHeight="446.0" prefWidth="578.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;" stylesheets="/org/example/styles/scrollBar.css">
-            <content>
-                <VBox fx:id="commentsVBox" prefHeight="454.0" prefWidth="558.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
-                    <children>
 
-                    </children>
-                </VBox>
+        <ImageView fitHeight="121.0" fitWidth="116.0" layoutX="229.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Comments.jpg" />
+            </image>
+        </ImageView>
+
+        <ScrollPane fx:id="productsScrollPane" layoutX="22.0" layoutY="133.0" prefHeight="450.0" prefWidth="564.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;" stylesheets="/org/example/styles/scrollBar.css">
+            <content>
+                <VBox fx:id="commentsVBox" prefHeight="454.0" prefWidth="445.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;" />
             </content>
         </ScrollPane>
-        <Text fx:id="informationText" layoutX="71.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
-      <Label layoutX="528.0" layoutY="22.0" prefHeight="17.0" prefWidth="74.0" text="all comments" />
     </children>
 </AnchorPane>
