@@ -256,6 +256,7 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
     }
+
     public void  acceptRequest(String requestId) throws Exception {
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){

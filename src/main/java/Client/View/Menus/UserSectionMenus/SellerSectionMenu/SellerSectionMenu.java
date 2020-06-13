@@ -25,8 +25,8 @@ public class SellerSectionMenu {
     @FXML
     public void initialize(){
         //todo remove nextLine
-        UserSectionController.setLoggedInPerson(Database.getAllUsers().get(1));
-        creditTextField.setText(SellerController.getLoggedInPerson().getCredit() +"$");
+      //  UserSectionController.setLoggedInPerson(Database.getAllUsers().get(1));
+    //    creditTextField.setText(SellerController.getLoggedInPerson().getCredit() +"$");
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {

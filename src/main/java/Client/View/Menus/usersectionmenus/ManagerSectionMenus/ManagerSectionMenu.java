@@ -19,7 +19,7 @@ public class ManagerSectionMenu {
     @FXML
     public void initialize(){
         //todo remove nextLine
-        UserSectionController.setLoggedInPerson(Database.getAllUsers().get(0));
+   //     UserSectionController.setLoggedInPerson(Database.getAllUsers().get(0));
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {

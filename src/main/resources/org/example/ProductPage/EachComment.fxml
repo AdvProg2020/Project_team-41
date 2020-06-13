@@ -1,13 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="150.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.ViewComments">
+<AnchorPane prefHeight="150.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="titleLabel" layoutX="12.0" layoutY="11.0" prefHeight="44.0" prefWidth="187.0" />
-      <TextArea fx:id="contentTextArea" layoutX="11.0" layoutY="61.0" prefHeight="81.0" prefWidth="506.0" />
-      <Label fx:id="usernameLabel" layoutX="339.0" layoutY="21.0" prefHeight="24.0" prefWidth="167.0" />
+
+
+      <Text layoutX="81.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="146.22900390625">
+         <font>
+            <Font name="Times New Roman" size="17.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#dd813f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+
+      <TextArea fx:id="contentTextArea" editable="false" layoutX="11.0" layoutY="62.0" prefHeight="86.0" prefWidth="506.0" />
+
+      <Text layoutX="269.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment from:" wrappingWidth="90.22900390625">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#dd813f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+
+      <TextField editable="false" layoutX="368.0" layoutY="8.0" prefHeight="34.0" prefWidth="146.0" stylesheets="@/org/example/styles/textFill.css" />
+
+      <Label alignment="CENTER" layoutX="471.0" layoutY="105.0" prefHeight="31.0" prefWidth="60.0" rotate="-35.0" style="-fx-background-color: red; -fx-border-color: gray;" text="Bought" textFill="WHITE" visible="false" />
+
+      <ImageView fitHeight="48.0" fitWidth="259.0" layoutX="11.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@eachCommentIcon.jpg" />
+         </image>
+      </ImageView>
 
    </children>
 </AnchorPane>
