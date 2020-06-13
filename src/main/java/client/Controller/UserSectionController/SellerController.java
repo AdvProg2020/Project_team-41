@@ -33,7 +33,7 @@ public class SellerController extends UserSectionController{
         public String getFactoryName(){
                 return SellerServerController.getInstance().getFactoryName((Seller)loggedInPerson);
         }
-        public ArrayList<String> getSalesHistory() throws Exception {
+        public ArrayList<ArrayList<String>> getSalesHistory() throws Exception {
                 return SellerServerController.getInstance().getSalesHistory((Seller)loggedInPerson);
         }
         public ArrayList<TradeLog> getLogs(){

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="sellerSectionBoarderPane" prefHeight="748.0" prefWidth="1162.0" style="-fx-border-width: 4px 4px 4px 4px; -fx-border-color: #754d34;-fx-background-color: #f5f1ec;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu">
+   <left>
+      <ScrollPane fx:id="sellerSectionButtonScrollPane" prefHeight="332.0" prefWidth="327.0" style="-fx-background-color: #f5f1ed; -fx-border-color: transparent;" stylesheets="/org/example/styles/scrollBar.css" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="924.0" prefWidth="305.0" style="-fx-background-color: #f5f1ec;">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#viewPersonalInfoButtonClicked" prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="view personal info">
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </left>
+   <center>
+      <AnchorPane fx:id="outsideAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f5f1ec;" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="636.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-border-color: #754d34; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-font-style: italic; -fx-opacity: 0.9; -fx-font-size: 17;" text="credits:" textAlignment="CENTER">
+               <font>
+                  <Font name="Times New Roman" size="19.0" />
+               </font></Text>
+            <AnchorPane fx:id="insideAnchorPane" layoutX="24.0" layoutY="56.0" prefHeight="646.0" prefWidth="775.0" />
+            <TextField fx:id="creditTextField" editable="false" layoutX="691.0" layoutY="26.0" prefHeight="29.0" prefWidth="119.0" style="-fx-border-width: 2" stylesheets="/org/example/styles/textFill.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+         </children></AnchorPane>
+   </center>
+</BorderPane>
