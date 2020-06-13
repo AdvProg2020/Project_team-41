@@ -28,11 +28,12 @@ public class editOffController {
     @FXML
     public void initialize() {
         AnchorPane viewOffsMenu = globalViewOffsMenu;
+        offName = globalOffName;
         informationText = (Text) viewOffsMenu.getChildren().get(1);
         StringBuilder products = new StringBuilder();
         Off off = null;
         try {
-            off = SellerController.getInstance().getOff(offName);
+            off = SellerController.getInstance().getOff(offName.trim());
         } catch (Exception e) {
             e.printStackTrace();
         }

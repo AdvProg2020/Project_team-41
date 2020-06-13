@@ -37,19 +37,16 @@ public class SellerSectionMenu {
         setSubPage("userSection/sellerSection/manageProductsMenu/manage products menu");
     }
 
-    public void removeProduct(MouseEvent mouseEvent) {
-    }
-
-    public void addProduct(MouseEvent mouseEvent) {
-    }
-
     public void viewCompanyInfo(MouseEvent mouseEvent) {
+        setSubPage("userSection/sellerSection/viewCompanyInfo/viewCompanyInfoMenu");
     }
 
     public void viewSalesHistory(MouseEvent mouseEvent) {
+        setSubPage("userSection/sellerSection/viewTradeLogs/view tradeLogs menu");
     }
 
     public void showCategories(MouseEvent mouseEvent) {
+        setSubPage("userSection/sellerSection/showCategoriesMenu/manage categories menu");
     }
 
     public void viewOffs(MouseEvent mouseEvent) {
@@ -62,8 +59,7 @@ public class SellerSectionMenu {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        insideAnchorPane.getChildren().add(root);
-//        sellerSectionBoarderPane.setCenter(root);
+        insideAnchorPane.getChildren().setAll(root);
     }
 
 }

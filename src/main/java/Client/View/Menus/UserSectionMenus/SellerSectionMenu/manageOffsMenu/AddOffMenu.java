@@ -32,7 +32,6 @@ public class AddOffMenu {
             showMessage(informationText,MessageType.SUCCESS,"off is created successfully");
         } catch (Exception e) {
             showMessage(informationText,MessageType.ERROR,e.getMessage());
-            e.printStackTrace();
         }
 
     }

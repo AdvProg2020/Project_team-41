@@ -97,17 +97,19 @@ public class SellerServerController extends UserSectionServerController {
                 Database.addRequest(request);
                 }
         }
-        public ArrayList<String> getSalesHistory(Seller seller) throws Exception {
-                ArrayList<String> salesHistory = new ArrayList<>();
+        public ArrayList<ArrayList<String>> getSalesHistory(Seller seller) throws Exception {
+                ArrayList<ArrayList<String>> salesHistory = new ArrayList<>();
                 if (seller.getTradeLogs().size() == 0)
                         throw new Exception("no sale history available");
                 for (TradeLog tradeLog : seller.getTradeLogs()) {
-                        salesHistory.add("log id : " + tradeLog.getLogId());
-                        salesHistory.add("buyer : " + tradeLog.getBuyerName());
-                        salesHistory.add("date : " + TimeControl.convertGregorianToJalali(tradeLog.getDate()).toString());
-                        salesHistory.add("delivery situation : " + tradeLog.getDeliverySituation());
-                        salesHistory.add("off Amount : " + tradeLog.getOffAmount());
-                        salesHistory.add("money : " + tradeLog.getMoney());
+                        ArrayList<String> saleHistory = new ArrayList<>();
+                        saleHistory.add("log id : " + tradeLog.getLogId());
+                        saleHistory.add("buyer : " + tradeLog.getBuyerName());
+                        saleHistory.add("date : " + TimeControl.convertGregorianToJalali(tradeLog.getDate()).toString());
+                        saleHistory.add("delivery situation : " + tradeLog.getDeliverySituation());
+                        saleHistory.add("off Amount : " + tradeLog.getOffAmount());
+                        saleHistory.add("money : " + tradeLog.getMoney());
+                        salesHistory.add(saleHistory);
 
                 }
                 return  salesHistory;
