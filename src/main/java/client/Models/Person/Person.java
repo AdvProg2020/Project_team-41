@@ -7,6 +7,7 @@ import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class Person implements Serializable {
 
@@ -142,4 +143,14 @@ public abstract class Person implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return userName.equals(person.userName) &&
+                password.equals(person.password);
+    }
+
 }
