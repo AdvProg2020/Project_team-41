@@ -4,7 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="792.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu.ManageProductsMenu">
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<AnchorPane fx:id="manageProductsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="792.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu.ManageProductsMenu">
    <children>
       <ScrollPane stylesheets="/org/example/styles/scrollBar.css" fx:id="productsScrollPane" layoutX="42.0" layoutY="74.0" prefHeight="446.0" prefWidth="578.0" style="-fx-background-color: #f5f1ed; -fx-border-color: #f5f1ed;">
          <content>
@@ -16,5 +18,15 @@
          </content>
       </ScrollPane>
        <Text fx:id="informationText" layoutX="71.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
+      <Button layoutX="163.0" layoutY="571.0" mnemonicParsing="false" onMouseClicked="#addProductClicked" prefHeight="27.0" prefWidth="233.0" stylesheets="@/org/example/styles/commandButton.css" text="create product">
+         <textFill>
+            <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#dd813f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
    </children>
 </AnchorPane>

@@ -49,13 +49,11 @@ public class SellerSectionMenu {
     public void viewSalesHistory(MouseEvent mouseEvent) {
     }
 
-    public void viewBalance(MouseEvent mouseEvent) {
-    }
-
     public void showCategories(MouseEvent mouseEvent) {
     }
 
     public void viewOffs(MouseEvent mouseEvent) {
+        setSubPage("userSection/sellerSection/viewOffsMenu/manage offs menu");
     }
     private void setSubPage(String name){
         Parent root = null;

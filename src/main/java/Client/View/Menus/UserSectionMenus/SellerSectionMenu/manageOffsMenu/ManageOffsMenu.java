@@ -1,6 +1,8 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageOffsMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
+import Client.Controller.UserSectionController.SellerController;
+import Client.Models.Off;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -17,26 +19,21 @@ import java.io.IOException;
 
 public class ManageOffsMenu {
     public Text informationText;
-    public ScrollPane categoriesScrollPane;
-    public VBox categoriesVBox;
-    public AnchorPane manageCategoriesAnchorPane;
     public AnchorPane manageOffsAnchorPane;
     public VBox offsVBox;
     public ScrollPane offsScrollPane;
 
     @FXML
     public void initialize(){
-        if(ManagerController.getInstance().showCategories().isEmpty())
-            System.out.println("there is no category to show here");
-        for (String category : ManagerController.getInstance().showCategories()) {
-            makeCategorySplitButton(category);
+        for (Off off : SellerController.getInstance().getOffs()) {
+            makeOffSplitButton(off.getOffId());
         }
     }
 
-    private void makeCategorySplitButton(String categoryName) {
+    private void makeOffSplitButton(String offName) {
         Parent root = null;
         try {
-            root = App.loadFXML("userSection/managerSection/manageCategoriesMenu/categorySplitButton");
+            root = App.loadFXML("userSection/sellerSection/viewOffsMenu/offSplitButton");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,22 +41,20 @@ public class ManageOffsMenu {
         VBox vBox = (VBox) anchorPane.getChildren().get(0);
         GridPane gridPane = (GridPane) vBox.getChildren().get(0);
         TextField textField = (TextField) gridPane.getChildren().get(0);
-        textField.setText(categoryName);
+        textField.setText(offName);
 
-        categoriesVBox.getChildren().add(root);
-    }
-
-    public void createCategoryClicked(MouseEvent mouseEvent) {
-        BorderPane managerSectionBoarderPane = (BorderPane)manageCategoriesAnchorPane.getParent();
-        Parent root = null;
-        try {
-            root = App.loadFXML("userSection/managerSection/manageCategoriesMenu/create category");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        managerSectionBoarderPane.setCenter(root);
+        offsVBox.getChildren().add(root);
     }
 
     public void addOffClicked(MouseEvent mouseEvent) {
+        AnchorPane insideAnchorPane = (AnchorPane)manageOffsAnchorPane.getParent();
+        Parent root;
+        try {
+            root = App.loadFXML("userSection/sellerSection/viewOffsMenu/addOff");
+            insideAnchorPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

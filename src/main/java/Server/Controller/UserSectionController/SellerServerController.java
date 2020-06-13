@@ -162,6 +162,7 @@ public class SellerServerController extends UserSectionServerController {
                 product.setSeller(seller);
                 product.setSpecialFeatures(specialFeatures);
                 product.setSituation(Situation.CREATING);
+                System.out.println(seller);
                 Database.addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
         }
         public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {

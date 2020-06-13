@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -19,6 +20,7 @@ public class ManageProductsMenu {
     public ScrollPane productsScrollPane;
     public VBox productsVBox;
     public Text informationText;
+    public AnchorPane manageProductsAnchorPane;
 
     @FXML
     public void initialize(){
@@ -42,5 +44,16 @@ public class ManageProductsMenu {
         TextField productIdTextField = (TextField) gridPane.getChildren().get(1);
         productIdTextField.setText(productId);
         productsVBox.getChildren().add(root);
+    }
+
+    public void addProductClicked(MouseEvent mouseEvent) {
+        AnchorPane insideAnchorPane = (AnchorPane)manageProductsAnchorPane.getParent();
+        Parent root;
+        try {
+            root = App.loadFXML("userSection/sellerSection/manageProductsMenu/addProduct");
+            insideAnchorPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -8,7 +8,13 @@ public class ServerSaver {
     private static OutputStream outputStream;
     private static ObjectOutputStream objectOutputStream;
     public static void write(AllCommands command)  {
+
         try {
+            writeAllUsers();
+            writeAllRequests();
+            writeAllOffs();
+            writeAllDiscountCodes();
+            writeAllCategory();
         if(command.equals(AllCommands.allCategory)){
             writeAllCategory();
         }
