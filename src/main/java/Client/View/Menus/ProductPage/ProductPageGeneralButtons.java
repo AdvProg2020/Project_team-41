@@ -36,6 +36,10 @@ public class ProductPageGeneralButtons {
         setSubPage("ProductPage/AddToCard");
     }
 
+    public void compareTwoProducts(MouseEvent mouseEvent) {
+        setSubPage("ProductPage/CompareProducts");
+    }
+
     public void backToPreviousPage(MouseEvent mouseEvent) {
        //TODO
     }
@@ -70,6 +74,5 @@ public class ProductPageGeneralButtons {
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
     }
-
 
 }
