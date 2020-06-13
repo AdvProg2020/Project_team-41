@@ -458,4 +458,3 @@ public class SellerSection extends UserSection {
     }
 
 }
-//todo check every overrided show and replace them with commands

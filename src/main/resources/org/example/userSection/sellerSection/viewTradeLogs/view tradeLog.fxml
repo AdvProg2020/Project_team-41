@@ -5,7 +5,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="userInformation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="534.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.listUsersMenu.viewUserInfoController">
+<AnchorPane fx:id="tradeLogInformation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="534.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewTradeLogsMenu.ViewTradeLogController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="420.0" prefWidth="462.0">
          <children>
@@ -102,12 +102,18 @@
                           </LinearGradient>
                       </fill>
                   </Text>
-                  <TextField fx:id="userNameTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
-                  <TextField fx:id="firstNameTextField" editable="false" promptText="first name can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="lastNameTextField" editable="false" promptText="last name can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="creditTextField" editable="false" promptText="credit can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="emailTextField" editable="false" promptText="email can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="phoneNumberTextField" editable="false" promptText="phone number can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="logIdTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+                  <TextField fx:id="buyerTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="dateTextField" editable="false"  stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="deliverySituationTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="offAmountTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="moneywwTextField" editable="false"  stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                   salesHistory.add("log id : " + tradeLog.getLogId());
+                   salesHistory.add("buyer : " + tradeLog.getBuyerName());
+                   salesHistory.add("date : " + TimeControl.convertGregorianToJalali(tradeLog.getDate()).toString());
+                   salesHistory.add("delivery situation : " + tradeLog.getDeliverySituation());
+                   salesHistory.add("off Amount : " + tradeLog.getOffAmount());
+                   salesHistory.add("money : " + tradeLog.getMoney());
                </children>
             </GridPane>
          </children>

@@ -16,12 +16,13 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    public static Scene scene;
+    private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
         StartProgram.startProgram();
-        scene = new Scene(loadFXML("UserSection/ManagerSection/manager section"));
+        scene = new Scene(loadFXML("userSection/sellerSection/seller section"));
+//        scene = new Scene(loadFXML("userSection/managerSection/manager section"));
         stage.setScene(scene);
         stage.show();
     }
@@ -33,10 +34,15 @@ public class App extends Application {
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+
     }
 
     public static void main(String[] args) throws Exception {
         launch();
+    }
+
+    public static void setRoot(Parent parent) {
+        scene.setRoot(parent);
     }
 
 }
