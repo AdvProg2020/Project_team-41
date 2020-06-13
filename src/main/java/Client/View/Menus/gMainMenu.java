@@ -45,6 +45,8 @@ public class gMainMenu extends Menu {
                 App.setRoot("userSection/sellerSection/seller section");
 
             }else if(UserSectionController.getLoggedInPerson() instanceof Buyer){
+                App.setRoot("userSection/buyerSection/buyer section");
+
 
             }
         }

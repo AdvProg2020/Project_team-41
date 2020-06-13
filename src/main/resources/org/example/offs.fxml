@@ -18,19 +18,20 @@
    <center>
       <TableView fx:id="tableView" prefHeight="590.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="productId" prefWidth="114.66666769981384" text="Product id" />
-          <TableColumn fx:id="name" minWidth="9.066688537597656" prefWidth="121.06668090820312" text="Name" />
-            <TableColumn fx:id="price" prefWidth="125.066650390625" text="Price" />
-            <TableColumn fx:id="priceWithDiscount" prefWidth="151.73342895507812" text="Price with discount" />
-            <TableColumn fx:id="startDate" prefWidth="181.066650390625" text="Start date" />
-            <TableColumn fx:id="endDate" prefWidth="173.06658935546875" text="End date" />
+          <TableColumn fx:id="button" prefWidth="107.99996644258499" text="Product id" />
+          <TableColumn fx:id="name" minWidth="9.066688537597656" prefWidth="124.80001831054688" text="Name" />
+            <TableColumn fx:id="price" prefWidth="116.00001525878906" text="Price" />
+            <TableColumn fx:id="priceWithDiscount" prefWidth="135.20001220703125" text="Price with discount" />
+            <TableColumn fx:id="startDate" prefWidth="171.20001220703125" text="Start date" />
+            <TableColumn fx:id="endDate" prefWidth="133.5999755859375" text="End date" />
+            <TableColumn fx:id="score" prefWidth="94.4000244140625" text="Score" />
         </columns>
       </TableView>
    </center>
    <top>
       <AnchorPane prefHeight="75.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
          <children>
-            <ChoiceBox fx:id="SortVariables" layoutX="239.0" layoutY="24.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="SortVariables" layoutX="239.0" layoutY="24.0" prefWidth="150.0" onAction="#sort" />
             <Label layoutX="136.0" layoutY="21.0" text="Sort by:">
                <font>
                   <Font size="20.0" />

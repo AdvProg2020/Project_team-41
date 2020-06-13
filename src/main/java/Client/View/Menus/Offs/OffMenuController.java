@@ -3,22 +3,22 @@ package Client.View.Menus.Offs;
 import Client.Controller.SortController;
 import Client.Models.OffProductsToShow;
 import Client.Models.Product;
+import Server.Controller.TimeControl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.Date;
-
 public class OffMenuController {
 
     public TableView<OffProductsToShow> tableView;
-    public TableColumn<OffProductsToShow, String > productId;
+    public TableColumn<OffProductsToShow, Button > button;
     public TableColumn<OffProductsToShow, String > name;
     public TableColumn<OffProductsToShow, Integer> price;
     public TableColumn<OffProductsToShow, Integer> priceWithDiscount;
-    public TableColumn<OffProductsToShow, Date> startDate;
-    public TableColumn<OffProductsToShow, Date> endDate;
+    public TableColumn<OffProductsToShow, String > startDate;
+    public TableColumn<OffProductsToShow, String > endDate;
+    public TableColumn<OffProductsToShow, Integer> score;
     public ChoiceBox<String> SortVariables;
     public CheckBox enableNameFilter;
     public TextField productName;
@@ -35,15 +35,18 @@ public class OffMenuController {
     public CheckBox existenceNo;
     public CheckBox existenceYes;
     public CheckBox enableCategoryFilter;
+
     public void initialize(){
         tableView.setItems(getProducts());
 
-        productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        button.setCellValueFactory(new PropertyValueFactory<>("button"));
         name.setCellValueFactory(new PropertyValueFactory<>("productName"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         priceWithDiscount.setCellValueFactory(new PropertyValueFactory<>("priceWithDiscount"));
         startDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        score.setCellValueFactory(new PropertyValueFactory<>("score"));
+
 
         SortVariables.getItems().addAll("product name","company name","price","seller username","score","view");
         SortVariables.setValue("view");
@@ -54,8 +57,16 @@ public class OffMenuController {
         for (Product product : SortController.getInstance().getSortedProducts(true)) {
             products.add(new OffProductsToShow(product.getProductId(),product.getName(),product.getPrice(),
                     (product.getPrice()*(100-product.getOff().getAmountOfDiscount()))/100,
-                    product.getOff().getStartDate(),product.getOff().getEndDate()));
+                    TimeControl.getJalaliDateAndTimeForPrint(product.getOff().getStartDate()),
+                    TimeControl.getJalaliDateAndTimeForPrint(product.getOff().getEndDate()),product.calculateAverageScore(),new Button(product.getProductId())));
         }
         return products;
     }
+    public void sort(){
+        SortController.getInstance().setSortFeature(SortVariables.getValue());
+        tableView.setItems(getProducts());
+
+    }
+
+
 }
