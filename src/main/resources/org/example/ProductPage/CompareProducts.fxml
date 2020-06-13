@@ -5,15 +5,15 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.CompareProducts">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.ProductPage.CompareProducts">
    <children>
-    <VBox layoutX="175.0" layoutY="19.0" prefHeight="371.0" prefWidth="406.0">
+    <VBox layoutX="175.0" layoutY="19.0" prefHeight="371.0" prefWidth="588.0">
         <children>
             <GridPane prefHeight="429.0" prefWidth="410.0">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="150.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="200.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="200.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="300.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="300.0" />
                 </columnConstraints>
                 <rowConstraints>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -119,14 +119,14 @@
                </LinearGradient>
            </fill>
        </Text>
-       <TextField layoutX="14.0" layoutY="86.0" prefHeight="34.0" prefWidth="127.0" stylesheets="@/org/example/styles/textFill.css" />
+       <TextField fx:id="secondId" layoutX="14.0" layoutY="86.0" prefHeight="34.0" prefWidth="127.0" stylesheets="@/org/example/styles/textFill.css" />
 
-       <Button fx:id="scoreSendingButton" layoutX="69.0" layoutY="145.0" mnemonicParsing="false" onMouseClicked="#compareProducts" prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/checkIcon.png')">
+       <Button fx:id="idSendingButton" layoutX="69.0" layoutY="145.0" mnemonicParsing="false" onMouseClicked="#compareProducts" prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/checkIcon.png')">
            <font>
                <Font size="1.0" />
            </font>
        </Button>
-       <Text fx:id="scoreResult" layoutX="9.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="137.22901940345764" />
+       <Text fx:id="compareResult" layoutX="9.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="137.22901940345764" />
 
    </children>
 </AnchorPane>
