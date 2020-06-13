@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.View.Menus.Menu;
 import Server.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;

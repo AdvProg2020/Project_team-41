@@ -5,7 +5,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="categoryInformation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="526.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.CreateCategoryMenu">
+<AnchorPane fx:id="categoryInformation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="526.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageCategoryMenu.CreateCategoryMenu">
    <children>
       <VBox layoutX="10.0" layoutY="102.0" prefHeight="123.0" prefWidth="507.0">
          <children>

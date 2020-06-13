@@ -261,7 +261,7 @@ public class ManagerServerController extends UserSectionServerController {
         switch (request.getRequestType()){
             case "ADD_COMMENT" :{
                 Comment comment = request.getComment();
-                comment.getProduct().addComment(comment);
+                Database.getProductById(comment.getProduct().getProductId()).addComment(comment);
                 comment.setCommentSituation(CommentSituation.CONFIRMED);
                 break;
             }
@@ -272,7 +272,7 @@ public class ManagerServerController extends UserSectionServerController {
                 }
                 request.getProduct().setSituation(Situation.CONFIRMED);
                 Database.addProduct(request.getProduct());
-                request.getSeller().addProduct(request.getProduct());
+                Database.getSellerByUsername(request.getSeller().getUserName()).addProduct(request.getProduct());
                 break;
             }
             case "REMOVE_PRODUCT" : {
@@ -284,8 +284,8 @@ public class ManagerServerController extends UserSectionServerController {
                 Database.getAllProducts().remove(request.getProduct());
                 Database.addProduct(request.getEditedProduct());
                 request.getEditedProduct().setSituation(Situation.CONFIRMED);
-                request.getSeller().removeProduct(request.getProduct());
-                request.getSeller().addProduct(request.getEditedProduct());
+                Database.getSellerByUsername(request.getSeller().getUserName()).removeProduct(request.getProduct());
+                Database.getSellerByUsername(request.getSeller().getUserName()).addProduct(request.getEditedProduct());
 
                 break;
             }
@@ -298,7 +298,7 @@ public class ManagerServerController extends UserSectionServerController {
                 }
                 request.getOff().setSituation(Situation.CONFIRMED);
                 Database.addOff(request.getOff());
-                request.getSeller().addOff(request.getOff());
+                Database.getSellerByUsername(request.getSeller().getUserName()).addOff(request.getOff());
                 break;
             }
             case "EDIT_OFF" : {
@@ -312,8 +312,8 @@ public class ManagerServerController extends UserSectionServerController {
                 Database.getAllOffs().remove(request.getOff());
                 Database.addOff(request.getEditedOff());
                 request.getOff().setSituation(Situation.CONFIRMED);
-                request.getSeller().removeOff(request.getOff());
-                request.getSeller().addOff(request.getEditedOff());
+                Database.getSellerByUsername(request.getSeller().getUserName()).removeOff(request.getOff());
+                Database.getSellerByUsername(request.getSeller().getUserName()).addOff(request.getEditedOff());
                 break;
             }
 

@@ -1,4 +1,4 @@
-package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
+package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageCategoryMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
 import javafx.fxml.FXML;

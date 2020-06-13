@@ -1,4 +1,4 @@
-package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
+package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageProductsMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Product;
