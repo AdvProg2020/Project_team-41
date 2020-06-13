@@ -1,5 +1,6 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus;
 
+import Client.Controller.UserSectionController.BuyerController;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Server.Database;
@@ -15,42 +16,23 @@ import org.example.App;
 import java.io.IOException;
 
 public class BuyerSectionMenu {
-    public BorderPane sellerSectionBoarderPane;
-    public ScrollPane sellerSectionButtonScrollPane;
     public TextField creditTextField;
     public AnchorPane insideAnchorPane;
     public AnchorPane outsideAnchorPane;
+    public BorderPane buyerSectionBoarderPane;
+    public ScrollPane buyerSectionButtonScrollPane;
 
     @FXML
     public void initialize(){
         //todo remove nextLine
-        UserSectionController.setLoggedInPerson(Database.getAllUsers().get(1));
-        creditTextField.setText(SellerController.getLoggedInPerson().getCredit() +"$");
+        UserSectionController.setLoggedInPerson(Database.getAllUsers().get(2));
+        creditTextField.setText(BuyerController.getInstance().getBalance() +"$");
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {
         setSubPage("userSection/view personal info");
     }
 
-    public void manageProducts(MouseEvent mouseEvent) {
-        setSubPage("userSection/sellerSection/manageProductsMenu/manage products menu");
-    }
-
-    public void viewCompanyInfo(MouseEvent mouseEvent) {
-        setSubPage("userSection/sellerSection/viewCompanyInfo/viewCompanyInfoMenu");
-    }
-
-    public void viewSalesHistory(MouseEvent mouseEvent) {
-        setSubPage("userSection/sellerSection/viewTradeLogs/view tradeLogs menu");
-    }
-
-    public void showCategories(MouseEvent mouseEvent) {
-        setSubPage("userSection/sellerSection/showCategoriesMenu/manage categories menu");
-    }
-
-    public void viewOffs(MouseEvent mouseEvent) {
-        setSubPage("userSection/sellerSection/viewOffsMenu/manage offs menu");
-    }
     private void setSubPage(String name){
         Parent root = null;
         try {
@@ -61,4 +43,7 @@ public class BuyerSectionMenu {
         insideAnchorPane.getChildren().setAll(root);
     }
 
+    public void viewDiscountCodesButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/buyerSection/showDiscountCodesMenu/view discount codes menu");
+    }
 }

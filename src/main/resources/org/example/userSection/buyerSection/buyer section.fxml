@@ -5,13 +5,23 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="sellerSectionBoarderPane" prefHeight="748.0" prefWidth="1162.0" style="-fx-border-width: 4px 4px 4px 4px; -fx-border-color: #754d34;-fx-background-color: #f5f1ec;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu">
+<BorderPane fx:id="buyerSectionBoarderPane" prefHeight="748.0" prefWidth="1162.0" style="-fx-border-width: 4px 4px 4px 4px; -fx-border-color: #754d34;-fx-background-color: #f5f1ec;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu">
    <left>
-      <ScrollPane fx:id="sellerSectionButtonScrollPane" prefHeight="332.0" prefWidth="327.0" style="-fx-background-color: #f5f1ed; -fx-border-color: transparent;" stylesheets="/org/example/styles/scrollBar.css" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="buyerSectionButtonScrollPane" prefHeight="332.0" prefWidth="327.0" style="-fx-background-color: #f5f1ed; -fx-border-color: transparent;" stylesheets="/org/example/styles/scrollBar.css" BorderPane.alignment="CENTER">
          <content>
             <VBox prefHeight="924.0" prefWidth="305.0" style="-fx-background-color: #f5f1ec;">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#viewPersonalInfoButtonClicked" prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="view personal info">
+                     <textFill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#viewDiscountCodesButtonClicked" prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="view discount codes">
                      <textFill>
                         <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                            <stops>
