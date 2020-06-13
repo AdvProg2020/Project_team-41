@@ -17,10 +17,10 @@ public class ListUsersMenu {
     public VBox usersVBox;
     public ScrollPane listUsersScrollPane;
     public Text informationText;
-    public AnchorPane usersAnchorPane;
 
     @FXML
     public void initialize(){
+
         for (String user : ManagerController.getInstance().getAllUsers()) {
                 makeUserSplitButton(user);
         }
