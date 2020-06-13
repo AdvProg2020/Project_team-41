@@ -18,5 +18,6 @@
             </content>
         </ScrollPane>
         <Text fx:id="informationText" layoutX="71.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
+      <Label layoutX="528.0" layoutY="22.0" prefHeight="17.0" prefWidth="74.0" text="all comments" />
     </children>
 </AnchorPane>

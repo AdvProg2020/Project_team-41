@@ -41,6 +41,14 @@ public class ProductPageGeneralButtons {
     }
 
     private void setSubPage(String name){
+//TODO delete this:
+
+//        System.out.println("all comments of product( we are in product page) :");
+//        for (Comment comment : ProductPageGeneralButtons.getTheProduct().getComments()) {
+//            System.out.println(comment);
+//        }
+//        System.out.println("product quantity:" +  ProductPageGeneralButtons.getTheProduct().getQuantity());
+
         Parent root = null;
         try {
             root = App.loadFXML(name);

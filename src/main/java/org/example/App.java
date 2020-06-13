@@ -16,12 +16,12 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    public static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
         StartProgram.startProgram();
-        scene = new Scene(loadFXML("offs"));
+        scene = new Scene(loadFXML("UserSection/ManagerSection/manager section"));
         stage.setScene(scene);
         stage.show();
     }

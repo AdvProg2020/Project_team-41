@@ -256,6 +256,8 @@ public class ManagerServerController extends UserSectionServerController {
             }
         }
     }
+
+  //  public static Product product;
     public void  acceptRequest(String requestId) throws Exception {
         Request request = Database.getRequestByRequestId(requestId);
         switch (request.getRequestType()){
@@ -263,6 +265,18 @@ public class ManagerServerController extends UserSectionServerController {
                 Comment comment = request.getComment();
                 comment.getProduct().addComment(comment);
                 comment.setCommentSituation(CommentSituation.CONFIRMED);
+
+                //TODO delete this:
+//                System.out.println("product: "+ comment.getProduct());
+//                System.out.println("comment to add: " + comment + "\n");
+//                System.out.println("product all comments:");
+//                for (Comment eachComment : comment.getProduct().getComments()) {
+//                    System.out.println(eachComment);
+//                }
+         //       this.product = comment.getProduct();
+       //         comment.getProduct().setQuantity(20);
+     //           System.out.println(comment.getProduct().getQuantity());
+
                 break;
             }
             case "ADD_PRODUCT" :{
