@@ -14,7 +14,6 @@ public class CreateCategoryMenu {
     public Text informationText;
 
     public void createCategoryClicked(MouseEvent mouseEvent) {
-
         String specialFeatures;
         specialFeatures = specialFeaturesTextField.getText();
         try{
