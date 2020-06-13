@@ -1,5 +1,6 @@
 package Server;
 
+import Client.Controller.OffsController;
 import Client.Models.*;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
@@ -9,6 +10,7 @@ import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Database implements Serializable {
@@ -212,6 +214,14 @@ public class Database implements Serializable {
     }
     public static ArrayList<Product> getAllOffProducts(){
         ArrayList<Product> allOffProducts=new ArrayList<>();
+        ArrayList<Off> offsToDelete=new ArrayList<>();
+        Date date=new Date();
+        for (Off off : allOffs) {
+            if (date.after(off.getEndDate())) {
+                offsToDelete.add(off);
+            }
+        }
+        deleteOutOfDateOffs(offsToDelete);
         for (Off off : allOffs) {
             allOffProducts.addAll(off.getProducts());
         }
