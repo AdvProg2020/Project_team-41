@@ -21,7 +21,6 @@ public class ListUsersMenu {
 
     @FXML
     public void initialize(){
-
         for (String user : ManagerController.getInstance().getAllUsers()) {
                 makeUserSplitButton(user);
         }
