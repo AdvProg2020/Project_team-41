@@ -31,13 +31,13 @@
    <top>
       <AnchorPane prefHeight="75.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
          <children>
-            <ChoiceBox fx:id="SortVariables" layoutX="239.0" layoutY="24.0" prefWidth="150.0" onAction="#sort" />
+            <ChoiceBox fx:id="SortVariables" layoutX="239.0" layoutY="24.0" onAction="#sort" prefWidth="150.0" />
             <Label layoutX="136.0" layoutY="21.0" text="Sort by:">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="950.0" layoutY="22.0" text="You can filter products:">
+            <Label fx:id="filterInfoLabel" layoutX="950.0" layoutY="22.0" text="You can filter products:">
                <font>
                   <Font size="22.0" />
                </font>
@@ -53,7 +53,7 @@
                <children>
                   <AnchorPane prefHeight="89.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
                      <children>
-                        <CheckBox fx:id="enableNameFilter" layoutX="288.0" layoutY="10.0" mnemonicParsing="false" text="Enable filter">
+                        <CheckBox fx:id="enableNameFilter" layoutX="288.0" layoutY="10.0" mnemonicParsing="false" onAction="#filterProductName" text="Enable filter">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -63,7 +63,7 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="productName" editable="false" layoutX="174.0" layoutY="52.0" prefHeight="26.0" prefWidth="190.0" promptText="Name" />
+                        <TextField fx:id="productName" layoutX="174.0" layoutY="52.0" prefHeight="26.0" prefWidth="190.0" promptText="Name" />
                         <Label layoutX="43.0" layoutY="47.0" text="Product name:">
                            <font>
                               <Font size="17.0" />
@@ -73,7 +73,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="93.0" prefWidth="430.0" style="-fx-background-color: #F0FFFF;">
                      <children>
-                        <CheckBox fx:id="enableCompanyFilter" layoutX="288.0" layoutY="11.0" mnemonicParsing="false" text="Enable filter">
+                        <CheckBox fx:id="enableCompanyFilter" layoutX="288.0" layoutY="11.0" mnemonicParsing="false" onAction="#filterCompanyName" text="Enable filter">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -83,7 +83,7 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="companyName" editable="false" layoutX="174.0" layoutY="57.0" prefHeight="26.0" prefWidth="190.0" promptText="Name" />
+                        <TextField fx:id="companyName" layoutX="174.0" layoutY="57.0" prefHeight="26.0" prefWidth="190.0" promptText="Name" />
                         <Label layoutX="28.0" layoutY="53.0" text="Company name:">
                            <font>
                               <Font size="17.0" />
@@ -93,7 +93,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="85.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
                      <children>
-                        <CheckBox fx:id="enableSellerFilter" layoutX="288.0" layoutY="8.0" mnemonicParsing="false" text="Enable filter">
+                        <CheckBox fx:id="enableSellerFilter" layoutX="288.0" layoutY="8.0" mnemonicParsing="false" onAction="#filterSeller" text="Enable filter">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -103,7 +103,7 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="sellerUsername" editable="false" layoutX="174.0" layoutY="48.0" prefHeight="26.0" prefWidth="190.0" promptText="Username" />
+                        <TextField fx:id="sellerUsername" layoutX="174.0" layoutY="48.0" prefHeight="26.0" prefWidth="190.0" promptText="Username" />
                         <Label layoutX="37.0" layoutY="46.0" text="Seller username:">
                            <font>
                               <Font size="17.0" />
@@ -134,7 +134,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <CheckBox fx:id="enablePriceRangeFilter" layoutX="88.0" layoutY="10.0" mnemonicParsing="false" text="Enable filter">
+                                    <CheckBox fx:id="enablePriceRangeFilter" layoutX="88.0" layoutY="10.0" mnemonicParsing="false" onAction="#filterPriceRange" text="Enable filter">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -149,7 +149,7 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="definitePrice" layoutX="26.0" layoutY="66.0" promptText="Difinite price" />
-                                    <CheckBox fx:id="enablePriceDefiniteFilter" layoutX="87.0" layoutY="10.0" mnemonicParsing="false" text="Enable filter">
+                                    <CheckBox fx:id="enablePriceDefiniteFilter" layoutX="87.0" layoutY="10.0" mnemonicParsing="false" onAction="#filterPriceDefinite" text="Enable filter">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -162,7 +162,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="85.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
                      <children>
-                        <CheckBox fx:id="enableExistenceFilter" layoutX="288.0" layoutY="8.0" mnemonicParsing="false" text="Enable filter">
+                        <CheckBox fx:id="enableExistenceFilter" layoutX="288.0" layoutY="8.0" mnemonicParsing="false" onAction="#filterExistence" text="Enable filter">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -177,12 +177,12 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="existenceNo" layoutX="317.0" layoutY="45.0" mnemonicParsing="false" text="No">
+                        <CheckBox fx:id="existenceNo" layoutX="317.0" layoutY="45.0" mnemonicParsing="false" onAction="#noExistence" text="No">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="existenceYes" layoutX="244.0" layoutY="47.0" mnemonicParsing="false" text="Yse">
+                        <CheckBox fx:id="existenceYes" layoutX="244.0" layoutY="47.0" mnemonicParsing="false" onAction="#yesExistence" text="Yse">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -191,7 +191,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="93.0" prefWidth="430.0" style="-fx-background-color: #F0FFFF;">
                      <children>
-                        <CheckBox fx:id="enableCategoryFilter" layoutX="288.0" layoutY="11.0" mnemonicParsing="false" text="Enable filter">
+                        <CheckBox fx:id="enableCategoryFilter" layoutX="288.0" layoutY="11.0" mnemonicParsing="false" onAction="#filterCategory" text="Enable filter">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -206,10 +206,10 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ChoiceBox layoutX="244.0" layoutY="53.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="allCategories" layoutX="244.0" layoutY="53.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="98.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
+                  <AnchorPane fx:id="specialFeatureAnchorPane" prefHeight="98.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
                      <children>
                         <Label layoutX="26.0" layoutY="1.0" prefHeight="44.0" prefWidth="260.0" text="Filter by category special feature:">
                            <font>
@@ -221,7 +221,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ChoiceBox layoutX="248.0" layoutY="51.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="specialFeaturesChoice" layoutX="248.0" layoutY="51.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
                </children>

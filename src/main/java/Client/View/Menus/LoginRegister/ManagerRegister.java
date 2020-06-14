@@ -25,7 +25,6 @@ public class ManagerRegister {
     public Label phoneError;
     public Label moneyError;
     public Label welcome1;
-    public Label welcome2;
 
     public void initialize(){
         setAllInvisible();
@@ -40,7 +39,6 @@ public class ManagerRegister {
         phoneError.setVisible(false);
         moneyError.setVisible(false);
         welcome1.setVisible(false);
-        welcome2.setVisible(false);
 
 
     }
@@ -52,7 +50,8 @@ public class ManagerRegister {
             try {
                 LoginRegisterController.getInstance().createAccount(manager);
                 welcome1.setVisible(true);
-                welcome2.setVisible(true);
+
+                Menu.closeWindow();
 //                Menu.setRootForNewWindow("welcomeRegister");
             } catch (Exception e) {
                 if(e.getMessage().equals("Invalid UserName!")){

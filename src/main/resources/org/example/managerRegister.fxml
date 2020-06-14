@@ -160,12 +160,7 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="welcome1" layoutX="62.0" layoutY="28.0" text="Account succussefully created" textFill="#00ff04">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="welcome2" layoutX="98.0" layoutY="56.0" text="Now you can login" textFill="#00ff4d">
+                  <Label fx:id="welcome1" layoutX="62.0" layoutY="28.0" text="Account succussefully created" textFill="#27ca27">
                      <font>
                         <Font size="15.0" />
                      </font>
