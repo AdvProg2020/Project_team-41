@@ -1,11 +1,15 @@
 package Client.View.Menus;
 
+import Client.Controller.LoginRegisterController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Seller;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.App;
 
 import java.io.IOException;
@@ -15,13 +19,23 @@ public class gMainMenu extends Menu {
     public Button loginLogout;
     public Label userSectionError;
 
-    public void initialize(){
+    public void initialize() throws IOException {
         if(UserSectionController.getLoggedInPerson()==null){
             loginLogout.setText("Register/Login");
         }else{
             loginLogout.setText("Logout");
         }
         userSectionError.setVisible(false);
+        if(! LoginRegisterController.getInstance().checkIfManagerExists()){
+            window = new Stage();
+
+            window.initModality(Modality.APPLICATION_MODAL);
+            window.setTitle("Manager Register");
+
+            scene = new Scene(loadFXML("managerRegister"));
+            window.setScene(scene);
+            window.showAndWait();
+        }
     }
 
 
