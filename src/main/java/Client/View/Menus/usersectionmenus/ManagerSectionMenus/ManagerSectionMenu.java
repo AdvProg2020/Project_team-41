@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ManagerSectionMenu {
     public BorderPane managerSectionBorderPane;
     public ScrollPane managerSectionButtonScrollPane;
-
+    public static String parentFxmlAddress;
     @FXML
     public void initialize(){
         //todo remove nextLine
@@ -55,5 +55,9 @@ public class ManagerSectionMenu {
             e.printStackTrace();
         }
         managerSectionBorderPane.setCenter(root);
+    }
+
+    public void backCodeButtonClicked(MouseEvent mouseEvent) throws IOException {
+        App.setRoot(parentFxmlAddress);
     }
 }
