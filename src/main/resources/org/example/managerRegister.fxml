@@ -158,7 +158,19 @@
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="welcome1" layoutX="62.0" layoutY="28.0" text="Account succussefully created" textFill="#00ff04">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="welcome2" layoutX="98.0" layoutY="56.0" text="Now you can login" textFill="#00ff4d">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Button alignment="CENTER" layoutX="111.0" layoutY="37.0" mnemonicParsing="false" onAction="#register" style="-fx-background-color: #7700ff;" text="Register" textFill="WHITE" />
