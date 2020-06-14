@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="productNameAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="638.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewCartMenu.ProductButtonController">
+    <children>
+        <VBox layoutX="22.0" layoutY="7.0" prefHeight="35.0" prefWidth="447.0">
+            <children>
+
+                <GridPane fx:id="gridPane" prefHeight="31.0" prefWidth="462.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="260.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="133.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="74.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <TextField fx:id="productNameTextField" editable="false" prefHeight="34.0" prefWidth="256.0" stylesheets="@/org/example/styles/textFill.css" />
+                        <TextField fx:id="productIdTextField" editable="false" layoutX="10.0" layoutY="9.0" prefHeight="34.0" prefWidth="131.0" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+                        <TextField fx:id="productQuantityTextField" editable="false" layoutX="10.0" layoutY="9.0" prefHeight="34.0" prefWidth="60.0" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="2" />
+                    </children>
+                </GridPane>
+            </children>
+        </VBox>
+      <Button fx:id="viewProductButton" layoutX="476.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#viewProductClicked" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/eye.png') ">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button fx:id="increaseProductButton" layoutX="514.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#decreaseProductClicked" prefHeight="18.0" prefWidth="19.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/plus.png') ">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button fx:id="decreaseProductButton" layoutX="543.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#increaseProductClicked" prefHeight="18.0" prefWidth="19.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/minus.png') ">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

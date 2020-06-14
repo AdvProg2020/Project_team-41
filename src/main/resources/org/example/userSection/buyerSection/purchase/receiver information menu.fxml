@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="534.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase.ReceiverInformationMenu">
+   <children>
+      <VBox layoutX="21.0" layoutY="80.0" prefHeight="420.0" prefWidth="474.0">
+         <children>
+            <GridPane prefHeight="443.0" prefWidth="474.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="324.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="132.0" minHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="280.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="334.0" minHeight="10.0" prefHeight="305.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="96.22900390625">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                      <fill>
+                          <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                              <stops>
+                                  <Stop color="BLACK" />
+                                  <Stop color="#dd813f" offset="1.0" />
+                              </stops>
+                          </LinearGradient>
+                      </fill>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number :" wrappingWidth="112.22900390625" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                      <fill>
+                          <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                              <stops>
+                                  <Stop color="BLACK" />
+                                  <Stop color="#dd813f" offset="1.0" />
+                              </stops>
+                          </LinearGradient>
+                      </fill>
+                  </Text>
+                  <TextField fx:id="emailTextField" promptText="email can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+                  <TextField fx:id="phoneNumberTextField" promptText="phone number can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address :" wrappingWidth="112.22900390625" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                     <fill>
+                        <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="#dd813f" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Text>
+                  <TextField fx:id="addressTextField" prefHeight="269.0" prefWidth="297.0" promptText="Address field can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+       <Button layoutX="304.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#nextButtonClicked" prefHeight="27.0" prefWidth="68.0" stylesheets="@/org/example/styles/commandButton.css" text="next">
+           <textFill>
+               <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                   <stops>
+                       <Stop color="BLACK" />
+                       <Stop color="#dd813f" offset="1.0" />
+                   </stops>
+               </LinearGradient>
+           </textFill>
+       </Button>
+       <Text fx:id="informationText" layoutX="21.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
+   </children>
+</AnchorPane>

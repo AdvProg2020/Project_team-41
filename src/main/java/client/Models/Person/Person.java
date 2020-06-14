@@ -153,4 +153,8 @@ public abstract class Person implements Serializable {
                 password.equals(person.password);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(userName, password);
+    }
 }
