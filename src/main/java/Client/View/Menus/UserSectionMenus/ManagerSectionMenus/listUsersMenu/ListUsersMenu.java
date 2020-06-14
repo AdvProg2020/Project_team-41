@@ -1,11 +1,13 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.listUsersMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
+import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -26,8 +28,11 @@ public class ListUsersMenu {
         }
     }
 
-    public void createManagerProfileClicked(MouseEvent mouseEvent) {
-
+    public void createManagerProfileClicked(MouseEvent mouseEvent) throws IOException {
+        BorderPane managerSectionBorderPane = (BorderPane) NodeFinder.getParentById(usersVBox, "managerSectionBorderPane");
+        Parent root = null;
+        root = App.loadFXML("managerRegister");
+        managerSectionBorderPane.setCenter(root);
     }
     private void makeUserSplitButton(String username) {
         Parent root = null;

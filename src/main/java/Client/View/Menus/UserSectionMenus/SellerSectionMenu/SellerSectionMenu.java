@@ -26,7 +26,7 @@ public class SellerSectionMenu {
     public void initialize(){
         //todo remove nextLine
       //  UserSectionController.setLoggedInPerson(Database.getAllUsers().get(1));
-    //    creditTextField.setText(SellerController.getLoggedInPerson().getCredit() +"$");
+       creditTextField.setText(SellerController.getLoggedInPerson().getCredit() +"$");
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {
