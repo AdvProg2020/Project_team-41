@@ -1,8 +1,5 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 
-import Client.Controller.UserSectionController.UserSectionController;
-import Client.View.Menus.Menu;
-import Server.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -13,7 +10,7 @@ import org.example.App;
 import java.io.IOException;
 
 public class ManagerSectionMenu {
-    public BorderPane managerSectionBoarderPane;
+    public BorderPane managerSectionBorderPane;
     public ScrollPane managerSectionButtonScrollPane;
 
     @FXML
@@ -57,6 +54,6 @@ public class ManagerSectionMenu {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        managerSectionBoarderPane.setCenter(root);
+        managerSectionBorderPane.setCenter(root);
     }
 }

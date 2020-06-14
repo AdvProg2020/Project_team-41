@@ -8,7 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 
 
 /**
@@ -20,12 +23,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        setIconImage();
         StartProgram.startProgram();
-//        scene = new Scene(loadFXML("userSection/buyerSection/buyer section"));
+        //scene = new Scene(loadFXML("userSection/buyerSection/buyer section"));
         //scene = new Scene(loadFXML("userSection/sellerSection/seller section"));
         //scene = new Scene(loadFXML("userSection/managerSection/manager section"));
         scene = new Scene(loadFXML("mainMenu"));
-
         stage.setScene(scene);
         stage.show();
     }
@@ -48,4 +52,23 @@ public class App extends Application {
         scene.setRoot(parent);
     }
 
+    private void setIconImage(){
+
+        //loading an image from a file
+        final Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
+        final URL imageResource = App.class.getClassLoader().getResource("org/example/images/appIcon.png");
+        final Image image = defaultToolkit.getImage(imageResource);
+
+        //this is new since JDK 9
+        final Taskbar taskbar = Taskbar.getTaskbar();
+
+        try {
+            //set icon for mac os (and other systems which do support this method)
+            taskbar.setIconImage(image);
+        } catch (final UnsupportedOperationException e) {
+            System.out.println("The os does not support: 'taskbar.setIconImage'");
+        } catch (final SecurityException e) {
+            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+        }
+    }
 }
