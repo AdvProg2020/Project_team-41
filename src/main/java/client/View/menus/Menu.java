@@ -136,7 +136,7 @@ public abstract class Menu {
         System.out.println("end Program");
     }
 
-    private static Scene scene;
+    public static Scene scene;
     public static Stage window;
 
     public void login(String fxmlAddress) throws IOException {
@@ -154,7 +154,7 @@ public abstract class Menu {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
