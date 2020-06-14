@@ -28,5 +28,6 @@ public class CreateCategoryMenu {
     private void showMessage(javafx.scene.text.Text text, MessageType messageType, String message) {
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
+
     }
 }

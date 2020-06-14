@@ -18,6 +18,6 @@ public class WelcomeLogin {
     }
     public void ok() throws IOException {
         Menu.closeWindow();
-        App.setRoot(LoginForm.father);
+       App.setRoot(LoginForm.father);
     }
 }

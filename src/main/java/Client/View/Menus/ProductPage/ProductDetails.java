@@ -23,17 +23,24 @@ public class ProductDetails {
 
     @FXML
     public void initialize(){
-        nameTextField.setText(ProductPageGeneralButtons.getTheProduct().getName());
+
+        setDetailsInTextFields(ProductPageGeneralButtons.getTheProduct() , nameTextField  , priceTextField , descriptionTextField , scoreTextField , specialFeaturesTextField);
         companyNameTextField.setText(ProductPageGeneralButtons.getTheProduct().getCompanyName());
-        priceTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().getPrice()));
         sellerTextField.setText(ProductPageGeneralButtons.getTheProduct().getSeller().getUserName());
         quantityTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().getQuantity()));
-        descriptionTextField.setText(ProductPageGeneralButtons.getTheProduct().getDescription());
-        scoreTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().calculateAverageScore()));
+
+
+    }
+
+    public static void setDetailsInTextFields(Product theProduct , TextField nameTextField , TextField priceTextField , TextField descriptionTextField ,TextField scoreTextField , TextField specialFeaturesTextField){
+        nameTextField.setText(theProduct.getName());
+        priceTextField.setText(String.valueOf(theProduct.getPrice()));
+        descriptionTextField.setText(theProduct.getDescription());
+        scoreTextField.setText(String.valueOf(theProduct.calculateAverageScore()));
 
         StringBuilder productSpecialFeatures = new StringBuilder();
-        for (String featureName : ProductPageGeneralButtons.getTheProduct().getSpecialFeatures().keySet()) {
-                productSpecialFeatures.append(featureName + ":" + ProductPageGeneralButtons.getTheProduct().getSpecialFeatures().get(featureName) + "   ");
+        for (String featureName : theProduct.getSpecialFeatures().keySet()) {
+            productSpecialFeatures.append(featureName + ":" + theProduct.getSpecialFeatures().get(featureName) + "   ");
         }
         specialFeaturesTextField.setText(String.valueOf(productSpecialFeatures));
     }
