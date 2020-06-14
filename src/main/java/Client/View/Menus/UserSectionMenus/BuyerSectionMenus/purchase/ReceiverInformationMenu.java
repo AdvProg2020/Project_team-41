@@ -2,8 +2,11 @@ package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 
 import Client.Controller.UserSectionController.BuyerController;
 import Client.View.Menus.MessageType;
+import Client.View.Menus.NodeFinder;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import org.example.App;
 
@@ -32,5 +35,12 @@ public class ReceiverInformationMenu {
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
 
+    }
+
+    public void backButtonClicked(MouseEvent mouseEvent) throws IOException {
+        BorderPane managerSectionBorderPane = (BorderPane) NodeFinder.getParentById(informationText, "managerSectionBorderPane");
+        Parent root = null;
+        root = App.loadFXML("userSection/buyerSection/viewCart/viewCart");
+        managerSectionBorderPane.setCenter(root);
     }
 }

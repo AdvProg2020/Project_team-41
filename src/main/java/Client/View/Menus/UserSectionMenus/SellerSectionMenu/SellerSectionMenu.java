@@ -21,6 +21,7 @@ public class SellerSectionMenu {
     public TextField creditTextField;
     public AnchorPane insideAnchorPane;
     public AnchorPane outsideAnchorPane;
+    public static String parentFxmlAddress;
 
     @FXML
     public void initialize(){
@@ -62,4 +63,7 @@ public class SellerSectionMenu {
         insideAnchorPane.getChildren().setAll(root);
     }
 
+    public void backCodeButtonClicked(MouseEvent mouseEvent) throws IOException {
+        App.setRoot(parentFxmlAddress);
+    }
 }

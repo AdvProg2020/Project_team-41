@@ -21,6 +21,7 @@ public class BuyerSectionMenu {
     public AnchorPane outsideAnchorPane;
     public BorderPane buyerSectionBoarderPane;
     public ScrollPane buyerSectionButtonScrollPane;
+    public static String parentFxmlAddress;
 
     @FXML
     public void initialize(){
@@ -45,5 +46,9 @@ public class BuyerSectionMenu {
 
     public void viewDiscountCodesButtonClicked(MouseEvent mouseEvent) {
         setSubPage("userSection/buyerSection/showDiscountCodesMenu/view discount codes menu");
+    }
+
+    public void backCodeButtonClicked(MouseEvent mouseEvent) throws IOException {
+        App.setRoot(parentFxmlAddress);
     }
 }

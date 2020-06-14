@@ -83,6 +83,16 @@
                </LinearGradient>
            </textFill>
        </Button>
+       <Button layoutX="34.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" prefHeight="27.0" prefWidth="68.0" stylesheets="@/org/example/styles/commandButton.css" text="back">
+           <textFill>
+               <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                   <stops>
+                       <Stop color="BLACK" />
+                       <Stop color="#dd813f" offset="1.0" />
+                   </stops>
+               </LinearGradient>
+           </textFill>
+       </Button>
        <Text fx:id="informationText" layoutX="21.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
    </children>
 </AnchorPane>

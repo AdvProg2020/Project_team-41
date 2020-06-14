@@ -3,10 +3,15 @@ package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 import Client.Controller.UserSectionController.BuyerController;
 import Client.View.Menus.MainMenu;
 import Client.View.Menus.MessageType;
-import Client.View.Menus.UserSectionMenus.BuyerSection;
+import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import org.example.App;
+
+import java.io.IOException;
 
 public class PaymentMenu {
     public Text priceText;
@@ -28,5 +33,12 @@ public class PaymentMenu {
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
 
+    }
+
+    public void backButtonClicked(MouseEvent mouseEvent) throws IOException {
+        BorderPane managerSectionBorderPane = (BorderPane) NodeFinder.getParentById(informationText, "managerSectionBorderPane");
+        Parent root = null;
+        root = App.loadFXML("userSection/buyerSection/purchase/discount code menu");
+        managerSectionBorderPane.setCenter(root);
     }
 }
