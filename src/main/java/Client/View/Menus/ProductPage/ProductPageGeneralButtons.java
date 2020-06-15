@@ -15,6 +15,7 @@ public class ProductPageGeneralButtons {
 
     private static Product theProduct;
     public BorderPane productPageBorderPane;
+    public static String parentFxmlAddress;
 
     public void showProductDetails(MouseEvent mouseEvent) {
         setSubPage("ProductPage/ProductDetails");
@@ -40,8 +41,8 @@ public class ProductPageGeneralButtons {
         setSubPage("ProductPage/CompareProducts");
     }
 
-    public void backToPreviousPage(MouseEvent mouseEvent) {
-       //TODO
+    public void backToPreviousPage(MouseEvent mouseEvent) throws IOException {
+       App.setRoot(parentFxmlAddress);
     }
 
     private void setSubPage(String name){

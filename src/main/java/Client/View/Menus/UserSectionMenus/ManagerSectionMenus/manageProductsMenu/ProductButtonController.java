@@ -40,7 +40,6 @@ public class ProductButtonController {
 
 
     public void removeProductClicked(MouseEvent mouseEvent) throws Exception {
-
         try {
             ManagerController.getInstance().removeProduct(productIdTextField.getText());
         } catch (Exception e) {
@@ -66,6 +65,7 @@ public class ProductButtonController {
         ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");
        product.setViews(product.getViews()+1);
+       ProductPageGeneralButtons.parentFxmlAddress = "userSection/managerSection/manager section";
     }
     private void hideProduct() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
