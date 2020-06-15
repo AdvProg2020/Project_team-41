@@ -1,5 +1,6 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageProductsMenu;
 
+import Client.Controller.AllProductsController;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;
@@ -25,7 +26,7 @@ public class ProductButtonController {
     public TextField productIdTextField;
     ArrayList<String> productsShown = new ArrayList<>();
 
-    public void viewProductClicked(MouseEvent mouseEvent) throws IOException {
+    public void viewProductClicked(MouseEvent mouseEvent) throws Exception {
         if(productsShown.contains(productIdTextField.getText())){
             productsShown.remove(productIdTextField.getText());
             hideProduct();
@@ -55,7 +56,7 @@ public class ProductButtonController {
 
 
     }
-    private void showProduct() throws IOException {
+    private void showProduct() throws Exception {
         Product product = null;
         try {
             product = ManagerController.getInstance().getProductById(productIdTextField.getText());
@@ -64,10 +65,7 @@ public class ProductButtonController {
         }
         ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");
-
-
-
-
+       product.setViews(product.getViews()+1);
     }
     private void hideProduct() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
