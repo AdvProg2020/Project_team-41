@@ -212,7 +212,7 @@ public class FilterMenu extends Menu {
                             System.err.println("Not any category is selected yet\n");
                         else {
                             System.out.println("Enter the feature:");
-                            FilterController.getInstance().disableSpecialFeature(scanner.nextLine());
+                            FilterController.getInstance().disableSpecialFeature(scanner.nextLine() , true);
                             System.out.println("The filtered feature was successfully disabled\n");
                         }
                     } catch (ClassNotFoundException | NullPointerException | FileNotFoundException e) {

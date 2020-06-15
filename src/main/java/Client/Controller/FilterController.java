@@ -43,10 +43,10 @@ public class FilterController {
 
     public List<Product> filterProducts(boolean offOrNot) {
         ArrayList<Product> allProducts;
-        if(offOrNot){
-            allProducts= OffsServerController.getInstance().getAllOffProducts();
-        }else{
-            allProducts=AllProductsServerController.getInstance().getAllProducts();
+        if (offOrNot) {
+            allProducts = OffsServerController.getInstance().getAllOffProducts();
+        } else {
+            allProducts = AllProductsServerController.getInstance().getAllProducts();
         }
         return allProducts.stream()
                 .filter(Product -> {
@@ -58,7 +58,7 @@ public class FilterController {
                     }
                     {
                         if (companyName != null) {
-                            if (Product.getCompanyName()==null || !Product.getCompanyName().equals(companyName))
+                            if (Product.getCompanyName() == null || !Product.getCompanyName().equals(companyName))
                                 return false;
                         }
                     }
@@ -87,7 +87,7 @@ public class FilterController {
                                 isThereMore = true;
                             else
                                 isThereMore = false;
-                            if ((Product.getQuantity()!=0) != isThereMore)
+                            if ((Product.getQuantity() != 0) != isThereMore)
                                 return false;
                         }
                     }
@@ -149,77 +149,91 @@ public class FilterController {
     public void disableFilter(String filterToBeDisabled) throws Exception {
         switch (filterToBeDisabled) {
             case "product name": {
-                if(name == null)
+                if (name == null)
                     throw new RuntimeException("the filter had not been selected already to be disabled now");
-                else{
+                else {
                     name = null;
-                    break;}
+                    break;
+                }
             }
             case "company name": {
-                if(companyName == null)
+                if (companyName == null)
                     throw new RuntimeException("the filter had not been selected already to be disabled now");
-                else{
+                else {
                     companyName = null;
-                    break;}
+                    break;
+                }
             }
             case "category name": {
-                if(filterCategory == null)
+                if (filterCategory == null)
                     throw new RuntimeException("the filter had not been selected already to be disabled now");
-                else{
+                else {
                     filterCategory = null;
-                    break;}
+                    break;
+                }
             }
-            case "price": {
-                if(definitePrice == -1 && priceMinMax == null)
+            case "definitePrice": {
+                if (definitePrice == -1)
                     throw new RuntimeException("the filter had not been selected already to be disabled now");
-                else{
+                else {
                     definitePrice = -1;
+                    break;
+                }
+            }
+            case "rangePrice": {
+                if (priceMinMax == null)
+                    throw new RuntimeException("the filter had not been selected already to be disabled now");
+                else {
                     priceMinMax = null;
-                    break;}
+                    break;
+                }
             }
             case "seller": {
-                if(sellerUserName == null)
+                if (sellerUserName == null)
                     throw new RuntimeException("the filter had not been selected already to be disabled now");
-                else{
+                else {
                     sellerUserName = null;
-                    break;}
+                    break;
+                }
             }
             case "existence": {
-                if(existence == -1)
+                if (existence == -1)
                     throw new RuntimeException("the filter had not been selected already to be disabled now");
-                else{
+                else {
                     existence = -1;
-                    break;}
+                    break;
+                }
             }
             default:
                 throw new Exception("invalid filter");
         }
     }
 
-    public void disableSpecialFeature(String feature) throws ClassNotFoundException, NullPointerException, FileNotFoundException {
+    public void disableSpecialFeature(String feature , boolean disableDefinite ) throws ClassNotFoundException, NullPointerException, FileNotFoundException {
         if (isTheFeatureNumeric(feature)) {
-
-            if(getFeatureIfAmongDefiniteIntSpecialFeatures(feature) != null)
-                deleteASpecialFeatureFromHashMap(feature , definiteIntFeatures);
+            if (disableDefinite)
+                deleteASpecialFeatureFromHashMap(feature, definiteIntFeatures);
             else
-                deleteASpecialFeatureFromHashMap(feature , rangeFeatures);
+                deleteASpecialFeatureFromHashMap(feature, rangeFeatures);
 
         } else
-            deleteASpecialFeatureFromHashMap(feature , definiteStringFeatures);
+            deleteASpecialFeatureFromHashMap(feature, definiteStringFeatures);
     }
 
-    private String getFeatureIfAmongDefiniteIntSpecialFeatures(String feature){
+    private String getFeatureIfAmongDefiniteIntSpecialFeatures(String feature) {
         for (String featureName : definiteIntFeatures.keySet()) {
-            if(featureName.equalsIgnoreCase(feature))
+            if (featureName.equalsIgnoreCase(feature))
                 return featureName;
         }
         return null;
     }
-    private void deleteASpecialFeatureFromHashMap(String featureToDelete , HashMap featureList) throws FileNotFoundException {
+
+    private void deleteASpecialFeatureFromHashMap(String featureToDelete, HashMap featureList) throws FileNotFoundException {
         for (Object featureName : featureList.keySet()) {
-            if(featureName.equals(featureToDelete)){
+            if (featureName.equals(featureToDelete)) {
                 featureList.remove(featureName);
-                return;}
+                return;
+            }
         }
         throw new FileNotFoundException("the specialFeature had not been selected already to be disabled now");
     }
@@ -251,7 +265,6 @@ public class FilterController {
     public HashMap<String, Integer> getDefiniteIntFeatures() {
         return definiteIntFeatures;
     }
-
 
 
     public HashMap<String, Pair<Integer, Integer>> getRangeFeatures() {
@@ -288,29 +301,29 @@ public class FilterController {
     }
 
     public void setDefinitePrice(int definitePrice) throws Exception {
-        if (definitePrice >= 0){
-            priceMinMax = null;
-            this.definitePrice = definitePrice;}
-        else
+        if (definitePrice >= 0) {
+           // priceMinMax = null;
+            this.definitePrice = definitePrice;
+        } else
             throw new Exception("price should be a positive number");
     }
 
     public void setPriceMinMax(Pair<Integer, Integer> priceMinMax) {
-        definitePrice = -1;
+     //   definitePrice = -1;
         this.priceMinMax = priceMinMax;
     }
 
-    public void setRangeIntFeatures(String featureName, Pair<Integer, Integer> valueRange){
-        definiteIntFeatures.remove(getFeatureIfAmongDefiniteIntSpecialFeatures(featureName));
-        rangeFeatures.put(featureName , valueRange);
+    public void setRangeIntFeatures(String featureName, Pair<Integer, Integer> valueRange) {
+       // definiteIntFeatures.remove(getFeatureIfAmongDefiniteIntSpecialFeatures(featureName));
+        rangeFeatures.put(featureName, valueRange);
     }
 
-    public void setDefiniteIntFeatures(String featureName , int featureValue) {
-        for (String feature : rangeFeatures.keySet()) {
-            if(feature.equalsIgnoreCase(featureName))
-                rangeFeatures.remove(feature);
-        }
-        definiteIntFeatures.put(featureName , featureValue);
+    public void setDefiniteIntFeatures(String featureName, int featureValue) {
+//        for (String feature : rangeFeatures.keySet()) {
+//            if (feature.equalsIgnoreCase(featureName))
+//                rangeFeatures.remove(feature);
+//        }
+        definiteIntFeatures.put(featureName, featureValue);
     }
 
     public Pair<Integer, Integer> getPriceMinMax() {
@@ -372,7 +385,8 @@ public class FilterController {
         }
         return result.toString();
     }
-    public static void resetFilterController(){
-        single_instance=null;
+
+    public static void resetFilterController() {
+        single_instance = null;
     }
 }
