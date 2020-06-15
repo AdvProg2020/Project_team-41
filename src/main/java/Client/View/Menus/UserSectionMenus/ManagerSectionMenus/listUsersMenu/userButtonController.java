@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.example.App;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;

@@ -3,7 +3,6 @@ package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageProductsMen
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;
-import Client.View.Menus.ProductPage.ProductDetails;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.example.App;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

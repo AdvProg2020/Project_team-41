@@ -1,7 +1,6 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.viewDiscountCodesMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.Models.Person.Person;
 import Client.View.Menus.MessageType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

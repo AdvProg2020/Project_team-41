@@ -1,8 +1,6 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewDiscountCodesMenu;
 
 import Client.Controller.UserSectionController.BuyerController;
-import Client.Controller.UserSectionController.SellerController;
-import Client.Models.Category;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;

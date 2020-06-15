@@ -1,11 +1,8 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageOffsMenu;
 
-import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Off;
-import Client.Models.Product;
 import Client.View.Menus.MessageType;
-import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;

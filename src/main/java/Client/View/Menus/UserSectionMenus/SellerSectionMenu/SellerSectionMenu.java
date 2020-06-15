@@ -1,9 +1,6 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu;
 
 import Client.Controller.UserSectionController.SellerController;
-import Client.Controller.UserSectionController.UserSectionController;
-import Client.Models.Person.Person;
-import Server.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;

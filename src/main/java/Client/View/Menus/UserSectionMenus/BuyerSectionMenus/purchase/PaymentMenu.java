@@ -1,7 +1,6 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 
 import Client.Controller.UserSectionController.BuyerController;
-import Client.View.Menus.MainMenu;
 import Client.View.Menus.MessageType;
 import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;

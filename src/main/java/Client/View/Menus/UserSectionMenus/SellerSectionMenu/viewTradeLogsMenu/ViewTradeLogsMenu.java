@@ -1,6 +1,5 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewTradeLogsMenu;
 
-import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.SellerController;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;

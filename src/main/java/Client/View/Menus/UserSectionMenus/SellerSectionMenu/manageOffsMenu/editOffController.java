@@ -1,6 +1,5 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageOffsMenu;
 
-import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Off;
 import Client.Models.Product;
@@ -10,9 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class editOffController {
     public static String globalOffName;

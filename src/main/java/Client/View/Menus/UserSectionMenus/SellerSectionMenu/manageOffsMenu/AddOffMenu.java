@@ -1,6 +1,5 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageOffsMenu;
 
-import Client.Controller.UserSectionController.ManagerController;
 import Client.Controller.UserSectionController.SellerController;
 import Client.View.Menus.MessageType;
 import javafx.scene.control.TextField;

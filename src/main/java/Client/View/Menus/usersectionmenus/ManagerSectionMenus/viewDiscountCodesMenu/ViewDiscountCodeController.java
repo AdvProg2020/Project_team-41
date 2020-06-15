@@ -1,15 +1,11 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.viewDiscountCodesMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.View.Menus.MessageType;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ViewDiscountCodeController {
     static String code;

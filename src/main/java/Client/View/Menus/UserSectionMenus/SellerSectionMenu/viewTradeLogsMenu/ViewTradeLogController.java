@@ -1,6 +1,5 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewTradeLogsMenu;
 
-import Client.Controller.UserSectionController.UserSectionController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
