@@ -99,6 +99,7 @@ public class OffProductsToShow {
             try {
                 Product product = ManagerController.getInstance().getProductById(this.productId);
                 ProductPageGeneralButtons.setTheProduct(product);
+                ProductPageGeneralButtons.parentFxmlAddress = "offs";
                 App.setRoot("ProductPage/ProductPageGeneral");
             } catch (Exception ioException) {
                 ioException.printStackTrace();
