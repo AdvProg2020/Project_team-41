@@ -7,6 +7,7 @@ import Server.Controller.ServerSaver;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class TradeLog implements Serializable {
     private String logId;
@@ -78,5 +79,24 @@ public class TradeLog implements Serializable {
                 ", items=" + products +
                 ", deliverySituation='" + deliverySituation + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TradeLog tradeLog = (TradeLog) o;
+        return money == tradeLog.money &&
+                offAmount == tradeLog.offAmount &&
+                Objects.equals(logId, tradeLog.logId) &&
+                Objects.equals(date, tradeLog.date) &&
+                Objects.equals(items, tradeLog.items) &&
+                Objects.equals(buyerName, tradeLog.buyerName) &&
+                Objects.equals(deliverySituation, tradeLog.deliverySituation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(logId, date, money, offAmount, items, buyerName, deliverySituation);
     }
 }

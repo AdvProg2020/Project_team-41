@@ -120,18 +120,19 @@ public class RequestButtonsController {
     }
 
     public void acceptRequestClicked(MouseEvent mouseEvent) {
-        try {
-            ManagerController.getInstance().acceptRequest(getRequestId(requestIdTextField.getText()));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
-        if(requestsShown.contains(requestIdTextField.getText()))
-            vBox.getChildren().remove(getIndexOfRequest()+1);
-        vBox.getChildren().remove(getIndexOfRequest());
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(1);
-        showMessage(text, MessageType.SUCCESS,"successfully accepted request");
+        try {
+            ManagerController.getInstance().acceptRequest(getRequestId(requestIdTextField.getText()));
+            showMessage(text, MessageType.SUCCESS, "successfully accepted request");
+            if (requestsShown.contains(requestIdTextField.getText()))
+                vBox.getChildren().remove(getIndexOfRequest() + 1);
+            vBox.getChildren().remove(getIndexOfRequest());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            showMessage(text, MessageType.ERROR, e.getMessage());
+        }
 
     }
 }

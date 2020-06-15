@@ -9,6 +9,7 @@ import Server.Controller.TimeControl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class Off implements Serializable {
     private String offId;
@@ -130,5 +131,24 @@ public class Off implements Serializable {
                 "\nseller : " + seller.getUserName() +
                 "\nproducts : {" + products +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Off off = (Off) o;
+        return amountOfDiscount == off.amountOfDiscount &&
+                Objects.equals(offId, off.offId) &&
+                Objects.equals(products, off.products) &&
+                situation == off.situation &&
+                Objects.equals(startDate, off.startDate) &&
+                Objects.equals(endDate, off.endDate) &&
+                Objects.equals(seller, off.seller);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(offId, products, situation, startDate, endDate, amountOfDiscount, seller);
     }
 }
