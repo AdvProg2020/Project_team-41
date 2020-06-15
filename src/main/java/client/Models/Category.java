@@ -5,6 +5,7 @@ import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Category implements Serializable {
     private String name;
@@ -62,11 +63,15 @@ public class Category implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Category)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return name.equals(category.name) &&
-                specialFeatures.equals(category.specialFeatures) &&
-                products.equals(category.products);
+        return Objects.equals(name, category.name) &&
+                Objects.equals(specialFeatures, category.specialFeatures) &&
+                Objects.equals(products, category.products);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, specialFeatures, products);
+    }
 }

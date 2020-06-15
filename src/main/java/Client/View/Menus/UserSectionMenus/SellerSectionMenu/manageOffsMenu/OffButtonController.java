@@ -87,14 +87,15 @@ public class OffButtonController {
         TextField editAmountOfDiscountTextField = (TextField) editOffGridPane.getChildren().get(6);
         TextField editProductsTextField = (TextField) editOffGridPane.getChildren().get(7);
         HashMap<String, String> edits = new HashMap<>();
-        edits.put("start date", editStartDateTextField.getText());
-        edits.put("end date", editEndDateTextField.getText());
-        edits.put("amount of discount", editAmountOfDiscountTextField.getText());
+        edits.put("startDate", dateFormatConverter(editStartDateTextField.getText()));
+        edits.put("endDate", dateFormatConverter(editEndDateTextField.getText()));
+        edits.put("amountOfDiscount", editAmountOfDiscountTextField.getText());
         edits.put("products", editProductsTextField.getText());
         try {
-            SellerController.getInstance().editOff(offNameTextField.getId(), edits);
+            SellerController.getInstance().editOff(offNameTextField.getText().trim(), edits);
+            showMessage(informationText, MessageType.SUCCESS, "your request will be processed");
         } catch (Exception e) {
-            showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+            showMessage(informationText, MessageType.ERROR, e.getMessage());
         }
         vBox.getChildren().remove(getIndexOfOff()+1);
 
@@ -135,5 +136,14 @@ public class OffButtonController {
 
 
 
+    }
+    private String dateFormatConverter(String dateFormat){
+        String correctDataFormatForEditing;
+        String correctDate;
+        String[] date;
+        date = dateFormat.split("\\s+")[0].split("-");
+        correctDate = date[2]+"/"+date[1]+"/"+date[0];
+        correctDataFormatForEditing = correctDate + "," + dateFormat.split("\\s+")[1];
+        return correctDataFormatForEditing;
     }
 }

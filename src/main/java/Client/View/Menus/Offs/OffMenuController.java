@@ -13,6 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import org.example.App;
+
+import java.io.IOException;
 
 public class OffMenuController {
 
@@ -223,5 +226,8 @@ public class OffMenuController {
         if(existenceNo.isSelected()){
             existenceNo.setSelected(false);
         }
+    }
+    public void back() throws IOException {
+        App.setRoot("mainMenu");
     }
 }

@@ -1,6 +1,5 @@
 package Client.View.Menus.ProductPage;
 
-import Client.Models.Comment;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;
 import javafx.scene.Parent;

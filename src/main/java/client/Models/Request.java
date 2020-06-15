@@ -4,6 +4,7 @@ import Client.Models.Person.Seller;
 import Server.Controller.RandomNumberGenerator;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 public class Request implements Serializable {
@@ -120,6 +121,24 @@ public class Request implements Serializable {
         this.editedOff = editedOff;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Request request = (Request) o;
+        return requestType == request.requestType &&
+                Objects.equals(product, request.product) &&
+                Objects.equals(editedProduct, request.editedProduct) &&
+                Objects.equals(seller, request.seller) &&
+                Objects.equals(off, request.off) &&
+                Objects.equals(editedOff, request.editedOff) &&
+                Objects.equals(requestId, request.requestId) &&
+                Objects.equals(comment, request.comment);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(requestType, product, editedProduct, seller, off, editedOff, requestId, comment);
+    }
 }
 

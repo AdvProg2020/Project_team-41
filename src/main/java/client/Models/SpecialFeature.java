@@ -1,6 +1,7 @@
 package Client.Models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class SpecialFeature implements Serializable {
     private int specialFeatureInt;
@@ -39,5 +40,19 @@ public class SpecialFeature implements Serializable {
         }
         else
             return Integer.toString(specialFeatureInt);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SpecialFeature that = (SpecialFeature) o;
+        return specialFeatureInt == that.specialFeatureInt &&
+                Objects.equals(specialFeatureString, that.specialFeatureString);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(specialFeatureInt, specialFeatureString);
     }
 }

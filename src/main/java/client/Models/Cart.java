@@ -7,6 +7,7 @@ import Server.Controller.ServerSaver;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Cart implements Serializable {
     private Buyer buyer;
@@ -84,5 +85,21 @@ public class Cart implements Serializable {
     public void addProduct(Product product){
         products.put(product,1);
         ServerSaver.write(AllCommands.allData);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cart cart = (Cart) o;
+        return Objects.equals(buyer, cart.buyer) &&
+                Objects.equals(products, cart.products) &&
+                Objects.equals(receiverInformation, cart.receiverInformation) &&
+                Objects.equals(codedDiscount, cart.codedDiscount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(products, receiverInformation, codedDiscount);
     }
 }

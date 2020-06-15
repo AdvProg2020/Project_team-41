@@ -6,6 +6,7 @@ import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Seller extends Person {
 
@@ -61,4 +62,19 @@ public class Seller extends Person {
         ServerSaver.write(AllCommands.allData);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Seller seller = (Seller) o;
+        return Objects.equals(factoryName, seller.factoryName) &&
+                Objects.equals(products, seller.products) &&
+                Objects.equals(offs, seller.offs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), factoryName, products, offs);
+    }
 }

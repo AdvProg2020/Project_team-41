@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class CodedDiscount implements Serializable {
     public CodedDiscount(String discountCode, Date startDate, Date endDate, int discountPercentage,int maximumDiscount, int discountRepeatsForEachUser, ArrayList<Person> people) throws Exception {
@@ -114,5 +115,24 @@ public class CodedDiscount implements Serializable {
     public int howMuchWillItCost(int price){
         int discountAmount = price*(discountPercentage)/100;
         return price - Math.min((discountAmount), maximumDiscount);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CodedDiscount that = (CodedDiscount) o;
+        return discountPercentage == that.discountPercentage &&
+                maximumDiscount == that.maximumDiscount &&
+                discountRepeatsForEachUser == that.discountRepeatsForEachUser &&
+                Objects.equals(discountCode, that.discountCode) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(endDate, that.endDate) &&
+                Objects.equals(people, that.people);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(discountCode, startDate, endDate, discountPercentage, maximumDiscount, discountRepeatsForEachUser, people);
     }
 }

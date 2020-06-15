@@ -5,6 +5,7 @@ import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Comment implements Serializable {
     private Person person;
@@ -76,5 +77,23 @@ public class Comment implements Serializable {
     public void setCommentSituation(CommentSituation commentSituation) {
         this.commentSituation = commentSituation;
         ServerSaver.write(AllCommands.allData);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return hasHeBought == comment.hasHeBought &&
+                Objects.equals(person, comment.person) &&
+                Objects.equals(product, comment.product) &&
+                Objects.equals(title, comment.title) &&
+                Objects.equals(content, comment.content) &&
+                commentSituation == comment.commentSituation;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(person, product, title, content, commentSituation, hasHeBought);
     }
 }

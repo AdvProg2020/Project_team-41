@@ -149,12 +149,18 @@ public abstract class Person implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return userName.equals(person.userName) &&
-                password.equals(person.password);
+        return credit == person.credit &&
+                userName.equals(person.userName) &&
+                Objects.equals(firstName, person.firstName) &&
+                Objects.equals(lastName, person.lastName) &&
+                Objects.equals(email, person.email) &&
+                Objects.equals(phoneNumber, person.phoneNumber) &&
+                password.equals(person.password) &&
+                Objects.equals(tradeLogs, person.tradeLogs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, password);
+        return Objects.hash(userName, firstName, lastName, email, phoneNumber, password, tradeLogs, credit);
     }
 }

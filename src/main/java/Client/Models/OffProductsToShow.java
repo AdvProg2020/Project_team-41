@@ -9,6 +9,7 @@ import org.example.App;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Objects;
 
 public class OffProductsToShow {
     private String productId;
@@ -98,10 +99,31 @@ public class OffProductsToShow {
             try {
                 Product product = ManagerController.getInstance().getProductById(this.productId);
                 ProductPageGeneralButtons.setTheProduct(product);
+                ProductPageGeneralButtons.parentFxmlAddress = "offs";
                 App.setRoot("ProductPage/ProductPageGeneral");
             } catch (Exception ioException) {
                 ioException.printStackTrace();
             }
         });
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OffProductsToShow that = (OffProductsToShow) o;
+        return price == that.price &&
+                priceWithDiscount == that.priceWithDiscount &&
+                score == that.score &&
+                Objects.equals(productId, that.productId) &&
+                Objects.equals(productName, that.productName) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(endDate, that.endDate) &&
+                Objects.equals(button, that.button);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, productName, price, priceWithDiscount, startDate, endDate, score, button);
     }
 }

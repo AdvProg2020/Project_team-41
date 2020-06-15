@@ -271,17 +271,17 @@ public class Product implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return price == product.price &&
                 quantity == product.quantity &&
-                off == product.off &&
                 views == product.views &&
                 Objects.equals(productId, product.productId) &&
+                situation == product.situation &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(companyName, product.companyName) &&
                 Objects.equals(seller, product.seller) &&
-                Objects.equals(situation,product.situation) &&
+                Objects.equals(off, product.off) &&
                 Objects.equals(category, product.category) &&
                 Objects.equals(specialFeatures, product.specialFeatures) &&
                 Objects.equals(description, product.description) &&
@@ -290,4 +290,8 @@ public class Product implements Serializable {
                 Objects.equals(buyers, product.buyers);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, situation, name, companyName, price, seller, quantity, off, category, specialFeatures, description, scores, comments, views, buyers);
+    }
 }
