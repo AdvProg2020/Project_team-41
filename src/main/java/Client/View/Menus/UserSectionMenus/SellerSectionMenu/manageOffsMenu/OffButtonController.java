@@ -92,9 +92,10 @@ public class OffButtonController {
         edits.put("amount of discount", editAmountOfDiscountTextField.getText());
         edits.put("products", editProductsTextField.getText());
         try {
-            SellerController.getInstance().editOff(offNameTextField.getId(), edits);
-        } catch (Exception e) {
+            SellerController.getInstance().editOff(offNameTextField.getId().trim(), edits);
             showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+        } catch (Exception e) {
+            showMessage(informationText, MessageType.ERROR, e.getMessage());
         }
         vBox.getChildren().remove(getIndexOfOff()+1);
 
