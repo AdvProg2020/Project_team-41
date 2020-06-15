@@ -235,6 +235,7 @@ public class SellerServerController extends UserSectionServerController {
 
                                         }
                                         editedOff.setProducts(products);
+                                        break;
                                 }
                                 default:{
                                         throw new Exception("invalid field");
