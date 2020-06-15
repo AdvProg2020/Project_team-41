@@ -1,5 +1,6 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageProductsMenu;
 
+import Client.Controller.AllProductsController;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;
@@ -25,7 +26,7 @@ public class ProductButtonController {
     public TextField productIdTextField;
     ArrayList<String> productsShown = new ArrayList<>();
 
-    public void viewProductClicked(MouseEvent mouseEvent) throws IOException {
+    public void viewProductClicked(MouseEvent mouseEvent) throws Exception {
         if(productsShown.contains(productIdTextField.getText())){
             productsShown.remove(productIdTextField.getText());
             hideProduct();
@@ -39,7 +40,6 @@ public class ProductButtonController {
 
 
     public void removeProductClicked(MouseEvent mouseEvent) throws Exception {
-
         try {
             ManagerController.getInstance().removeProduct(productIdTextField.getText());
         } catch (Exception e) {
@@ -52,10 +52,8 @@ public class ProductButtonController {
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(1);
         showMessage(text, MessageType.SUCCESS,"removed the product successfully");
-
-
     }
-    private void showProduct() throws IOException {
+    private void showProduct() throws Exception {
         Product product = null;
         try {
             product = ManagerController.getInstance().getProductById(productIdTextField.getText());
@@ -64,10 +62,8 @@ public class ProductButtonController {
         }
         ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");
-
-
-
-
+       product.setViews(product.getViews()+1);
+       ProductPageGeneralButtons.parentFxmlAddress = "userSection/managerSection/manager section";
     }
     private void hideProduct() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
