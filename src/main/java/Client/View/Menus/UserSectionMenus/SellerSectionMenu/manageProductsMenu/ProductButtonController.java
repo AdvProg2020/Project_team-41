@@ -64,11 +64,9 @@ public class ProductButtonController {
         }
         ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");
-
-
-
-
+        ProductPageGeneralButtons.parentFxmlAddress = "userSection/sellerSection/seller section";
     }
+
     private void hideProduct() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
         vBox.getChildren().remove(getIndexOfProduct()+1);

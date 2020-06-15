@@ -52,8 +52,6 @@ public class ProductButtonController {
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(1);
         showMessage(text, MessageType.SUCCESS,"removed the product successfully");
-
-
     }
     private void showProduct() throws Exception {
         Product product = null;
