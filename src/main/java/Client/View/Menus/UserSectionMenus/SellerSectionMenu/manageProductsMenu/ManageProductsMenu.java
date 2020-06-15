@@ -51,7 +51,7 @@ public class ManageProductsMenu {
         Parent root;
         try {
             root = App.loadFXML("userSection/sellerSection/manageProductsMenu/addProduct");
-            insideAnchorPane.getChildren().add(root);
+            insideAnchorPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
