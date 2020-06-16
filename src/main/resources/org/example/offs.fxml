@@ -16,7 +16,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.Offs.OffMenuController">
    <center>
-      <TableView fx:id="tableView" prefHeight="590.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="590.0" prefWidth="1102.0" style="-fx-background-color: #EEE8AA;" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="button" prefWidth="107.99996644258499" text="Product id" />
           <TableColumn fx:id="name" minWidth="9.066688537597656" prefWidth="124.80001831054688" text="Name" />
@@ -29,10 +29,10 @@
       </TableView>
    </center>
    <top>
-      <AnchorPane prefHeight="75.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="75.0" prefWidth="1400.0" style="-fx-background-color: #FFD700;" BorderPane.alignment="CENTER">
          <children>
-            <ChoiceBox fx:id="SortVariables" layoutX="239.0" layoutY="24.0" onAction="#sort" prefWidth="150.0" />
-            <Label layoutX="136.0" layoutY="21.0" text="Sort by:">
+            <ChoiceBox fx:id="SortVariables" layoutX="711.0" layoutY="27.0" onAction="#sort" prefWidth="150.0" style="-fx-background-color: #87CEEB;" />
+            <Label layoutX="625.0" layoutY="24.0" text="Sort by:">
                <font>
                   <Font size="20.0" />
                </font>
@@ -42,7 +42,19 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="25.0" layoutY="24.0" mnemonicParsing="false" onAction="#back" text="Back" />
+            <Button alignment="CENTER" layoutX="25.0" layoutY="24.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #DC143C;" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button layoutX="129.0" layoutY="23.0" mnemonicParsing="false" onAction="#userSection" style="-fx-background-color: #DC143C;" text="User section" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="loginLogout" layoutX="266.0" layoutY="22.0" mnemonicParsing="false" onAction="#registerOrLogin" style="-fx-background-color: #DC143C;" text="Register/Login" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </top>
@@ -230,6 +242,6 @@
       </ScrollPane>
    </right>
    <bottom>
-      <AnchorPane prefHeight="85.0" prefWidth="1400.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="85.0" prefWidth="1400.0" style="-fx-background-color: #FFD700;" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

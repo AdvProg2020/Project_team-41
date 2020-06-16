@@ -3,9 +3,17 @@ package Client.View.Menus.Offs;
 import Client.Controller.FilterController;
 import Client.Controller.SortController;
 import Client.Controller.UserSectionController.SellerController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Category;
 import Client.Models.OffProductsToShow;
+import Client.Models.Person.Buyer;
+import Client.Models.Person.Manager;
+import Client.Models.Person.Seller;
 import Client.Models.Product;
+import Client.View.Menus.Menu;
+import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
+import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu;
+import Client.View.Menus.UserSectionMenus.SellerSectionMenu.SellerSectionMenu;
 import Server.Controller.TimeControl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,11 +21,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.Pair;
 import org.example.App;
 
 import java.io.IOException;
 
-public class OffMenuController {
+public class OffMenuController extends Menu {
 
     public TableView<OffProductsToShow> tableView;
     public TableColumn<OffProductsToShow, Button > button;
@@ -47,6 +56,7 @@ public class OffMenuController {
     public Label filterInfoLabel;
     public ChoiceBox<String> allCategories;
     public ChoiceBox<String> specialFeaturesChoice;
+    public Button loginLogout;
 
     public void initialize(){
         tableView.setItems(getProducts());
@@ -66,6 +76,12 @@ public class OffMenuController {
         for (Category category : SellerController.getInstance().getCategories()) {
             allCategories.getItems().addAll(category.getName());
 
+        }
+
+        if(UserSectionController.getLoggedInPerson()==null){
+            loginLogout.setText("Register/Login");
+        }else{
+            loginLogout.setText("Logout");
         }
 
     }
@@ -150,10 +166,55 @@ public class OffMenuController {
         }
     }
     public void filterPriceRange(){
+        if(enablePriceRangeFilter.isSelected()){
+            if(!minPrice.getText().matches("\\d+") || !maxPrice.getText().matches("\\d+")){
+                filterInfoLabel.setText("Please first enter information!");
+                filterInfoLabel.setTextFill(Color.RED);
+                enablePriceRangeFilter.setSelected(false);
+            }else{
+                FilterController.getInstance().setPriceMinMax(new Pair<>(Integer.parseInt(minPrice.getText()), Integer.parseInt(maxPrice.getText())));
+                tableView.setItems(getProducts());
+            }
 
+        }else{
+            try {
+                FilterController.getInstance().disableFilter("rangePrice");
+                tableView.setItems(getProducts());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
     public void filterPriceDefinite(){
+        if(enablePriceDefiniteFilter.isSelected()){
+            if(!definitePrice.getText().matches("\\d+")){
+                filterInfoLabel.setText("Please first enter information!");
+                filterInfoLabel.setTextFill(Color.RED);
+                enablePriceDefiniteFilter.setSelected(false);
+            }else{
+                try {
+                    FilterController.getInstance().setDefinitePrice(Integer.parseInt(definitePrice.getText()));
+                    tableView.setItems(getProducts());
 
+                } catch (Exception e) {
+                    filterInfoLabel.setText(e.getMessage());
+                    filterInfoLabel.setTextFill(Color.RED);
+                    enablePriceDefiniteFilter.setSelected(false);
+                }
+            }
+
+        }else{
+            try {
+                FilterController.getInstance().disableFilter("definitePrice");
+                tableView.setItems(getProducts());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
     public void filterCategory(){
 
@@ -229,5 +290,31 @@ public class OffMenuController {
     }
     public void back() throws IOException {
         App.setRoot("mainMenu");
+    }
+    public void registerOrLogin() throws IOException {
+        if(UserSectionController.getLoggedInPerson()==null){
+            login("offs");
+        }else{
+            logout("offs");
+        }
+    }
+    public void userSection() throws IOException {
+        if(UserSectionController.getLoggedInPerson()==null){
+            login("offs");
+        }else{
+            if(UserSectionController.getLoggedInPerson() instanceof Manager){
+                ManagerSectionMenu.parentFxmlAddress = "mainMenu";
+                App.setRoot("userSection/managerSection/manager section");
+            }else if(UserSectionController.getLoggedInPerson() instanceof Seller){
+                SellerSectionMenu.parentFxmlAddress = "mainMenu";
+                App.setRoot("userSection/sellerSection/seller section");
+
+            }else if(UserSectionController.getLoggedInPerson() instanceof Buyer){
+                BuyerSectionMenu.parentFxmlAddress = "mainMenu";
+                App.setRoot("userSection/buyerSection/buyer section");
+
+
+            }
+        }
     }
 }
