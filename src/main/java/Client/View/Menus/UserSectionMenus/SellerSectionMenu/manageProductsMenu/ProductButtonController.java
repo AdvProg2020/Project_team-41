@@ -25,7 +25,7 @@ public class ProductButtonController {
     public TextField productIdTextField;
     ArrayList<String> productsShown = new ArrayList<>();
 
-    public void viewProductClicked(MouseEvent mouseEvent) throws IOException {
+    public void viewProductClicked(MouseEvent mouseEvent) throws Exception {
         if(productsShown.contains(productIdTextField.getText())){
             productsShown.remove(productIdTextField.getText());
             hideProduct();
@@ -55,7 +55,7 @@ public class ProductButtonController {
 
 
     }
-    private void showProduct() throws IOException {
+    private void showProduct() throws Exception {
         Product product = null;
         try {
             product = SellerController.getInstance().getProduct(productIdTextField.getText());
@@ -63,6 +63,7 @@ public class ProductButtonController {
             System.out.println(e.getMessage());
         }
         ProductPageGeneralButtons.setTheProduct(product);
+        ProductPageGeneralButtons.getTheProduct().setViews(ProductPageGeneralButtons.getTheProduct().getViews()+1);
         App.setRoot("ProductPage/ProductPageGeneral");
         ProductPageGeneralButtons.parentFxmlAddress = "userSection/sellerSection/seller section";
     }
