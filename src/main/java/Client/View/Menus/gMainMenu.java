@@ -55,6 +55,7 @@ public class gMainMenu extends Menu {
     public void userSection() throws IOException {
         if(UserSectionController.getLoggedInPerson()==null){
             userSectionError.setVisible(true);
+            login("mainMenu");
         }else{
             if(UserSectionController.getLoggedInPerson() instanceof Manager){
                 ManagerSectionMenu.parentFxmlAddress = "mainMenu";
