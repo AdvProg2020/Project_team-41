@@ -241,6 +241,7 @@ public class OffMenuController extends Menu {
         }else{
             try {
                 FilterController.getInstance().disableFilter("category name");
+                vBox.getChildren().remove(vBox.getChildren().indexOf(categoryAnchorPane)+1,vBox.getChildren().size());
                 tableView.setItems(getProducts());
             } catch (Exception e) {
                 e.printStackTrace();
