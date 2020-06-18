@@ -169,6 +169,9 @@ public class FilterController {
                     throw new RuntimeException("the filter had not been selected already to be disabled now");
                 else {
                     filterCategory = null;
+                    definiteStringFeatures.clear();
+                    definiteIntFeatures.clear();
+                    rangeFeatures.clear();
                     break;
                 }
             }
