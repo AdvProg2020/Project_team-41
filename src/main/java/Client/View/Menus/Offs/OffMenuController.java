@@ -20,11 +20,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Pair;
 import org.example.App;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class OffMenuController extends Menu {
 
@@ -52,15 +55,17 @@ public class OffMenuController extends Menu {
     public CheckBox existenceNo;
     public CheckBox existenceYes;
     public CheckBox enableCategoryFilter;
-    public AnchorPane specialFeatureAnchorPane;
     public Label filterInfoLabel;
     public ChoiceBox<String> allCategories;
     public ChoiceBox<String> specialFeaturesChoice;
     public Button loginLogout;
+    public VBox vBox;
+    public BorderPane mainBorderPane;
+    public AnchorPane categoryAnchorPane;
 
     public void initialize(){
         tableView.setItems(getProducts());
-
+//        filterInfoLabel.setText("");
         button.setCellValueFactory(new PropertyValueFactory<>("button"));
         name.setCellValueFactory(new PropertyValueFactory<>("productName"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -227,7 +232,7 @@ public class OffMenuController extends Menu {
                 try {
                     FilterController.getInstance().setFilterCategory(allCategories.getValue());
                     tableView.setItems(getProducts());
-                    specialFeaturesChoice.getItems().addAll(FilterController.getInstance().getFilterCategory().getSpecialFeatures());
+                    filterSpecialFeature();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -244,7 +249,22 @@ public class OffMenuController extends Menu {
         }
 
     }
-    public void filterSpecialFeature(){
+    public void filterSpecialFeature() throws IOException {
+        for (String specialFeature : FilterController.getInstance().getFilterCategory().getSpecialFeatures()) {
+            try {
+                if(FilterController.getInstance().isTheFeatureNumeric(specialFeature)){
+                    FilterRange.filterName=specialFeature;
+                    vBox.getChildren().add(App.loadFXML("filterRange"));
+
+                }else{
+                    FilterValue.filterName=specialFeature;
+                    vBox.getChildren().add(App.loadFXML("filterValue"));
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
 
     }
     public void filterExistence(){
@@ -289,6 +309,7 @@ public class OffMenuController extends Menu {
         }
     }
     public void back() throws IOException {
+        FilterController.resetFilterController();
         App.setRoot("mainMenu");
     }
     public void registerOrLogin() throws IOException {

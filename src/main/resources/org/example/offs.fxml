@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.Offs.OffMenuController">
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.Offs.OffMenuController">
    <center>
       <TableView fx:id="tableView" prefHeight="590.0" prefWidth="1102.0" style="-fx-background-color: #EEE8AA;" BorderPane.alignment="CENTER">
         <columns>
@@ -61,7 +62,7 @@
    <right>
       <ScrollPane prefHeight="630.0" prefWidth="452.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox prefHeight="834.0" prefWidth="430.0">
+            <VBox fx:id="vBox" prefHeight="622.0" prefWidth="430.0">
                <children>
                   <AnchorPane prefHeight="89.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
                      <children>
@@ -75,11 +76,18 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="productName" layoutX="174.0" layoutY="52.0" prefHeight="26.0" prefWidth="190.0" promptText="Name" />
+                        <TextField fx:id="productName" layoutX="174.0" layoutY="52.0" prefHeight="26.0" prefWidth="190.0" promptText="Name">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
                         <Label layoutX="43.0" layoutY="47.0" text="Product name:">
                            <font>
                               <Font size="17.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
                         </Label>
                      </children>
                   </AnchorPane>
@@ -95,11 +103,18 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="companyName" layoutX="174.0" layoutY="57.0" prefHeight="26.0" prefWidth="190.0" promptText="Name" />
+                        <TextField fx:id="companyName" layoutX="174.0" layoutY="57.0" prefHeight="26.0" prefWidth="190.0" promptText="Name">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
                         <Label layoutX="28.0" layoutY="53.0" text="Company name:">
                            <font>
                               <Font size="17.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
                         </Label>
                      </children>
                   </AnchorPane>
@@ -115,8 +130,12 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="sellerUsername" layoutX="174.0" layoutY="48.0" prefHeight="26.0" prefWidth="190.0" promptText="Username" />
-                        <Label layoutX="37.0" layoutY="46.0" text="Seller username:">
+                        <TextField fx:id="sellerUsername" layoutX="174.0" layoutY="48.0" prefHeight="26.0" prefWidth="190.0" promptText="Username" AnchorPane.bottomAnchor="10.399999999999995" AnchorPane.leftAnchor="173.99999999999997" AnchorPane.rightAnchor="65.99999999999997" AnchorPane.topAnchor="48.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
+                        <Label layoutX="36.0" layoutY="48.0" text="Seller username:">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -152,6 +171,9 @@
                                        </font>
                                     </CheckBox>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #98FB98;">
                                  <children>
@@ -167,6 +189,9 @@
                                        </font>
                                     </CheckBox>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
                               </AnchorPane>
                            </children>
                         </HBox>
@@ -188,6 +213,9 @@
                            <font>
                               <Font size="17.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
                         </Label>
                         <CheckBox fx:id="existenceNo" layoutX="317.0" layoutY="45.0" mnemonicParsing="false" onAction="#noExistence" text="No">
                            <font>
@@ -201,7 +229,7 @@
                         </CheckBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="93.0" prefWidth="430.0" style="-fx-background-color: #F0FFFF;">
+                  <AnchorPane fx:id="categoryAnchorPane" prefHeight="93.0" prefWidth="430.0" style="-fx-background-color: #F0FFFF;">
                      <children>
                         <CheckBox fx:id="enableCategoryFilter" layoutX="288.0" layoutY="11.0" mnemonicParsing="false" onAction="#filterCategory" text="Enable filter">
                            <font>
@@ -217,23 +245,11 @@
                            <font>
                               <Font size="17.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
                         </Label>
                         <ChoiceBox fx:id="allCategories" layoutX="244.0" layoutY="53.0" prefWidth="150.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="specialFeatureAnchorPane" prefHeight="98.0" prefWidth="430.0" style="-fx-background-color: #A9A9A9;">
-                     <children>
-                        <Label layoutX="26.0" layoutY="1.0" prefHeight="44.0" prefWidth="260.0" text="Filter by category special feature:">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="26.0" layoutY="54.0" text="Choose category special feature: ">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox fx:id="specialFeaturesChoice" layoutX="248.0" layoutY="51.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
                </children>

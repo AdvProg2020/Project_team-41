@@ -1,5 +1,6 @@
 package Client.Models;
 
+import Client.Controller.FilterController;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import ir.huri.jcal.JalaliCalendar;
@@ -99,7 +100,9 @@ public class OffProductsToShow {
             try {
                 Product product = ManagerController.getInstance().getProductById(this.productId);
                 ProductPageGeneralButtons.setTheProduct(product);
+                product.setViews(product.getViews()+1);
                 ProductPageGeneralButtons.parentFxmlAddress = "offs";
+                FilterController.resetFilterController();
                 App.setRoot("ProductPage/ProductPageGeneral");
             } catch (Exception ioException) {
                 ioException.printStackTrace();

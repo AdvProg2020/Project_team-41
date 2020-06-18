@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="168.0" prefWidth="430.0" style="-fx-background-color: #F0FFFF; -fx-border-color: #00FA9A; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.Offs.FilterRange">
+   <children>
+      <Label fx:id="information" layoutX="26.0" layoutY="2.0" prefHeight="44.0" prefWidth="217.0" text="information:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <HBox layoutX="14.0" layoutY="40.0" prefHeight="116.0" prefWidth="411.0">
+         <children>
+            <AnchorPane prefHeight="114.0" prefWidth="208.0" style="-fx-background-color: #00FA9A;">
+               <children>
+                  <TextField fx:id="minPrice" layoutX="78.0" layoutY="40.0" prefHeight="26.0" prefWidth="123.0" promptText="Min" />
+                  <TextField fx:id="maxPrice" layoutX="77.0" layoutY="77.0" prefHeight="26.0" prefWidth="123.0" promptText="Max" />
+                  <Label layoutX="33.0" layoutY="44.0" text="Min :">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="81.0" text="Max :">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="enablePriceRangeFilter" layoutX="88.0" layoutY="10.0" mnemonicParsing="false" onAction="#filterRange" text="Enable filter">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #98FB98;">
+               <children>
+                  <Label layoutX="36.0" layoutY="35.0" prefHeight="26.0" prefWidth="142.0" text="Definite amount:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="definitePrice" layoutX="26.0" layoutY="66.0" promptText="Difinite price" />
+                  <CheckBox fx:id="enablePriceDefiniteFilter" layoutX="87.0" layoutY="10.0" mnemonicParsing="false" onAction="#filterDefinite" text="Enable filter">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
