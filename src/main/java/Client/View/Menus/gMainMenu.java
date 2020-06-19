@@ -41,7 +41,6 @@ public class gMainMenu extends Menu {
         }
     }
 
-
     public void registerOrLogin() throws IOException {
         if(UserSectionController.getLoggedInPerson()==null){
             login("mainMenu");
@@ -49,9 +48,11 @@ public class gMainMenu extends Menu {
             logout("mainMenu");
         }
     }
+
     public void allProducts() throws IOException {
         App.setRoot("AllProducts/AllProductsGeneralButtons");
     }
+
     public void userSection() throws IOException {
         if(UserSectionController.getLoggedInPerson()==null){
             userSectionError.setVisible(true);
@@ -72,6 +73,7 @@ public class gMainMenu extends Menu {
             }
         }
     }
+
     public void offs() throws IOException {
         App.setRoot("offs");
 
