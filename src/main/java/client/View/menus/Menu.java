@@ -150,6 +150,7 @@ public abstract class Menu {
         window.setScene(scene);
         window.showAndWait();
     }
+
     public static void setRootForNewWindow(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }

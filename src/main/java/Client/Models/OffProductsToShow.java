@@ -16,11 +16,12 @@ public class OffProductsToShow {
     private String productId;
     private String productName;
     private int price;
+    private int score;
+    private Button button;
     private int priceWithDiscount;
     private String  startDate;
     private String  endDate;
-    private int score;
-    private Button button;
+
 
     public void setButton(Button button) {
         this.button = button;

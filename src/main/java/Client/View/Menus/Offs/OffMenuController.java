@@ -251,6 +251,8 @@ public class OffMenuController extends Menu {
 
     }
     public void filterSpecialFeature() throws IOException {
+        FilterValue.offMenu = true;
+        FilterRange.offMenu = true;
         for (String specialFeature : FilterController.getInstance().getFilterCategory().getSpecialFeatures()) {
             try {
                 if(FilterController.getInstance().isTheFeatureNumeric(specialFeature)){

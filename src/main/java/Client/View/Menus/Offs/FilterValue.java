@@ -4,6 +4,7 @@ import Client.Controller.FilterController;
 import Client.Controller.SortController;
 import Client.Models.OffProductsToShow;
 import Client.Models.Product;
+import Client.View.Menus.AllProductsPage.allProductsMenu;
 import Client.View.Menus.NodeFinder;
 import Server.Controller.TimeControl;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ public class FilterValue {
     public Label information;
     public TextField value;
     public AnchorPane anchorPane;
+    public static boolean offMenu;
 
     public void initialize() {
         information.setText(filterName);
@@ -33,18 +35,23 @@ public class FilterValue {
                 enableFilter.setSelected(false);
             } else {
                 FilterController.getInstance().getDefiniteStringFeatures().put(information.getText(), value.getText());
-                BorderPane borderPane= (BorderPane) NodeFinder.getParentById(anchorPane,"mainBorderPane");
-                TableView tableView=(TableView)NodeFinder.getChildById(borderPane,"tableView");
-                tableView.setItems(getProducts());
-
+                BorderPane borderPane = (BorderPane) NodeFinder.getParentById(anchorPane, "mainBorderPane");
+                TableView tableView = (TableView) NodeFinder.getChildById(borderPane, "tableView");
+                if (offMenu)
+                    tableView.setItems(getProducts());
+                else
+                    tableView.setItems(allProductsMenu.getProducts());
 
             }
         } else {
             try {
-                FilterController.getInstance().disableSpecialFeature(information.getText() , true);
-                BorderPane borderPane= (BorderPane) NodeFinder.getParentById(anchorPane,"mainBorderPane");
-                TableView tableView=(TableView)NodeFinder.getChildById(borderPane,"tableView");
-                tableView.setItems(getProducts());
+                FilterController.getInstance().disableSpecialFeature(information.getText(), true);
+                BorderPane borderPane = (BorderPane) NodeFinder.getParentById(anchorPane, "mainBorderPane");
+                TableView tableView = (TableView) NodeFinder.getChildById(borderPane, "tableView");
+                if (offMenu)
+                    tableView.setItems(getProducts());
+                else
+                    tableView.setItems(allProductsMenu.getProducts());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (FileNotFoundException e) {

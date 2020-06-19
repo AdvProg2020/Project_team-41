@@ -4,6 +4,7 @@ import Client.Controller.FilterController;
 import Client.Controller.SortController;
 import Client.Models.OffProductsToShow;
 import Client.Models.Product;
+import Client.View.Menus.AllProductsPage.allProductsMenu;
 import Client.View.Menus.NodeFinder;
 import Server.Controller.TimeControl;
 import javafx.collections.FXCollections;
@@ -25,29 +26,36 @@ public class FilterRange {
     public TextField maxPrice;
     public TextField definitePrice;
     public AnchorPane anchorPane;
+    public static boolean offMenu;
 
-    public void initialize(){
+    public void initialize() {
         information.setText(filterName);
     }
 
     public void filterRange(ActionEvent actionEvent) {
         if (enablePriceRangeFilter.isSelected()) {
-            if (minPrice.getText().length() == 0||maxPrice.getText().length()==0) {
+            if (minPrice.getText().length() == 0 || maxPrice.getText().length() == 0) {
                 enablePriceRangeFilter.setSelected(false);
             } else {
                 FilterController.getInstance().setRangeIntFeatures(information.getText(), new Pair<>(
-                        Integer.parseInt(minPrice.getText()),Integer.parseInt(maxPrice.getText())));
+                        Integer.parseInt(minPrice.getText()), Integer.parseInt(maxPrice.getText())));
 
-                BorderPane borderPane= (BorderPane) NodeFinder.getParentById(anchorPane,"mainBorderPane");
-                TableView tableView=(TableView)NodeFinder.getChildById(borderPane,"tableView");
-                tableView.setItems(getProducts());
+                BorderPane borderPane = (BorderPane) NodeFinder.getParentById(anchorPane, "mainBorderPane");
+                TableView tableView = (TableView) NodeFinder.getChildById(borderPane, "tableView");
+                if (offMenu)
+                    tableView.setItems(getProducts());
+                else
+                    tableView.setItems(allProductsMenu.getProducts());
             }
         } else {
             try {
-                FilterController.getInstance().disableSpecialFeature(information.getText() , false);
-                BorderPane borderPane= (BorderPane) NodeFinder.getParentById(anchorPane,"mainBorderPane");
-                TableView tableView=(TableView)NodeFinder.getChildById(borderPane,"tableView");
-                tableView.setItems(getProducts());
+                FilterController.getInstance().disableSpecialFeature(information.getText(), false);
+                BorderPane borderPane = (BorderPane) NodeFinder.getParentById(anchorPane, "mainBorderPane");
+                TableView tableView = (TableView) NodeFinder.getChildById(borderPane, "tableView");
+                if (offMenu)
+                    tableView.setItems(getProducts());
+                else
+                    tableView.setItems(allProductsMenu.getProducts());
             } catch (ClassNotFoundException | FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -60,17 +68,23 @@ public class FilterRange {
             if (definitePrice.getText().length() == 0) {
                 enablePriceDefiniteFilter.setSelected(false);
             } else {
-                FilterController.getInstance().setDefiniteIntFeatures(information.getText(),Integer.parseInt(definitePrice.getText()));
-                BorderPane borderPane= (BorderPane) NodeFinder.getParentById(anchorPane,"mainBorderPane");
-                TableView tableView=(TableView)NodeFinder.getChildById(borderPane,"tableView");
-                tableView.setItems(getProducts());
+                FilterController.getInstance().setDefiniteIntFeatures(information.getText(), Integer.parseInt(definitePrice.getText()));
+                BorderPane borderPane = (BorderPane) NodeFinder.getParentById(anchorPane, "mainBorderPane");
+                TableView tableView = (TableView) NodeFinder.getChildById(borderPane, "tableView");
+                if (offMenu)
+                    tableView.setItems(getProducts());
+                else
+                    tableView.setItems(allProductsMenu.getProducts());
             }
         } else {
             try {
-                FilterController.getInstance().disableSpecialFeature(information.getText() , true);
-                BorderPane borderPane= (BorderPane) NodeFinder.getParentById(anchorPane,"mainBorderPane");
-                TableView tableView=(TableView)NodeFinder.getChildById(borderPane,"tableView");
-                tableView.setItems(getProducts());
+                FilterController.getInstance().disableSpecialFeature(information.getText(), true);
+                BorderPane borderPane = (BorderPane) NodeFinder.getParentById(anchorPane, "mainBorderPane");
+                TableView tableView = (TableView) NodeFinder.getChildById(borderPane, "tableView");
+                if (offMenu)
+                    tableView.setItems(getProducts());
+                else
+                    tableView.setItems(allProductsMenu.getProducts());
             } catch (ClassNotFoundException | FileNotFoundException e) {
                 e.printStackTrace();
             }

@@ -50,7 +50,7 @@ public class gMainMenu extends Menu {
     }
 
     public void allProducts() throws IOException {
-        App.setRoot("AllProducts/AllProductsGeneralButtons");
+        App.setRoot("AllProducts");
     }
 
     public void userSection() throws IOException {
