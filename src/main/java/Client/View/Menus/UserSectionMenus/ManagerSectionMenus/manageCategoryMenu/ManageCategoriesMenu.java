@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageCategoryMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
+import Client.View.Menus.MessageType;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -23,8 +24,9 @@ public class ManageCategoriesMenu {
 
     @FXML
     public void initialize(){
-        if(ManagerController.getInstance().showCategories().isEmpty())
-            System.out.println("there is no category to show here");
+        if(ManagerController.getInstance().showCategories().isEmpty()) {
+            showMessage(informationText,MessageType.INFORMATION,"No categories found");
+        }
         for (String category : ManagerController.getInstance().showCategories()) {
             makeCategorySplitButton(category);
         }
@@ -55,5 +57,10 @@ public class ManageCategoriesMenu {
             e.printStackTrace();
         }
         managerSectionBoarderPane.setCenter(root);
+    }
+    private void showMessage(Text text, MessageType messageType, String message){
+        text.setFill(messageType.getLinearGradient());
+        text.setText(message);
+
     }
 }

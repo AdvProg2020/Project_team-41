@@ -100,20 +100,25 @@ public class CategoryButtonController {
         GridPane editCategoryGridPane = (GridPane) editCategoryVBox.getChildren().get(0);
         TextField editCategoryNameTextField = (TextField) editCategoryGridPane.getChildren().get(2);
         TextField editCategorySpecialFeaturesTextField = (TextField) editCategoryGridPane.getChildren().get(3);
+        String[] previousFields = getPreviousFields(categoryNameTextField.getText());
         boolean errorWhileEditing = false;
         StringBuilder errorBuilder = new StringBuilder();
         try {
-            ManagerController.getInstance().editCategoryName(categoryNameTextField.getText(),editCategoryNameTextField.getText());
-            categoryNameTextField.setText(editCategoryNameTextField.getText());
-            showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+            if(!previousFields[0].equals(editCategoryNameTextField.getText())) {
+                ManagerController.getInstance().editCategoryName(categoryNameTextField.getText(), editCategoryNameTextField.getText());
+                categoryNameTextField.setText(editCategoryNameTextField.getText());
+                showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+            }
         } catch (Exception e) {
             errorBuilder.append("-").append(e.getMessage());
             showMessage(informationText, MessageType.ERROR, e.getMessage());
             errorWhileEditing = true;
         }
         try {
-            ManagerController.getInstance().editCategorySpecialFeatures(categoryNameTextField.getText(), editCategorySpecialFeaturesTextField.getText());
-            showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+            if(!previousFields[1].equals(editCategorySpecialFeaturesTextField.getText())) {
+                ManagerController.getInstance().editCategorySpecialFeatures(categoryNameTextField.getText(), editCategorySpecialFeaturesTextField.getText());
+                showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+            }
         } catch (Exception e) {
             errorBuilder.append("-").append(e.getMessage());
             errorWhileEditing = true;
@@ -148,6 +153,25 @@ public class CategoryButtonController {
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
 
+    }
+    private String[] getPreviousFields(String categoryName){
+        String[] previousFields = new String[2];
+        StringBuilder specialFeaturesString = new StringBuilder();
+        ArrayList<String> specialFeatures = null;
+        try {
+            specialFeatures = ManagerController.getInstance().getCategorySpecialFeatures(categoryName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        for (String specialFeature : specialFeatures) {
+            specialFeaturesString.append(",").append(specialFeature);
+        }
+        if (!specialFeaturesString.toString().isEmpty()) {
+            specialFeaturesString = new StringBuilder(specialFeaturesString.substring(1));
+        }
+        previousFields[0] = categoryName;
+        previousFields[1] = specialFeaturesString.toString();
+        return previousFields;
     }
 
 }
