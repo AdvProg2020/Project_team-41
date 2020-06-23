@@ -42,9 +42,15 @@ public class userButtonController {
 
     public void removeUserClicked(MouseEvent mouseEvent) throws Exception {
 
+        AnchorPane anchorPane = (AnchorPane) NodeFinder.getParentById(gridPane,"usersAnchorPane");
+        Text text = (Text) anchorPane.getChildren().get(2);
         Person user = null;
         try {
             user = ManagerController.getInstance().getUserByUsername(usernameTextField.getText().split(":")[1].trim());
+            if (user.equals(ManagerController.getLoggedInPerson())) {
+                showMessage(text,MessageType.ERROR,"cannot remove current user");
+                return;
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -53,8 +59,6 @@ public class userButtonController {
         if(usersShown.contains(usernameTextField.getText()))
             vBox.getChildren().remove(getIndexOfUser()+1);
         vBox.getChildren().remove(getIndexOfUser());
-        AnchorPane anchorPane = (AnchorPane) NodeFinder.getParentById(vBox,"usersAnchorPane");
-        Text text = (Text) anchorPane.getChildren().get(2);
         showMessage(text,MessageType.SUCCESS,"successfully removed user");
 
 

@@ -16,7 +16,7 @@ public enum MessageType {
         switch (mode){
             case "information": {
                 stops = new Stop[]{new Stop(0, Color.BLACK), new Stop(1, Color.valueOf("#dd813f"))};
-                linearGradient = new LinearGradient(0.22541966426858512, 0.0, 0.2158273381294964, 0.9760191846522782, true, CycleMethod.NO_CYCLE, stops);
+                linearGradient = new LinearGradient(0.7386091127098321, 0.0, 0.15347721822541963, 1, true, CycleMethod.NO_CYCLE, stops);
                 break;
             }
             case "error": {
