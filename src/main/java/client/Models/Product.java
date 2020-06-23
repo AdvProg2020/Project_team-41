@@ -281,7 +281,6 @@ public class Product implements Serializable {
                 Objects.equals(name, product.name) &&
                 Objects.equals(companyName, product.companyName) &&
                 Objects.equals(seller, product.seller) &&
-                Objects.equals(off, product.off) &&
                 Objects.equals(category, product.category) &&
                 Objects.equals(specialFeatures, product.specialFeatures) &&
                 Objects.equals(description, product.description) &&
