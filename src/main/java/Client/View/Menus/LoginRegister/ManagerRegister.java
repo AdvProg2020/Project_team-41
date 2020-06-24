@@ -50,7 +50,7 @@ public class ManagerRegister {
             try {
                 LoginRegisterController.getInstance().createAccount(manager);
                 welcome1.setVisible(true);
-
+                clearVariables();
                 Menu.closeWindow();
 //                Menu.setRootForNewWindow("welcomeRegister");
             } catch (Exception e) {
@@ -108,5 +108,14 @@ public class ManagerRegister {
         }catch (Exception e){
             System.out.print(e.getMessage());
         }
+    }
+    public void clearVariables(){
+        username.clear();
+        password.clear();
+        firstName.clear();
+        lastName.clear();
+        email.clear();
+        phoneNumber.clear();
+        money.clear();
     }
 }
