@@ -327,14 +327,14 @@ public class OffMenuController extends Menu {
             login("offs");
         }else{
             if(UserSectionController.getLoggedInPerson() instanceof Manager){
-                ManagerSectionMenu.parentFxmlAddress = "mainMenu";
+                ManagerSectionMenu.parentFxmlAddress = "offs";
                 App.setRoot("userSection/managerSection/manager section");
             }else if(UserSectionController.getLoggedInPerson() instanceof Seller){
-                SellerSectionMenu.parentFxmlAddress = "mainMenu";
+                SellerSectionMenu.parentFxmlAddress = "offs";
                 App.setRoot("userSection/sellerSection/seller section");
 
             }else if(UserSectionController.getLoggedInPerson() instanceof Buyer){
-                BuyerSectionMenu.parentFxmlAddress = "mainMenu";
+                BuyerSectionMenu.parentFxmlAddress = "offs";
                 App.setRoot("userSection/buyerSection/buyer section");
 
 
