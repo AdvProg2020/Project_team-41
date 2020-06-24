@@ -235,7 +235,7 @@ public class ManagerServerController extends UserSectionServerController {
 
             case "REGISTER_SELLER" :{
                 requestDetails.add("** seller details **");
-                requestDetails.addAll(getSellerDetails(request.getOff().getSeller()));
+                requestDetails.addAll(getSellerDetails(request.getSeller()));
                 break;
             }
         }
@@ -278,7 +278,7 @@ public class ManagerServerController extends UserSectionServerController {
             }
             case "EDIT_PRODUCT" :{
 
-                Database.getInstance().getAllProducts().remove(Database.getInstance().getProductById(request.getProduct().getProductId()));
+                Database.getInstance().removeProduct(request.getProduct());
                 Database.getInstance().addProduct(request.getEditedProduct());
                 request.getEditedProduct().setSituation(Situation.CONFIRMED);
                 Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).removeProduct(Database.getInstance().getProductById(request.getProduct().getProductId()));
