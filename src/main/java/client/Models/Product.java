@@ -40,6 +40,7 @@ public class Product implements Serializable {
         this.category = category;
         this.setSpecialFeatures(specialFeatures);
         this.description = description;
+        this.setSeller(seller);
     }
 
     public Product cloneProduct() throws Exception {

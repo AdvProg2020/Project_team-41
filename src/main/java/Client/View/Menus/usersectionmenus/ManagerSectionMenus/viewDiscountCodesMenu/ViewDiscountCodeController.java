@@ -25,7 +25,7 @@ public class ViewDiscountCodeController {
         try {
             discountCodeInfo = ManagerController.getInstance().viewDiscountCode(code);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return;
         }
         String discountCode = discountCodeInfo.get(0).split(":")[1].trim();

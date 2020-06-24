@@ -19,7 +19,6 @@ public class CreateCategoryMenu {
         try{
             ManagerController.getInstance().addCategory(categoryNameTextField.getText(),specialFeatures);
             showMessage(informationText,MessageType.SUCCESS,"category " + categoryNameTextField.getText() + " is created");
-            System.out.println("category " + categoryNameTextField.getText() + " is created");
         }
         catch (Exception e){
             showMessage(informationText,MessageType.ERROR,e.getMessage());

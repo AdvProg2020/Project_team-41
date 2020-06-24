@@ -93,7 +93,7 @@ public class RequestButtonsController {
         try {
             requestId = getRequestId(requestIdTextField.getText());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         ViewRequestController.requestId = requestId;
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
@@ -130,7 +130,7 @@ public class RequestButtonsController {
                 vBox.getChildren().remove(getIndexOfRequest() + 1);
             vBox.getChildren().remove(getIndexOfRequest());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             showMessage(text, MessageType.ERROR, e.getMessage());
         }
 
