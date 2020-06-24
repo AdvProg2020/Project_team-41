@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -23,7 +25,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
+        try {
+            new SimpleAudioPlayer();
+        } catch (UnsupportedAudioFileException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
         setIconImage();
         StartProgram.startProgram();
         //scene = new Scene(loadFXML("userSection/buyerSection/buyer section"));
