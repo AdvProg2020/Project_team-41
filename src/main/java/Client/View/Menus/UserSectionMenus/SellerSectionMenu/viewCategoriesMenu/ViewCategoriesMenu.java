@@ -2,6 +2,7 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewCategoriesMenu;
 
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Category;
+import Client.View.Menus.MessageType;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -12,6 +13,7 @@ import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ViewCategoriesMenu {
     public Text informationText;
@@ -21,7 +23,11 @@ public class ViewCategoriesMenu {
 
     @FXML
     public void initialize(){
-        for (Category category : SellerController.getInstance().getCategories())
+        ArrayList<Category> categories = SellerController.getInstance().getCategories();
+        if (categories.isEmpty()) {
+            showMessage(informationText, MessageType.INFORMATION, "No categories found");
+        }
+        for (Category category : categories)
             makeCategorySplitButton(category.getName());
     }
 
@@ -38,5 +44,9 @@ public class ViewCategoriesMenu {
 
         categoriesVBox.getChildren().add(root);
     }
+    private void showMessage(Text text, MessageType messageType, String message){
+        text.setFill(messageType.getLinearGradient());
+        text.setText(message);
 
+    }
 }

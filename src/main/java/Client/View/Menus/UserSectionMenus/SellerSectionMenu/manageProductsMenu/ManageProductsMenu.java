@@ -2,6 +2,7 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu;
 
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Product;
+import Client.View.Menus.MessageType;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -14,6 +15,7 @@ import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ManageProductsMenu {
 
@@ -24,7 +26,11 @@ public class ManageProductsMenu {
 
     @FXML
     public void initialize(){
-        for (Product product : SellerController.getInstance().getProducts()) {
+        ArrayList<Product> products = SellerController.getInstance().getProducts();
+        if (products.isEmpty()) {
+            showMessage(informationText,MessageType.INFORMATION,"no products found");
+        }
+        for (Product product : products) {
             makeProductSplitButton(product.getName(),product.getProductId());
         }
     }
@@ -55,5 +61,10 @@ public class ManageProductsMenu {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void showMessage(Text text, MessageType messageType, String message){
+        text.setFill(messageType.getLinearGradient());
+        text.setText(message);
+
     }
 }
