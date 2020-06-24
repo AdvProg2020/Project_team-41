@@ -26,7 +26,6 @@ public class LoginRegisterServerController {
                 throw new Exception("Invalid UserName!");
             }
         }
-        Database.getInstance().addUser(person);
         if(person instanceof Seller){
             Request request=new Request((Seller) person);
             Database.getInstance().addRequest(request);
