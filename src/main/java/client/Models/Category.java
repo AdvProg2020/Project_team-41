@@ -72,6 +72,6 @@ public class Category implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, specialFeatures, products);
+        return Objects.hash(name, specialFeatures);
     }
 }

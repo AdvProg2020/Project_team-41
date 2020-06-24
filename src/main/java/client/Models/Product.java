@@ -292,6 +292,6 @@ public class Product implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, situation, name, companyName, price, seller, quantity, off, category, specialFeatures, description, scores, comments, views, buyers);
+        return Objects.hash(productId, situation, name, companyName, price, quantity, off, category, specialFeatures, description, scores, comments, views);
     }
 }
