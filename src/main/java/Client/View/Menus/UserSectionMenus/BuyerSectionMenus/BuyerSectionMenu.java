@@ -48,4 +48,8 @@ public class BuyerSectionMenu {
     public void backCodeButtonClicked(MouseEvent mouseEvent) throws IOException {
         App.setRoot(parentFxmlAddress);
     }
+
+    public void viewCartButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/buyerSection/viewCart/viewCart");
+    }
 }

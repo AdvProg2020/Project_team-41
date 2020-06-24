@@ -7,11 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javazoom.jl.decoder.JavaLayerException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
@@ -24,12 +26,8 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        try {
-            new SimpleAudioPlayer();
-        } catch (UnsupportedAudioFileException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
+    public void start(Stage stage) throws IOException, JavaLayerException {
+        new SimpleAudioPlayer();
         setIconImage();
         StartProgram.startProgram();
         //scene = new Scene(loadFXML("userSection/buyerSection/buyer section"));

@@ -98,8 +98,4 @@ public class Cart implements Serializable {
                 Objects.equals(codedDiscount, cart.codedDiscount);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(products, receiverInformation, codedDiscount);
-    }
 }

@@ -4,7 +4,9 @@ import Client.Controller.UserSectionController.BuyerController;
 import Client.Models.Cart;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;
+import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -45,13 +47,12 @@ public class ViewCartMenu {
             e.printStackTrace();
         }
         AnchorPane anchorPane = (AnchorPane) root;
-        TextField productNameTextField = (TextField) anchorPane.getChildren().get(0);
-        TextField productIdTextField = (TextField) anchorPane.getChildren().get(1);
-        TextField quantityTextField = (TextField) anchorPane.getChildren().get(2);
+        TextField productNameTextField = (TextField) NodeFinder.getChildById(anchorPane,"productNameTextField");
+        TextField productIdTextField = (TextField) NodeFinder.getChildById(anchorPane,"productIdTextField");
+        TextField quantityTextField = (TextField) NodeFinder.getChildById(anchorPane,"quantityTextField");
         productNameTextField.setText(productName);
         productIdTextField.setText(productId);
         quantityTextField.setText(Integer.toString(quantity));
-
         productsVBox.getChildren().add(root);
     }
 
