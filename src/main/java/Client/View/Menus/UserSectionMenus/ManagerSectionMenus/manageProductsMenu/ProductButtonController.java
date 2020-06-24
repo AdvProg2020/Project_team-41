@@ -43,7 +43,7 @@ public class ProductButtonController {
         try {
             ManagerController.getInstance().removeProduct(productIdTextField.getText());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
         if(productsShown.contains(productIdTextField.getText()))
@@ -58,7 +58,7 @@ public class ProductButtonController {
         try {
             product = ManagerController.getInstance().getProductById(productIdTextField.getText());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");

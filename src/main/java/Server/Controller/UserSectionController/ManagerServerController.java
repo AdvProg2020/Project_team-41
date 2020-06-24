@@ -27,7 +27,7 @@ public class ManagerServerController extends UserSectionServerController {
         ArrayList<String> removedSpecialFeatures = new ArrayList<>();
         ArrayList<String> specialFeatures = new ArrayList<>();
         Collections.addAll(specialFeatures, editedField.split(","));
-        Category category = Database.getCategoryByName(categoryName);
+        Category category = Database.getInstance().getCategoryByName(categoryName);
         for (String specialFeature : category.getSpecialFeatures()) {
             if(!specialFeatures.contains(specialFeature)){
                 removedSpecialFeatures.add(specialFeature);
@@ -50,12 +50,12 @@ public class ManagerServerController extends UserSectionServerController {
         category.setSpecialFeatures(specialFeatures);
     }
     public ArrayList<Product> getAllProducts(){
-        return Database.getAllProducts();
+        return Database.getInstance().getAllProducts();
     }
 
     public ArrayList<String> getAllUsers(){
         ArrayList<String> allUsers = new ArrayList<>();
-        for (Person user : Database.getAllUsers()) {
+        for (Person user : Database.getInstance().getAllUsers()) {
             String userType;
             if(user instanceof Manager)
                 userType = "manager";
@@ -69,10 +69,10 @@ public class ManagerServerController extends UserSectionServerController {
     }
 
     public Person getUserByUsername(String username) throws Exception {
-        return Database.getPersonByUsername(username);
+        return Database.getInstance().getPersonByUsername(username);
     }
     public void  deleteUser(String username) throws Exception {
-            Database.deleteUser(username);
+            Database.getInstance().deleteUser(username);
     }
     public void createManagerProfile(ArrayList<String> userInfo) throws Exception {
         Manager manager = new Manager();
@@ -83,26 +83,26 @@ public class ManagerServerController extends UserSectionServerController {
         manager.setEmail(userInfo.get(4));
         manager.setPhoneNumber(userInfo.get(5));
         manager.setCredit(Integer.parseInt(userInfo.get(6)));
-        Database.addUser(manager);
+        Database.getInstance().addUser(manager);
 
 
     }
     public void  removeProduct(String productId) throws Exception {
-        Product product = Database.getProductById(productId);
+        Product product = Database.getInstance().getProductById(productId);
         product.removeProduct();
     }
     public void createDiscountCode(ArrayList<String> codeInformation) throws Exception {
         ArrayList<Person> people = new ArrayList<>();
         if((codeInformation.get(8).split(",").length == 1) && (codeInformation.get(8).equalsIgnoreCase("allUsers"))){
-            people.addAll(Database.getAllUsers());
+            people.addAll(Database.getInstance().getAllUsers());
         }
         else {
             for (String username : codeInformation.get(8).split(",")) {
-                people.add(Database.getPersonByUsername(username));
+                people.add(Database.getInstance().getPersonByUsername(username));
             }
         }
         String[] dateTime = {codeInformation.get(1),codeInformation.get(2)};
-        for (CodedDiscount codedDiscount : Database.getAllDiscountCodes()) {
+        for (CodedDiscount codedDiscount : Database.getInstance().getAllDiscountCodes()) {
             if(codedDiscount.getDiscountCode().equals(codeInformation.get(0)))
                 throw new Exception("code is used already");
         }
@@ -113,14 +113,14 @@ public class ManagerServerController extends UserSectionServerController {
             throw new Exception("end date should be after start date");
         }
 
-        Database.addDiscountCodes(new CodedDiscount(codeInformation.get(0),
+        Database.getInstance().addDiscountCodes(new CodedDiscount(codeInformation.get(0),
                 exactStartDate,exactEndDate,Integer.parseInt(codeInformation.get(5)),
                 Integer.parseInt(codeInformation.get(6)),
                 Integer.parseInt(codeInformation.get(7)),people));
 
     }
     public ArrayList<String> viewDiscountCode(String code) throws Exception {
-        CodedDiscount codedDiscount = Database.getCodedDiscountByCode(code);
+        CodedDiscount codedDiscount = Database.getInstance().getCodedDiscountByCode(code);
         ArrayList<String> discountCodeInformation = new ArrayList<>();
 
 
@@ -137,7 +137,7 @@ public class ManagerServerController extends UserSectionServerController {
         return discountCodeInformation;
     }
     public void  editDiscountCode(String code,HashMap<String,String> edits) throws Exception {
-        CodedDiscount codedDiscount = Database.getCodedDiscountByCode(code);
+        CodedDiscount codedDiscount = Database.getInstance().getCodedDiscountByCode(code);
         for (String edit : edits.keySet()) {
             switch (edit.toLowerCase()){
                 case "start date":{
@@ -165,13 +165,13 @@ public class ManagerServerController extends UserSectionServerController {
                 case "people who can use it":{
                     HashMap<Person,Integer> people = new HashMap<>();
                     if((edits.get(edit).length() == 1) && (edits.get(edit).equalsIgnoreCase("allUsers"))){
-                        for (Person user : Database.getAllUsers()) {
+                        for (Person user : Database.getInstance().getAllUsers()) {
                             people.put(user,codedDiscount.getDiscountRepeatsForEachUser());
                         }
                     }
                     else {
                         for (String username : edits.get(edit).split(",")) {
-                            people.put(Database.getPersonByUsername(username),codedDiscount.getDiscountRepeatsForEachUser());
+                            people.put(Database.getInstance().getPersonByUsername(username),codedDiscount.getDiscountRepeatsForEachUser());
                         }
                     }
                     codedDiscount.setPeople(people);
@@ -186,59 +186,55 @@ public class ManagerServerController extends UserSectionServerController {
         }
     }
     public void  removeDiscountCode(String code) throws Exception {
-        Database.deleteCodedDiscount(code);
+        Database.getInstance().deleteCodedDiscount(code);
     }
     public ArrayList<String> showRequest(){
         ArrayList<String> requests = new ArrayList<>();
-        for (Request request : Database.getAllRequest()) {
+        for (Request request : Database.getInstance().getAllRequest()) {
             requests.add(request.getRequestId() + " : " + request.getRequestType());
         }
         return requests;
     }
     public ArrayList<String> getRequestDetails(String requestId) throws Exception {
         ArrayList<String> requestDetails = new ArrayList<>();
-        Request request = Database.getRequestByRequestId(requestId);
+        Request request = Database.getInstance().getRequestByRequestId(requestId);
         switch (request.getRequestType()){
             case "ADD_COMMENT" :{
-                requestDetails.add("comment details:");
+                requestDetails.add("** comment details **");
                 requestDetails.add(request.getComment().toString());
                 break;
             }
             case "ADD_PRODUCT" :
             case "REMOVE_PRODUCT" :
                 {
-                    requestDetails.add("product details:");
+                    requestDetails.add("** product details **");
                     requestDetails.addAll(getProductDetails(request.getProduct()));
                     break;
                  }
             case "EDIT_PRODUCT" :{
-                requestDetails.add("product details:");
+                requestDetails.add("** original product **");
                 requestDetails.addAll(getProductDetails(request.getProduct()));
-                requestDetails.add("original product:");
-                requestDetails.add(request.getProduct().toString());
-                requestDetails.add("edited product:");
-                requestDetails.add(request.getEditedProduct().toString());
+                requestDetails.add("** edited product **");
+                requestDetails.addAll(getProductDetails(request.getEditedProduct()));
 
                 break;
             }
             case "ADD_OFF" :{
-                    requestDetails.add("off details:");
+                    requestDetails.add("** off details **");
                     requestDetails.addAll(getOffDetails(request.getOff()));
                     break;
             }
             case "EDIT_OFF" : {
-                    requestDetails.add("off details:");
+                    requestDetails.add("** original off **");
                     requestDetails.addAll(getOffDetails(request.getOff()));
-                    requestDetails.add("original off:");
-                    requestDetails.add(request.getOff().toString());
-                    requestDetails.add("edited off:");
-                    requestDetails.add(request.getEditedOff().toString());
+                    requestDetails.add("** edited off **");
+                    requestDetails.addAll(getOffDetails(request.getEditedOff()));
 
                 break;
             }
 
             case "REGISTER_SELLER" :{
-                requestDetails.add("seller details:");
+                requestDetails.add("** seller details **");
                 requestDetails.addAll(getSellerDetails(request.getOff().getSeller()));
                 break;
             }
@@ -247,7 +243,7 @@ public class ManagerServerController extends UserSectionServerController {
         return requestDetails;
     }
     public void acceptAllRequests() throws Exception {
-        ArrayList<Request> clonedAllRequest = (ArrayList<Request>) Database.getAllRequest().clone();
+        ArrayList<Request> clonedAllRequest = (ArrayList<Request>) Database.getInstance().getAllRequest().clone();
         for (Request request : clonedAllRequest) {
             try {
                 acceptRequest(request.getRequestId());
@@ -258,35 +254,35 @@ public class ManagerServerController extends UserSectionServerController {
     }
 
     public void  acceptRequest(String requestId) throws Exception {
-        Request request = Database.getRequestByRequestId(requestId);
+        Request request = Database.getInstance().getRequestByRequestId(requestId);
         switch (request.getRequestType()){
             case "ADD_COMMENT" :{
                 Comment comment = request.getComment();
-                Database.getProductById(comment.getProduct().getProductId()).addComment(comment);
+                Database.getInstance().getProductById(comment.getProduct().getProductId()).addComment(comment);
                 comment.setCommentSituation(CommentSituation.CONFIRMED);
                 break;
             }
             case "ADD_PRODUCT" :{
-                for (Product otherProduct : Database.getAllProducts()) {
+                for (Product otherProduct : Database.getInstance().getAllProducts()) {
                     if(otherProduct.getName().equals(request.getProduct().getName()))
                         throw new Exception("name is already chosen for another product");
                 }
                 request.getProduct().setSituation(Situation.CONFIRMED);
-                Database.addProduct(request.getProduct());
-                Database.getSellerByUsername(request.getSeller().getUserName()).addProduct(request.getProduct());
+                Database.getInstance().addProduct(request.getProduct());
+                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).addProduct(request.getProduct());
                 break;
             }
             case "REMOVE_PRODUCT" : {
-                Database.removeProduct(request.getProduct());
+                Database.getInstance().removeProduct(Database.getInstance().getProductById(request.getProduct().getProductId()));
                 break;
             }
             case "EDIT_PRODUCT" :{
 
-                Database.getAllProducts().remove(request.getProduct());
-                Database.addProduct(request.getEditedProduct());
+                Database.getInstance().getAllProducts().remove(Database.getInstance().getProductById(request.getProduct().getProductId()));
+                Database.getInstance().addProduct(request.getEditedProduct());
                 request.getEditedProduct().setSituation(Situation.CONFIRMED);
-                Database.getSellerByUsername(request.getSeller().getUserName()).removeProduct(request.getProduct());
-                Database.getSellerByUsername(request.getSeller().getUserName()).addProduct(request.getEditedProduct());
+                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).removeProduct(Database.getInstance().getProductById(request.getProduct().getProductId()));
+                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).addProduct(Database.getInstance().getProductById(request.getEditedProduct().getProductId()));
 
                 break;
             }
@@ -298,8 +294,8 @@ public class ManagerServerController extends UserSectionServerController {
                     product.setOff(request.getOff());
                 }
                 request.getOff().setSituation(Situation.CONFIRMED);
-                Database.addOff(request.getOff());
-                Database.getSellerByUsername(request.getSeller().getUserName()).addOff(request.getOff());
+                Database.getInstance().addOff(request.getOff());
+                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).addOff(request.getOff());
                 break;
             }
             case "EDIT_OFF" : {
@@ -310,47 +306,47 @@ public class ManagerServerController extends UserSectionServerController {
                     product.setOff(request.getEditedOff());
                 }
 
-                Database.getAllOffs().remove(request.getOff());
-                Database.addOff(request.getEditedOff());
+                Database.getInstance().getAllOffs().remove(request.getOff());
+                Database.getInstance().addOff(request.getEditedOff());
                 request.getOff().setSituation(Situation.CONFIRMED);
-                Database.getSellerByUsername(request.getSeller().getUserName()).removeOff(request.getOff());
-                Database.getSellerByUsername(request.getSeller().getUserName()).addOff(request.getEditedOff());
+                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).removeOff(request.getOff());
+                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).addOff(request.getEditedOff());
                 break;
             }
 
             case "REGISTER_SELLER" :{
-                Database.addUser(request.getSeller());
+                Database.getInstance().addUser(request.getSeller());
                 break;
             }
         }
-        Database.removeRequest(request);
+        Database.getInstance().removeRequest(request);
 
     }
     public void declineRequest(String requestId) throws Exception {
-        Request request = Database.getRequestByRequestId(requestId);
-        Database.removeRequest(request);
+        Request request = Database.getInstance().getRequestByRequestId(requestId);
+        Database.getInstance().removeRequest(request);
     }
     public ArrayList<String> showCategories(){
         ArrayList<String> categories = new ArrayList<>();
-        for (Category category : Database.getAllCategory()) {
+        for (Category category : Database.getInstance().getAllCategory()) {
             categories.add(category.getName());
         }
         return categories;
     }
     public void editCategoryName(String category, String editedField) throws Exception {
-        Database.getCategoryByName(category).setName(editedField);
+        Database.getInstance().getCategoryByName(category).setName(editedField);
     }
     public void addCategory(String categoryName,String specialFeatures) throws Exception {
         Category category;
         try {
-            Database.getCategoryByName(categoryName);
+            Database.getInstance().getCategoryByName(categoryName);
         }
         catch (Exception e) {
             if(e.getMessage().equals("No category found with this name")) {
                 ArrayList<String> specialFeaturesArray = new ArrayList<>();
                 Collections.addAll(specialFeaturesArray, specialFeatures.split(","));
                 category = new Category(categoryName, specialFeaturesArray);
-                Database.addCategory(category);
+                Database.getInstance().addCategory(category);
                 return;
             }
             else{
@@ -361,14 +357,14 @@ public class ManagerServerController extends UserSectionServerController {
 
     }
     public void removeCategory(String categoryName) throws Exception {
-        Database.deleteCategory(categoryName);
+        Database.getInstance().deleteCategory(categoryName);
     }
     public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {
-        return Database.getCategoryByName(categoryName).getSpecialFeatures();
+        return Database.getInstance().getCategoryByName(categoryName).getSpecialFeatures();
     }
     public ArrayList<String> viewAllDiscountCodes(){
         ArrayList<String> allDiscountCodes = new ArrayList<>();
-        for (CodedDiscount discountCode : Database.getAllDiscountCodes()) {
+        for (CodedDiscount discountCode : Database.getInstance().getAllDiscountCodes()) {
             allDiscountCodes.add(discountCode.getDiscountCode());
         }
         return allDiscountCodes;
@@ -415,6 +411,6 @@ public class ManagerServerController extends UserSectionServerController {
         return offDetails;
     }
     public Product getProductById(String productId) throws Exception {
-        return Database.getProductById(productId);
+        return Database.getInstance().getProductById(productId);
     }
 }

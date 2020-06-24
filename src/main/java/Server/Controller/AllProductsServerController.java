@@ -19,13 +19,13 @@ public class AllProductsServerController {
 
     }
     public ArrayList<Category> getAllCategories(){
-        return Database.getAllCategory();
+        return Database.getInstance().getAllCategory();
     }
     public ArrayList<Product> getAllProducts(){
-        return Database.getAllProducts();
+        return Database.getInstance().getAllProducts();
     }
     public Product getProduct(String productId) throws Exception {
-        return Database.getProductById(productId);
+        return Database.getInstance().getProductById(productId);
     }
 
 }

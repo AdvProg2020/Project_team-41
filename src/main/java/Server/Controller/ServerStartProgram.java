@@ -7,10 +7,7 @@ import Client.Models.Person.Person;
 import Client.Models.Request;
 import Server.Database;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ServerStartProgram {
@@ -19,11 +16,7 @@ public class ServerStartProgram {
 
     public static void startProgram() {
         try {
-            readAllCategory();
-            readAllOffs();
-            readAllDiscountCodes();
-            readAllUsers();
-            readAllRequest();
+            readDatabase();
         }
         catch (Exception e){
             System.out.println("So it's the first time you run this program... Welcome!");
@@ -33,36 +26,42 @@ public class ServerStartProgram {
     private static void readAllUsers() throws IOException, ClassNotFoundException {
         inputStream = new FileInputStream("src/main/resources/data/allUsers.dat");
         objectInputStream = new ObjectInputStream(inputStream);
-        Database.setAllUsers((ArrayList<Person>) objectInputStream.readObject());
+        Database.getInstance().setAllUsers((ArrayList<Person>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllOffs() throws IOException, ClassNotFoundException {
         inputStream = new FileInputStream("src/main/resources/data/allOffs.dat");
         objectInputStream = new ObjectInputStream(inputStream);
-        Database.setAllOffs((ArrayList<Off>) objectInputStream.readObject());
+        Database.getInstance().setAllOffs((ArrayList<Off>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllCategory() throws IOException, ClassNotFoundException {
         inputStream = new FileInputStream("src/main/resources/data/allCategory.dat");
         objectInputStream = new ObjectInputStream(inputStream);
-        Database.setAllCategory((ArrayList<Category>) objectInputStream.readObject());
+        Database.getInstance().setAllCategory((ArrayList<Category>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllDiscountCodes() throws IOException, ClassNotFoundException {
         inputStream = new FileInputStream("src/main/resources/data/allDiscountCodes.dat");
         objectInputStream = new ObjectInputStream(inputStream);
-        Database.setAllDiscountCodes((ArrayList<CodedDiscount>) objectInputStream.readObject());
+        Database.getInstance().setAllDiscountCodes((ArrayList<CodedDiscount>) objectInputStream.readObject());
         inputStream.close();
 
     }
     private static void readAllRequest() throws IOException, ClassNotFoundException {
         inputStream = new FileInputStream("src/main/resources/data/allRequests.dat");
         objectInputStream = new ObjectInputStream(inputStream);
-        Database.setAllRequest((ArrayList<Request>) objectInputStream.readObject());
+        Database.getInstance().setAllRequest((ArrayList<Request>) objectInputStream.readObject());
         inputStream.close();
 
+    }
+    private static void readDatabase() throws IOException, ClassNotFoundException {
+        inputStream = new FileInputStream("src/main/resources/data/Database.dat");
+        objectInputStream = new ObjectInputStream(inputStream);
+        Database.setInstance(((Database) objectInputStream.readObject()));
+        inputStream.close();
     }
 }

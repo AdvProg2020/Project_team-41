@@ -52,7 +52,7 @@ public class userButtonController {
                 return;
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         ManagerController.getInstance().deleteUser(user.getUserName());
         VBox vBox = (VBox) NodeFinder.getParentById(gridPane,"usersVBox");
@@ -105,7 +105,7 @@ public class userButtonController {
         try {
             user = ManagerController.getInstance().getUserByUsername(usernameTextField.getText().split(":")[1].trim());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         viewUserInfoController.user = user;
         VBox vBox = (VBox) NodeFinder.getParentById(gridPane,"usersVBox");

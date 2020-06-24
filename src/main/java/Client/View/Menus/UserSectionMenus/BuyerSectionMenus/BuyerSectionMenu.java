@@ -23,7 +23,7 @@ public class BuyerSectionMenu {
     @FXML
     public void initialize(){
         //todo remove nextLine
-        //UserSectionController.setLoggedInPerson(Database.getAllUsers().get(2));
+        //UserSectionController.setLoggedInPerson(Database.getInstance().getAllUsers().get(2));
         creditTextField.setText(BuyerController.getInstance().getBalance() +"Rials");
     }
 

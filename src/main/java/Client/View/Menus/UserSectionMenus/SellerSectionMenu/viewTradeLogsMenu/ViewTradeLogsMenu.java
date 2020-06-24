@@ -27,7 +27,7 @@ public class ViewTradeLogsMenu {
                     makeTradeLogSplitButton(tradeLogDetails.get(0).split(":",2)[1].trim());
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

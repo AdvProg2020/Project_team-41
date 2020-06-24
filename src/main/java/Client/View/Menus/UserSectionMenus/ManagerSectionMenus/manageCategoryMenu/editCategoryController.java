@@ -32,7 +32,7 @@ public class editCategoryController {
                 specialFeaturesString = new StringBuilder(specialFeaturesString.substring(1));
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         categoryNameTextField.setText(categoryName);
         specialFeaturesTextField.setText(specialFeaturesString.toString());
@@ -56,6 +56,25 @@ public class editCategoryController {
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
 
+    }
+    private String[] getPreviousFields(String categoryName){
+        String[] previousFields = new String[2];
+        StringBuilder specialFeaturesString = new StringBuilder();
+        ArrayList<String> specialFeatures = null;
+        try {
+            specialFeatures = ManagerController.getInstance().getCategorySpecialFeatures(categoryName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        for (String specialFeature : specialFeatures) {
+            specialFeaturesString.append(",").append(specialFeature);
+        }
+        if (!specialFeaturesString.toString().isEmpty()) {
+            specialFeaturesString = new StringBuilder(specialFeaturesString.substring(1));
+        }
+        previousFields[0] = categoryName;
+        previousFields[1] = specialFeaturesString.toString();
+        return previousFields;
     }
 
 

@@ -14,24 +14,38 @@ import java.util.Date;
 
 
 public class Database implements Serializable {
-    private static ArrayList<Category> allCategory=new ArrayList<>();
-    private static ArrayList<Request> allRequest=new ArrayList<>();
-    private static ArrayList<Person> allUsers=new ArrayList<>();
-    private static ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
-    private static ArrayList<Off>allOffs=new ArrayList<>();
+    private static Database database;
+    private ArrayList<Category> allCategory=new ArrayList<>();
+    private ArrayList<Request> allRequest=new ArrayList<>();
+    private ArrayList<Person> allUsers=new ArrayList<>();
+    private ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
+    private ArrayList<Off>allOffs=new ArrayList<>();
 
-    public static ArrayList<Off> getAllOffs() {
+    public static Database getInstance() {
+        if (database == null) {
+            database = new Database();
+        }
+        return database;
+    }
+    public static void setInstance(Database newDatabase){
+        database = newDatabase;
+    }
+    private Database(){
+
+    }
+
+    public ArrayList<Off> getAllOffs() {
         return allOffs;
     }
 
-    public static ArrayList<Product> getAllProducts(){
+    public ArrayList<Product> getAllProducts(){
         ArrayList<Product> allProducts = new ArrayList<>();
         for (Category category : allCategory) {
             allProducts.addAll(category.getProducts());
         }
         return allProducts;
     }
-    public static ArrayList<Manager> getAllManagers(){
+    public ArrayList<Manager> getAllManagers(){
         ArrayList<Manager> allManagers=new ArrayList<>();
         for (Person user : allUsers) {
             if(user instanceof Manager)
@@ -41,7 +55,7 @@ public class Database implements Serializable {
     }
 
 
-    public static ArrayList<Seller> getAllSellers(){
+    public ArrayList<Seller> getAllSellers(){
          ArrayList<Seller> allSellers=new ArrayList<>();
         for (Person user : allUsers) {
             if(user instanceof Seller)
@@ -50,7 +64,7 @@ public class Database implements Serializable {
         return allSellers;
     }
 
-    public static Category getCategoryByName(String name) throws Exception {
+    public Category getCategoryByName(String name) throws Exception {
         for (Category category : allCategory) {
             if(category.getName().equals(name)){
                 return category;
@@ -58,7 +72,7 @@ public class Database implements Serializable {
         }
         throw new Exception("No category found with this name");
     }
-    public static Person getPersonByUsername(String username) throws Exception {
+    public Person getPersonByUsername(String username) throws Exception {
         for (Person user : allUsers) {
             if(user.getUserName().equalsIgnoreCase(username))
                 return user;
@@ -66,7 +80,7 @@ public class Database implements Serializable {
         throw new Exception("wrong username");
     }
 
-    public static CodedDiscount getCodedDiscountByCode(String code) throws Exception {
+    public CodedDiscount getCodedDiscountByCode(String code) throws Exception {
         for (CodedDiscount codedDiscount : allDiscountCodes) {
             if(codedDiscount.getDiscountCode().equals(code))
                 return codedDiscount;
@@ -74,7 +88,7 @@ public class Database implements Serializable {
         throw new Exception("wrong discount code");
     }
 
-    public static Product getProductById(String id) throws Exception {
+    public Product getProductById(String id) throws Exception {
         for (Product product : getAllProducts()) {
            if(product.getProductId().equals(id))
                return product;
@@ -82,34 +96,34 @@ public class Database implements Serializable {
         throw new Exception("No product found with this id");
     }
 
-    public static ArrayList<CodedDiscount> getAllDiscountCodes() {
+    public ArrayList<CodedDiscount> getAllDiscountCodes() {
         return allDiscountCodes;
     }
-    public static void addDiscountCodes(CodedDiscount codedDiscount) {
+    public void addDiscountCodes(CodedDiscount codedDiscount) {
         allDiscountCodes.add(codedDiscount);
         ServerSaver.write(AllCommands.allDiscountCodes);
     }
 
-    public static void setAllUsers(ArrayList<Person> allUsers) {
-        Database.allUsers = allUsers;
+    public void setAllUsers(ArrayList<Person> allUsers) {
+        this.allUsers = allUsers;
     }
 
-    public static void setAllCategory(ArrayList<Category> allCategory) {
-        Database.allCategory = allCategory;
+    public void setAllCategory(ArrayList<Category> allCategory) {
+        this.allCategory = allCategory;
     }
 
-    public static void setAllRequest(ArrayList<Request> allRequest) {
-        Database.allRequest = allRequest;
+    public void setAllRequest(ArrayList<Request> allRequest) {
+        this.allRequest = allRequest;
     }
 
-    public static void setAllDiscountCodes(ArrayList<CodedDiscount> allDiscountCodes) {
-        Database.allDiscountCodes = allDiscountCodes;
+    public void setAllDiscountCodes(ArrayList<CodedDiscount> allDiscountCodes) {
+        this.allDiscountCodes = allDiscountCodes;
     }
 
-    public static void setAllOffs(ArrayList<Off> allOffs) {
-        Database.allOffs = allOffs;
+    public void setAllOffs(ArrayList<Off> allOffs) {
+        this.allOffs = allOffs;
     }
-    public static void deleteUser(String username) throws Exception {
+    public void deleteUser(String username) throws Exception {
 
         for (Person user : allUsers) {
             if(user.getUserName().equals(username)){
@@ -120,10 +134,10 @@ public class Database implements Serializable {
         }
         throw new Exception("no user found");
     }
-    public static ArrayList<Person> getAllUsers(){
+    public ArrayList<Person> getAllUsers(){
         return allUsers;
     }
-    public static void deleteCodedDiscount(String code) throws Exception {
+    public void deleteCodedDiscount(String code) throws Exception {
         for (CodedDiscount discountCode : allDiscountCodes) {
             if(discountCode.getDiscountCode().equals(code)) {
                 allDiscountCodes.remove(discountCode);
@@ -133,7 +147,7 @@ public class Database implements Serializable {
         }
         throw new Exception("invalid discount code");
     }
-    public static void addUser(Person person) throws Exception {
+    public void addUser(Person person) throws Exception {
         for (Person user : allUsers) {
             if(user.getUserName().equalsIgnoreCase(person.getUserName()))
                 throw new Exception("username Exists");
@@ -141,7 +155,7 @@ public class Database implements Serializable {
         allUsers.add(person);
         ServerSaver.write(AllCommands.allUsers);
     }
-    public static void deleteCategory(String categoryName) throws Exception {
+    public void deleteCategory(String categoryName) throws Exception {
         for (Category category : allCategory) {
             if(category.getName().equalsIgnoreCase(categoryName)) {
                 for (Product product : category.getProducts()) {
@@ -157,19 +171,19 @@ public class Database implements Serializable {
 
     }
 
-    public static void addCategory(Category category){
+    public void addCategory(Category category){
 
         allCategory.add(category);
         ServerSaver.write(AllCommands.allCategory);
     }
 
-    public static ArrayList<Category> getAllCategory() {
+    public ArrayList<Category> getAllCategory() {
         return allCategory;
     }
-    public static ArrayList<Request> getAllRequest() {
+    public ArrayList<Request> getAllRequest() {
         return allRequest;
     }
-    public static void addProduct(Product product) throws Exception {
+    public void addProduct(Product product) throws Exception {
         for (Category category : allCategory) {
             if(category.getName().equals(product.getCategory().getName())){
                 category.addProduct(product);
@@ -179,7 +193,7 @@ public class Database implements Serializable {
         }
         throw new Exception("no category found while adding product to database");
     }
-    public static void removeProduct(Product product) throws Exception {
+    public void removeProduct(Product product) throws Exception {
         for (Category category : allCategory) {
             if(category.getName().equals(product.getCategory().getName())){
                 category.removeProduct(product);
@@ -189,7 +203,7 @@ public class Database implements Serializable {
         }
         throw new Exception("no category found while adding product to database");
     }
-    public static Seller getSellerByUsername(String username) throws NullPointerException{
+    public Seller getSellerByUsername(String username) throws NullPointerException{
         for (Person user : allUsers) {
             if(user instanceof Seller){
                 if(user.getUserName().equals(username))
@@ -197,22 +211,22 @@ public class Database implements Serializable {
         }
         throw new NullPointerException("No seller found with this userName");
     }
-    public static void addOff(Off off){
+    public void addOff(Off off){
         allOffs.add(off);
         ServerSaver.write(AllCommands.allOffs);
     }
-    public static Request getRequestByRequestId(String requestId) throws Exception {
+    public Request getRequestByRequestId(String requestId) throws Exception {
         for (Request request : allRequest) {
             if(request.getRequestId().equals(requestId))
                 return request;
         }
         throw new Exception("no request matched");
     }
-    public static void addRequest(Request request){
+    public void addRequest(Request request){
         allRequest.add(request);
         ServerSaver.write(AllCommands.allRequests);
     }
-    public static ArrayList<Product> getAllOffProducts(){
+    public ArrayList<Product> getAllOffProducts(){
         ArrayList<Product> allOffProducts=new ArrayList<>();
         ArrayList<Off> offsToDelete=new ArrayList<>();
         Date date=new Date();
@@ -227,21 +241,21 @@ public class Database implements Serializable {
         }
         return allOffProducts;
     }
-    public static Off getOffById(String Id) throws Exception {
+    public Off getOffById(String Id) throws Exception {
         for (Off off : allOffs) {
             if(off.getOffId().equals(Id))
                 return off;
         }
         throw new Exception("wrong off Id");
     }
-    public static void removeRequest(Request request) throws Exception {
+    public void removeRequest(Request request) throws Exception {
         if(!allRequest.remove(request))
             throw new Exception("no request exists like this anymore");
         else
             ServerSaver.write(AllCommands.allRequests);
 
     }
-    public static void deleteOutOfDateOffs(ArrayList<Off> offsToDelete){
+    public void deleteOutOfDateOffs(ArrayList<Off> offsToDelete){
         allOffs.removeAll(offsToDelete);
         ServerSaver.write(AllCommands.allOffs);
     }

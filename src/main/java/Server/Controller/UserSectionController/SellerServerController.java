@@ -24,7 +24,7 @@ public class SellerServerController extends UserSectionServerController {
 
         }
         public ArrayList<String> getProductBuyers(String id) throws Exception {
-                Product product = Database.getProductById(id);
+                Product product = Database.getInstance().getProductById(id);
                 ArrayList<String> productBuyers = new ArrayList<>();
                 for (Person buyer : product.getBuyers()) {
                     productBuyers.add(buyer.getUserName());
@@ -32,7 +32,7 @@ public class SellerServerController extends UserSectionServerController {
                 return productBuyers;
         }
         public void editProduct(Seller seller,String productId,HashMap<String ,String> edit) throws Exception {
-                Product product = Database.getProductById(productId);
+                Product product = Database.getInstance().getProductById(productId);
                 Product editedProduct = product.cloneProduct();
                 for (String editRequestKey : edit.keySet()) {
                         String editRequestValue = edit.get(editRequestKey);
@@ -50,11 +50,12 @@ public class SellerServerController extends UserSectionServerController {
                                         break;
                                 }
                                 case "description" :{
+                                        System.out.println(editRequestValue);
                                         editedProduct.setDescription(editRequestValue);
                                         break;
                                 }
                                 case "name" :{
-                                        for (Product otherProduct : Database.getAllProducts()) {
+                                        for (Product otherProduct : Database.getInstance().getAllProducts()) {
                                                 if(otherProduct.getName().equals(editRequestValue))
                                                         throw new Exception("product name is used");
                                         }
@@ -94,7 +95,7 @@ public class SellerServerController extends UserSectionServerController {
                         }
                         product.setSituation(Situation.EDITING);
                 Request request = new Request(seller,product,editedProduct);
-                Database.addRequest(request);
+                Database.getInstance().addRequest(request);
                 }
         }
         public ArrayList<ArrayList<String>> getSalesHistory(Seller seller) throws Exception {
@@ -118,7 +119,7 @@ public class SellerServerController extends UserSectionServerController {
                 Product product = new Product();
                 String productName = productDetails.get(0);
                 boolean flagForCategoryName = false;
-                Category category = Database.getCategoryByName(productDetails.get(4));
+                Category category = Database.getInstance().getCategoryByName(productDetails.get(4));
                 HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
                 for (String rawSpecialFeature : productDetails.get(6).split(",")) {
                         String[] specialFeature = rawSpecialFeature.split("-");
@@ -154,7 +155,7 @@ public class SellerServerController extends UserSectionServerController {
                 product.setPrice(productPrice);
                 product.setName(productName);
 
-                for (Product otherProduct : Database.getAllProducts()) {
+                for (Product otherProduct : Database.getInstance().getAllProducts()) {
                         if(otherProduct.getName().equals(productName))
                                 throw new Exception("name is already chosen for another product");
                 }
@@ -165,14 +166,14 @@ public class SellerServerController extends UserSectionServerController {
                 product.setSpecialFeatures(specialFeatures);
                 product.setSituation(Situation.CREATING);
                 System.out.println(seller);
-                Database.addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
+                Database.getInstance().addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
         }
         public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {
-                return Database.getCategoryByName(categoryName).getSpecialFeatures();
+                return Database.getInstance().getCategoryByName(categoryName).getSpecialFeatures();
         }
         public void removeProduct(Seller seller,String id) throws Exception {
-                Product productToBeRemoved = Database.getProductById(id);
-                Database.removeProduct(productToBeRemoved);
+                Product productToBeRemoved = Database.getInstance().getProductById(id);
+                Database.getInstance().removeProduct(productToBeRemoved);
         }
         public ArrayList<Product> getProducts(Seller seller){
                 return seller.getProducts();
@@ -184,7 +185,7 @@ public class SellerServerController extends UserSectionServerController {
                 return seller.getFactoryName();
         }
         public ArrayList<Buyer> getBuyers(Seller seller,String id) throws Exception {
-                return Database.getProductById(id).getBuyers();
+                return Database.getInstance().getProductById(id).getBuyers();
         }
         public Off getOff(Seller seller,String id) throws Exception {
                 for (Off off : seller.getOffs()) {
@@ -201,13 +202,13 @@ public class SellerServerController extends UserSectionServerController {
                 throw new Exception("wrong product id");
         }
         public ArrayList<Category> getCategories(){
-                return Database.getAllCategory();
+                return Database.getInstance().getAllCategory();
         }
         public ArrayList<Off> getOffs(Seller seller){
                 return seller.getOffs();
         }
         public void editOff(String offId,Seller seller,HashMap<String ,String> edit) throws Exception {
-                Off off = Database.getOffById(offId);
+                Off off = Database.getInstance().getOffById(offId);
                 Off editedOff = off.cloneOff();
                 for (String editRequestKey : edit.keySet()) {
                         String editRequestValue = edit.get(editRequestKey);
@@ -228,7 +229,7 @@ public class SellerServerController extends UserSectionServerController {
                                         ArrayList<Product> products = new ArrayList<>();
 
                                         for (String productId : editRequestValue.split(",")) {
-                                                Product product = Database.getProductById(productId);
+                                                Product product = Database.getInstance().getProductById(productId);
                                                 if(product.isItInOff() && !off.hasProduct(product))
                                                         throw new Exception("a product is already in an off");
                                                 products.add(product);
@@ -244,12 +245,12 @@ public class SellerServerController extends UserSectionServerController {
                 }
                 off.setSituation(Situation.EDITING);
                 Request request = new Request(seller,off,editedOff);
-                Database.addRequest(request);
+                Database.getInstance().addRequest(request);
         }
         public void addOff(Seller seller,ArrayList<String> offDetails) throws Exception {
                 ArrayList<Product> allProducts = new ArrayList<>();
                 for (int i = 5; i < offDetails.size(); i++) {
-                        Product product = Database.getProductById(offDetails.get(i));
+                        Product product = Database.getInstance().getProductById(offDetails.get(i));
                         if(product.isItInOff())
                                 throw new Exception("a product is already in an off");
                         allProducts.add(product);
@@ -274,7 +275,7 @@ public class SellerServerController extends UserSectionServerController {
 
                 Off off  = new Off(allProducts,Situation.CREATING,exactStartDate,exactEndDate,discountAmount,seller);
 
-                Database.addRequest(new Request(seller,off));
+                Database.getInstance().addRequest(new Request(seller,off));
 
         }
 

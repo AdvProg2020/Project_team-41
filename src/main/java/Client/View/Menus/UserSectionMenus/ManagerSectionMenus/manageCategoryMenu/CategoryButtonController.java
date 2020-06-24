@@ -43,7 +43,7 @@ public class CategoryButtonController {
             ManagerController.getInstance().removeCategory(categoryNameTextField.getText());
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
         if(categoriesShown.contains(categoryNameTextField.getText()))

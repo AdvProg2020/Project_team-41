@@ -70,7 +70,7 @@ public class BuyerServerController {
     }
     public ArrayList<String> getCodedDiscounts(Person person){
         ArrayList<String> codedDiscounts = new ArrayList<>();
-        for (CodedDiscount discountCode : Database.getAllDiscountCodes()) {
+        for (CodedDiscount discountCode : Database.getInstance().getAllDiscountCodes()) {
             if(discountCode.hasPerson(person))
                 codedDiscounts.add(discountCode.getDiscountCode());
         }
@@ -78,7 +78,7 @@ public class BuyerServerController {
     }
     public static void rateTheProduct(Buyer buyer,String productId , Score score) throws Exception {
         boolean flag = false;
-        Product product = Database.getProductById(productId);
+        Product product = Database.getInstance().getProductById(productId);
         for (TradeLog tradeLog : buyer.getTradeLogs()) {
             if (tradeLog.getItems().containsKey(product)) {
                 flag = true;
@@ -91,10 +91,10 @@ public class BuyerServerController {
             throw new Exception("sorry,only people who bought the product can rate it");
     }
     public Product getProduct(String productId) throws Exception {
-        return Database.getProductById(productId);
+        return Database.getInstance().getProductById(productId);
     }
     public void addCodedDiscountToCart(Buyer buyer,String discountCode) throws Exception {
-        CodedDiscount codedDiscount = Database.getCodedDiscountByCode(discountCode);
+        CodedDiscount codedDiscount = Database.getInstance().getCodedDiscountByCode(discountCode);
         if(codedDiscount.hasPerson(buyer)) {
             if(new Date().before(codedDiscount.getStartDate()))
                 throw new Exception("this discount code is not started yet");
@@ -107,10 +107,10 @@ public class BuyerServerController {
         }
     }
     public void increaseProduct(Buyer buyer,int num , String productId) throws Exception {
-        buyer.getCart().increaseProductQuantity(Database.getProductById(productId));
+        buyer.getCart().increaseProductQuantity(Database.getInstance().getProductById(productId));
     }
 
     public void decreaseProduct(Buyer buyer,int num , String productId) throws Exception {
-        buyer.getCart().decreaseProductQuantity(Database.getProductById(productId));
+        buyer.getCart().decreaseProductQuantity(Database.getInstance().getProductById(productId));
     }
 }

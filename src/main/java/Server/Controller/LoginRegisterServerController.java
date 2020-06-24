@@ -17,16 +17,16 @@ public class LoginRegisterServerController {
     private LoginRegisterServerController(){
     }
     public void createAccount(Person person) throws Exception {
-        ArrayList<Person> allUsers = Database.getAllUsers();
+        ArrayList<Person> allUsers = Database.getInstance().getAllUsers();
         for (Person user : allUsers) {
             if (user.getUserName().equals(person.getUserName())) {
                 throw new Exception("Invalid UserName!");
             }
         }
-        Database.addUser(person);
+        Database.getInstance().addUser(person);
     }
     public Person login (String username,String password) throws Exception {
-        ArrayList<Person> allUsers = Database.getAllUsers();
+        ArrayList<Person> allUsers = Database.getInstance().getAllUsers();
 
         for (Person user : allUsers) {
             if (user.getUserName().equals(username)) {
@@ -42,7 +42,7 @@ public class LoginRegisterServerController {
 
     }
     public boolean checkIfManagerExists(){
-        return !Database.getAllManagers().isEmpty();
+        return !Database.getInstance().getAllManagers().isEmpty();
     }
 
 }

@@ -46,7 +46,7 @@ public class ProductButtonController {
         try {
             product = SellerController.getInstance().getProduct(productIdTextField.getText());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");
@@ -86,7 +86,7 @@ public class ProductButtonController {
             Product product = BuyerController.getInstance().getProduct(productIdTextField.getText());
             BuyerController.getInstance().getCart().decreaseProductQuantity(product);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -95,7 +95,7 @@ public class ProductButtonController {
             Product product = BuyerController.getInstance().getProduct(productIdTextField.getText());
             BuyerController.getInstance().getCart().increaseProductQuantity(product);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

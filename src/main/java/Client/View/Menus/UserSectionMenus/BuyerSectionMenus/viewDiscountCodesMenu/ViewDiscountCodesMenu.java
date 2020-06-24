@@ -21,7 +21,6 @@ public class ViewDiscountCodesMenu {
     @FXML
     public void initialize(){
         for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
-            System.out.println(codedDiscount);
             makeCategorySplitButton(codedDiscount);
         }
     }

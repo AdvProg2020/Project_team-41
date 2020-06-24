@@ -129,7 +129,7 @@ public class OffButtonController {
         try {
             off = SellerController.getInstance().getOff(offNameTextField.getText());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 //        ProductPageGeneralButtons.setTheProduct(off);
 //        App.setRoot("ProductPage/ProductPageGeneral");

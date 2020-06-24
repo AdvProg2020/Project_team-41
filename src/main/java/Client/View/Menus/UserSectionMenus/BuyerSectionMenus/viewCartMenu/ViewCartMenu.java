@@ -27,7 +27,7 @@ public class ViewCartMenu {
     public void initialize(){
         Cart cart = BuyerController.getInstance().getCart();
         if(cart.getProducts().isEmpty()){
-            System.out.println("cart is empty");
+            showMessage(informationText,MessageType.INFORMATION,"cart is empty");
         }
         else {
             for (Product product : cart.getProducts().keySet()) {

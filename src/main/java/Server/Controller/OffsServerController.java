@@ -19,13 +19,13 @@ public class OffsServerController {
     private OffsServerController(){
     }
     public ArrayList<Off> getOffs(){
-        return Database.getAllOffs();
+        return Database.getInstance().getAllOffs();
     }
     public ArrayList<Product> getAllOffProducts(){
-        return Database.getAllOffProducts();
+        return Database.getInstance().getAllOffProducts();
     }
     public void deleteOffs(ArrayList<Off>offs){
-        Database.deleteOutOfDateOffs(offs);
+        Database.getInstance().deleteOutOfDateOffs(offs);
         for (Off off : offs) {
             off.deleteOff();
         }

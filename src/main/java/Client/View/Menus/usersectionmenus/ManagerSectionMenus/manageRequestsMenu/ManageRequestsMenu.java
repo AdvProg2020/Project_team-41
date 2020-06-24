@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageRequestsMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
+import Client.View.Menus.MessageType;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -22,15 +23,12 @@ public class ManageRequestsMenu {
     @FXML
     public void initialize(){
         if(ManagerController.getInstance().showRequest().isEmpty())
-            System.out.println("there is no request to show here");
+            showMessage(informationText,MessageType.INFORMATION,"No requests found");
         for (String request : ManagerController.getInstance().showRequest()) {
             makeRequestSplitButton(request);
         }
     }
 
-    public void createManagerProfileClicked(MouseEvent mouseEvent) {
-
-    }
     private void makeRequestSplitButton(String request) {
         Parent root = null;
         try {
@@ -45,6 +43,11 @@ public class ManageRequestsMenu {
         textField.setText(request);
 
         requestsVBox.getChildren().add(root);
+    }
+    private void showMessage(Text text, MessageType messageType, String message){
+        text.setFill(messageType.getLinearGradient());
+        text.setText(message);
+
     }
 
 }

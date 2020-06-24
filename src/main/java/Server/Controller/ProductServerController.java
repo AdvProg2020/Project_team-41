@@ -29,7 +29,7 @@ public class ProductServerController {
     }
     public int amountOfDiscount(String productId) throws Exception {
         Date date=new Date();
-        for (Off off : Database.getAllOffs()) {
+        for (Off off : Database.getInstance().getAllOffs()) {
             for (Product product : off.getProducts()) {
                 if(product.getProductId().equals(productId)){
                     if(date.before(off.getStartDate())){
@@ -43,7 +43,7 @@ public class ProductServerController {
     }
     public void addComment(Comment comment){
         Request request=new Request(comment);
-        Database.addRequest(request);
+        Database.getInstance().addRequest(request);
     }
 
 }

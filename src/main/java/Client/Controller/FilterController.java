@@ -276,7 +276,7 @@ public class FilterController {
 
 
     public void setFilterCategory(String filterCategoryName) throws Exception {
-        this.filterCategory = Database.getCategoryByName(filterCategoryName);
+        this.filterCategory = Database.getInstance().getCategoryByName(filterCategoryName);
     }
 
     public Category getFilterCategory() {
@@ -338,7 +338,7 @@ public class FilterController {
     }
 
     public void setSellerUserName(String sellerUserName) throws Exception {
-        Database.getSellerByUsername(sellerUserName);
+        Database.getInstance().getSellerByUsername(sellerUserName);
         this.sellerUserName = sellerUserName;
     }
 

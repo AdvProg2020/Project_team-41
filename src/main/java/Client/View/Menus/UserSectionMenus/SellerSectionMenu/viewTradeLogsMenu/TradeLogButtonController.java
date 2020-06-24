@@ -84,7 +84,7 @@ public class TradeLogButtonController {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         ViewTradeLogController.tradeLog = tradeLogDetails;
         VBox vBox = (VBox) NodeFinder.getParentById(gridPane,"tradeLogsVBox");

@@ -16,8 +16,8 @@ public class Main {
 //        seller_1.setUserName("seller_1");
 //        Seller seller_2 = new Seller();
 //        seller_2.setUserName("seller_2");
-//        Database.getAllUsers().add(seller_1);
-//        Database.getAllUsers().add(seller_2);
+//        Database.getInstance().getAllUsers().add(seller_1);
+//        Database.getInstance().getAllUsers().add(seller_2);
 //
 //        ArrayList<String> specialFeatures = new ArrayList<>();
 //        specialFeatures.add("writer");
@@ -25,8 +25,8 @@ public class Main {
 //        specialFeatures.add("edition");
 //        Category books = new Category("books" , specialFeatures);
 //        Category shirts = new Category("shirts" , new ArrayList<>());
-//        Database.getAllCategory().add(books);
-//        Database.getAllCategory().add(shirts);
+//        Database.getInstance().getAllCategory().add(books);
+//        Database.getInstance().getAllCategory().add(shirts);
 //
 //        Product biganeh = new Product();
 //        biganeh.setName("biganeh");
