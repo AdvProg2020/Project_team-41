@@ -21,8 +21,6 @@ public class LoginRegisterServerController {
     }
     public void createAccount(Person person) throws Exception {
         ArrayList<Person> allUsers = Database.getInstance().getAllUsers();
-
-        ArrayList<Person> allUsers = Database.getAllUsers();
         for (Person user : allUsers) {
             if (user.getUserName().equals(person.getUserName())) {
                 throw new Exception("Invalid UserName!");
@@ -31,9 +29,9 @@ public class LoginRegisterServerController {
         Database.getInstance().addUser(person);
         if(person instanceof Seller){
             Request request=new Request((Seller) person);
-            Database.addRequest(request);
+            Database.getInstance().addRequest(request);
         }else {
-            Database.addUser(person);
+            Database.getInstance().addUser(person);
         }
     }
     public Person login (String username,String password) throws Exception {
