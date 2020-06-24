@@ -33,7 +33,6 @@ public class BuyerServerController {
         HashMap<Seller,HashMap<Product,Integer>> sellerProducts = new HashMap<>();
         if(buyer.getCredit()<cashToPay)
             throw new Exception("you don't have enough credit");
-
         for (Product product : cart.getProducts().keySet()) {
             int productQuantity = cart.getProducts().get(product);
             if(product.getQuantity()<productQuantity)
@@ -59,14 +58,11 @@ public class BuyerServerController {
 
             }
                 seller.addTradeLog(new TradeLog(new Date(),money,moneyWithoutOff - money,sellerProducts.get(seller),buyer.getUserName(),"waiting"));
-
         }
         if(cart.getCodedDiscount() != null)
             cart.getCodedDiscount().reduceDiscountCodeForUser(buyer);
         buyer.addTradeLog(new TradeLog(new Date(),cart.totalPrice(),cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(),"waiting"));
         buyer.renewCart();
-
-
     }
     public ArrayList<String> getCodedDiscounts(Person person){
         ArrayList<String> codedDiscounts = new ArrayList<>();

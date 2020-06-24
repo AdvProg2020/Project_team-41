@@ -22,7 +22,7 @@ public class AddToCard extends Menu {
     public void initialize() throws IOException {
         try{
         ProductController.addToCart(ProductPageGeneralButtons.getTheProduct());
-            showMessage(addToCardResult , MessageType.SUCCESS , "The product was added to card successfully");}
+            showMessage(addToCardResult , MessageType.SUCCESS , "The product was added to cart successfully");}
         catch (ClassCastException e){
          showMessage(addToCardResult , MessageType.ERROR , e.getMessage());
         }

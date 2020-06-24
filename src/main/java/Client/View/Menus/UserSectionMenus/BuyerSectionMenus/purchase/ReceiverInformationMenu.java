@@ -3,9 +3,11 @@ package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 import Client.Controller.UserSectionController.BuyerController;
 import Client.View.Menus.MessageType;
 import Client.View.Menus.NodeFinder;
+import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import org.example.App;
@@ -18,6 +20,7 @@ public class ReceiverInformationMenu {
     public TextField phoneNumberTextField;
     public TextField addressTextField;
     public Text informationText;
+    public AnchorPane receiverInformationMenuAnchorPane;
 
     public void nextButtonClicked(MouseEvent mouseEvent) throws IOException {
         if(addressTextField.getText().isBlank() || phoneNumberTextField.getText().isBlank() || emailTextField.getText().isBlank())
@@ -27,7 +30,7 @@ public class ReceiverInformationMenu {
             receiverInformation.add(addressTextField.getText());
             receiverInformation.add(phoneNumberTextField.getText());
             BuyerController.getInstance().setReceiverInformation(receiverInformation);
-            App.setRoot("userSection/buyerSection/purchase/discount code menu");
+            loadInInsideAnchorPane("userSection/buyerSection/purchase/discount code menu");
         }
 
     }
@@ -37,10 +40,11 @@ public class ReceiverInformationMenu {
 
     }
 
+
     public void backButtonClicked(MouseEvent mouseEvent) throws IOException {
-        BorderPane managerSectionBorderPane = (BorderPane) NodeFinder.getParentById(informationText, "managerSectionBorderPane");
-        Parent root = null;
-        root = App.loadFXML("userSection/buyerSection/viewCart/viewCart");
-        managerSectionBorderPane.setCenter(root);
+        loadInInsideAnchorPane("userSection/buyerSection/viewCart/viewCart");
+    }
+    private void loadInInsideAnchorPane(String location){
+        BuyerSectionMenu.loadInInsideAnchorPane((AnchorPane) receiverInformationMenuAnchorPane.getParent(),location);
     }
 }

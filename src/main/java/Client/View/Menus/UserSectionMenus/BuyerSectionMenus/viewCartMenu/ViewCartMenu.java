@@ -39,7 +39,7 @@ public class ViewCartMenu {
         }
     }
 
-    private void makeProductSplitButton(String productName,String productId,int quantity) {
+    private void makeProductSplitButton(String productName,String productId,Integer quantity) {
         Parent root = null;
         try {
             root = App.loadFXML("userSection/buyerSection/viewCart/productSplitButton");
@@ -49,10 +49,10 @@ public class ViewCartMenu {
         AnchorPane anchorPane = (AnchorPane) root;
         TextField productNameTextField = (TextField) NodeFinder.getChildById(anchorPane,"productNameTextField");
         TextField productIdTextField = (TextField) NodeFinder.getChildById(anchorPane,"productIdTextField");
-        TextField quantityTextField = (TextField) NodeFinder.getChildById(anchorPane,"quantityTextField");
+        TextField quantityTextField = (TextField) NodeFinder.getChildById(anchorPane,"productQuantityTextField");
         productNameTextField.setText(productName);
         productIdTextField.setText(productId);
-        quantityTextField.setText(Integer.toString(quantity));
+        quantityTextField.setText(quantity.toString());
         productsVBox.getChildren().add(root);
     }
 
@@ -61,12 +61,22 @@ public class ViewCartMenu {
             showMessage(informationText,MessageType.ERROR,"you haven't selected any products yet");
         }
         else {
-            App.setRoot("userSection/buyerSection/purchase/receiver information menu");
+            loadInInsideAnchorPane();
         }
     }
     private void showMessage(Text text, MessageType messageType, String message){
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
 
+    }
+    private void loadInInsideAnchorPane(){
+        AnchorPane insideAnchorPane = (AnchorPane) viewCartAnchorPane.getParent();
+        Parent root = null;
+        try {
+            root = App.loadFXML("userSection/buyerSection/purchase/receiver information menu");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        insideAnchorPane.getChildren().setAll(root);
     }
 }

@@ -27,7 +27,6 @@ public class TradeLog implements Serializable {
         this.items = items;
         this.buyerName = buyerName;
         this.deliverySituation = deliverySituation;
-
     }
 
     public String getLogId() {

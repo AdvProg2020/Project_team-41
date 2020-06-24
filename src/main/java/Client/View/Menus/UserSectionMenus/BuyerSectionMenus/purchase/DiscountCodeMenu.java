@@ -3,9 +3,11 @@ package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 import Client.Controller.UserSectionController.BuyerController;
 import Client.View.Menus.MessageType;
 import Client.View.Menus.NodeFinder;
+import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import org.example.App;
@@ -16,8 +18,10 @@ public class DiscountCodeMenu {
 
     public TextField discountCodeTextField;
     public Text informationText;
+    public AnchorPane discountCodeMenuAnchorPane;
 
     public void nextButtonClicked(MouseEvent mouseEvent) throws IOException {
+
         if(!discountCodeTextField.getText().isBlank()) {
             try {
                 BuyerController.getInstance().addCodedDiscountToCart(discountCodeTextField.getText());
@@ -26,7 +30,8 @@ public class DiscountCodeMenu {
                 return;
             }
         }
-        App.setRoot("userSection/buyerSection/purchase/payment menu");
+        loadInInsideAnchorPane("userSection/buyerSection/purchase/payment menu");
+
     }
     private void showMessage(Text text, MessageType messageType, String message){
         text.setFill(messageType.getLinearGradient());
@@ -35,9 +40,9 @@ public class DiscountCodeMenu {
     }
 
     public void backButtonClicked(MouseEvent mouseEvent) throws IOException {
-        BorderPane managerSectionBorderPane = (BorderPane) NodeFinder.getParentById(informationText, "managerSectionBorderPane");
-        Parent root = null;
-        root = App.loadFXML("userSection/buyerSection/purchase/receiver information menu");
-        managerSectionBorderPane.setCenter(root);
+        loadInInsideAnchorPane("userSection/buyerSection/purchase/receiver information menu");
+    }
+    private void loadInInsideAnchorPane(String location){
+        BuyerSectionMenu.loadInInsideAnchorPane((AnchorPane) discountCodeMenuAnchorPane.getParent(),location);
     }
 }

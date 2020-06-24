@@ -57,16 +57,21 @@ public class Cart implements Serializable {
         } catch (Exception e) {
             throw new Exception("there is no such product in the cart");
         }
-        if(productQuantity == 1)
-            products.remove(product,productQuantity);
-        products.put(product,productQuantity-1);
+        if(productQuantity == 1) {
+            products.remove(product, productQuantity);
+        }
+        else {
+            products.put(product, productQuantity - 1);
+        }
         ServerSaver.write(AllCommands.allData);
     }
 
     public int totalPrice(){
         int totalPrice = 0;
         for (Product product : products.keySet()) {
-            totalPrice += (product.getPriceWithOff()*products.get(product));
+            int priceWithOff = product.getPriceWithOff();
+            int quantity = products.get(product);
+            totalPrice += (priceWithOff * quantity);
         }
         return totalPrice;
     }
@@ -98,4 +103,8 @@ public class Cart implements Serializable {
                 Objects.equals(codedDiscount, cart.codedDiscount);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(products, receiverInformation, codedDiscount);
+    }
 }

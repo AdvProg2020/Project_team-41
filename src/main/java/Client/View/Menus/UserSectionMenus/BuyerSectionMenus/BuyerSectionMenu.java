@@ -52,4 +52,13 @@ public class BuyerSectionMenu {
     public void viewCartButtonClicked(MouseEvent mouseEvent) {
         setSubPage("userSection/buyerSection/viewCart/viewCart");
     }
+    public static void loadInInsideAnchorPane(AnchorPane anchorPane,String location){
+        Parent root = null;
+        try {
+            root = App.loadFXML(location);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        anchorPane.getChildren().setAll(root);
+    }
 }

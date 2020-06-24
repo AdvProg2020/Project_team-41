@@ -4,7 +4,9 @@ import Client.Controller.UserSectionController.BuyerController;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;
+import Client.View.Menus.NodeFinder;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -36,29 +38,26 @@ public class ProductButtonController {
         else{
             productsShown.add(productIdTextField.getText());
             showProduct();
-
         }
     }
-
 
     private void showProduct() throws IOException {
         Product product = null;
         try {
-            product = SellerController.getInstance().getProduct(productIdTextField.getText());
+            product = BuyerController.getInstance().getProduct(productIdTextField.getText());
         } catch (Exception e) {
             e.printStackTrace();
         }
         ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");
-
-
-
-
+        ProductPageGeneralButtons.parentFxmlAddress = "userSection/buyerSection/buyer section";
     }
+
     private void hideProduct() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
         vBox.getChildren().remove(getIndexOfProduct()+1);
     }
+
     private int getIndexOfProduct(){
         String productId = productIdTextField.getText();
         Product product;
@@ -66,7 +65,6 @@ public class ProductButtonController {
             if(oneProduct.getProductId().equals(productId))
                 product = oneProduct;
         }
-        //viewProductController.product = product;
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
         for (int i = 0; i < vBox.getChildren().size(); i++) {
             AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(i);
@@ -85,6 +83,7 @@ public class ProductButtonController {
         try {
             Product product = BuyerController.getInstance().getProduct(productIdTextField.getText());
             BuyerController.getInstance().getCart().decreaseProductQuantity(product);
+            resetPage();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,6 +93,7 @@ public class ProductButtonController {
         try {
             Product product = BuyerController.getInstance().getProduct(productIdTextField.getText());
             BuyerController.getInstance().getCart().increaseProductQuantity(product);
+            resetPage();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,5 +103,15 @@ public class ProductButtonController {
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
 
+    }
+    private void resetPage(){
+        AnchorPane insideAnchorPane = (AnchorPane) NodeFinder.getParentById(productNameAnchorPane,"insideAnchorPane");
+        Parent root = null;
+        try {
+            root = App.loadFXML("userSection/buyerSection/viewCart/viewCart");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        insideAnchorPane.getChildren().setAll(root);
     }
 }
