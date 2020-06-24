@@ -42,7 +42,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Label layoutX="96.0" layoutY="417.0" text="See our products">
+            <Label layoutX="93.0" layoutY="417.0" text="See our products" textFill="#6f1a1a">
                <font>
                   <Font size="35.0" />
                </font>
@@ -53,7 +53,7 @@
    <center>
       <AnchorPane prefHeight="650.0" prefWidth="717.0" style="-fx-background-color: #800080;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="161.0" layoutY="516.0" mnemonicParsing="false" onAction="#offs" prefHeight="53.0" prefWidth="186.0" style="-fx-background-color: #FF0000;" text="Offs" textFill="WHITE">
+            <Button layoutX="167.0" layoutY="513.0" mnemonicParsing="false" onAction="#offs" prefHeight="53.0" prefWidth="186.0" style="-fx-background-color: #FF0000;" text="Offs" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Image url="@images/sale.png" />
                </image>
             </ImageView>
-            <Label layoutX="95.0" layoutY="422.0" text="What's on sale today?">
+            <Label layoutX="95.0" layoutY="422.0" text="What's on sale today?" textFill="WHITE">
                <font>
                   <Font size="35.0" />
                </font>
@@ -74,7 +74,7 @@
    <right>
       <AnchorPane prefHeight="650.0" prefWidth="434.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="139.0" layoutY="511.0" mnemonicParsing="false" onAction="#userSection" prefHeight="53.0" prefWidth="186.0" style="-fx-background-color: #FF0000;" text="User section" textFill="WHITE">
+            <Button layoutX="138.0" layoutY="514.0" mnemonicParsing="false" onAction="#userSection" prefHeight="53.0" prefWidth="186.0" style="-fx-background-color: #FF0000;" text="User section" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>

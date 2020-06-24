@@ -48,7 +48,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="400.0" prefWidth="229.0" style="-fx-background-color: #40E0D0;">
          <children>
-            <Button alignment="CENTER" layoutX="75.0" layoutY="365.0" mnemonicParsing="false" onAction="#manager" style="-fx-background-color: #FFD700;" text="Manager">
+            <Button alignment="CENTER" layoutX="75.0" layoutY="368.0" mnemonicParsing="false" onAction="#manager" prefHeight="38.0" prefWidth="89.0" style="-fx-background-color: #FFD700;" text="Manager">
                <font>
                   <Font size="16.0" />
                </font></Button>
