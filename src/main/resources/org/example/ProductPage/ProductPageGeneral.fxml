@@ -70,6 +70,16 @@
                                     </LinearGradient>
                                 </textFill>
                             </Button>
+                            <Button fx:id="loginLogout" mnemonicParsing="false" onMouseClicked="#registerOrLogin" prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="Login/Register">
+                                <textFill>
+                                    <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                                        <stops>
+                                            <Stop color="BLACK" />
+                                            <Stop color="#dd813f" offset="1.0" />
+                                        </stops>
+                                    </LinearGradient>
+                                </textFill>
+                            </Button>
                             <Button mnemonicParsing="false" onMouseClicked="#backToPreviousPage" prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="Back">
                                 <textFill>
                                     <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">

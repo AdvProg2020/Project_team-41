@@ -1,6 +1,7 @@
 package Client.View.Menus.ProductPage;
 
 import Client.Models.Product;
+import Server.Controller.TimeControl;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,16 +20,21 @@ public class ProductDetails {
     public TextField specialFeaturesTextField;
     public TextField descriptionTextField;
     public TextField scoreTextField;
+    public TextField offTextField;
 
 
     @FXML
     public void initialize(){
-
-        setDetailsInTextFields(ProductPageGeneralButtons.getTheProduct() , nameTextField  , priceTextField , descriptionTextField , scoreTextField , specialFeaturesTextField);
-        companyNameTextField.setText(ProductPageGeneralButtons.getTheProduct().getCompanyName());
-        sellerTextField.setText(ProductPageGeneralButtons.getTheProduct().getSeller().getUserName());
-        quantityTextField.setText(String.valueOf(ProductPageGeneralButtons.getTheProduct().getQuantity()));
-
+Product theProduct = ProductPageGeneralButtons.getTheProduct();
+        setDetailsInTextFields(theProduct , nameTextField  , priceTextField , descriptionTextField , scoreTextField , specialFeaturesTextField);
+        companyNameTextField.setText(theProduct.getCompanyName());
+        sellerTextField.setText(theProduct.getSeller().getUserName());
+        quantityTextField.setText(String.valueOf(theProduct.getQuantity()));
+        if(theProduct.getOff() == null)
+            offTextField.setText("Not in any off");
+        else
+        offTextField.setText("amount of discount:" + theProduct.getOff().getAmountOfDiscount() +
+                "   start date:" +  TimeControl.getJalaliDateAndTimeForPrint(theProduct.getOff().getStartDate()) + "   end date:" +  TimeControl.getJalaliDateAndTimeForPrint(theProduct.getOff().getEndDate()) );
 
     }
 

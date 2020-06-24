@@ -1,8 +1,11 @@
 package Client.View.Menus.ProductPage;
 
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Product;
+import Client.View.Menus.Menu;
 import Client.View.Menus.MessageType;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -10,11 +13,20 @@ import org.example.App;
 
 import java.io.IOException;
 
-public class ProductPageGeneralButtons {
+public class ProductPageGeneralButtons extends Menu {
 
     private static Product theProduct;
     public BorderPane productPageBorderPane;
     public static String parentFxmlAddress;
+    public Button loginLogout;
+
+    public void initialize(){
+        if(UserSectionController.getLoggedInPerson()==null){
+            loginLogout.setText("Register/Login");
+        }else{
+            loginLogout.setText("Logout");
+        }
+    }
 
     public void showProductDetails(MouseEvent mouseEvent) {
         setSubPage("ProductPage/ProductDetails");
@@ -42,6 +54,14 @@ public class ProductPageGeneralButtons {
 
     public void backToPreviousPage(MouseEvent mouseEvent) throws IOException {
        App.setRoot(parentFxmlAddress);
+    }
+
+    public void registerOrLogin() throws IOException {
+        if(UserSectionController.getLoggedInPerson()==null){
+            login("ProductPage/ProductPageGeneral");
+        }else{
+            logout("ProductPage/ProductPageGeneral");
+        }
     }
 
     private void setSubPage(String name){

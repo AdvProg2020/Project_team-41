@@ -17,6 +17,7 @@ public class ProductToShowInAllProducts {
     private String seller;
     private int view;
     private int score;
+    private int quantity;
     private Button button;
 
     public String getProductId() {
@@ -91,7 +92,15 @@ public class ProductToShowInAllProducts {
         this.company = company;
     }
 
-    public ProductToShowInAllProducts(String productId, String productName, int price, String category, String company, String seller, int view, int score, Button button) {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public ProductToShowInAllProducts(String productId, String productName, int price, String category, String company, String seller, int view, int score,int quantity, Button button) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -100,6 +109,7 @@ public class ProductToShowInAllProducts {
         this.seller = seller;
         this.view = view;
         this.score = score;
+        this.quantity = quantity;
         this.button = button;
         button.setStyle("-fx-background-color:transparent");
         button.setOnAction(e ->{
@@ -124,6 +134,7 @@ public class ProductToShowInAllProducts {
         return price == that.price &&
                 view == that.view &&
                 score == that.score &&
+                quantity == that.quantity &&
                 Objects.equals(productId, that.productId) &&
                 Objects.equals(productName, that.productName) &&
                 Objects.equals(category, that.category) &&
@@ -134,6 +145,6 @@ public class ProductToShowInAllProducts {
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, productName, price, category, company, seller, view, score, button);
+        return Objects.hash(productId, productName, price, category, company, seller, view, score, quantity ,button);
     }
 }
