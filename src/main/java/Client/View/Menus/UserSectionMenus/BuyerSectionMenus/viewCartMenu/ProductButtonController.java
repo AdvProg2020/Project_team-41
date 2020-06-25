@@ -28,6 +28,8 @@ public class ProductButtonController {
     public Button increaseProductButton;
     public Button decreaseProductButton;
     public TextField productQuantityTextField;
+    public TextField singlePriceTextField;
+    public TextField WholePriceTextField;
     ArrayList<String> productsShown = new ArrayList<>();
 
     public void viewProductClicked(MouseEvent mouseEvent) throws IOException {
