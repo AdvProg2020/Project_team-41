@@ -4,6 +4,7 @@ import Client.Controller.LoginRegisterController;
 import Client.Models.Person.Manager;
 import Client.View.Menus.Menu;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 public class ManagerRegister {
     public TextField username;
-    public TextField password;
+
     public TextField firstName;
     public TextField lastName;
     public TextField email;
@@ -25,6 +26,7 @@ public class ManagerRegister {
     public Label phoneError;
     public Label moneyError;
     public Label welcome1;
+    public PasswordField password;
 
     public void initialize(){
         setAllInvisible();
