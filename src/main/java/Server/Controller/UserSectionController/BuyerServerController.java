@@ -74,6 +74,7 @@ public class BuyerServerController {
         return codedDiscounts;
     }
 
+
     public ArrayList<String> getCodedDiscount(String discountCode, Person person) {
         CodedDiscount foundCodedDiscount = null;
         for (CodedDiscount codedDiscount : Database.getInstance().getAllDiscountCodes()) {
@@ -126,6 +127,9 @@ public class BuyerServerController {
         else {
             throw new Exception("you don't have this discount code");
         }
+    }
+    public void removeCodedDiscountFromCart(Buyer buyer){
+        buyer.getCart().setCodedDiscount(null);
     }
     public void increaseProduct(Buyer buyer,int num , String productId) throws Exception {
         buyer.getCart().increaseProductQuantity(Database.getInstance().getProductById(productId));

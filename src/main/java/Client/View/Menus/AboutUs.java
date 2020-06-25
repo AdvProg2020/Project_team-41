@@ -1,8 +1,6 @@
 package Client.View.Menus;
 
-import animatefx.animation.Bounce;
-import animatefx.animation.FadeIn;
-import animatefx.animation.FadeOut;
+import animatefx.animation.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -36,7 +34,7 @@ public class AboutUs {
                 if (i<3) {
                     try {
 
-                        new FadeIn(aboutUsImageView).play();
+                        new SlideInLeft(aboutUsImageView).play();
                         fileInputStream = new FileInputStream("src/main/resources/org/example/images/aboutUsSlide/" + (i+1) + ".jpg");
                         Image image = new Image(fileInputStream);
                         aboutUsImageView.setImage(image);
