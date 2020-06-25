@@ -18,8 +18,6 @@ public class ManagerSectionMenu {
     @FXML
     public void initialize() {
         SimpleAudioPlayer.getInstance().playMusic(Music.USER_SECTION);
-        //todo remove nextLine
-   //     UserSectionController.setLoggedInPerson(Database.getInstance().getAllUsers().get(0));
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {
