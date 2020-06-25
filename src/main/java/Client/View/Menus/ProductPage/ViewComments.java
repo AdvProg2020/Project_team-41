@@ -23,11 +23,14 @@ import java.io.IOException;
 
 public class ViewComments {
     public VBox commentsVBox;
+    public Text commentsInfo;
 
 
     @FXML
     public void initialize(){
 
+        if(ProductPageGeneralButtons.getTheProduct().getComments().size() == 0)
+            commentsInfo.setText("No comments yet");
         for (Comment comment : ProductPageGeneralButtons.getTheProduct().getComments()) {
             if (comment.getCommentSituation().equals(CommentSituation.CONFIRMED)) {
                 addEachComment(comment.getTitle(), comment.getContent(), comment.getPerson().getUserName() , comment.isHasHeBought());
