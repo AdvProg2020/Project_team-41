@@ -116,7 +116,7 @@ public class CodedDiscount implements Serializable {
         return people.get(person) != null;
     }
     public int howMuchWillItCost(int price){
-        int discountAmount = price*(discountPercentage)/100;
+        int discountAmount = (price*discountPercentage)/100;
         return price - Math.min((discountAmount), maximumDiscount);
     }
 
