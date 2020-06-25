@@ -107,7 +107,7 @@
                   <TextField fx:id="dateTextField" editable="false"  stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="deliverySituationTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="offAmountTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="moneywwTextField" editable="false"  stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="moneyTextField" editable="false"  stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                    salesHistory.add("log id : " + tradeLog.getLogId());
                    salesHistory.add("buyer : " + tradeLog.getBuyerName());
                    salesHistory.add("date : " + TimeControl.convertGregorianToJalali(tradeLog.getDate()).toString());

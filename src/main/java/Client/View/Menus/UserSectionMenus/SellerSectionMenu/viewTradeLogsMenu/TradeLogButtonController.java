@@ -79,7 +79,7 @@ public class TradeLogButtonController {
         ArrayList<String> tradeLogDetails = null;
         try {
             for (ArrayList<String> tradeLog : SellerController.getInstance().getSalesHistory()) {
-                if (tradeLog.get(0).split(":")[1].trim().equals(logIdTextField.getText().split(":")[1].trim())) {
+                if (tradeLog.get(0).split(":")[1].trim().equals(logIdTextField.getText().trim())) {
                     tradeLogDetails = tradeLog;
                 }
             }
@@ -88,13 +88,14 @@ public class TradeLogButtonController {
         }
         ViewTradeLogController.tradeLog = tradeLogDetails;
         VBox vBox = (VBox) NodeFinder.getParentById(gridPane,"tradeLogsVBox");
+
         for (int i = 0; i < vBox.getChildren().size(); i++) {
             AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(i);
             VBox innerVBox = (VBox) anchorPane.getChildren().get(0);
             GridPane gridPane = (GridPane) innerVBox.getChildren().get(0);
             if (gridPane.getChildren().get(0) instanceof Text)
                 continue;
-            TextField textField = (TextField) NodeFinder.getChildById(gridPane, "tradeLogTextField");
+            TextField textField = (TextField) NodeFinder.getChildById(gridPane, "logIdTextField");
             if (textField.getText().equals(logIdTextField.getText())) {
                 return i;
             }
