@@ -23,7 +23,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" wrappingWidth="96.22900390625">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Log id :" wrappingWidth="96.22900390625">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
@@ -37,7 +37,7 @@
                      </fill>
 
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First name :" wrappingWidth="96.22900390625" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Buyer :" wrappingWidth="96.22900390625" GridPane.rowIndex="1">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
@@ -50,7 +50,7 @@
                           </LinearGradient>
                       </fill>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last name :" wrappingWidth="96.22900390625" GridPane.rowIndex="2">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date :" wrappingWidth="96.22900390625" GridPane.rowIndex="2">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
@@ -63,7 +63,7 @@
                           </LinearGradient>
                       </fill>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Credit :" wrappingWidth="96.22900390625" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery situation :" wrappingWidth="96.22900390625" GridPane.rowIndex="3">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
@@ -76,7 +76,7 @@
                           </LinearGradient>
                       </fill>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="96.22900390625" GridPane.rowIndex="4">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Off Amount :" wrappingWidth="96.22900390625" GridPane.rowIndex="4">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
@@ -89,7 +89,7 @@
                           </LinearGradient>
                       </fill>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number:" wrappingWidth="112.22900390625" GridPane.rowIndex="5">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="money:" wrappingWidth="112.22900390625" GridPane.rowIndex="5">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
@@ -108,12 +108,6 @@
                   <TextField fx:id="deliverySituationTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="offAmountTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="moneyTextField" editable="false"  stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                   salesHistory.add("log id : " + tradeLog.getLogId());
-                   salesHistory.add("buyer : " + tradeLog.getBuyerName());
-                   salesHistory.add("date : " + TimeControl.convertGregorianToJalali(tradeLog.getDate()).toString());
-                   salesHistory.add("delivery situation : " + tradeLog.getDeliverySituation());
-                   salesHistory.add("off Amount : " + tradeLog.getOffAmount());
-                   salesHistory.add("money : " + tradeLog.getMoney());
                </children>
             </GridPane>
          </children>

@@ -17,7 +17,6 @@ public class ViewTradeLogController {
     public AnchorPane tradeLogInformation;
     @FXML
     public void initialize(){
-        System.out.println("hi");
         String logId = tradeLog.get(0).split(":")[1].trim();
         String buyer = tradeLog.get(1).split(":")[1].trim();
         String date = tradeLog.get(2).split(":")[1].trim();
