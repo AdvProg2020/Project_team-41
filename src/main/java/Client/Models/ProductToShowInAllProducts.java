@@ -143,8 +143,4 @@ public class ProductToShowInAllProducts {
                 Objects.equals(button, that.button);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productName, price, category, company, seller, view, score, quantity ,button);
-    }
 }

@@ -126,8 +126,4 @@ public class OffProductsToShow {
                 Objects.equals(button, that.button);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productName, price, priceWithDiscount, startDate, endDate, score, button);
-    }
 }

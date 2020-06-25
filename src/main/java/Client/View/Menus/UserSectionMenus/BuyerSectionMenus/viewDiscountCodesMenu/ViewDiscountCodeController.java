@@ -1,5 +1,6 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewDiscountCodesMenu;
 
+import Client.Controller.UserSectionController.BuyerController;
 import Client.Controller.UserSectionController.ManagerController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -21,7 +22,7 @@ public class ViewDiscountCodeController {
     public void initialize(){
         ArrayList<String> discountCodeInfo;
         try {
-            discountCodeInfo = ManagerController.getInstance().viewDiscountCode(code);
+            discountCodeInfo = BuyerController.getInstance().getCodedDiscount(code);
         } catch (Exception e) {
             e.printStackTrace();
             return;

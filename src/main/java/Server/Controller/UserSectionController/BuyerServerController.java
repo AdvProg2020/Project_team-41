@@ -94,7 +94,7 @@ public class BuyerServerController {
         discountCodeInformation.add("end date: "+TimeControl.getJalaliDateAndTimeForPrint(foundCodedDiscount.getEndDate()));
         discountCodeInformation.add("discount percentage: "+ foundCodedDiscount.getDiscountPercentage());
         discountCodeInformation.add("maximum discount: "+ foundCodedDiscount.getMaximumDiscount());
-        discountCodeInformation.add("discount repeats for each user: "+ foundCodedDiscount.getDiscountRepeatsForEachUser());
+        discountCodeInformation.add("discount repeats for each user: "+ foundCodedDiscount.getDiscountCodeRemainingForUser(person));
         return discountCodeInformation;
     }
     public static void rateTheProduct(Buyer buyer,String productId , Score score) throws Exception {
