@@ -13,6 +13,7 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <repositories>
+
         <repository>
             <id>snapshots</id>
             <name>libs-snapshot</name>
@@ -27,6 +28,17 @@
 <!--            <artifactId>AnimateFX</artifactId>-->
 <!--            <version>1.2.1-SNAPSHOT</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>io.github.typhon0</groupId>
+            <artifactId>AnimateFX</artifactId>
+            <version>1.2.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.typhon0</groupId>
+            <artifactId>AnimateFX</artifactId>
+            <version>1.2.1</version>
+            <type>pom</type>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
