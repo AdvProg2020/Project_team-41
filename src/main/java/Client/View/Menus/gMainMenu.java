@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.App;
+import org.example.Music;
+import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
@@ -23,6 +25,8 @@ public class gMainMenu extends Menu {
     public Label userSectionError;
 
     public void initialize() throws IOException {
+        SimpleAudioPlayer.getInstance().playMusic(Music.MAIN_MENU);
+
         if(UserSectionController.getLoggedInPerson()==null){
             loginLogout.setText("Register/Login");
         }else{
