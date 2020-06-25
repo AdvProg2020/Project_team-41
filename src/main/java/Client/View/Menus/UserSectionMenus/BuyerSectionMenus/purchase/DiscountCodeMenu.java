@@ -30,6 +30,9 @@ public class DiscountCodeMenu {
                 return;
             }
         }
+        else {
+            BuyerController.getInstance().removeCodedDiscountFromCart();
+        }
         loadInInsideAnchorPane("userSection/buyerSection/purchase/payment menu");
 
     }
