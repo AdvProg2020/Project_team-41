@@ -1,7 +1,7 @@
 package org.example;
 
 public enum Music {
-    MAIN_MENU("music");
+    MAIN_MENU("music"), USER_SECTION("UserSectionMusic");
 
 
     Music(String path) {
