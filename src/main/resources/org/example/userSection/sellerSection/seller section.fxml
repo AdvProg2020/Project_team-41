@@ -11,6 +11,11 @@
          <content>
             <VBox prefHeight="924.0" prefWidth="305.0" style="-fx-background-color: #f5f1ec;">
                <children>
+                  <TextField alignment="CENTER" editable="false" prefHeight="29.0" prefWidth="119.0" style="-fx-border-width: 2" stylesheets="/org/example/styles/textFill.css" text="Seller">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
                   <Button mnemonicParsing="false" onMouseClicked="#viewPersonalInfoButtonClicked" prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="view personal info">
                      <textFill>
                         <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">

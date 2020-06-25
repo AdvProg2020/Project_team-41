@@ -44,9 +44,6 @@ public class ViewDiscountCodeController {
         maximumDiscountTextField.setText(maximumDiscount);
         discountRepeatsForEachUserTextField.setText(discountRepeatsForEachUser);
         peopleWhoCanUseItTextField.setText(peopleWhoCanUseIt.toString().substring(1).trim());
-
-
-
     }
     private String dateFormatConverter(String dateFormat){
         String correctDataFormatForEditing;

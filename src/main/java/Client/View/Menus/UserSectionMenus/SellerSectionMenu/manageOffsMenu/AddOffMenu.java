@@ -28,7 +28,7 @@ public class AddOffMenu {
         offDetails.addAll(Arrays.asList(productsTextField.getText().split(",")));
         try {
             SellerController.getInstance().addOff(offDetails);
-            showMessage(informationText,MessageType.SUCCESS,"off is created successfully");
+            showMessage(informationText,MessageType.SUCCESS,"your request will be processed");
         } catch (Exception e) {
             showMessage(informationText,MessageType.ERROR,e.getMessage());
         }

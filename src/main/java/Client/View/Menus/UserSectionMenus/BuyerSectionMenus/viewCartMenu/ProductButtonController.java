@@ -102,8 +102,8 @@ public class ProductButtonController {
     private void showMessage(Text text,MessageType messageType, String message){
         text.setFill(messageType.getLinearGradient());
         text.setText(message);
-
     }
+
     private void resetPage(){
         AnchorPane insideAnchorPane = (AnchorPane) NodeFinder.getParentById(productNameAnchorPane,"insideAnchorPane");
         Parent root = null;
@@ -114,4 +114,5 @@ public class ProductButtonController {
         }
         insideAnchorPane.getChildren().setAll(root);
     }
+
 }

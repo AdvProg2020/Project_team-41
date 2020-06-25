@@ -8,12 +8,19 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.text.Font?>
 <BorderPane fx:id="managerSectionBorderPane" prefHeight="748.0" prefWidth="1162.0" style="-fx-border-width: 4px 4px 4px 4px; -fx-border-color: #754d34;-fx-background-color: #f5f1ec;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu">
    <left>
       <ScrollPane stylesheets="/org/example/styles/scrollBar.css" fx:id="managerSectionButtonScrollPane" prefHeight="332.0" prefWidth="327.0" style="-fx-background-color: #f5f1ed; -fx-border-color: transparent;" BorderPane.alignment="CENTER">
          <content>
             <VBox prefHeight="735.0" prefWidth="323.0" style="-fx-background-color: #f5f1ec;">
                <children>
+                  <TextField alignment="CENTER" editable="false" prefHeight="29.0" prefWidth="119.0" style="-fx-border-width: 2" stylesheets="/org/example/styles/textFill.css" text="Manager">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
                   <Button mnemonicParsing="false" onMouseClicked="#viewPersonalInfoButtonClicked" prefHeight="133.0" prefWidth="378.0" stylesheets="@/org/example/styles/menuButton.css" text="view personal info">
                      <textFill>
                         <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
