@@ -89,7 +89,7 @@
                           </LinearGradient>
                       </fill>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="discount repeats for each user:" wrappingWidth="211.22900390625" GridPane.rowIndex="5">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="discount codes left:" wrappingWidth="211.22900390625" GridPane.rowIndex="5">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>

@@ -16,10 +16,8 @@ public class ManagerSectionMenu {
     public ScrollPane managerSectionButtonScrollPane;
     public static String parentFxmlAddress;
     @FXML
-    public void initialize(){
-        SimpleAudioPlayer.getInstance().playMusic(Music.MAIN_MENU);
-        //todo remove nextLine
-   //     UserSectionController.setLoggedInPerson(Database.getInstance().getAllUsers().get(0));
+    public void initialize() {
+        SimpleAudioPlayer.getInstance().playMusic(Music.USER_SECTION);
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {

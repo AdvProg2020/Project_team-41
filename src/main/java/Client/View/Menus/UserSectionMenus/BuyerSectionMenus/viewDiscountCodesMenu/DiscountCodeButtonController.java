@@ -71,7 +71,7 @@ public class DiscountCodeButtonController {
         }, 0, 5);
 
     }
-    private void hideDiscountCode() throws IOException {
+    private void hideDiscountCode() {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
         vBox.getChildren().remove(getIndexOfUser() + 1);
 

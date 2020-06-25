@@ -18,7 +18,7 @@ public class OffProductsToShow {
     private int price;
     private int score;
     private Button button;
-    private int priceWithDiscount;
+    private double priceWithDiscount;
     private String  startDate;
     private String  endDate;
 
@@ -83,11 +83,11 @@ public class OffProductsToShow {
         return price;
     }
 
-    public int getPriceWithDiscount() {
+    public double getPriceWithDiscount() {
         return priceWithDiscount;
     }
 
-    public OffProductsToShow(String productId, String productName, int price, int priceWithDiscount, String  startDate, String  endDate,int score,Button button) {
+    public OffProductsToShow(String productId, String productName, int price, double priceWithDiscount, String  startDate, String  endDate,int score,Button button) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -126,8 +126,4 @@ public class OffProductsToShow {
                 Objects.equals(button, that.button);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productName, price, priceWithDiscount, startDate, endDate, score, button);
-    }
 }

@@ -2,6 +2,7 @@ package Client.Controller.UserSectionController;
 
 import Client.Models.*;
 import Client.Models.Person.Buyer;
+import Client.Models.Person.Person;
 import Server.Controller.UserSectionController.BuyerServerController;
 
 import java.util.ArrayList;
@@ -59,6 +60,9 @@ public class BuyerController extends UserSectionController {
         Buyer buyer = (Buyer)getLoggedInPerson();
         return buyer.getCart();
 
+    }
+    public ArrayList<String> getCodedDiscount(String discountCode) {
+        return BuyerServerController.getInstance().getCodedDiscount(discountCode, loggedInPerson);
     }
     public void increaseProduct(int num , String productId) throws Exception {
         Buyer buyer = (Buyer) loggedInPerson;

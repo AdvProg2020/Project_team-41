@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.example.App;
+import org.example.Music;
+import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
@@ -22,8 +24,7 @@ public class BuyerSectionMenu {
 
     @FXML
     public void initialize(){
-        //todo remove nextLine
-        //UserSectionController.setLoggedInPerson(Database.getInstance().getAllUsers().get(2));
+        SimpleAudioPlayer.getInstance().playMusic(Music.USER_SECTION);
         creditTextField.setText(BuyerController.getInstance().getBalance() +"Rials");
     }
 
