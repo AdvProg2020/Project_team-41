@@ -11,7 +11,7 @@
 
         <ImageView fitHeight="121.0" fitWidth="116.0" layoutX="229.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@Comments.jpg" />
+                <Image url="@comments.png" />
             </image>
         </ImageView>
 
