@@ -24,9 +24,7 @@ public class BuyerSectionMenu {
 
     @FXML
     public void initialize(){
-        //todo remove nextLine
         SimpleAudioPlayer.getInstance().playMusic(Music.USER_SECTION);
-        //UserSectionController.setLoggedInPerson(Database.getInstance().getAllUsers().get(2));
         creditTextField.setText(BuyerController.getInstance().getBalance() +"Rials");
     }
 

@@ -24,10 +24,8 @@ public class SellerSectionMenu {
 
     @FXML
     public void initialize(){
-        //todo remove nextLine
         SimpleAudioPlayer.getInstance().playMusic(Music.USER_SECTION);
-      //  UserSectionController.setLoggedInPerson(Database.getInstance().getAllUsers().get(1));
-       creditTextField.setText(SellerController.getLoggedInPerson().getCredit() +"$");
+       creditTextField.setText(SellerController.getLoggedInPerson().getCredit() +"Rials");
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {

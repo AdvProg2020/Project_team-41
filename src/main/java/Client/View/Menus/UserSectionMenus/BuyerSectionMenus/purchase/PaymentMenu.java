@@ -6,6 +6,7 @@ import Client.View.Menus.NodeFinder;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -27,6 +28,8 @@ public class PaymentMenu {
         try {
             BuyerController.getInstance().payForTheShop();
             showMessage(informationText,MessageType.SUCCESS,"congratulation! you bought the products");
+            updateCredit();
+
         } catch (Exception e) {
             showMessage(informationText,MessageType.ERROR,e.getMessage());
         }
@@ -40,6 +43,11 @@ public class PaymentMenu {
 
     public void backButtonClicked(MouseEvent mouseEvent) throws IOException {
         BuyerSectionMenu.loadInInsideAnchorPane((AnchorPane) paymentMenuAnchorPane.getParent(),"userSection/buyerSection/purchase/discount code menu");
+    }
+    private void updateCredit(){
+        TextField creditTextField = (TextField) NodeFinder.getChildById((Parent) NodeFinder.getParentById(paymentMenuAnchorPane, "buyerSectionBoarderPane"), "creditTextField");
+        Integer updatedCredit = (Integer.parseInt(creditTextField.getText().substring(0,creditTextField.getText().length()-"Rials".length()).trim())) - Integer.parseInt(priceText.getText().substring(0,creditTextField.getText().length()-"Rials".length()).trim());
+        creditTextField.setText(updatedCredit.toString()+"Rials");
     }
 
 
