@@ -25,6 +25,8 @@ public class AboutUs {
     @FXML
     public void initialize(){
         Timer animTimer = new Timer();
+        aboutUsTextArea.setStyle( "-fx-background-color:#6A5ACD" );
+
         animTimer.scheduleAtFixedRate(new TimerTask() {
             int i=0;
 
