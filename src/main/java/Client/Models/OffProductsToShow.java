@@ -6,6 +6,7 @@ import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import ir.huri.jcal.JalaliCalendar;
 
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import org.example.App;
 
 import java.io.IOException;
@@ -96,7 +97,9 @@ public class OffProductsToShow {
         this.endDate = endDate;
         this.score=score;
         this.button=button;
-        button.setStyle("-fx-background-color:transparent");
+        button.setPrefWidth(107);
+        button.setTextFill(Color.WHITE);
+        button.setStyle("-fx-background-color:#DC143C");
         button.setOnAction(e ->{
             try {
                 Product product = ManagerController.getInstance().getProductById(this.productId);
