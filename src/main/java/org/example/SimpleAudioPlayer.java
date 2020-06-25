@@ -41,11 +41,14 @@ public class SimpleAudioPlayer {
         return simpleAudioPlayer;
     }
     public void playMusic(Music music)  {
-
+        String previousMusic = file;
+        file = "src/main/resources/org/example/musics/"+ music.getName() +".mp3";
+        if (file.equals(previousMusic)) {
+            return;
+        }
         if (musicThread != null) {
             musicThread.stop();
         }
-        file = "src/main/resources/org/example/musics/"+ music.getName() +".mp3";
         musicThread = new musicThread(file);
         musicThread.start();
     }
