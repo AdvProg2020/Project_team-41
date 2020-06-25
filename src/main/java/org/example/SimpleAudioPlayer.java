@@ -53,8 +53,36 @@ public class SimpleAudioPlayer {
         musicThread.start();
     }
 
-    private SimpleAudioPlayer() {
-
-    }
 }
+
+
+//public class SimpleAudioPlayer {
+//
+//    private static SimpleAudioPlayer simpleAudioPlayer;
+//
+//    private String file;
+//    private musicThread musicThread;
+//    public static SimpleAudioPlayer getInstance() {
+//        if (simpleAudioPlayer == null) {
+//            simpleAudioPlayer = new SimpleAudioPlayer();
+//        }
+//        return simpleAudioPlayer;
+//    }
+//    public void playMusic(Music music)  {
+//        String previousMusic = file;
+//        file = "src/main/resources/org/example/musics/"+ music.getName() +".mp3";
+//        if (file.equals(previousMusic)) {
+//            return;
+//        }
+//        if (musicThread != null) {
+//            musicThread.stop();
+//        }
+//        musicThread = new musicThread(file);
+//        musicThread.start();
+//    }
+
+//    private SimpleAudioPlayer() {
+//
+//    }
+//}
 

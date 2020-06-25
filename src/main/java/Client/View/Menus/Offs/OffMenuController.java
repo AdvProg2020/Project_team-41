@@ -25,6 +25,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Pair;
 import org.example.App;
+import org.example.Music;
+import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,6 +66,8 @@ public class OffMenuController extends Menu {
     public AnchorPane categoryAnchorPane;
 
     public void initialize(){
+        SimpleAudioPlayer.getInstance().playMusic(Music.OFF_SECTION);
+
         tableView.setItems(getProducts());
 //        filterInfoLabel.setText("");
         button.setCellValueFactory(new PropertyValueFactory<>("button"));
@@ -95,7 +99,7 @@ public class OffMenuController extends Menu {
         ObservableList<OffProductsToShow> products= FXCollections.observableArrayList();
         for (Product product : SortController.getInstance().getSortedProducts(true)) {
             products.add(new OffProductsToShow(product.getProductId(),product.getName(),product.getPrice(),
-                    (product.getPrice()*(100-product.getOff().getAmountOfDiscount()))/100,
+                    (1.0*product.getPrice()*(100-product.getOff().getAmountOfDiscount()))/100,
                     TimeControl.getJalaliDateAndTimeForPrint(product.getOff().getStartDate()),
                     TimeControl.getJalaliDateAndTimeForPrint(product.getOff().getEndDate()),product.calculateAverageScore(),new Button(product.getProductId())));
         }
