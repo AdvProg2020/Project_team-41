@@ -21,7 +21,6 @@ public class DiscountCodeButtonController {
 
     public GridPane gridPane;
     public Button viewDiscountCodeButton;
-    public Button removeDiscountCodeButton;
     public TextField discountCodeTextField;
     public AnchorPane discountCodeAnchorPane;
     ArrayList<String> discountCodesShow = new ArrayList<>();
@@ -39,23 +38,9 @@ public class DiscountCodeButtonController {
     }
 
 
-    public void removeDiscountCodeClicked(MouseEvent mouseEvent) throws Exception {
-
-        String discountCode = discountCodeTextField.getText();
-        ManagerController.getInstance().removeDiscountCode(discountCode);
-        VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
-        if(discountCodesShow.contains(discountCodeTextField.getText()))
-            vBox.getChildren().remove(getIndexOfUser()+1);
-        vBox.getChildren().remove(getIndexOfUser());
-        AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
-        Text text = (Text) anchorPane.getChildren().get(2);
-        showMessage(text,MessageType.SUCCESS,"successfully removed discount code");
-
-
-    }
     private void showDiscountCode() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
-        vBox.getChildren().add(getIndexOfUser() + 1, App.loadFXML("userSection/managerSection/viewDiscountCodesMenu/view discount code"));
+        vBox.getChildren().add(getIndexOfUser() + 1, App.loadFXML("userSection/buyerSection/showDiscountCodesMenu/view discount code"));
         AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(getIndexOfUser()+1);
         VBox vBox1 = (VBox) anchorPane.getChildren().get(0);
         double anchorPaneHeight = anchorPane.getPrefHeight();
@@ -88,44 +73,6 @@ public class DiscountCodeButtonController {
     }
     private void hideDiscountCode() throws IOException {
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
-        HashMap<String, String> edits = new HashMap<>();
-
-        AnchorPane headDiscountCodeMenu = (AnchorPane) gridPane.getParent().getParent().getParent().getParent().getParent().getParent().getParent();
-        Text informationText = (Text) headDiscountCodeMenu.getChildren().get(2);
-
-        AnchorPane editDiscountCodeAnchorPane = (AnchorPane) vBox.getChildren().get(getIndexOfUser() + 1);
-        VBox editDiscountCodeVBox = (VBox) editDiscountCodeAnchorPane.getChildren().get(0);
-        GridPane editDiscountCodeGridPane = (GridPane) editDiscountCodeVBox.getChildren().get(0);
-        String[] previousFields = getPreviousFields(discountCodeTextField.getText());
-        TextField editStartDateTextField = (TextField) editDiscountCodeGridPane.getChildren().get(8);
-        TextField editEndDateTextField = (TextField) editDiscountCodeGridPane.getChildren().get(9);
-        TextField editDiscountPercentageTextField = (TextField) editDiscountCodeGridPane.getChildren().get(10);
-        TextField editMaximumDiscountTextField = (TextField) editDiscountCodeGridPane.getChildren().get(11);
-        TextField editDiscountRepeatsTextField = (TextField) editDiscountCodeGridPane.getChildren().get(12);
-        TextField editPeopleWhoCanUseItTextField = (TextField) editDiscountCodeGridPane.getChildren().get(13);
-        if(!previousFields[0].equals(editStartDateTextField.getText()))
-        edits.put("start date", editStartDateTextField.getText());
-        if(!previousFields[1].equals(editEndDateTextField.getText()))
-        edits.put("end date", editEndDateTextField.getText());
-        if(!previousFields[2].equals(editDiscountPercentageTextField.getText()))
-        edits.put("discount percentage", editDiscountPercentageTextField.getText());
-        if(!previousFields[3].equals(editMaximumDiscountTextField.getText()))
-        edits.put("maximum discount", editMaximumDiscountTextField.getText());
-        if(!previousFields[4].equals(editDiscountRepeatsTextField.getText()))
-        edits.put("discount repeats for each user", editDiscountRepeatsTextField.getText());
-        if(!previousFields[5].equals(editPeopleWhoCanUseItTextField.getText()))
-        edits.put("people who can use it", editPeopleWhoCanUseItTextField.getText());
-        try {
-            if(edits.size()!=0) {
-                ManagerController.getInstance().editDiscountCode(discountCodeTextField.getText(), edits);
-                showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            showMessage(informationText, MessageType.ERROR, e.getMessage());
-        }
-
-
         vBox.getChildren().remove(getIndexOfUser() + 1);
 
     }
@@ -145,48 +92,6 @@ public class DiscountCodeButtonController {
             }
         }
         return -2;
-    }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
-        text.setText(message);
-
-    }
-    private String[] getPreviousFields(String code) {
-        StringBuilder peopleWhoCanUseIt = new StringBuilder();
-        ArrayList<String> discountCodeInfo = null;
-        try {
-            discountCodeInfo = ManagerController.getInstance().viewDiscountCode(code);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        String startDate = dateFormatConverter(discountCodeInfo.get(1).split(":",2)[1].trim());
-        String endDate = dateFormatConverter(discountCodeInfo.get(2).split(":",2)[1].trim());
-        String discountPercentage = discountCodeInfo.get(3).split(":")[1].trim();
-        String maximumDiscount = discountCodeInfo.get(4).split(":")[1].trim();
-        String discountRepeatsForEachUser = discountCodeInfo.get(5).split(":")[1].trim();
-        for (int i = 7; i < discountCodeInfo.size(); i++) {
-            peopleWhoCanUseIt.append(",").append(discountCodeInfo.get(i));
-        }
-        String[] previousFields = new String[6];
-        previousFields[0] = startDate;
-        previousFields[1] = endDate;
-        previousFields[2] = discountPercentage;
-        previousFields[3] = maximumDiscount;
-        previousFields[4] = discountRepeatsForEachUser;
-        try {
-            previousFields[5] = peopleWhoCanUseIt.toString().substring(1);
-        } catch (Exception ignored) {
-        }
-        return previousFields;
-    }
-    private String dateFormatConverter(String dateFormat){
-        String correctDataFormatForEditing;
-        String correctDate;
-        String[] date;
-        date = dateFormat.split("\\s+")[0].split("-");
-        correctDate = date[2]+"/"+date[1]+"/"+date[0];
-        correctDataFormatForEditing = correctDate + "," + dateFormat.split("\\s+")[1];
-        return correctDataFormatForEditing;
     }
 
 }

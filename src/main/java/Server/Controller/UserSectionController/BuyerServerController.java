@@ -4,6 +4,7 @@ import Client.Models.*;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
+import Server.Controller.TimeControl;
 import Server.Database;
 
 import java.util.ArrayList;
@@ -71,6 +72,30 @@ public class BuyerServerController {
                 codedDiscounts.add(discountCode.getDiscountCode());
         }
         return codedDiscounts;
+    }
+
+    public ArrayList<String> getCodedDiscount(String discountCode, Person person) {
+        CodedDiscount foundCodedDiscount = null;
+        for (CodedDiscount codedDiscount : Database.getInstance().getAllDiscountCodes()) {
+            if(codedDiscount.hasPerson(person))
+                if (codedDiscount.getDiscountCode().equals(discountCode)) {
+                    foundCodedDiscount = codedDiscount;
+                    break;
+                }
+        }
+        if (foundCodedDiscount == null) {
+            return null;
+        }
+        ArrayList<String> discountCodeInformation = new ArrayList<>();
+
+
+        discountCodeInformation.add("discount code: "+foundCodedDiscount.getDiscountCode());
+        discountCodeInformation.add("start date: "+ TimeControl.getJalaliDateAndTimeForPrint(foundCodedDiscount.getStartDate()));
+        discountCodeInformation.add("end date: "+TimeControl.getJalaliDateAndTimeForPrint(foundCodedDiscount.getEndDate()));
+        discountCodeInformation.add("discount percentage: "+ foundCodedDiscount.getDiscountPercentage());
+        discountCodeInformation.add("maximum discount: "+ foundCodedDiscount.getMaximumDiscount());
+        discountCodeInformation.add("discount repeats for each user: "+ foundCodedDiscount.getDiscountRepeatsForEachUser());
+        return discountCodeInformation;
     }
     public static void rateTheProduct(Buyer buyer,String productId , Score score) throws Exception {
         boolean flag = false;

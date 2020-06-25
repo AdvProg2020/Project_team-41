@@ -16,11 +16,9 @@ public class ViewDiscountCodeController {
     public TextField discountPercentageTextField;
     public TextField maximumDiscountTextField;
     public TextField discountRepeatsForEachUserTextField;
-    public TextField peopleWhoCanUseItTextField;
 
     @FXML
     public void initialize(){
-        StringBuilder peopleWhoCanUseIt = new StringBuilder();
         ArrayList<String> discountCodeInfo;
         try {
             discountCodeInfo = ManagerController.getInstance().viewDiscountCode(code);
@@ -34,16 +32,12 @@ public class ViewDiscountCodeController {
         String discountPercentage = discountCodeInfo.get(3).split(":")[1].trim();
         String maximumDiscount = discountCodeInfo.get(4).split(":")[1].trim();
         String discountRepeatsForEachUser = discountCodeInfo.get(5).split(":")[1].trim();
-        for (int i = 7; i < discountCodeInfo.size(); i++) {
-            peopleWhoCanUseIt.append(",").append(discountCodeInfo.get(i));
-        }
         discountCodeTextField.setText(discountCode);
         startDateTextField.setText(startDate);
         endDateTextField.setText(endDate);
         discountPercentageTextField.setText(discountPercentage);
         maximumDiscountTextField.setText(maximumDiscount);
         discountRepeatsForEachUserTextField.setText(discountRepeatsForEachUser);
-        peopleWhoCanUseItTextField.setText(peopleWhoCanUseIt.toString().substring(1).trim());
     }
     private String dateFormatConverter(String dateFormat){
         String correctDataFormatForEditing;

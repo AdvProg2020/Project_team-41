@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewDiscountCodesMenu;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -33,7 +34,7 @@ public class ViewDiscountCodesMenu {
             e.printStackTrace();
         }
         AnchorPane anchorPane = (AnchorPane) root;
-        TextField textField = (TextField) anchorPane.getChildren().get(0);
+        TextField textField = (TextField) NodeFinder.getChildById(anchorPane,"discountCodeTextField");
         textField.setText(categoryName);
 
         discountCodesVBox.getChildren().add(root);
