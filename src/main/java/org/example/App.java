@@ -27,7 +27,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, JavaLayerException {
-        new SimpleAudioPlayer();
+        SimpleAudioPlayer.getInstance().playMusic(Music.MAIN_MENU);
         setIconImage();
         StartProgram.startProgram();
         //scene = new Scene(loadFXML("userSection/buyerSection/buyer section"));

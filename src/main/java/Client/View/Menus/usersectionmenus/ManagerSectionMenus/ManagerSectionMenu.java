@@ -6,6 +6,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import org.example.App;
+import org.example.Music;
+import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
@@ -15,6 +17,7 @@ public class ManagerSectionMenu {
     public static String parentFxmlAddress;
     @FXML
     public void initialize(){
+        SimpleAudioPlayer.getInstance().playMusic(Music.MAIN_MENU);
         //todo remove nextLine
    //     UserSectionController.setLoggedInPerson(Database.getInstance().getAllUsers().get(0));
     }
