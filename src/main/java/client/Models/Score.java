@@ -33,8 +33,4 @@ public class Score implements Serializable {
                 Objects.equals(product, score1.product);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(person, score, product);
-    }
 }

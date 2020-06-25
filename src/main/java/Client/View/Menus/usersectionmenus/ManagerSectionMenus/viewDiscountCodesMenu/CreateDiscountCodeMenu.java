@@ -25,16 +25,24 @@ public class CreateDiscountCodeMenu {
         codeInformation.add(discountCodeTextField.getText());
 
         try {
+            if (startDateTextField.getText().split("-").length != 2) {
+                throw new Exception();
+            }
             codeInformation.add(startDateTextField.getText().split("-")[0]);
             codeInformation.add(startDateTextField.getText().split("-")[1]);
         } catch (Exception e) {
             showMessage(informationText,MessageType.ERROR,"wrong start date");
+            return;
         }
         try {
+            if (endDateTextField.getText().split("-").length != 2) {
+                throw new Exception();
+            }
             codeInformation.add(endDateTextField.getText().split("-")[0]);
             codeInformation.add(endDateTextField.getText().split("-")[1]);
         } catch (Exception e) {
             showMessage(informationText,MessageType.ERROR,"wrong end date");
+            return;
         }
         codeInformation.add(discountPercentageTextField.getText());
         codeInformation.add(maximumDiscountTextField.getText());
@@ -46,6 +54,7 @@ public class CreateDiscountCodeMenu {
             showMessage(informationText,MessageType.SUCCESS,"discount code " + discountCodeTextField.getText() + " is created");
         }
         catch (Exception e){
+            e.printStackTrace();
             showMessage(informationText,MessageType.ERROR,e.getMessage());
         }
     }

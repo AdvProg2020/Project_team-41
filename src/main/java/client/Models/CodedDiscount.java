@@ -100,6 +100,9 @@ public class CodedDiscount implements Serializable {
             people.put(person,codesLeft);
         ServerSaver.write(AllCommands.allData);
     }
+    public int getDiscountCodeRemainingForUser(Person person){
+        return people.get(person);
+    }
 
     public HashMap<Person, Integer> getPeople() {
         return people;
@@ -131,8 +134,4 @@ public class CodedDiscount implements Serializable {
                 Objects.equals(people, that.people);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(discountCode, startDate, endDate, discountPercentage, maximumDiscount, discountRepeatsForEachUser, people);
-    }
 }

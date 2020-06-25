@@ -94,8 +94,4 @@ public class TradeLog implements Serializable {
                 Objects.equals(deliverySituation, tradeLog.deliverySituation);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(logId, date, money, offAmount, items, buyerName, deliverySituation);
-    }
 }
