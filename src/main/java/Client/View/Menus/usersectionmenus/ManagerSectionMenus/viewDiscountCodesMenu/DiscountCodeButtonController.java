@@ -113,7 +113,7 @@ public class DiscountCodeButtonController {
         edits.put("maximum discount", editMaximumDiscountTextField.getText());
         if(!previousFields[4].equals(editDiscountRepeatsTextField.getText()))
         edits.put("discount repeats for each user", editDiscountRepeatsTextField.getText());
-        if(!previousFields[5].equals(editPeopleWhoCanUseItTextField.getText()))
+        if((previousFields[5] == null) || !previousFields[5].equals(editPeopleWhoCanUseItTextField.getText()))
         edits.put("people who can use it", editPeopleWhoCanUseItTextField.getText());
         try {
             if(edits.size()!=0) {
