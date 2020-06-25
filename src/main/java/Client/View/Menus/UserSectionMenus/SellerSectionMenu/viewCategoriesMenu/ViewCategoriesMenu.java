@@ -5,6 +5,7 @@ import Client.Models.Category;
 import Client.View.Menus.MessageType;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -28,19 +29,30 @@ public class ViewCategoriesMenu {
             showMessage(informationText, MessageType.INFORMATION, "No categories found");
         }
         for (Category category : categories)
-            makeCategorySplitButton(category.getName());
+            makeCategorySplitButton(category.getName(),category.getSpecialFeatures());
     }
 
-    private void makeCategorySplitButton(String categoryName) {
+    private void makeCategorySplitButton(String categoryName,ArrayList<String> specialFeatures) {
         Parent root = null;
         try {
             root = App.loadFXML("userSection/sellerSection/showCategoriesMenu/categorySplitButton");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String specialFeature : specialFeatures) {
+            stringBuilder.append("," + specialFeature);
+        }
+        String specialFeaturesString = "not available";
+        try {
+            specialFeaturesString = stringBuilder.toString().substring(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         AnchorPane anchorPane = (AnchorPane) root;
         TextField textField = (TextField) anchorPane.getChildren().get(0);
-        textField.setText(categoryName);
+        textField.setText(categoryName + " , special features: " + specialFeaturesString);
 
         categoriesVBox.getChildren().add(root);
     }
