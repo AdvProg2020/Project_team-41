@@ -57,12 +57,11 @@ public class SimilarProducts extends Menu {
         for (Product product : SortController.getInstance().getSortedProducts(false)) {
             products.add(new ProductToShowInAllProducts(product.getProductId(), product.getName(), product.getPrice(),
                     product.getCategory().getName(), product.getCompanyName(), product.getSeller().getUserName(),
-                    product.getViews(), product.calculateAverageScore(), product.getQuantity() ,new Button(product.getProductId())));
+                    product.getViews(), product.calculateAverageScore(), product.getQuantity(), new Button(product.getProductId())));
         }
-
+        FilterController.resetFilterController();
         return products;
     }
-
 
 
 }
