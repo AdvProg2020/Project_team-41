@@ -55,10 +55,12 @@ public class SimilarProducts extends Menu {
 
         FilterController.getInstance().setFilterCategory(ProductPageGeneralButtons.getTheProduct().getCategory().getName());
         for (Product product : SortController.getInstance().getSortedProducts(false)) {
+            if(product != ProductPageGeneralButtons.getTheProduct()){
             products.add(new ProductToShowInAllProducts(product.getProductId(), product.getName(), product.getPrice(),
                     product.getCategory().getName(), product.getCompanyName(), product.getSeller().getUserName(),
                     product.getViews(), product.calculateAverageScore(), product.getQuantity(), new Button(product.getProductId())));
-        }
+        }}
+        products.remove(ProductPageGeneralButtons.getTheProduct());
         FilterController.resetFilterController();
         return products;
     }
