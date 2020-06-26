@@ -22,7 +22,7 @@
            </textFill>
        </Button>
       <ImageView fx:id="aboutUsImageView" fitHeight="567.0" fitWidth="572.0" layoutX="65.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" />
-      <TextArea fx:id="aboutUsTextArea" editable="false" layoutX="729.0" layoutY="145.0" prefHeight="518.0" prefWidth="609.0" stylesheets="@/org/example/styles/Text.css" text="&#10;PerfectMarket.com, is an Iranian multinational conglomerate&#10;technology company based in Seattle that focuses on e-commerce,&#10;cloud computing, digital streaming, and artificial intelligence.&#10;&#10;Our market is guided by four principles: customer obsession &#10;rather than competitor focus, passion for invention,&#10;commitment to operational excellence, and long-term thinking.&#10;&#10;">
+      <TextArea fx:id="aboutUsTextArea" editable="false" layoutX="729.0" layoutY="145.0" prefHeight="518.0" prefWidth="609.0" stylesheets="@/org/example/styles/Text.css" text="&#10;PerfectMarket.com, is an Iranian multinational conglomerate&#10;technology company based in Seattle that focuses on e-commerce,&#10;cloud computing, digital streaming, and artificial intelligence.&#10;&#10;Our market is guided by four principles: customer obsession &#10;rather than competitor focus, passion for invention,&#10;commitment to operational excellence, and long-term thinking.&#10;&#10; borrowed from amazon:)">
          <font>
             <Font size="20.0" />
          </font></TextArea>
