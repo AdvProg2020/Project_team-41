@@ -59,6 +59,7 @@ public class SimilarProducts extends Menu {
                     product.getCategory().getName(), product.getCompanyName(), product.getSeller().getUserName(),
                     product.getViews(), product.calculateAverageScore(), product.getQuantity() ,new Button(product.getProductId())));
         }
+
         return products;
     }
 
