@@ -62,7 +62,7 @@ public class BuyerServerController {
         }
         if(cart.getCodedDiscount() != null)
             cart.getCodedDiscount().reduceDiscountCodeForUser(buyer);
-        buyer.addTradeLog(new TradeLog(new Date(),cart.totalPrice(),cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(),"waiting"));
+        buyer.addTradeLog(new TradeLog(new Date(),cashToPay,cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(),"waiting"));
         buyer.renewCart();
     }
     public ArrayList<String> getCodedDiscounts(Person person){
