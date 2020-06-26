@@ -161,7 +161,7 @@ public class Product implements Serializable {
     public Integer getPriceWithOff(){
         if(isItInOff()) {
             if (new Date().after(off.getStartDate()) && new Date().before(off.getEndDate()))
-                return price * (off.getAmountOfDiscount() / 100);
+                return (price *off.getAmountOfDiscount()) / 100;
         }
         return price;
     }

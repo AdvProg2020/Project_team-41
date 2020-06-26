@@ -36,6 +36,9 @@ public class BuyerController extends UserSectionController {
     public void addCodedDiscountToCart(String discountCode) throws Exception {
         BuyerServerController.getInstance().addCodedDiscountToCart((Buyer) loggedInPerson,discountCode);
     }
+    public void removeCodedDiscountFromCart(){
+        BuyerServerController.getInstance().removeCodedDiscountFromCart((Buyer) loggedInPerson);
+    }
 
     public ArrayList<TradeLog> getTradeLogs(){
         return loggedInPerson.getTradeLogs();

@@ -26,8 +26,4 @@ public class Buyer extends Person {
         return Objects.equals(cart, buyer.cart);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), cart);
-    }
 }

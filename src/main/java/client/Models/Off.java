@@ -147,8 +147,4 @@ public class Off implements Serializable {
                 Objects.equals(seller, off.seller);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(offId, products, situation, startDate, endDate, amountOfDiscount, seller);
-    }
 }

@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class ViewCartMenu {
     public Text informationText;
@@ -33,13 +34,13 @@ public class ViewCartMenu {
         }
         else {
             for (Product product : cart.getProducts().keySet()) {
-                makeProductSplitButton(product.getName(), product.getProductId(), cart.getProducts().get(product));
+                makeProductSplitButton(product.getName(), product.getProductId(), cart.getProducts().get(product),product.getPriceWithOff());
             }
             totalPriceText.setText(Integer.toString(cart.totalPrice()));
         }
     }
 
-    private void makeProductSplitButton(String productName,String productId,Integer quantity) {
+    private void makeProductSplitButton(String productName, String productId, Integer quantity, int price) {
         Parent root = null;
         try {
             root = App.loadFXML("userSection/buyerSection/viewCart/productSplitButton");
@@ -50,9 +51,13 @@ public class ViewCartMenu {
         TextField productNameTextField = (TextField) NodeFinder.getChildById(anchorPane,"productNameTextField");
         TextField productIdTextField = (TextField) NodeFinder.getChildById(anchorPane,"productIdTextField");
         TextField quantityTextField = (TextField) NodeFinder.getChildById(anchorPane,"productQuantityTextField");
+        TextField singlePriceTextField = (TextField) NodeFinder.getChildById(anchorPane,"singlePriceTextField");
+        TextField wholePriceTextField = (TextField) NodeFinder.getChildById(anchorPane,"WholePriceTextField");
         productNameTextField.setText(productName);
         productIdTextField.setText(productId);
         quantityTextField.setText(quantity.toString());
+        singlePriceTextField.setText("each : "+price+" Rials");
+        wholePriceTextField.setText("all : "+price*quantity+" Rials");
         productsVBox.getChildren().add(root);
     }
 

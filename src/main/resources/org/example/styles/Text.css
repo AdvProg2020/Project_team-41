@@ -6,3 +6,10 @@
 }
 
 
+.text-area {
+    text-area-background: #6A5ACD ;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+}

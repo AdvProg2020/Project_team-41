@@ -51,8 +51,4 @@ public class SpecialFeature implements Serializable {
                 Objects.equals(specialFeatureString, that.specialFeatureString);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(specialFeatureInt, specialFeatureString);
-    }
 }

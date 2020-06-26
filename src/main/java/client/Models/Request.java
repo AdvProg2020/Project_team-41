@@ -136,9 +136,5 @@ public class Request implements Serializable {
                 Objects.equals(comment, request.comment);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(requestType, product, editedProduct, seller, off, editedOff, requestId, comment);
-    }
 }
 

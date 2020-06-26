@@ -31,6 +31,7 @@ public class PaymentMenu {
             updateCredit();
 
         } catch (Exception e) {
+            e.printStackTrace();
             showMessage(informationText,MessageType.ERROR,e.getMessage());
         }
     }
@@ -41,13 +42,16 @@ public class PaymentMenu {
     }
 
 
-    public void backButtonClicked(MouseEvent mouseEvent) throws IOException {
+    public void backButtonClicked(MouseEvent mouseEvent) {
         BuyerSectionMenu.loadInInsideAnchorPane((AnchorPane) paymentMenuAnchorPane.getParent(),"userSection/buyerSection/purchase/discount code menu");
     }
     private void updateCredit(){
+
         TextField creditTextField = (TextField) NodeFinder.getChildById((Parent) NodeFinder.getParentById(paymentMenuAnchorPane, "buyerSectionBoarderPane"), "creditTextField");
-        Integer updatedCredit = (Integer.parseInt(creditTextField.getText().substring(0,creditTextField.getText().length()-"Rials".length()).trim())) - Integer.parseInt(priceText.getText().substring(0,creditTextField.getText().length()-"Rials".length()).trim());
-        creditTextField.setText(updatedCredit.toString()+"Rials");
+        creditTextField.setText(BuyerController.getInstance().getBalance()+"Rials");
+    }
+    private int getPriceFromRawString(String rawString) {
+        return Integer.parseInt(rawString.split("\\D")[0]);
     }
 
 

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="productNameAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="682.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewCartMenu.ProductButtonController">
+<AnchorPane fx:id="productNameAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="682.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewCartMenu.ProductButtonController">
     <children>
         <VBox layoutX="22.0" layoutY="7.0" prefHeight="35.0" prefWidth="447.0">
             <children>
@@ -41,5 +41,8 @@
             <Font size="1.0" />
          </font>
       </Button>
+        <TextField fx:id="singlePriceTextField" editable="false" layoutX="20.0" layoutY="60.0" prefHeight="34.0" prefWidth="171.0" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+        <TextField fx:id="WholePriceTextField" editable="false" layoutX="220.0" layoutY="60.0" prefHeight="34.0" prefWidth="171.0" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+
     </children>
 </AnchorPane>

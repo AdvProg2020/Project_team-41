@@ -92,8 +92,4 @@ public class Comment implements Serializable {
                 commentSituation == comment.commentSituation;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(person, product, title, content, commentSituation, hasHeBought);
-    }
 }

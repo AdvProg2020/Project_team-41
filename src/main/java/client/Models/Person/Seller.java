@@ -73,8 +73,4 @@ public class Seller extends Person {
                 Objects.equals(offs, seller.offs);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), factoryName, products, offs);
-    }
 }

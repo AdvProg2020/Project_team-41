@@ -4,13 +4,13 @@ import Client.Controller.LoginRegisterController;
 import Client.Models.Person.Seller;
 import Client.View.Menus.Menu;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
 public class SellerRegister {
     public TextField username;
-    public TextField password;
     public TextField firstName;
     public TextField lastName;
     public TextField email;
@@ -25,6 +25,7 @@ public class SellerRegister {
     public Label moneyError;
     public TextField factoryName;
     public Label factoryError;
+    public PasswordField password;
 
     public void initialize(){
         setAllInvisible();

@@ -70,8 +70,4 @@ public class Category implements Serializable {
                 Objects.equals(products, category.products);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, specialFeatures);
-    }
 }

@@ -8,6 +8,7 @@ import Client.Models.Person.Seller;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu;
 import Client.View.Menus.UserSectionMenus.SellerSectionMenu.SellerSectionMenu;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -84,4 +85,9 @@ public class gMainMenu extends Menu {
     }
 
 
+    public void aboutUs(ActionEvent actionEvent) throws IOException {
+        App.setRoot("aboutUs");
+
+
+    }
 }

@@ -159,8 +159,4 @@ public abstract class Person implements Serializable {
                 Objects.equals(tradeLogs, person.tradeLogs);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(userName, firstName, lastName, email, phoneNumber, password, tradeLogs, credit);
-    }
 }
