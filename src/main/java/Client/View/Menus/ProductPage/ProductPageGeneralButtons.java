@@ -1,9 +1,15 @@
 package Client.View.Menus.ProductPage;
 
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Buyer;
+import Client.Models.Person.Manager;
+import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
 import Client.View.Menus.MessageType;
+import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
+import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu;
+import Client.View.Menus.UserSectionMenus.SellerSectionMenu.SellerSectionMenu;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -65,6 +71,26 @@ public class ProductPageGeneralButtons extends Menu {
             login("ProductPage/ProductPageGeneral");
         } else {
             logout("ProductPage/ProductPageGeneral");
+        }
+    }
+
+    public void userSection() throws IOException {
+        if (UserSectionController.getLoggedInPerson() == null) {
+            login("ProductPage/ProductPageGeneral");
+        } else {
+            if (UserSectionController.getLoggedInPerson() instanceof Manager) {
+                ManagerSectionMenu.parentFxmlAddress = "ProductPage/ProductPageGeneral";
+                App.setRoot("userSection/managerSection/manager section");
+            } else if (UserSectionController.getLoggedInPerson() instanceof Seller) {
+                SellerSectionMenu.parentFxmlAddress = "ProductPage/ProductPageGeneral";
+                App.setRoot("userSection/sellerSection/seller section");
+
+            } else if (UserSectionController.getLoggedInPerson() instanceof Buyer) {
+                BuyerSectionMenu.parentFxmlAddress = "ProductPage/ProductPageGeneral";
+                App.setRoot("userSection/buyerSection/buyer section");
+
+
+            }
         }
     }
 
