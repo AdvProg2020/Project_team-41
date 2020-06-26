@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu;
 
 import Client.Controller.UserSectionController.SellerController;
+import Client.View.Menus.Menu;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -14,7 +15,7 @@ import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
-public class SellerSectionMenu {
+public class SellerSectionMenu extends Menu {
     public BorderPane sellerSectionBoarderPane;
     public ScrollPane sellerSectionButtonScrollPane;
     public TextField creditTextField;
@@ -63,5 +64,9 @@ public class SellerSectionMenu {
 
     public void backCodeButtonClicked(MouseEvent mouseEvent) throws IOException {
         App.setRoot(parentFxmlAddress);
+    }
+
+    public void logoutButtonClicked(MouseEvent mouseEvent) throws IOException {
+        logout("mainMenu");
     }
 }
