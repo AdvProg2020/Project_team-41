@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="tradeLogAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="534.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewTradeLogsMenu.TradeLogButtonController">
     <children>
-        <VBox layoutX="22.0" layoutY="7.0" prefHeight="35.0" prefWidth="430.0">
+        <VBox layoutX="22.0" layoutY="7.0" prefHeight="35.0" prefWidth="100.0">
             <children>
 
                 <GridPane fx:id="gridPane" prefHeight="31.0" prefWidth="454.0">
@@ -22,7 +22,8 @@
                 </GridPane>
             </children>
         </VBox>
-      <Button fx:id="viewTradeLogButton" layoutX="467.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#viewTradeLogClicked" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/eye.png') ">
+        <TextField prefHeight="35.0" prefWidth="200.0" layoutX="150.0" layoutY="5.0" fx:id="logDateTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" />
+      <Button fx:id="viewTradeLogButton" layoutX="367.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#viewTradeLogClicked" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/eye.png') ">
          <font>
             <Font size="1.0" />
          </font>

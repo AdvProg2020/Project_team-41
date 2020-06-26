@@ -24,6 +24,7 @@ public class TradeLogButtonController {
     public TextField logIdTextField;
     public AnchorPane tradeLogAnchorPane;
     public Button viewTradeLogButton;
+    public TextField logDateTextField;
     ArrayList<String> tradeLogsShown = new ArrayList<>();
 
     public void viewTradeLogClicked(MouseEvent mouseEvent) throws IOException {

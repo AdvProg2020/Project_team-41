@@ -3,6 +3,8 @@ package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewTradeLogsMenu;
 import Client.Controller.UserSectionController.BuyerController;
 import Client.Models.TradeLog;
 import Client.View.Menus.MessageType;
+import Client.View.Menus.NodeFinder;
+import Server.Controller.TimeControl;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -14,6 +16,7 @@ import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class ViewTradeLogsMenu {
     public Text informationText;
@@ -25,7 +28,7 @@ public class ViewTradeLogsMenu {
     public void initialize(){
         try {
             for (TradeLog tradeLog : BuyerController.getInstance().getTradeLogs()) {
-                    makeTradeLogSplitButton(tradeLog.getLogId());
+                    makeTradeLogSplitButton(tradeLog.getLogId(),tradeLog.getDate());
             }
         } catch (Exception e) {
             showMessage(informationText,MessageType.INFORMATION,e.getMessage());
@@ -33,7 +36,7 @@ public class ViewTradeLogsMenu {
         }
     }
 
-    private void makeTradeLogSplitButton(String username) {
+    private void makeTradeLogSplitButton(String username, Date date) {
         Parent root = null;
         try {
             root = App.loadFXML("userSection/buyerSection/viewTradeLogs/tradeLogSplitButton");
@@ -41,10 +44,12 @@ public class ViewTradeLogsMenu {
             e.printStackTrace();
         }
         AnchorPane anchorPane = (AnchorPane) root;
+        TextField dateTextField = (TextField) NodeFinder.getChildById(anchorPane,"logDateTextField");
         VBox vBox = (VBox) anchorPane.getChildren().get(0);
         GridPane gridPane = (GridPane) vBox.getChildren().get(0);
         TextField textField = (TextField) gridPane.getChildren().get(0);
         textField.setText(username);
+        dateTextField.setText(TimeControl.getJalaliDateAndTimeForPrint(date));
 
         tradeLogsVBox.getChildren().add(root);
     }

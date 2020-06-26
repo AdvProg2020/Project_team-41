@@ -19,7 +19,7 @@ public class ViewTradeLogController {
     public void initialize(){
         String logId = tradeLog.get(0).split(":")[1].trim();
         String buyer = tradeLog.get(1).split(":")[1].trim();
-        String date = tradeLog.get(2).split(":")[1].trim();
+        String date = tradeLog.get(2).split(":",2)[1].trim();
         String deliverySituation = tradeLog.get(3).split(":")[1].trim();
         String offAmount = tradeLog.get(4).split(":")[1].trim();
         String money = tradeLog.get(5).split(":")[1].trim();

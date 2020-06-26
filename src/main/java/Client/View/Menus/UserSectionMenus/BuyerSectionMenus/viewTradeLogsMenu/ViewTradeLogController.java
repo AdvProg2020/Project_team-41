@@ -23,7 +23,7 @@ public class ViewTradeLogController {
     public void initialize(){
         StringBuilder products = new StringBuilder();
         for (Product product : tradeLog.getItems().keySet()) {
-            products.append(",").append("name : ").append(product.getName()).append("- quantity : ").append(tradeLog.getItems().get(product));
+            products.append(",").append("name : ").append(product.getName()).append("  quantity : ").append(tradeLog.getItems().get(product));
         }
         String logId = tradeLog.getLogId();
         String date = TimeControl.getJalaliDateAndTimeForPrint(tradeLog.getDate());

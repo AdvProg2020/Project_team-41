@@ -106,7 +106,7 @@ public class SellerServerController extends UserSectionServerController {
                         ArrayList<String> saleHistory = new ArrayList<>();
                         saleHistory.add("log id : " + tradeLog.getLogId());
                         saleHistory.add("buyer : " + tradeLog.getBuyerName());
-                        saleHistory.add("date : " + TimeControl.convertGregorianToJalali(tradeLog.getDate()).toString());
+                        saleHistory.add("date : " + TimeControl.getJalaliDateAndTimeForPrint(tradeLog.getDate()));
                         saleHistory.add("delivery situation : " + tradeLog.getDeliverySituation());
                         saleHistory.add("off Amount : " + tradeLog.getOffAmount());
                         saleHistory.add("money : " + tradeLog.getMoney());
