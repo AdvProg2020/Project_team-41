@@ -28,6 +28,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Pair;
 import org.example.App;
+import org.example.Music;
+import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
@@ -66,8 +68,9 @@ public class allProductsMenu extends Menu {
     public BorderPane mainBorderPane;
     public AnchorPane categoryAnchorPane;
 
-
     public void initialize() {
+        SimpleAudioPlayer.getInstance().playMusic(Music.All_Products);
+
         tableView.setItems(getProducts());
 //          filterInfoLabel.setText("");
         button.setCellValueFactory(new PropertyValueFactory<>("button"));
