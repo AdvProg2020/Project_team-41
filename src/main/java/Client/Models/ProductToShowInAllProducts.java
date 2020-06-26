@@ -4,6 +4,7 @@ import Client.Controller.FilterController;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import org.example.App;
 
 import java.util.Objects;
@@ -111,7 +112,9 @@ public class ProductToShowInAllProducts {
         this.score = score;
         this.quantity = quantity;
         this.button = button;
-        button.setStyle("-fx-background-color:transparent");
+        button.setPrefWidth(107);
+        button.setTextFill(Color.WHITE);
+        button.setStyle("-fx-background-color:#DC143C");
         button.setOnAction(e ->{
             try {
                 Product product = ManagerController.getInstance().getProductById(this.productId);

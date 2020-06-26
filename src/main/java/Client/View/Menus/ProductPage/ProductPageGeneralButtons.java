@@ -1,9 +1,15 @@
 package Client.View.Menus.ProductPage;
 
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Buyer;
+import Client.Models.Person.Manager;
+import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
 import Client.View.Menus.MessageType;
+import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
+import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu;
+import Client.View.Menus.UserSectionMenus.SellerSectionMenu.SellerSectionMenu;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -20,10 +26,10 @@ public class ProductPageGeneralButtons extends Menu {
     public static String parentFxmlAddress;
     public Button loginLogout;
 
-    public void initialize(){
-        if(UserSectionController.getLoggedInPerson()==null){
+    public void initialize() {
+        if (UserSectionController.getLoggedInPerson() == null) {
             loginLogout.setText("Register/Login");
-        }else{
+        } else {
             loginLogout.setText("Logout");
         }
     }
@@ -52,19 +58,43 @@ public class ProductPageGeneralButtons extends Menu {
         setSubPage("ProductPage/CompareProducts");
     }
 
+    public void similarProducts(MouseEvent mouseEvent) {
+        setSubPage("ProductPage/SimilarProducts");
+    }
+
     public void backToPreviousPage(MouseEvent mouseEvent) throws IOException {
-       App.setRoot(parentFxmlAddress);
+        App.setRoot(parentFxmlAddress);
     }
 
     public void registerOrLogin() throws IOException {
-        if(UserSectionController.getLoggedInPerson()==null){
+        if (UserSectionController.getLoggedInPerson() == null) {
             login("ProductPage/ProductPageGeneral");
-        }else{
+        } else {
             logout("ProductPage/ProductPageGeneral");
         }
     }
 
-    private void setSubPage(String name){
+    public void userSection() throws IOException {
+        if (UserSectionController.getLoggedInPerson() == null) {
+            login("ProductPage/ProductPageGeneral");
+        } else {
+            if (UserSectionController.getLoggedInPerson() instanceof Manager) {
+                ManagerSectionMenu.parentFxmlAddress = "ProductPage/ProductPageGeneral";
+                App.setRoot("userSection/managerSection/manager section");
+            } else if (UserSectionController.getLoggedInPerson() instanceof Seller) {
+                SellerSectionMenu.parentFxmlAddress = "ProductPage/ProductPageGeneral";
+                App.setRoot("userSection/sellerSection/seller section");
+
+            } else if (UserSectionController.getLoggedInPerson() instanceof Buyer) {
+                BuyerSectionMenu.parentFxmlAddress = "ProductPage/ProductPageGeneral";
+                App.setRoot("userSection/buyerSection/buyer section");
+
+
+            }
+        }
+    }
+
+    private void setSubPage(String name) {
         Parent root = null;
         try {
             root = App.loadFXML(name);
@@ -75,7 +105,8 @@ public class ProductPageGeneralButtons extends Menu {
 
     }
 
-    public static void setTheProduct(Product theProduct){ ProductPageGeneralButtons.theProduct = theProduct;
+    public static void setTheProduct(Product theProduct) {
+        ProductPageGeneralButtons.theProduct = theProduct;
     }
 
     public static Product getTheProduct() {

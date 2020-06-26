@@ -340,7 +340,7 @@ public class allProductsMenu extends Menu {
 
     public void userSection() throws IOException {
         if (UserSectionController.getLoggedInPerson() == null) {
-            login("AllProducts");
+            login("ProductPage/ProductPageGeneral");
         } else {
             if (UserSectionController.getLoggedInPerson() instanceof Manager) {
                 ManagerSectionMenu.parentFxmlAddress = "AllProducts";
