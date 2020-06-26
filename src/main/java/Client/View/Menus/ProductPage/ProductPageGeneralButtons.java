@@ -20,10 +20,10 @@ public class ProductPageGeneralButtons extends Menu {
     public static String parentFxmlAddress;
     public Button loginLogout;
 
-    public void initialize(){
-        if(UserSectionController.getLoggedInPerson()==null){
+    public void initialize() {
+        if (UserSectionController.getLoggedInPerson() == null) {
             loginLogout.setText("Register/Login");
-        }else{
+        } else {
             loginLogout.setText("Logout");
         }
     }
@@ -52,19 +52,23 @@ public class ProductPageGeneralButtons extends Menu {
         setSubPage("ProductPage/CompareProducts");
     }
 
+    public void similarProducts(MouseEvent mouseEvent) {
+        setSubPage("ProductPage/SimilarProducts");
+    }
+
     public void backToPreviousPage(MouseEvent mouseEvent) throws IOException {
-       App.setRoot(parentFxmlAddress);
+        App.setRoot(parentFxmlAddress);
     }
 
     public void registerOrLogin() throws IOException {
-        if(UserSectionController.getLoggedInPerson()==null){
+        if (UserSectionController.getLoggedInPerson() == null) {
             login("ProductPage/ProductPageGeneral");
-        }else{
+        } else {
             logout("ProductPage/ProductPageGeneral");
         }
     }
 
-    private void setSubPage(String name){
+    private void setSubPage(String name) {
         Parent root = null;
         try {
             root = App.loadFXML(name);
@@ -75,7 +79,8 @@ public class ProductPageGeneralButtons extends Menu {
 
     }
 
-    public static void setTheProduct(Product theProduct){ ProductPageGeneralButtons.theProduct = theProduct;
+    public static void setTheProduct(Product theProduct) {
+        ProductPageGeneralButtons.theProduct = theProduct;
     }
 
     public static Product getTheProduct() {
