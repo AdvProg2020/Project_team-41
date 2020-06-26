@@ -79,6 +79,13 @@ public class BuyerController extends UserSectionController {
 
     public int calculateTotalPrice(){
         Buyer buyer = (Buyer) loggedInPerson;
-        return ((Buyer) loggedInPerson).getCart().totalPrice();
+        int cashToPay;
+        Cart cart = buyer.getCart();
+        if(cart.getCodedDiscount() == null)
+            cashToPay = cart.totalPrice();
+        else {
+            cashToPay = cart.getCodedDiscount().howMuchWillItCost(cart.totalPrice());
+        }
+        return cashToPay;
     }
 }

@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.View.Menus.Menu;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -14,7 +15,7 @@ import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
-public class BuyerSectionMenu {
+public class BuyerSectionMenu extends Menu {
     public TextField creditTextField;
     public AnchorPane insideAnchorPane;
     public AnchorPane outsideAnchorPane;
@@ -61,5 +62,9 @@ public class BuyerSectionMenu {
             e.printStackTrace();
         }
         anchorPane.getChildren().setAll(root);
+    }
+
+    public void logoutButtonClicked(MouseEvent mouseEvent) throws IOException {
+        logout("mainMenu");
     }
 }

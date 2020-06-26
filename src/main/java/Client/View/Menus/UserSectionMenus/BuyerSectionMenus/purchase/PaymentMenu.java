@@ -48,8 +48,7 @@ public class PaymentMenu {
     private void updateCredit(){
 
         TextField creditTextField = (TextField) NodeFinder.getChildById((Parent) NodeFinder.getParentById(paymentMenuAnchorPane, "buyerSectionBoarderPane"), "creditTextField");
-        int updatedCredit = (getPriceFromRawString(creditTextField.getText()) - getPriceFromRawString(priceText.getText()));
-        creditTextField.setText(updatedCredit +"Rials");
+        creditTextField.setText(BuyerController.getInstance().getBalance()+"Rials");
     }
     private int getPriceFromRawString(String rawString) {
         return Integer.parseInt(rawString.split("\\D")[0]);

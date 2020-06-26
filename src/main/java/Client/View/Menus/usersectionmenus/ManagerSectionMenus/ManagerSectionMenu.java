@@ -1,5 +1,6 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 
+import Client.View.Menus.Menu;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -11,7 +12,7 @@ import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
-public class ManagerSectionMenu {
+public class ManagerSectionMenu extends Menu {
     public BorderPane managerSectionBorderPane;
     public ScrollPane managerSectionButtonScrollPane;
     public static String parentFxmlAddress;
@@ -60,5 +61,9 @@ public class ManagerSectionMenu {
 
     public void backCodeButtonClicked(MouseEvent mouseEvent) throws IOException {
         App.setRoot(parentFxmlAddress);
+    }
+
+    public void logoutButtonClicked(MouseEvent mouseEvent) throws IOException {
+        logout("mainMenu");
     }
 }
