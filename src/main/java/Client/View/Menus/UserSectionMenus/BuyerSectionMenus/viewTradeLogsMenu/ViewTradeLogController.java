@@ -7,14 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import java.util.ArrayList;
-
 public class ViewTradeLogController {
     static TradeLog tradeLog;
     public TextField logIdTextField;
     public TextField dateTextField;
     public TextField deliverySituationTextField;
-    public TextField offAmountTextField;
+    public TextField discountAmountTextField;
     public TextField moneyTextField;
     public AnchorPane tradeLogInformation;
     public TextField productsTextField;
@@ -33,7 +31,7 @@ public class ViewTradeLogController {
         logIdTextField.setText(logId);
         dateTextField.setText(date);
         deliverySituationTextField.setText(deliverySituation);
-        offAmountTextField.setText(offAmount);
+        discountAmountTextField.setText(offAmount);
         moneyTextField.setText(money);
         try {
             productsTextField.setText(products.toString().substring(1));

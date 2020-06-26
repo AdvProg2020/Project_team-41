@@ -63,7 +63,7 @@
                           </LinearGradient>
                       </fill>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Off Amount :" wrappingWidth="96.22900390625" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="discount Amount :" wrappingWidth="136.22900390625" GridPane.rowIndex="3">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
@@ -105,7 +105,7 @@
                   <TextField fx:id="logIdTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
                   <TextField fx:id="dateTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="deliverySituationTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="offAmountTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="discountAmountTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="moneyTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="productsTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
