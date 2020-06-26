@@ -67,4 +67,8 @@ public class BuyerSectionMenu extends Menu {
     public void logoutButtonClicked(MouseEvent mouseEvent) throws IOException {
         logout("mainMenu");
     }
+
+    public void viewShoppingHistory(MouseEvent mouseEvent) {
+        setSubPage("userSection/buyerSection/viewTradeLogs/view tradeLogs menu");
+    }
 }
