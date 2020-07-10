@@ -25,7 +25,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Socket socket = new Socket("localhost", 8888);
-        Connector.makeInstance(socket);
+        new Thread(() -> Connector.makeInstance(socket));
         SimpleAudioPlayer.getInstance().playMusic(Music.MAIN_MENU);
         setIconImage();
         StartProgram.startProgram();
