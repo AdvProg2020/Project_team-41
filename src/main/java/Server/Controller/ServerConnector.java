@@ -86,8 +86,26 @@ public class ServerConnector implements Runnable {
             }
         }
     }
-    private void processSellerMessage(Message message){
-
+    private void processSellerMessage(Message message) throws Exception {
+        Object[] inputs = message.getInputs();
+        switch (message.getMessageType()) {
+            case ACCEPT_ALL_REQUESTS:{
+                ManagerServerController.getInstance().acceptAllRequests();
+                break;
+            }
+            case EDIT_CATEGORY_SPECIAL_FEATURES:{
+                ManagerServerController.getInstance().editCategorySpecialFeatures((String)inputs[0],(String)inputs[1]);
+                break;
+            }
+            case GET_ALL_PRODUCTS:{
+                objectOutputStream.writeObject(ManagerServerController.getInstance().getAllProducts());
+                break;
+            }
+            case GET_ALL_USERS:{
+                objectOutputStream.writeObject(ManagerServerController.getInstance().getAllUsers());
+                break;
+            }
+        }
     }
     private void processBuyerMessage(Message message){
 
