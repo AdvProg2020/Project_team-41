@@ -23,6 +23,7 @@ public class UserSectionMenu {
     public void initialize(){
         ArrayList<String> personalInfo = null;
         try {
+
             personalInfo = UserSectionController.getPersonalInfo(UserSectionController.getLoggedInPerson());
         } catch (Exception e) {
             showMessage(MessageTypeShow.ERROR,e.getMessage());
