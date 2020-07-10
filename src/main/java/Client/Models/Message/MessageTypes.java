@@ -1,5 +1,5 @@
 package Client.Models.Message;
 
-public enum MessageType {
+public enum MessageTypes {
     LOGIN,REGISTER
 }
