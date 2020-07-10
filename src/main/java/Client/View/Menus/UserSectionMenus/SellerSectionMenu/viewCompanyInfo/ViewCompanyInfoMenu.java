@@ -11,7 +11,6 @@ public class ViewCompanyInfoMenu {
     public AnchorPane companyNameAnchorPane;
     public TextField companyNameTextField;
 
-    @FXML
     public void initialize(){
         try {
             companyNameTextField.setText(SellerController.getInstance().getFactoryName());

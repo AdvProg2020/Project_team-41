@@ -16,7 +16,8 @@ public class LoginRegisterController {
         return single_instance;
     }
     public void createAccount(Person person) throws Exception {
-        LoginRegisterServerController.getInstance().createAccount(person);
+//        LoginRegisterServerController.getInstance().createAccount(person);
+        Connector.getInstance().sendMessage(new Message(new Object[]{person}, MessageType.REGISTER));
     }
     public void login (String username,String password) throws Exception {
 //        Person person=LoginRegisterServerController.getInstance().login(username,password);
