@@ -1,6 +1,7 @@
 package Client.Controller.UserSectionController;
 
-import Client.Models.Person.Manager;
+import Client.Controller.Connector;
+import Client.Models.Message.Message;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Server.Controller.UserSectionController.ManagerServerController;
@@ -18,11 +19,19 @@ public class ManagerController extends UserSectionController{
         return single_instance;
     }
     public void acceptAllRequests() throws Exception {
+        Message message = new Message(null);
+        Connector.getInstance().sendMessage(message);
+        Connector.getInstance().receiveMessage();
+
         ManagerServerController.getInstance().acceptAllRequests();
     }
     private ManagerController(){
     }
     public void editCategorySpecialFeatures(String category,String editedField) throws Exception {
+        Message message = new Message(new Object[]{category, editedField});
+        Connector.getInstance().sendMessage(message);
+        Connector.getInstance().receiveMessage();
+
         ManagerServerController.getInstance().editCategorySpecialFeatures(category,editedField);
     }
     public ArrayList<Product> getAllProducts(){

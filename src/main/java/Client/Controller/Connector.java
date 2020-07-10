@@ -42,7 +42,7 @@ public class Connector {
         }
     }
 
-    public Object receiveMessage(){
+    public Object receiveMessage() throws Exception {
         Message message = null;
         try {
              message = (Message) objectInputStream.readObject();
@@ -50,14 +50,8 @@ public class Connector {
             e.printStackTrace();
         }
         assert message != null;
-        return processMessage(message);
-    }
-    private Object processMessage(Message message){
-        switch (message.getMessageType()){
-            default: {
-                return null;
-            }
-        }
+        message.checkForException();
+        return message.getOutput();
     }
 
 }
