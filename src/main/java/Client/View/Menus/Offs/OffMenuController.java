@@ -81,9 +81,13 @@ public class OffMenuController extends Menu {
         SortVariables.getItems().addAll("product name","company name","price","seller username","score","view");
         SortVariables.setValue("view");
 //        specialFeatureAnchorPane.setVisible(false);
-        for (Category category : SellerController.getInstance().getCategories()) {
-            allCategories.getItems().addAll(category.getName());
+        try {
+            for (Category category : SellerController.getInstance().getCategories()) {
+                allCategories.getItems().addAll(category.getName());
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         if(UserSectionController.getLoggedInPerson()==null){

@@ -24,11 +24,19 @@ public class ManageCategoriesMenu {
 
     @FXML
     public void initialize(){
-        if(ManagerController.getInstance().showCategories().isEmpty()) {
-            showMessage(informationText, MessageTypeShow.INFORMATION,"No categories found");
+        try {
+            if(ManagerController.getInstance().showCategories().isEmpty()) {
+                showMessage(informationText, MessageTypeShow.INFORMATION,"No categories found");
+            }
+        } catch (Exception e) {
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
         }
-        for (String category : ManagerController.getInstance().showCategories()) {
-            makeCategorySplitButton(category);
+        try {
+            for (String category : ManagerController.getInstance().showCategories()) {
+                makeCategorySplitButton(category);
+            }
+        } catch (Exception e) {
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
         }
     }
 

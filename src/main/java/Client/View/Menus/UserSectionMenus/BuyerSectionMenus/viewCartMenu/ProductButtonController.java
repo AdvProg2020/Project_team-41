@@ -63,9 +63,13 @@ public class ProductButtonController {
     private int getIndexOfProduct(){
         String productId = productIdTextField.getText();
         Product product;
-        for (Product oneProduct : SellerController.getInstance().getProducts()) {
-            if(oneProduct.getProductId().equals(productId))
-                product = oneProduct;
+        try {
+            for (Product oneProduct : SellerController.getInstance().getProducts()) {
+                if(oneProduct.getProductId().equals(productId))
+                    product = oneProduct;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
         for (int i = 0; i < vBox.getChildren().size(); i++) {

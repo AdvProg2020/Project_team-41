@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.listUsersMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -24,8 +25,12 @@ public class ListUsersMenu {
     @FXML
     public void initialize(){
 
-        for (String user : ManagerController.getInstance().getAllUsers()) {
-                makeUserSplitButton(user);
+        try {
+            for (String user : ManagerController.getInstance().getAllUsers()) {
+                    makeUserSplitButton(user);
+            }
+        } catch (Exception e) {
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
     }
 
@@ -49,6 +54,11 @@ public class ListUsersMenu {
         textField.setText(username);
 
         usersVBox.getChildren().add(root);
+    }
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
+        text.setText(message);
+
     }
 
 }

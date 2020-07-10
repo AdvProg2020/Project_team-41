@@ -109,10 +109,18 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
-                if(ManagerController.getInstance().showCategories().isEmpty())
-                    System.out.println("there is no category to show here");
-                for (String category : ManagerController.getInstance().showCategories()) {
-                    System.out.println(category);
+                try {
+                    if(ManagerController.getInstance().showCategories().isEmpty())
+                        System.out.println("there is no category to show here");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    for (String category : ManagerController.getInstance().showCategories()) {
+                        System.out.println(category);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 System.out.println();
                 System.out.println("commands:");
@@ -229,10 +237,18 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
-                if(ManagerController.getInstance().showRequest().isEmpty())
-                    System.out.println("there is no request to show here");
-                for (String request : ManagerController.getInstance().showRequest()) {
-                    System.out.println(request);
+                try {
+                    if(ManagerController.getInstance().showRequest().isEmpty())
+                        System.out.println("there is no request to show here");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    for (String request : ManagerController.getInstance().showRequest()) {
+                        System.out.println(request);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 System.out.println();
                 System.out.println("commands:");
@@ -355,10 +371,18 @@ public class ManagerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
-                if(ManagerController.getInstance().viewAllDiscountCodes().isEmpty())
-                    System.out.println("there is no discount code to show here");
-                for (String discountCode : ManagerController.getInstance().viewAllDiscountCodes()) {
-                    System.out.println(discountCode);
+                try {
+                    if(ManagerController.getInstance().viewAllDiscountCodes().isEmpty())
+                        System.out.println("there is no discount code to show here");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    for (String discountCode : ManagerController.getInstance().viewAllDiscountCodes()) {
+                        System.out.println(discountCode);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 System.out.println();
                 System.out.println("commands:");
@@ -472,8 +496,12 @@ public class ManagerSection extends UserSection {
             public void show() {
                 super.show();
                     System.out.println("<<name - product Id>>");
-                for (Product product : ManagerController.getInstance().getAllProducts()) {
-                    System.out.println(product.getName() + " - " + product.getProductId());
+                try {
+                    for (Product product : ManagerController.getInstance().getAllProducts()) {
+                        System.out.println(product.getName() + " - " + product.getProductId());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 System.out.println();
                 System.out.println("commands : ");
@@ -519,8 +547,12 @@ public class ManagerSection extends UserSection {
                     this.show();
                     this.execute();
                 }
-                for (String field : UserSectionController.getPersonalInfo(user)) {
-                    System.out.println(field);
+                try {
+                    for (String field : UserSectionController.getPersonalInfo(user)) {
+                        System.out.println(field);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 this.show();
                 this.execute();
@@ -615,8 +647,12 @@ public class ManagerSection extends UserSection {
             public void show() {
                 super.show();
                 System.out.println("users : ");
-                for (String user : ManagerController.getInstance().getAllUsers()) {
-                    System.out.println(user);
+                try {
+                    for (String user : ManagerController.getInstance().getAllUsers()) {
+                        System.out.println(user);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 System.out.println();
                 System.out.println("commands : ");

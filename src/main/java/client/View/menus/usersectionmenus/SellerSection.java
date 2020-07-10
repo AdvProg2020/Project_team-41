@@ -48,7 +48,11 @@ public class SellerSection extends UserSection {
 
 
     private void viewCompanyInfo(){
-        System.out.println(SellerController.getInstance().getFactoryName());
+        try {
+            System.out.println(SellerController.getInstance().getFactoryName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("\n");
         this.show();
         this.execute();
@@ -111,11 +115,19 @@ public class SellerSection extends UserSection {
             @Override
             public void show() {
                 super.show();
-                if(SellerController.getInstance().getProducts().isEmpty())
-                    System.out.println("there is no product to show here");
-                for (Product product : SellerController.getInstance().getProducts()) {
-                    System.out.println("product name: "+product.getName());
-                    System.out.println("product id: "+product.getProductId());
+                try {
+                    if(SellerController.getInstance().getProducts().isEmpty())
+                        System.out.println("there is no product to show here");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    for (Product product : SellerController.getInstance().getProducts()) {
+                        System.out.println("product name: "+product.getName());
+                        System.out.println("product id: "+product.getProductId());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 System.out.println();
                 System.out.println("commands:");
@@ -277,8 +289,12 @@ public class SellerSection extends UserSection {
                 System.out.print("|    Off id    |\n");
                 System.out.print("+--------------+\n");
 
-                for (Off off : SellerController.getInstance().getOffs()) {
-                    System.out.format("| %-12s |\n", off.getOffId());
+                try {
+                    for (Off off : SellerController.getInstance().getOffs()) {
+                        System.out.format("| %-12s |\n", off.getOffId());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
                 System.out.print("+--------------+\n");
@@ -376,11 +392,19 @@ public class SellerSection extends UserSection {
                 this.execute();
             }
             private void showProducts(){
-                if(SellerController.getInstance().getProducts().isEmpty())
-                    System.out.println("there is no product to show here");
-                for (Product product : SellerController.getInstance().getProducts()) {
-                    System.out.println("product name: "+product.getName());
-                    System.out.println("product id: "+product.getProductId());
+                try {
+                    if(SellerController.getInstance().getProducts().isEmpty())
+                        System.out.println("there is no product to show here");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    for (Product product : SellerController.getInstance().getProducts()) {
+                        System.out.println("product name: "+product.getName());
+                        System.out.println("product id: "+product.getProductId());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
             private void addOff(){
@@ -424,8 +448,12 @@ public class SellerSection extends UserSection {
         return new Menu(this,"ShowCategories") {
             @Override
             public void show() {
-                for (Category category : SellerController.getInstance().getCategories())
-                    System.out.println(category.getName());
+                try {
+                    for (Category category : SellerController.getInstance().getCategories())
+                        System.out.println(category.getName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 super.show();
             }
 

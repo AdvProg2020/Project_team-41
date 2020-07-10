@@ -22,7 +22,12 @@ public class viewUserInfoController {
 
     @FXML
     public void initialize(){
-        ArrayList<String> personalInfo = UserSectionController.getPersonalInfo(user);
+        ArrayList<String> personalInfo = null;
+        try {
+            personalInfo = UserSectionController.getPersonalInfo(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         String username = personalInfo.get(0).split(" ")[1];
         String firstName = personalInfo.get(1).split(" ")[1];
         String lastName = personalInfo.get(2).split(" ")[1];

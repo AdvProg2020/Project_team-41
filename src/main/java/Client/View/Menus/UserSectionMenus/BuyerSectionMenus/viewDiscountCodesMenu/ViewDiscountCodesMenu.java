@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewDiscountCodesMenu;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -21,8 +22,12 @@ public class ViewDiscountCodesMenu {
 
     @FXML
     public void initialize(){
-        for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
-            makeCategorySplitButton(codedDiscount);
+        try {
+            for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
+                makeCategorySplitButton(codedDiscount);
+            }
+        } catch (Exception e) {
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
     }
 
@@ -38,6 +43,11 @@ public class ViewDiscountCodesMenu {
         textField.setText(categoryName);
 
         discountCodesVBox.getChildren().add(root);
+    }
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
+        text.setText(message);
+
     }
 
 }

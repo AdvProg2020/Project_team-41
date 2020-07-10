@@ -394,8 +394,12 @@ public class BuyerSection extends UserSection {
         this.execute();
     }
     private void viewDiscountCodes(){
-        for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
-            System.out.println(codedDiscount);
+        try {
+            for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
+                System.out.println(codedDiscount);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
