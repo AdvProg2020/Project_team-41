@@ -1,5 +1,6 @@
 package org.example;
 
+import Client.Controller.Connector;
 import Client.Controller.StartProgram;
 
 import javafx.application.Application;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 
 
@@ -22,6 +24,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Socket socket = new Socket("localhost", 8888);
+        Connector.makeInstance(socket);
         SimpleAudioPlayer.getInstance().playMusic(Music.MAIN_MENU);
         setIconImage();
         StartProgram.startProgram();

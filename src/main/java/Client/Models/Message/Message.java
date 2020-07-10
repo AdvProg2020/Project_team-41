@@ -11,4 +11,16 @@ public class Message {
     private Message() {
         this.sender = UserSectionController.getLoggedInPerson().getUserName();
     }
+
+    public String getToken() {
+        return token;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public MessageType getMessageType() {
+        return messageType;
+    }
 }
