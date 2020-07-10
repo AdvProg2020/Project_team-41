@@ -1,8 +1,8 @@
 package Server.Controller;
 
-
-import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Message.Message;
+import Client.Models.Message.MessageTypes;
+import Server.Controller.UserSectionController.ManagerServerController;
 
 import java.io.IOException;
 
@@ -49,20 +49,47 @@ public class ServerConnector implements Runnable {
     }
 
     private void processMessage(Message message) throws Exception {
-        Object[] inputs = message.getInputs();
-        switch (message.getMessageType()) {
-            case ACCEPT_ALL_REQUESTS:{
-                ManagerController.getInstance().acceptAllRequests();
+        MessageTypes.ClassTypes classTypes = message.getMessageType().getClassTypes();
+        switch (classTypes) {
+            case MANAGER_SECTION: {
+                processManagerMessage(message);
                 break;
             }
-            case EDIT_CATEGORY_SPECIAL_FEATURES:{
-                ManagerController.getInstance().editCategorySpecialFeatures((String)inputs[0],(String)inputs[1]);
+            case SELLER_SECTION:{
+                processSellerMessage(message);
                 break;
             }
-            case GET_ALL_PRODUCTS:{
-                objectOutputStream.writeObject(ManagerController.getInstance().getAllProducts());
+            case BUYER_SECTION:{
+                processBuyerMessage(message);
                 break;
             }
         }
+    }
+    private void processManagerMessage(Message message) throws Exception {
+        Object[] inputs = message.getInputs();
+        switch (message.getMessageType()) {
+            case ACCEPT_ALL_REQUESTS:{
+                ManagerServerController.getInstance().acceptAllRequests();
+                break;
+            }
+            case EDIT_CATEGORY_SPECIAL_FEATURES:{
+                ManagerServerController.getInstance().editCategorySpecialFeatures((String)inputs[0],(String)inputs[1]);
+                break;
+            }
+            case GET_ALL_PRODUCTS:{
+                objectOutputStream.writeObject(ManagerServerController.getInstance().getAllProducts());
+                break;
+            }
+            case GET_ALL_USERS:{
+                objectOutputStream.writeObject(ManagerServerController.getInstance().getAllUsers());
+                break;
+            }
+        }
+    }
+    private void processSellerMessage(Message message){
+
+    }
+    private void processBuyerMessage(Message message){
+
     }
 }

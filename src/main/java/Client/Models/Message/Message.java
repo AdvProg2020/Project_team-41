@@ -9,6 +9,7 @@ public class Message {
     private Object output;
     protected MessageTypes messageType;
 
+
     public Message(Object[] inputs) {
         this.inputs = inputs;
         this.sender = UserSectionController.getLoggedInPerson().getUserName();
