@@ -21,7 +21,12 @@ public class UserSectionMenu {
 
     @FXML
     public void initialize(){
-        ArrayList<String> personalInfo = UserSectionController.getPersonalInfo(UserSectionController.getLoggedInPerson());
+        ArrayList<String> personalInfo = null;
+        try {
+            personalInfo = UserSectionController.getPersonalInfo(UserSectionController.getLoggedInPerson());
+        } catch (Exception e) {
+            showMessage(MessageTypeShow.ERROR,e.getMessage());
+        }
         String username = personalInfo.get(0).split(" ")[1];
         String firstName = personalInfo.get(1).split(" ")[1];
         String lastName = personalInfo.get(2).split(" ")[1];
