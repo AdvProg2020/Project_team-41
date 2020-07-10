@@ -24,7 +24,12 @@ public class ManageProductsMenu {
 
     @FXML
     public void initialize(){
-        ArrayList<Product> allProducts = ManagerController.getInstance().getAllProducts();
+        ArrayList<Product> allProducts = null;
+        try {
+            allProducts = ManagerController.getInstance().getAllProducts();
+        } catch (Exception e) {
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+        }
         for (Product product : allProducts) {
             makeProductSplitButton(product.getName(),product.getProductId());
         }

@@ -71,9 +71,16 @@ public class ProductButtonController {
     private int getIndexOfProduct(){
         String productId = productIdTextField.getText();
         Product product;
-        for (Product oneProduct : ManagerController.getInstance().getAllProducts()) {
-            if(oneProduct.getProductId().equals(productId))
-                product = oneProduct;
+        try {
+            for (Product oneProduct : ManagerController.getInstance().getAllProducts()) {
+                if(oneProduct.getProductId().equals(productId))
+                    product = oneProduct;
+            }
+        } catch (Exception e) {
+            VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
+            AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
+            Text text = (Text) anchorPane.getChildren().get(1);
+            showMessage(text,MessageTypeShow.ERROR,e.getMessage());
         }
         //viewProductController.product = product;
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();

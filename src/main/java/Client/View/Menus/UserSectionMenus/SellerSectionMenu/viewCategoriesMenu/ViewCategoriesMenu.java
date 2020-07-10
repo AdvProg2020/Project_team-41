@@ -23,7 +23,12 @@ public class ViewCategoriesMenu {
 
     @FXML
     public void initialize(){
-        ArrayList<Category> categories = SellerController.getInstance().getCategories();
+        ArrayList<Category> categories = null;
+        try {
+            categories = SellerController.getInstance().getCategories();
+        } catch (Exception e) {
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+        }
         if (categories.isEmpty()) {
             showMessage(informationText, MessageTypeShow.INFORMATION, "No categories found");
         }

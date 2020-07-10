@@ -26,7 +26,12 @@ public class ManageProductsMenu {
 
     @FXML
     public void initialize(){
-        ArrayList<Product> products = SellerController.getInstance().getProducts();
+        ArrayList<Product> products = null;
+        try {
+            products = SellerController.getInstance().getProducts();
+        } catch (Exception e) {
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+        }
         if (products.isEmpty()) {
             showMessage(informationText, MessageTypeShow.INFORMATION,"no products found");
         }

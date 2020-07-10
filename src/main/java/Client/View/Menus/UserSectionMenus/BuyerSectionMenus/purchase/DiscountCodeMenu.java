@@ -27,7 +27,11 @@ public class DiscountCodeMenu {
             }
         }
         else {
-            BuyerController.getInstance().removeCodedDiscountFromCart();
+            try {
+                BuyerController.getInstance().removeCodedDiscountFromCart();
+            } catch (Exception e) {
+                showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            }
         }
         loadInInsideAnchorPane("userSection/buyerSection/purchase/payment menu");
 

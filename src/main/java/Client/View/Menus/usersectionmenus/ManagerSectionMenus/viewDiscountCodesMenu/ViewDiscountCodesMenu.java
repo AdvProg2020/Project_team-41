@@ -24,10 +24,18 @@ public class ViewDiscountCodesMenu {
 
     @FXML
     public void initialize(){
-        if(ManagerController.getInstance().viewAllDiscountCodes().isEmpty())
-            showMessage(informationText, MessageTypeShow.INFORMATION, "No discount codes found");
-        for (String discountCode : ManagerController.getInstance().viewAllDiscountCodes()) {
-            makeUserSplitButton(discountCode);
+        try {
+            if(ManagerController.getInstance().viewAllDiscountCodes().isEmpty())
+                showMessage(informationText, MessageTypeShow.INFORMATION, "No discount codes found");
+        } catch (Exception e) {
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+        }
+        try {
+            for (String discountCode : ManagerController.getInstance().viewAllDiscountCodes()) {
+                makeUserSplitButton(discountCode);
+            }
+        } catch (Exception e) {
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
         }
     }
 

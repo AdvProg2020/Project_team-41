@@ -25,7 +25,12 @@ public class ManageOffsMenu {
 
     @FXML
     public void initialize(){
-        ArrayList<Off> offs = SellerController.getInstance().getOffs();
+        ArrayList<Off> offs = null;
+        try {
+            offs = SellerController.getInstance().getOffs();
+        } catch (Exception e) {
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+        }
         if (offs.isEmpty()) {
             showMessage(informationText, MessageTypeShow.INFORMATION, "No offs found");
         }
