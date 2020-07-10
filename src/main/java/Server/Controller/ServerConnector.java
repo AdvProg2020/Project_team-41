@@ -79,6 +79,10 @@ public class ServerConnector implements Runnable {
                 processBuyerMessage(message);
                 break;
             }
+            case LOGIN_REGISTER:{
+                processLoginRegister(message);
+                break;
+            }
         }
     }
     private void processUserMessage(Message message) throws Exception{
@@ -338,6 +342,19 @@ public class ServerConnector implements Runnable {
             objectOutputStream.writeObject(new Message(MessageType.SUCCESSFUL));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    private void processLoginRegister(Message message) throws Exception {
+        Object[] inputs = message.getInputs();
+
+        switch (message.getMessageType()){
+            case LOGIN:{
+                objectOutputStream.writeObject(new Message(LoginRegisterServerController.getInstance().login((String)inputs[0],(String)inputs[1])));
+                break;
+            }
+            case REGISTER:{
+                break;
+            }
         }
     }
 

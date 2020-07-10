@@ -1,6 +1,8 @@
 package Client.Controller;
 
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Person.Person;
 import Server.Controller.LoginRegisterServerController;
 
@@ -17,7 +19,9 @@ public class LoginRegisterController {
         LoginRegisterServerController.getInstance().createAccount(person);
     }
     public void login (String username,String password) throws Exception {
-        Person person=LoginRegisterServerController.getInstance().login(username,password);
+//        Person person=LoginRegisterServerController.getInstance().login(username,password);
+        Connector.getInstance().sendMessage(new Message(new Object[]{username, password}, MessageType.LOGIN));
+        Person person= (Person) Connector.getInstance().receiveMessage();
         UserSectionController.setLoggedInPerson(person);
     }
     public void logout(){
