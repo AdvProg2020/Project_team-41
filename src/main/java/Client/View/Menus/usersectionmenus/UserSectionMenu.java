@@ -84,16 +84,20 @@ public class UserSectionMenu {
             phoneNumberTextField.setPromptText(e.getMessage());
         }
         if(numberOfErrors == 0){
+
             showMessage(MessageTypeShow.SUCCESS,"edited successfully");
         }
         else{
+
             showMessage(MessageTypeShow.ERROR, errors.substring(0, errors.length() - 1));
         }
 
     }
+
     private void showMessage(MessageTypeShow messageTypeShow, String message){
         informationText.setFill(messageTypeShow.getLinearGradient());
         informationText.setText(message);
+
 
 
     }
