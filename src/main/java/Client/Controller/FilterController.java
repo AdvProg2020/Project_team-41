@@ -1,6 +1,8 @@
 package Client.Controller;
 
 import Client.Models.Category;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Product;
 import Server.Controller.AllProductsServerController;
 import Server.Controller.OffsServerController;
@@ -42,9 +44,16 @@ public class FilterController {
     }
 
     public List<Product> filterProducts(boolean offOrNot) {
-        ArrayList<Product> allProducts;
+        ArrayList<Product> allProducts=null;
         if (offOrNot) {
-            allProducts = OffsServerController.getInstance().getAllOffProducts();
+//            allProducts = OffsServerController.getInstance().getAllOffProducts();
+            Connector.getInstance().sendMessage(new Message(null,MessageType.GET_OFF_PRODUCTS));
+            try {
+                allProducts= (ArrayList<Product>) Connector.getInstance().receiveMessage();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         } else {
             allProducts = AllProductsServerController.getInstance().getAllProducts();
         }

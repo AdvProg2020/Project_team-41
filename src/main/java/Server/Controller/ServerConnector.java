@@ -83,6 +83,9 @@ public class ServerConnector implements Runnable {
                 processLoginRegister(message);
                 break;
             }
+            case OFFS:{
+                processOffs(message);
+            }
         }
     }
     private void processUserMessage(Message message) throws Exception{
@@ -353,6 +356,16 @@ public class ServerConnector implements Runnable {
                 break;
             }
             case REGISTER:{
+                LoginRegisterServerController.getInstance().createAccount((Person)inputs[0]);
+                sendSuccessful();
+                break;
+            }
+        }
+    }
+    private void processOffs(Message message) throws IOException {
+        switch (message.getMessageType()){
+            case GET_OFF_PRODUCTS:{
+                objectOutputStream.writeObject(new Message(OffsServerController.getInstance().getAllOffProducts()));
                 break;
             }
         }
