@@ -1,14 +1,14 @@
 package Client.Models.Message;
 
 
-public enum MessageTypes {
+public enum MessageType {
     SUCCESSFULL(null),
     LOGIN(ClassTypes.LOGIN_REGISTER),REGISTER(ClassTypes.LOGIN_REGISTER),
     ACCEPT_ALL_REQUESTS(ClassTypes.MANAGER_SECTION),EDIT_CATEGORY_SPECIAL_FEATURES(ClassTypes.MANAGER_SECTION),GET_ALL_PRODUCTS(ClassTypes.MANAGER_SECTION),GET_ALL_USERS(ClassTypes.MANAGER_SECTION),
     GET_ALL_CATEGORIES(ClassTypes.ALL_PRODUCTS);
 
     ClassTypes classTypes;
-    MessageTypes(ClassTypes classTypes) {
+    MessageType(ClassTypes classTypes) {
         this.classTypes = classTypes;
     }
 

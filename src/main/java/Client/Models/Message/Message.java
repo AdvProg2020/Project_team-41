@@ -7,10 +7,10 @@ public class Message {
     private String sender;
     private Object[] inputs;
     private Object output;
-    protected MessageTypes messageType;
+    protected MessageType messageType;
 
 
-    public Message(Object[] inputs,MessageTypes messageType) {
+    public Message(Object[] inputs, MessageType messageType) {
         this.messageType = messageType;
         this.inputs = inputs;
         this.sender = UserSectionController.getLoggedInPerson().getUserName();
@@ -19,7 +19,7 @@ public class Message {
         this.output = output;
     }
 
-    public Message(MessageTypes messageType) {
+    public Message(MessageType messageType) {
         this.messageType = messageType;
     }
 
@@ -42,7 +42,7 @@ public class Message {
         return output;
     }
 
-    public MessageTypes getMessageType() {
+    public MessageType getMessageType() {
         return messageType;
     }
 }

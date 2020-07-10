@@ -1,7 +1,7 @@
 package Server.Controller;
 
 import Client.Models.Message.Message;
-import Client.Models.Message.MessageTypes;
+import Client.Models.Message.MessageType;
 import Client.Models.Person.Person;
 import Server.Controller.UserSectionController.ManagerServerController;
 
@@ -53,7 +53,7 @@ public class ServerConnector implements Runnable {
     }
 
     private void processMessage(Message message) throws Exception {
-        MessageTypes.ClassTypes classTypes = message.getMessageType().getClassTypes();
+        MessageType.ClassTypes classTypes = message.getMessageType().getClassTypes();
         switch (classTypes) {
             case MANAGER_SECTION: {
                 processManagerMessage(message);
@@ -102,7 +102,7 @@ public class ServerConnector implements Runnable {
     //send after every void method
     private void sendSuccessful(){
         try {
-            objectOutputStream.writeObject(new Message(MessageTypes.SUCCESSFULL));
+            objectOutputStream.writeObject(new Message(MessageType.SUCCESSFULL));
         } catch (IOException e) {
             e.printStackTrace();
         }

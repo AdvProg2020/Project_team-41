@@ -1,7 +1,6 @@
 package Client.Controller;
 
 import Client.Models.Message.Message;
-import Client.Models.Message.MessageTypes;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
