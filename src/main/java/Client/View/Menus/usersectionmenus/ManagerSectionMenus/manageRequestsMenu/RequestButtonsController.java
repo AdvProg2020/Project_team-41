@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageRequestsMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -47,7 +47,7 @@ public class RequestButtonsController {
         vBox.getChildren().remove(getIndexOfRequest());
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(1);
-        showMessage(text, MessageType.SUCCESS,"successfully declined request");
+        showMessage(text, MessageTypeShow.SUCCESS,"successfully declined request");
 
 
     }
@@ -110,8 +110,8 @@ public class RequestButtonsController {
         }
         return -2;
     }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }
@@ -125,13 +125,13 @@ public class RequestButtonsController {
         Text text = (Text) anchorPane.getChildren().get(1);
         try {
             ManagerController.getInstance().acceptRequest(getRequestId(requestIdTextField.getText()));
-            showMessage(text, MessageType.SUCCESS, "successfully accepted request");
+            showMessage(text, MessageTypeShow.SUCCESS, "successfully accepted request");
             if (requestsShown.contains(requestIdTextField.getText()))
                 vBox.getChildren().remove(getIndexOfRequest() + 1);
             vBox.getChildren().remove(getIndexOfRequest());
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(text, MessageType.ERROR, e.getMessage());
+            showMessage(text, MessageTypeShow.ERROR, e.getMessage());
         }
 
     }

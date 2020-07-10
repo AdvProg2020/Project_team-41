@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageCategoryMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -18,14 +18,14 @@ public class CreateCategoryMenu {
         specialFeatures = specialFeaturesTextField.getText();
         try{
             ManagerController.getInstance().addCategory(categoryNameTextField.getText(),specialFeatures);
-            showMessage(informationText,MessageType.SUCCESS,"category " + categoryNameTextField.getText() + " is created");
+            showMessage(informationText, MessageTypeShow.SUCCESS,"category " + categoryNameTextField.getText() + " is created");
         }
         catch (Exception e){
-            showMessage(informationText,MessageType.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
     }
-    private void showMessage(javafx.scene.text.Text text, MessageType messageType, String message) {
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(javafx.scene.text.Text text, MessageTypeShow messageTypeShow, String message) {
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

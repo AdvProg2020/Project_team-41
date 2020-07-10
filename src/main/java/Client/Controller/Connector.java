@@ -1,6 +1,7 @@
 package Client.Controller;
 
 import Client.Models.Message.Message;
+import Client.Models.Message.MessageTypes;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -52,6 +53,10 @@ public class Connector {
         assert message != null;
         message.checkForException();
         return message.getOutput();
+    }
+    public Object initializeMessage(Message message) throws Exception {
+        Connector.getInstance().sendMessage(message);
+        return Connector.getInstance().receiveMessage();
     }
 
 }

@@ -3,7 +3,7 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Product;
 import Client.Models.SpecialFeature;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -57,15 +57,15 @@ public class editProductController {
         Text informationText = (Text) manageProductsMenu.getChildren().get(1);
         textField.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
             if (newPropertyValue) {
-                showMessage(informationText, MessageType.INFORMATION, "edits will be saved automatically");
+                showMessage(informationText, MessageTypeShow.INFORMATION, "edits will be saved automatically");
             } else {
                 informationText.setText("");
             }
         });
     }
 
-    private void showMessage(Text text, MessageType messageType, String message) {
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message) {
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu;
 
 import Client.Controller.UserSectionController.SellerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -31,15 +31,15 @@ public class AddProductMenu {
         productDetails.add(specialFeaturesTextField.getText());
         try {
             SellerController.getInstance().addProduct(productDetails);
-            showMessage(informationText,MessageType.SUCCESS,"sent product creation request to manager successfully");
+            showMessage(informationText, MessageTypeShow.SUCCESS,"sent product creation request to manager successfully");
         } catch (Exception e) {
-            showMessage(informationText,MessageType.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
 
     }
 
-    private void showMessage(Text text, MessageType messageType, String message) {
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message) {
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

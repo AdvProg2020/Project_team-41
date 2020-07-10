@@ -2,7 +2,7 @@ package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageProductsMen
 
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Product;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -50,7 +50,7 @@ public class ProductButtonController {
         vBox.getChildren().remove(getIndexOfProduct());
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(1);
-        showMessage(text, MessageType.SUCCESS,"removed the product successfully");
+        showMessage(text, MessageTypeShow.SUCCESS,"removed the product successfully");
     }
     private void showProduct() throws Exception {
         Product product = null;
@@ -90,8 +90,8 @@ public class ProductButtonController {
         }
         return -2;
     }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

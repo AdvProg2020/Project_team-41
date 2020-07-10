@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageCategoryMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -51,7 +51,7 @@ public class CategoryButtonController {
         vBox.getChildren().remove(getIndexOfCategory());
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(1);
-        showMessage(text, MessageType.SUCCESS,"successfully removed category");
+        showMessage(text, MessageTypeShow.SUCCESS,"successfully removed category");
 
 
     }
@@ -107,24 +107,24 @@ public class CategoryButtonController {
             if(!previousFields[0].equals(editCategoryNameTextField.getText())) {
                 ManagerController.getInstance().editCategoryName(categoryNameTextField.getText(), editCategoryNameTextField.getText());
                 categoryNameTextField.setText(editCategoryNameTextField.getText());
-                showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+                showMessage(informationText, MessageTypeShow.SUCCESS, "fields edited successfully");
             }
         } catch (Exception e) {
             errorBuilder.append("-").append(e.getMessage());
-            showMessage(informationText, MessageType.ERROR, e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR, e.getMessage());
             errorWhileEditing = true;
         }
         try {
             if(!previousFields[1].equals(editCategorySpecialFeaturesTextField.getText())) {
                 ManagerController.getInstance().editCategorySpecialFeatures(categoryNameTextField.getText(), editCategorySpecialFeaturesTextField.getText());
-                showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+                showMessage(informationText, MessageTypeShow.SUCCESS, "fields edited successfully");
             }
         } catch (Exception e) {
             errorBuilder.append("-").append(e.getMessage());
             errorWhileEditing = true;
         }
         if(errorWhileEditing)
-            showMessage(informationText, MessageType.ERROR, errorBuilder.toString().substring(1));
+            showMessage(informationText, MessageTypeShow.ERROR, errorBuilder.toString().substring(1));
 
 
 
@@ -149,8 +149,8 @@ public class CategoryButtonController {
         }
         return -2;
     }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

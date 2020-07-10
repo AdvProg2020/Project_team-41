@@ -1,7 +1,7 @@
 package Client.View.Menus.ProductPage;
 
 import Client.Controller.ProductController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -18,13 +18,13 @@ public class AddComment {
     public void addComment(MouseEvent mouseEvent) {
         try {
             ProductController.addComment(titleTextField.getText() , contentTextArea.getText() , ProductPageGeneralButtons.getTheProduct());
-            showMessage(commentResultLabel , MessageType.SUCCESS , "Thanks for your comment!");
+            showMessage(commentResultLabel , MessageTypeShow.SUCCESS , "Thanks for your comment!");
         }
         catch(NullPointerException e){
-           showMessage(commentResultLabel , MessageType.ERROR , e.getMessage());
+           showMessage(commentResultLabel , MessageTypeShow.ERROR , e.getMessage());
         }
         catch (Exception e) {
-            showMessage(commentResultLabel , MessageType.ERROR , "Please fill all fields!");
+            showMessage(commentResultLabel , MessageTypeShow.ERROR , "Please fill all fields!");
         }
 
       }

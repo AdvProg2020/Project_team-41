@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.viewDiscountCodesMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +31,7 @@ public class CreateDiscountCodeMenu {
             codeInformation.add(startDateTextField.getText().split("-")[0]);
             codeInformation.add(startDateTextField.getText().split("-")[1]);
         } catch (Exception e) {
-            showMessage(informationText,MessageType.ERROR,"wrong start date");
+            showMessage(informationText, MessageTypeShow.ERROR,"wrong start date");
             return;
         }
         try {
@@ -41,7 +41,7 @@ public class CreateDiscountCodeMenu {
             codeInformation.add(endDateTextField.getText().split("-")[0]);
             codeInformation.add(endDateTextField.getText().split("-")[1]);
         } catch (Exception e) {
-            showMessage(informationText,MessageType.ERROR,"wrong end date");
+            showMessage(informationText, MessageTypeShow.ERROR,"wrong end date");
             return;
         }
         codeInformation.add(discountPercentageTextField.getText());
@@ -51,15 +51,15 @@ public class CreateDiscountCodeMenu {
 
         try{
             ManagerController.getInstance().createDiscountCode(codeInformation);
-            showMessage(informationText,MessageType.SUCCESS,"discount code " + discountCodeTextField.getText() + " is created");
+            showMessage(informationText, MessageTypeShow.SUCCESS,"discount code " + discountCodeTextField.getText() + " is created");
         }
         catch (Exception e){
             e.printStackTrace();
-            showMessage(informationText,MessageType.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
     }
-    private void showMessage(Text text, MessageType messageType, String message) {
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message) {
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

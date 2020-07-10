@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 
 import Client.Controller.UserSectionController.BuyerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +20,7 @@ public class ReceiverInformationMenu {
 
     public void nextButtonClicked(MouseEvent mouseEvent) throws IOException {
         if(addressTextField.getText().isBlank() || phoneNumberTextField.getText().isBlank() || emailTextField.getText().isBlank())
-            showMessage(informationText,MessageType.ERROR,"please enter your information");
+            showMessage(informationText, MessageTypeShow.ERROR,"please enter your information");
         else {
             ArrayList<String> receiverInformation = new ArrayList<>();
             receiverInformation.add(addressTextField.getText());
@@ -30,8 +30,8 @@ public class ReceiverInformationMenu {
         }
 
     }
-    private void showMessage(Text text, MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

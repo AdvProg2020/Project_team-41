@@ -5,13 +5,13 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 
-public enum MessageType {
+public enum MessageTypeShow {
 
     INFORMATION("information"),ERROR("error"),SUCCESS("success");
 
     private LinearGradient linearGradient;
 
-    MessageType(String mode){
+    MessageTypeShow(String mode){
         Stop[] stops;
         switch (mode){
             case "information": {

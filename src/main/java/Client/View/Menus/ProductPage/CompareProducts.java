@@ -2,7 +2,7 @@ package Client.View.Menus.ProductPage;
 
 import Client.Controller.AllProductsController;
 import Client.Models.Product;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -31,10 +31,10 @@ public class CompareProducts {
         try {
             secondProduct = AllProductsController.getInstance().getProduct(secondId.getText());
         } catch (Exception e) {
-            showMessage(compareResult, MessageType.ERROR, e.getMessage());
+            showMessage(compareResult, MessageTypeShow.ERROR, e.getMessage());
         }
         if (!ProductPageGeneralButtons.getTheProduct().getCategory().getName().equals(secondProduct.getCategory().getName())) {
-            showMessage(compareResult, MessageType.ERROR, "You can only compare products of a same category!");
+            showMessage(compareResult, MessageTypeShow.ERROR, "You can only compare products of a same category!");
         }
         else{
             ProductDetails.setDetailsInTextFields(ProductPageGeneralButtons.getTheProduct() , nameTextField_1 , priceTextField_1 , descriptionTextField_1 , scoreTextField_1 , specialFeaturesTextField_1);

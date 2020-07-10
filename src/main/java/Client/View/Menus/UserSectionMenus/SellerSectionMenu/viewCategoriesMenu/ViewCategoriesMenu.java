@@ -2,7 +2,7 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewCategoriesMenu;
 
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Category;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -25,7 +25,7 @@ public class ViewCategoriesMenu {
     public void initialize(){
         ArrayList<Category> categories = SellerController.getInstance().getCategories();
         if (categories.isEmpty()) {
-            showMessage(informationText, MessageType.INFORMATION, "No categories found");
+            showMessage(informationText, MessageTypeShow.INFORMATION, "No categories found");
         }
         for (Category category : categories)
             makeCategorySplitButton(category.getName(),category.getSpecialFeatures());
@@ -55,8 +55,8 @@ public class ViewCategoriesMenu {
 
         categoriesVBox.getChildren().add(root);
     }
-    private void showMessage(Text text, MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

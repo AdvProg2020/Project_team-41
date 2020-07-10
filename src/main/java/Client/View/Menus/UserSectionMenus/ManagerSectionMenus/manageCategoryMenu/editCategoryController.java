@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageCategoryMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -39,12 +39,12 @@ public class editCategoryController {
         Text informationText = (Text) manageCategoryMenu.getChildren().get(1);
         categoryNameTextField.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
             if (newPropertyValue) {
-                showMessage(informationText, MessageType.INFORMATION, "edits will be saved automatically");
+                showMessage(informationText, MessageTypeShow.INFORMATION, "edits will be saved automatically");
             }
         });
         specialFeaturesTextField.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
             if (newPropertyValue) {
-                showMessage(informationText, MessageType.INFORMATION, "edits will be saved automatically");
+                showMessage(informationText, MessageTypeShow.INFORMATION, "edits will be saved automatically");
             } else {
                 informationText.setText("");
             }
@@ -52,8 +52,8 @@ public class editCategoryController {
 
     }
 
-    private void showMessage(javafx.scene.text.Text text, MessageType messageType, String message) {
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(javafx.scene.text.Text text, MessageTypeShow messageTypeShow, String message) {
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

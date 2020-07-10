@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.viewDiscountCodesMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -49,7 +49,7 @@ public class DiscountCodeButtonController {
         vBox.getChildren().remove(getIndexOfUser());
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(2);
-        showMessage(text,MessageType.SUCCESS,"successfully removed discount code");
+        showMessage(text, MessageTypeShow.SUCCESS,"successfully removed discount code");
 
 
     }
@@ -118,11 +118,11 @@ public class DiscountCodeButtonController {
         try {
             if(edits.size()!=0) {
                 ManagerController.getInstance().editDiscountCode(discountCodeTextField.getText(), edits);
-                showMessage(informationText, MessageType.SUCCESS, "fields edited successfully");
+                showMessage(informationText, MessageTypeShow.SUCCESS, "fields edited successfully");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(informationText, MessageType.ERROR, e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR, e.getMessage());
         }
 
 
@@ -146,8 +146,8 @@ public class DiscountCodeButtonController {
         }
         return -2;
     }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

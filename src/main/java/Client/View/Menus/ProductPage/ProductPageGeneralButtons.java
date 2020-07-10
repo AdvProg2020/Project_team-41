@@ -6,7 +6,7 @@ import Client.Models.Person.Manager;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu;
 import Client.View.Menus.UserSectionMenus.SellerSectionMenu.SellerSectionMenu;
@@ -113,8 +113,8 @@ public class ProductPageGeneralButtons extends Menu {
         return theProduct;
     }
 
-    public static void showMessage(Text text, MessageType messageType, String message) {
-        text.setFill(messageType.getLinearGradient());
+    public static void showMessage(Text text, MessageTypeShow messageTypeShow, String message) {
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
     }
 

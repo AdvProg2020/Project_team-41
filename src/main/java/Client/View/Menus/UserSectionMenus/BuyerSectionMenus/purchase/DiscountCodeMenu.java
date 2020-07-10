@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 
 import Client.Controller.UserSectionController.BuyerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +22,7 @@ public class DiscountCodeMenu {
             try {
                 BuyerController.getInstance().addCodedDiscountToCart(discountCodeTextField.getText());
             } catch (Exception e) {
-                showMessage(informationText, MessageType.ERROR, e.getMessage());
+                showMessage(informationText, MessageTypeShow.ERROR, e.getMessage());
                 return;
             }
         }
@@ -32,8 +32,8 @@ public class DiscountCodeMenu {
         loadInInsideAnchorPane("userSection/buyerSection/purchase/payment menu");
 
     }
-    private void showMessage(Text text, MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

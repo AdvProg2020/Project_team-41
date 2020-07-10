@@ -3,7 +3,7 @@ package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewCartMenu;
 import Client.Controller.UserSectionController.BuyerController;
 import Client.Models.Cart;
 import Client.Models.Product;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -28,7 +28,7 @@ public class ViewCartMenu {
     public void initialize(){
         Cart cart = BuyerController.getInstance().getCart();
         if(cart.getProducts().isEmpty()){
-            showMessage(informationText,MessageType.INFORMATION,"cart is empty");
+            showMessage(informationText, MessageTypeShow.INFORMATION,"cart is empty");
         }
         else {
             for (Product product : cart.getProducts().keySet()) {
@@ -61,14 +61,14 @@ public class ViewCartMenu {
 
     public void purchaseButtonClicked(MouseEvent mouseEvent) throws IOException {
         if (BuyerController.getInstance().getCart().getProducts().isEmpty()) {
-            showMessage(informationText,MessageType.ERROR,"you haven't selected any products yet");
+            showMessage(informationText, MessageTypeShow.ERROR,"you haven't selected any products yet");
         }
         else {
             loadInInsideAnchorPane();
         }
     }
-    private void showMessage(Text text, MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

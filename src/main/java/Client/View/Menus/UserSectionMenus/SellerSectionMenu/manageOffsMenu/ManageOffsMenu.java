@@ -2,7 +2,7 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageOffsMenu;
 
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Off;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -27,7 +27,7 @@ public class ManageOffsMenu {
     public void initialize(){
         ArrayList<Off> offs = SellerController.getInstance().getOffs();
         if (offs.isEmpty()) {
-            showMessage(informationText,MessageType.INFORMATION, "No offs found");
+            showMessage(informationText, MessageTypeShow.INFORMATION, "No offs found");
         }
         for (Off off : offs) {
             makeOffSplitButton(off.getOffId());
@@ -61,8 +61,8 @@ public class ManageOffsMenu {
         }
 
     }
-    private void showMessage(Text text, MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

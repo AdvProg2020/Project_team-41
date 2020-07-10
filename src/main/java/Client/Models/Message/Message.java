@@ -19,6 +19,10 @@ public class Message {
         this.output = output;
     }
 
+    public Message(MessageTypes messageType) {
+        this.messageType = messageType;
+    }
+
     public void checkForException() throws Exception {
         if (output instanceof Exception) {
             throw (Exception) output;

@@ -2,7 +2,7 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageOffsMenu;
 
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Off;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -93,9 +93,9 @@ public class OffButtonController {
         edits.put("products", editProductsTextField.getText());
         try {
             SellerController.getInstance().editOff(offNameTextField.getText().trim(), edits);
-            showMessage(informationText, MessageType.SUCCESS, "your request will be processed");
+            showMessage(informationText, MessageTypeShow.SUCCESS, "your request will be processed");
         } catch (Exception e) {
-            showMessage(informationText, MessageType.ERROR, e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR, e.getMessage());
         }
         vBox.getChildren().remove(getIndexOfOff()+1);
 
@@ -118,8 +118,8 @@ public class OffButtonController {
         }
         return -2;
     }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

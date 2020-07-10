@@ -2,7 +2,7 @@ package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.listUsersMenu;
 
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Person.Person;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -48,7 +48,7 @@ public class userButtonController {
         try {
             user = ManagerController.getInstance().getUserByUsername(usernameTextField.getText().split(":")[1].trim());
             if (user.equals(ManagerController.getLoggedInPerson())) {
-                showMessage(text,MessageType.ERROR,"cannot remove current user");
+                showMessage(text, MessageTypeShow.ERROR,"cannot remove current user");
                 return;
             }
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class userButtonController {
         if(usersShown.contains(usernameTextField.getText()))
             vBox.getChildren().remove(getIndexOfUser()+1);
         vBox.getChildren().remove(getIndexOfUser());
-        showMessage(text,MessageType.SUCCESS,"successfully removed user");
+        showMessage(text, MessageTypeShow.SUCCESS,"successfully removed user");
 
 
     }
@@ -122,8 +122,8 @@ public class userButtonController {
         }
         return -2;
     }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

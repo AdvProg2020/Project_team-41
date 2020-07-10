@@ -2,6 +2,7 @@ package Client.Controller.UserSectionController;
 
 import Client.Controller.Connector;
 import Client.Models.Message.Message;
+import Client.Models.Message.MessageTypes;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Server.Controller.UserSectionController.ManagerServerController;
@@ -19,23 +20,23 @@ public class ManagerController extends UserSectionController{
         return single_instance;
     }
     public void acceptAllRequests() throws Exception {
-        Message message = new Message(null);
-        Connector.getInstance().sendMessage(message);
-        Connector.getInstance().receiveMessage();
-
+        Connector.getInstance().initializeMessage(new Message(null, MessageTypes.ACCEPT_ALL_REQUESTS));
         ManagerServerController.getInstance().acceptAllRequests();
     }
     private ManagerController(){
     }
     public void editCategorySpecialFeatures(String category,String editedField) throws Exception {
-        Message message = new Message(new Object[]{category, editedField});
+        Message message = new Message(new Object[]{category, editedField}, MessageTypes.EDIT_CATEGORY_SPECIAL_FEATURES);
         Connector.getInstance().sendMessage(message);
         Connector.getInstance().receiveMessage();
 
         ManagerServerController.getInstance().editCategorySpecialFeatures(category,editedField);
     }
-    public ArrayList<Product> getAllProducts(){
-        return ManagerServerController.getInstance().getAllProducts();
+    public ArrayList<Product> getAllProducts() throws Exception {
+        Message message = new Message(null, MessageTypes.GET_ALL_PRODUCTS);
+        Connector.getInstance().sendMessage(message);
+        return (ArrayList<Product>) Connector.getInstance().receiveMessage();
+        //return ManagerServerController.getInstance().getAllProducts();
     }
     public ArrayList<String> getAllUsers(){
         return ManagerServerController.getInstance().getAllUsers();

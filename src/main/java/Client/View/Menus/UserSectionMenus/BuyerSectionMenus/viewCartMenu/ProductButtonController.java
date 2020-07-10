@@ -3,7 +3,7 @@ package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewCartMenu;
 import Client.Controller.UserSectionController.BuyerController;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Product;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import javafx.scene.Parent;
@@ -101,8 +101,8 @@ public class ProductButtonController {
         }
     }
 
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
     }
 

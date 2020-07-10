@@ -2,6 +2,7 @@ package Server.Controller;
 
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageTypes;
+import Client.Models.Person.Person;
 import Server.Controller.UserSectionController.ManagerServerController;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.net.Socket;
 public class ServerConnector implements Runnable {
     private static ServerSocket serverSocket;
     Socket socket;
+    Person person;
     ObjectInputStream objectInputStream;
     ObjectOutputStream objectOutputStream;
     public ServerConnector(ServerSocket serverSocket,Socket socket){
@@ -35,6 +37,8 @@ public class ServerConnector implements Runnable {
             try {
                 Message message = (Message) objectInputStream.readObject();
                 processMessage(message);
+
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -70,10 +74,12 @@ public class ServerConnector implements Runnable {
         switch (message.getMessageType()) {
             case ACCEPT_ALL_REQUESTS:{
                 ManagerServerController.getInstance().acceptAllRequests();
+                sendSuccessful();
                 break;
             }
             case EDIT_CATEGORY_SPECIAL_FEATURES:{
                 ManagerServerController.getInstance().editCategorySpecialFeatures((String)inputs[0],(String)inputs[1]);
+                sendSuccessful();
                 break;
             }
             case GET_ALL_PRODUCTS:{
@@ -92,4 +98,14 @@ public class ServerConnector implements Runnable {
     private void processBuyerMessage(Message message) throws Exception {
 
     }
+
+    //send after every void method
+    private void sendSuccessful(){
+        try {
+            objectOutputStream.writeObject(new Message(MessageTypes.SUCCESSFULL));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

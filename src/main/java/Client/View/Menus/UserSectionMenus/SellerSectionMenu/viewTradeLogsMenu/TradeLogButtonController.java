@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewTradeLogsMenu;
 
 import Client.Controller.UserSectionController.SellerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -103,8 +103,8 @@ public class TradeLogButtonController {
         }
         return -2;
     }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

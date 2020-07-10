@@ -3,7 +3,7 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu;
 import Client.Controller.UserSectionController.SellerController;
 import Client.Models.Product;
 import Client.Models.SpecialFeature;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -48,7 +48,7 @@ public class ProductButtonController {
         vBox.getChildren().remove(getIndexOfProduct());
         AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
         Text text = (Text) anchorPane.getChildren().get(1);
-        showMessage(text, MessageType.SUCCESS,"your request will be processed");
+        showMessage(text, MessageTypeShow.SUCCESS,"your request will be processed");
 
 
     }
@@ -147,10 +147,10 @@ public class ProductButtonController {
             if (edits.size() != 0) {
                 System.out.println(editDescriptionTextField.getText());
                 SellerController.getInstance().editProduct(productIdTextField.getText().trim(), edits);
-                showMessage(informationText, MessageType.SUCCESS, "your request will be processed");
+                showMessage(informationText, MessageTypeShow.SUCCESS, "your request will be processed");
             }
         } catch (Exception e) {
-            showMessage(informationText, MessageType.ERROR, e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR, e.getMessage());
         }
         vBox.getChildren().remove(getIndexOfProduct()+1);
 
@@ -178,8 +178,8 @@ public class ProductButtonController {
         }
         return -2;
     }
-    private void showMessage(Text text,MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewTradeLogsMenu;
 
 import Client.Controller.UserSectionController.SellerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -29,7 +29,7 @@ public class ViewTradeLogsMenu {
                     makeTradeLogSplitButton(tradeLogDetails.get(0).split(":",2)[1].trim(),tradeLogDetails.get(2).split(":",2)[1].trim());
             }
         } catch (Exception e) {
-            showMessage(informationText,MessageType.INFORMATION,e.getMessage());
+            showMessage(informationText, MessageTypeShow.INFORMATION,e.getMessage());
             e.printStackTrace();
         }
     }
@@ -51,8 +51,8 @@ public class ViewTradeLogsMenu {
 
         tradeLogsVBox.getChildren().add(root);
     }
-    private void showMessage(Text text, MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }

@@ -1,7 +1,7 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 
 import Client.Controller.UserSectionController.BuyerController;
-import Client.View.Menus.MessageType;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import javafx.fxml.FXML;
@@ -23,16 +23,16 @@ public class PaymentMenu {
     public void finishButtonClicked(MouseEvent mouseEvent) {
         try {
             BuyerController.getInstance().payForTheShop();
-            showMessage(informationText,MessageType.SUCCESS,"congratulation! you bought the products");
+            showMessage(informationText, MessageTypeShow.SUCCESS,"congratulation! you bought the products");
             updateCredit();
 
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(informationText,MessageType.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
     }
-    private void showMessage(Text text, MessageType messageType, String message){
-        text.setFill(messageType.getLinearGradient());
+    private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
 
     }
