@@ -20,7 +20,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ServerConnector implements Runnable {
+public class ServerConnector extends Thread {
     private static ServerSocket serverSocket;
     Socket socket;
     Person person;

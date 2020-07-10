@@ -19,7 +19,7 @@ public class Main {
             System.out.println("waiting for client");
             Socket clientSocket = serverSocket.accept();
             clients.add(clientSocket);
-            new ServerConnector(serverSocket, clientSocket).run();
+            new ServerConnector(serverSocket, clientSocket).start();
             System.out.println("client connected");
         }
     }
