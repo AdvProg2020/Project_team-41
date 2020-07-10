@@ -10,7 +10,8 @@ public class Message {
     protected MessageTypes messageType;
 
 
-    public Message(Object[] inputs) {
+    public Message(Object[] inputs,MessageTypes messageType) {
+        this.messageType = messageType;
         this.inputs = inputs;
         this.sender = UserSectionController.getLoggedInPerson().getUserName();
     }
