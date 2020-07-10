@@ -1,6 +1,5 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageProductsMenu;
 
-import Client.Controller.AllProductsController;
 import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Product;
 import Client.View.Menus.MessageType;

@@ -9,11 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import org.example.App;
-
-import java.io.IOException;
 
 public class PaymentMenu {
     public Text priceText;

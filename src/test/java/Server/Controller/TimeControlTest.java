@@ -14,8 +14,8 @@ class TimeControlTest {
         try {
             Date date = TimeControl.convertJalaliToGregorian("1399","2","27","21","17","0");
             assertEquals(date.toString(),"Sat May 16 21:17:00 IRDT 2020");
-        } catch (Exception ignored) {
-
+        } catch (Exception e) {
+            fail();
         }
     }
 }

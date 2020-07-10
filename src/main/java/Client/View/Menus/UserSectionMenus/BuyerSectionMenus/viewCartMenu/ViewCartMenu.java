@@ -6,7 +6,6 @@ import Client.Models.Product;
 import Client.View.Menus.MessageType;
 import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -17,7 +16,6 @@ import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class ViewCartMenu {
     public Text informationText;

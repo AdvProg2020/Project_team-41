@@ -19,7 +19,7 @@ public class MainMenu extends Menu {
     }
 
     private MainMenu() {
-        super(null, "Main");
+        super(null, "Server.Main");
         addSubMenu(new AllProductsMenu(this));
         addSubMenu(new OffsMenu(this));
 

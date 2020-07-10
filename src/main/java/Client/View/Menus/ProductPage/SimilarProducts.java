@@ -2,27 +2,15 @@ package Client.View.Menus.ProductPage;
 
 import Client.Controller.FilterController;
 import Client.Controller.SortController;
-import Client.Controller.UserSectionController.UserSectionController;
-import Client.Models.Person.Buyer;
-import Client.Models.Person.Manager;
-import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.Models.ProductToShowInAllProducts;
 import Client.View.Menus.Menu;
-import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
-import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu;
-import Client.View.Menus.UserSectionMenus.SellerSectionMenu.SellerSectionMenu;
-import Server.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.example.App;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class SimilarProducts extends Menu {
     public TableView<ProductToShowInAllProducts> tableView;

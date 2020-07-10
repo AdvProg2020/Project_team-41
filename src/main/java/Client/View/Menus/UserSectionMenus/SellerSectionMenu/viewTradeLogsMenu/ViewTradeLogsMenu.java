@@ -3,7 +3,6 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewTradeLogsMenu;
 import Client.Controller.UserSectionController.SellerController;
 import Client.View.Menus.MessageType;
 import Client.View.Menus.NodeFinder;
-import Server.Controller.TimeControl;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -16,7 +15,6 @@ import org.example.App;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ViewTradeLogsMenu {
     public Text informationText;

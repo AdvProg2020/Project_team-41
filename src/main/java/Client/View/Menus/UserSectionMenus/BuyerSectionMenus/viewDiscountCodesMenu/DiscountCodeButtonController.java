@@ -1,7 +1,5 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewDiscountCodesMenu;
 
-import Client.Controller.UserSectionController.ManagerController;
-import Client.View.Menus.MessageType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -13,7 +11,6 @@ import org.example.App;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
