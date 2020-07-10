@@ -94,6 +94,7 @@ public class UserSectionMenu {
         informationText.setFill(messageTypeShow.getLinearGradient());
         informationText.setText(message);
 
+
     }
 
 }
