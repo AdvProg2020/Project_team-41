@@ -1,5 +1,8 @@
 package Client.Controller.UserSectionController;
 
+import Client.Controller.Connector;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Person.Person;
 import Server.Controller.UserSectionController.UserSectionServerController;
 
@@ -8,11 +11,13 @@ import java.util.ArrayList;
 public abstract class UserSectionController {
 
     protected static Person loggedInPerson;
-    public static ArrayList<String> getPersonalInfo(Person person){
-        return UserSectionServerController.getPersonalInfo(person);
+    public static ArrayList<String> getPersonalInfo(Person person) throws Exception {
+        return (ArrayList<String>) Connector.getInstance().initializeMessage(new Message(new Object[]{person}, MessageType.INCREASE_PRODUCT));
+        //return UserSectionServerController.getPersonalInfo(person);
     }
     public static void edit(String field,String editedField) throws Exception {
-        UserSectionServerController.edit(loggedInPerson,field,editedField);
+        Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,field,editedField}, MessageType.INCREASE_PRODUCT));
+//        UserSectionServerController.edit(loggedInPerson,field,editedField);
     }
 
     public static Person getLoggedInPerson() {
