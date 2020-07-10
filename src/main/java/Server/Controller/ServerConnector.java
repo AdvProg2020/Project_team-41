@@ -112,15 +112,15 @@ public class ServerConnector implements Runnable {
                 break;
             }
             case GET_ALL_PRODUCTS:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().getAllProducts());
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getAllProducts()));
                 break;
             }
             case GET_ALL_USERS:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().getAllUsers());
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getAllUsers()));
                 break;
             }
             case GET_USER_BY_USERNAME:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().getUserByUsername((String) inputs[0]));
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getUserByUsername((String) inputs[0])));
                 break;
             }
             case DELETE_USER:{
@@ -144,7 +144,7 @@ public class ServerConnector implements Runnable {
                 break;
             }
             case VIEW_DISCOUNT_CODE:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().viewDiscountCode((String)inputs[0]));
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().viewDiscountCode((String)inputs[0])));
                 break;
             }
             case EDIT_DISCOUNT_CODE:{
@@ -158,11 +158,11 @@ public class ServerConnector implements Runnable {
                 break;
             }
             case SHOW_REQUEST:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().showRequest());
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().showRequest()));
                 break;
             }
             case GET_REQUEST_DETAILS:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().getRequestDetails((String) inputs[0]));
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getRequestDetails((String) inputs[0])));
                 break;
             }
             case ACCEPT_REQUEST:{
@@ -176,7 +176,7 @@ public class ServerConnector implements Runnable {
                 break;
             }
             case SHOW_CATEGORIES:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().showCategories());
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().showCategories()));
                 break;
             }
             case EDIT_CATEGORY_NAME:{
@@ -195,15 +195,15 @@ public class ServerConnector implements Runnable {
                 break;
             }
             case GET_CATEGORY_SPECIAL_FEATURES_MANAGER_SECTION:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().getCategorySpecialFeatures((String) inputs[0]));
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getCategorySpecialFeatures((String) inputs[0])));
                 break;
             }
             case VIEW_ALL_DISCOUNT_CODES:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().viewAllDiscountCodes());
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().viewAllDiscountCodes()));
                 break;
             }
             case GET_PRODUCT_BY_ID:{
-                objectOutputStream.writeObject(ManagerServerController.getInstance().getProductById((String) inputs[0]));
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getProductById((String) inputs[0])));
                 break;
             }
 
@@ -213,35 +213,35 @@ public class ServerConnector implements Runnable {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()) {
             case GET_CATEGORY_SPECIAL_FEATURES_SELLER_SECTION:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getCategorySpecialFeatures((String) inputs[0]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getCategorySpecialFeatures((String) inputs[0])));
                 break;
             }
             case GET_PRODUCT_BUYERS:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getProductBuyers((String) inputs[0]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getProductBuyers((String) inputs[0])));
                 break;
             }
             case GET_FACTORY_NAME:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getFactoryName((Seller) inputs[0]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getFactoryName((Seller) inputs[0])));
                 break;
             }
             case GET_SALES_HISTORY:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getSalesHistory((Seller) inputs[0]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getSalesHistory((Seller) inputs[0])));
                 break;
             }
             case GET_LOGS:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getLogs((Seller) inputs[0]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getLogs((Seller) inputs[0])));
                 break;
             }
             case GET_PRODUCTS:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getProducts((Seller) inputs[0]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getProducts((Seller) inputs[0])));
                 break;
             }
             case GET_PRODUCT_SELLER_SECTION:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getProduct((Seller)inputs[0], (String) inputs[1]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getProduct((Seller)inputs[0], (String) inputs[1])));
                 break;
             }
             case GET_BUYERS:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getBuyers((Seller)inputs[0], (String) inputs[1]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getBuyers((Seller)inputs[0], (String) inputs[1])));
                 break;
             }
             case EDIT_PRODUCT:{
@@ -260,15 +260,15 @@ public class ServerConnector implements Runnable {
                 break;
             }
             case GET_CATEGORIES:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getCategories());
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getCategories()));
                 break;
             }
             case GET_OFFS:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getOffs((Seller)inputs[0]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getOffs((Seller)inputs[0])));
                 break;
             }
             case GET_OFF:{
-                objectOutputStream.writeObject(SellerServerController.getInstance().getOff((Seller)inputs[0], (String) inputs[1]));
+                objectOutputStream.writeObject(new Message(SellerServerController.getInstance().getOff((Seller)inputs[0], (String) inputs[1])));
                 break;
             }
             case EDIT_OFF:{
@@ -287,7 +287,7 @@ public class ServerConnector implements Runnable {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()) {
             case GET_CODED_DISCOUNTS:{
-                objectOutputStream.writeObject(BuyerServerController.getInstance().getCodedDiscounts((Person) inputs[0]));
+                objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().getCodedDiscounts((Person) inputs[0])));
                 break;
             }
             case PAY_FOR_THE_SHOP:{
@@ -314,11 +314,11 @@ public class ServerConnector implements Runnable {
                 break;
             }
             case GET_PRODUCT_BUYER_SECTION:{
-                objectOutputStream.writeObject(BuyerServerController.getInstance().getProduct((String) inputs[0]));
+                objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().getProduct((String) inputs[0])));
                 break;
             }
             case GET_CODED_DISCOUNT:{
-                objectOutputStream.writeObject(BuyerServerController.getInstance().getCodedDiscount((String) inputs[0], (Person) inputs[1]));
+                objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().getCodedDiscount((String) inputs[0], (Person) inputs[1])));
                 break;
             }
             case INCREASE_PRODUCT:{
