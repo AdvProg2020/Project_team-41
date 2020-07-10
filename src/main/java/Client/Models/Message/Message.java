@@ -2,11 +2,9 @@ package Client.Models.Message;
 
 import Client.Controller.UserSectionController.UserSectionController;
 
-import java.util.ArrayList;
 
 public class Message {
     private String sender;
-    private Exception exception;
     private Object[] inputs;
     private Object output;
     protected MessageTypes messageType;
@@ -20,18 +18,14 @@ public class Message {
     }
 
     public void checkForException() throws Exception {
-        if (exception != null) {
-            throw exception;
+        if (output instanceof Exception) {
+            throw (Exception) output;
         }
     }
 
 
     public String getSender() {
         return sender;
-    }
-
-    public Exception getException() {
-        return exception;
     }
 
     public Object[] getInputs() {
