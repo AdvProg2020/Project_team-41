@@ -43,10 +43,14 @@ public class AllProductsMenu extends Menu {
     private void viewCategories() {
 
                 System.out.println("Categories are:");
-                for (Category category : AllProductsController.getInstance().getAllCategories()) {
-                    System.out.println(category.getName());
-                }
-                System.out.println();
+        try {
+            for (Category category : AllProductsController.getInstance().getAllCategories()) {
+                System.out.println(category.getName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println();
                 this.show();
                 this.execute();
 
