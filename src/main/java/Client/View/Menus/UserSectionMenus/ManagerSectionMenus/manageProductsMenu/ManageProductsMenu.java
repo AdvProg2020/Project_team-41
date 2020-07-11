@@ -28,7 +28,7 @@ public class ManageProductsMenu {
         try {
             allProducts = ManagerController.getInstance().getAllProducts();
         } catch (Exception e) {
-            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
         for (Product product : allProducts) {
             makeProductSplitButton(product.getName(),product.getProductId());

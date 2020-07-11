@@ -27,7 +27,7 @@ public class ViewCategoriesMenu {
         try {
             categories = SellerController.getInstance().getCategories();
         } catch (Exception e) {
-            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
         if (categories.isEmpty()) {
             showMessage(informationText, MessageTypeShow.INFORMATION, "No categories found");
