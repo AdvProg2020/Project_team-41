@@ -68,9 +68,7 @@ public class Seller extends Person {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Seller seller = (Seller) o;
-        return Objects.equals(factoryName, seller.factoryName) &&
-                Objects.equals(products, seller.products) &&
-                Objects.equals(offs, seller.offs);
+        return Objects.equals(factoryName, seller.factoryName);
     }
 
 }
