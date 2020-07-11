@@ -30,7 +30,7 @@ public class DiscountCodeMenu {
             try {
                 BuyerController.getInstance().removeCodedDiscountFromCart();
             } catch (Exception e) {
-                showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
+                showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
             }
         }
         loadInInsideAnchorPane("userSection/buyerSection/purchase/payment menu");

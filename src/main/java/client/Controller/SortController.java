@@ -38,7 +38,7 @@ public class SortController {
             throw new NullPointerException("please enter a valid sort type:");
     }
 
-    public List<Product> getSortedProducts(boolean offOrNot) {
+    public List<Product> getSortedProducts(boolean offOrNot)  {
         List<Product> sortedFilter = FilterController.getInstance().filterProducts(offOrNot);
         switch (sortFeature) {
             case "product name": {

@@ -30,7 +30,7 @@ public class ManageProductsMenu {
         try {
             products = SellerController.getInstance().getProducts();
         } catch (Exception e) {
-            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
         }
         if (products.isEmpty()) {
             showMessage(informationText, MessageTypeShow.INFORMATION,"no products found");

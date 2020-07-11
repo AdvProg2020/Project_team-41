@@ -29,7 +29,7 @@ public class ManageOffsMenu {
         try {
             offs = SellerController.getInstance().getOffs();
         } catch (Exception e) {
-            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
         }
         if (offs.isEmpty()) {
             showMessage(informationText, MessageTypeShow.INFORMATION, "No offs found");

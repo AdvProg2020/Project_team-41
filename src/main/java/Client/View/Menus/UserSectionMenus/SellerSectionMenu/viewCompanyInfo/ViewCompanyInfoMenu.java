@@ -2,6 +2,7 @@ package Client.View.Menus.UserSectionMenus.SellerSectionMenu.viewCompanyInfo;
 
 import Client.Controller.UserSectionController.SellerController;
 import Client.View.Menus.MessageTypeShow;
+import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;

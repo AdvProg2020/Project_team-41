@@ -37,25 +37,29 @@ public class FilterController {
     //1 for exist ... 0 for not exist ... -1 for not important or filtered:
     private int existence = -1;
     private HashMap<String, String> definiteStringFeatures = new HashMap<>();
-    private final HashMap<String, Integer> definiteIntFeatures = new HashMap<>();
-    private final HashMap<String, Pair<Integer, Integer>> rangeFeatures = new HashMap<>();
+    private HashMap<String, Integer> definiteIntFeatures = new HashMap<>();
+    private HashMap<String, Pair<Integer, Integer>> rangeFeatures = new HashMap<>();
 
     private FilterController() {
     }
 
-    public List<Product> filterProducts(boolean offOrNot) {
+    public List<Product> filterProducts(boolean offOrNot)  {
         ArrayList<Product> allProducts=null;
         if (offOrNot) {
 //            allProducts = OffsServerController.getInstance().getAllOffProducts();
 
             try {
-                allProducts= (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(null,MessageType.GET_OFF_PRODUCTS));
+                allProducts= (ArrayList<Product>)  Connector.getInstance().initializeMessage(new Message(null,MessageType.GET_OFF_PRODUCTS));
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         } else {
-            allProducts = (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(null , MessageType.GET_ALL_PRODUCTS_FOR_FILTER));
+            try {
+                allProducts = (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(null , MessageType.GET_ALL_PRODUCTS_FOR_FILTER));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return allProducts.stream()
                 .filter(Product -> {
@@ -92,7 +96,10 @@ public class FilterController {
                     {
                         if (existence != -1) {
                             boolean isThereMore;
-                            isThereMore = existence == 1;
+                            if (existence == 1)
+                                isThereMore = true;
+                            else
+                                isThereMore = false;
                             if ((Product.getQuantity() != 0) != isThereMore)
                                 return false;
                         }
@@ -253,7 +260,10 @@ public class FilterController {
         } else {
             for (String specialFeatureName : FilterController.getInstance().getFilterCategory().getSpecialFeatures()) {
                 if (specialFeatureName.equals(featureNameToFind)) {
-                    return FilterController.getInstance().getFilterCategory().getProducts().get(0).getSpecialFeatures().get(specialFeatureName).StringOrInt().equals("int");
+                    if (FilterController.getInstance().getFilterCategory().getProducts().get(0).getSpecialFeatures().get(specialFeatureName).StringOrInt().equals("int"))
+                        return true;
+                    else
+                        return false;
                 }
             }
             throw new NullPointerException("NO feature found with this name");
