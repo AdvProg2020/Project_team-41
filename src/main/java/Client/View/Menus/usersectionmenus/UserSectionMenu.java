@@ -1,10 +1,14 @@
 package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.UserSectionController;
-import Client.View.Menus.MessageTypeShow;
+import Client.View.Menus.MessageType;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -21,13 +25,7 @@ public class UserSectionMenu {
 
     @FXML
     public void initialize(){
-        ArrayList<String> personalInfo = null;
-        try {
-
-            personalInfo = UserSectionController.getPersonalInfo(UserSectionController.getLoggedInPerson());
-        } catch (Exception e) {
-            showMessage(MessageTypeShow.ERROR,e.getMessage());
-        }
+        ArrayList<String> personalInfo = UserSectionController.getPersonalInfo(UserSectionController.getLoggedInPerson());
         String username = personalInfo.get(0).split(" ")[1];
         String firstName = personalInfo.get(1).split(" ")[1];
         String lastName = personalInfo.get(2).split(" ")[1];
@@ -84,21 +82,16 @@ public class UserSectionMenu {
             phoneNumberTextField.setPromptText(e.getMessage());
         }
         if(numberOfErrors == 0){
-
-            showMessage(MessageTypeShow.SUCCESS,"edited successfully");
+            showMessage(MessageType.SUCCESS,"edited successfully");
         }
         else{
-
-            showMessage(MessageTypeShow.ERROR, errors.substring(0, errors.length() - 1));
+            showMessage(MessageType.ERROR, errors.substring(0, errors.length() - 1));
         }
 
     }
-
-    private void showMessage(MessageTypeShow messageTypeShow, String message){
-        informationText.setFill(messageTypeShow.getLinearGradient());
+    private void showMessage(MessageType messageType,String message){
+        informationText.setFill(messageType.getLinearGradient());
         informationText.setText(message);
-
-
 
     }
 
