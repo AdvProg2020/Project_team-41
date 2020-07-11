@@ -415,7 +415,9 @@ public class ServerConnector extends Thread {
 
         switch (message.getMessageType()) {
             case LOGIN: {
-                objectOutputStream.writeObject(new Message(LoginRegisterServerController.getInstance().login((String) inputs[0], (String) inputs[1])));
+                Person loginPerson;
+                objectOutputStream.writeObject(new Message(loginPerson=LoginRegisterServerController.getInstance().login((String) inputs[0], (String) inputs[1])));
+                person=loginPerson;
                 break;
             }
             case REGISTER: {
