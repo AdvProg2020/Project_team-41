@@ -18,7 +18,7 @@ import java.util.Date;
 public class BankAPI {
     private static BankAPI bankAPI;
     public final int PORT = 2222;
-    public final String IP = "192.168.1.100";
+    public final String IP = "localhost";
     private Date tokenCreationDate;
     private String token;
 
