@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.userSection.backupPersonSection.NameOfUser"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane onTouchPressed="#openChat" prefHeight="122.0" prefWidth="256.0" style="-fx-background-color: #48D1CC; -fx-border-color: #7700ff; -fx-border-width: 3px 3px 3px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BackupPersonMenu.NameOfUser">
+   <children>
+      <ImageView fitHeight="100.0" fitWidth="103.0" layoutX="12.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/user-pro-avatar-scalable-vector-graphics-icon-woman-icon-11553526869tcdfa31pvo-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="username" layoutX="153.0" layoutY="48.0" text="Name">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

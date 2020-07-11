@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.userSection.backupPersonSection.Comment"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="74.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BackupPersonMenu.Comment">
+   <children>
+      <TextField fx:id="message" layoutX="222.0" layoutY="17.0" prefHeight="39.0" prefWidth="608.0" style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="sender" layoutX="98.0" layoutY="28.0" text="Sender:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
