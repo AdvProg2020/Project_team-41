@@ -7,7 +7,7 @@ import java.io.*;
 class musicThread extends Thread{
     private Player player;
     private FileInputStream fis;
-    private String file;
+    private final String file;
 
     public musicThread(String file) {
         this.file = file;
