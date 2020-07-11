@@ -2,8 +2,10 @@ package Client.Models.Message;
 
 import Client.Controller.UserSectionController.UserSectionController;
 
+import java.io.Serializable;
 
-public class Message {
+
+public class Message implements Serializable {
     private String sender;
     private Object[] inputs;
     private Object output;
@@ -13,7 +15,10 @@ public class Message {
     public Message(Object[] inputs, MessageType messageType) {
         this.messageType = messageType;
         this.inputs = inputs;
-        this.sender = UserSectionController.getLoggedInPerson().getUserName();
+        try {
+            this.sender = UserSectionController.getLoggedInPerson().getUserName();
+        } catch (Exception ignored) {
+        }
     }
     public Message(Object output) {
         this.output = output;
