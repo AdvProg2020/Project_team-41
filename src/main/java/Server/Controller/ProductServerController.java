@@ -20,13 +20,6 @@ public class ProductServerController {
     private ProductServerController(){
     }
 
-    public static void addToCart(String Id){
-
-    }
-
-    public static void addComment(String title , String content){
-        //TODO add the comment
-    }
     public int amountOfDiscount(String productId) throws Exception {
         Date date=new Date();
         for (Off off : Database.getInstance().getAllOffs()) {

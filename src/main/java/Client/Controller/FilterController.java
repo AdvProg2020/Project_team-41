@@ -55,7 +55,7 @@ public class FilterController {
             }
 
         } else {
-            allProducts = AllProductsServerController.getInstance().getAllProducts();
+            allProducts = (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(null , MessageType.GET_ALL_PRODUCTS_FOR_FILTER));
         }
         return allProducts.stream()
                 .filter(Product -> {
