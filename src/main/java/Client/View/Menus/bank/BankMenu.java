@@ -1,5 +1,5 @@
 package Client.View.Menus.bank;
 
-public class bankMenu {
+public class BankMenu {
 
 }

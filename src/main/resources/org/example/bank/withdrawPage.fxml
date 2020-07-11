@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Client.View.Menus.bank.WithDrawPage" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="withDrawMoneyTextField" layoutX="83.0" layoutY="95.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter money you wish to withdraw" />
+      <Button onMouseClicked="#withDrawClicked" layoutX="390.0" layoutY="298.0" mnemonicParsing="false" text="withdraw" />
+      <TextField fx:id="creditNumberTextField" layoutX="83.0" layoutY="44.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter your credit number" />
+      <TextField fx:id="descriptionTextField" layoutX="83.0" layoutY="165.0" prefHeight="160.0" prefWidth="256.0" promptText="(optional) description" />
+   </children>
+</AnchorPane>

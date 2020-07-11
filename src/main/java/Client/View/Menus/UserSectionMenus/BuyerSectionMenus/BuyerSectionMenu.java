@@ -71,4 +71,7 @@ public class BuyerSectionMenu extends Menu {
     public void viewShoppingHistory(MouseEvent mouseEvent) {
         setSubPage("userSection/buyerSection/viewTradeLogs/view tradeLogs menu");
     }
+
+    public void increaseCreditClicked(MouseEvent mouseEvent) {
+    }
 }
