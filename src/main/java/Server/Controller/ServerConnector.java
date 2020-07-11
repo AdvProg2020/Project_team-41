@@ -419,6 +419,11 @@ public class ServerConnector extends Thread {
                 sendSuccessful();
                 break;
             }
+            case CHECK_MANAGER:{
+                objectOutputStream.writeObject(new Message(LoginRegisterServerController.getInstance().checkIfManagerExists()));
+                break;
+
+            }
         }
     }
 

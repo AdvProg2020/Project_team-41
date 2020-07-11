@@ -34,15 +34,19 @@ public class gMainMenu extends Menu {
             loginLogout.setText("Logout");
         }
         userSectionError.setVisible(false);
-        if(! LoginRegisterController.getInstance().checkIfManagerExists()){
-            window = new Stage();
+        try {
+            if(! LoginRegisterController.getInstance().checkIfManagerExists()){
+                window = new Stage();
 
-            window.initModality(Modality.APPLICATION_MODAL);
-            window.setTitle("Manager Register");
+                window.initModality(Modality.APPLICATION_MODAL);
+                window.setTitle("Manager Register");
 
-            scene = new Scene(loadFXML("managerRegister"));
-            window.setScene(scene);
-            window.showAndWait();
+                scene = new Scene(loadFXML("managerRegister"));
+                window.setScene(scene);
+                window.showAndWait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

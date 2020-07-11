@@ -12,10 +12,14 @@ public class UserType {
         managerError.setVisible(false);
     }
     public void manager() throws IOException {
-        if(LoginRegisterController.getInstance().checkIfManagerExists()){
-            managerError.setVisible(true);
-        }else{
-            Menu.setRootForNewWindow("managerRegister");
+        try {
+            if(LoginRegisterController.getInstance().checkIfManagerExists()){
+                managerError.setVisible(true);
+            }else{
+                Menu.setRootForNewWindow("managerRegister");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     public void seller() throws IOException {
