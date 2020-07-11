@@ -16,6 +16,7 @@ public class ManagerSectionMenu extends Menu {
     public BorderPane managerSectionBorderPane;
     public ScrollPane managerSectionButtonScrollPane;
     public static String parentFxmlAddress;
+
     @FXML
     public void initialize() {
         SimpleAudioPlayer.getInstance().playMusic(Music.USER_SECTION);
@@ -48,6 +49,10 @@ public class ManagerSectionMenu extends Menu {
     public void createDiscountCodeButtonClicked(MouseEvent mouseEvent) {
         setSubPage("userSection/managerSection/viewDiscountCodesMenu/create discount code");
     }
+    public void registerBackupPersonButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("backupPersonRegister");
+
+    }
 
     private void setSubPage(String name){
         Parent root = null;
@@ -66,4 +71,6 @@ public class ManagerSectionMenu extends Menu {
     public void logoutButtonClicked(MouseEvent mouseEvent) throws IOException {
         logout("mainMenu");
     }
+
+
 }
