@@ -22,7 +22,7 @@ public class Product implements Serializable {
     // end of common specifics
     private Off off;
     private Category category;
-    private HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
+    private final HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
     private String description;
     private ArrayList<Score>scores = new ArrayList<>();
     private ArrayList<Comment>comments = new ArrayList<>();

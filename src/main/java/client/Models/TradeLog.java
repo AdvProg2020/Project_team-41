@@ -10,13 +10,13 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class TradeLog implements Serializable {
-    private String logId;
+    private final String logId;
     private Date date;
-    private int money;
-    private int offAmount; //if existed
-    private HashMap<Product,Integer> items;
-    private String buyerName;
-    private String deliverySituation;
+    private final int money;
+    private final int offAmount; //if existed
+    private final HashMap<Product,Integer> items;
+    private final String buyerName;
+    private final String deliverySituation;
 
 
     public TradeLog(Date date, int money, int offAmount, HashMap<Product,Integer> items, String buyerName, String deliverySituation) {

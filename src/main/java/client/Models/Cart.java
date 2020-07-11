@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Cart implements Serializable {
-    private Buyer buyer;
-    private HashMap<Product,Integer> products;
+    private final Buyer buyer;
+    private final HashMap<Product,Integer> products;
     private ArrayList<String> receiverInformation;
     private CodedDiscount codedDiscount;
     public Cart(Buyer buyer) {

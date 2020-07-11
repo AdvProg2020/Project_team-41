@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Score implements Serializable {
-    private Person person;
-    private int score;
-    private Product product;
+    private final Person person;
+    private final int score;
+    private final Product product;
 
     public int getScore() {
         return score;

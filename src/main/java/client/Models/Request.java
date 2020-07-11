@@ -15,7 +15,7 @@ public class Request implements Serializable {
     private Seller seller;
     private Off off;
     private Off editedOff;
-    private String requestId;
+    private final String requestId;
     private Comment comment;
 
     public Request(Seller seller,Product product, Product editedProduct) {

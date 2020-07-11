@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Comment implements Serializable {
-    private Person person;
-    private Product product;
+    private final Person person;
+    private final Product product;
     private String title;
     private String content;
     private CommentSituation commentSituation;

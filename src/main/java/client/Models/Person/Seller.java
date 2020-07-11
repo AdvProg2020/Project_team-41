@@ -12,7 +12,7 @@ public class Seller extends Person {
 
     private String factoryName;
     private ArrayList<Product> products;
-    private ArrayList<Off> offs;
+    private final ArrayList<Off> offs;
 
     public Seller() {
         products = new ArrayList<>();

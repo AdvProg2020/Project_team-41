@@ -9,7 +9,7 @@ import Client.Models.SpecialFeature;
 
 public class ProductMenu extends Menu {
     private Product theProduct;
-    private Menu registerMenu;
+    private final Menu registerMenu;
 
     public ProductMenu(Menu superMenu) {
         super(superMenu, "Product");

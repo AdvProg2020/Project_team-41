@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Category implements Serializable {
     private String name;
     private ArrayList<String> specialFeatures;
-    private ArrayList<Product>products;
+    private final ArrayList<Product>products;
 
     public Category(String name, ArrayList<String> specialFeatures) throws Exception {
         this.products = new ArrayList<>();
