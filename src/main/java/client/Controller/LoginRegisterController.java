@@ -28,8 +28,10 @@ public class LoginRegisterController {
         UserSectionController.setLoggedInPerson(null);
         //todo other things
     }
-    public boolean checkIfManagerExists(){
-        return LoginRegisterServerController.getInstance().checkIfManagerExists();
+    public boolean checkIfManagerExists() throws Exception {
+//        return LoginRegisterServerController.getInstance().checkIfManagerExists();
+        return (boolean) Connector.getInstance().initializeMessage(new Message(null, MessageType.CHECK_MANAGER));
+
     }
     private LoginRegisterController(){
     }

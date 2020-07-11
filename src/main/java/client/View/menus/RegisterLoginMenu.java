@@ -36,10 +36,14 @@ public class RegisterLoginMenu extends Menu {
             String type;
             @Override
             public void show() {
-                if (LoginRegisterController.getInstance().checkIfManagerExists())
-                    System.out.println("Which type of user do you want to be?(Seller|Buyer)");
-                else
-                    System.out.println("Which type of user do you want to be?(Manager|Seller|Buyer)");
+                try {
+                    if (LoginRegisterController.getInstance().checkIfManagerExists())
+                        System.out.println("Which type of user do you want to be?(Seller|Buyer)");
+                    else
+                        System.out.println("Which type of user do you want to be?(Manager|Seller|Buyer)");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -47,10 +51,14 @@ public class RegisterLoginMenu extends Menu {
             public void execute() {
                 type=scanner.nextLine();
                 if(type.equalsIgnoreCase("Manager")){
-                    if (LoginRegisterController.getInstance().checkIfManagerExists()){
-                        System.out.println("invalid command");
-                        this.show();
-                        this.execute();
+                    try {
+                        if (LoginRegisterController.getInstance().checkIfManagerExists()){
+                            System.out.println("invalid command");
+                            this.show();
+                            this.execute();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     Manager manager=(Manager)makePerson(new Manager());
                     try {
