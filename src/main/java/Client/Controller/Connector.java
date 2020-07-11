@@ -37,6 +37,9 @@ public class Connector {
 
     private void sendMessage(Message message) {
         try {
+            System.out.println("message sent");
+            System.out.println(message);
+            System.err.println("----------------------");
             objectOutputStream.writeObject(message);
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,6 +50,9 @@ public class Connector {
         Message message = null;
         try {
              message = (Message) objectInputStream.readObject();
+            System.out.println("message received");
+            System.out.println(message);
+            System.err.println("----------------------");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

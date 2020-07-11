@@ -3,6 +3,7 @@ package Client.Models.Message;
 import Client.Controller.UserSectionController.UserSectionController;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 
 public class Message implements Serializable {
@@ -49,5 +50,15 @@ public class Message implements Serializable {
 
     public MessageType getMessageType() {
         return messageType;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "sender='" + sender + '\'' +
+                ", inputs=" + Arrays.toString(inputs) +
+                ", output=" + output +
+                ", messageType=" + messageType +
+                '}';
     }
 }

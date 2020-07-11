@@ -48,11 +48,14 @@ public class ServerConnector extends Thread {
             while (true) {
                 try {
                     Message message = (Message) objectInputStream.readObject();
+                    System.out.println("message received");
+                    System.out.println(message);
+                    System.err.println("----------------------");
                     processMessage(message);
 
 
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    System.out.println("client disconnected(i guess)");
                     break;
                 } catch (Exception e) {
                     try {

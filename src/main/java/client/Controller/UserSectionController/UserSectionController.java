@@ -12,11 +12,11 @@ public abstract class UserSectionController {
 
     protected static Person loggedInPerson;
     public static ArrayList<String> getPersonalInfo(Person person) throws Exception {
-        return (ArrayList<String>) Connector.getInstance().initializeMessage(new Message(new Object[]{person}, MessageType.INCREASE_PRODUCT));
+        return (ArrayList<String>) Connector.getInstance().initializeMessage(new Message(new Object[]{person}, MessageType.GET_PERSONAL_INFO));
         //return UserSectionServerController.getPersonalInfo(person);
     }
     public static void edit(String field,String editedField) throws Exception {
-        Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,field,editedField}, MessageType.INCREASE_PRODUCT));
+        Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,field,editedField}, MessageType.EDIT));
 //        UserSectionServerController.edit(loggedInPerson,field,editedField);
     }
 
