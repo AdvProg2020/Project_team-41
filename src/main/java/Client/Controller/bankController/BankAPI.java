@@ -20,6 +20,7 @@ public class BankAPI {
     public final int PORT = 2222;
     public final String IP = "localhost";
     private Date tokenCreationDate;
+    private int accountId;
     private String token;
 
     private DataOutputStream outputStream;
@@ -37,7 +38,6 @@ public class BankAPI {
 
     private BankAPI() throws IOException {
         this.connectToBankServer();
-        this.startListeningOnInput();
     }
     /**
      * This method is used to add initiating socket and IN/OUT data stream .
@@ -85,7 +85,11 @@ public class BankAPI {
 
     public String receiveMessage() {
         try {
-            return inputStream.readUTF();
+            String message = inputStream.readUTF();
+            System.out.println("received message from bank:");
+            System.out.println(message);
+            return message;
+
         } catch (IOException e) {
             e.printStackTrace();
         }

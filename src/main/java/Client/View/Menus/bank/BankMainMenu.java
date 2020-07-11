@@ -1,7 +1,11 @@
 package Client.View.Menus.bank;
 
+import Client.Controller.bankController.BankAPI;
+import Client.View.Menus.NodeFinder;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.example.App;
 
@@ -9,6 +13,17 @@ import java.io.IOException;
 
 public class BankMainMenu {
     public BorderPane bankMainMenuBorderPane;
+    public AnchorPane insideAnchorPane;
+    public TextField creditTextField;
+    public AnchorPane outsideAnchorPane;
+
+    public void initialize(){
+        try {
+            creditTextField.setText(BankAPI.getInstance().getBalance()+"");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void depositClicked(MouseEvent mouseEvent) {
         setSubPage("bank/depositPage");
@@ -32,7 +47,8 @@ public class BankMainMenu {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        bankMainMenuBorderPane.setCenter(root);
+        AnchorPane anchorPane = (AnchorPane) NodeFinder.getChildById(bankMainMenuBorderPane, "insideAnchorPane");
+        anchorPane.getChildren().setAll(root);
     }
     public static void setSubPage(BorderPane borderPane,String name) {
         Parent root = null;
@@ -41,6 +57,7 @@ public class BankMainMenu {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        borderPane.setCenter(root);
+        AnchorPane anchorPane = (AnchorPane) NodeFinder.getChildById(borderPane, "insideAnchorPane");
+        anchorPane.getChildren().setAll(root);
     }
 }

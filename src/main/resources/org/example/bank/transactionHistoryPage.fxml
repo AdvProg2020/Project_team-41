@@ -16,11 +16,7 @@
       <Text fx:id="transactionHistoryPageInformationText" layoutX="160.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="283.0" />
       <ScrollPane layoutX="66.0" layoutY="100.0" prefHeight="263.0" prefWidth="468.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="260.0" prefWidth="465.0">
-               <children>
-                  <VBox fx:id="transactionHistoryPageVBox" layoutX="-29.0" layoutY="-43.0" prefHeight="256.0" prefWidth="344.0" />
-               </children>
-            </AnchorPane>
+            <VBox fx:id="transactionHistoryPageVBox" layoutX="-29.0" layoutY="-43.0" prefHeight="250.0" prefWidth="760.0" />
         </content>
       </ScrollPane>
    </children>
