@@ -25,14 +25,14 @@ public class ManageRequestsMenu {
             if(ManagerController.getInstance().showRequest().isEmpty())
                 showMessage(informationText, MessageTypeShow.INFORMATION,"No requests found");
         } catch (Exception e) {
-            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
         try {
             for (String request : ManagerController.getInstance().showRequest()) {
                 makeRequestSplitButton(request);
             }
         } catch (Exception e) {
-            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
     }
 

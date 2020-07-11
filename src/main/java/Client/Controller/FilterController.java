@@ -43,18 +43,23 @@ public class FilterController {
     private FilterController() {
     }
 
-    public List<Product> filterProducts(boolean offOrNot) throws Exception {
+    public List<Product> filterProducts(boolean offOrNot)  {
         ArrayList<Product> allProducts=null;
         if (offOrNot) {
 //            allProducts = OffsServerController.getInstance().getAllOffProducts();
+
             try {
-                Connector.getInstance().initializeMessage(new Message(null,MessageType.GET_OFF_PRODUCTS));
+                allProducts= (ArrayList<Product>)  Connector.getInstance().initializeMessage(new Message(null,MessageType.GET_OFF_PRODUCTS));
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         } else {
-            allProducts = (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(null , MessageType.GET_ALL_PRODUCTS_FOR_FILTER));
+            try {
+                allProducts = (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(null , MessageType.GET_ALL_PRODUCTS_FOR_FILTER));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return allProducts.stream()
                 .filter(Product -> {

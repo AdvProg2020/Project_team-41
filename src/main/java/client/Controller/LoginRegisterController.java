@@ -17,12 +17,11 @@ public class LoginRegisterController {
     }
     public void createAccount(Person person) throws Exception {
 //        LoginRegisterServerController.getInstance().createAccount(person);
-        Connector.getInstance().sendMessage(new Message(new Object[]{person}, MessageType.REGISTER));
+        Connector.getInstance().initializeMessage(new Message(new Object[]{person}, MessageType.REGISTER));
     }
     public void login (String username,String password) throws Exception {
 //        Person person=LoginRegisterServerController.getInstance().login(username,password);
-        Connector.getInstance().sendMessage(new Message(new Object[]{username, password}, MessageType.LOGIN));
-        Person person= (Person) Connector.getInstance().receiveMessage();
+        Person person= (Person)Connector.getInstance().initializeMessage(new Message(new Object[]{username, password}, MessageType.LOGIN));
         UserSectionController.setLoggedInPerson(person);
     }
     public void logout(){

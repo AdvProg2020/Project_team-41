@@ -50,7 +50,7 @@ public class FilterMenu extends Menu {
                 System.out.println(specialFeature);
             }
         }
-        System.out.println("");
+        System.out.println();
         this.show();
         this.execute();
     }
@@ -164,7 +164,7 @@ public class FilterMenu extends Menu {
                 if (FilterController.getInstance().filterProducts(this.superMenu instanceof OffsMenu).size() == 0)
                     System.out.println("Nothing found");
                 else {
-                    System.out.println("");
+                    System.out.println();
                     System.out.println("Filtered Products Are:");
                     System.out.print("+------------------+------------+------------+\n");
                     System.out.print("| Product id       | Name       | Price      |\n");
