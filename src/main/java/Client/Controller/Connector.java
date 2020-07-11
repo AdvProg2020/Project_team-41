@@ -26,15 +26,16 @@ public class Connector {
     private Connector(Socket socket){
         this.socket = socket;
         try {
-            objectInputStream = new ObjectInputStream(socket.getInputStream());
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectOutputStream.flush();
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-    public void sendMessage(Message message) {
+    private void sendMessage(Message message) {
         try {
             objectOutputStream.writeObject(message);
         } catch (IOException e) {
@@ -42,7 +43,7 @@ public class Connector {
         }
     }
 
-    public Object receiveMessage() throws Exception {
+    private Object receiveMessage() throws Exception {
         Message message = null;
         try {
              message = (Message) objectInputStream.readObject();

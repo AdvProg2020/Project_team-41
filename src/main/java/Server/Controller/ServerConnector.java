@@ -36,27 +36,35 @@ public class ServerConnector extends Thread {
     @Override
     public void run() {
         try {
-            objectInputStream = new ObjectInputStream(socket.getInputStream());
-            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        while (true) {
             try {
-                Message message = (Message) objectInputStream.readObject();
-                processMessage(message);
-
-
-            } catch (IOException | ClassNotFoundException e) {
+                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                objectOutputStream.flush();
+                objectInputStream = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e) {
                 e.printStackTrace();
-            } catch (Exception e) {
-                try {
-                    objectOutputStream.writeObject(new Message(e));
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
             }
+            while (true) {
+                try {
+                    Message message = (Message) objectInputStream.readObject();
+                    processMessage(message);
 
+
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                    break;
+                } catch (Exception e) {
+                    try {
+                        objectOutputStream.writeObject(new Message(e));
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                        break;
+                    }
+                }
+
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
