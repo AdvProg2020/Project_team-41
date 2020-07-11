@@ -6,11 +6,13 @@ import Client.Controller.UserSectionController.SellerController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Category;
 import Client.Models.OffProductsToShow;
+import Client.Models.Person.BackupPerson;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Client.View.Menus.Menu;
+import Client.View.Menus.UserSectionMenus.BackupPersonMenu.BackupPersonUserSection;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu;
 import Client.View.Menus.UserSectionMenus.SellerSectionMenu.SellerSectionMenu;
@@ -344,7 +346,9 @@ public class OffMenuController extends Menu {
                 BuyerSectionMenu.parentFxmlAddress = "offs";
                 App.setRoot("userSection/buyerSection/buyer section");
 
-
+            }else if(UserSectionController.getLoggedInPerson() instanceof BackupPerson){
+                BackupPersonUserSection.parentFxmlAddress="offs";
+                App.setRoot("userSection/backupPersonSection/backupPersonUsersection");
             }
         }
     }

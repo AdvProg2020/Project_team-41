@@ -2,9 +2,11 @@ package Client.View.Menus;
 
 import Client.Controller.LoginRegisterController;
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.BackupPerson;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Seller;
+import Client.View.Menus.UserSectionMenus.BackupPersonMenu.BackupPersonUserSection;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
 import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.ManagerSectionMenu;
 import Client.View.Menus.UserSectionMenus.SellerSectionMenu.SellerSectionMenu;
@@ -77,8 +79,9 @@ public class gMainMenu extends Menu {
             }else if(UserSectionController.getLoggedInPerson() instanceof Buyer){
                 BuyerSectionMenu.parentFxmlAddress = "mainMenu";
                 App.setRoot("userSection/buyerSection/buyer section");
-
-
+            }else if(UserSectionController.getLoggedInPerson() instanceof BackupPerson){
+                BackupPersonUserSection.parentFxmlAddress="mainMenu";
+                App.setRoot("userSection/backupPersonSection/backupPersonUsersection");
             }
         }
     }
