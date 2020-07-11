@@ -3,14 +3,17 @@ package Server.Controller;
 import Client.Models.Comment;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
+import Client.Models.Person.BackupPerson;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Client.Models.Score;
+import Client.View.Menus.Menu;
 import Server.Controller.UserSectionController.BuyerServerController;
 import Server.Controller.UserSectionController.ManagerServerController;
 import Server.Controller.UserSectionController.SellerServerController;
 import Server.Controller.UserSectionController.UserSectionServerController;
+import Server.Main;
 
 import java.io.IOException;
 
@@ -106,6 +109,10 @@ public class ServerConnector extends Thread {
             }
             case PRODUCT: {
                 processProduct(message);
+                break;
+            }
+            case BACKUP:{
+                processBackup(message);
                 break;
             }
 
@@ -418,6 +425,7 @@ public class ServerConnector extends Thread {
                 Person loginPerson;
                 objectOutputStream.writeObject(new Message(loginPerson=LoginRegisterServerController.getInstance().login((String) inputs[0], (String) inputs[1])));
                 person=loginPerson;
+                Main.connectedPeople.add(loginPerson);
                 break;
             }
             case REGISTER: {
@@ -430,6 +438,12 @@ public class ServerConnector extends Thread {
                 break;
 
             }
+            case LOGOUT:{
+                Main.connectedPeople.remove(person);
+                person=null;
+                sendSuccessful();
+                break;
+            }
         }
     }
 
@@ -438,6 +452,23 @@ public class ServerConnector extends Thread {
             case GET_OFF_PRODUCTS: {
                 objectOutputStream.writeObject(new Message(OffsServerController.getInstance().getAllOffProducts()));
                 break;
+            }
+        }
+    }
+    public void processBackup(Message message) throws IOException {
+        switch (message.getMessageType()){
+            case GET_BACKUPS:{
+                ArrayList<Person> people=Main.connectedPeople;
+                ArrayList<BackupPerson> backupPeople=new ArrayList<>();
+                if(!people.isEmpty()){
+                    for (Person person1 : people) {
+                        if(person1 instanceof BackupPerson){
+                            backupPeople.add((BackupPerson) person1);
+                        }
+                    }
+                }
+                objectOutputStream.writeObject(new Message(backupPeople));
+
             }
         }
     }

@@ -97,4 +97,8 @@ public class gMainMenu extends Menu {
 
 
     }
+
+    public void backup(ActionEvent actionEvent) throws IOException {
+        App.setRoot("buyerBackUp/buyerBackup");
+    }
 }

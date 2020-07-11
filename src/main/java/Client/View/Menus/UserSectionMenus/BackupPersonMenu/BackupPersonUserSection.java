@@ -33,9 +33,9 @@ public class BackupPersonUserSection extends Menu {
 
     public void registerOrLogin(ActionEvent actionEvent) throws IOException {
         if(UserSectionController.getLoggedInPerson()==null){
-            login(parentFxmlAddress);
+            login("mainMenu");
         }else{
-            logout(parentFxmlAddress);
+            logout("mainMenu");
         }
     }
 }

@@ -1,4 +1,5 @@
 package Server;
+import Client.Models.Person.Person;
 import Server.Controller.ServerConnector;
 import Server.Controller.ServerStartProgram;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public class Main {
     public static final int PORT = 8888;
     private static final ArrayList<Socket> clients = new ArrayList<>();
+    public static ArrayList<Person> connectedPeople=new ArrayList<>();
     public static void main(String[] args) throws IOException {
         System.out.println("server started");
         ServerStartProgram.startProgram();
