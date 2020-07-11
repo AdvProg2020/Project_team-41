@@ -47,9 +47,8 @@ public class FilterController {
         ArrayList<Product> allProducts=null;
         if (offOrNot) {
 //            allProducts = OffsServerController.getInstance().getAllOffProducts();
-            Connector.getInstance().initializeMessage(new Message(null,MessageType.GET_OFF_PRODUCTS));
             try {
-                allProducts= (ArrayList<Product>) Connector.getInstance().initializeMessage();
+                Connector.getInstance().initializeMessage(new Message(null,MessageType.GET_OFF_PRODUCTS));
             } catch (Exception e) {
                 e.printStackTrace();
             }
