@@ -15,7 +15,7 @@ import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
-import static Client.View.Menus.UserSectionMenus.UserSectionMenu.openBank;
+import static Client.View.Menus.bank.BankWindow.openBank;
 
 public class BuyerSectionMenu extends Menu {
     public TextField creditTextField;

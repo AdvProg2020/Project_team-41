@@ -2,19 +2,32 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="bankMainMenuBorderPane" prefHeight="339.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.bank.BankMainMenu">
+<BorderPane fx:id="bankMainMenuBorderPane" prefHeight="500.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.bank.BankMainMenu">
    <left>
-      <VBox prefHeight="339.0" prefWidth="123.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="500.0" prefWidth="123.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#depositClicked" prefHeight="114.0" prefWidth="124.0" text="deposit" />
-            <Button mnemonicParsing="false" onMouseClicked="#withDrawClicked" prefHeight="104.0" prefWidth="123.0" text="withdraw" />
-            <Button mnemonicParsing="false" onMouseClicked="#moveClicked" prefHeight="97.0" prefWidth="124.0" text="move" />
-            <Button mnemonicParsing="false" onMouseClicked="#transactionHistoryClicked" prefHeight="85.0" prefWidth="122.0" text="transaction History" />
+            <Button mnemonicParsing="false" onMouseClicked="#depositClicked" prefHeight="125.0" prefWidth="124.0" text="deposit" />
+            <Button mnemonicParsing="false" onMouseClicked="#withDrawClicked" prefHeight="125.0" prefWidth="123.0" text="withdraw" />
+            <Button mnemonicParsing="false" onMouseClicked="#moveClicked" prefHeight="125.0" prefWidth="123.0" text="move" />
+            <Button mnemonicParsing="false" onMouseClicked="#transactionHistoryClicked" prefHeight="125.0" prefWidth="122.0" text="transaction History" />
          </children>
       </VBox>
    </left>
    <center>
-      <AnchorPane prefHeight="339.0" prefWidth="343.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="outsideAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f5f1ec;" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="573.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-border-color: #754d34; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-font-style: italic; -fx-opacity: 0.9; -fx-font-size: 17;" text="credits:" textAlignment="CENTER">
+               <font>
+                  <Font name="Times New Roman" size="19.0" />
+               </font></Text>
+            <AnchorPane fx:id="insideAnchorPane" layoutX="23.0" layoutY="17.0" prefHeight="362.0" prefWidth="515.0" BorderPane.alignment="CENTER" />
+            <TextField fx:id="creditTextField" editable="false" layoutX="637.0" layoutY="26.0" prefHeight="29.0" prefWidth="119.0" style="-fx-border-width: 2" stylesheets="/org/example/styles/textFill.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+         </children></AnchorPane>
    </center>
 </BorderPane>

@@ -104,13 +104,5 @@ public class UserSectionMenu {
         informationText.setText(message);
 
     }
-    public static void openBank() throws IOException {
-        window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("THE BANK");
 
-        scene = new Scene(loadFXML("bank/bankLoginMenu"));
-        window.setScene(scene);
-        window.showAndWait();
-    }
 }

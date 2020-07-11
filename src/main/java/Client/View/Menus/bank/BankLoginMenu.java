@@ -37,14 +37,13 @@ public class BankLoginMenu {
     public void LoginClicked(MouseEvent mouseEvent) {
         try {
             BankAPI.getInstance().updateToken(bankLoginMenuUsernameField.getText(), bankLoginMenuPasswordField.getText());
-            App.setRoot("bank/bankMainMenu");
+            BankWindow.setRoot("bank/bankMainMenu");
         } catch (Exception e) {
             MessageTypeShow.showMessage(bankLoginMenuInformationText,MessageTypeShow.ERROR,e.getMessage());
         }
     }
 
-    public void createAccountClicked(MouseEvent mouseEvent) {
-        BorderPane borderPane = (BorderPane)NodeFinder.getParentById(bankLoginMenuAnchorPane,"bankMainMenuBorderPane");
-        BankMainMenu.setSubPage(borderPane,"bank/createBankAccountPage");
+    public void createAccountClicked(MouseEvent mouseEvent) throws IOException {
+        bankLoginMenuAnchorPane.getChildren().setAll(App.loadFXML("bank/createBankAccountPage"));
     }
 }

@@ -5,7 +5,9 @@ import Client.Models.bank.Receipt;
 import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -52,6 +54,8 @@ public class TransactionConfirmationPage {
         try {
             BankAPI.getInstance().pay(Integer.toString(receipt.getId()));
             MessageTypeShow.showMessage(confirmationPageInformationText,MessageTypeShow.SUCCESS,"operation done successfully");
+            TextField creditTextField = (TextField) NodeFinder.getChildById((Parent) NodeFinder.getParentById(confirmationPageInformationText, "bankMainMenuBorderPane"), "creditTextField");
+            creditTextField.setText(BankAPI.getInstance().getBalance()+"");
         } catch (Exception e) {
             MessageTypeShow.showMessage(confirmationPageInformationText,MessageTypeShow.ERROR,e.getMessage());
         }

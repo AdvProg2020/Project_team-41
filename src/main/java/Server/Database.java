@@ -1,6 +1,5 @@
 package Server;
 
-import Client.Controller.OffsController;
 import Client.Models.*;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
