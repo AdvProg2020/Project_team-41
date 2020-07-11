@@ -150,11 +150,12 @@ public class ServerConnector extends Thread {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()) {
             case GET_PERSONAL_INFO: {
-                UserSectionServerController.getPersonalInfo((Person) inputs[0]);
+                objectOutputStream.writeObject(new Message(UserSectionServerController.getPersonalInfo((Person) inputs[0])));
                 break;
             }
             case EDIT: {
                 UserSectionServerController.edit((Person) inputs[0], (String) inputs[1], (String) inputs[2]);
+                sendSuccessful();
                 break;
             }
         }
