@@ -86,8 +86,22 @@ public class ServerConnector extends Thread {
             case OFFS:{
                 processOffs(message);
             }
+            case ALL_PRODUCTS:{
+                processAllProducts(message);
+            }
         }
     }
+
+    private void processAllProducts(Message message) throws IOException {
+        Object[] inputs = message.getInputs();
+        switch (message.getMessageType()){
+            case GET_ALL_CATEGORIES:{
+                objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllCategories()));
+                break;
+            }
+        }
+    }
+
     private void processUserMessage(Message message) throws Exception{
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()) {

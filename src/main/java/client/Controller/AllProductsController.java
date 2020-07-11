@@ -1,6 +1,8 @@
 package Client.Controller;
 
 import Client.Models.Category;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Product;
 import Client.View.Menus.ProductMenu;
 import Server.Controller.AllProductsServerController;
@@ -18,8 +20,9 @@ public class AllProductsController {
     }
     private AllProductsController(){
     }
-    public ArrayList<Category> getAllCategories(){
-        return AllProductsServerController.getInstance().getAllCategories();
+    public ArrayList<Category> getAllCategories() throws Exception {
+       // return AllProductsServerController.getInstance().getAllCategories();
+       return (ArrayList<Category>) Connector.getInstance().initializeMessage(new Message(null , MessageType.GET_ALL_CATEGORIES));
     }
 
     public void goToProductPage(String productId , ProductMenu productMenu) throws Exception {
@@ -29,7 +32,8 @@ public class AllProductsController {
     }
 
     public Product getProduct(String productId) throws Exception {
-       return AllProductsServerController.getInstance().getProduct(productId);
+     //  return AllProductsServerController.getInstance().getProduct(productId);
+        return (Product) Connector.getInstance().initializeMessage(new Message(new Object[]{productId} , MessageType.GET_PRODUCT));
     }
 
 }
