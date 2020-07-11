@@ -25,6 +25,7 @@ public class UserSectionMenu {
         try {
             personalInfo = UserSectionController.getPersonalInfo(UserSectionController.getLoggedInPerson());
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             showMessage(MessageTypeShow.ERROR,e.getMessage());
         }
         String username = personalInfo.get(0).split(" ")[1];
