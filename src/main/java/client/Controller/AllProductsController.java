@@ -26,9 +26,8 @@ public class AllProductsController {
     }
 
     public void goToProductPage(String productId , ProductMenu productMenu) throws Exception {
-        productMenu.setTheProduct(AllProductsController.getInstance().getProduct(productId));
-        AllProductsController.getInstance().getProduct(productId).setViews
-                (AllProductsController.getInstance().getProduct(productId).getViews()+1);
+        productMenu.setTheProduct(getProduct(productId));
+        AllProductsController.getInstance().getProduct(productId).setViews(getProduct(productId).getViews()+1);
     }
 
     public Product getProduct(String productId) throws Exception {

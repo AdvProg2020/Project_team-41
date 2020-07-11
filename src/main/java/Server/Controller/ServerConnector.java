@@ -105,8 +105,10 @@ public class ServerConnector extends Thread {
                 processProduct(message);
                 break;
             }
+
         }
     }
+
 
     private void processProduct(Message message) throws Exception {
         Object[] inputs = message.getInputs();
@@ -118,6 +120,10 @@ public class ServerConnector extends Thread {
             }
             case AMOUNT_OF_DISCOUNT: {
                 objectOutputStream.writeObject(new Message(ProductServerController.getInstance().amountOfDiscount((String) inputs[0])));
+                break;
+            }
+            case GET_ALL_PRODUCTS_FOR_FILTER:{
+                objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllProducts()));
                 break;
             }
         }

@@ -3,6 +3,8 @@ package Client.Controller;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Comment;
 import Client.Models.CommentSituation;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
 import Server.Controller.ProductServerController;
@@ -36,7 +38,6 @@ public class ProductController {
 
 
     public static void addComment(String title, String content, Product product) throws Exception {
-
         if (UserSectionController.getLoggedInPerson() == null) {
             throw new NullPointerException("You must first login!");
         }
@@ -47,12 +48,13 @@ public class ProductController {
                 comment.setHasHeBought(true);
             }
         }
-        ProductServerController.getInstance().addComment(comment);
+        Connector.getInstance().initializeMessage(new Message(new Object[]{comment} , MessageType.ADD_COMMENT));
+        //ProductServerController.getInstance().addComment(comment);
     }
 
-
     public int amountOfDiscount(String productId) throws Exception {
-        return ProductServerController.getInstance().amountOfDiscount(productId);
+       // return ProductServerController.getInstance().amountOfDiscount(productId);
+        return (int) Connector.getInstance().initializeMessage(new Message(new Object[]{productId} , MessageType.AMOUNT_OF_DISCOUNT));
     }
     }
 
