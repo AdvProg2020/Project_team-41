@@ -15,6 +15,8 @@ import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
+import static Client.View.Menus.UserSectionMenus.UserSectionMenu.openBank;
+
 public class BuyerSectionMenu extends Menu {
     public TextField creditTextField;
     public AnchorPane insideAnchorPane;
@@ -73,5 +75,9 @@ public class BuyerSectionMenu extends Menu {
     }
 
     public void increaseCreditClicked(MouseEvent mouseEvent) {
+    }
+
+    public void bankSectionClicked(MouseEvent mouseEvent) throws IOException {
+        openBank();
     }
 }

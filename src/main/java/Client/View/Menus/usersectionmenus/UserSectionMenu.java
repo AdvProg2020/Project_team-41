@@ -3,11 +3,19 @@ package Client.View.Menus.UserSectionMenus;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.View.Menus.MessageTypeShow;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static Client.View.Menus.Menu.scene;
+import static Client.View.Menus.Menu.window;
+import static org.example.App.loadFXML;
 
 public class UserSectionMenu {
 
@@ -96,5 +104,13 @@ public class UserSectionMenu {
         informationText.setText(message);
 
     }
+    public static void openBank() throws IOException {
+        window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("THE BANK");
 
+        scene = new Scene(loadFXML("bank/bankLoginMenu"));
+        window.setScene(scene);
+        window.showAndWait();
+    }
 }

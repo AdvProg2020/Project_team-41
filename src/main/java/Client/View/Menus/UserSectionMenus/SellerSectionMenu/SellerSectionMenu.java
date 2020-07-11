@@ -15,6 +15,8 @@ import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 
+import static Client.View.Menus.UserSectionMenus.UserSectionMenu.openBank;
+
 public class SellerSectionMenu extends Menu {
     public BorderPane sellerSectionBoarderPane;
     public ScrollPane sellerSectionButtonScrollPane;
@@ -68,5 +70,9 @@ public class SellerSectionMenu extends Menu {
 
     public void logoutButtonClicked(MouseEvent mouseEvent) throws IOException {
         logout("mainMenu");
+    }
+
+    public void bankSectionClicked(MouseEvent mouseEvent) throws IOException {
+        openBank();
     }
 }

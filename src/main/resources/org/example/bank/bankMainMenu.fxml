@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="339.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Client.View.Menus.bank.BankMainMenu" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="bankMainMenuBorderPane" prefHeight="339.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.bank.BankMainMenu">
    <left>
-      <VBox prefHeight="339.0" prefWidth="83.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="339.0" prefWidth="123.0" BorderPane.alignment="CENTER">
          <children>
-            <Button onMouseClicked="#depositClicked" mnemonicParsing="false" prefHeight="134.0" prefWidth="100.0" text="deposit" />
-            <Button onMouseClicked="#withDrawClicked" mnemonicParsing="false" prefHeight="131.0" prefWidth="100.0" text="withdraw" />
-            <Button onMouseClicked="#moveClicked" mnemonicParsing="false" prefHeight="132.0" prefWidth="100.0" text="move" />
+            <Button mnemonicParsing="false" onMouseClicked="#depositClicked" prefHeight="114.0" prefWidth="124.0" text="deposit" />
+            <Button mnemonicParsing="false" onMouseClicked="#withDrawClicked" prefHeight="104.0" prefWidth="123.0" text="withdraw" />
+            <Button mnemonicParsing="false" onMouseClicked="#moveClicked" prefHeight="97.0" prefWidth="124.0" text="move" />
+            <Button mnemonicParsing="false" onMouseClicked="#transactionHistoryClicked" prefHeight="85.0" prefWidth="122.0" text="transaction History" />
          </children>
       </VBox>
    </left>

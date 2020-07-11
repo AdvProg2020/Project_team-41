@@ -13,6 +13,19 @@ public class Receipt {
     private int id;
     private int paid;
 
+    public Receipt(String receiptType, int money, int sourceAccountID, int destAccountID, String description, int id, int paid) {
+        this.receiptType = receiptType;
+        this.money = money;
+        this.sourceAccountID = sourceAccountID;
+        this.destAccountID = destAccountID;
+        this.description = description;
+        this.id = id;
+        this.paid = paid;
+    }
+    public Receipt(){
+
+    }
+
     public static Receipt getFromJson(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, Receipt.class);
@@ -44,5 +57,18 @@ public class Receipt {
 
     public int getPaid() {
         return paid;
+    }
+
+    @Override
+    public String toString() {
+        return "Receipt{" +
+                "receiptType='" + receiptType + '\'' +
+                ", money=" + money +
+                ", sourceAccountID=" + sourceAccountID +
+                ", destAccountID=" + destAccountID +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                ", paid=" + paid +
+                '}';
     }
 }

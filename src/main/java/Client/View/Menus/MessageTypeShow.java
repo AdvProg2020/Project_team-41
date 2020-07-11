@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+import javafx.scene.text.Text;
 
 public enum MessageTypeShow {
 
@@ -35,6 +36,10 @@ public enum MessageTypeShow {
 
     public LinearGradient getLinearGradient() {
         return linearGradient;
+    }
+    public static void showMessage(Text text, MessageTypeShow messageTypeShow, String message){
+        text.setFill(messageTypeShow.getLinearGradient());
+        text.setText(message);
     }
 }
 

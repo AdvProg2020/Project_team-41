@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Client.View.Menus.bank.TransactionHistoryPage" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.bank.TransactionHistoryPage">
    <children>
-      <HBox layoutX="46.0" layoutY="22.0" prefHeight="0.0" prefWidth="509.0">
+      <HBox layoutX="47.0" layoutY="45.0" prefHeight="0.0" prefWidth="509.0">
          <children>
-            <Button onMouseClicked="#incrementClicked" mnemonicParsing="false" prefHeight="27.0" prefWidth="191.0" text="increment history" />
-            <Button onMouseClicked="#allHistoryClicked" mnemonicParsing="false" prefHeight="27.0" prefWidth="165.0" text="all history" />
-            <Button onMouseClicked="#decrementClicked" mnemonicParsing="false" prefHeight="27.0" prefWidth="179.0" text="decrement history" />
+            <Button mnemonicParsing="false" onMouseClicked="#incrementClicked" prefHeight="27.0" prefWidth="191.0" text="increment history" />
+            <Button mnemonicParsing="false" onMouseClicked="#allHistoryClicked" prefHeight="27.0" prefWidth="165.0" text="all history" />
+            <Button mnemonicParsing="false" onMouseClicked="#decrementClicked" prefHeight="27.0" prefWidth="179.0" text="decrement history" />
          </children>
       </HBox>
-      <VBox layoutX="129.0" layoutY="72.0" prefHeight="256.0" prefWidth="344.0" />
+      <Text fx:id="transactionHistoryPageInformationText" layoutX="160.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="283.0" />
+      <ScrollPane layoutX="66.0" layoutY="100.0" prefHeight="263.0" prefWidth="468.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="260.0" prefWidth="465.0">
+               <children>
+                  <VBox fx:id="transactionHistoryPageVBox" layoutX="-29.0" layoutY="-43.0" prefHeight="256.0" prefWidth="344.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

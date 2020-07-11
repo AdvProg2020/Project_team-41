@@ -1,16 +1,22 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus;
 
+import Client.View.Menus.LoginRegister.LoginForm;
 import Client.View.Menus.Menu;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.App;
 import org.example.Music;
 import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
+
+import static Client.View.Menus.UserSectionMenus.UserSectionMenu.openBank;
 
 public class ManagerSectionMenu extends Menu {
     public BorderPane managerSectionBorderPane;
@@ -72,5 +78,9 @@ public class ManagerSectionMenu extends Menu {
         logout("mainMenu");
     }
 
+
+    public void bankSectionClicked(MouseEvent mouseEvent) throws IOException {
+        openBank();
+    }
 
 }

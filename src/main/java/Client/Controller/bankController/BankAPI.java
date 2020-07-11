@@ -113,7 +113,7 @@ public class BankAPI {
         token = message;
 
     }
-    public int deposit(int money,int id,String description) throws Exception {
+    public int deposit(String money,String id,String description) throws Exception {
         sendMessage("create_receipt"+" "+token+" "+"deposit"+" "+money+" "+(-1)+" "+id+(description.equals("") ?"":" "+description));
         String message = receiveMessage();
         try {
@@ -122,7 +122,7 @@ public class BankAPI {
             throw new Exception(message);
         }
     }
-    public int withDraw(int money,int id,String description) throws Exception {
+    public int withDraw(String money,String id,String description) throws Exception {
         sendMessage("create_receipt"+" "+token+" "+"withdraw"+" "+money+" "+id+" "+(-1)+(description.equals("") ?"":" "+description));
         String message = receiveMessage();
         try {
@@ -131,7 +131,7 @@ public class BankAPI {
             throw new Exception(message);
         }
     }
-    public int move(int money,int sourceID,int destID,String description) throws Exception {
+    public int move(String money,String sourceID,String destID,String description) throws Exception {
         sendMessage("create_receipt"+" "+token+" "+"move"+" "+money+" "+sourceID+" "+destID+(description.equals("") ?"":" "+description));
         String message = receiveMessage();
         try {
