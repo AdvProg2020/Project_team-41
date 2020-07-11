@@ -29,14 +29,14 @@ public class ManageCategoriesMenu {
                 showMessage(informationText, MessageTypeShow.INFORMATION,"No categories found");
             }
         } catch (Exception e) {
-            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
         try {
             for (String category : ManagerController.getInstance().showCategories()) {
                 makeCategorySplitButton(category);
             }
         } catch (Exception e) {
-            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
     }
 

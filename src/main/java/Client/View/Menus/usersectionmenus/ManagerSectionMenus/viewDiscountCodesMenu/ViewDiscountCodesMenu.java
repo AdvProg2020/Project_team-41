@@ -28,14 +28,14 @@ public class ViewDiscountCodesMenu {
             if(ManagerController.getInstance().viewAllDiscountCodes().isEmpty())
                 showMessage(informationText, MessageTypeShow.INFORMATION, "No discount codes found");
         } catch (Exception e) {
-            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
         try {
             for (String discountCode : ManagerController.getInstance().viewAllDiscountCodes()) {
                 makeUserSplitButton(discountCode);
             }
         } catch (Exception e) {
-            showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
     }
 

@@ -80,7 +80,7 @@ public class ProductButtonController {
             VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
             AnchorPane anchorPane = (AnchorPane) vBox.getParent().getParent().getParent().getParent();
             Text text = (Text) anchorPane.getChildren().get(1);
-            showMessage(text,MessageTypeShow.ERROR,e.getMessage());
+            showMessage(text, MessageTypeShow.ERROR,e.getMessage());
         }
         //viewProductController.product = product;
         VBox vBox = (VBox) gridPane.getParent().getParent().getParent();
