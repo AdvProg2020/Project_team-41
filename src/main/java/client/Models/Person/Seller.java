@@ -1,5 +1,6 @@
 package Client.Models.Person;
 
+import Client.Controller.bankController.BankAPI;
 import Client.Models.Off;
 import Client.Models.Product;
 import Server.Controller.AllCommands;
@@ -42,6 +43,7 @@ public class Seller extends Person {
     }
 
     public void increaseCredit(int money) throws Exception {
+        
         this.setCredit(getCredit()+money);
         ServerSaver.write(AllCommands.allData);
     }

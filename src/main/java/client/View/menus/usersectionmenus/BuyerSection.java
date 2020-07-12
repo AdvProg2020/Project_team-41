@@ -288,7 +288,7 @@ public class BuyerSection extends UserSection {
                         else if(command.equalsIgnoreCase("y")){
                             try {
                                 BuyerSection buyerSectionMenu = new BuyerSection(MainMenu.getInstance());
-                                BuyerController.getInstance().payForTheShop();
+                                BuyerController.getInstance().payForTheShop(true);
                                 System.out.println("congratulation! you bought the products");
                                 buyerSectionMenu.show();
                                 buyerSectionMenu.execute();
