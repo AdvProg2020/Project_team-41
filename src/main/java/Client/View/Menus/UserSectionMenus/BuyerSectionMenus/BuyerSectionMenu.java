@@ -80,4 +80,8 @@ public class BuyerSectionMenu extends Menu {
     public void bankSectionClicked(MouseEvent mouseEvent) throws IOException {
         openBank();
     }
+
+    public void backupButtonClicked(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("buyerBackUp/buyerBackup");
+    }
 }
