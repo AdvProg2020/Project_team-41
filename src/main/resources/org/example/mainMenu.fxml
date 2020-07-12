@@ -29,11 +29,6 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="753.0" layoutY="26.0" mnemonicParsing="false" onAction="#backup" prefHeight="47.0" prefWidth="111.0" style="-fx-background-color: #FF0000;" text="backup" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
                </children>
             </AnchorPane>
          </children>

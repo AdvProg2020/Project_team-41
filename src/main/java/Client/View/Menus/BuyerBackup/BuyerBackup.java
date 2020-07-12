@@ -5,12 +5,12 @@ import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
 import Client.Models.Person.BackupPerson;
-import Client.Models.Product;
 import Client.View.Menus.Menu;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import org.example.App;
 
@@ -24,6 +24,9 @@ public class BuyerBackup extends Menu {
     public AnchorPane sendAnchorPane;
     public ScrollPane chatScrollPane;
     public VBox vbox;
+    public VBox chatVBox;
+    public BorderPane mainBorderPane;
+    public BorderPane chatBorderPane;
 
 
     public void initialize() throws IOException {
@@ -40,7 +43,7 @@ public class BuyerBackup extends Menu {
         }
         if(!backupPeople.isEmpty()){
             for (BackupPerson backupPerson : backupPeople) {
-                NameOfUser.user=backupPerson.getUserName();
+                bNameOfUser.user=backupPerson.getUserName();
                 vbox.getChildren().add(App.loadFXML("buyerBackUp/nameOfUser"));
 
             }
