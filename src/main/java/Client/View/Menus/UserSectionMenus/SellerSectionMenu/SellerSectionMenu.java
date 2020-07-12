@@ -75,4 +75,9 @@ public class SellerSectionMenu extends Menu {
     public void bankSectionClicked(MouseEvent mouseEvent) throws IOException {
         openBank();
     }
+
+    public void decreaseCreditClicked(MouseEvent mouseEvent) {
+        //todo get account id + money to be taken
+        //todo call transfer in sellerController
+    }
 }

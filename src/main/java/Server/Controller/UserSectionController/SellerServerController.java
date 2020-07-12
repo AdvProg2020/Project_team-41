@@ -278,6 +278,9 @@ public class SellerServerController extends UserSectionServerController {
                 Database.getInstance().addRequest(new Request(seller,off));
 
         }
+        public void transferMoneyToSeller(int accountNumber, int money) throws Exception {
+
+        }
 
 
 

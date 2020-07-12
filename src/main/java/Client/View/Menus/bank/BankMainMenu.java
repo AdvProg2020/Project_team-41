@@ -1,5 +1,6 @@
 package Client.View.Menus.bank;
 
+import Client.Controller.UserSectionController.BuyerController;
 import Client.Controller.bankController.BankAPI;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
@@ -19,13 +20,18 @@ public class BankMainMenu {
     public TextField creditTextField;
     public AnchorPane outsideAnchorPane;
     public static boolean redirectedForTransfer;
-    private static Buyer buyer;
+    public static boolean redirectedToPay;
 
 
     public void initialize(){
         if(redirectedForTransfer) {
             redirectedForTransfer = false;
-            prepareTransferToShop();
+            prepareTransferToShop(null);
+        }
+        if (redirectedToPay) {
+            redirectedToPay = false;
+            prepareTransferToShop(BuyerController.getInstance().getCart().getCashToPay());
+
         }
         try {
             creditTextField.setText(BankAPI.getInstance().getBalance()+"");
@@ -69,11 +75,16 @@ public class BankMainMenu {
         AnchorPane anchorPane = (AnchorPane) NodeFinder.getChildById(borderPane, "insideAnchorPane");
         anchorPane.getChildren().setAll(root);
     }
-    private void prepareTransferToShop(){
+    private void prepareTransferToShop(Integer money){
         moveClicked(null);
-        TextField textField = (TextField) NodeFinder.getChildById(bankMainMenuBorderPane, "transferPageDestinationTextField");
-        textField.setText(Manager.getAccountId() + "");
-        textField.setEditable(false);
+        TextField destinationTextField = (TextField) NodeFinder.getChildById(bankMainMenuBorderPane, "transferPageDestinationTextField");
+        destinationTextField.setText(Manager.getAccountId() + "");
+        destinationTextField.setEditable(false);
+        if (money != null) {
+            TextField moneyTextField = (TextField) NodeFinder.getChildById(bankMainMenuBorderPane, "transferPageMoneyTextField");
+            moneyTextField.setText(money.toString());
+            moneyTextField.setEditable(false);
+        }
     }
 
 }

@@ -1,7 +1,9 @@
 package Server.Controller.UserSectionController;
 
+import Client.Controller.bankController.BankAPI;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
+import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
@@ -25,12 +27,7 @@ public class BuyerServerController {
 
     public static void payForTheShop(Buyer buyer) throws Exception {
         Cart cart = buyer.getCart();
-        int cashToPay;
-        if(cart.getCodedDiscount() == null)
-            cashToPay = cart.totalPrice();
-        else {
-            cashToPay = cart.getCodedDiscount().howMuchWillItCost(cart.totalPrice());
-        }
+        int cashToPay = cart.getCashToPay();
         HashMap<Seller,HashMap<Product,Integer>> sellerProducts = new HashMap<>();
         if(buyer.getCredit()<cashToPay)
             throw new Exception("you don't have enough credit");

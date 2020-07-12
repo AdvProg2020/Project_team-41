@@ -352,6 +352,11 @@ public class ServerConnector extends Thread {
                 sendSuccessful();
                 break;
             }
+            case TRANSFER_MONEY_TO_SELLER:{
+                SellerServerController.getInstance().transferMoneyToSeller((Integer)inputs[0], (Integer) inputs[1]);
+                sendSuccessful();
+                break;
+            }
         }
     }
 
