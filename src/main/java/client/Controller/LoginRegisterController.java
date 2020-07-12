@@ -24,9 +24,10 @@ public class LoginRegisterController {
         Person person= (Person)Connector.getInstance().initializeMessage(new Message(new Object[]{username, password}, MessageType.LOGIN));
         UserSectionController.setLoggedInPerson(person);
     }
-    public void logout(){
+    public void logout() throws Exception {
         UserSectionController.setLoggedInPerson(null);
-        //todo other things
+        Connector.getInstance().initializeMessage(new Message(null, MessageType.LOGOUT));
+
     }
     public boolean checkIfManagerExists() throws Exception {
 //        return LoginRegisterServerController.getInstance().checkIfManagerExists();

@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onTouchPressed="#openChat" prefHeight="122.0" prefWidth="256.0" style="-fx-background-color: #48D1CC; -fx-border-color: #7700ff; -fx-border-width: 3px 3px 3px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BackupPersonMenu.NameOfUser">
+<AnchorPane onTouchPressed="#openChat" prefHeight="122.0" prefWidth="256.0" style="-fx-background-color: #48D1CC; -fx-border-color: #7700ff; -fx-border-width: 3px 3px 3px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.BuyerBackup.NameOfUser">
    <children>
       <ImageView fitHeight="100.0" fitWidth="103.0" layoutX="12.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/user-pro-avatar-scalable-vector-graphics-icon-woman-icon-11553526869tcdfa31pvo-removebg-preview.png" />
+            <Image url="@../images/user-pro-avatar-scalable-vector-graphics-icon-woman-icon-11553526869tcdfa31pvo-removebg-preview.png" />
          </image>
       </ImageView>
       <Label fx:id="username" layoutX="153.0" layoutY="48.0" text="Name">

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="74.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BackupPersonMenu.NameBox">
+<AnchorPane prefHeight="74.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.BuyerBackup.NameBox">
    <children>
       <Label fx:id="username" layoutX="252.0" layoutY="14.0" text="Name" textFill="#0400e8">
          <font>

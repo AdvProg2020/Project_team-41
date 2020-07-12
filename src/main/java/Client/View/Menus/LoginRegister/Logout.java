@@ -9,7 +9,11 @@ import java.io.IOException;
 public class Logout {
     public static String father;
     public void yes() throws IOException {
-        LoginRegisterController.getInstance().logout();
+        try {
+            LoginRegisterController.getInstance().logout();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         App.setRoot(Logout.father);
         Menu.closeWindow();
     }

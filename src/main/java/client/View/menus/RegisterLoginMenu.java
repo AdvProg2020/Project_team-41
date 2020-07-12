@@ -205,7 +205,11 @@ public class RegisterLoginMenu extends Menu {
 
             @Override
             public void execute() {
-                LoginRegisterController.getInstance().logout();
+                try {
+                    LoginRegisterController.getInstance().logout();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 MainMenu.getInstance().removeUserSection();
                 if(checkUserSection(this.superMenu)) {
                     MainMenu.getInstance().show();
