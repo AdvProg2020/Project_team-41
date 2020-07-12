@@ -31,10 +31,12 @@ public class bNameOfUser {
     public void openChat(ActionEvent touchEvent) throws IOException {
         BorderPane borderPane = (BorderPane) NodeFinder.getParentById(userAnchorPane, "mainBorderPane");
         AnchorPane nameAnchorPane = (AnchorPane) NodeFinder.getChildById(borderPane, "nameAnchorPane");
+        nameAnchorPane.getChildren().clear();
         bNameBox.user = username.getText();
         nameAnchorPane.getChildren().add(App.loadFXML("buyerBackUp/nameBox"));
 
         AnchorPane sendAnchorPane = (AnchorPane) NodeFinder.getChildById(borderPane, "sendAnchorPane");
+        sendAnchorPane.getChildren().clear();
         sendAnchorPane.getChildren().add(App.loadFXML("buyerBackUp/sendBox"));
 
 
@@ -45,7 +47,9 @@ public class bNameOfUser {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         VBox vBox = (VBox) NodeFinder.getChildById(borderPane, "chatVBox");
+        vBox.getChildren().clear();
         for (ChatComment chatComment : chatBox.getChatComments()) {
             bComment.chatComment = chatComment;
             vBox.getChildren().add(App.loadFXML("buyerBackUp/comment"));
