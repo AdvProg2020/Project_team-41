@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="74.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.BuyerBackup.SendBox">
+<AnchorPane fx:id="sendAnchorPane" prefHeight="74.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.BuyerBackup.bSendBox">
    <children>
-      <TextField fx:id="message" layoutX="172.0" layoutY="17.0" prefHeight="39.0" prefWidth="608.0" promptText="Type your message hear...." style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
+      <TextField fx:id="message" layoutX="172.0" layoutY="17.0" prefHeight="39.0" prefWidth="608.0" promptText="Type your message here...." style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
          <font>
             <Font size="16.0" />
          </font>

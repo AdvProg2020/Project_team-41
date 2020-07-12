@@ -30,12 +30,14 @@ public class ServerConnector extends Thread {
     Person person;
     ObjectInputStream objectInputStream;
     ObjectOutputStream objectOutputStream;
+    Backup backup;
 
     public ServerConnector(ServerSocket serverSocket, Socket socket) {
         if (ServerConnector.serverSocket == null) {
             ServerConnector.serverSocket = serverSocket;
         }
         this.socket = socket;
+        this.backup=new Backup();
     }
 
     @Override
@@ -458,16 +460,7 @@ public class ServerConnector extends Thread {
     public void processBackup(Message message) throws IOException {
         switch (message.getMessageType()){
             case GET_BACKUPS:{
-                ArrayList<Person> people=Main.connectedPeople;
-                ArrayList<BackupPerson> backupPeople=new ArrayList<>();
-                if(!people.isEmpty()){
-                    for (Person person1 : people) {
-                        if(person1 instanceof BackupPerson){
-                            backupPeople.add((BackupPerson) person1);
-                        }
-                    }
-                }
-                objectOutputStream.writeObject(new Message(backupPeople));
+                objectOutputStream.writeObject(new Message(backup.getBackupPeople()));
 
             }
         }

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class ChatBox {
     private ArrayList<ChatComment> chatComments;
-    private BackupPerson backupPerson;
-    private Buyer buyer;
+    private String backupPerson;
+    private String  buyer;
 
-    public ChatBox(BackupPerson backupPerson, Buyer buyer) {
+    public ChatBox(String  backupPerson, String  buyer) {
         this.backupPerson = backupPerson;
         this.buyer = buyer;
         chatComments=new ArrayList<>();

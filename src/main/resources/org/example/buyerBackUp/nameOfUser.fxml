@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onTouchPressed="#openChat" prefHeight="122.0" prefWidth="256.0" style="-fx-background-color: #48D1CC; -fx-border-color: #7700ff; -fx-border-width: 3px 3px 3px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.BuyerBackup.NameOfUser">
+<AnchorPane fx:id="userAnchorPane" prefHeight="122.0" prefWidth="256.0" style="-fx-background-color: #48D1CC; -fx-border-color: #7700ff; -fx-border-width: 3px 3px 3px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.BuyerBackup.bNameOfUser">
    <children>
       <ImageView fitHeight="100.0" fitWidth="103.0" layoutX="12.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -18,5 +19,6 @@
             <Font size="17.0" />
          </font>
       </Label>
+      <Button layoutX="7.0" layoutY="5.0" mnemonicParsing="false" onAction="#openChat" prefHeight="109.0" prefWidth="242.0" style="-fx-background-color: transparent;" />
    </children>
 </AnchorPane>
