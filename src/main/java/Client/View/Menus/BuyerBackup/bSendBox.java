@@ -1,8 +1,11 @@
 package Client.View.Menus.BuyerBackup;
 
+import Client.Controller.Connector;
 import Client.Controller.LoginRegisterController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Chat.ChatComment;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.View.Menus.NodeFinder;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -25,5 +28,12 @@ public class bSendBox {
         bComment.chatComment=chatComment;
         VBox vBox= (VBox) NodeFinder.getChildById(borderPane,"chatVBox");
         vBox.getChildren().add(App.loadFXML("buyerBackUp/comment"));
+        try {
+            Connector.getInstance().initializeMessage(new Message(new Object[]{chatComment}, MessageType.SEND_COMMENT));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

@@ -1,5 +1,6 @@
 package Server.Controller;
 
+import Client.Models.Chat.ChatComment;
 import Client.Models.Comment;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
@@ -458,10 +459,20 @@ public class ServerConnector extends Thread {
         }
     }
     public void processBackup(Message message) throws IOException {
+        Object[] inputs = message.getInputs();
         switch (message.getMessageType()){
             case GET_BACKUPS:{
                 objectOutputStream.writeObject(new Message(backup.getBackupPeople()));
-
+                break;
+            }
+            case SEND_COMMENT:{
+                backup.addComment((ChatComment)inputs[0]);
+                sendSuccessful();
+                break;
+            }
+            case GET_CHAT_BOX:{
+                objectOutputStream.writeObject(new Message(backup.getChatBox((String)inputs[0],(String)inputs[1])));
+                break;
             }
         }
     }

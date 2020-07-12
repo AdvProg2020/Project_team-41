@@ -2,7 +2,9 @@ package Client.Models.Chat;
 
 import Client.Models.Person.Person;
 
-public class ChatComment {
+import java.io.Serializable;
+
+public class ChatComment implements Serializable {
     private String  sender;
     private String  receiver;
     private String comment;
