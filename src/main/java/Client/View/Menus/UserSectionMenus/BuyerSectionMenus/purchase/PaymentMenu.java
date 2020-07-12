@@ -1,20 +1,27 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.Controller.bankController.BankAPI;
 import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import Client.View.Menus.UserSectionMenus.BuyerSectionMenus.BuyerSectionMenu;
+import Client.View.Menus.bank.BankMainMenu;
+import Client.View.Menus.bank.BankWindow;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 
 public class PaymentMenu {
     public Text priceText;
     public Text informationText;
     public AnchorPane paymentMenuAnchorPane;
+    public ToggleButton paymentMenuToggleButton;
 
     @FXML
     public void initialize(){
@@ -22,7 +29,10 @@ public class PaymentMenu {
     }
     public void finishButtonClicked(MouseEvent mouseEvent) {
         try {
-            BuyerController.getInstance().payForTheShop();
+            if (paymentMenuToggleButton.isSelected()) {
+                payFromBank();
+            }
+            BuyerController.getInstance().payForTheShop(paymentMenuToggleButton.isSelected());
             showMessage(informationText, MessageTypeShow.SUCCESS,"congratulation! you bought the products");
             updateCredit();
 
@@ -49,6 +59,15 @@ public class PaymentMenu {
     private int getPriceFromRawString(String rawString) {
         return Integer.parseInt(rawString.split("\\D")[0]);
     }
+    private void payFromBank(){
+        try {
+            BankAPI.makeInstance();
+            BankMainMenu.redirectedForTransfer = true;
+            BankWindow.openBank();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
 
 }

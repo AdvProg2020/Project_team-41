@@ -29,9 +29,9 @@ public class BuyerController extends UserSectionController {
         return (ArrayList<String>) Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson}, MessageType.GET_CODED_DISCOUNTS));
 //        return BuyerServerController.getInstance().getCodedDiscounts(loggedInPerson);
     }
-    public void payForTheShop() throws Exception {
-        Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson}, MessageType.PAY_FOR_THE_SHOP));
-//        BuyerServerController.payForTheShop((Buyer)loggedInPerson);
+    public void payForTheShop(boolean walletSelected) throws Exception {
+        Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,walletSelected}, MessageType.PAY_FOR_THE_SHOP));
+//       BuyerServerController.payForTheShop((Buyer)loggedInPerson);
     }
     public void setReceiverInformation(ArrayList<String> receiverInformation)  {
         Buyer buyer = (Buyer)getLoggedInPerson();
