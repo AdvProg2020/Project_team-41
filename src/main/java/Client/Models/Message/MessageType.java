@@ -11,7 +11,7 @@ public enum MessageType {
     GET_ALL_CATEGORIES(ClassTypes.ALL_PRODUCTS), GET_PRODUCT(ClassTypes.ALL_PRODUCTS),GET_ALL_PRODUCTS_FOR_FILTER(ClassTypes.ALL_PRODUCTS),
     ADD_COMMENT(ClassTypes.PRODUCT),AMOUNT_OF_DISCOUNT(ClassTypes.PRODUCT),
     GET_OFF_PRODUCTS(ClassTypes.OFFS),
-    GET_BACKUPS(ClassTypes.BACKUP),GET_CHAT_BOX(ClassTypes.BACKUP),SEND_COMMENT(ClassTypes.BACKUP);
+    GET_BACKUPS(ClassTypes.BACKUP),GET_CHAT_BOX(ClassTypes.BACKUP),SEND_COMMENT(ClassTypes.BACKUP),GET_ALL_CHAT_BOXES(ClassTypes.BACKUP);
 
     ClassTypes classTypes;
     MessageType(ClassTypes classTypes) {
