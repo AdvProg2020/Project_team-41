@@ -33,6 +33,7 @@ public class bSendBox {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        message.clear();
 
 
     }

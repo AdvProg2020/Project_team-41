@@ -1,7 +1,7 @@
 package Client.Models.Chat;
 
-import Client.Models.Person.BackupPerson;
-import Client.Models.Person.Buyer;
+import Server.Controller.AllCommands;
+import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class ChatBox implements Serializable {
     public ChatBox(String  backupPerson, String  buyer) {
         this.backupPerson = backupPerson;
         this.buyer = buyer;
-        chatComments=new ArrayList<>();
+        this.chatComments=new ArrayList<>();
     }
 
     public ArrayList<ChatComment> getChatComments() {
@@ -30,5 +30,7 @@ public class ChatBox implements Serializable {
     }
     public void addComment(ChatComment chatComment){
         chatComments.add(chatComment);
+        ServerSaver.write(AllCommands.allCategory);
+
     }
 }

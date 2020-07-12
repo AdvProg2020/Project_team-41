@@ -1,7 +1,5 @@
 package Client.Models.Chat;
 
-import Client.Models.Person.Person;
-
 import java.io.Serializable;
 
 public class ChatComment implements Serializable {

@@ -40,6 +40,7 @@ public class Database implements Serializable {
     }
     public void addChatBox(ChatBox chatBox){
         chatBoxes.add(chatBox);
+        ServerSaver.write(AllCommands.allCategory);
     }
 
     public ArrayList<Off> getAllOffs() {
