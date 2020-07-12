@@ -17,14 +17,12 @@ public class BuyerRegister {
     public TextField lastName;
     public TextField email;
     public TextField phoneNumber;
-    public TextField money;
     public Label userError;
     public Label passError;
     public Label fNameError;
     public Label lNameError;
     public Label emailError;
     public Label phoneError;
-    public Label moneyError;
     public PasswordField password;
 
     public void initialize() {
@@ -38,7 +36,7 @@ public class BuyerRegister {
         lNameError.setVisible(false);
         emailError.setVisible(false);
         phoneError.setVisible(false);
-        moneyError.setVisible(false);
+
 
 
     }
@@ -83,13 +81,7 @@ public class BuyerRegister {
         } else if (!phoneNumber.getText().matches("\\d+")) {
             phoneError.setVisible(true);
             return false;
-        } else if (!money.getText().matches("\\d+")) {
-            moneyError.setVisible(true);
-            return false;
-        } else if (Integer.parseInt(money.getText()) < 0) {
-            moneyError.setVisible(true);
-            return false;
-        } else {
+        }else {
             return true;
         }
     }
@@ -102,7 +94,6 @@ public class BuyerRegister {
             buyer.setLastName(lastName.getText());
             buyer.setEmail(email.getText());
             buyer.setPhoneNumber(phoneNumber.getText());
-            buyer.setCredit(Integer.parseInt(money.getText()));
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }

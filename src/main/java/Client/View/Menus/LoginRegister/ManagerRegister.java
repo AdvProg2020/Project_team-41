@@ -17,19 +17,37 @@ public class ManagerRegister {
     public TextField lastName;
     public TextField email;
     public TextField phoneNumber;
-    public TextField money;
     public Label userError;
     public Label passError;
     public Label fNameError;
     public Label lNameError;
     public Label emailError;
     public Label phoneError;
-    public Label moneyError;
     public Label welcome1;
     public PasswordField password;
+    public TextField bankUsername;
+    public Label bankUsernameTitle;
+    public Label bankUsernameError;
+    public TextField bankPass;
+    public Label bankPassTitle;
+    public Label bankPassError;
+    boolean managerExists;
 
     public void initialize(){
         setAllInvisible();
+        managerExists = false;
+        try {
+            managerExists=LoginRegisterController.getInstance().checkIfManagerExists();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(managerExists){
+            bankUsername.setVisible(false);
+            bankUsernameTitle.setVisible(false);
+            bankPass.setVisible(false);
+            bankPassTitle.setVisible(false);
+
+        }
     }
 
     public void setAllInvisible(){
@@ -39,7 +57,8 @@ public class ManagerRegister {
         lNameError.setVisible(false);
         emailError.setVisible(false);
         phoneError.setVisible(false);
-        moneyError.setVisible(false);
+        bankPassError.setVisible(false);
+        bankUsernameError.setVisible(false);
         welcome1.setVisible(false);
 
 
@@ -88,13 +107,15 @@ public class ManagerRegister {
         }else if(!phoneNumber.getText().matches("\\d+")){
             phoneError.setVisible(true);
             return false;
-        }else if(!money.getText().matches("\\d+")){
-            moneyError.setVisible(true);
+        }else if(!managerExists && bankUsername.getText().length()==0){
+            bankUsernameError.setVisible(true);
             return false;
-        }else if(Integer.parseInt(money.getText())<0){
-            moneyError.setVisible(true);
+        }else if(!managerExists&& bankPass.getText().length()==0){
+            bankPassError.setVisible(true);
             return false;
-        }else{
+        }
+        else{
+
             return true;
         }
     }
@@ -106,7 +127,9 @@ public class ManagerRegister {
             manager.setLastName(lastName.getText());
             manager.setEmail(email.getText());
             manager.setPhoneNumber(phoneNumber.getText());
-            manager.setCredit(Integer.parseInt(money.getText()));
+            if(!managerExists){
+                manager.setUpManagerAccountId(manager,bankUsername.getText(),bankPass.getText());
+            }
         }catch (Exception e){
             System.out.print(e.getMessage());
         }
@@ -118,6 +141,7 @@ public class ManagerRegister {
         lastName.clear();
         email.clear();
         phoneNumber.clear();
-        money.clear();
+        bankUsername.clear();
+        bankPass.clear();
     }
 }

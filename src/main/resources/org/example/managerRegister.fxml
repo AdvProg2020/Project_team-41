@@ -141,24 +141,41 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
-                  <TextField fx:id="money" layoutX="26.0" layoutY="26.0" prefHeight="39.0" prefWidth="217.0" promptText="Money" style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
+                  <TextField fx:id="bankUsername" layoutX="26.0" layoutY="26.0" prefHeight="39.0" prefWidth="217.0" promptText="Bank username" style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="15.0" layoutY="10.0" text="Money:">
+                  <Label fx:id="bankUsernameTitle" layoutX="15.0" layoutY="10.0" text="Bank username:">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="moneyError" layoutX="29.0" layoutY="64.0" text="Invalid number" textFill="RED">
+                  <Label fx:id="bankUsernameError" layoutX="29.0" layoutY="64.0" text="It can't be empty" textFill="RED">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <TextField fx:id="bankPass" layoutX="23.0" layoutY="24.0" prefHeight="39.0" prefWidth="217.0" promptText="Bank password" style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="bankPassTitle" layoutX="17.0" layoutY="9.0" text="Bank password:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="bankPassError" layoutX="36.0" layoutY="64.0" text="It can't be empty" textFill="RED">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="welcome1" layoutX="62.0" layoutY="28.0" text="Account succussefully created" textFill="#27ca27">
