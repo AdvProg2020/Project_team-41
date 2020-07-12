@@ -1,8 +1,6 @@
 package Client.View.Menus.bank;
 
 import Client.Controller.bankController.BankAPI;
-import Client.Models.Person.Buyer;
-import Client.Models.Person.Manager;
 import Client.View.Menus.NodeFinder;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
@@ -18,15 +16,8 @@ public class BankMainMenu {
     public AnchorPane insideAnchorPane;
     public TextField creditTextField;
     public AnchorPane outsideAnchorPane;
-    public static boolean redirectedForTransfer;
-    private static Buyer buyer;
-
 
     public void initialize(){
-        if(redirectedForTransfer) {
-            redirectedForTransfer = false;
-            prepareTransferToShop();
-        }
         try {
             creditTextField.setText(BankAPI.getInstance().getBalance()+"");
         } catch (Exception e) {
@@ -69,11 +60,4 @@ public class BankMainMenu {
         AnchorPane anchorPane = (AnchorPane) NodeFinder.getChildById(borderPane, "insideAnchorPane");
         anchorPane.getChildren().setAll(root);
     }
-    private void prepareTransferToShop(){
-        moveClicked(null);
-        TextField textField = (TextField) NodeFinder.getChildById(bankMainMenuBorderPane, "transferPageDestinationTextField");
-        textField.setText(Manager.getAccountId() + "");
-        textField.setEditable(false);
-    }
-
 }
