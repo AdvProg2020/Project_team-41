@@ -1,7 +1,11 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.Controller.bankController.BankAPI;
 import Client.View.Menus.Menu;
+import Client.View.Menus.MessageTypeShow;
+import Client.View.Menus.bank.BankMainMenu;
+import Client.View.Menus.bank.BankWindow;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -75,6 +79,15 @@ public class BuyerSectionMenu extends Menu {
     }
 
     public void increaseCreditClicked(MouseEvent mouseEvent) {
+        try {
+            BankAPI.makeInstance();
+            BankMainMenu.redirectedForTransfer = true;
+            BankWindow.openBank();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public void bankSectionClicked(MouseEvent mouseEvent) throws IOException {

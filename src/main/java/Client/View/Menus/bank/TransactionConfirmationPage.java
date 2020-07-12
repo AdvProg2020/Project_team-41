@@ -1,6 +1,9 @@
 package Client.View.Menus.bank;
 
+import Client.Controller.UserSectionController.BuyerController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Controller.bankController.BankAPI;
+import Client.Models.Person.Manager;
 import Client.Models.bank.Receipt;
 import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
@@ -53,6 +56,10 @@ public class TransactionConfirmationPage {
     public void submitClicked(MouseEvent mouseEvent) {
         try {
             BankAPI.getInstance().pay(Integer.toString(receipt.getId()));
+            //check if he transferred money to the shop
+            if (receipt.getDestAccountID() == Manager.getAccountId()) {
+                UserSectionController.getLoggedInPerson().increaseCredit(receipt.getMoney());
+            }
             MessageTypeShow.showMessage(confirmationPageInformationText,MessageTypeShow.SUCCESS,"operation done successfully");
             TextField creditTextField = (TextField) NodeFinder.getChildById((Parent) NodeFinder.getParentById(confirmationPageInformationText, "bankMainMenuBorderPane"), "creditTextField");
             creditTextField.setText(BankAPI.getInstance().getBalance()+"");
