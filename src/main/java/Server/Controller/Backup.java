@@ -24,6 +24,7 @@ public class Backup {
         return backupPeople;
     }
     public ChatBox getChatBox(String backupPerson,String buyer){
+        ServerStartProgram.startProgram();
         for (ChatBox chatBox : Database.getInstance().getChatBoxes()) {
             if(chatBox.getBackupPerson().equals(backupPerson)&&chatBox.getBuyer().equals(buyer)){
                 this.chatBox=chatBox;

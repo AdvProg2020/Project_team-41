@@ -48,10 +48,6 @@ public class bNameOfUser {
             e.printStackTrace();
         }
 
-        System.out.println(chatBox.getChatComments().size());
-        for (ChatComment chatComment : chatBox.getChatComments()) {
-            System.out.println(chatComment.getComment());
-        }
         VBox vBox = (VBox) NodeFinder.getChildById(borderPane, "chatVBox");
         vBox.getChildren().clear();
         for (ChatComment chatComment : chatBox.getChatComments()) {

@@ -472,6 +472,7 @@ public class ServerConnector extends Thread {
             }
             case GET_CHAT_BOX:{
                 objectOutputStream.writeObject(new Message(backup.getChatBox((String)inputs[0],(String)inputs[1])));
+                objectOutputStream.flush();
                 break;
             }
         }
