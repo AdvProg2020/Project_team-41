@@ -7,7 +7,7 @@ import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
 import Server.Database;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -71,7 +71,7 @@ public class BuyerServerController {
         return codedDiscounts;
     }
 
-    public ArrayList<Product> getAllBoughtFiles(Buyer buyer) {
+    public ArrayList<Product> getAllBoughtFiles(Buyer buyer) throws IOException {
         ArrayList<Product> boughtFiles = new ArrayList<>();
         for (TradeLog tradeLog : buyer.getTradeLogs()) {
             for (Product product : tradeLog.getItems().keySet()) {

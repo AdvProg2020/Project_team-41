@@ -3,13 +3,11 @@ package Server.Controller.UserSectionController;
 import Client.Controller.bankController.BankAPI;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
 import Server.Database;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
