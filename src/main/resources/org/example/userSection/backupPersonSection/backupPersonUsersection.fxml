@@ -4,12 +4,15 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BackupPersonMenu.BackupPersonUserSection">
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BackupPersonMenu.BackupPersonUserSection">
    <left>
-      <ScrollPane fx:id="usersScrollPane" prefHeight="656.0" prefWidth="258.0" style="-fx-background-color: #48D1CC;" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="usersScrollPane" prefHeight="656.0" prefWidth="258.0" style="-fx-background-color: #48D1CC;" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="vbox" prefHeight="647.0" prefWidth="255.0" />
+         </content></ScrollPane>
    </left>
    <top>
       <AnchorPane prefHeight="94.0" prefWidth="1400.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
@@ -28,7 +31,7 @@
       </AnchorPane>
    </top>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="chatBorderPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
             <AnchorPane fx:id="nameAnchorPane" prefHeight="69.0" prefWidth="1142.0" BorderPane.alignment="CENTER" />
          </top>
@@ -37,9 +40,9 @@
          </bottom>
          <center>
             <ScrollPane fx:id="chatScrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
+               <content>
+                  <VBox fx:id="chatVBox" prefHeight="506.0" prefWidth="1138.0" />
+               </content>
             </ScrollPane>
          </center>
       </BorderPane>

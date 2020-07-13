@@ -25,6 +25,7 @@ public class Backup {
     }
     public ChatBox getChatBox(String backupPerson,String buyer){
         ServerStartProgram.startProgram();
+        //I know it's not right
         for (ChatBox chatBox : Database.getInstance().getChatBoxes()) {
             if(chatBox.getBackupPerson().equals(backupPerson)&&chatBox.getBuyer().equals(buyer)){
                 this.chatBox=chatBox;
@@ -37,5 +38,14 @@ public class Backup {
     }
     public void addComment(ChatComment chatComment){
         chatBox.addComment(chatComment);
+    }
+    public ArrayList<ChatBox> getAllChatBoxes(String backupPerson){
+        ArrayList<ChatBox> chatBoxes=new ArrayList<>();
+        for (ChatBox box : Database.getInstance().getChatBoxes()) {
+            if(box.getBackupPerson().equals(backupPerson)){
+                chatBoxes.add(box);
+            }
+        }
+        return chatBoxes;
     }
 }
