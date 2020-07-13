@@ -44,17 +44,6 @@ public class BackupPersonUserSection extends Menu {
         }
         updateChatBoxes();
 
-//        ArrayList<ChatBox> chatBoxes=new ArrayList<>();
-//        try {
-//            chatBoxes= (ArrayList<ChatBox>) Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson().getUserName()},
-//                    MessageType.GET_ALL_CHAT_BOXES));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        for (ChatBox chatBox : chatBoxes) {
-//            NameOfUser.user=chatBox.getBuyer();
-//            vbox.getChildren().add(App.loadFXML("userSection/backupPersonSection/nameOfUser"));
-//        }
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
@@ -69,40 +58,46 @@ public class BackupPersonUserSection extends Menu {
             logout("mainMenu");
         }
     }
-    public void updateChatBoxes(){
+    public void updateChatBoxes() {
+
+        Timer animTimer = new Timer();
+        animTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (isHeOnThisPage) {
+                    ArrayList<ChatBox> chatBoxes = new ArrayList<>();
+                    try {
+                        chatBoxes = (ArrayList<ChatBox>) Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson().getUserName()},
+                                MessageType.GET_ALL_CHAT_BOXES));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (chatBoxes.size() > numberOfChatBoxes) {
+                        numberOfChatBoxes = chatBoxes.size();
+                        putChatBoxes(chatBoxes);
+                    }
+                } else {
+                    this.cancel();
+                }
+            }
+
+        }, 0, 10);
+
+
+    }
+    public void putChatBoxes(ArrayList<ChatBox> chatBoxes){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Timer animTimer = new Timer();
-                animTimer.scheduleAtFixedRate(new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (isHeOnThisPage) {
-                            ArrayList<ChatBox> chatBoxes=new ArrayList<>();
-                            try {
-                                chatBoxes= (ArrayList<ChatBox>) Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson().getUserName()},
-                                        MessageType.GET_ALL_CHAT_BOXES));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            if(chatBoxes.size()>numberOfChatBoxes) {
-                                numberOfChatBoxes=chatBoxes.size();
-                                vbox.getChildren().clear();
-                                for (ChatBox chatBox : chatBoxes) {
-                                    NameOfUser.user = chatBox.getBuyer();
-                                    try {
-                                        vbox.getChildren().add(App.loadFXML("userSection/backupPersonSection/nameOfUser"));
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-                        } else {
-                            this.cancel();
-                        }
+                vbox.getChildren().clear();
+                for (ChatBox chatBox : chatBoxes) {
+                    NameOfUser.user = chatBox.getBuyer();
+                    try {
+                        vbox.getChildren().add(App.loadFXML("userSection/backupPersonSection/nameOfUser"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-
-                }, 0, 10);
+                }
             }
         });
 
