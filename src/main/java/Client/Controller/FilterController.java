@@ -57,6 +57,7 @@ public class FilterController {
         } else {
             try {
                 allProducts = (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(null , MessageType.GET_ALL_PRODUCTS_FOR_FILTER));
+                System.out.println("here in filterController");
             } catch (Exception e) {
                 e.printStackTrace();
             }

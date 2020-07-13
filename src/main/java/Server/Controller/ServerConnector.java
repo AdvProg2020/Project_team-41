@@ -132,10 +132,7 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(ProductServerController.getInstance().amountOfDiscount((String) inputs[0])));
                 break;
             }
-            case GET_ALL_PRODUCTS_FOR_FILTER:{
-                objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllProducts()));
-                break;
-            }
+
         }
     }
 
@@ -148,6 +145,10 @@ public class ServerConnector extends Thread {
             }
             case GET_PRODUCT: {
                 objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getProduct((String) inputs[0])));
+                break;
+            }
+            case GET_ALL_PRODUCTS_FOR_FILTER:{
+                objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllProducts()));
                 break;
             }
         }
