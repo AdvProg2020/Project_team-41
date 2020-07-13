@@ -8,9 +8,12 @@ import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
 import Server.Database;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class SellerServerController extends UserSectionServerController {
 
@@ -117,7 +120,7 @@ public class SellerServerController extends UserSectionServerController {
                 }
                 return  salesHistory;
         }
-        public void addProduct(Seller seller,ArrayList<String> productDetails) throws Exception {
+        public void addProduct(Seller seller, ArrayList<String> productDetails, List<Byte> file) throws Exception {
                 Product product = new Product();
                 String productName = productDetails.get(0);
                 boolean flagForCategoryName = false;
@@ -166,8 +169,8 @@ public class SellerServerController extends UserSectionServerController {
                 product.setDescription(productDetails.get(5));
                 product.setSeller(seller);
                 product.setSpecialFeatures(specialFeatures);
+                Database.getInstance().addFile(product, file);
                 product.setSituation(Situation.CREATING);
-                System.out.println(seller);
                 Database.getInstance().addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
         }
         public ArrayList<String> getCategorySpecialFeatures(String categoryName) throws Exception {

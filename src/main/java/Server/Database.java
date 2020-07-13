@@ -9,9 +9,12 @@ import Client.Models.Person.Seller;
 import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class Database implements Serializable {
@@ -22,6 +25,7 @@ public class Database implements Serializable {
     private ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
     private ArrayList<Off>allOffs=new ArrayList<>();
     private ArrayList<ChatBox> chatBoxes=new ArrayList<>();
+    private HashMap<Product, List<Byte>> files = new HashMap<>();
 
     public static Database getInstance() {
         if (database == null) {
@@ -34,6 +38,18 @@ public class Database implements Serializable {
     }
     private Database(){
 
+    }
+
+    public void addFile(Product product, List<Byte> file) {
+        files.put(product, file);
+    }
+
+    public List<Byte> getFile(Product product) {
+        return files.get(product);
+    }
+
+    public void removeFile(Product product) {
+        files.remove(product);
     }
 
     public ArrayList<ChatBox> getChatBoxes() {

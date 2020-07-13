@@ -11,8 +11,10 @@ import Client.Models.Product;
 import Client.Models.TradeLog;
 import Server.Controller.UserSectionController.SellerServerController;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SellerController extends UserSectionController{
         private static SellerController single_instance = null;
@@ -63,8 +65,8 @@ public class SellerController extends UserSectionController{
                 Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,productId,edit}, MessageType.EDIT_PRODUCT));
 //                SellerServerController.getInstance().editProduct((Seller)loggedInPerson,productId,edit);
         }
-        public void addProduct(ArrayList<String> productDetails) throws Exception {
-                Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,productDetails}, MessageType.ADD_PRODUCT));
+        public void addProduct(ArrayList<String> productDetails, List<Byte> file) throws Exception {
+                Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,productDetails,file}, MessageType.ADD_PRODUCT));
 //                SellerServerController.getInstance().addProduct((Seller)loggedInPerson,productDetails);
         }
         public void removeProduct(String id) throws Exception {

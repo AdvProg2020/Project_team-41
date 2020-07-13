@@ -342,6 +342,7 @@ public class ManagerServerController extends UserSectionServerController {
     }
     public void declineRequest(String requestId) throws Exception {
         Request request = Database.getInstance().getRequestByRequestId(requestId);
+        Database.getInstance().removeFile(request.getProduct());
         Database.getInstance().removeRequest(request);
     }
     public ArrayList<String> showCategories(){

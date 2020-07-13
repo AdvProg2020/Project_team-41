@@ -8,6 +8,7 @@ import Client.Models.Person.BackupPerson;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
+import Client.Models.Product;
 import Client.Models.Score;
 import Client.View.Menus.Menu;
 import Server.Controller.UserSectionController.BuyerServerController;
@@ -16,6 +17,7 @@ import Server.Controller.UserSectionController.SellerServerController;
 import Server.Controller.UserSectionController.UserSectionServerController;
 import Server.Main;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.io.ObjectInputStream;
@@ -24,6 +26,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ServerConnector extends Thread {
     private static ServerSocket serverSocket;
@@ -329,7 +332,7 @@ public class ServerConnector extends Thread {
                 break;
             }
             case ADD_PRODUCT: {
-                SellerServerController.getInstance().addProduct((Seller) inputs[0], (ArrayList<String>) inputs[1]);
+                SellerServerController.getInstance().addProduct((Seller) inputs[0], (ArrayList<String>) inputs[1], (List<Byte>) inputs[2]);
                 sendSuccessful();
                 break;
             }
@@ -416,6 +419,14 @@ public class ServerConnector extends Thread {
                 BuyerServerController.getInstance().decreaseProduct((Buyer) inputs[0], (Integer) inputs[1], (String) inputs[2]);
                 sendSuccessful();
 
+                break;
+            }
+            case GET_ALL_BOUGHT_FILES:{
+                objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().getAllBoughtFiles((Buyer) inputs[0])));
+                break;
+            }
+            case DOWNLOAD_FILE:{
+                objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().downloadFile((Product) inputs[0])));
                 break;
             }
         }
