@@ -5,6 +5,7 @@ import Client.Models.Off;
 import Client.Models.Product;
 import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
+import Server.Database;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -41,10 +42,10 @@ public class Seller extends Person {
         this.factoryName = factoryName;
         ServerSaver.write(AllCommands.allData);
     }
-
+    //only use it in server
     public void increaseCreditWithWage(int money) throws Exception {
         
-        this.setCredit(getCredit()+money*(100-Manager.getWage())/100);
+        this.setCredit(getCredit()+money*(100- Database.getInstance().getWage())/100);
         ServerSaver.write(AllCommands.allData);
     }
     public void addProduct(Product product){

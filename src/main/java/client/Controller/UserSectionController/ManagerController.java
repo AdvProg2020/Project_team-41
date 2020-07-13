@@ -3,6 +3,7 @@ package Client.Controller.UserSectionController;
 import Client.Controller.Connector;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
+import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Product;
 import Client.Models.TradeLog;
@@ -26,6 +27,12 @@ public class ManagerController extends UserSectionController{
 
     public void changeTradeLogToSent(String tradeLogId) throws Exception {
         Connector.getInstance().initializeMessage(new Message(new Object[]{tradeLogId}, MessageType.CHANGE_TRADE_LOG_TO_SENT));
+    }
+    public void setUpManagerAccountId(Manager manager, String username, String password) throws Exception {
+        Connector.getInstance().initializeMessage(new Message(new Object[]{manager,username,password}, MessageType.CHANGE_TRADE_LOG_TO_SENT));
+    }
+    public void setWage(int wage) throws Exception {
+        Connector.getInstance().initializeMessage(new Message(new Object[]{wage}, MessageType.SET_WAGE));
     }
 
     public ArrayList<TradeLog> getTradeLogs() throws Exception {

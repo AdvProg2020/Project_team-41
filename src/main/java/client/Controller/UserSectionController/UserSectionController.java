@@ -20,11 +20,18 @@ public abstract class UserSectionController {
 //        UserSectionServerController.edit(loggedInPerson,field,editedField);
     }
 
+    public static int getManagerAccountId() throws Exception {
+        return (int) Connector.getInstance().initializeMessage(new Message(new Object[]{}, MessageType.GET_MANAGER_ACCOUNT_ID));
+    }
+
     public static Person getLoggedInPerson() {
         return loggedInPerson;
     }
 
     public static void setLoggedInPerson(Person loggedInPerson) {
         UserSectionController.loggedInPerson = loggedInPerson;
+    }
+    public static int getWage() throws Exception {
+        return (int) Connector.getInstance().initializeMessage(new Message(null, MessageType.GET_WAGE));
     }
 }
