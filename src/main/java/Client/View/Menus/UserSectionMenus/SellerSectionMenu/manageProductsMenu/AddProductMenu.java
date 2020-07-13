@@ -56,6 +56,10 @@ public class AddProductMenu {
             showMessage(informationText, MessageTypeShow.ERROR, "no file selected");
         } else {
             showMessage(informationText, MessageTypeShow.SUCCESS, "file selected successfully");
+            categoryNameTextField.setText("file");
+            categoryNameTextField.setEditable(false);
+            amountTextField.setText("1");
+            amountTextField.setEditable(false);
         }
     }
 

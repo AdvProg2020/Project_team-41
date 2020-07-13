@@ -29,7 +29,7 @@ public class PaymentMenu {
     }
     public void finishButtonClicked(MouseEvent mouseEvent) {
         try {
-            if (paymentMenuToggleButton.isSelected()) {
+            if (!paymentMenuToggleButton.isSelected()) {
                 payFromBank();
             }
             BuyerController.getInstance().payForTheShop(paymentMenuToggleButton.isSelected());

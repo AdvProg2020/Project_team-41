@@ -9,6 +9,7 @@ import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
+import Server.Controller.UserSectionController.ManagerServerController;
 
 import java.io.*;
 import java.util.*;
@@ -37,8 +38,13 @@ public class Database implements Serializable {
     }
 
     public static void setInstance(Database newDatabase){
-        new File("src/main/resources/data/files").mkdir();
         database = newDatabase;
+        new File("src/main/resources/data/files").mkdir();
+        try {
+            ManagerServerController.getInstance().addCategory("file","file");
+        } catch (Exception ignored) {
+
+        }
     }
     private Database(){
 

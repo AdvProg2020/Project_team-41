@@ -29,7 +29,7 @@ public class ManagerController extends UserSectionController{
         Connector.getInstance().initializeMessage(new Message(new Object[]{tradeLogId}, MessageType.CHANGE_TRADE_LOG_TO_SENT));
     }
     public void setUpManagerAccountId(Manager manager, String username, String password) throws Exception {
-        Connector.getInstance().initializeMessage(new Message(new Object[]{manager,username,password}, MessageType.CHANGE_TRADE_LOG_TO_SENT));
+        Connector.getInstance().initializeMessage(new Message(new Object[]{manager,username,password}, MessageType.SET_UP_MANAGER_ACCOUNT_ID));
     }
     public void setWage(int wage) throws Exception {
         Connector.getInstance().initializeMessage(new Message(new Object[]{wage}, MessageType.SET_WAGE));

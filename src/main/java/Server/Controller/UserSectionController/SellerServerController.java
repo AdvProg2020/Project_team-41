@@ -154,7 +154,6 @@ public class SellerServerController extends UserSectionServerController {
                 } catch (NumberFormatException e) {
                         throw new Exception("please enter a valid number");
                 }
-                product.setQuantity(productQuantity);
                 product.setPrice(productPrice);
                 product.setName(productName);
 
@@ -163,6 +162,7 @@ public class SellerServerController extends UserSectionServerController {
                                 throw new Exception("name is already chosen for another product");
                 }
                 product.setCategory(category);
+                product.setQuantity(productQuantity);
                 product.setCompanyName(productDetails.get(2));
                 product.setDescription(productDetails.get(5));
                 product.setSeller(seller);
