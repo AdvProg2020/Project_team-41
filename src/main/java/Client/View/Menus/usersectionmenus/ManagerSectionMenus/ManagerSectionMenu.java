@@ -60,6 +60,10 @@ public class ManagerSectionMenu extends Menu {
 
     }
 
+    public void financialSettingsClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/managerSection/financialSettings/financial settings");
+    }
+
     private void setSubPage(String name){
         Parent root = null;
         try {
@@ -78,9 +82,7 @@ public class ManagerSectionMenu extends Menu {
         logout("mainMenu");
     }
 
-
     public void bankSectionClicked(MouseEvent mouseEvent) throws IOException {
         openBank();
     }
-
 }

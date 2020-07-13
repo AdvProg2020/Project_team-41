@@ -18,11 +18,15 @@ public abstract class Person implements Serializable {
     private String email;
     private String phoneNumber;
     private String password;
+    private static int minimumCredit;
     //end of personal information
 
     private final ArrayList<TradeLog> tradeLogs = new ArrayList<>();
     private int credit;
 
+    public static void setMinimumCredit(int minimumCredit) {
+        Person.minimumCredit = minimumCredit;
+    }
     public ArrayList<Product> getAllProductsHeTraded(){
         ArrayList<Product> AllProductsHeTraded = new ArrayList<>();
         for (TradeLog tradeLog : tradeLogs) {
@@ -126,7 +130,7 @@ public abstract class Person implements Serializable {
         ServerSaver.write(AllCommands.allData);
     }
     public void decreaseCredit(int credit) throws Exception {
-        if(credit<getCredit()) {
+        if(credit<getCredit()-getMinimumCredit()) {
             setCredit(getCredit() - credit);
             ServerSaver.write(AllCommands.allData);
         }
@@ -142,6 +146,10 @@ public abstract class Person implements Serializable {
     }
     public String getPassword() {
         return password;
+    }
+
+    public static int getMinimumCredit() {
+        return minimumCredit;
     }
 
     @Override

@@ -1,7 +1,9 @@
 package Server.Controller.UserSectionController;
 
+import Client.Controller.bankController.BankAPI;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
+import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
@@ -278,8 +280,12 @@ public class SellerServerController extends UserSectionServerController {
                 Database.getInstance().addRequest(new Request(seller,off));
 
         }
-        public void transferMoneyToSeller(int accountNumber, int money) throws Exception {
-
+        public void transferMoneyToSeller(Integer accountNumber, Integer money,Seller seller) throws Exception {
+                BankAPI.makeInstance();
+                BankAPI.getInstance().updateToken(Manager.getAccountUsername(), Manager.getAccountPassword());
+                seller.decreaseCredit(money);
+                int receipt = BankAPI.getInstance().move(money.toString(), Integer.toString(Manager.getAccountId()), accountNumber.toString(), "transformed money to seller");
+                BankAPI.getInstance().pay(Integer.toString(receipt));
         }
 
 

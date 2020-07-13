@@ -42,9 +42,9 @@ public class Seller extends Person {
         ServerSaver.write(AllCommands.allData);
     }
 
-    public void increaseCredit(int money) throws Exception {
+    public void increaseCreditWithWage(int money) throws Exception {
         
-        this.setCredit(getCredit()+money);
+        this.setCredit(getCredit()+money*(100-Manager.getWage())/100);
         ServerSaver.write(AllCommands.allData);
     }
     public void addProduct(Product product){

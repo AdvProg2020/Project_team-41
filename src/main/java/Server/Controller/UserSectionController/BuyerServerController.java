@@ -1,9 +1,7 @@
 package Server.Controller.UserSectionController;
 
-import Client.Controller.bankController.BankAPI;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
@@ -52,7 +50,7 @@ public class BuyerServerController {
                 moneyWithoutOff += product.getPrice() * productQuantity;
                 money += product.getPriceWithOff() * productQuantity;
                 product.decreaseQuantity(productQuantity);
-                seller.increaseCredit(product.getPriceWithOff() * productQuantity);
+                seller.increaseCreditWithWage(product.getPriceWithOff() * productQuantity);
 
             }
                 seller.addTradeLog(new TradeLog(new Date(),money,moneyWithoutOff - money,sellerProducts.get(seller),buyer.getUserName(),"waiting"));

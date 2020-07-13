@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.ManagerSectionMenus.financialSettings.FinancialSettingsPage">
+   <children>
+      <Text fx:id="informationText" layoutX="250.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="295.0" />
+      <Text layoutX="75.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="set minimum wage" />
+      <Text layoutX="75.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="set minimum wallet balance" />
+      <TextField fx:id="minimumWage" layoutX="273.0" layoutY="57.0" prefHeight="27.0" prefWidth="248.0" promptText="minimum wage should be between 0-100" />
+      <TextField fx:id="minimumWalletBalance" layoutX="273.0" layoutY="113.0" prefHeight="27.0" prefWidth="248.0" promptText="minimum wallet balance should be positive" />
+      <Button layoutX="369.0" layoutY="185.0" mnemonicParsing="false" onMouseClicked="#updateClicked" text="update" />
+   </children>
+</AnchorPane>
