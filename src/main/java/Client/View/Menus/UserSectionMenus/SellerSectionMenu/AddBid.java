@@ -19,6 +19,7 @@ public class AddBid {
     public Text informationText;
 
     public void addBid(MouseEvent mouseEvent) throws Exception {
+
         Connector.getInstance().initializeMessage(new Message(new Object[]{productTextField.getText() , endDateTextField.getText() , UserSectionController.getLoggedInPerson()}));
     }
 
