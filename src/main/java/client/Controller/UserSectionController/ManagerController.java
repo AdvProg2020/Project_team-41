@@ -5,6 +5,7 @@ import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
 import Client.Models.Person.Person;
 import Client.Models.Product;
+import Client.Models.TradeLog;
 import Server.Controller.UserSectionController.ManagerServerController;
 
 import java.util.ArrayList;
@@ -22,6 +23,15 @@ public class ManagerController extends UserSectionController{
 
     private ManagerController(){
     }
+
+    public void changeTradeLogToSent(String tradeLogId) throws Exception {
+        Connector.getInstance().initializeMessage(new Message(new Object[]{tradeLogId}, MessageType.CHANGE_TRADE_LOG_TO_SENT));
+    }
+
+    public ArrayList<TradeLog> getTradeLogs() throws Exception {
+        return (ArrayList<TradeLog>) Connector.getInstance().initializeMessage(new Message(null, MessageType.VIEW_TRADE_LOGS));
+    }
+
     public void acceptAllRequests() throws Exception {
         Connector.getInstance().initializeMessage(new Message(null, MessageType.ACCEPT_ALL_REQUESTS));
 

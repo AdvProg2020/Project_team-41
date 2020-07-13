@@ -2,6 +2,7 @@ package Server;
 
 import Client.Models.*;
 import Client.Models.Chat.ChatBox;
+import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
@@ -72,6 +73,16 @@ public class Database implements Serializable {
         }
         return allSellers;
     }
+
+    public ArrayList<Buyer> getAllBuyers(){
+        ArrayList<Buyer> allBuyers=new ArrayList<>();
+        for (Person user : allUsers) {
+            if(user instanceof Buyer)
+                allBuyers.add((Buyer) user);
+        }
+        return allBuyers;
+    }
+
 
     public Category getCategoryByName(String name) throws Exception {
         for (Category category : allCategory) {

@@ -1,4 +1,4 @@
-package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewTradeLogsMenu;
+package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.viewTradeLogsMenu;
 
 import Client.Models.Product;
 import Client.Models.TradeLog;
@@ -19,6 +19,7 @@ public class ViewTradeLogController {
 
     @FXML
     public void initialize(){
+        //change here
         StringBuilder products = new StringBuilder();
         for (Product product : tradeLog.getItems().keySet()) {
             products.append(",").append("name : ").append(product.getName()).append("  quantity : ").append(tradeLog.getItems().get(product));
