@@ -23,6 +23,24 @@ public class ManagerServerController extends UserSectionServerController {
 
     private ManagerServerController(){
     }
+    public void changeTradeLogToSent(String tradeLogId) throws Exception {
+        for (Buyer buyer : Database.getInstance().getAllBuyers()) {
+            for (TradeLog tradeLog : buyer.getTradeLogs()) {
+                if (tradeLog.getLogId().equals(tradeLogId)) {
+                    tradeLog.setDeliverySituation(TradeLog.DeliverySituation.SENT);
+                    return;
+                }
+            }
+        }
+        throw new Exception("no tradeLog found with this id");
+    }
+    public ArrayList<TradeLog> getTradeLogs(){
+        ArrayList<TradeLog> allTradeLogs = new ArrayList<>();
+        for (Buyer buyer : Database.getInstance().getAllBuyers()) {
+            allTradeLogs.addAll(buyer.getTradeLogs());
+        }
+        return allTradeLogs;
+    }
     public void editCategorySpecialFeatures(String categoryName,String editedField) throws Exception {
         ArrayList<String> removedSpecialFeatures = new ArrayList<>();
         ArrayList<String> specialFeatures = new ArrayList<>();
@@ -324,6 +342,7 @@ public class ManagerServerController extends UserSectionServerController {
     }
     public void declineRequest(String requestId) throws Exception {
         Request request = Database.getInstance().getRequestByRequestId(requestId);
+        Database.getInstance().removeFile(request.getProduct());
         Database.getInstance().removeRequest(request);
     }
     public ArrayList<String> showCategories(){

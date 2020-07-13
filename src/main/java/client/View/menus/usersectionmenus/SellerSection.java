@@ -91,7 +91,7 @@ public class SellerSection extends UserSection {
         productDetails.add(input);
 
         try {
-            SellerController.getInstance().addProduct(productDetails);
+            SellerController.getInstance().addProduct(productDetails,null);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             this.show();

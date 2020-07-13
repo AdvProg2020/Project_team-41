@@ -5,6 +5,7 @@ import Server.Controller.RandomNumberGenerator;
 import Server.Controller.ServerSaver;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
@@ -16,10 +17,10 @@ public class TradeLog implements Serializable {
     private final int offAmount; //if existed
     private final HashMap<Product,Integer> items;
     private final String buyerName;
-    private final String deliverySituation;
+    private DeliverySituation deliverySituation;
 
 
-    public TradeLog(Date date, int money, int offAmount, HashMap<Product,Integer> items, String buyerName, String deliverySituation) {
+    public TradeLog(Date date, int money, int offAmount, HashMap<Product,Integer> items, String buyerName, DeliverySituation deliverySituation, ArrayList<String> Information) {
         this.logId = RandomNumberGenerator.getToken(5);
         this.date = date;
         this.money = money;
@@ -58,8 +59,12 @@ public class TradeLog implements Serializable {
         return buyerName;
     }
 
-    public String getDeliverySituation() {
+    public DeliverySituation getDeliverySituation() {
         return deliverySituation;
+    }
+
+    public void setDeliverySituation(DeliverySituation deliverySituation) {
+        this.deliverySituation = deliverySituation;
     }
 
 
@@ -92,6 +97,9 @@ public class TradeLog implements Serializable {
                 Objects.equals(items, tradeLog.items) &&
                 Objects.equals(buyerName, tradeLog.buyerName) &&
                 Objects.equals(deliverySituation, tradeLog.deliverySituation);
+    }
+    public enum DeliverySituation{
+        WAITING, SENT
     }
 
 }

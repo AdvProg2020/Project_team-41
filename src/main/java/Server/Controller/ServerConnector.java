@@ -8,6 +8,7 @@ import Client.Models.Person.BackupPerson;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
+import Client.Models.Product;
 import Client.Models.Score;
 import Client.View.Menus.Menu;
 import Server.Controller.UserSectionController.BuyerServerController;
@@ -16,6 +17,7 @@ import Server.Controller.UserSectionController.SellerServerController;
 import Server.Controller.UserSectionController.UserSectionServerController;
 import Server.Main;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.io.ObjectInputStream;
@@ -24,6 +26,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ServerConnector extends Thread {
     private static ServerSocket serverSocket;
@@ -294,6 +297,11 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getProductById((String) inputs[0])));
                 break;
             }
+            case CHANGE_TRADE_LOG_TO_SENT:{
+                ManagerServerController.getInstance().changeTradeLogToSent((String) inputs[0]);
+                sendSuccessful();
+                break;
+            }
 
         }
     }
@@ -339,7 +347,7 @@ public class ServerConnector extends Thread {
                 break;
             }
             case ADD_PRODUCT: {
-                SellerServerController.getInstance().addProduct((Seller) inputs[0], (ArrayList<String>) inputs[1]);
+                SellerServerController.getInstance().addProduct((Seller) inputs[0], (ArrayList<String>) inputs[1], (List<Byte>) inputs[2]);
                 sendSuccessful();
                 break;
             }
@@ -428,6 +436,14 @@ public class ServerConnector extends Thread {
 
                 break;
             }
+            case GET_ALL_BOUGHT_FILES:{
+                objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().getAllBoughtFiles((Buyer) inputs[0])));
+                break;
+            }
+            case DOWNLOAD_FILE:{
+                objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().downloadFile((Product) inputs[0])));
+                break;
+            }
         }
     }
 
@@ -482,21 +498,20 @@ public class ServerConnector extends Thread {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()){
             case GET_BACKUPS:{
-                objectOutputStream.writeObject(new Message(backup.getBackupPeople()));
+                objectOutputStream.writeObject(new Message(Main.backup.getBackupPeople()));
                 break;
             }
             case SEND_COMMENT:{
-                backup.addComment((ChatComment)inputs[0]);
+                Main.backup.addComment((ChatComment)inputs[0]);
                 sendSuccessful();
                 break;
             }
             case GET_CHAT_BOX:{
-                objectOutputStream.writeObject(new Message(backup.getChatBox((String)inputs[0],(String)inputs[1])));
-                objectOutputStream.flush();
+                objectOutputStream.writeObject(new Message(Main.backup.getChatBox((String)inputs[0],(String)inputs[1])));
                 break;
             }
             case GET_ALL_CHAT_BOXES:{
-                objectOutputStream.writeObject(new Message(backup.getAllChatBoxes((String)inputs[0])));
+                objectOutputStream.writeObject(new Message(Main.backup.getAllChatBoxes((String)inputs[0])));
                 break;
             }
         }

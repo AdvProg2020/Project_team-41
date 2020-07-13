@@ -128,7 +128,17 @@
          </children>
       </VBox>
        <Text fx:id="informationText" layoutX="71.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="416.0" />
-       <Button layoutX="254.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#addOffClicked" prefHeight="27.0" prefWidth="233.0" stylesheets="@/org/example/styles/commandButton.css" text="create product">
+       <Button layoutX="254.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#addProductClicked" prefHeight="27.0" prefWidth="233.0" stylesheets="@/org/example/styles/commandButton.css" text="create product">
+           <textFill>
+               <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                   <stops>
+                       <Stop color="BLACK" />
+                       <Stop color="#dd813f" offset="1.0" />
+                   </stops>
+               </LinearGradient>
+           </textFill>
+       </Button>
+       <Button layoutX="54.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#addFileClicked" prefHeight="27.0" prefWidth="73.0" stylesheets="@/org/example/styles/commandButton.css" text="add file">
            <textFill>
                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
                    <stops>

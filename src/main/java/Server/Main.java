@@ -1,5 +1,6 @@
 package Server;
 import Client.Models.Person.Person;
+import Server.Controller.Backup;
 import Server.Controller.ServerConnector;
 import Server.Controller.ServerStartProgram;
 
@@ -12,10 +13,12 @@ public class Main {
     public static final int PORT = 8888;
     private static final ArrayList<Socket> clients = new ArrayList<>();
     public static ArrayList<Person> connectedPeople=new ArrayList<>();
+    public static Backup backup;
     public static void main(String[] args) throws IOException {
         System.out.println("server started");
         ServerStartProgram.startProgram();
         System.out.println("database loaded");
+        backup=new Backup();
         ServerSocket serverSocket = new ServerSocket(PORT);
         while (true) {
             System.out.println("waiting for client");

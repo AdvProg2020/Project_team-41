@@ -8,7 +8,9 @@ import Client.Models.Person.Buyer;
 import Client.Models.Person.Person;
 import Server.Controller.UserSectionController.BuyerServerController;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BuyerController extends UserSectionController {
 
@@ -47,6 +49,14 @@ public class BuyerController extends UserSectionController {
     }
     public ArrayList<TradeLog> getTradeLogs(){
         return loggedInPerson.getTradeLogs();
+    }
+    public ArrayList<Product> getAllBoughtFiles() throws Exception {
+        return (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson}, MessageType.GET_ALL_BOUGHT_FILES));
+    }
+
+    public List<Byte> downloadFile(Product product) throws Exception {
+        return (List<Byte>) Connector.getInstance().initializeMessage(new Message(new Object[]{product}, MessageType.DOWNLOAD_FILE));
+
     }
     public TradeLog showTheOrder(String id) throws Exception {
         for (TradeLog tradeLog : loggedInPerson.getTradeLogs()) {
