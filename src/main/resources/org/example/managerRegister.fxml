@@ -178,9 +178,19 @@
                </children></AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="welcome1" layoutX="62.0" layoutY="28.0" text="Account succussefully created" textFill="#27ca27">
+                  <TextField fx:id="wage" layoutX="30.0" layoutY="20.0" prefHeight="39.0" prefWidth="217.0" promptText="wage" style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="wageTitle" layoutX="18.0" layoutY="4.0" text="Wage:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="wageError" layoutX="32.0" layoutY="60.0" text="Invalid number" textFill="RED">
+                     <font>
+                        <Font size="13.0" />
                      </font>
                   </Label>
                </children></AnchorPane>
@@ -191,5 +201,10 @@
             </AnchorPane>
          </children>
       </GridPane>
+      <Label fx:id="welcome1" layoutX="96.0" layoutY="475.0" text="Account succussefully created" textFill="#27ca27">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
