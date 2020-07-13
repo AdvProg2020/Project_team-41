@@ -27,6 +27,7 @@ public class Database implements Serializable {
     private ArrayList<Off>allOffs=new ArrayList<>();
     private ArrayList<ChatBox> chatBoxes=new ArrayList<>();
     private HashMap<Product, List<Byte>> files = new HashMap<>();
+    private ArrayList<Bid> allBids=new ArrayList<>();
     private int accountId;
     private String accountUsername;
     private String accountPassword;
@@ -64,6 +65,10 @@ public class Database implements Serializable {
     public void addChatBox(ChatBox chatBox){
         chatBoxes.add(chatBox);
         ServerSaver.write(AllCommands.allCategory);
+    }
+
+    public ArrayList<Bid> getAllBids() {
+        return allBids;
     }
 
     public ArrayList<Off> getAllOffs() {

@@ -38,6 +38,5 @@ public class AddOffMenu {
     private void showMessage(Text text, MessageTypeShow messageTypeShow, String message) {
         text.setFill(messageTypeShow.getLinearGradient());
         text.setText(message);
-
     }
 }

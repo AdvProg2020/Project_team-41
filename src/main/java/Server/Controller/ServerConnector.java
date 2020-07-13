@@ -115,11 +115,25 @@ public class ServerConnector extends Thread {
                 processProduct(message);
                 break;
             }
+            case BID: {
+                processBid(message);
+                break;
+            }
             case BACKUP:{
                 processBackup(message);
                 break;
             }
 
+        }
+    }
+
+    private void processBid(Message message) throws Exception {
+        Object[] inputs = message.getInputs();
+        switch (message.getMessageType()) {
+            case ADD_BID:{
+                BidServerController.getInstance().addBid((String)inputs[0] , (String) inputs[1] , (Seller) inputs[2]);
+                sendSuccessful();
+            }
         }
     }
 
@@ -136,10 +150,7 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(ProductServerController.getInstance().amountOfDiscount((String) inputs[0])));
                 break;
             }
-            case GET_ALL_PRODUCTS_FOR_FILTER:{
-                objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllProducts()));
-                break;
-            }
+
         }
     }
 
@@ -152,6 +163,10 @@ public class ServerConnector extends Thread {
             }
             case GET_PRODUCT: {
                 objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getProduct((String) inputs[0])));
+                break;
+            }
+            case GET_ALL_PRODUCTS_FOR_FILTER:{
+                objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllProducts()));
                 break;
             }
         }
