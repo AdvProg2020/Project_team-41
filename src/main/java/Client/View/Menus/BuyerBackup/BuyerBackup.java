@@ -6,6 +6,7 @@ import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
 import Client.Models.Person.BackupPerson;
 import Client.View.Menus.Menu;
+import Client.View.Menus.UserSectionMenus.BackupPersonMenu.NameOfUser;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -30,6 +31,7 @@ public class BuyerBackup extends Menu {
 
 
     public void initialize() throws IOException {
+        bNameOfUser.hasHeChoose=false;
         if(UserSectionController.getLoggedInPerson()==null){
             loginLogout.setText("Register/Login");
         }else{
@@ -52,6 +54,8 @@ public class BuyerBackup extends Menu {
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
+        bNameOfUser.currentUSer=null;
+        bNameOfUser.hasHeChoose=false;
         App.setRoot("userSection/buyerSection/buyer section");
     }
 

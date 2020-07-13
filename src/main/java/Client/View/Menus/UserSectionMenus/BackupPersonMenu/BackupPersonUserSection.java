@@ -37,6 +37,7 @@ public class BackupPersonUserSection extends Menu {
 
     public void initialize() throws IOException {
         isHeOnThisPage=true;
+        NameOfUser.hasHeChoose=false;
         if(UserSectionController.getLoggedInPerson()==null){
             loginLogout.setText("Register/Login");
         }else{
@@ -48,6 +49,8 @@ public class BackupPersonUserSection extends Menu {
 
     public void back(ActionEvent actionEvent) throws IOException {
         isHeOnThisPage=false;
+        NameOfUser.currentUSer=null;
+        NameOfUser.hasHeChoose=false;
         App.setRoot(parentFxmlAddress);
     }
 
@@ -81,7 +84,7 @@ public class BackupPersonUserSection extends Menu {
                 }
             }
 
-        }, 0, 10);
+        }, 0, 1000);
 
 
     }
