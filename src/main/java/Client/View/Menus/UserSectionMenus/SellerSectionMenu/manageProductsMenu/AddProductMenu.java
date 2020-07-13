@@ -6,8 +6,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.*;
 
 public class AddProductMenu {
     public Text informationText;
@@ -19,8 +22,9 @@ public class AddProductMenu {
     public TextField categoryNameTextField;
     public TextField specialFeaturesTextField;
     public TextField descriptionTextField;
+    private File file;
 
-    public void addOffClicked(MouseEvent mouseEvent) {
+    public void addProductClicked(MouseEvent mouseEvent) {
         ArrayList<String> productDetails = new ArrayList<>();
         productDetails.add(nameTextField.getText());
         productDetails.add(amountTextField.getText());
@@ -30,12 +34,29 @@ public class AddProductMenu {
         productDetails.add(descriptionTextField.getText());
         productDetails.add(specialFeaturesTextField.getText());
         try {
-            SellerController.getInstance().addProduct(productDetails);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            byte[] bytes = fileInputStream.readAllBytes();
+            List<Byte> byteList = new ArrayList<>(bytes.length);
+            for (int i = 0; i < bytes.length; i++) {
+                byteList.add(i, bytes[i]);
+            }
+
+            SellerController.getInstance().addProduct(productDetails,byteList);
             showMessage(informationText, MessageTypeShow.SUCCESS,"sent product creation request to manager successfully");
         } catch (Exception e) {
             showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }
 
+    }
+
+    public void addFileClicked(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        file = fileChooser.showOpenDialog(null);
+        if (file == null) {
+            showMessage(informationText, MessageTypeShow.ERROR, "no file selected");
+        } else {
+            showMessage(informationText, MessageTypeShow.SUCCESS, "file selected successfully");
+        }
     }
 
     private void showMessage(Text text, MessageTypeShow messageTypeShow, String message) {

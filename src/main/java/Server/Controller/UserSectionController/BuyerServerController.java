@@ -7,9 +7,11 @@ import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
 import Server.Database;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class BuyerServerController {
 
@@ -69,6 +71,26 @@ public class BuyerServerController {
         return codedDiscounts;
     }
 
+    public ArrayList<Product> getAllBoughtFiles(Buyer buyer) {
+        ArrayList<Product> boughtFiles = new ArrayList<>();
+        for (TradeLog tradeLog : buyer.getTradeLogs()) {
+            for (Product product : tradeLog.getItems().keySet()) {
+                if (Database.getInstance().getFile(product) != null) {
+                    boughtFiles.add(product);
+                }
+            }
+        }
+        return boughtFiles;
+    }
+
+    public List<Byte> downloadFile(Product product) throws Exception {
+        List<Byte> file = Database.getInstance().getFile(product);
+        if (file == null) {
+            throw new Exception("file doesn't exist in database");
+        }
+        else
+            return file;
+    }
 
     public ArrayList<String> getCodedDiscount(String discountCode, Person person) {
         CodedDiscount foundCodedDiscount = null;
