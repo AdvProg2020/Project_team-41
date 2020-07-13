@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class ManagerRegister {
     public TextField username;
-
     public TextField firstName;
     public TextField lastName;
     public TextField email;
