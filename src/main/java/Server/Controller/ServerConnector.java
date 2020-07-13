@@ -114,11 +114,25 @@ public class ServerConnector extends Thread {
                 processProduct(message);
                 break;
             }
+            case BID: {
+                processBid(message);
+                break;
+            }
             case BACKUP:{
                 processBackup(message);
                 break;
             }
 
+        }
+    }
+
+    private void processBid(Message message) throws Exception {
+        Object[] inputs = message.getInputs();
+        switch (message.getMessageType()) {
+            case ADD_BID:{
+                BidServerController.getInstance().addBid((String)inputs[0] , (String) inputs[1] , (Seller) inputs[2]);
+                sendSuccessful();
+            }
         }
     }
 

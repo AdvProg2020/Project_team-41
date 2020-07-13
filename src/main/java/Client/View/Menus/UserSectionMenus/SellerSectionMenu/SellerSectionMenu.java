@@ -57,6 +57,11 @@ public class SellerSectionMenu extends Menu {
     public void viewOffs(MouseEvent mouseEvent) {
         setSubPage("userSection/sellerSection/viewOffsMenu/manage offs menu");
     }
+
+    public void addBid(MouseEvent mouseEvent) {
+        setSubPage("userSection/sellerSection/AddBid");
+    }
+
     public void decreaseCreditClicked(MouseEvent mouseEvent) {
         setSubPage("userSection/sellerSection/decreaseCreditPage");
 
@@ -94,4 +99,6 @@ public class SellerSectionMenu extends Menu {
     public void bankSectionClicked(MouseEvent mouseEvent) throws IOException {
         openBank();
     }
+
+
 }

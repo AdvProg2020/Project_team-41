@@ -21,6 +21,7 @@ public class Database implements Serializable {
     private ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
     private ArrayList<Off>allOffs=new ArrayList<>();
     private ArrayList<ChatBox> chatBoxes=new ArrayList<>();
+    private ArrayList<Bid> allBids=new ArrayList<>();
 
     public static Database getInstance() {
         if (database == null) {
@@ -41,6 +42,10 @@ public class Database implements Serializable {
     public void addChatBox(ChatBox chatBox){
         chatBoxes.add(chatBox);
         ServerSaver.write(AllCommands.allCategory);
+    }
+
+    public ArrayList<Bid> getAllBids() {
+        return allBids;
     }
 
     public ArrayList<Off> getAllOffs() {
