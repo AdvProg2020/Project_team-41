@@ -4,7 +4,7 @@ import Client.Models.Chat.ChatComment;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class Comment {
+public class bComment {
     public static ChatComment chatComment;
     public TextField message;
     public Label sender;

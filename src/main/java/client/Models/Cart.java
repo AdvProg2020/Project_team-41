@@ -92,6 +92,16 @@ public class Cart implements Serializable {
         ServerSaver.write(AllCommands.allData);
     }
 
+    public int getCashToPay() {
+        int cashToPay;
+        if(this.getCodedDiscount() == null)
+            cashToPay = this.totalPrice();
+        else {
+            cashToPay = this.getCodedDiscount().howMuchWillItCost(this.totalPrice());
+        }
+        return cashToPay;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

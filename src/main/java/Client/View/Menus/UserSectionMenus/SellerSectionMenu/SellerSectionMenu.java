@@ -1,7 +1,10 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu;
 
 import Client.Controller.UserSectionController.SellerController;
+import Client.Controller.bankController.BankAPI;
 import Client.View.Menus.Menu;
+import Client.View.Menus.bank.BankMainMenu;
+import Client.View.Menus.bank.BankWindow;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -54,6 +57,22 @@ public class SellerSectionMenu extends Menu {
     public void viewOffs(MouseEvent mouseEvent) {
         setSubPage("userSection/sellerSection/viewOffsMenu/manage offs menu");
     }
+    public void decreaseCreditClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/sellerSection/decreaseCreditPage");
+
+    }
+    public void increaseCreditClicked(MouseEvent mouseEvent) {
+        try {
+            BankAPI.makeInstance();
+            BankMainMenu.redirectedForTransfer = true;
+            BankWindow.openBank();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     private void setSubPage(String name){
         Parent root = null;
         try {

@@ -1,11 +1,11 @@
-package Client.View.Menus.UserSectionMenus.BackupPersonMenu;
+package Client.View.Menus.BuyerBackup;
 
 import Client.Controller.Connector;
+import Client.Controller.LoginRegisterController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Chat.ChatComment;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
-import Client.View.Menus.BuyerBackup.bComment;
 import Client.View.Menus.NodeFinder;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -17,7 +17,7 @@ import org.example.App;
 
 import java.io.IOException;
 
-public class SendBox {
+public class bSendBox {
     public TextField message;
     public AnchorPane sendAnchorPane;
 
@@ -25,14 +25,16 @@ public class SendBox {
         BorderPane borderPane= (BorderPane) NodeFinder.getParentById(sendAnchorPane,"chatBorderPane");
         Label receiver= (Label) NodeFinder.getChildById(borderPane,"username");
         ChatComment chatComment=new ChatComment(UserSectionController.getLoggedInPerson().getUserName(),receiver.getText(),message.getText());
-        Comment.chatComment=chatComment;
+        bComment.chatComment=chatComment;
         VBox vBox= (VBox) NodeFinder.getChildById(borderPane,"chatVBox");
-        vBox.getChildren().add(App.loadFXML("userSection/backupPersonSection/Comment"));
+        vBox.getChildren().add(App.loadFXML("buyerBackUp/comment"));
         try {
             Connector.getInstance().initializeMessage(new Message(new Object[]{chatComment}, MessageType.SEND_COMMENT));
         } catch (Exception e) {
             e.printStackTrace();
         }
         message.clear();
+
+
     }
 }

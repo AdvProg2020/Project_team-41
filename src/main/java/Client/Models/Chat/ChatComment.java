@@ -1,8 +1,8 @@
 package Client.Models.Chat;
 
-import Client.Models.Person.Person;
+import java.io.Serializable;
 
-public class ChatComment {
+public class ChatComment implements Serializable {
     private String  sender;
     private String  receiver;
     private String comment;

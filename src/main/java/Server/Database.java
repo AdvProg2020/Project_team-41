@@ -1,6 +1,7 @@
 package Server;
 
 import Client.Models.*;
+import Client.Models.Chat.ChatBox;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
@@ -19,6 +20,7 @@ public class Database implements Serializable {
     private ArrayList<Person> allUsers=new ArrayList<>();
     private ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
     private ArrayList<Off>allOffs=new ArrayList<>();
+    private ArrayList<ChatBox> chatBoxes=new ArrayList<>();
 
     public static Database getInstance() {
         if (database == null) {
@@ -31,6 +33,14 @@ public class Database implements Serializable {
     }
     private Database(){
 
+    }
+
+    public ArrayList<ChatBox> getChatBoxes() {
+        return chatBoxes;
+    }
+    public void addChatBox(ChatBox chatBox){
+        chatBoxes.add(chatBox);
+        ServerSaver.write(AllCommands.allCategory);
     }
 
     public ArrayList<Off> getAllOffs() {
