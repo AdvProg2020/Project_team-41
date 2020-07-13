@@ -31,6 +31,9 @@ public class ManagerRegister {
     public TextField bankPass;
     public Label bankPassTitle;
     public Label bankPassError;
+    public TextField wage;
+    public Label wageError;
+    public Label wageTitle;
     boolean managerExists;
 
     public void initialize(){
@@ -46,6 +49,8 @@ public class ManagerRegister {
             bankUsernameTitle.setVisible(false);
             bankPass.setVisible(false);
             bankPassTitle.setVisible(false);
+            wage.setVisible(false);
+            wageTitle.setVisible(false);
 
         }
     }
@@ -59,6 +64,7 @@ public class ManagerRegister {
         phoneError.setVisible(false);
         bankPassError.setVisible(false);
         bankUsernameError.setVisible(false);
+        wageError.setVisible(false);
         welcome1.setVisible(false);
 
 
@@ -113,6 +119,12 @@ public class ManagerRegister {
         }else if(!managerExists&& bankPass.getText().length()==0){
             bankPassError.setVisible(true);
             return false;
+        }else if(!managerExists && !wage.getText().matches("\\d+")){
+            wageError.setVisible(true);
+            return false;
+        }else if(!managerExists && (Integer.parseInt(wage.getText())<0||Integer.parseInt(wage.getText())>100)){
+            wageError.setVisible(true);
+            return false;
         }
         else{
 
@@ -129,6 +141,7 @@ public class ManagerRegister {
             manager.setPhoneNumber(phoneNumber.getText());
             if(!managerExists){
                 manager.setUpManagerAccountId(manager,bankUsername.getText(),bankPass.getText());
+                Manager.setWage(Integer.parseInt(wage.getText()));
             }
         }catch (Exception e){
             System.out.print(e.getMessage());
@@ -143,5 +156,6 @@ public class ManagerRegister {
         phoneNumber.clear();
         bankUsername.clear();
         bankPass.clear();
+        wage.clear();
     }
 }
