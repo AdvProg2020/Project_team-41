@@ -472,21 +472,20 @@ public class ServerConnector extends Thread {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()){
             case GET_BACKUPS:{
-                objectOutputStream.writeObject(new Message(backup.getBackupPeople()));
+                objectOutputStream.writeObject(new Message(Main.backup.getBackupPeople()));
                 break;
             }
             case SEND_COMMENT:{
-                backup.addComment((ChatComment)inputs[0]);
+                Main.backup.addComment((ChatComment)inputs[0]);
                 sendSuccessful();
                 break;
             }
             case GET_CHAT_BOX:{
-                objectOutputStream.writeObject(new Message(backup.getChatBox((String)inputs[0],(String)inputs[1])));
-                objectOutputStream.flush();
+                objectOutputStream.writeObject(new Message(Main.backup.getChatBox((String)inputs[0],(String)inputs[1])));
                 break;
             }
             case GET_ALL_CHAT_BOXES:{
-                objectOutputStream.writeObject(new Message(backup.getAllChatBoxes((String)inputs[0])));
+                objectOutputStream.writeObject(new Message(Main.backup.getAllChatBoxes((String)inputs[0])));
                 break;
             }
         }
