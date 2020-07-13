@@ -279,6 +279,11 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getProductById((String) inputs[0])));
                 break;
             }
+            case CHANGE_TRADE_LOG_TO_SENT:{
+                ManagerServerController.getInstance().changeTradeLogToSent((String) inputs[0]);
+                sendSuccessful();
+                break;
+            }
 
         }
     }

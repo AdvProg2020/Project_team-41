@@ -53,11 +53,11 @@ public class BuyerServerController {
                 seller.increaseCreditWithWage(product.getPriceWithOff() * productQuantity);
 
             }
-                seller.addTradeLog(new TradeLog(new Date(),money,moneyWithoutOff - money,sellerProducts.get(seller),buyer.getUserName(),"waiting"));
+                seller.addTradeLog(new TradeLog(new Date(),money,moneyWithoutOff - money,sellerProducts.get(seller),buyer.getUserName(), TradeLog.DeliverySituation.WAITING,null));
         }
         if(cart.getCodedDiscount() != null)
             cart.getCodedDiscount().reduceDiscountCodeForUser(buyer);
-        buyer.addTradeLog(new TradeLog(new Date(),cashToPay,cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(),"waiting"));
+        buyer.addTradeLog(new TradeLog(new Date(),cashToPay,cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(), TradeLog.DeliverySituation.WAITING,cart.getReceiverInformation()));
         buyer.renewCart();
     }
     public ArrayList<String> getCodedDiscounts(Person person){
