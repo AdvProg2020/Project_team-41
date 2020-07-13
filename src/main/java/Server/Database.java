@@ -1,5 +1,6 @@
 package Server;
 
+import Client.Controller.bankController.BankAPI;
 import Client.Models.*;
 import Client.Models.Chat.ChatBox;
 import Client.Models.Person.Buyer;
@@ -26,6 +27,10 @@ public class Database implements Serializable {
     private ArrayList<Off>allOffs=new ArrayList<>();
     private ArrayList<ChatBox> chatBoxes=new ArrayList<>();
     private HashMap<Product, List<Byte>> files = new HashMap<>();
+    private int accountId;
+    private String accountUsername;
+    private String accountPassword;
+    private int wage;
 
     public static Database getInstance() {
         if (database == null) {
@@ -33,6 +38,7 @@ public class Database implements Serializable {
         }
         return database;
     }
+
     public static void setInstance(Database newDatabase){
         database = newDatabase;
     }
@@ -295,5 +301,31 @@ public class Database implements Serializable {
         allOffs.removeAll(offsToDelete);
         ServerSaver.write(AllCommands.allOffs);
     }
+    public void setUpManagerAccountId(Manager manager,String username,String password) throws Exception {
+        BankAPI.makeInstance();
+        accountId = BankAPI.getInstance().createAccount(manager.getFirstName(), manager.getLastName(), username, password, password);
+        this.accountUsername = username;
+        this.accountPassword = password;
+    }
 
+    public int getAccountId() {
+        return this.accountId;
+    }
+
+    public String getAccountUsername() {
+        return accountUsername;
+    }
+    public String getAccountPassword() {
+        return accountPassword;
+    }
+
+    public int getWage() {
+        return wage;
+    }
+
+    public void setWage(int wage) throws Exception {
+        if((wage<0)||wage>100)
+            throw new Exception("invalid wage number");
+        this.wage = wage;
+    }
 }

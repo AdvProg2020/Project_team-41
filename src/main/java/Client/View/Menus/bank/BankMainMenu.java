@@ -1,6 +1,7 @@
 package Client.View.Menus.bank;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Controller.bankController.BankAPI;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
@@ -23,7 +24,7 @@ public class BankMainMenu {
     public static boolean redirectedToPay;
 
 
-    public void initialize(){
+    public void initialize() throws Exception {
         if(redirectedForTransfer) {
             redirectedForTransfer = false;
             prepareTransferToShop(null);
@@ -75,10 +76,10 @@ public class BankMainMenu {
         AnchorPane anchorPane = (AnchorPane) NodeFinder.getChildById(borderPane, "insideAnchorPane");
         anchorPane.getChildren().setAll(root);
     }
-    private void prepareTransferToShop(Integer money){
+    private void prepareTransferToShop(Integer money) throws Exception {
         moveClicked(null);
         TextField destinationTextField = (TextField) NodeFinder.getChildById(bankMainMenuBorderPane, "transferPageDestinationTextField");
-        destinationTextField.setText(Manager.getAccountId() + "");
+        destinationTextField.setText(UserSectionController.getManagerAccountId() + "");
         destinationTextField.setEditable(false);
         if (money != null) {
             TextField moneyTextField = (TextField) NodeFinder.getChildById(bankMainMenuBorderPane, "transferPageMoneyTextField");

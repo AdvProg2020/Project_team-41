@@ -1,6 +1,7 @@
 package Server.Controller.UserSectionController;
 
 import Client.Models.Person.Person;
+import Server.Database;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,9 @@ public abstract class UserSectionServerController {
 
         return personalInfo;
 
+    }
+    public static int getManagerAccountId() throws Exception {
+        return Database.getInstance().getAccountId();
     }
     public static void edit(Person person,String field,String editedField) throws Exception {
         if(field.equals("username"))

@@ -4,10 +4,7 @@ import Client.Models.Chat.ChatComment;
 import Client.Models.Comment;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
-import Client.Models.Person.BackupPerson;
-import Client.Models.Person.Buyer;
-import Client.Models.Person.Person;
-import Client.Models.Person.Seller;
+import Client.Models.Person.*;
 import Client.Models.Product;
 import Client.Models.Score;
 import Client.View.Menus.Menu;
@@ -15,6 +12,7 @@ import Server.Controller.UserSectionController.BuyerServerController;
 import Server.Controller.UserSectionController.ManagerServerController;
 import Server.Controller.UserSectionController.SellerServerController;
 import Server.Controller.UserSectionController.UserSectionServerController;
+import Server.Database;
 import Server.Main;
 
 import java.io.File;
@@ -171,6 +169,19 @@ public class ServerConnector extends Thread {
                 sendSuccessful();
                 break;
             }
+            case GET_MANAGER_ACCOUNT_ID:{
+                objectOutputStream.writeObject(new Message(UserSectionServerController.getManagerAccountId()));
+                break;
+            }
+            case GET_WAGE:{
+                objectOutputStream.writeObject(new Message(Database.getInstance().getWage()));
+                break;
+            }
+            case SET_UP_MANAGER_ACCOUNT_ID:{
+                Database.getInstance().setUpManagerAccountId((Manager) inputs[0], (String) inputs[1], (String) inputs[2]);
+                sendSuccessful();
+                break;
+            }
         }
     }
 
@@ -284,6 +295,11 @@ public class ServerConnector extends Thread {
             }
             case CHANGE_TRADE_LOG_TO_SENT:{
                 ManagerServerController.getInstance().changeTradeLogToSent((String) inputs[0]);
+                sendSuccessful();
+                break;
+            }
+            case SET_WAGE:{
+                Database.getInstance().setWage((Integer) inputs[0]);
                 sendSuccessful();
                 break;
             }

@@ -285,9 +285,9 @@ public class SellerServerController extends UserSectionServerController {
         }
         public void transferMoneyToSeller(Integer accountNumber, Integer money,Seller seller) throws Exception {
                 BankAPI.makeInstance();
-                BankAPI.getInstance().updateToken(Manager.getAccountUsername(), Manager.getAccountPassword());
+                BankAPI.getInstance().updateToken(Database.getInstance().getAccountUsername(), Database.getInstance().getAccountPassword());
                 seller.decreaseCredit(money);
-                int receipt = BankAPI.getInstance().move(money.toString(), Integer.toString(Manager.getAccountId()), accountNumber.toString(), "transformed money to seller");
+                int receipt = BankAPI.getInstance().move(money.toString(), Integer.toString(Database.getInstance().getAccountId()), accountNumber.toString(), "transformed money to seller");
                 BankAPI.getInstance().pay(Integer.toString(receipt));
         }
 

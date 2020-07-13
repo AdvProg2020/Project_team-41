@@ -57,7 +57,7 @@ public class TransactionConfirmationPage {
         try {
             BankAPI.getInstance().pay(Integer.toString(receipt.getId()));
             //check if he transferred money to the shop
-            if (receipt.getDestAccountID() == Manager.getAccountId()) {
+            if (receipt.getDestAccountID() == UserSectionController.getManagerAccountId()) {
                 UserSectionController.getLoggedInPerson().increaseCredit(receipt.getMoney());
             }
             MessageTypeShow.showMessage(confirmationPageInformationText,MessageTypeShow.SUCCESS,"operation done successfully");

@@ -1,8 +1,10 @@
 package Client.View.Menus.LoginRegister;
 
 import Client.Controller.LoginRegisterController;
+import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.Person.Manager;
 import Client.View.Menus.Menu;
+import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageCategoryMenu.ManageCategoriesMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -139,8 +141,8 @@ public class ManagerRegister {
             manager.setEmail(email.getText());
             manager.setPhoneNumber(phoneNumber.getText());
             if(!managerExists){
-                manager.setUpManagerAccountId(manager,bankUsername.getText(),bankPass.getText());
-                Manager.setWage(Integer.parseInt(wage.getText()));
+                ManagerController.getInstance().setUpManagerAccountId(manager,bankUsername.getText(),bankPass.getText());
+                ManagerController.getInstance().setWage(Integer.parseInt(wage.getText()));
             }
         }catch (Exception e){
             System.out.print(e.getMessage());
