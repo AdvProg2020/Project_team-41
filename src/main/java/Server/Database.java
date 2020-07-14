@@ -330,7 +330,7 @@ public class Database implements Serializable {
         this.wage = wage;
         ServerSaver.write(AllCommands.allData);
     }
-    public void addFile(Product product, List<Byte> file) throws IOException {
+    public void addFile(Product product, List<Byte> file) {
         new Thread(() -> {
 
             try {

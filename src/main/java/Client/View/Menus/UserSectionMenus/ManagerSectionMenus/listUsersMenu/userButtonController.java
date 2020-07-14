@@ -47,7 +47,7 @@ public class userButtonController {
         Person user = null;
         try {
             user = ManagerController.getInstance().getUserByUsername(usernameTextField.getText().split(":")[1].trim());
-            if (user.equals(ManagerController.getLoggedInPerson())) {
+            if (user.getUserName().equals(ManagerController.getLoggedInPerson().getUserName())) {
                 showMessage(text, MessageTypeShow.ERROR,"cannot remove current user");
                 return;
             }

@@ -25,7 +25,7 @@ public class ScoreProduct {
                     boolean error = true;
                     Score scoreObj = new Score(UserSectionController.getLoggedInPerson(), score, ProductPageGeneralButtons.getTheProduct());
                     for (Product tradedProduct : UserSectionController.getLoggedInPerson().getAllProductsHeTraded()) {
-                        if (ProductPageGeneralButtons.getTheProduct().equals(tradedProduct)) {
+                        if (ProductPageGeneralButtons.getTheProduct().getProductId().equals(tradedProduct.getProductId())) {
                             ProductPageGeneralButtons.getTheProduct().getScores().add(scoreObj);
                             showMessage(scoreResult, MessageTypeShow.SUCCESS, "Thanks, we got the score");
                             error = false;

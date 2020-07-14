@@ -34,14 +34,19 @@ public class AddProductMenu {
         productDetails.add(descriptionTextField.getText());
         productDetails.add(specialFeaturesTextField.getText());
         try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            byte[] bytes = fileInputStream.readAllBytes();
-            List<Byte> byteList = new ArrayList<>(bytes.length);
-            for (int i = 0; i < bytes.length; i++) {
-                byteList.add(i, bytes[i]);
-            }
+            if (file != null) {
 
-            SellerController.getInstance().addProduct(productDetails,byteList);
+                FileInputStream fileInputStream = new FileInputStream(file);
+                byte[] bytes = fileInputStream.readAllBytes();
+                List<Byte> byteList = new ArrayList<>(bytes.length);
+                for (int i = 0; i < bytes.length; i++) {
+                    byteList.add(i, bytes[i]);
+                }
+                SellerController.getInstance().addProduct(productDetails, byteList);
+            }
+            else {
+                SellerController.getInstance().addProduct(productDetails, null);
+            }
             showMessage(informationText, MessageTypeShow.SUCCESS,"sent product creation request to manager successfully");
         } catch (Exception e) {
             showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
