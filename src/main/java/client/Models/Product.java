@@ -127,6 +127,10 @@ public class Product implements Serializable {
     }
 
     public void setQuantity(int quantity) throws Exception {
+        if (this.getCategory().getName().equals("file")) {
+            this.quantity = 1;
+            return;
+        }
         if(quantity < 0)
             throw new Exception("quantity can't be negative!");
         this.quantity = quantity;
@@ -219,6 +223,9 @@ public class Product implements Serializable {
     }
 
     public void decreaseQuantity(int quantity) throws Exception {
+        if (this.getCategory().getName().equals("file")) {
+            return;
+        }
         if(this.quantity > 0)
             this.quantity -= quantity;
         else
