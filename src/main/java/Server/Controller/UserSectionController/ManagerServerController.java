@@ -1,10 +1,7 @@
 package Server.Controller.UserSectionController;
 
 import Client.Models.*;
-import Client.Models.Person.Buyer;
-import Client.Models.Person.Manager;
-import Client.Models.Person.Person;
-import Client.Models.Person.Seller;
+import Client.Models.Person.*;
 import Server.Controller.TimeControl;
 import Server.Database;
 
@@ -79,8 +76,13 @@ public class ManagerServerController extends UserSectionServerController {
                 userType = "manager";
             else if(user instanceof Buyer)
                 userType = "buyer";
-            else
+            else if(user instanceof Seller)
                 userType = "seller";
+            else if (user instanceof BackupPerson) {
+                userType = "backup";
+            } else {
+                userType = "unknown";
+            }
             allUsers.add(userType + " : " + user.getUserName());
         }
         return allUsers;

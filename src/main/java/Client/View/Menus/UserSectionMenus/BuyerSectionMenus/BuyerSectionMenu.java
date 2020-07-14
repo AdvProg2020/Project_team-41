@@ -60,6 +60,18 @@ public class BuyerSectionMenu extends Menu {
     public void viewCartButtonClicked(MouseEvent mouseEvent) {
         setSubPage("userSection/buyerSection/viewCart/viewCart");
     }
+    public void viewShoppingHistory(MouseEvent mouseEvent) {
+        setSubPage("userSection/buyerSection/viewTradeLogs/view tradeLogs menu");
+    }
+
+    public void viewFilesClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/buyerSection/downloadPage/view files page");
+    }
+
+    public void logoutButtonClicked(MouseEvent mouseEvent) throws IOException {
+        logout("mainMenu");
+    }
+
     public static void loadInInsideAnchorPane(AnchorPane anchorPane,String location){
         Parent root = null;
         try {
@@ -68,14 +80,6 @@ public class BuyerSectionMenu extends Menu {
             e.printStackTrace();
         }
         anchorPane.getChildren().setAll(root);
-    }
-
-    public void logoutButtonClicked(MouseEvent mouseEvent) throws IOException {
-        logout("mainMenu");
-    }
-
-    public void viewShoppingHistory(MouseEvent mouseEvent) {
-        setSubPage("userSection/buyerSection/viewTradeLogs/view tradeLogs menu");
     }
 
     public void increaseCreditClicked(MouseEvent mouseEvent) {

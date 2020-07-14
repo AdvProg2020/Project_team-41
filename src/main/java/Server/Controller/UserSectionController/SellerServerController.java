@@ -103,9 +103,9 @@ public class SellerServerController extends UserSectionServerController {
         }
         public ArrayList<ArrayList<String>> getSalesHistory(Seller seller) throws Exception {
                 ArrayList<ArrayList<String>> salesHistory = new ArrayList<>();
-                if (seller.getTradeLogs().size() == 0)
+                if (Database.getInstance().getSellerByUsername(seller.getUserName()).getTradeLogs().size() == 0)
                         throw new Exception("no sale history available");
-                for (TradeLog tradeLog : seller.getTradeLogs()) {
+                for (TradeLog tradeLog : Database.getInstance().getSellerByUsername(seller.getUserName()).getTradeLogs()) {
                         ArrayList<String> saleHistory = new ArrayList<>();
                         saleHistory.add("log id : " + tradeLog.getLogId());
                         saleHistory.add("buyer : " + tradeLog.getBuyerName());
@@ -179,26 +179,26 @@ public class SellerServerController extends UserSectionServerController {
                 Database.getInstance().removeProduct(productToBeRemoved);
         }
         public ArrayList<Product> getProducts(Seller seller){
-                return seller.getProducts();
+                return Database.getInstance().getSellerByUsername(seller.getUserName()).getProducts();
         }
         public ArrayList<TradeLog> getLogs(Seller seller){
-                return seller.getTradeLogs();
+                return Database.getInstance().getSellerByUsername(seller.getUserName()).getTradeLogs();
         }
         public String getFactoryName(Seller seller){
-                return seller.getFactoryName();
+                return Database.getInstance().getSellerByUsername(seller.getUserName()).getFactoryName();
         }
         public ArrayList<Buyer> getBuyers(Seller seller,String id) throws Exception {
                 return Database.getInstance().getProductById(id).getBuyers();
         }
         public Off getOff(Seller seller,String id) throws Exception {
-                for (Off off : seller.getOffs()) {
+                for (Off off : Database.getInstance().getSellerByUsername(seller.getUserName()).getOffs()) {
                         if(off.getOffId().equals(id))
                                 return off;
                 }
                 throw new Exception("wrong off Id");
         }
         public Product getProduct(Seller seller,String id) throws Exception {
-                for (Product product : seller.getProducts()) {
+                for (Product product : Database.getInstance().getSellerByUsername(seller.getUserName()).getProducts()) {
                         if(product.getProductId().equals(id))
                                 return product;
                 }
@@ -208,7 +208,7 @@ public class SellerServerController extends UserSectionServerController {
                 return Database.getInstance().getAllCategory();
         }
         public ArrayList<Off> getOffs(Seller seller){
-                return seller.getOffs();
+                return Database.getInstance().getSellerByUsername(seller.getUserName()).getOffs();
         }
         public void editOff(String offId,Seller seller,HashMap<String ,String> edit) throws Exception {
                 Off off = Database.getInstance().getOffById(offId);
@@ -284,11 +284,9 @@ public class SellerServerController extends UserSectionServerController {
         public void transferMoneyToSeller(Integer accountNumber, Integer money,Seller seller) throws Exception {
                 BankAPI.makeInstance();
                 BankAPI.getInstance().updateToken(Database.getInstance().getAccountUsername(), Database.getInstance().getAccountPassword());
-                seller.decreaseCredit(money);
+                Database.getInstance().getSellerByUsername(seller.getUserName()).decreaseCredit(money);
                 int receipt = BankAPI.getInstance().move(money.toString(), Integer.toString(Database.getInstance().getAccountId()), accountNumber.toString(), "transformed money to seller");
                 BankAPI.getInstance().pay(Integer.toString(receipt));
         }
-
-
 
 }
