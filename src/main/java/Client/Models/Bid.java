@@ -13,7 +13,7 @@ public class Bid {
     private Product product;
     private Date endDate;
     private Seller seller;
-    private HashMap<Buyer, Integer> buyer_reccomendedPrice;
+    private HashMap<Buyer, Integer> buyer_recommendedPrice;
 
     public Bid(Product product, Date endDate, Seller seller) {
         this.bidId = RandomNumberGenerator.getToken(5);

@@ -4,6 +4,7 @@ import Client.Controller.AllProductsController;
 import Client.Controller.Connector;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Product;
 import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.UserSectionMenus.UserSection;
@@ -19,8 +20,9 @@ public class AddBid {
     public Text informationText;
 
     public void addBid(MouseEvent mouseEvent) throws Exception {
-
-        Connector.getInstance().initializeMessage(new Message(new Object[]{productTextField.getText() , endDateTextField.getText() , UserSectionController.getLoggedInPerson()}));
+        System.out.println("1");
+        Connector.getInstance().initializeMessage(new Message(new Object[]{productTextField.getText() , endDateTextField.getText() , UserSectionController.getLoggedInPerson()} , MessageType.ADD_BID));
+        System.out.println("2");
     }
 
     private void showMessage(Text text, MessageTypeShow messageTypeShow, String message) {

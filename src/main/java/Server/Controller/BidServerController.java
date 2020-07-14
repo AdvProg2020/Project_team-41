@@ -22,7 +22,7 @@ public class BidServerController {
     }
     public void addBid(String productId , String date , Seller seller) throws Exception {
         Product product = AllProductsController.getInstance().getProduct(productId);
-        String[] dateTime = {date.split("-")[0] , date.split("-")[0]};
+        String[] dateTime = {date.split("-")[0] , date.split("-")[1]};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
         Database.getInstance().getAllBids().add(new Bid(product , exactEndDate , seller));
     }

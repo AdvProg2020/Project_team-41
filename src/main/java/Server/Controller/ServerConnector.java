@@ -60,7 +60,6 @@ public class ServerConnector extends Thread {
                     System.err.println("----------------------");
                     processMessage(message);
 
-
                 } catch (IOException | ClassNotFoundException e) {
                     System.out.println("client disconnected(i guess)");
                     break;
@@ -116,6 +115,7 @@ public class ServerConnector extends Thread {
                 break;
             }
             case BID: {
+                System.out.println("4");
                 processBid(message);
                 break;
             }
@@ -131,6 +131,7 @@ public class ServerConnector extends Thread {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()) {
             case ADD_BID:{
+                System.out.println("3");
                 BidServerController.getInstance().addBid((String)inputs[0] , (String) inputs[1] , (Seller) inputs[2]);
                 sendSuccessful();
             }
