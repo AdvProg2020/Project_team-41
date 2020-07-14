@@ -47,7 +47,7 @@ public class Off implements Serializable {
 
     public boolean hasProduct(Product product){
         for (Product offProduct : getProducts()) {
-            if(offProduct.equals(product))
+            if(offProduct.getProductId().equals(product.getProductId()))
                 return true;
         }
         return false;

@@ -157,7 +157,7 @@ public abstract class Person implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return credit == person.credit &&
+        return  credit == person.credit &&
                 userName.equals(person.userName) &&
                 Objects.equals(firstName, person.firstName) &&
                 Objects.equals(lastName, person.lastName) &&

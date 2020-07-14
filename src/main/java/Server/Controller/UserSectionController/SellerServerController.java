@@ -289,6 +289,4 @@ public class SellerServerController extends UserSectionServerController {
                 BankAPI.getInstance().pay(Integer.toString(receipt));
         }
 
-
-
 }
