@@ -3,13 +3,11 @@ package Server.Controller.UserSectionController;
 import Client.Controller.bankController.BankAPI;
 import Client.Models.*;
 import Client.Models.Person.Buyer;
-import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Controller.TimeControl;
 import Server.Database;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -156,7 +154,6 @@ public class SellerServerController extends UserSectionServerController {
                 } catch (NumberFormatException e) {
                         throw new Exception("please enter a valid number");
                 }
-                product.setQuantity(productQuantity);
                 product.setPrice(productPrice);
                 product.setName(productName);
 
@@ -165,6 +162,7 @@ public class SellerServerController extends UserSectionServerController {
                                 throw new Exception("name is already chosen for another product");
                 }
                 product.setCategory(category);
+                product.setQuantity(productQuantity);
                 product.setCompanyName(productDetails.get(2));
                 product.setDescription(productDetails.get(5));
                 product.setSeller(seller);

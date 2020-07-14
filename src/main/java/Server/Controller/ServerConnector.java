@@ -193,11 +193,6 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(Database.getInstance().getWage()));
                 break;
             }
-            case SET_UP_MANAGER_ACCOUNT_ID:{
-                Database.getInstance().setUpManagerAccountId((Manager) inputs[0], (String) inputs[1], (String) inputs[2]);
-                sendSuccessful();
-                break;
-            }
         }
     }
 
@@ -316,6 +311,11 @@ public class ServerConnector extends Thread {
             }
             case SET_WAGE:{
                 Database.getInstance().setWage((Integer) inputs[0]);
+                sendSuccessful();
+                break;
+            }
+            case SET_UP_MANAGER_ACCOUNT_ID:{
+                Database.getInstance().setUpManagerAccountId((Manager) inputs[0], (String) inputs[1], (String) inputs[2]);
                 sendSuccessful();
                 break;
             }

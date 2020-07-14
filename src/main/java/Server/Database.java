@@ -9,13 +9,10 @@ import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
 import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
+import Server.Controller.UserSectionController.ManagerServerController;
 
-import java.io.File;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 
 public class Database implements Serializable {
@@ -26,7 +23,7 @@ public class Database implements Serializable {
     private ArrayList<CodedDiscount> allDiscountCodes=new ArrayList<>();
     private ArrayList<Off>allOffs=new ArrayList<>();
     private ArrayList<ChatBox> chatBoxes=new ArrayList<>();
-    private HashMap<Product, List<Byte>> files = new HashMap<>();
+    private ArrayList<Product> files = new ArrayList<>();
     private ArrayList<Bid> allBids=new ArrayList<>();
     private int accountId;
     private String accountUsername;
@@ -42,22 +39,18 @@ public class Database implements Serializable {
 
     public static void setInstance(Database newDatabase){
         database = newDatabase;
+        new File("src/main/resources/data/files").mkdir();
+        try {
+            ManagerServerController.getInstance().addCategory("file","file");
+        } catch (Exception ignored) {
+
+        }
     }
     private Database(){
 
     }
 
-    public void addFile(Product product, List<Byte> file) {
-        files.put(product, file);
-    }
 
-    public List<Byte> getFile(Product product) {
-        return files.get(product);
-    }
-
-    public void removeFile(Product product) {
-        files.remove(product);
-    }
 
     public ArrayList<ChatBox> getChatBoxes() {
         return chatBoxes;
@@ -309,8 +302,11 @@ public class Database implements Serializable {
     public void setUpManagerAccountId(Manager manager,String username,String password) throws Exception {
         BankAPI.makeInstance();
         accountId = BankAPI.getInstance().createAccount(manager.getFirstName(), manager.getLastName(), username, password, password);
+        System.out.println(accountId);
         this.accountUsername = username;
         this.accountPassword = password;
+
+        ServerSaver.write(AllCommands.allData);
     }
 
     public int getAccountId() {
@@ -332,5 +328,50 @@ public class Database implements Serializable {
         if((wage<0)||wage>100)
             throw new Exception("invalid wage number");
         this.wage = wage;
+        ServerSaver.write(AllCommands.allData);
+    }
+    public void addFile(Product product, List<Byte> file) throws IOException {
+        new Thread(() -> {
+
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/data/"+product.getName());
+                fileOutputStream.write(convertBytes(file));
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            files.add(product);
+            ServerSaver.write(AllCommands.allData);
+
+        });
+    }
+
+    public List<Byte> getFile(Product product) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream("src/main/resources/data/"+product.getName());
+        byte[] bytes = fileInputStream.readAllBytes();
+        List<Byte> byteList = new ArrayList<>(bytes.length);
+        for (int i = 0; i < bytes.length; i++) {
+            byteList.add(i, bytes[i]);
+        }
+        fileInputStream.close();
+        return byteList;
+    }
+
+    public void removeFile(Product product) throws Exception {
+        File file = new File("src/main/resources/data/"+product.getName());
+        if (!file.delete()) {
+            throw new Exception("file is not removed");
+        }
+        files.remove(product);
+        ServerSaver.write(AllCommands.allData);
+    }
+    private byte[] convertBytes(List<Byte> Byte)
+    {
+        byte[] file = new byte[Byte.size()];
+        Iterator<Byte> iterator = Byte.iterator();
+        for (int i = 0; i < file.length; i++) {
+            file[i] = iterator.next();
+        }
+        return file;
     }
 }
