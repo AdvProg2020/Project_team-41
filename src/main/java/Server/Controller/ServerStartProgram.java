@@ -17,6 +17,7 @@ public class ServerStartProgram {
     private static void readDatabase() throws IOException, ClassNotFoundException {
         InputStream inputStream = new FileInputStream("src/main/resources/data/Database.dat");
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        Database.setInstance(null);
         Database.setInstance(((Database) objectInputStream.readObject()));
         inputStream.close();
     }
