@@ -167,7 +167,9 @@ public class SellerServerController extends UserSectionServerController {
                 product.setDescription(productDetails.get(5));
                 product.setSeller(seller);
                 product.setSpecialFeatures(specialFeatures);
-                Database.getInstance().addFile(product, file);
+                if (file != null) {
+                        Database.getInstance().addFile(product, file);
+                }
                 product.setSituation(Situation.CREATING);
                 Database.getInstance().addRequest(new Request(seller,product,RequestType.ADD_PRODUCT));
         }
