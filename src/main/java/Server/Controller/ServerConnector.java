@@ -1,5 +1,6 @@
 package Server.Controller;
 
+import Client.Models.Bid;
 import Client.Models.Chat.ChatComment;
 import Client.Models.Comment;
 import Client.Models.Message.Message;
@@ -116,8 +117,12 @@ public class ServerConnector extends Thread {
                 break;
             }
             case BID: {
-                System.out.println("4");
                 processBid(message);
+                //TODO delete:
+                System.out.println("all bids are:");
+                for (Bid bid : Database.getInstance().getAllBids()) {
+                    System.out.println(bid);
+                }
                 break;
             }
             case BACKUP:{
@@ -132,7 +137,6 @@ public class ServerConnector extends Thread {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()) {
             case ADD_BID:{
-                System.out.println("3");
                 BidServerController.getInstance().addBid((String)inputs[0] , (String) inputs[1] , (Seller) inputs[2]);
                 sendSuccessful();
             }

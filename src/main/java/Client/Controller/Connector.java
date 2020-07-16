@@ -60,6 +60,7 @@ public class Connector {
         message.checkForException();
         return message.getOutput();
     }
+
     public synchronized Object initializeMessage(Message message) throws Exception {
         Connector.getInstance().sendMessage(message);
         return Connector.getInstance().receiveMessage();

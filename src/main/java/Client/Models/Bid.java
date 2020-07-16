@@ -4,11 +4,12 @@ import Client.Models.Person.Buyer;
 import Client.Models.Person.Seller;
 import Server.Controller.RandomNumberGenerator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Bid {
+public class Bid implements Serializable {
     private String bidId;
     private Product product;
     private Date endDate;
@@ -22,4 +23,15 @@ public class Bid {
         this.seller = seller;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    @Override
+    public String toString() {
+        return "Bid{" +
+                "product=" + product +
+                ", endDate=" + endDate +
+                '}';
+    }
 }

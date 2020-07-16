@@ -65,6 +65,10 @@ public class Database implements Serializable {
         return allBids;
     }
 
+    public void addBid(Bid bid){
+        allBids.add(bid);
+        ServerSaver.write(AllCommands.allBids);
+    }
     public ArrayList<Off> getAllOffs() {
         return allOffs;
     }

@@ -6,6 +6,7 @@ import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Server.Database;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 
 
@@ -21,9 +22,13 @@ public class BidServerController {
     private BidServerController(){
     }
     public void addBid(String productId , String date , Seller seller) throws Exception {
-        Product product = AllProductsController.getInstance().getProduct(productId);
+        Product product = AllProductsServerController.getInstance().getProduct(productId);
+        for (Bid bid : Database.getInstance().getAllBids()) {
+            if(bid.getProduct().equals(product))
+                throw new Exception("This product is already in a bid");
+        }
         String[] dateTime = {date.split("-")[0] , date.split("-")[1]};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
-        Database.getInstance().getAllBids().add(new Bid(product , exactEndDate , seller));
+        Database.getInstance().addBid(new Bid(product , exactEndDate , seller));
     }
 }

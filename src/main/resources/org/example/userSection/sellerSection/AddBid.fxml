@@ -34,8 +34,8 @@
         </fill>
     </Text>
 
-    <TextField fx:id="productTextField" layoutX="208.0" layoutY="151.0" prefHeight="34.0" prefWidth="289.0" promptText="day/month/year-hour:minute:second" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
-    <TextField fx:id="endDateTextField" layoutX="208.0" layoutY="96.0" prefHeight="34.0" prefWidth="289.0" promptText="Product Id can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="endDateTextField" layoutX="208.0" layoutY="151.0" prefHeight="34.0" prefWidth="289.0" promptText="day/month/year-hour:minute:second" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+    <TextField fx:id="productTextField" layoutX="208.0" layoutY="96.0" prefHeight="34.0" prefWidth="289.0" promptText="Product Id can't be empty" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
     <Button layoutX="236.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#addBid" prefHeight="27.0" prefWidth="233.0" stylesheets="@/org/example/styles/commandButton.css" text="Add bid">
         <textFill>
