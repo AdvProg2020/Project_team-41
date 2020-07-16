@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="100.0" fitWidth="103.0" layoutX="12.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/user-pro-avatar-scalable-vector-graphics-icon-woman-icon-11553526869tcdfa31pvo-removebg-preview.png" />
+            <Image url="@../../images/avatar-370-456322-removebg-preview.png" />
          </image>
       </ImageView>
       <Label fx:id="username" layoutX="153.0" layoutY="48.0" text="Name">
