@@ -1,5 +1,8 @@
 package Client.Models;
 
+import Client.Controller.Connector;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Seller;
 import Server.Controller.RandomNumberGenerator;
@@ -29,6 +32,42 @@ public class Bid implements Serializable {
 
     public Date getEndDate() {
         return endDate;
+    }
+
+    public String getBidId() {
+        return bidId;
+    }
+
+    public void setBidId(String bidId) {
+        this.bidId = bidId;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    public HashMap<Buyer, Integer> getBuyer_recommendedPrice() {
+        return buyer_recommendedPrice;
+    }
+
+    public void setBuyer_recommendedPrice(HashMap<Buyer, Integer> buyer_recommendedPrice) {
+        this.buyer_recommendedPrice = buyer_recommendedPrice;
+    }
+
+    public static ArrayList<Bid> getAllBids() throws Exception {
+        return (ArrayList<Bid>) Connector.getInstance().initializeMessage(new Message(MessageType.GET_ALL_BIDS));
     }
 
     @Override

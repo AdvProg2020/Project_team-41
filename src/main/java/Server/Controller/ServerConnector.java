@@ -140,6 +140,11 @@ public class ServerConnector extends Thread {
             case ADD_BID:{
                 BidServerController.getInstance().addBid((String)inputs[0] , (String) inputs[1] , (Seller) inputs[2]);
                 sendSuccessful();
+                break;
+            }
+            case GET_ALL_BIDS:{
+                objectOutputStream.writeObject(new Message(Database.getInstance().getAllBids()));
+                break;
             }
         }
     }

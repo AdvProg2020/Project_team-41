@@ -101,4 +101,8 @@ public class BuyerSectionMenu extends Menu {
     public void backupButtonClicked(MouseEvent mouseEvent) throws IOException {
         App.setRoot("buyerBackUp/buyerBackup");
     }
+
+    public void viewBidsButtonClicked(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("buyerSection/viewBids");
+    }
 }
