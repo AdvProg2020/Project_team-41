@@ -27,6 +27,10 @@ public class Bid implements Serializable {
         return product;
     }
 
+    public Date getEndDate() {
+        return endDate;
+    }
+
     @Override
     public String toString() {
         return "Bid{" +
