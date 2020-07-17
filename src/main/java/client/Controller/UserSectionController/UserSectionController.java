@@ -40,4 +40,8 @@ public abstract class UserSectionController {
     public static int getWage() throws Exception {
         return (int) Connector.getInstance().initializeMessage(new Message(null, MessageType.GET_WAGE));
     }
+
+    public static String getLoggedInPersonUserName() {
+        return loggedInPerson.getUserName();
+    }
 }
