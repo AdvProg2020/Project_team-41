@@ -7,10 +7,10 @@
     <TableView fx:id="tableView" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EEE8AA;" BorderPane.alignment="CENTER">
         <columns>
             <TableColumn fx:id="bidId" prefWidth="89.0" text="Bid id" />
-            <TableColumn fx:id="productName" prefWidth="149.0" text="product" />
+            <TableColumn fx:id="product" prefWidth="149.0" text="product" />
             <TableColumn fx:id="seller" prefWidth="125.0" text="seller username" />
             <TableColumn fx:id="endDate" prefWidth="139.0" text="End date" />
-            <TableColumn fx:id="participate" prefWidth="97.0" text="Participate" />
+            <TableColumn fx:id="participate" prefWidth="97.0" />
         </columns>
 
     </TableView>

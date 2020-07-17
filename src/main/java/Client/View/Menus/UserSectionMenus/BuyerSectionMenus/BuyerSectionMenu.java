@@ -103,6 +103,6 @@ public class BuyerSectionMenu extends Menu {
     }
 
     public void viewBidsButtonClicked(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("buyerSection/viewBids");
+        setSubPage("userSection/buyerSection/viewBids");
     }
 }
