@@ -119,12 +119,6 @@ public class ServerConnector extends Thread {
             }
             case BID: {
                 processBid(message);
-                //TODO delete:
-                System.out.println("all bids are:");
-                for (Bid bid : Database.getInstance().getAllBids()) {
-                    System.out.println(bid);
-                }
-                break;
             }
             case BACKUP:{
                 processBackup(message);

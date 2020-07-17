@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Client.View.Menus.Bid.OfferPrice"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.Bid.OfferPrice">
+
+    <children>
+        <Text layoutX="169.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLease enter your initial amount:" textAlignment="CENTER" wrappingWidth="250.22900390625">
+            <font>
+                <Font name="Times New Roman" size="17.0" />
+            </font>
+            <fill>
+                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                    <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="#dd813f" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+
+        <TextField fx:id="priceTextField" layoutX="199.0" layoutY="200.0" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
+        <Button fx:id="priceSendingButton" layoutX="397.0" layoutY="217.0" mnemonicParsing="false" onMouseClicked="#setPriceAndParticipate" prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/checkIcon.png')">
+            <font>
+                <Font size="1.0" />
+            </font>
+        </Button>
+        <Text fx:id="informationText" layoutX="87.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="414.13671875" />
+
+    </children>
 
 </AnchorPane>

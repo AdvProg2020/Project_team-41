@@ -1,11 +1,17 @@
 package Client.Models;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.App;
 
 import java.util.Date;
 import java.util.Objects;
+
+import static Client.View.Menus.Menu.loadFXML;
 
 public class BidsToShow {
     private String bidId;
@@ -65,7 +71,15 @@ public class BidsToShow {
         participate.setStyle("-fx-background-color:#DC143C");
         participate.setOnAction(e ->{
             try {
-                App.setRoot("Bid/OfferPrice");
+                Stage window = new Stage();
+
+                window.initModality(Modality.APPLICATION_MODAL);
+                window.setTitle("Offer price");
+
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "Bid/OfferPrice.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                window.setScene(scene);
+                window.showAndWait();
             } catch (Exception ioException) {
                 ioException.printStackTrace();
             }
