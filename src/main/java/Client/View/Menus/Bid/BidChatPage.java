@@ -24,6 +24,8 @@ public class BidChatPage extends Menu {
     public TextField productId;
     public TextField productName;
     public TextField highestBid;
+    public TextField message;
+
     public void initialize(){
         if(UserSectionController.getLoggedInPerson()==null){
             loginLogout.setText("Register/Login");
@@ -41,5 +43,8 @@ public class BidChatPage extends Menu {
         }else{
             logout("Bid/bidChatBox");
         }
+    }
+
+    public void sendMessage(ActionEvent actionEvent) {
     }
 }

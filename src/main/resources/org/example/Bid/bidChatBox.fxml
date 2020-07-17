@@ -29,7 +29,23 @@
    <center>
       <BorderPane fx:id="chatBorderPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <bottom>
-            <AnchorPane fx:id="sendAnchorPane" prefHeight="74.0" prefWidth="1142.0" BorderPane.alignment="CENTER" />
+            <AnchorPane fx:id="sendAnchorPane" prefHeight="74.0" prefWidth="1142.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="5.0" prefHeight="74.0" prefWidth="1110.0">
+                     <children>
+                        <TextField fx:id="message" layoutX="172.0" layoutY="17.0" prefHeight="39.0" prefWidth="608.0" promptText="Type your message hear...." style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <Button alignment="CENTER" layoutX="836.0" layoutY="18.0" mnemonicParsing="false" onAction="#sendMessage" style="-fx-background-color: #7700ff;" text="Send" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
          </bottom>
          <center>
             <ScrollPane fx:id="chatScrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
