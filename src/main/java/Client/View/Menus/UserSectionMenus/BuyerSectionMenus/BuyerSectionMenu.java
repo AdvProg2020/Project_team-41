@@ -104,6 +104,10 @@ public class BuyerSectionMenu extends Menu {
         App.setRoot("buyerBackUp/buyerBackup");
     }
 
+    public void viewBidsButtonClicked(MouseEvent mouseEvent) throws IOException {
+        setSubPage("userSection/buyerSection/viewBids");
+    }
+
     public void refreshCreditClicked(MouseEvent mouseEvent) {
         creditTextField.setText(UserSectionController.getLoggedInPerson().getCredit()+"Rials");
     }

@@ -61,10 +61,10 @@ public class Database implements Serializable {
         ServerSaver.write(AllCommands.allCategory);
     }
 
-    public ArrayList<Bid> getAllBids() {
-        return allBids;
+    public void addBid(Bid bid){
+        allBids.add(bid);
+        ServerSaver.write(AllCommands.allBids);
     }
-
     public ArrayList<Off> getAllOffs() {
         return allOffs;
     }
@@ -267,6 +267,23 @@ public class Database implements Serializable {
         allRequest.add(request);
         ServerSaver.write(AllCommands.allRequests);
     }
+    public ArrayList<Bid> getAllBids() {
+        ArrayList<Bid> bidsToDelete = new ArrayList<>();
+        Date date = new Date();
+        for(Bid bid : allBids ){
+            if(date.after(bid.getEndDate())){
+                bidsToDelete.add(bid);
+            }
+        }
+        deleteOutOfDateBids(bidsToDelete);
+      return allBids;
+    }
+
+    private void deleteOutOfDateBids(ArrayList<Bid> bidsToDelete) {
+        allBids.removeAll(bidsToDelete);
+        ServerSaver.write(AllCommands.allBids);
+    }
+
     public ArrayList<Product> getAllOffProducts(){
         ArrayList<Product> allOffProducts=new ArrayList<>();
         ArrayList<Off> offsToDelete=new ArrayList<>();
@@ -282,6 +299,10 @@ public class Database implements Serializable {
         }
         return allOffProducts;
     }
+    public void deleteOutOfDateOffs(ArrayList<Off> offsToDelete){
+        allOffs.removeAll(offsToDelete);
+        ServerSaver.write(AllCommands.allOffs);
+    }
     public Off getOffById(String Id) throws Exception {
         for (Off off : allOffs) {
             if(off.getOffId().equals(Id))
@@ -296,10 +317,7 @@ public class Database implements Serializable {
             ServerSaver.write(AllCommands.allRequests);
 
     }
-    public void deleteOutOfDateOffs(ArrayList<Off> offsToDelete){
-        allOffs.removeAll(offsToDelete);
-        ServerSaver.write(AllCommands.allOffs);
-    }
+
     public void setUpManagerAccountId(Manager manager,String username,String password) throws Exception {
         BankAPI.makeInstance();
         accountId = BankAPI.getInstance().createAccount(manager.getFirstName(), manager.getLastName(), username, password, password);
