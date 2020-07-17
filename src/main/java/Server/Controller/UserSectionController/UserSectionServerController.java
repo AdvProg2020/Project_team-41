@@ -78,6 +78,9 @@ public abstract class UserSectionServerController {
         foundPerson.increaseCredit(credit);
     }
     public static Person getLoggedInPerson(Person person) throws Exception {
+        if (person == null) {
+            return null;
+        }
         Person foundPerson = Database.getInstance().getPersonByUsername(person.getUserName());
         checkPersonPassword(person, foundPerson);
         return foundPerson;

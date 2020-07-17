@@ -64,7 +64,10 @@ public class ServerConnector extends Thread {
                     ServerSaver.write(AllCommands.allData);
 
                 } catch (IOException | ClassNotFoundException e) {
+                    ServerSaver.write(AllCommands.allData);
                     System.out.println("client disconnected(i guess)");
+                    System.out.println(e.getMessage());
+
                     break;
                 } catch (Exception e) {
                     try {
