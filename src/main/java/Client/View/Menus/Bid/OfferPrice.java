@@ -29,8 +29,12 @@ public class OfferPrice {
                 showMessage(informationText, MessageTypeShow.ERROR, "Price can Not be lower than your credit");
             }
             else{
-                bid.getBuyer_recommendedPrice().put((Buyer)UserSectionController.getLoggedInPerson() , initialPrice);
-                App.setRoot("Bid/BidMainPage");
+                bid.getBuyer_recommendedPrice().put((Buyer) UserSectionController.getLoggedInPerson(), initialPrice);
+//                System.out.println(bid.getBuyer_recommendedPrice().size());
+//                for (Buyer buyer : bid.getBuyer_recommendedPrice().keySet()) {
+//                    System.out.println(buyer);
+//                }
+                App.setRoot("Bid/bidChatBox");
             }
         } catch (Exception e) {
             showMessage(informationText, MessageTypeShow.ERROR, "Please enter a valid number");
