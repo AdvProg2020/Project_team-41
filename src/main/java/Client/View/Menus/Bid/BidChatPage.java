@@ -12,6 +12,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BidChatPage extends Menu {
     public static Bid bid;
@@ -25,16 +27,20 @@ public class BidChatPage extends Menu {
     public TextField productName;
     public TextField highestBid;
     public TextField message;
+    public boolean isHeOnThisPage;
 
     public void initialize(){
+        isHeOnThisPage=true;
         if(UserSectionController.getLoggedInPerson()==null){
             loginLogout.setText("Register/Login");
         }else{
             loginLogout.setText("Logout");
         }
+        updateChatBox();
     }
 
     public void back(ActionEvent actionEvent) {
+        isHeOnThisPage=false;
     }
 
     public void registerOrLogin(ActionEvent actionEvent) throws IOException {
@@ -46,5 +52,22 @@ public class BidChatPage extends Menu {
     }
 
     public void sendMessage(ActionEvent actionEvent) {
+    }
+    public void updateChatBox(){
+        Timer animTimer = new Timer();
+        animTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (isHeOnThisPage) {
+
+                } else {
+                    this.cancel();
+                }
+
+            }
+
+        }, 0, 1000);
+
+
     }
 }

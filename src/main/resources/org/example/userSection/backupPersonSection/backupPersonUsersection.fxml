@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -17,16 +18,21 @@
    <top>
       <AnchorPane prefHeight="94.0" prefWidth="1400.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" layoutX="87.0" layoutY="31.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #DC143C;" text="Back" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="1157.0" layoutY="31.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #DC143C;" text="Back" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="loginLogout" layoutX="177.0" layoutY="31.0" mnemonicParsing="false" onAction="#registerOrLogin" style="-fx-background-color: #DC143C;" text="Register/Login" textFill="WHITE">
+            <Button fx:id="loginLogout" layoutX="1238.0" layoutY="31.0" mnemonicParsing="false" onAction="#registerOrLogin" style="-fx-background-color: #DC143C;" text="Register/Login" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
+            <Label layoutX="39.0" layoutY="38.0" text="Wait for someone to send you message:" textFill="CRIMSON">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </top>

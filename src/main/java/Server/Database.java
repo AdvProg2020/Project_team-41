@@ -2,6 +2,7 @@ package Server;
 
 import Client.Controller.bankController.BankAPI;
 import Client.Models.*;
+import Client.Models.BidChat.BidChatBox;
 import Client.Models.Chat.ChatBox;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
@@ -25,6 +26,7 @@ public class Database implements Serializable {
     private ArrayList<ChatBox> chatBoxes=new ArrayList<>();
     private ArrayList<Product> files = new ArrayList<>();
     private ArrayList<Bid> allBids=new ArrayList<>();
+    private ArrayList<BidChatBox>bidChatBoxes=new ArrayList<>();
     private int accountId;
     private String accountUsername;
     private String accountPassword;
@@ -53,6 +55,14 @@ public class Database implements Serializable {
     }
     public void addChatBox(ChatBox chatBox){
         chatBoxes.add(chatBox);
+        ServerSaver.write(AllCommands.allCategory);
+    }
+
+    public ArrayList<BidChatBox> getBidChatBoxes() {
+        return bidChatBoxes;
+    }
+    public void addBidChatBox(BidChatBox bidChatBox){
+        bidChatBoxes.add(bidChatBox);
         ServerSaver.write(AllCommands.allCategory);
     }
 
