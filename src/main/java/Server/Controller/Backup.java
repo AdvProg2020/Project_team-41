@@ -23,7 +23,7 @@ public class Backup {
         return backupPeople;
     }
     public synchronized ChatBox getChatBox(String backupPerson,String buyer){
-        ServerStartProgram.startProgram();
+//        ServerStartProgram.startProgram();
         //I know it's not right
         for (ChatBox chatBox : Database.getInstance().getChatBoxes()) {
             if(chatBox.getBackupPerson().equals(backupPerson)&&chatBox.getBuyer().equals(buyer)){
