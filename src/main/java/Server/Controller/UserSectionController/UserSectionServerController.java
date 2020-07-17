@@ -26,7 +26,7 @@ public abstract class UserSectionServerController {
         return personalInfo;
 
     }
-    public static int getManagerAccountId() throws Exception {
+    public static int getManagerAccountId() {
         return Database.getInstance().getAccountId();
     }
     public static void edit(Person person,String field,String editedField) throws Exception {
@@ -72,4 +72,19 @@ public abstract class UserSectionServerController {
 
     }
 
+    public static void increaseCredit(Person person,int credit) throws Exception {
+        Person foundPerson = Database.getInstance().getPersonByUsername(person.getUserName());
+        checkPersonPassword(person, foundPerson);
+        foundPerson.increaseCredit(credit);
+    }
+    public static Person getLoggedInPerson(Person person) throws Exception {
+        Person foundPerson = Database.getInstance().getPersonByUsername(person.getUserName());
+        checkPersonPassword(person, foundPerson);
+        return foundPerson;
+    }
+    private static void checkPersonPassword(Person person,Person foundPerson) throws Exception {
+        if (!foundPerson.getPassword().equals(person.getPassword())) {
+            throw new Exception("you don't have access to this person");
+        }
+    }
 }

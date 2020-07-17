@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu;
 
 import Client.Controller.UserSectionController.SellerController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Controller.bankController.BankAPI;
 import Client.View.Menus.Menu;
 import Client.View.Menus.bank.BankMainMenu;
@@ -101,4 +102,7 @@ public class SellerSectionMenu extends Menu {
     }
 
 
+    public void refreshCreditClicked(MouseEvent mouseEvent) {
+        creditTextField.setText(UserSectionController.getLoggedInPerson().getCredit()+"Rials");
+    }
 }

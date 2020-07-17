@@ -1,9 +1,11 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Controller.bankController.BankAPI;
 import Client.View.Menus.Menu;
 import Client.View.Menus.MessageTypeShow;
+import Client.View.Menus.UserSectionMenus.UserSection;
 import Client.View.Menus.bank.BankMainMenu;
 import Client.View.Menus.bank.BankWindow;
 import javafx.fxml.FXML;
@@ -104,5 +106,9 @@ public class BuyerSectionMenu extends Menu {
 
     public void viewBidsButtonClicked(MouseEvent mouseEvent) throws IOException {
         setSubPage("userSection/buyerSection/viewBids");
+    }
+
+    public void refreshCreditClicked(MouseEvent mouseEvent) {
+        creditTextField.setText(UserSectionController.getLoggedInPerson().getCredit()+"Rials");
     }
 }

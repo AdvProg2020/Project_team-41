@@ -61,6 +61,7 @@ public class ServerConnector extends Thread {
                     System.out.println(message);
                     System.err.println("----------------------");
                     processMessage(message);
+                    ServerSaver.write(AllCommands.allData);
 
                 } catch (IOException | ClassNotFoundException e) {
                     System.out.println("client disconnected(i guess)");
@@ -74,6 +75,7 @@ public class ServerConnector extends Thread {
                         break;
                     }
                 }
+
 
             }
         }
@@ -197,6 +199,16 @@ public class ServerConnector extends Thread {
             case GET_WAGE:{
                 objectOutputStream.writeObject(new Message(Database.getInstance().getWage()));
                 break;
+            }
+            case GET_LOGGED_IN_PERSON:{
+                objectOutputStream.writeObject(new Message(UserSectionServerController.getLoggedInPerson((Person) inputs[0])));
+                break;
+            }
+            case INCREASE_CREDIT:{
+                UserSectionServerController.increaseCredit((Person) inputs[0], (Integer) inputs[1]);
+                sendSuccessful();
+                break;
+
             }
         }
     }

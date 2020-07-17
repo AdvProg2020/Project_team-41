@@ -143,6 +143,7 @@
             </TextField>
             <Button layoutX="770.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#decreaseCreditClicked" prefHeight="27.0" prefWidth="43.0" text="-" />
             <Button layoutX="717.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#increaseCreditClicked" prefHeight="27.0" prefWidth="43.0" text="+" />
+            <Button onMouseClicked="#refreshCreditClicked" layoutX="438.0" layoutY="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="60.0" text="refresh" />
          </children></AnchorPane>
    </center>
 </BorderPane>
