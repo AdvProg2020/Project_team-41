@@ -17,7 +17,7 @@ public class Message implements Serializable {
         this.messageType = messageType;
         this.inputs = inputs;
         try {
-            this.sender = UserSectionController.getLoggedInPerson().getUserName();
+            this.sender = UserSectionController.getLoggedInPersonUserName();
         } catch (Exception ignored) {
         }
     }
