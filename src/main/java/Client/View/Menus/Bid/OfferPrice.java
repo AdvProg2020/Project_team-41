@@ -1,6 +1,8 @@
 package Client.View.Menus.Bid;
 
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Bid;
+import Client.Models.Person.Buyer;
 import Client.View.Menus.MessageTypeShow;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,6 +19,7 @@ public class OfferPrice {
     public TextField priceTextField;
     public Button priceSendingButton;
     public Text informationText;
+    public static Bid bid;
 
     public void setPriceAndParticipate(MouseEvent mouseEvent) throws IOException {
         int initialPrice = 0;
@@ -26,7 +29,7 @@ public class OfferPrice {
                 showMessage(informationText, MessageTypeShow.ERROR, "Price can Not be lower than your credit");
             }
             else{
-
+                bid.getBuyer_recommendedPrice().put((Buyer)UserSectionController.getLoggedInPerson() , initialPrice);
                 App.setRoot("Bid/BidMainPage");
             }
         } catch (Exception e) {

@@ -1,5 +1,8 @@
 package Client.Models;
 
+import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Person.Buyer;
+import Client.View.Menus.Bid.OfferPrice;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +17,7 @@ import java.util.Objects;
 import static Client.View.Menus.Menu.loadFXML;
 
 public class BidsToShow {
+    private Bid bid;
     private String bidId;
     private String product;
     private String endDate;
@@ -60,7 +64,8 @@ public class BidsToShow {
         this.participate = participate;
     }
 
-    public BidsToShow(String bidId, String product, String endDate, String seller, Button participate) {
+    public BidsToShow(Bid bid , String bidId, String product, String endDate, String seller, Button participate) {
+        this.bid = bid;
         this.bidId = bidId;
         this.product = product;
         this.endDate = endDate;
@@ -76,10 +81,17 @@ public class BidsToShow {
                 window.initModality(Modality.APPLICATION_MODAL);
                 window.setTitle("Offer price");
 
+                OfferPrice.bid = bid;
+
+                if(bid.getBuyer_recommendedPrice().containsKey((Buyer) UserSectionController.getLoggedInPerson())){
+                    App.setRoot("Bid/BidMainPage");
+                }
+                else{
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "Bid/OfferPrice.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
                 window.setScene(scene);
                 window.showAndWait();
+                }
             } catch (Exception ioException) {
                 ioException.printStackTrace();
             }

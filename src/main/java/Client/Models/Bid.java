@@ -24,6 +24,7 @@ public class Bid implements Serializable {
         this.product = product;
         this.endDate = endDate;
         this.seller = seller;
+        buyer_recommendedPrice = new HashMap<>();
     }
 
     public Product getProduct() {
