@@ -40,12 +40,7 @@ public class Database implements Serializable {
     public static void setInstance(Database newDatabase){
         database = newDatabase;
         new File("src/main/resources/data/files").mkdir();
-        try {
-            ManagerServerController.getInstance().addCategory("file","file");
-        } catch (Exception e) {
-            if(!e.getMessage().equals("category exists with this name"))
-                e.printStackTrace();
-        }
+
     }
     private Database(){
 

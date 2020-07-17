@@ -8,7 +8,6 @@ public class ServerSaver {
     private static OutputStream outputStream;
     private static ObjectOutputStream objectOutputStream;
     public static void write(AllCommands command)  {
-
         try {
             writeDatabase();
 //        if(command.equals(AllCommands.allCategory)){
