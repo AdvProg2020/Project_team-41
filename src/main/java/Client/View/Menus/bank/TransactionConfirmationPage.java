@@ -58,7 +58,7 @@ public class TransactionConfirmationPage {
             BankAPI.getInstance().pay(Integer.toString(receipt.getId()));
             //check if he transferred money to the shop
             if (receipt.getDestAccountID() == UserSectionController.getManagerAccountId()) {
-                UserSectionController.getLoggedInPerson().increaseCredit(receipt.getMoney());
+                UserSectionController.increaseCredit(receipt.getMoney());
             }
             MessageTypeShow.showMessage(confirmationPageInformationText,MessageTypeShow.SUCCESS,"operation done successfully");
             TextField creditTextField = (TextField) NodeFinder.getChildById((Parent) NodeFinder.getParentById(confirmationPageInformationText, "bankMainMenuBorderPane"), "creditTextField");

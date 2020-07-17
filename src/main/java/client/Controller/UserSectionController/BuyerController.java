@@ -74,7 +74,7 @@ public class BuyerController extends UserSectionController {
         return (Product) Connector.getInstance().initializeMessage(new Message(new Object[]{productId}, MessageType.GET_PRODUCT_BUYER_SECTION));
 //        return BuyerServerController.getInstance().getProduct(productId);
     }
-    public Cart getCart(){
+    public Cart getCart() throws Exception {
         Buyer buyer = (Buyer)getLoggedInPerson();
         return buyer.getCart();
 
