@@ -1,6 +1,8 @@
 package Client.Models.BidChat;
 
-public class BidChatComment {
+import java.io.Serializable;
+
+public class BidChatComment implements Serializable {
     public String bidId;
     String sender;
     String message;

@@ -5,9 +5,10 @@ import Client.View.Menus.Bid.BidComment;
 import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BidChatBox {
+public class BidChatBox implements Serializable {
     ArrayList<BidChatComment>chatComments;
     String bidId;
 
