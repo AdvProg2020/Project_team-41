@@ -80,6 +80,7 @@ public class BidChatPage extends Menu {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            message.clear();
 
 
         }
