@@ -8,6 +8,7 @@ import Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageCategoryMenu
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 import java.io.IOException;
@@ -77,6 +78,8 @@ public class ManagerRegister {
             setVariables(manager);
             try {
                 LoginRegisterController.getInstance().createAccount(manager);
+                welcome1.setText("Account successfully created");
+                welcome1.setTextFill(Color.GREEN);
                 welcome1.setVisible(true);
                 clearVariables();
                 Menu.closeWindow();
@@ -141,8 +144,15 @@ public class ManagerRegister {
             manager.setEmail(email.getText());
             manager.setPhoneNumber(phoneNumber.getText());
             if(!managerExists){
-                ManagerController.getInstance().setUpManagerAccountId(manager,bankUsername.getText(),bankPass.getText());
-                ManagerController.getInstance().setWage(Integer.parseInt(wage.getText()));
+                try {
+                    ManagerController.getInstance().setUpManagerAccountId(manager,bankUsername.getText(),bankPass.getText());
+                    ManagerController.getInstance().setWage(Integer.parseInt(wage.getText()));
+                } catch (Exception e) {
+                    welcome1.setTextFill(Color.RED);
+                    welcome1.setText("Something went wrong with the bank, please try again.");
+                    welcome1.setVisible(true);
+                }
+
             }
         }catch (Exception e){
             System.out.print(e.getMessage());

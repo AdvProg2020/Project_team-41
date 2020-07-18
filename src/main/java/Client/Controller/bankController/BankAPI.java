@@ -17,8 +17,8 @@ import java.util.Date;
  */
 public class BankAPI {
     private static BankAPI bankAPI;
-    public final int PORT = 2222;
-    public final String IP = "localhost";
+    public final int PORT = 18311;
+    public final String IP = "2.tcp.ngrok.io";
     private Date tokenCreationDate;
     private int accountId;
     private String token;
