@@ -2,6 +2,7 @@ package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewFiles;
 
 import Client.Controller.UserSectionController.BuyerController;
 import Client.Models.Product;
+import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
 import Server.Controller.TimeControl;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 public class viewFilesPageController {
     public AnchorPane viewFilesPageAnchorPane;
     public VBox filesVBox;
+    public Text viewFilesInformationText;
 
     @FXML
     public void initialize() {
@@ -25,6 +28,9 @@ public class viewFilesPageController {
             ArrayList<Product> files = BuyerController.getInstance().getAllBoughtFiles();
             for (Product file : files) {
                 makeFileSplitButton(file.getName(), file.getProductId());
+            }
+            if (files.isEmpty()) {
+                MessageTypeShow.showMessage(viewFilesInformationText, MessageTypeShow.INFORMATION, "no file found");
             }
         } catch (Exception e) {
             e.printStackTrace();

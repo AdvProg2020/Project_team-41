@@ -24,9 +24,6 @@ public class BuyerController extends UserSectionController {
     private BuyerController(){
 
     }
-    public int getBalance(){
-        return loggedInPerson.getCredit();
-    }
     public ArrayList<String> getCodedDiscounts() throws Exception {
         return (ArrayList<String>) Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson}, MessageType.GET_CODED_DISCOUNTS));
 //        return BuyerServerController.getInstance().getCodedDiscounts(loggedInPerson);

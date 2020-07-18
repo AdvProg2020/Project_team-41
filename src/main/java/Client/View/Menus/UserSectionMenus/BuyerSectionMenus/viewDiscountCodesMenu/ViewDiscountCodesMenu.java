@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ViewDiscountCodesMenu {
     public Text informationText;
@@ -23,9 +24,14 @@ public class ViewDiscountCodesMenu {
     @FXML
     public void initialize(){
         try {
+            ArrayList<String> discountCodes = BuyerController.getInstance().getCodedDiscounts();
             for (String codedDiscount : BuyerController.getInstance().getCodedDiscounts()) {
                 makeCategorySplitButton(codedDiscount);
             }
+            if (discountCodes.isEmpty()) {
+                showMessage(informationText, MessageTypeShow.INFORMATION, "no discount code found");
+            }
+
         } catch (Exception e) {
             showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
         }

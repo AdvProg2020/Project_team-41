@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import org.example.App;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ViewTradeLogsMenu {
@@ -27,8 +28,12 @@ public class ViewTradeLogsMenu {
     @FXML
     public void initialize(){
         try {
-            for (TradeLog tradeLog : BuyerController.getInstance().getTradeLogs()) {
+            ArrayList<TradeLog> tradeLogs = BuyerController.getInstance().getTradeLogs();
+            for (TradeLog tradeLog : tradeLogs) {
                     makeTradeLogSplitButton(tradeLog.getLogId(),tradeLog.getDate());
+            }
+            if (tradeLogs.isEmpty()) {
+                MessageTypeShow.showMessage(informationText, MessageTypeShow.INFORMATION, "no tradeLog found");
             }
         } catch (Exception e) {
             showMessage(informationText, MessageTypeShow.INFORMATION,e.getMessage());

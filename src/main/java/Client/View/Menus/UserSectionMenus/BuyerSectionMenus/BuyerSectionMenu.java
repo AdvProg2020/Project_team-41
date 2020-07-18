@@ -34,7 +34,7 @@ public class BuyerSectionMenu extends Menu {
     @FXML
     public void initialize(){
         SimpleAudioPlayer.getInstance().playMusic(Music.USER_SECTION);
-        creditTextField.setText(BuyerController.getInstance().getBalance() +"Rials");
+        creditTextField.setText(UserSectionController.getLoggedInPerson().getCredit()+"Rials");
     }
 
     public void viewPersonalInfoButtonClicked(MouseEvent mouseEvent) {
