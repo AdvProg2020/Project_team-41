@@ -65,6 +65,7 @@ public class ServerConnector extends Thread {
 
                 } catch (IOException | ClassNotFoundException e) {
                     ServerSaver.write(AllCommands.allData);
+                    Main.getConnectedPeople().remove(person);
                     System.out.println("client disconnected(i guess)");
                     System.out.println(e.getMessage());
 
@@ -501,7 +502,7 @@ public class ServerConnector extends Thread {
                 Person loginPerson;
                 objectOutputStream.writeObject(new Message(loginPerson=LoginRegisterServerController.getInstance().login((String) inputs[0], (String) inputs[1])));
                 person=loginPerson;
-                Main.connectedPeople.add(loginPerson);
+                Main.getConnectedPeople().add(loginPerson);
                 break;
             }
             case REGISTER: {
@@ -515,7 +516,7 @@ public class ServerConnector extends Thread {
 
             }
             case LOGOUT:{
-                Main.connectedPeople.remove(person);
+                Main.getConnectedPeople().remove(person);
                 person=null;
                 sendSuccessful();
                 break;

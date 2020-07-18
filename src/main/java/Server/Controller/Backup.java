@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Backup {
     public synchronized ArrayList<BackupPerson> getBackupPeople(){
-        ArrayList<Person> people= Main.connectedPeople;
+        ArrayList<Person> people= Main.getConnectedPeople();
         ArrayList<BackupPerson> backupPeople=new ArrayList<>();
         if(!people.isEmpty()){
             for (Person person1 : people) {
