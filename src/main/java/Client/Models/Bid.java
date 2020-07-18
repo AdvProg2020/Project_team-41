@@ -1,6 +1,8 @@
 package Client.Models;
 
 import Client.Controller.Connector;
+import Client.Models.BidChat.BidChatBox;
+import Client.Models.BidChat.BidChatComment;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
 import Client.Models.Person.Buyer;
@@ -20,6 +22,7 @@ public class Bid implements Serializable {
     private Date endDate;
     private Seller seller;
     private HashMap<Buyer, Integer> buyer_recommendedPrice;
+    private BidChatBox bidChatBox;
 
     public Bid(Product product, Date endDate, Seller seller) {
         this.bidId = RandomNumberGenerator.getToken(5);
@@ -27,6 +30,7 @@ public class Bid implements Serializable {
         this.endDate = endDate;
         this.seller = seller;
         buyer_recommendedPrice = new HashMap<>();
+        this.bidChatBox=new BidChatBox(this.bidId);
     }
 
     public Product getProduct() {
@@ -81,4 +85,15 @@ public class Bid implements Serializable {
                 '}';
     }
 
+    public void increasePrice(Buyer buyer, int price) {
+        buyer_recommendedPrice.replace(buyer , price);
+        ServerSaver.write(AllCommands.allBids);
+    }
+
+    public BidChatBox getBidChatBox() {
+        return bidChatBox;
+    }
+    public void addComment(BidChatComment bidChatComment){
+        bidChatBox.addComment(bidChatComment);
+    }
 }

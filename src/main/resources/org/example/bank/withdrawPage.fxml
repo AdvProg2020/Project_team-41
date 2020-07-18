@@ -6,10 +6,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.bank.WithDrawPage">
    <children>
-      <TextField fx:id="withDrawMoneyTextField" layoutX="83.0" layoutY="95.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter money you wish to withdraw" />
-      <Text fx:id="withDrawInformationText" layoutX="51.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.89990234375" />
-      <Button layoutX="390.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#withDrawClicked" text="withdraw" />
       <TextField fx:id="creditNumberTextField" layoutX="83.0" layoutY="44.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter your credit number" />
+      <TextField fx:id="withDrawMoneyTextField" layoutX="83.0" layoutY="95.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter money you wish to withdraw" />
       <TextField fx:id="descriptionTextField" layoutX="83.0" layoutY="165.0" prefHeight="160.0" prefWidth="256.0" promptText="(optional) description" />
+      <Button layoutX="390.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#withDrawClicked" text="withdraw" />
+      <Text fx:id="withDrawInformationText" layoutX="51.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.89990234375" />
    </children>
 </AnchorPane>

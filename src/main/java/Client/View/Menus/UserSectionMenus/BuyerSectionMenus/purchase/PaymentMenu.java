@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.purchase;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Controller.bankController.BankAPI;
 import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
@@ -54,7 +55,7 @@ public class PaymentMenu {
     private void updateCredit(){
 
         TextField creditTextField = (TextField) NodeFinder.getChildById((Parent) NodeFinder.getParentById(paymentMenuAnchorPane, "buyerSectionBoarderPane"), "creditTextField");
-        creditTextField.setText(BuyerController.getInstance().getBalance()+"Rials");
+        creditTextField.setText(UserSectionController.getLoggedInPerson().getCredit()+"Rials");
     }
     private int getPriceFromRawString(String rawString) {
         return Integer.parseInt(rawString.split("\\D")[0]);

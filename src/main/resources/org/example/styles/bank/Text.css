@@ -1,0 +1,15 @@
+.text{
+    -fx-font-family: "Times New Roman"; -fx-background-color: transparent; -fx-border-color: #754d34; -fx-border-width: 0px 0px 2px 0px; -fx-border-radius: 10; -fx-background-radius: 10; -fx-alignment: "CENTER"; -fx-font-style: italic; -fx-opacity: 0.9; -fx-font-size: 17;
+}
+.text:hover{
+    -fx-font-family: "Times New Roman"; -fx-background-color: transparent; -fx-border-color: #3f251f; -fx-border-width: 0px 0px 2px 0px; -fx-border-radius: 20; -fx-background-radius: 20; -fx-alignment: "CENTER"; -fx-font-style: italic; -fx-opacity: 0.9; -fx-font-size: 17;
+}
+
+
+.text-area {
+    text-area-background: #6A5ACD ;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+}
