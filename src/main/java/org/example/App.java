@@ -20,10 +20,12 @@ import java.net.URL;
 public class App extends Application {
 
     private static Scene scene;
+    private static final int PORT = 14387;
+    private final String IP = "tcp://0.tcp.ngrok.io";
 
     @Override
     public void start(Stage stage) throws IOException {
-        Socket socket = new Socket("localhost", 8888);
+        Socket socket = new Socket(IP, PORT);
         Connector.makeInstance(socket);
         SimpleAudioPlayer.getInstance().playMusic(Music.MAIN_MENU);
         setIconImage();
