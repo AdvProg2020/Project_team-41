@@ -17,7 +17,7 @@ public class BankWindow {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("THE BANK");
         window.setHeight(500.0);
-        window.setWidth(920.0);
+        window.setWidth(887.0);
 
         scene = new Scene(loadFXML("bank/bankLoginMenu"));
         window.setScene(scene);

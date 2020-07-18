@@ -1,6 +1,7 @@
 package Client.View.Menus.UserSectionMenus;
 
 import Client.Controller.UserSectionController.BuyerController;
+import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Cart;
 import Client.Models.Product;
 import Client.Models.TradeLog;
@@ -389,7 +390,7 @@ public class BuyerSection extends UserSection {
     }
 
     private void viewBalance(){
-        System.out.println("your current balance is : " + BuyerController.getInstance().getBalance());
+        System.out.println("your current balance is : " + UserSectionController.getLoggedInPerson().getCredit()+"Rials");
         this.show();
         this.execute();
     }
