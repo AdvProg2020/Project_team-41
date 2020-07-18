@@ -9,8 +9,8 @@
       <Text fx:id="informationText" layoutX="226.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="261.0" />
       <Text layoutX="167.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="account id" />
       <Text layoutX="167.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="money" />
-      <TextField fx:id="accountIdTextField" layoutX="269.0" layoutY="142.0" />
-      <TextField fx:id="moneyTextField" layoutX="269.0" layoutY="187.0" />
-      <Button onMouseClicked="#submitClicked" layoutX="322.0" layoutY="253.0" mnemonicParsing="false" text="submit" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="accountIdTextField" layoutX="269.0" layoutY="142.0" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="moneyTextField" layoutX="269.0" layoutY="187.0" />
+      <Button stylesheets="/org/example/styles/commandButton.css" onMouseClicked="#submitClicked" layoutX="322.0" layoutY="253.0" mnemonicParsing="false" text="submit" />
    </children>
 </AnchorPane>
