@@ -73,11 +73,6 @@ public class Bid implements Serializable {
         return (ArrayList<Bid>) Connector.getInstance().initializeMessage(new Message(MessageType.GET_ALL_BIDS));
     }
 
-    public void addBuyer(Buyer buyer , int price)  {
-        buyer_recommendedPrice.put(buyer , price);
-        ServerSaver.write(AllCommands.allBids);
-    }
-
     @Override
     public String toString() {
         return "Bid{" +
@@ -86,8 +81,4 @@ public class Bid implements Serializable {
                 '}';
     }
 
-    public void increasePrice(Buyer buyer, int price) {
-        buyer_recommendedPrice.replace(buyer , price);
-        ServerSaver.write(AllCommands.allBids);
-    }
 }

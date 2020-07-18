@@ -34,13 +34,12 @@ public class BidServerController {
     }
 
     public void addParticipant(String bidId, Buyer buyer, int price) throws Exception {
-            Database.getInstance().getBidById(bidId).addBuyer(buyer , price);
-
-        // System.err.println("size of participants (SERVER): " +   Database.getInstance().getBidById(bidId).getBuyer_recommendedPrice().size());
-
+            Database.getInstance().getBidById(bidId).getBuyer_recommendedPrice().put(buyer , price);
+            ServerSaver.write(AllCommands.allBids);
     }
 
     public void IncreasePrice(Bid bid, Buyer buyer, int price) throws Exception {
-        bid.increasePrice(buyer , price);
+        bid.getBuyer_recommendedPrice().replace(buyer , price);
+        ServerSaver.write(AllCommands.allBids);
     }
 }

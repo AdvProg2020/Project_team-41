@@ -68,7 +68,7 @@ public class BidsToShow {
     }
 
     public BidsToShow(String bidId, String product, String endDate, String seller, Button participate) throws Exception {
-        Bid shownBid = (Bid) Connector.getInstance().initializeMessage(new Message(new Object[]{bidId} , MessageType.GET_BID_BY_ID));
+        Bid shownBid = (Bid) Connector.getInstance().initializeMessage(new Message(new Object[]{bidId}, MessageType.GET_BID_BY_ID));
         this.bidId = bidId;
         this.product = product;
         this.endDate = endDate;
@@ -79,19 +79,21 @@ public class BidsToShow {
         participate.setStyle("-fx-background-color:#DC143C");
         participate.setOnAction(e -> {
             try {
-                if (shownBid.getBuyer_recommendedPrice().containsKey((Buyer)UserSectionController.getLoggedInPerson())) {
-//                    System.out.println("we are in IF");
-                    App.setRoot("Bid/bidChatBox");
-                } else {
-                    OfferPrice.bidId = bidId;
-                    Stage window = new Stage();
-                    window.initModality(Modality.APPLICATION_MODAL);
-                    window.setTitle("Offer price");
-                    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Bid/OfferPrice.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load());
-                    window.setScene(scene);
-                    window.showAndWait();
+                for (Buyer buyer : shownBid.getBuyer_recommendedPrice().keySet()) {
+                    if (buyer.getUserName().equals(UserSectionController.getLoggedInPersonUserName())){
+                        App.setRoot("Bid/bidChatBox");
+                    return;}
                 }
+                OfferPrice.bidId = bidId;
+                Stage window = new Stage();
+                window.initModality(Modality.APPLICATION_MODAL);
+                window.setTitle("Offer price");
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Bid/OfferPrice.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                window.setScene(scene);
+                OfferPrice.window = window;
+                window.showAndWait();
+
             } catch (Exception ioException) {
                 ioException.printStackTrace();
             }

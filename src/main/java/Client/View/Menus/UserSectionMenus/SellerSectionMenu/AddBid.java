@@ -25,7 +25,6 @@ public class AddBid {
         try {
             Connector.getInstance().initializeMessage(new Message(new Object[]{productTextField.getText() , endDateTextField.getText() , UserSectionController.getLoggedInPerson()} , MessageType.ADD_BID));
             showMessage(informationText , MessageTypeShow.SUCCESS , "Bid added successfully");
-
         } catch (Exception e) {
             showMessage(informationText , MessageTypeShow.ERROR , e.getMessage());
         }
