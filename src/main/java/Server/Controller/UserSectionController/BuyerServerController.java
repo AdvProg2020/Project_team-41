@@ -148,6 +148,7 @@ public class BuyerServerController {
     public void removeCodedDiscountFromCart(Buyer buyer){
         buyer.getCart().setCodedDiscount(null);
     }
+
     public void increaseProduct(Buyer buyer,int num , String productId) throws Exception {
         buyer.getCart().increaseProductQuantity(Database.getInstance().getProductById(productId));
     }

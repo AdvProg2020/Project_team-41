@@ -30,9 +30,9 @@ public class viewBids {
         ObservableList<BidsToShow> bids= FXCollections.observableArrayList();
         try {
             for (Bid bid : Bid.getAllBids()) {
-                bids.add(new BidsToShow(bid , bid.getBidId() , bid.getProduct().getName() ,
+                bids.add(new BidsToShow(bid.getBidId() , bid.getProduct().getName() ,
                         TimeControl.getJalaliDateAndTimeForPrint(bid.getEndDate()) , bid.getSeller().getUserName() , new Button("Participate")));
-                System.out.println(bid + " size of members:" + bid.getBuyer_recommendedPrice().size());
+
             }
 
         } catch (Exception e) {

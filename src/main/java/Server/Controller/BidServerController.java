@@ -2,6 +2,7 @@ package Server.Controller;
 
 import Client.Controller.AllProductsController;
 import Client.Models.Bid;
+import Client.Models.Person.Buyer;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Server.Database;
@@ -30,5 +31,16 @@ public class BidServerController {
         String[] dateTime = {date.split("-")[0] , date.split("-")[1]};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
         Database.getInstance().addBid(new Bid(product , exactEndDate , seller));
+    }
+
+    public void addParticipant(String bidId, Buyer buyer, int price) throws Exception {
+            Database.getInstance().getBidById(bidId).addBuyer(buyer , price);
+
+        // System.err.println("size of participants (SERVER): " +   Database.getInstance().getBidById(bidId).getBuyer_recommendedPrice().size());
+
+    }
+
+    public void IncreasePrice(Bid bid, Buyer buyer, int price) throws Exception {
+        bid.increasePrice(buyer , price);
     }
 }

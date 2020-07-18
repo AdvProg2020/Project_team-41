@@ -40,6 +40,7 @@ public class Cart implements Serializable {
     public HashMap<Product,Integer> getProducts() {
         return products;
     }
+
     public void increaseProductQuantity(Product product) throws Exception {
         if (product.getCategory().getName().equals("file")) {
             return;

@@ -146,6 +146,20 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(Database.getInstance().getAllBids()));
                 break;
             }
+            case GET_BID_BY_ID:{
+                objectOutputStream.writeObject(new Message(Database.getInstance().getBidById((String)inputs[0])));
+                break;
+            }
+            case ADD_PARTICIPANT:{
+                BidServerController.getInstance().addParticipant((String) inputs[0] , (Buyer) inputs[1] , (int) inputs[2]);
+                sendSuccessful();
+                break;
+            }
+            case INCREASE_PRICE:{
+                BidServerController.getInstance().IncreasePrice((Bid)inputs[0] , (Buyer)inputs[1] , (int)inputs[2]);
+                sendSuccessful();
+                break;
+            }
         }
     }
 
@@ -465,7 +479,6 @@ public class ServerConnector extends Thread {
             case INCREASE_PRODUCT: {
                 BuyerServerController.getInstance().increaseProduct((Buyer) inputs[0], (Integer) inputs[1], (String) inputs[2]);
                 sendSuccessful();
-
                 break;
             }
             case DECREASE_PRODUCT: {

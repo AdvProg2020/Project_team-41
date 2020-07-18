@@ -1,6 +1,9 @@
 package Client.Models;
 
+import Client.Controller.Connector;
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Person.Buyer;
 import Client.View.Menus.Bid.OfferPrice;
 import Client.View.Menus.UserSectionMenus.UserSection;
@@ -18,7 +21,6 @@ import java.util.Objects;
 import static Client.View.Menus.Menu.loadFXML;
 
 public class BidsToShow {
-    private Bid shownBid;
     private String bidId;
     private String product;
     private String endDate;
@@ -65,8 +67,8 @@ public class BidsToShow {
         this.participate = participate;
     }
 
-    public BidsToShow(Bid bid, String bidId, String product, String endDate, String seller, Button participate) {
-        this.shownBid = bid;
+    public BidsToShow(String bidId, String product, String endDate, String seller, Button participate) throws Exception {
+        Bid shownBid = (Bid) Connector.getInstance().initializeMessage(new Message(new Object[]{bidId} , MessageType.GET_BID_BY_ID));
         this.bidId = bidId;
         this.product = product;
         this.endDate = endDate;
@@ -77,20 +79,14 @@ public class BidsToShow {
         participate.setStyle("-fx-background-color:#DC143C");
         participate.setOnAction(e -> {
             try {
-                System.out.println("size of participants: " + shownBid.getBuyer_recommendedPrice().size());
-                System.out.println("here are buyers in bid:");
-                for (Buyer buyer : shownBid.getBuyer_recommendedPrice().keySet()) {
-                    System.out.println(buyer);
-                }
-
-                if (shownBid.getBuyer_recommendedPrice().containsKey(UserSectionController.getLoggedInPerson())) {
+                if (shownBid.getBuyer_recommendedPrice().containsKey((Buyer)UserSectionController.getLoggedInPerson())) {
 //                    System.out.println("we are in IF");
                     App.setRoot("Bid/bidChatBox");
                 } else {
+                    OfferPrice.bidId = bidId;
                     Stage window = new Stage();
                     window.initModality(Modality.APPLICATION_MODAL);
                     window.setTitle("Offer price");
-                    OfferPrice.bid = shownBid;
                     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Bid/OfferPrice.fxml"));
                     Scene scene = new Scene(fxmlLoader.load());
                     window.setScene(scene);
