@@ -23,6 +23,11 @@
                   <Font size="15.0" />
                </font>
             </Button>
+            <Button fx:id="increasePrice" layoutX="177.0" layoutY="31.0" mnemonicParsing="false" onAction="#increasePrice" style="-fx-background-color: #DC143C;" text="IncreasePrice" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </top>

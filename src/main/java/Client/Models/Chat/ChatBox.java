@@ -28,6 +28,7 @@ public class ChatBox implements Serializable {
     public String getBuyer() {
         return buyer;
     }
+
     public void addComment(ChatComment chatComment){
         chatComments.add(chatComment);
         ServerSaver.write(AllCommands.allCategory);

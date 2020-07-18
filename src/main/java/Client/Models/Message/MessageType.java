@@ -12,7 +12,7 @@ public enum MessageType {
     ADD_COMMENT(ClassTypes.PRODUCT),AMOUNT_OF_DISCOUNT(ClassTypes.PRODUCT),
     GET_OFF_PRODUCTS(ClassTypes.OFFS),
     GET_BACKUPS(ClassTypes.BACKUP),GET_CHAT_BOX(ClassTypes.BACKUP),SEND_COMMENT(ClassTypes.BACKUP),GET_ALL_CHAT_BOXES(ClassTypes.BACKUP),
-    ADD_BID(ClassTypes.BID),GET_ALL_BIDS(ClassTypes.BID);
+    ADD_BID(ClassTypes.BID),GET_ALL_BIDS(ClassTypes.BID),GET_BID_BY_ID(ClassTypes.BID),ADD_PARTICIPANT(ClassTypes.BID),INCREASE_PRICE(ClassTypes.BID);
     ClassTypes classTypes;
     MessageType(ClassTypes classTypes) {
         this.classTypes = classTypes;

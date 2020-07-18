@@ -32,7 +32,9 @@ public class viewBids {
             for (Bid bid : Bid.getAllBids()) {
                 bids.add(new BidsToShow(bid.getBidId() , bid.getProduct().getName() ,
                         TimeControl.getJalaliDateAndTimeForPrint(bid.getEndDate()) , bid.getSeller().getUserName() , new Button("Participate")));
+
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

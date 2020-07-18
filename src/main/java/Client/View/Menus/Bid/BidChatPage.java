@@ -4,12 +4,17 @@ import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Bid;
 import Client.View.Menus.Menu;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.example.App;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -29,45 +34,57 @@ public class BidChatPage extends Menu {
     public TextField message;
     public boolean isHeOnThisPage;
 
-    public void initialize(){
-        isHeOnThisPage=true;
-        if(UserSectionController.getLoggedInPerson()==null){
+    public void initialize() {
+        isHeOnThisPage = true;
+        if (UserSectionController.getLoggedInPerson() == null) {
             loginLogout.setText("Register/Login");
-        }else{
+        } else {
             loginLogout.setText("Logout");
         }
         updateChatBox();
     }
 
-    public void back(ActionEvent actionEvent) {
-        isHeOnThisPage=false;
-    }
-
-    public void registerOrLogin(ActionEvent actionEvent) throws IOException {
-        if(UserSectionController.getLoggedInPerson()==null){
-            login("Bid/bidChatBox");
-        }else{
-            logout("Bid/bidChatBox");
+        public void back (ActionEvent actionEvent) throws IOException {
+            isHeOnThisPage = false;
+            App.setRoot("UserSection/buyerSection/buyer section");
         }
-    }
 
-    public void sendMessage(ActionEvent actionEvent) {
-    }
-    public void updateChatBox(){
-        Timer animTimer = new Timer();
-        animTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (isHeOnThisPage) {
+        public void registerOrLogin (ActionEvent actionEvent) throws IOException {
+            if (UserSectionController.getLoggedInPerson() == null) {
+                login("Bid/bidChatBox");
+            } else {
+                logout("Bid/bidChatBox");
+            }
+        }
 
-                } else {
-                    this.cancel();
+        public void sendMessage (ActionEvent actionEvent){
+        }
+        public void updateChatBox () {
+            Timer animTimer = new Timer();
+            animTimer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    if (isHeOnThisPage) {
+
+                    } else {
+                        this.cancel();
+                    }
+
                 }
 
-            }
-
-        }, 0, 1000);
+            }, 0, 1000);
 
 
+        }
+
+    public void increasePrice(ActionEvent actionEvent) throws IOException {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Increase Price");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Bid/IncreasePrice.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        window.setScene(scene);
+        window.showAndWait();
     }
 }
+
