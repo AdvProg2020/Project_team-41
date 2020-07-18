@@ -6,10 +6,12 @@ import Server.Database;
 import java.util.ArrayList;
 
 public abstract class UserSectionServerController {
-    public static ArrayList<String> getPersonalInfo(Person person){
+    public static ArrayList<String> getPersonalInfo(Person person) throws Exception {
         if(person == null)
             throw new NullPointerException();
-        //todo return ArrayList of personal info
+        Person foundPerson = Database.getInstance().getPersonByUsername(person.getUserName());
+        checkPersonPassword(person, foundPerson);
+        person = foundPerson;
         ArrayList<String> personalInfo = new ArrayList<>();
         personalInfo.add("UserName: " + person.getUserName());
         personalInfo.add("FirstName: " + person.getFirstName());
@@ -17,10 +19,6 @@ public abstract class UserSectionServerController {
         personalInfo.add("Credit: " + person.getCredit());
         personalInfo.add("Email: " + person.getEmail());
         personalInfo.add("PhoneNumber: " + person.getPhoneNumber());
-        //personalInfo.addAll(loggedInPerson.getDiscountCodes());
-        //optional to add show discount code or show trade logs here
-        //todo check if needed ot print discountCodes
-        //todo check if it needs tradeLogs
 
 
         return personalInfo;
@@ -34,6 +32,9 @@ public abstract class UserSectionServerController {
             throw new Exception("can't change username");
         if(person == null)
             throw new NullPointerException("There is no one logged in");
+        Person foundPerson = Database.getInstance().getPersonByUsername(person.getUserName());
+        checkPersonPassword(person, foundPerson);
+        person = foundPerson;
         switch (field.toLowerCase()){
             case "password":{
                 String[] oldNewPasswords = editedField.split(",");
