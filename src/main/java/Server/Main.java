@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static final int PORT = 8888;
-    private static final ArrayList<Socket> clients = new ArrayList<>();
-    public static ArrayList<Person> connectedPeople=new ArrayList<>();
+    private static final ArrayList<Person> connectedPeople=new ArrayList<>();
     public static Backup backup;
     public static void main(String[] args) throws IOException {
         System.out.println("server started");
@@ -23,11 +22,12 @@ public class Main {
         while (true) {
             System.out.println("waiting for client");
             Socket clientSocket = serverSocket.accept();
-            clients.add(clientSocket);
             new ServerConnector(serverSocket, clientSocket).start();
             System.out.println("client connected");
         }
     }
 
-
+    public static ArrayList<Person> getConnectedPeople() {
+        return connectedPeople;
+    }
 }
