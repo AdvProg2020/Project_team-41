@@ -20,8 +20,8 @@ import java.net.URL;
 public class App extends Application {
 
     private static Scene scene;
-    private static final int PORT = 12666;
-    private final String IP = "tcp://2.tcp.ngrok.io";
+    private static final int PORT = 10739;
+    private final String IP = "tcp://0.tcp.ngrok.io";
 
     @Override
     public void start(Stage stage) throws IOException {
