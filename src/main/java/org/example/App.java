@@ -20,7 +20,7 @@ import java.net.URL;
 public class App extends Application {
 
     private static Scene scene;
-    private static final int PORT = 16537;
+    private static final int PORT = 17770;
     private final String IP = "2.tcp.ngrok.io";
 
     @Override
