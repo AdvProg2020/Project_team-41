@@ -1,8 +1,15 @@
 package Client.View.Menus.Bid;
 
+import Client.Controller.Connector;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Bid;
+import Client.Models.BidChat.BidChatBox;
+import Client.Models.BidChat.BidChatComment;
+import Client.Models.Chat.ChatBox;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.View.Menus.Menu;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -33,9 +40,11 @@ public class BidChatPage extends Menu {
     public TextField highestBid;
     public TextField message;
     public boolean isHeOnThisPage;
+    public int numberOfComments;
 
     public void initialize() {
         isHeOnThisPage = true;
+        numberOfComments=0;
         if (UserSectionController.getLoggedInPerson() == null) {
             loginLogout.setText("Register/Login");
         } else {
@@ -58,6 +67,21 @@ public class BidChatPage extends Menu {
         }
 
         public void sendMessage (ActionEvent actionEvent){
+            BidChatComment bidChatComment=new BidChatComment(UserSectionController.getLoggedInPerson().getUserName(),
+                    message.getText(),bid.getBidId());
+            BidComment.bidChatComment=bidChatComment;
+            try {
+                chatVBox.getChildren().add(App.loadFXML("Bid/bidComment"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                Connector.getInstance().initializeMessage(new Message(new Object[]{bidChatComment}, MessageType.ADD_BID_COMMENT));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
         }
         public void updateChatBox () {
             Timer animTimer = new Timer();
@@ -65,6 +89,18 @@ public class BidChatPage extends Menu {
                 @Override
                 public void run() {
                     if (isHeOnThisPage) {
+                        BidChatBox bidChatBox = null;
+                        try {
+                            bidChatBox = (BidChatBox) Connector.getInstance().initializeMessage(new Message(new Object[]{bid.getBidId()},
+                                    MessageType.GET_BID_CHAT_BOX));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if(bidChatBox.getChatComments().size()>numberOfComments){
+                            numberOfComments=bidChatBox.getChatComments().size();
+                            putComments(bidChatBox);
+                        }
+
 
                     } else {
                         this.cancel();
@@ -85,6 +121,21 @@ public class BidChatPage extends Menu {
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
         window.showAndWait();
+    }
+    public void putComments(BidChatBox bidChatBox){
+        Platform.runLater(() -> {
+            chatVBox.getChildren().clear();
+            for (BidChatComment chatComment : bidChatBox.getChatComments()) {
+                BidComment.bidChatComment=chatComment;
+                try {
+                    chatVBox.getChildren().add(App.loadFXML("Bid/bidComment"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        });
     }
 }
 

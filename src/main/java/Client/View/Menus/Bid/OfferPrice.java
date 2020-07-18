@@ -12,8 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.example.App;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static Client.View.Menus.MessageTypeShow.showMessage;
@@ -24,6 +26,7 @@ public class OfferPrice {
     public Button priceSendingButton;
     public Text informationText;
     public static String bidId;
+    public static Stage window;
 
     public void setPriceAndParticipate(MouseEvent mouseEvent) throws IOException {
         int initialPrice = 0;
@@ -33,14 +36,13 @@ public class OfferPrice {
                 showMessage(informationText, MessageTypeShow.ERROR, "Price can Not be lower than your credit");
             }
             else{
-                System.out.println("1");
                 BidController.participateBuyerInBid(bidId , (Buyer) UserSectionController.getLoggedInPerson(), initialPrice);
-                System.out.println("2");
                 BidChatPage.bid = (Bid) Connector.getInstance().initializeMessage(new Message(new Object[]{bidId} , MessageType.GET_BID_BY_ID));
-                System.out.println("3");
+                window.close();
                 App.setRoot("Bid/bidChatBox");
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             showMessage(informationText, MessageTypeShow.ERROR, "Please enter a valid number");
         }
 
