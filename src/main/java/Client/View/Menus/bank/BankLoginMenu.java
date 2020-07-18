@@ -28,7 +28,7 @@ public class BankLoginMenu {
     public void initialize(){
         try {
             BankAPI.makeInstance();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             MessageTypeShow.showMessage(bankLoginMenuInformationText,MessageTypeShow.ERROR,"Error happened while connecting to bank");
         }

@@ -12,15 +12,16 @@
          <image>
             <Image url="@../images/bankIntro.jpg" />
          </image></ImageView>
-      <TextField stylesheets="/org/example/styles/bank/textFill.css" fx:id="bankLoginMenuUsernameField" layoutX="378.0" layoutY="149.0" prefHeight="27.0" prefWidth="254.0" promptText="enter username" />
+      <AnchorPane layoutX="228.0" layoutY="80.0" prefHeight="229.0" prefWidth="520.0" style="-fx-background-color: #113549 ; -fx-opacity: 0.7; -fx-border-radius: 20; -fx-background-radius: 20; " />
+      <TextField fx:id="bankLoginMenuUsernameField" layoutX="378.0" layoutY="149.0" prefHeight="27.0" prefWidth="254.0" promptText="enter username" stylesheets="/org/example/styles/bank/textFill.css" />
       <Text fill="#08fbff" layoutX="279.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" />
       <Text fill="#08fbff" layoutX="280.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
-      <PasswordField stylesheets="/org/example/styles/bank/textFill.css" fx:id="bankLoginMenuPasswordField" layoutX="384.0" layoutY="209.0" prefHeight="27.0" prefWidth="233.0" promptText="enter password" />
+      <PasswordField fx:id="bankLoginMenuPasswordField" layoutX="384.0" layoutY="209.0" prefHeight="27.0" prefWidth="233.0" promptText="enter password" stylesheets="/org/example/styles/bank/textFill.css" />
       <Text fx:id="bankLoginMenuInformationText" layoutX="346.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.89990234375" />
-      <Button stylesheets="/org/example/styles/bank/commandButton.css" layoutX="649.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#LoginClicked" text="login" />
+      <Button layoutX="649.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#LoginClicked" stylesheets="/org/example/styles/bank/commandButton.css" text="login" />
       <Button layoutX="459.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#createAccountClicked" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="create account" textAlignment="CENTER">
          <textFill>
-            <LinearGradient endX="0.5731414868105515" endY="0.6642685851318945" startX="0.3645083932853717" startY="0.12470023980815348">
+            <LinearGradient endX="0.5731414868105515" endY="0.6642685851318945" startX="0.5755395683453237">
                <stops>
                   <Stop>
                      <color>
@@ -28,7 +29,7 @@
                      </color></Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.1111111119389534" green="0.7777777910232544" blue="1.0" />
+                        <Color red="0.11999999731779099" green="0.9120000004768372" blue="1.0" />
                      </color></Stop>
                </stops>
             </LinearGradient>

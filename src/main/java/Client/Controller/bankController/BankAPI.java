@@ -7,6 +7,7 @@ import com.sun.nio.sctp.SendFailedNotification;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +27,7 @@ public class BankAPI {
     private DataOutputStream outputStream;
     private DataInputStream inputStream;
 
-    public static void makeInstance() throws IOException {
+    public static void makeInstance() throws Exception {
         if (bankAPI == null) {
             bankAPI = new BankAPI();
         }
@@ -36,7 +37,7 @@ public class BankAPI {
         return bankAPI;
     }
 
-    private BankAPI() throws IOException {
+    private BankAPI() throws Exception {
         this.connectToBankServer();
     }
     /**
@@ -44,8 +45,10 @@ public class BankAPI {
      *
      * @throws IOException when IP/PORT hasn't been set up properly.
      */
-    public void connectToBankServer() throws IOException {
+    public void connectToBankServer() throws Exception {
         try {
+            if(!available(PORT))
+                throw new Exception("bank is not available");
             Socket socket = new Socket(IP, PORT);
             outputStream = new DataOutputStream(socket.getOutputStream());
             inputStream = new DataInputStream(socket.getInputStream());
@@ -187,6 +190,13 @@ public class BankAPI {
 
         public char getSign() {
             return sign;
+        }
+    }
+    private boolean available(int port) {
+        try (Socket ignored = new Socket(IP, port)) {
+            return false;
+        } catch (IOException ignored) {
+            return true;
         }
     }
 

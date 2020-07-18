@@ -1,6 +1,6 @@
 
 .button {
-    -fx-font-family: "Times New Roman"; -fx-font-size: 16; -fx-background-color: #7c9292; -fx-border-color: #097e7f; -fx-border-width: 2px 2px 2px 2wpx; -fx-border-radius: 20; -fx-background-radius: 20; -fx-opacity: 0.8;
+    -fx-font-family: "Times New Roman"; -fx-font-size: 16; -fx-background-color: #7c9292; -fx-border-color: #097e7f; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 20; -fx-background-radius: 20; -fx-opacity: 0.8;
 }
 .button:hover{
     -fx-font-family: "Times New Roman"; -fx-font-size: 16;
