@@ -47,8 +47,6 @@ public class BankAPI {
      */
     public void connectToBankServer() throws Exception {
         try {
-            if(!available(PORT))
-                throw new Exception("bank is not available");
             Socket socket = new Socket(IP, PORT);
             outputStream = new DataOutputStream(socket.getOutputStream());
             inputStream = new DataInputStream(socket.getInputStream());
@@ -190,13 +188,6 @@ public class BankAPI {
 
         public char getSign() {
             return sign;
-        }
-    }
-    private boolean available(int port) {
-        try (Socket ignored = new Socket(IP, port)) {
-            return false;
-        } catch (IOException ignored) {
-            return true;
         }
     }
 
