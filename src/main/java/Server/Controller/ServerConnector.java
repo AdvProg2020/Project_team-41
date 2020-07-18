@@ -1,6 +1,7 @@
 package Server.Controller;
 
 import Client.Models.Bid;
+import Client.Models.BidChat.BidChatComment;
 import Client.Models.Chat.ChatComment;
 import Client.Models.Comment;
 import Client.Models.Message.Message;
@@ -157,6 +158,15 @@ public class ServerConnector extends Thread {
             }
             case INCREASE_PRICE:{
                 BidServerController.getInstance().IncreasePrice((Bid)inputs[0] , (Buyer)inputs[1] , (int)inputs[2]);
+                sendSuccessful();
+                break;
+            }
+            case GET_BID_CHAT_BOX:{
+                objectOutputStream.writeObject(new Message(Database.getInstance().getBidChatBox((String)inputs[0])));
+                break;
+            }
+            case ADD_BID_COMMENT:{
+                Database.getInstance().addBidChatComment((BidChatComment)inputs[0]);
                 sendSuccessful();
                 break;
             }
