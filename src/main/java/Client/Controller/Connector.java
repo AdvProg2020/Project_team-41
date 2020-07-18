@@ -40,6 +40,7 @@ public class Connector {
             System.out.println("message sent");
             System.out.println(message);
             System.err.println("----------------------");
+            objectOutputStream.reset();
             objectOutputStream.writeObject(message);
         } catch (IOException e) {
             e.printStackTrace();
