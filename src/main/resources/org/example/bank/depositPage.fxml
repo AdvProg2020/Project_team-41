@@ -6,10 +6,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.bank.DepositPage">
    <children>
-      <TextField fx:id="depositPageCreditNumberTextField" layoutX="56.0" layoutY="58.0" prefHeight="27.0" prefWidth="308.0" promptText="please enter your credit number" />
-      <TextField fx:id="depositPageMoneyTextField" layoutX="56.0" layoutY="113.0" prefHeight="27.0" prefWidth="308.0" promptText="please enter amount of money you wish to deposit" />
       <Text fx:id="depositPageInformationText" layoutX="50.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.89990234375" />
-      <TextField fx:id="descriptionTextField" layoutX="56.0" layoutY="161.0" prefHeight="167.0" prefWidth="308.0" promptText="(optional) description" />
-      <Button layoutX="409.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#depositClicked" text="deposit" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="depositPageCreditNumberTextField" layoutX="56.0" layoutY="58.0" prefHeight="27.0" prefWidth="308.0" promptText="please enter your credit number" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="depositPageMoneyTextField" layoutX="56.0" layoutY="113.0" prefHeight="27.0" prefWidth="308.0" promptText="please enter amount of money you wish to deposit" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="descriptionTextField" layoutX="56.0" layoutY="161.0" prefHeight="167.0" prefWidth="308.0" promptText="(optional) description" />
+      <Button stylesheets="/org/example/styles/commandButton.css" layoutX="409.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#depositClicked" text="deposit" />
    </children>
 </AnchorPane>

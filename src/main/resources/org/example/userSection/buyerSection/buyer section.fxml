@@ -125,18 +125,18 @@
    <center>
       <AnchorPane fx:id="outsideAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f5f1ec;" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="573.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-border-color: #754d34; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-font-style: italic; -fx-opacity: 0.9; -fx-font-size: 17;" text="credits:" textAlignment="CENTER">
+            <Text layoutX="552.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-border-color: #754d34; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-font-style: italic; -fx-opacity: 0.9; -fx-font-size: 17;" text="credits:" textAlignment="CENTER">
                <font>
                   <Font name="Times New Roman" size="19.0" />
                </font></Text>
             <AnchorPane fx:id="insideAnchorPane" layoutX="24.0" layoutY="56.0" prefHeight="646.0" prefWidth="775.0" />
-            <TextField fx:id="creditTextField" editable="false" layoutX="637.0" layoutY="26.0" prefHeight="29.0" prefWidth="119.0" style="-fx-border-width: 2" stylesheets="/org/example/styles/textFill.css">
+            <TextField fx:id="creditTextField" editable="false" layoutX="611.0" layoutY="26.0" prefHeight="29.0" prefWidth="119.0" style="-fx-border-width: 2" stylesheets="/org/example/styles/textFill.css">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Button onMouseClicked="#increaseCreditClicked" layoutX="768.0" layoutY="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="43.0" text="+" />
-            <Button onMouseClicked="#refreshCreditClicked" layoutX="488.0" layoutY="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="60.0" text="refresh" />
+            <Button layoutX="742.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#increaseCreditClicked" prefHeight="27.0" prefWidth="27.0" stylesheets="/org/example/styles/commandButton.css" text="+" />
+            <Button ellipsisString="↻" layoutX="785.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#refreshCreditClicked" prefHeight="27.0" prefWidth="29.0" stylesheets="/org/example/styles/commandButton.css" text="↻" />
          </children></AnchorPane>
    </center>
 </BorderPane>

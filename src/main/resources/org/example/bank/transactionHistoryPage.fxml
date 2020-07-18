@@ -8,13 +8,13 @@
    <children>
       <HBox layoutX="47.0" layoutY="45.0" prefHeight="0.0" prefWidth="509.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#incrementClicked" prefHeight="27.0" prefWidth="191.0" text="increment history" />
-            <Button mnemonicParsing="false" onMouseClicked="#allHistoryClicked" prefHeight="27.0" prefWidth="165.0" text="all history" />
-            <Button mnemonicParsing="false" onMouseClicked="#decrementClicked" prefHeight="27.0" prefWidth="179.0" text="decrement history" />
+            <Button stylesheets="/org/example/styles/commandButton.css" mnemonicParsing="false" onMouseClicked="#incrementClicked" prefHeight="27.0" prefWidth="191.0" text="increment history" />
+            <Button stylesheets="/org/example/styles/commandButton.css" mnemonicParsing="false" onMouseClicked="#allHistoryClicked" prefHeight="27.0" prefWidth="165.0" text="all history" />
+            <Button stylesheets="/org/example/styles/commandButton.css" mnemonicParsing="false" onMouseClicked="#decrementClicked" prefHeight="27.0" prefWidth="179.0" text="decrement history" />
          </children>
       </HBox>
       <Text fx:id="transactionHistoryPageInformationText" layoutX="160.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="283.0" />
-      <ScrollPane layoutX="66.0" layoutY="100.0" prefHeight="263.0" prefWidth="468.0">
+      <ScrollPane stylesheets="/org/example/styles/bank/scrollBar.css" layoutX="66.0" layoutY="100.0" prefHeight="263.0" prefWidth="468.0">
         <content>
             <VBox fx:id="transactionHistoryPageVBox" layoutX="-29.0" layoutY="-43.0" prefHeight="250.0" prefWidth="760.0" />
         </content>
