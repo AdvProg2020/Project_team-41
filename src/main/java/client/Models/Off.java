@@ -42,7 +42,7 @@ public class Off implements Serializable {
 
     public void setOffId(String offId) {
         this.offId = offId;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public boolean hasProduct(Product product){
@@ -59,24 +59,24 @@ public class Off implements Serializable {
 
     public void setSeller(Seller seller) {
         this.seller = seller;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setAmountOfDiscount(int amountOfDiscount) throws Exception {
         if(amountOfDiscount < 0)
             throw new Exception("amount fo discount should be positive");
         this.amountOfDiscount = amountOfDiscount;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public ArrayList<Product> getProducts() {
@@ -102,18 +102,18 @@ public class Off implements Serializable {
 
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void deleteOff(){
         for (Product product : products) {
             product.setOff(null);
             seller.removeOff(this);
         }
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void removeProduct(Product product){
         products.remove(product);
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     @Override

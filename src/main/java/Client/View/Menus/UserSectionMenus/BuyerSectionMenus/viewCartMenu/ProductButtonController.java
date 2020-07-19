@@ -87,8 +87,7 @@ public class ProductButtonController {
     }
     public void decreaseProductClicked(MouseEvent mouseEvent) {
         try {
-            Product product = BuyerController.getInstance().getProduct(productIdTextField.getText());
-            BuyerController.getInstance().getCart().decreaseProductQuantity(product);
+            BuyerController.getInstance().decreaseProduct(1,productIdTextField.getText());
             resetPage();
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,8 +96,7 @@ public class ProductButtonController {
 
     public void increaseProductClicked(MouseEvent mouseEvent) {
         try {
-            Product product = BuyerController.getInstance().getProduct(productIdTextField.getText());
-            BuyerController.getInstance().getCart().increaseProductQuantity(product);
+            BuyerController.getInstance().increaseProduct(1,productIdTextField.getText());
             resetPage();
         } catch (Exception e) {
             e.printStackTrace();

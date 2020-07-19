@@ -145,7 +145,6 @@ public class ProductButtonController {
         edits.put("description", editDescriptionTextField.getText());
         try {
             if (edits.size() != 0) {
-                System.out.println(editDescriptionTextField.getText());
                 SellerController.getInstance().editProduct(productIdTextField.getText().trim(), edits);
                 showMessage(informationText, MessageTypeShow.SUCCESS, "your request will be processed");
             }

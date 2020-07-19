@@ -9,7 +9,7 @@ import Client.View.Menus.UserSectionMenus.UserSection;
 
 public class BidController {
     public static void participateBuyerInBid(String bidId , Buyer buyer , int price) throws Exception {
-        Connector.getInstance().initializeMessage(new Message(new Object[]{bidId , buyer , price} , MessageType.ADD_PARTICIPANT));
+        Connector.getInstance().initializeMessage(new Message(new Object[]{bidId , buyer.getUserName() , price} , MessageType.ADD_PARTICIPANT));
     }
 
     public static void increasePrice(Bid bid, int price) throws Exception {

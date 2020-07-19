@@ -32,9 +32,8 @@ public class BuyerController extends UserSectionController {
         Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,walletSelected}, MessageType.PAY_FOR_THE_SHOP));
 //       BuyerServerController.payForTheShop((Buyer)loggedInPerson);
     }
-    public void setReceiverInformation(ArrayList<String> receiverInformation)  {
-        Buyer buyer = (Buyer)getLoggedInPerson();
-        buyer.getCart().setReceiverInformation(receiverInformation);
+    public void setReceiverInformation(ArrayList<String> receiverInformation) throws Exception {
+        Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,receiverInformation}, MessageType.SET_RECEIVER_INFORMATION));
     }
     public void addCodedDiscountToCart(String discountCode) throws Exception {
         Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,discountCode}, MessageType.ADD_CODED_DISCOUNT_TO_CART));
@@ -45,7 +44,7 @@ public class BuyerController extends UserSectionController {
 //        BuyerServerController.getInstance().removeCodedDiscountFromCart((Buyer) loggedInPerson);
     }
     public ArrayList<TradeLog> getTradeLogs(){
-        return loggedInPerson.getTradeLogs();
+        return getLoggedInPerson().getTradeLogs();
     }
     public ArrayList<Product> getAllBoughtFiles() throws Exception {
         return (ArrayList<Product>) Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson}, MessageType.GET_ALL_BOUGHT_FILES));
@@ -56,7 +55,7 @@ public class BuyerController extends UserSectionController {
 
     }
     public TradeLog showTheOrder(String id) throws Exception {
-        for (TradeLog tradeLog : loggedInPerson.getTradeLogs()) {
+        for (TradeLog tradeLog : getLoggedInPerson().getTradeLogs()) {
             if(tradeLog.getLogId().equals(id))
                 return tradeLog;
         }
@@ -91,7 +90,7 @@ public class BuyerController extends UserSectionController {
 //        BuyerServerController.getInstance().decreaseProduct(buyer,num,productId);
     }
     public int calculateTotalPrice(){
-        Buyer buyer = (Buyer) loggedInPerson;
+        Buyer buyer = (Buyer) getLoggedInPerson();
         int cashToPay;
         Cart cart = buyer.getCart();
         if(cart.getCodedDiscount() == null)

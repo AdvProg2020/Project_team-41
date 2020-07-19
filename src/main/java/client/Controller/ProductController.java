@@ -22,15 +22,10 @@ public class ProductController {
     private ProductController() {
     }
 
-    public static void addToCart(Product product) throws ClassCastException , NullPointerException {
+    public static void addToCart(Product product) throws Exception {
         if (UserSectionController.getLoggedInPerson() != null) {
             if(UserSectionController.getLoggedInPerson() instanceof Buyer) {
-                Buyer theBuyer = (Buyer) UserSectionController.getLoggedInPerson();
-                try {
-                    Connector.getInstance().initializeMessage(new Message(new Object[]{theBuyer , product} , MessageType.ADD_PRODUCT_TO_CART));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson() , product} , MessageType.ADD_PRODUCT_TO_CART));
                 //theBuyer.getCart().addProduct(product);
             }
             else

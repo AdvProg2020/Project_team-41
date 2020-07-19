@@ -35,10 +35,10 @@ public class Product implements Serializable {
         this.setName(name);
         this.setCompanyName(companyName);
         this.setPrice(price);
-        this.setQuantity(quantity);
         this.setDescription(description);
         this.category = category;
         this.setSpecialFeatures(specialFeatures);
+        this.setQuantity(quantity);
         this.description = description;
         this.setSeller(seller);
     }
@@ -80,23 +80,23 @@ public class Product implements Serializable {
 
     public void setOff(Off off) {
         this.off = off;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setProductId(String productId) {
         this.productId = productId;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setCategory(Category category) {
         this.category = category;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setDescription(String description) {
 
         this.description = description;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setName(String name) throws Exception {
@@ -104,26 +104,26 @@ public class Product implements Serializable {
             throw new Exception("product name can't be blank!");
         this.name = name;
 
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setCompanyName(String companyName) throws Exception {
         if(companyName.isBlank())
             throw new Exception("company name can't be blank!");
         this.companyName = companyName;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setPrice(int price) throws Exception {
         if(price < 0)
             throw new Exception("price can't be negative!");
         this.price = price;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setSeller(Seller seller) {
         this.seller = seller;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setQuantity(int quantity) throws Exception {
@@ -134,7 +134,7 @@ public class Product implements Serializable {
         if(quantity < 0)
             throw new Exception("quantity can't be negative!");
         this.quantity = quantity;
-        ServerSaver.write(AllCommands.allData);
+
 
     }
 
@@ -195,11 +195,11 @@ public class Product implements Serializable {
     }
     public void addScore(Score score){
         scores.add(score);
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void addComment(Comment comment){
         this.comments.add(comment);
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public Integer getViews() {
@@ -210,7 +210,7 @@ public class Product implements Serializable {
         if(views < 0)
             throw new Exception("views can't be negative!");
         this.views = views;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public ArrayList<Buyer> getBuyers() {
@@ -219,7 +219,7 @@ public class Product implements Serializable {
 
     public void addBuyer(Buyer buyer){
         buyers.add(buyer);
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void decreaseQuantity(int quantity) throws Exception {
@@ -230,22 +230,22 @@ public class Product implements Serializable {
             this.quantity -= quantity;
         else
             throw new Exception("out of stock");
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setScores(ArrayList<Score> scores) {
         this.scores = scores;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setBuyers(ArrayList<Buyer> buyers) {
         this.buyers = buyers;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setSpecialFeatures(HashMap<String, SpecialFeature> specialFeatures) {
@@ -253,11 +253,11 @@ public class Product implements Serializable {
             this.specialFeatures.put(specialFeature,new SpecialFeature(""));
         }
         this.specialFeatures.putAll(specialFeatures);
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void removeProduct() {
         category.removeProduct(this);
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void removeSpecialFeature(String categorySpecialFeature){
         this.specialFeatures.put(categorySpecialFeature,new SpecialFeature(""));

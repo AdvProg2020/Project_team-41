@@ -14,7 +14,7 @@ public class Buyer extends Person {
     }
     public void renewCart(){
         cart = new Cart(this);
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     @Override

@@ -206,7 +206,11 @@ public class BuyerSection extends UserSection {
                             receiverInformation.add(scanner.nextLine());
                             System.out.println("enter your phone number");
                             receiverInformation.add(scanner.nextLine());
-                            BuyerController.getInstance().setReceiverInformation(receiverInformation);
+                            try {
+                                BuyerController.getInstance().setReceiverInformation(receiverInformation);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             Menu discountCodeMenu = addDiscountCode();
                             discountCodeMenu.show();
                             discountCodeMenu.execute();

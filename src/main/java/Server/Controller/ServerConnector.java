@@ -152,7 +152,7 @@ public class ServerConnector extends Thread {
                 break;
             }
             case ADD_PARTICIPANT:{
-                BidServerController.getInstance().addParticipant((String) inputs[0] , (Buyer) inputs[1] , (int) inputs[2]);
+                BidServerController.getInstance().addParticipant((String) inputs[0] , (String) inputs[1] , (int) inputs[2]);
                 sendSuccessful();
                 break;
             }
@@ -511,6 +511,11 @@ public class ServerConnector extends Thread {
             }
             case DOWNLOAD_FILE:{
                 objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().downloadFile((Product) inputs[0])));
+                break;
+            }
+            case SET_RECEIVER_INFORMATION:{
+                BuyerServerController.getInstance().setReceiverInformation((Buyer) inputs[0], (ArrayList<String>) inputs[1]);
+                sendSuccessful();
                 break;
             }
         }

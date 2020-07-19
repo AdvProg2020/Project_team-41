@@ -26,6 +26,6 @@ public class BidChatBox implements Serializable {
     }
     public void addComment(BidChatComment bidChatComment){
         chatComments.add(bidChatComment);
-        ServerSaver.write(AllCommands.allCategory);
+
     }
 }

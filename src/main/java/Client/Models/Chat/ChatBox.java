@@ -31,7 +31,7 @@ public class ChatBox implements Serializable {
 
     public void addComment(ChatComment chatComment){
         chatComments.add(chatComment);
-        ServerSaver.write(AllCommands.allCategory);
+
 
     }
 }

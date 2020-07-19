@@ -56,7 +56,7 @@ public class Database implements Serializable {
 
     public void addChatBox(ChatBox chatBox) {
         chatBoxes.add(chatBox);
-        ServerSaver.write(AllCommands.allCategory);
+
     }
 
     public BidChatBox getBidChatBox(String bidId){
@@ -79,7 +79,7 @@ public class Database implements Serializable {
 
     public void addBid(Bid newBid) {
             allBids.add(newBid);
-            ServerSaver.write(AllCommands.allBids);
+
     }
 
     public ArrayList<Off> getAllOffs() {
@@ -162,7 +162,7 @@ public class Database implements Serializable {
 
     public void addDiscountCodes(CodedDiscount codedDiscount) {
         allDiscountCodes.add(codedDiscount);
-        ServerSaver.write(AllCommands.allDiscountCodes);
+
     }
 
     public void setAllUsers(ArrayList<Person> allUsers) {
@@ -190,7 +190,6 @@ public class Database implements Serializable {
         for (Person user : allUsers) {
             if (user.getUserName().equals(username)) {
                 allUsers.remove(user);
-                ServerSaver.write(AllCommands.allUsers);
                 return;
             }
         }
@@ -205,7 +204,7 @@ public class Database implements Serializable {
         for (CodedDiscount discountCode : allDiscountCodes) {
             if (discountCode.getDiscountCode().equals(code)) {
                 allDiscountCodes.remove(discountCode);
-                ServerSaver.write(AllCommands.allDiscountCodes);
+
                 return;
             }
         }
@@ -218,7 +217,6 @@ public class Database implements Serializable {
                 throw new Exception("username Exists");
         }
         allUsers.add(person);
-        ServerSaver.write(AllCommands.allUsers);
     }
 
     public void deleteCategory(String categoryName) throws Exception {
@@ -229,7 +227,7 @@ public class Database implements Serializable {
                 }
 
                 allCategory.remove(category);
-                ServerSaver.write(AllCommands.allCategory);
+
                 return;
             }
         }
@@ -240,7 +238,7 @@ public class Database implements Serializable {
     public void addCategory(Category category) {
 
         allCategory.add(category);
-        ServerSaver.write(AllCommands.allCategory);
+
     }
 
     public ArrayList<Category> getAllCategory() {
@@ -255,7 +253,7 @@ public class Database implements Serializable {
         for (Category category : allCategory) {
             if (category.getName().equals(product.getCategory().getName())) {
                 category.addProduct(product);
-                ServerSaver.write(AllCommands.allCategory);
+
                 return;
             }
         }
@@ -266,7 +264,7 @@ public class Database implements Serializable {
         for (Category category : allCategory) {
             if (category.getName().equals(product.getCategory().getName())) {
                 category.removeProduct(product);
-                ServerSaver.write(AllCommands.allCategory);
+
                 return;
             }
         }
@@ -285,7 +283,6 @@ public class Database implements Serializable {
 
     public void addOff(Off off) {
         allOffs.add(off);
-        ServerSaver.write(AllCommands.allOffs);
     }
 
     public Request getRequestByRequestId(String requestId) throws Exception {
@@ -298,7 +295,6 @@ public class Database implements Serializable {
 
     public void addRequest(Request request) {
         allRequest.add(request);
-        ServerSaver.write(AllCommands.allRequests);
     }
 
     public ArrayList<Bid> getAllBids() {
@@ -315,7 +311,7 @@ public class Database implements Serializable {
 
     private void deleteOutOfDateBids(ArrayList<Bid> bidsToDelete) {
         allBids.removeAll(bidsToDelete);
-        ServerSaver.write(AllCommands.allBids);
+
     }
 
     public ArrayList<Product> getAllOffProducts() {
@@ -336,7 +332,6 @@ public class Database implements Serializable {
 
     public void deleteOutOfDateOffs(ArrayList<Off> offsToDelete) {
         allOffs.removeAll(offsToDelete);
-        ServerSaver.write(AllCommands.allOffs);
     }
 
     public Off getOffById(String Id) throws Exception {
@@ -359,9 +354,6 @@ public class Database implements Serializable {
     public void removeRequest(Request request) throws Exception {
         if (!allRequest.remove(request))
             throw new Exception("no request exists like this anymore");
-        else
-            ServerSaver.write(AllCommands.allRequests);
-
     }
 
     public void setUpManagerAccountId(Manager manager, String username, String password) throws Exception {
@@ -371,7 +363,7 @@ public class Database implements Serializable {
         this.accountUsername = username;
         this.accountPassword = password;
 
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public int getAccountId() {
@@ -394,7 +386,7 @@ public class Database implements Serializable {
         if ((wage < 0) || wage > 100)
             throw new Exception("invalid wage number");
         this.wage = wage;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void addFile(Product product, List<Byte> file) {
@@ -407,7 +399,7 @@ public class Database implements Serializable {
             e.printStackTrace();
         }
         files.add(product);
-        ServerSaver.write(AllCommands.allData);
+
 
     }
 
@@ -428,7 +420,7 @@ public class Database implements Serializable {
             throw new Exception("file is not removed");
         }
         files.remove(product);
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     private byte[] convertBytes(List<Byte> Byte) {

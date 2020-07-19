@@ -40,8 +40,9 @@ public class ProductServerController {
         Database.getInstance().addRequest(request);
     }
 
-    public void addToCart(Buyer buyer, Product product) {
+    public void addToCart(Buyer buyer, Product product) throws Exception {
+        buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         buyer.getCart().getProducts().put(product , 1);
-        ServerSaver.write(AllCommands.allData);
+
     }
 }

@@ -41,6 +41,10 @@ public class Cart implements Serializable {
         return products;
     }
 
+    public void addProduct(Product product){
+        products.put(product,1);
+    }
+
     public void increaseProductQuantity(Product product) throws Exception {
         if (product.getCategory().getName().equals("file")) {
             return;

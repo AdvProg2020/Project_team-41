@@ -24,14 +24,14 @@ public class Category implements Serializable {
                 throw new Exception("special features can't be blank!");
         }
         this.specialFeatures = specialFeatures;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public void setName(String name) throws Exception {
         if(name.isBlank())
             throw new Exception("category name can't be blank!");
         this.name = name;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public ArrayList<String> getSpecialFeatures() {
@@ -44,7 +44,7 @@ public class Category implements Serializable {
 
     public void addProduct(Product product) {
         products.add(product);
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public String getName() {
@@ -56,7 +56,7 @@ public class Category implements Serializable {
         if (off != null)
             off.removeProduct(product);
         products.remove(product);
-        ServerSaver.write(AllCommands.allData);
+
 
     }
 

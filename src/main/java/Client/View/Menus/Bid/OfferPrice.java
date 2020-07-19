@@ -33,7 +33,7 @@ public class OfferPrice {
         try {
             initialPrice = Integer.parseInt(priceTextField.getText());
             if (UserSectionController.getLoggedInPerson().getCredit() < initialPrice){
-                showMessage(informationText, MessageTypeShow.ERROR, "Price can Not be lower than your credit");
+                showMessage(informationText, MessageTypeShow.ERROR, "Price can Not be higher than your credit");
             }
             else{
                 BidController.participateBuyerInBid(bidId , (Buyer) UserSectionController.getLoggedInPerson(), initialPrice);
