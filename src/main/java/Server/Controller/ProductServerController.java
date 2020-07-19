@@ -42,7 +42,7 @@ public class ProductServerController {
 
     public void addToCart(Buyer buyer, Product product) throws Exception {
         buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
-        buyer.getCart().getProducts().put(product , 1);
+        buyer.getCart().getProducts().put(Database.getInstance().getProductById(product.getProductId()) , 1);
 
     }
 }

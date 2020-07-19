@@ -22,7 +22,8 @@ public class ServerStartProgram {
         Database.setInstance(database);
         try {
             ManagerServerController.getInstance().addCategory("file","file");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             if(!e.getMessage().equals("category exists with this name"))
                 e.printStackTrace();
         }

@@ -5,6 +5,7 @@ import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
 import Client.Models.Person.Buyer;
+import Client.View.Menus.Bid.BidChatPage;
 import Client.View.Menus.Bid.OfferPrice;
 import Client.View.Menus.UserSectionMenus.UserSection;
 import javafx.fxml.FXMLLoader;
@@ -81,6 +82,7 @@ public class BidsToShow {
             try {
                 for (Buyer buyer : shownBid.getBuyer_recommendedPrice().keySet()) {
                     if (buyer.getUserName().equals(UserSectionController.getLoggedInPersonUserName())){
+                        BidChatPage.bid = shownBid;
                         App.setRoot("Bid/bidChatBox");
                     return;}
                 }

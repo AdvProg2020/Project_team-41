@@ -1,6 +1,5 @@
 package Client.Controller;
 
-import Client.Controller.UserSectionController.BuyerController;
 import Client.Controller.UserSectionController.UserSectionController;
 import Client.Models.Comment;
 import Client.Models.CommentSituation;
@@ -26,11 +25,11 @@ public class ProductController {
     public static void addToCart(Product product) throws Exception {
         if (UserSectionController.getLoggedInPerson() != null) {
             if(UserSectionController.getLoggedInPerson() instanceof Buyer) {
-                Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson(),product}, MessageType.ADD_PRODUCT_TO_CART));
+                Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson() , product} , MessageType.ADD_PRODUCT_TO_CART));
+                //theBuyer.getCart().addProduct(product);
             }
             else
                 throw new ClassCastException("Sorry, only buyers can buy!");
-
         } else
             throw new NullPointerException("First you must log in");
 

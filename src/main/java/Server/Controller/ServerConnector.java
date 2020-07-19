@@ -152,12 +152,12 @@ public class ServerConnector extends Thread {
                 break;
             }
             case ADD_PARTICIPANT:{
-                BidServerController.getInstance().addParticipant((String) inputs[0] , (Buyer) inputs[1] , (int) inputs[2]);
+                BidServerController.getInstance().addParticipant((String) inputs[0] , (String) inputs[1] , (int) inputs[2]);
                 sendSuccessful();
                 break;
             }
             case INCREASE_PRICE:{
-                BidServerController.getInstance().IncreasePrice((Bid)inputs[0] , (Buyer)inputs[1] , (int)inputs[2]);
+                BidServerController.getInstance().IncreasePrice((String) inputs[0] , (String)inputs[1] , (int)inputs[2]);
                 sendSuccessful();
                 break;
             }

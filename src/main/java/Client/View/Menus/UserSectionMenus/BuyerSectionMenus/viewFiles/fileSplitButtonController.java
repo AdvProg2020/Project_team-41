@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
@@ -27,10 +26,8 @@ public class fileSplitButtonController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-    private byte[] convertBytes(List<Byte> Byte)
-    {
+    private byte[] convertBytes(List<Byte> Byte) {
         byte[] file = new byte[Byte.size()];
         Iterator<Byte> iterator = Byte.iterator();
         for (int i = 0; i < file.length; i++) {

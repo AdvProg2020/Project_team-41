@@ -121,6 +121,7 @@ public class BidChatPage extends Menu {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Bid/IncreasePrice.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
+        IncreasePrice.bid = bid;
         window.showAndWait();
     }
     public void putComments(BidChatBox bidChatBox){

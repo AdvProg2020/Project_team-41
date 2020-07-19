@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static final int PORT = 8888;
-    private static final ArrayList<Person> connectedPeople=new ArrayList<>();
+    private static final ArrayList<Person> connectedPeople = new ArrayList<>();
     public static Backup backup;
     public static void main(String[] args) throws IOException {
         System.out.println("server started");
