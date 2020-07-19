@@ -205,6 +205,10 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllProducts()));
                 break;
             }
+            case GET_CATEGORY_BY_NAME:{
+                objectOutputStream.writeObject(new Message(Database.getInstance().getCategoryByName((String) inputs[0])));
+                break;
+            }
         }
     }
 
