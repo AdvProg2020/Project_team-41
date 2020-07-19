@@ -26,6 +26,7 @@ public class BuyerServerController {
     }
 
     public static void payForTheShop(Buyer buyer) throws Exception {
+        buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         Cart cart = buyer.getCart();
         int cashToPay = cart.getCashToPay();
         HashMap<Seller,HashMap<Product,Integer>> sellerProducts = new HashMap<>();
@@ -66,7 +67,8 @@ public class BuyerServerController {
         Buyer foundBuyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         foundBuyer.getCart().setReceiverInformation(receiverInformation);
     }
-    public ArrayList<String> getCodedDiscounts(Person person){
+    public ArrayList<String> getCodedDiscounts(Person person) throws Exception {
+        person = Database.getInstance().getPersonByUsername(person.getUserName());
         ArrayList<String> codedDiscounts = new ArrayList<>();
         for (CodedDiscount discountCode : Database.getInstance().getAllDiscountCodes()) {
             if(discountCode.hasPerson(person))
@@ -74,7 +76,6 @@ public class BuyerServerController {
         }
         return codedDiscounts;
     }
-
     public ArrayList<Product> getAllBoughtFiles(Buyer buyer) throws IOException {
         ArrayList<Product> boughtFiles = new ArrayList<>();
         for (TradeLog tradeLog : buyer.getTradeLogs()) {
@@ -86,7 +87,6 @@ public class BuyerServerController {
         }
         return boughtFiles;
     }
-
     public List<Byte> downloadFile(Product product) throws Exception {
         List<Byte> file = Database.getInstance().getFile(product);
         if (file == null) {
@@ -95,8 +95,8 @@ public class BuyerServerController {
         else
             return file;
     }
-
-    public ArrayList<String> getCodedDiscount(String discountCode, Person person) {
+    public ArrayList<String> getCodedDiscount(String discountCode, Person person) throws Exception {
+        person = Database.getInstance().getPersonByUsername(person.getUserName());
         CodedDiscount foundCodedDiscount = null;
         for (CodedDiscount codedDiscount : Database.getInstance().getAllDiscountCodes()) {
             if(codedDiscount.hasPerson(person))
@@ -120,6 +120,7 @@ public class BuyerServerController {
         return discountCodeInformation;
     }
     public static void rateTheProduct(Buyer buyer,String productId , Score score) throws Exception {
+        buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         boolean flag = false;
         Product product = Database.getInstance().getProductById(productId);
         for (TradeLog tradeLog : buyer.getTradeLogs()) {
@@ -137,6 +138,7 @@ public class BuyerServerController {
         return Database.getInstance().getProductById(productId);
     }
     public void addCodedDiscountToCart(Buyer buyer,String discountCode) throws Exception {
+        buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         CodedDiscount codedDiscount = Database.getInstance().getCodedDiscountByCode(discountCode);
         if(codedDiscount.hasPerson(buyer)) {
             if(new Date().before(codedDiscount.getStartDate()))
@@ -149,15 +151,16 @@ public class BuyerServerController {
             throw new Exception("you don't have this discount code");
         }
     }
-    public void removeCodedDiscountFromCart(Buyer buyer){
+    public void removeCodedDiscountFromCart(Buyer buyer) throws Exception {
+        buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         buyer.getCart().setCodedDiscount(null);
     }
-
     public void increaseProduct(Buyer buyer,int num , String productId) throws Exception {
+        buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         buyer.getCart().increaseProductQuantity(Database.getInstance().getProductById(productId));
     }
-
     public void decreaseProduct(Buyer buyer,int num , String productId) throws Exception {
+        buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         buyer.getCart().decreaseProductQuantity(Database.getInstance().getProductById(productId));
     }
 }
