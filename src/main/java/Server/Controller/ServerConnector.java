@@ -186,7 +186,11 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(ProductServerController.getInstance().amountOfDiscount((String) inputs[0])));
                 break;
             }
-
+            case ADD_PRODUCT_TO_CART:{
+                ProductServerController.getInstance().addToCart((Buyer)inputs[0] , (Product)inputs[1]);
+                sendSuccessful();
+                break;
+            }
         }
     }
 
