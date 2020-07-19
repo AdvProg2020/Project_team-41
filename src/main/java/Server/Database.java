@@ -16,7 +16,6 @@ import Server.Controller.UserSectionController.ManagerServerController;
 import java.io.*;
 import java.util.*;
 
-
 public class Database implements Serializable {
     private static Database database;
     private ArrayList<Category> allCategory = new ArrayList<>();
@@ -49,7 +48,6 @@ public class Database implements Serializable {
 
     }
 
-
     public ArrayList<ChatBox> getChatBoxes() {
         return chatBoxes;
     }
@@ -67,6 +65,7 @@ public class Database implements Serializable {
         }
         return null;
     }
+
     public void addBidChatComment(BidChatComment bidChatComment){
         for (Bid bid : allBids) {
             if(bid.getBidId().equals(bidChatComment.getBidId())){
@@ -74,8 +73,6 @@ public class Database implements Serializable {
             }
         }
     }
-
-
 
     public void addBid(Bid newBid) {
             allBids.add(newBid);
@@ -103,7 +100,6 @@ public class Database implements Serializable {
         return allManagers;
     }
 
-
     public ArrayList<Seller> getAllSellers() {
         ArrayList<Seller> allSellers = new ArrayList<>();
         for (Person user : allUsers) {
@@ -121,7 +117,6 @@ public class Database implements Serializable {
         }
         return allBuyers;
     }
-
 
     public Category getCategoryByName(String name) throws Exception {
         for (Category category : allCategory) {
@@ -350,7 +345,6 @@ public class Database implements Serializable {
         throw new Exception("wrong bid Id");
     }
 
-
     public void removeRequest(Request request) throws Exception {
         if (!allRequest.remove(request))
             throw new Exception("no request exists like this anymore");
@@ -362,8 +356,6 @@ public class Database implements Serializable {
         System.out.println(accountId);
         this.accountUsername = username;
         this.accountPassword = password;
-
-
     }
 
     public int getAccountId() {
@@ -386,7 +378,6 @@ public class Database implements Serializable {
         if ((wage < 0) || wage > 100)
             throw new Exception("invalid wage number");
         this.wage = wage;
-
     }
 
     public void addFile(Product product, List<Byte> file) {
