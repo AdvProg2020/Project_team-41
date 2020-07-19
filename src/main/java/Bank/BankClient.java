@@ -17,8 +17,6 @@ public class BankClient extends Thread{
         try {
             dataOutputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             dataInputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            sendMessage("hello 1");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -26,7 +24,6 @@ public class BankClient extends Thread{
         while (true){
             try {
                 String input = receiveMessage();
-                System.out.println(input);
                 if(input.startsWith("create_account")){
                     createAccount(input);
                 }else if(input.startsWith("get_token")){
@@ -55,10 +52,10 @@ public class BankClient extends Thread{
     public void sendMessage(String message) {
         try {
             dataOutputStream.writeUTF(message);
+            System.out.println("sent: "+message);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("sent: "+message);
 
     }
 
