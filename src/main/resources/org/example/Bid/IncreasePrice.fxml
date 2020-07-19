@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Client.View.Menus.Bid.IncreasePrice"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.Bid.IncreasePrice">
 
     <children>
-        <Text layoutX="169.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your initial amount:" textAlignment="CENTER" wrappingWidth="250.22900390625">
+        <Text layoutX="146.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You can change your recommended price:" textAlignment="CENTER" wrappingWidth="308.22900390625">
             <font>
                 <Font name="Times New Roman" size="17.0" />
             </font>

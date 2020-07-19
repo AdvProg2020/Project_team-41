@@ -13,6 +13,6 @@ public class BidController {
     }
 
     public static void increasePrice(Bid bid, int price) throws Exception {
-        Connector.getInstance().initializeMessage(new Message(new Object[]{bid , (Buyer) UserSectionController.getLoggedInPerson() , price} , MessageType.INCREASE_PRICE));
+        Connector.getInstance().initializeMessage(new Message(new Object[]{bid.getBidId() , UserSectionController.getLoggedInPerson().getUserName() , price} , MessageType.INCREASE_PRICE));
     }
 }

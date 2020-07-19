@@ -18,7 +18,7 @@ public class IncreasePrice {
     public TextField priceTextField;
     public Button priceSendingButton;
     public Text informationText;
-    public Bid bid;
+    public static Bid bid;
 
     public void increasePrice(MouseEvent mouseEvent) {
         int initialPrice = 0;

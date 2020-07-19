@@ -91,10 +91,6 @@ public class Cart implements Serializable {
         return "Cart : " +
                 "\nproducts : " + products;
     }
-    public void addProduct(Product product){
-        products.put(product,1);
-        ServerSaver.write(AllCommands.allData);
-    }
 
     public int getCashToPay() {
         int cashToPay;

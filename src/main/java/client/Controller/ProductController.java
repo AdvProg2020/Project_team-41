@@ -26,11 +26,15 @@ public class ProductController {
         if (UserSectionController.getLoggedInPerson() != null) {
             if(UserSectionController.getLoggedInPerson() instanceof Buyer) {
                 Buyer theBuyer = (Buyer) UserSectionController.getLoggedInPerson();
-                theBuyer.getCart().addProduct(product);
+                try {
+                    Connector.getInstance().initializeMessage(new Message(new Object[]{theBuyer , product} , MessageType.ADD_PRODUCT_TO_CART));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //theBuyer.getCart().addProduct(product);
             }
             else
                 throw new ClassCastException("Sorry, only buyers can buy!");
-
         } else
             throw new NullPointerException("First you must log in");
 

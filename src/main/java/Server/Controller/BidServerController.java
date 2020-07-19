@@ -38,8 +38,11 @@ public class BidServerController {
             ServerSaver.write(AllCommands.allBids);
     }
 
-    public void IncreasePrice(Bid bid, Buyer buyer, int price) throws Exception {
-        bid.getBuyer_recommendedPrice().replace(buyer , price);
+    public void IncreasePrice(String bidId, String buyerId, int price) throws Exception {
+        System.out.println("1");
+        Database.getInstance().getBidById(bidId).getBuyer_recommendedPrice().replace((Buyer) Database.getInstance().getPersonByUsername(buyerId), price);
+        System.out.println("2");
         ServerSaver.write(AllCommands.allBids);
+        System.out.println("3");
     }
 }
