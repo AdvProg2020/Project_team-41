@@ -93,6 +93,8 @@ public class ProductMenu extends Menu {
                             System.out.println(e.getMessage()+ "\n");
                             this.superMenu.commands();
                             this.superMenu.execute();
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 };
