@@ -26,7 +26,7 @@ public class ProductController {
     public static void addToCart(Product product) throws Exception {
         if (UserSectionController.getLoggedInPerson() != null) {
             if(UserSectionController.getLoggedInPerson() instanceof Buyer) {
-                BuyerController.getInstance().increaseProduct(1,product.getProductId());
+                Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson(),product}, MessageType.ADD_PRODUCT_TO_CART));
             }
             else
                 throw new ClassCastException("Sorry, only buyers can buy!");

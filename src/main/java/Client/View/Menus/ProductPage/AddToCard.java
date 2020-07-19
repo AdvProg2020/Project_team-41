@@ -19,7 +19,7 @@ public class AddToCard extends Menu {
     @FXML
     public void initialize() throws IOException {
         try{
-        ProductController.addToCart(ProductPageGeneralButtons.getTheProduct());
+            ProductController.addToCart(ProductPageGeneralButtons.getTheProduct());
             showMessage(addToCardResult , MessageTypeShow.SUCCESS , "The product was added to cart successfully");}
         catch(NullPointerException e){
             showMessage(addToCardResult , MessageTypeShow.ERROR , e.getMessage());
