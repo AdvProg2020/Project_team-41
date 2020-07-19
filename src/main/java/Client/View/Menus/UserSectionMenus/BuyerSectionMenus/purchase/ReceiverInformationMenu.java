@@ -25,7 +25,12 @@ public class ReceiverInformationMenu {
             ArrayList<String> receiverInformation = new ArrayList<>();
             receiverInformation.add(addressTextField.getText());
             receiverInformation.add(phoneNumberTextField.getText());
-            BuyerController.getInstance().setReceiverInformation(receiverInformation);
+            try {
+                BuyerController.getInstance().setReceiverInformation(receiverInformation);
+            } catch (Exception e) {
+                showMessage(informationText, MessageTypeShow.ERROR, e.getMessage());
+                return;
+            }
             loadInInsideAnchorPane("userSection/buyerSection/purchase/discount code menu");
         }
 
