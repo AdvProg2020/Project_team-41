@@ -6,11 +6,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.bank.TransferPage">
    <children>
-      <TextField fx:id="transferPageCreditNumberTextField" layoutX="83.0" layoutY="44.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter your credit number" />
-      <TextField fx:id="transferPageDestinationTextField" layoutX="83.0" layoutY="102.0" prefHeight="27.0" prefWidth="256.0" promptText="who do you want to transfer to?" />
-      <TextField fx:id="transferPageMoneyTextField" layoutX="84.0" layoutY="159.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter money you wish to transfer" />
-      <TextField fx:id="transferPageDescriptionTextField" layoutX="84.0" layoutY="211.0" prefHeight="160.0" prefWidth="256.0" promptText="(optional) description" />
-      <Button layoutX="400.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#transferClicked" text="transfer" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="transferPageCreditNumberTextField" layoutX="83.0" layoutY="44.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter your credit number" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="transferPageDestinationTextField" layoutX="83.0" layoutY="102.0" prefHeight="27.0" prefWidth="256.0" promptText="who do you want to transfer to?" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="transferPageMoneyTextField" layoutX="84.0" layoutY="159.0" prefHeight="27.0" prefWidth="256.0" promptText="please enter money you wish to transfer" />
+      <TextField stylesheets="/org/example/styles/textFill.css" fx:id="transferPageDescriptionTextField" layoutX="84.0" layoutY="211.0" prefHeight="160.0" prefWidth="256.0" promptText="(optional) description" />
+      <Button stylesheets="/org/example/styles/commandButton.css" layoutX="400.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#transferClicked" text="transfer" />
       <Text fx:id="transferPageInformationText" layoutX="52.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.89990234375" />
    </children>
 </AnchorPane>

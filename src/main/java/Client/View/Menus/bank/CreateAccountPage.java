@@ -25,7 +25,7 @@ public class CreateAccountPage {
             AnchorPane bankLoginMenuAnchorPane = (AnchorPane)NodeFinder.getParentById(createAccountMenuInformationText,"bankLoginMenuAnchorPane");
             bankLoginMenuAnchorPane.getChildren().setAll( App.loadFXML("bank/bankLoginMenu"));
             Text text = (Text) NodeFinder.getChildById(bankLoginMenuAnchorPane, "bankLoginMenuInformationText");
-            MessageTypeShow.showMessage(text, MessageTypeShow.SUCCESS, "Successfully created account. your account id is: " + id);
+            MessageTypeShow.showMessage(text, MessageTypeShow.INFORMATION, "Successfully created account. your account id is: " + id);
         } catch (Exception e) {
             MessageTypeShow.showMessage(createAccountMenuInformationText,MessageTypeShow.ERROR,e.getMessage());
         }

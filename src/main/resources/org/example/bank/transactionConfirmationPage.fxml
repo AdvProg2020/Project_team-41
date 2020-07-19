@@ -6,9 +6,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.bank.TransactionConfirmationPage">
    <children>
-      <TextArea fx:id="confirmationPageTextArea" layoutX="154.0" layoutY="44.0" prefHeight="229.0" prefWidth="246.0" />
+      <TextArea stylesheets="/org/example/styles/textFill.css" fx:id="confirmationPageTextArea" layoutX="154.0" layoutY="44.0" prefHeight="229.0" prefWidth="246.0" />
       <Text fx:id="confirmationPageInformationText" layoutX="117.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.89990234375" />
-      <Button layoutX="63.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#backClicked" text="back" />
-      <Button layoutX="439.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#submitClicked" text="submit" />
+      <Button stylesheets="/org/example/styles/commandButton.css" layoutX="63.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#backClicked" text="back" />
+      <Button stylesheets="/org/example/styles/commandButton.css" layoutX="439.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#submitClicked" text="submit" />
    </children>
 </AnchorPane>

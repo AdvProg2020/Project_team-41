@@ -77,6 +77,10 @@ public class ManagerRegister {
             Manager manager=new Manager();
             setVariables(manager);
             try {
+                if(!managerExists) {
+                    ManagerController.getInstance().setUpManagerAccountId(manager, bankUsername.getText(), bankPass.getText());
+                    ManagerController.getInstance().setWage(Integer.parseInt(wage.getText()));
+                }
                 LoginRegisterController.getInstance().createAccount(manager);
                 welcome1.setText("Account successfully created");
                 welcome1.setTextFill(Color.GREEN);
@@ -88,6 +92,10 @@ public class ManagerRegister {
                 if(e.getMessage().equals("Invalid UserName!")){
                     userError.setText("This username exists");
                     userError.setVisible(true);
+                }else{
+                    welcome1.setTextFill(Color.RED);
+                    welcome1.setText(e.getMessage());
+                    welcome1.setVisible(true);
                 }
             }
 
@@ -143,17 +151,7 @@ public class ManagerRegister {
             manager.setLastName(lastName.getText());
             manager.setEmail(email.getText());
             manager.setPhoneNumber(phoneNumber.getText());
-            if(!managerExists){
-                try {
-                    ManagerController.getInstance().setUpManagerAccountId(manager,bankUsername.getText(),bankPass.getText());
-                    ManagerController.getInstance().setWage(Integer.parseInt(wage.getText()));
-                } catch (Exception e) {
-                    welcome1.setTextFill(Color.RED);
-                    welcome1.setText("Something went wrong with the bank, please try again.");
-                    welcome1.setVisible(true);
-                }
 
-            }
         }catch (Exception e){
             System.out.print(e.getMessage());
         }

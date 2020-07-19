@@ -72,7 +72,7 @@ public class SellerSectionMenu extends Menu {
             BankAPI.makeInstance();
             BankMainMenu.redirectedForTransfer = true;
             BankWindow.openBank();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
