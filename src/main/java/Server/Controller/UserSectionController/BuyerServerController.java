@@ -62,6 +62,10 @@ public class BuyerServerController {
         buyer.addTradeLog(new TradeLog(new Date(),cashToPay,cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(), TradeLog.DeliverySituation.WAITING,cart.getReceiverInformation()));
         buyer.renewCart();
     }
+    public void setReceiverInformation(Buyer buyer,ArrayList<String> receiverInformation) throws Exception {
+        Buyer foundBuyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
+        foundBuyer.getCart().setReceiverInformation(receiverInformation);
+    }
     public ArrayList<String> getCodedDiscounts(Person person){
         ArrayList<String> codedDiscounts = new ArrayList<>();
         for (CodedDiscount discountCode : Database.getInstance().getAllDiscountCodes()) {

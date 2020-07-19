@@ -505,6 +505,11 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(BuyerServerController.getInstance().downloadFile((Product) inputs[0])));
                 break;
             }
+            case SET_RECEIVER_INFORMATION:{
+                BuyerServerController.getInstance().setReceiverInformation((Buyer) inputs[0], (ArrayList<String>) inputs[1]);
+                sendSuccessful();
+                break;
+            }
         }
     }
 
