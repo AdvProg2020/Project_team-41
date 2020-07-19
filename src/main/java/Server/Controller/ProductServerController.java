@@ -2,6 +2,7 @@ package Server.Controller;
 
 import Client.Models.Comment;
 import Client.Models.Off;
+import Client.Models.Person.Buyer;
 import Client.Models.Product;
 import Client.Models.Request;
 import Server.Database;
@@ -39,4 +40,8 @@ public class ProductServerController {
         Database.getInstance().addRequest(request);
     }
 
+    public void addToCart(Buyer buyer, Product product) {
+        buyer.getCart().getProducts().put(product , 1);
+        ServerSaver.write(AllCommands.allData);
+    }
 }

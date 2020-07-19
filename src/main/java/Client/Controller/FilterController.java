@@ -3,6 +3,7 @@ package Client.Controller;
 import Client.Models.Category;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
+import Client.Models.Person.Seller;
 import Client.Models.Product;
 import Server.Controller.AllProductsServerController;
 import Server.Controller.OffsServerController;
@@ -352,8 +353,8 @@ public class FilterController {
     }
 
     public void setSellerUserName(String sellerUserName) throws Exception {
-        Database.getInstance().getSellerByUsername(sellerUserName);
-        this.sellerUserName = sellerUserName;
+        Seller seller = (Seller) Connector.getInstance().initializeMessage(new Message(new Object[]{sellerUserName} , MessageType.GET_USER_BY_USERNAME));
+        this.sellerUserName = seller.getUserName();
     }
 
     public void setExistence(int existence) {
