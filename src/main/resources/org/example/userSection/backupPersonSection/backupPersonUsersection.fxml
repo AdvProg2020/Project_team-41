@@ -28,7 +28,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Label layoutX="39.0" layoutY="38.0" text="Wait for someone to send you message:" textFill="CRIMSON">
+            <Label layoutX="39.0" layoutY="38.0" text="Wait for someone to send you message:" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
