@@ -87,7 +87,7 @@ public class Bid implements Serializable {
 
     public void increasePrice(Buyer buyer, int price) {
         buyer_recommendedPrice.replace(buyer , price);
-        ServerSaver.write(AllCommands.allBids);
+
     }
 
     public BidChatBox getBidChatBox() {

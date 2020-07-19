@@ -35,11 +35,11 @@ public class BidServerController {
 
     public void addParticipant(String bidId, Buyer buyer, int price) throws Exception {
             Database.getInstance().getBidById(bidId).getBuyer_recommendedPrice().put(buyer , price);
-            ServerSaver.write(AllCommands.allBids);
+
     }
 
     public void IncreasePrice(Bid bid, Buyer buyer, int price) throws Exception {
         bid.getBuyer_recommendedPrice().replace(buyer , price);
-        ServerSaver.write(AllCommands.allBids);
+
     }
 }

@@ -42,6 +42,6 @@ public class ProductServerController {
 
     public void addToCart(Buyer buyer, Product product) {
         buyer.getCart().getProducts().put(product , 1);
-        ServerSaver.write(AllCommands.allData);
+
     }
 }
