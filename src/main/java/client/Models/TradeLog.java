@@ -40,7 +40,7 @@ public class TradeLog implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public int getMoney() {

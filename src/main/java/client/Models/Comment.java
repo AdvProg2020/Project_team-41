@@ -63,7 +63,7 @@ public class Comment implements Serializable {
 
     public void setHasHeBought(boolean hasHeBought) {
         this.hasHeBought = hasHeBought;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Comment implements Serializable {
 
     public void setCommentSituation(CommentSituation commentSituation) {
         this.commentSituation = commentSituation;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     @Override

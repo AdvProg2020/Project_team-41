@@ -31,7 +31,7 @@ public class Seller extends Person {
 
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     public ArrayList<Off> getOffs() {
@@ -40,29 +40,29 @@ public class Seller extends Person {
 
     public void setFactoryName(String factoryName) {
         this.factoryName = factoryName;
-        ServerSaver.write(AllCommands.allData);
+
     }
     //only use it in server
     public void increaseCreditWithWage(int money) throws Exception {
         
         this.setCredit(getCredit()+money*(100- Database.getInstance().getWage())/100);
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void addProduct(Product product){
         products.add(product);
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void addOff(Off off){
         offs.add(off);
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void removeProduct(Product product){
         products.remove(product);
-        ServerSaver.write(AllCommands.allData);
+
     }
     public void removeOff(Off off){
         offs.remove(off);
-        ServerSaver.write(AllCommands.allData);
+
     }
 
     @Override
