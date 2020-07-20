@@ -178,6 +178,36 @@ public class BankClient extends Thread{
         sendMessage("source account id is invalid");
     }
     public void move(String[] split){
+        if(split[4].equals(split[5])){
+            sendMessage("equal source and dest account");
+            return;
+        }
+        if(!validInt(split[4])){
+            sendMessage("source account id is invalid");
+            return;
+        }
+        if(!validInt(split[5])){
+            sendMessage("dest account id is invalid");
+            return;
+        }
+        for (Account account : BankDatabase.getInstance().getAccounts()) {
+            if(account.getId()==Integer.parseInt(split[5])){
+                for (Account account1 : BankDatabase.getInstance().getAccounts()) {
+                    if(account1.getId()==Integer.parseInt(split[4])){
+                        if(Main.getTokens().get(account1).getToken().equals(split[1])){
+                            makeTheReceipt(split);
+                        }else{
+                            sendMessage("token is invalid");
+                        }
+                        return;
+                    }
+                }
+                sendMessage("source account id is invalid");
+                return;
+            }
+        }
+        sendMessage("dest account id is invalid");
+
 
     }
     public void makeTheReceipt(String[] split){
@@ -187,12 +217,80 @@ public class BankClient extends Thread{
         }else{
             transaction=new Transaction(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]),Integer.parseInt(split[5]),split[6]);
         }
+        BankDatabase.getInstance().addTransaction(transaction);
         sendMessage(String.valueOf(transaction.getId()));
     }
     public void getTransactions(String input){
 
     }
     public void pay(String input){
+        String []split =input.split(" ");
+        if(!validInt(split[1])){
+            sendMessage("invalid receipt id");
+            return;
+        }
+        for (Transaction transaction : BankDatabase.getInstance().getTransactions()) {
+            if(transaction.getId()==Integer.parseInt(split[1])){
+                if(transaction.getPaid()==1){
+                    sendMessage("receipt is paid before");
+                    return;
+                }else{
+                    if(transaction.getReceiptType().equals("deposit")){
+                        payDeposit(transaction);
+                        return;
+                    }else if(transaction.getReceiptType().equals("move")){
+                        payMove(transaction);
+                        return;
+                    }else if(transaction.getReceiptType().equals("withdraw")){
+                        payWithdraw(transaction);
+                        return;
+                    }
+
+                }
+            }
+        }
+        sendMessage("invalid receipt id");
+    }
+    public void payDeposit(Transaction transaction){
+        Account desAccount=BankDatabase.getInstance().getAccountById(transaction.getDestAccountID());
+        if(desAccount==null){
+            sendMessage("invalid account id");
+        }else{
+            desAccount.addCredit(transaction.getMoney());
+            transaction.setPaid(1);
+            sendMessage("done successfully");
+        }
+    }
+    public void payWithdraw(Transaction transaction){
+        Account sourceAccount=BankDatabase.getInstance().getAccountById(transaction.getSourceAccountID());
+        if(sourceAccount==null){
+            sendMessage("invalid account id");
+        }else{
+            if(sourceAccount.getCredit()<transaction.getMoney()){
+                sendMessage("source account does not have enough money");
+            }else {
+                sourceAccount.removeCredit(transaction.getMoney());
+                transaction.setPaid(1);
+                sendMessage("done successfully");
+            }
+        }
+    }
+    public void payMove(Transaction transaction){
+        Account sourceAccount=BankDatabase.getInstance().getAccountById(transaction.getSourceAccountID());
+        Account desAccount=BankDatabase.getInstance().getAccountById(transaction.getDestAccountID());
+
+        if(sourceAccount==null||desAccount==null){
+            sendMessage("invalid account id");
+        }else{
+            if(sourceAccount.getCredit()<transaction.getMoney()){
+                sendMessage("source account does not have enough money");
+            }else {
+                desAccount.addCredit(transaction.getMoney());
+                sourceAccount.removeCredit(transaction.getMoney());
+                transaction.setPaid(1);
+                sendMessage("done successfully");
+            }
+        }
 
     }
     public void getBalance(String input){

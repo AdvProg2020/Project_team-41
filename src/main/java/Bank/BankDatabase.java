@@ -37,4 +37,12 @@ public class BankDatabase implements Serializable {
         transactions.add(transaction);
         Main.writeDatabase();
     }
+    public Account getAccountById(int id){
+        for (Account account : accounts) {
+            if(account.getId()==id){
+                return account;
+            }
+        }
+        return null;
+    }
 }

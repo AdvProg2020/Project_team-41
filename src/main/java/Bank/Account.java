@@ -44,4 +44,10 @@ public class Account implements Serializable {
     public int getCredit() {
         return credit;
     }
+    public void addCredit(int money){
+        this.credit+=money;
+    }
+    public void removeCredit(int money){
+        this.credit-=money;
+    }
 }
