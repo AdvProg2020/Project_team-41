@@ -4,6 +4,7 @@ import Server.Controller.RandomNumberGenerator;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -221,7 +222,53 @@ public class BankClient extends Thread{
         sendMessage(String.valueOf(transaction.getId()));
     }
     public void getTransactions(String input){
+        String[] split=input.split(" ");
+        Account account= getAccountByToken(split[1]);
+        if(account==null){
+            sendMessage("token is invalid");
+            return;
+        }
+        makeJson(account,split);
+    }
+    public void makeJson(Account account,String[] split){
+        ArrayList<Transaction> transactions=new ArrayList<>();
+        if(split[2].equals("+")){
+            for (Transaction transaction : BankDatabase.getInstance().getTransactions()) {
+                if((transaction.getDestAccountID()==account.getId())&&(transaction.getPaid()==1)){
+                    transactions.add(transaction);
+                }
+            }
+        }else if(split[2].equals("-")){
+            for (Transaction transaction : BankDatabase.getInstance().getTransactions()) {
+                if((transaction.getSourceAccountID()==account.getId())&&(transaction.getPaid()==1)){
+                    transactions.add(transaction);
+                }
+            }
+        }else if(split[2].equals("*")){
+            for (Transaction transaction : BankDatabase.getInstance().getTransactions()) {
+                if((transaction.getSourceAccountID()==account.getId()||transaction.getDestAccountID()==account.getId())&&(transaction.getPaid()==1)){
+                    transactions.add(transaction);
+                }
+            }
+        }else if(split[2].matches("\\d+")){
 
+        }
+        StringBuilder stringBuilder=new StringBuilder();
+        for (int i = 0; i <transactions.size() ; i++) {
+            if(i!=0){
+                stringBuilder.append("*");
+            }
+            stringBuilder.append(Transaction.getString(transactions.get(i)));
+        }
+        sendMessage(stringBuilder.toString());
+    }
+    public Account getAccountByToken(String token){
+        for (Map.Entry<Account, TokenAndDate> accountTokenAndDateEntry : Main.getTokens().entrySet()) {
+            if(accountTokenAndDateEntry.getValue().getToken().equals(token)){
+                return accountTokenAndDateEntry.getKey();
+            }
+        }
+        return null;
     }
     public void pay(String input){
         String []split =input.split(" ");

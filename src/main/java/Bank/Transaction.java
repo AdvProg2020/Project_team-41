@@ -1,6 +1,7 @@
 package Bank;
 
 import Server.Controller.RandomNumberGenerator;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
 
@@ -12,6 +13,12 @@ public class Transaction implements Serializable {
     private String description;
     private int id;
     private int paid;
+
+    public static String getString(Transaction transaction){
+        Gson gson=new Gson();
+        return gson.toJson(transaction,Transaction.class);
+    }
+
 
     public int getId() {
         return id;
