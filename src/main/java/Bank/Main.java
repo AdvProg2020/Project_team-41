@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class Main {
     public static final int PORT = 2222;
-    private static final HashMap<TokenAndDate,Account> tokens=new HashMap<>();
+    private static final HashMap<Account,TokenAndDate> tokens=new HashMap<>();
 
     public static void main(String[] args) throws IOException {
         System.out.println("Bank started");
@@ -53,7 +53,7 @@ public class Main {
         }
     }
 
-    public static HashMap<TokenAndDate,Account> getTokens() {
+    public static HashMap<Account,TokenAndDate> getTokens() {
         return tokens;
     }
 }

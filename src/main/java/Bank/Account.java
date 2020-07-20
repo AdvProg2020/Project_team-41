@@ -2,11 +2,10 @@ package Bank;
 
 import Server.Controller.RandomNumberGenerator;
 
-import java.io.RandomAccessFile;
 import java.io.Serializable;
 
 public class Account implements Serializable {
-    private String  id;
+    private int  id;
     private String firstName;
     private String lastName;
     private String username;
@@ -19,11 +18,11 @@ public class Account implements Serializable {
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-        this.id= RandomNumberGenerator.getIdNumber(5);
+        this.id= Integer.parseInt(RandomNumberGenerator.getIdNumber(5));
         this.credit=0;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

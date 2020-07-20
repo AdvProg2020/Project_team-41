@@ -5,15 +5,15 @@ import Server.Controller.RandomNumberGenerator;
 import java.io.Serializable;
 
 public class Transaction implements Serializable {
-    private String  id;
     private String receiptType;
     private int money;
     private int sourceAccountID;
     private int destAccountID;
     private String description;
+    private int id;
     private int paid;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -47,7 +47,11 @@ public class Transaction implements Serializable {
         this.sourceAccountID = sourceAccountID;
         this.destAccountID = destAccountID;
         this.description = description;
-        this.id= RandomNumberGenerator.getIdNumber(5);
+        this.id= Integer.parseInt(RandomNumberGenerator.getIdNumber(5));
         this.paid=0;
+    }
+
+    public void setPaid(int paid) {
+        this.paid = paid;
     }
 }

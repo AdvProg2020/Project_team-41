@@ -5,7 +5,7 @@ import java.util.Random;
 public class RandomNumberGenerator {
     private static final Random random = new Random();
     private static final String CHARS = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
-    private static final String NUMBERS="1234567890";
+    private static final String NUMBERS="123456789";
 
     public static String getToken(int length) {
         StringBuilder token = new StringBuilder(length);

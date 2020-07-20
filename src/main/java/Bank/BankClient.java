@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class BankClient extends Thread{
     Socket socket;
@@ -92,7 +93,7 @@ public class BankClient extends Thread{
             }
             Account account=new Account(split[1],split[2],split[3],split[4]);
             BankDatabase.getInstance().addAccount(account);
-            sendMessage(account.getId());
+            sendMessage(String.valueOf(account.getId()));
         }
 
     }
@@ -101,7 +102,7 @@ public class BankClient extends Thread{
         for (Account account : BankDatabase.getInstance().getAccounts()) {
             if(account.getUsername().equals(split[1])&&account.getPassword().equals(split[2])){
                 String token=RandomNumberGenerator.getToken(5);
-                Main.getTokens().put(new TokenAndDate(token,new Date()),account);
+                Main.getTokens().put(account,new TokenAndDate(token,new Date()));
                 sendMessage(token);
                 return;
             }
@@ -109,7 +110,84 @@ public class BankClient extends Thread{
         sendMessage("invalid username or password");
     }
     public void createReceipt(String input){
+        String [] split=input.split(" ");
+        if(split.length==7||split.length==6) {
+            if(!validInt(split[3])){
+                sendMessage("invalid money");
+                return;
+            }
+            if (split[2].equals("deposit")) {
+                deposit(split);
+            } else if (split[2].equals("withdraw")) {
+                withdraw(split);
+            } else if (split[2].equals("move")) {
+                move(split);
+            } else {
+                sendMessage("invalid receipt type");
+            }
+        }else{
+            sendMessage("invalid parameters passed");
+        }
 
+    }
+    public boolean validInt(String money){
+        if(!money.matches("\\d+")){
+            return false;
+        }else if(Integer.parseInt(money)<0){
+            return false;
+        }else {
+            return true;
+        }
+    }
+    public void deposit(String[] split){
+        if(!split[4].equals("-1")){
+            sendMessage("invalid parameters passed");
+            return;
+        }
+        if(!validInt(split[5])){
+            sendMessage("dest account id is invalid");
+            return;
+        }
+        for (Account account : BankDatabase.getInstance().getAccounts()) {
+            if(account.getId()==Integer.parseInt(split[5])){
+                makeTheReceipt(split);
+                return;
+            }
+        }
+        sendMessage("dest account id is invalid");
+    }
+    public void withdraw(String[] split){
+        if(!split[5].equals("-1")){
+            sendMessage("invalid parameters passed");
+            return;
+        }
+        if(!validInt(split[4])){
+            sendMessage("source account id is invalid");
+            return;
+        }
+        for (Account account : BankDatabase.getInstance().getAccounts()) {
+            if(account.getId()==Integer.parseInt(split[4])){
+                if(Main.getTokens().get(account).getToken().equals(split[1])){
+                    makeTheReceipt(split);
+                }else{
+                    sendMessage("token is invalid");
+                }
+                return;
+            }
+        }
+        sendMessage("source account id is invalid");
+    }
+    public void move(String[] split){
+
+    }
+    public void makeTheReceipt(String[] split){
+        Transaction transaction;
+        if(split.length==6){
+            transaction=new Transaction(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]),Integer.parseInt(split[5]),"");
+        }else{
+            transaction=new Transaction(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]),Integer.parseInt(split[5]),split[6]);
+        }
+        sendMessage(String.valueOf(transaction.getId()));
     }
     public void getTransactions(String input){
 
@@ -119,13 +197,14 @@ public class BankClient extends Thread{
     }
     public void getBalance(String input){
         String [] split=input.split(" ");
-        HashMap<TokenAndDate,Account> tokens= Main.getTokens();
-        for (TokenAndDate tokenAndDate : tokens.keySet()) {
-            if(tokenAndDate.getToken().equals(split[1])){
-                sendMessage(String.valueOf(tokens.get(tokenAndDate).getCredit()));
+        HashMap<Account,TokenAndDate> tokens= Main.getTokens();
+        for (Map.Entry<Account, TokenAndDate> accountTokenAndDateEntry : tokens.entrySet()) {
+            if(accountTokenAndDateEntry.getValue().getToken().equals(split[1])){
+                sendMessage(String.valueOf(accountTokenAndDateEntry.getKey().getCredit()));
                 return;
             }
         }
+
         sendMessage("token is invalid");
     }
 }
