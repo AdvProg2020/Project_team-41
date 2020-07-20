@@ -1,7 +1,11 @@
 package Bank;
 
+import Server.Controller.RandomNumberGenerator;
+
 import java.io.*;
 import java.net.Socket;
+import java.util.Date;
+import java.util.HashMap;
 
 public class BankClient extends Thread{
     Socket socket;
@@ -52,6 +56,7 @@ public class BankClient extends Thread{
     public void sendMessage(String message) {
         try {
             dataOutputStream.writeUTF(message);
+            dataOutputStream.flush();
             System.out.println("sent: "+message);
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,7 +97,16 @@ public class BankClient extends Thread{
 
     }
     public void getToken(String input){
-
+        String [] split=input.split(" ");
+        for (Account account : BankDatabase.getInstance().getAccounts()) {
+            if(account.getUsername().equals(split[1])&&account.getPassword().equals(split[2])){
+                String token=RandomNumberGenerator.getToken(5);
+                Main.getTokens().put(new TokenAndDate(token,new Date()),account);
+                sendMessage(token);
+                return;
+            }
+        }
+        sendMessage("invalid username or password");
     }
     public void createReceipt(String input){
 
@@ -104,6 +118,14 @@ public class BankClient extends Thread{
 
     }
     public void getBalance(String input){
-
+        String [] split=input.split(" ");
+        HashMap<TokenAndDate,Account> tokens= Main.getTokens();
+        for (TokenAndDate tokenAndDate : tokens.keySet()) {
+            if(tokenAndDate.getToken().equals(split[1])){
+                sendMessage(String.valueOf(tokens.get(tokenAndDate).getCredit()));
+                return;
+            }
+        }
+        sendMessage("token is invalid");
     }
 }

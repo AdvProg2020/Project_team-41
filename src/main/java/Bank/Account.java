@@ -11,6 +11,8 @@ public class Account implements Serializable {
     private String lastName;
     private String username;
     private String password;
+    private int credit;
+
 
     public Account(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
@@ -18,6 +20,7 @@ public class Account implements Serializable {
         this.username = username;
         this.password = password;
         this.id= RandomNumberGenerator.getIdNumber(5);
+        this.credit=0;
     }
 
     public String getId() {
@@ -38,5 +41,8 @@ public class Account implements Serializable {
 
     public String getPassword() {
         return password;
+    }
+    public int getCredit() {
+        return credit;
     }
 }

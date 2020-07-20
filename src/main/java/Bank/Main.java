@@ -7,9 +7,12 @@ import Server.Database;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
     public static final int PORT = 2222;
+    private static final HashMap<TokenAndDate,Account> tokens=new HashMap<>();
 
     public static void main(String[] args) throws IOException {
         System.out.println("Bank started");
@@ -48,5 +51,9 @@ public class Main {
             writeDatabase();
 
         }
+    }
+
+    public static HashMap<TokenAndDate,Account> getTokens() {
+        return tokens;
     }
 }
