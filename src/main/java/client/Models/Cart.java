@@ -29,12 +29,10 @@ public class Cart implements Serializable {
 
     public void setCodedDiscount(CodedDiscount codedDiscount) {
         this.codedDiscount = codedDiscount;
-        ServerSaver.write(AllCommands.allData);
     }
 
     public void setReceiverInformation(ArrayList<String> receiverInformation) {
         this.receiverInformation = receiverInformation;
-        ServerSaver.write(AllCommands.allData);
     }
 
     public HashMap<Product,Integer> getProducts() {
@@ -56,7 +54,6 @@ public class Cart implements Serializable {
             throw new Exception("there is no such product in the cart");
         }
         products.put(product,productQuantity+1);
-        ServerSaver.write(AllCommands.allData);
     }
     public void decreaseProductQuantity(Product product) throws Exception {
         int productQuantity;
@@ -71,7 +68,6 @@ public class Cart implements Serializable {
         else {
             products.put(product, productQuantity - 1);
         }
-        ServerSaver.write(AllCommands.allData);
     }
 
     public int totalPrice(){
