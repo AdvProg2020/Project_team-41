@@ -50,6 +50,9 @@ public class BidChatPage extends Menu {
         } else {
             loginLogout.setText("Logout");
         }
+        productId.setText(bid.getProduct().getProductId());
+        productName.setText(bid.getProduct().getName());
+        highestBid.setText(String.valueOf(bid.getWinnerInfo().getValue()));
         updateChatBox();
     }
 
