@@ -27,16 +27,16 @@ public class BidWinner {
 
     @FXML
     public void initialize() {
-        ArrayList<Bid> allBisHeWon = new ArrayList<>();
+        ArrayList<Bid> allBidsHeWon = new ArrayList<>();
         try {
-            allBisHeWon = BidController.getBidsHeWon(UserSectionController.getLoggedInPerson().getUserName());
+            allBidsHeWon = BidController.getBidsHeWon(UserSectionController.getLoggedInPerson().getUserName());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if (allBisHeWon.size() == 0)
+        if (allBidsHeWon.size() == 0)
             bidsInfo.setText("No Bids you won yet");
-        for (Bid bid : allBisHeWon) {
+        for (Bid bid : allBidsHeWon) {
             addEachBid(bid.getBidId(), bid.getProduct().getName() , bid.getWinnerInfo().getValue());
         }
     }
