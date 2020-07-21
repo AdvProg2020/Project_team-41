@@ -5,10 +5,12 @@ import Client.Models.Bid;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Seller;
 import Client.Models.Product;
+import Client.Models.TradeLog;
 import Server.Database;
 
 import javax.xml.crypto.Data;
 import java.util.Date;
+import java.util.HashMap;
 
 
 public class BidServerController {
@@ -47,5 +49,25 @@ public class BidServerController {
         } else {
             bid.getBuyer_recommendedPrice().replace(buyer, price);
         }
+    }
+
+    public void payForProduct(String bidId, int quantity) throws Exception {
+        Bid bid = Database.getInstance().getBidById(bidId);
+        Product product = bid.getProduct();
+        Buyer buyer = bid.getWinnerInfo().getKey();
+        Seller seller = bid.getProduct().getSeller();
+        if(quantity>product.getQuantity()){
+            throw new Exception("we don't have that much products!");
+        }
+        else{
+        int priceToPay = (bid.getWinnerInfo().getValue()) * quantity;
+        product.addBuyer(buyer);
+        buyer.decreaseCredit(priceToPay);
+        product.setQuantity(product.getQuantity() - quantity);
+        seller.increaseCreditWithWage(priceToPay);
+        HashMap<Product, Integer> productPrice = new HashMap<>();
+        productPrice.put(product, priceToPay);
+        seller.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productPrice, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));
+        buyer.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productPrice, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));}
     }
 }
