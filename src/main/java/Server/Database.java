@@ -5,6 +5,7 @@ import Client.Models.*;
 import Client.Models.BidChat.BidChatBox;
 import Client.Models.BidChat.BidChatComment;
 import Client.Models.Chat.ChatBox;
+import Client.Models.Message.MessageType;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
@@ -12,6 +13,7 @@ import Client.Models.Person.Seller;
 import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
 import Server.Controller.UserSectionController.ManagerServerController;
+import javafx.util.Pair;
 
 import java.io.*;
 import java.util.*;
@@ -293,6 +295,7 @@ public class Database implements Serializable {
     }
 
     public ArrayList<Bid> getAllBids() {
+        ArrayList<Bid> allNewBids = allBids;
         ArrayList<Bid> bidsToDelete = new ArrayList<>();
         Date date = new Date();
         for (Bid bid : allBids) {
@@ -300,13 +303,35 @@ public class Database implements Serializable {
                 bidsToDelete.add(bid);
             }
         }
-        deleteOutOfDateBids(bidsToDelete);
-        return allBids;
+        deleteOutOfDateBids(allNewBids , bidsToDelete);
+        return allNewBids;
     }
 
-    private void deleteOutOfDateBids(ArrayList<Bid> bidsToDelete) {
-        allBids.removeAll(bidsToDelete);
+    private void deleteOutOfDateBids(ArrayList<Bid> allBidsNotDeleted , ArrayList<Bid> bidsToDelete) {
 
+        //TODO if not worked get buyer by username:
+        int maxPrice=0;
+        Buyer winner = null;
+        for (Bid bid : allBidsNotDeleted) {
+            for (Buyer buyer : bid.getBuyer_recommendedPrice().keySet()) {
+                       if( maxPrice < bid.getBuyer_recommendedPrice().get(buyer)){
+                           maxPrice = bid.getBuyer_recommendedPrice().get(buyer);
+                           winner = buyer;
+               }
+            }
+            bid.setWinnerInfo(new Pair<>(winner , maxPrice));
+        }
+        allBidsNotDeleted.removeAll(bidsToDelete);
+    }
+
+    public ArrayList<Bid> getBidsHeWon(String username) {
+        ArrayList<Bid> bidsHeWon = new ArrayList<>();
+        for (Bid bid : allBids) {
+            if(bid.getWinnerInfo().getKey().getUserName().equals(username)){
+                bidsHeWon.add(bid);
+            }
+        }
+        return bidsHeWon;
     }
 
     public ArrayList<Product> getAllOffProducts() {
@@ -422,4 +447,5 @@ public class Database implements Serializable {
         }
         return file;
     }
+
 }

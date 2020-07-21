@@ -1,4 +1,4 @@
-package Client.View.Menus.UserSectionMenus.BuyerSectionMenus;
+package Client.View.Menus.UserSectionMenus.BuyerSectionMenus.Bid;
 
 import Client.Models.*;
 import Server.Controller.TimeControl;

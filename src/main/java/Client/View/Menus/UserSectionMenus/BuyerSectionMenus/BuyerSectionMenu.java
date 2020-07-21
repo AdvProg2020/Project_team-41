@@ -105,10 +105,14 @@ public class BuyerSectionMenu extends Menu {
     }
 
     public void viewBidsButtonClicked(MouseEvent mouseEvent) throws IOException {
-        setSubPage("userSection/buyerSection/viewBids");
+        setSubPage("userSection/buyerSection/Bid/viewBids");
     }
 
     public void refreshCreditClicked(MouseEvent mouseEvent) {
         creditTextField.setText(UserSectionController.getLoggedInPerson().getCredit()+"Rials");
+    }
+
+    public void bidWinnerButtonClicked(MouseEvent mouseEvent) {
+        setSubPage("userSection/buyerSection/Bid/BidWinner");
     }
 }

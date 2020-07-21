@@ -54,7 +54,6 @@ public class BuyerServerController {
                 money += product.getPriceWithOff() * productQuantity;
                 product.decreaseQuantity(productQuantity);
                 seller.increaseCreditWithWage(product.getPriceWithOff() * productQuantity);
-
             }
                 seller.addTradeLog(new TradeLog(new Date(),money,moneyWithoutOff - money,sellerProducts.get(seller),buyer.getUserName(), TradeLog.DeliverySituation.WAITING,null));
         }

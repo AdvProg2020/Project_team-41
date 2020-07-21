@@ -10,6 +10,7 @@ import Client.Models.Person.Seller;
 import Server.Controller.AllCommands;
 import Server.Controller.RandomNumberGenerator;
 import Server.Controller.ServerSaver;
+import javafx.util.Pair;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Bid implements Serializable {
     private Seller seller;
     private HashMap<Buyer, Integer> buyer_recommendedPrice;
     private BidChatBox bidChatBox;
+    private Pair <Buyer,Integer> winnerInfo;
 
     public Bid(Product product, Date endDate, Seller seller) {
         this.bidId = RandomNumberGenerator.getToken(5);
@@ -31,6 +33,14 @@ public class Bid implements Serializable {
         this.seller = seller;
         buyer_recommendedPrice = new HashMap<>();
         this.bidChatBox=new BidChatBox(this.bidId);
+    }
+
+    public Pair<Buyer, Integer> getWinnerInfo() {
+        return winnerInfo;
+    }
+
+    public void setWinnerInfo(Pair<Buyer, Integer> winnerInfo) {
+        this.winnerInfo = winnerInfo;
     }
 
     public Product getProduct() {

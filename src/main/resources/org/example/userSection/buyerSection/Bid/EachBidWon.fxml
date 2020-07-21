@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.Bid.EachBidWon">
+    <children>
+
+        <TextField editable="false" layoutX="75.0" layoutY="13.0" prefHeight="34.0" prefWidth="146.0" stylesheets="@/org/example/styles/textFill.css" />
+        <TextField editable="false" layoutX="348.0" layoutY="15.0" prefHeight="34.0" prefWidth="146.0" stylesheets="@/org/example/styles/textFill.css" />
+        <TextField editable="false" layoutX="289.0" layoutY="62.0" prefHeight="34.0" prefWidth="125.0" stylesheets="@/org/example/styles/textFill.css" />
+        <TextField fx:id="quantity" layoutX="164.0" layoutY="108.0" prefHeight="34.0" prefWidth="125.0" stylesheets="@/org/example/styles/textFill.css" />
+
+        <Button fx:id="payButton" layoutX="335.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#payForBidProduct" prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/checkIcon.png')">
+            <font>
+                <Font size="1.0" />
+            </font>
+        </Button>
+
+        <Text layoutX="279.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product:" wrappingWidth="96.22900390625">
+            <font>
+                <Font name="Times New Roman" size="14.0" />
+            </font>
+            <fill>
+                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                    <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="#dd813f" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+        <Text layoutX="13.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last price you recommended for each product:" wrappingWidth="287.22900390625">
+            <font>
+                <Font name="Times New Roman" size="14.0" />
+            </font>
+            <fill>
+                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                    <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="#dd813f" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+        <Text layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bid Id:" wrappingWidth="90.22900390625">
+            <font>
+                <Font name="Times New Roman" size="14.0" />
+            </font>
+            <fill>
+                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                    <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="#dd813f" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+        <Text layoutX="13.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How many do you want?" wrappingWidth="174.22900390625">
+            <font>
+                <Font name="Times New Roman" size="14.0" />
+            </font>
+            <fill>
+                <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                    <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="#dd813f" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+
+        <Text fx:id="payInfo" layoutX="96.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="336.13671875" />
+    </children>
+</AnchorPane>

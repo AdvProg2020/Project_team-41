@@ -170,6 +170,15 @@ public class ServerConnector extends Thread {
                 sendSuccessful();
                 break;
             }
+            case GET_BIDS_HE_WON:{
+                objectOutputStream.writeObject(new Message((Database.getInstance().getBidsHeWon((String)inputs[0]))));
+                break;
+            }
+            case PAY_FOR_WON_PRODUCT_IN_BID:{
+                BidServerController.getInstance().payForProduct((String)inputs[0] , (int)inputs[1]);
+                sendSuccessful();
+                break;
+            }
         }
     }
 
@@ -244,7 +253,6 @@ public class ServerConnector extends Thread {
                 UserSectionServerController.increaseCredit((Person) inputs[0], (Integer) inputs[1]);
                 sendSuccessful();
                 break;
-
             }
         }
     }
