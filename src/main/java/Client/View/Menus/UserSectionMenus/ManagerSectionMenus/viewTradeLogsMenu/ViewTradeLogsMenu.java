@@ -27,7 +27,6 @@ public class ViewTradeLogsMenu {
     @FXML
     public void initialize(){
         try {
-            //change here
             for (TradeLog tradeLog : ManagerController.getInstance().getTradeLogs()) {
                     makeTradeLogSplitButton(tradeLog.getLogId(),tradeLog.getDate());
             }
@@ -40,7 +39,6 @@ public class ViewTradeLogsMenu {
     private void makeTradeLogSplitButton(String username, Date date) {
         Parent root = null;
         try {
-            //change here
             root = App.loadFXML("userSection/managerSection/viewTradeLogs/tradeLogSplitButton");
         } catch (IOException e) {
             e.printStackTrace();
