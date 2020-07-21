@@ -112,6 +112,10 @@ public class BankClient extends Thread{
     }
     public void createReceipt(String input){
         String [] split=input.split(" ");
+        if(!isTokenExpired(split[1])){
+            sendMessage("token expired");
+            return;
+        }
         if(split.length==7||split.length==6) {
             if(!validInt(split[3])){
                 sendMessage("invalid money");
@@ -223,9 +227,14 @@ public class BankClient extends Thread{
     }
     public void getTransactions(String input){
         String[] split=input.split(" ");
+
         Account account= getAccountByToken(split[1]);
         if(account==null){
             sendMessage("token is invalid");
+            return;
+        }
+        if(!isTokenExpired(split[1])){
+            sendMessage("token expired");
             return;
         }
         makeJson(account,split);
@@ -251,6 +260,14 @@ public class BankClient extends Thread{
                 }
             }
         }else if(split[2].matches("\\d+")){
+            for (Transaction transaction : BankDatabase.getInstance().getTransactions()) {
+                if(transaction.getId()==Integer.parseInt(split[2])){
+                    sendMessage(Transaction.getString(transaction));
+                    return;
+                }
+            }
+            sendMessage("invalid receipt id");
+            return;
 
         }
         StringBuilder stringBuilder=new StringBuilder();
@@ -345,11 +362,27 @@ public class BankClient extends Thread{
         HashMap<Account,TokenAndDate> tokens= Main.getTokens();
         for (Map.Entry<Account, TokenAndDate> accountTokenAndDateEntry : tokens.entrySet()) {
             if(accountTokenAndDateEntry.getValue().getToken().equals(split[1])){
-                sendMessage(String.valueOf(accountTokenAndDateEntry.getKey().getCredit()));
+                if(new Date().getTime()-accountTokenAndDateEntry.getValue().getDate().getTime()>3600*1000){
+                    sendMessage("token expired");
+                }else{
+                    sendMessage(String.valueOf(accountTokenAndDateEntry.getKey().getCredit()));
+                }
                 return;
             }
         }
 
         sendMessage("token is invalid");
+    }
+    public boolean isTokenExpired(String token){
+        for (Map.Entry<Account, TokenAndDate> accountTokenAndDateEntry : Main.getTokens().entrySet()) {
+            if(token.equals(accountTokenAndDateEntry.getValue().getToken())){
+                if(new Date().getTime()-accountTokenAndDateEntry.getValue().getDate().getTime()>3600*1000){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
