@@ -342,7 +342,13 @@ public class ManagerServerController extends UserSectionServerController {
     public void declineRequest(String requestId) throws Exception {
         Request request = Database.getInstance().getRequestByRequestId(requestId);
         if(request.getProduct()!=null) {
-            Database.getInstance().removeFile(request.getProduct());
+            try {
+                Database.getInstance().removeFile(request.getProduct());
+            } catch (Exception e) {
+                if (!e.getMessage().equals("file is not removed")) {
+                    throw e;
+                }
+            }
         }
         Database.getInstance().removeRequest(request);
     }

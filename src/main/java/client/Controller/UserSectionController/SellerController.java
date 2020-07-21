@@ -95,7 +95,7 @@ public class SellerController extends UserSectionController{
         }
 
         public void transferMoneyToSeller(int accountNumber, int money) throws Exception {
-                Connector.getInstance().initializeMessage(new Message(new Object[]{loggedInPerson,accountNumber,money, loggedInPerson}, MessageType.TRANSFER_MONEY_TO_SELLER));
+                Connector.getInstance().initializeMessage(new Message(new Object[]{accountNumber,money, loggedInPerson}, MessageType.TRANSFER_MONEY_TO_SELLER));
         }
 
 
