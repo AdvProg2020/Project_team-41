@@ -255,6 +255,10 @@ public class ServerConnector extends Thread {
                 sendSuccessful();
                 break;
             }
+            case GET_MINIMUM_CREDIT:{
+                objectOutputStream.writeObject(new Message(UserSectionServerController.getMinimumCredit()));
+                break;
+            }
         }
     }
 
@@ -383,6 +387,11 @@ public class ServerConnector extends Thread {
             }
             case VIEW_TRADE_LOGS:{
                 objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getTradeLogs()));
+                break;
+            }
+            case SET_MINIMUM_CREDIT:{
+                ManagerServerController.getInstance().setMinimumCredit((Integer) inputs[0]);
+                sendSuccessful();
                 break;
             }
 

@@ -28,6 +28,7 @@ public class Database implements Serializable {
     private String accountUsername;
     private String accountPassword;
     private int wage;
+    private int minimumCredit;
 
     public static Database getInstance() {
         if (database == null) {
@@ -467,4 +468,14 @@ public class Database implements Serializable {
         return file;
     }
 
+    public int getMinimumCredit() {
+        return minimumCredit;
+    }
+
+    public void setMinimumCredit(int minimumCredit) throws Exception {
+        if (minimumCredit < 0) {
+            throw new Exception("invalid credit");
+        }
+        this.minimumCredit = minimumCredit;
+    }
 }

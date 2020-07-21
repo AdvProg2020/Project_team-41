@@ -86,9 +86,13 @@ public abstract class UserSectionServerController {
         checkPersonPassword(person, foundPerson);
         return foundPerson;
     }
+    public static int getMinimumCredit(){
+        return Database.getInstance().getMinimumCredit();
+    }
     private static void checkPersonPassword(Person person,Person foundPerson) throws Exception {
         if (!foundPerson.getPassword().equals(person.getPassword())) {
             throw new Exception("you don't have access to this person");
         }
     }
+
 }

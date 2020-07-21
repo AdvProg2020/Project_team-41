@@ -22,7 +22,9 @@ public class DecreaseCreditPageController {
             return;
         }
         try {
-            SellerController.getInstance().transferMoneyToSeller(money, accountId);
+            SellerController.getInstance().transferMoneyToSeller(accountId,money);
+            MessageTypeShow.showMessage(informationText, MessageTypeShow.SUCCESS, "transferred successfully");
+
 
         } catch (Exception e) {
             MessageTypeShow.showMessage(informationText,MessageTypeShow.ERROR,e.getMessage());

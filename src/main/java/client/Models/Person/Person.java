@@ -4,6 +4,7 @@ import Client.Models.Product;
 import Client.Models.TradeLog;
 import Server.Controller.AllCommands;
 import Server.Controller.ServerSaver;
+import Server.Database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,15 +19,11 @@ public abstract class Person implements Serializable {
     private String email;
     private String phoneNumber;
     private String password;
-    private static int minimumCredit;
     //end of personal information
 
     private final ArrayList<TradeLog> tradeLogs = new ArrayList<>();
     private int credit;
 
-    public static void setMinimumCredit(int minimumCredit) {
-        Person.minimumCredit = minimumCredit;
-    }
     public ArrayList<Product> getAllProductsHeTraded(){
         ArrayList<Product> AllProductsHeTraded = new ArrayList<>();
         for (TradeLog tradeLog : tradeLogs) {
@@ -130,7 +127,7 @@ public abstract class Person implements Serializable {
 
     }
     public void decreaseCredit(int credit) throws Exception {
-        if(credit<getCredit()-getMinimumCredit()) {
+        if(credit<=getCredit()- Database.getInstance().getMinimumCredit()) {
             setCredit(getCredit() - credit);
 
         }
@@ -148,9 +145,6 @@ public abstract class Person implements Serializable {
         return password;
     }
 
-    public static int getMinimumCredit() {
-        return minimumCredit;
-    }
 
     @Override
     public boolean equals(Object o) {

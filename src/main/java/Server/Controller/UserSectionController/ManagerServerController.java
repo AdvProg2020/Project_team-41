@@ -439,4 +439,8 @@ public class ManagerServerController extends UserSectionServerController {
     public Product getProductById(String productId) throws Exception {
         return Database.getInstance().getProductById(productId);
     }
+
+    public void setMinimumCredit(int minimumCredit) throws Exception {
+        Database.getInstance().setMinimumCredit(minimumCredit);
+    }
 }
