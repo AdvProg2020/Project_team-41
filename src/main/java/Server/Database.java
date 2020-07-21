@@ -311,6 +311,7 @@ public class Database implements Serializable {
 //        for (Bid newBid : allNewBids) {
 //            System.err.println(newBid + "      winner:" + newBid.getWinnerInfo());
 //        }
+
         return allNewBids;
     }
 
