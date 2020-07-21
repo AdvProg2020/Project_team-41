@@ -28,6 +28,9 @@ public class BuyerServerController {
     public static void payForTheShop(Buyer buyer) throws Exception {
         buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         Cart cart = buyer.getCart();
+        if (cart.getProducts().isEmpty()) {
+            throw new Exception("cart is empty");
+        }
         int cashToPay = cart.getCashToPay();
         HashMap<Seller,HashMap<Product,Integer>> sellerProducts = new HashMap<>();
         if(buyer.getCredit()<cashToPay)

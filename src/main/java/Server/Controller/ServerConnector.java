@@ -381,6 +381,10 @@ public class ServerConnector extends Thread {
                 sendSuccessful();
                 break;
             }
+            case VIEW_TRADE_LOGS:{
+                objectOutputStream.writeObject(new Message(ManagerServerController.getInstance().getTradeLogs()));
+                break;
+            }
 
         }
     }

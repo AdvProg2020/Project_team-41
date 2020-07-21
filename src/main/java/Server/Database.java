@@ -39,6 +39,7 @@ public class Database implements Serializable {
     public static void setInstance(Database newDatabase) {
         database = newDatabase;
         new File("src/main/resources/data/files").mkdir();
+        new File("downloadedFiles").mkdir();
 
     }
 
