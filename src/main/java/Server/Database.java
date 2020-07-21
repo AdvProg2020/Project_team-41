@@ -5,14 +5,10 @@ import Client.Models.*;
 import Client.Models.BidChat.BidChatBox;
 import Client.Models.BidChat.BidChatComment;
 import Client.Models.Chat.ChatBox;
-import Client.Models.Message.MessageType;
 import Client.Models.Person.Buyer;
 import Client.Models.Person.Manager;
 import Client.Models.Person.Person;
 import Client.Models.Person.Seller;
-import Server.Controller.AllCommands;
-import Server.Controller.ServerSaver;
-import Server.Controller.UserSectionController.ManagerServerController;
 import javafx.util.Pair;
 
 import java.io.*;
@@ -295,8 +291,8 @@ public class Database implements Serializable {
         allRequest.add(request);
     }
 
-    public ArrayList<Bid> getAllBids() {
-        ArrayList<Bid> allNewBids = allBids;
+    public ArrayList<Bid> getAllBids() throws Exception {
+        ArrayList<Bid> allNewBids = new ArrayList<>(allBids);
         ArrayList<Bid> bidsToDelete = new ArrayList<>();
         Date date = new Date();
         for (Bid bid : allBids) {
@@ -304,34 +300,50 @@ public class Database implements Serializable {
                 bidsToDelete.add(bid);
             }
         }
-        deleteOutOfDateBids(allNewBids , bidsToDelete);
+        allNewBids = deleteOutOfDateBids(allNewBids , bidsToDelete);
+
+//        System.err.println("here is allBids:");
+//        for (Bid bid : allBids) {
+//            System.err.println(bid + "      winner:" + bid.getWinnerInfo());
+//        }
+//
+//        System.err.println("here is allNewBids:");
+//        for (Bid newBid : allNewBids) {
+//            System.err.println(newBid + "      winner:" + newBid.getWinnerInfo());
+//        }
         return allNewBids;
     }
 
-    private void deleteOutOfDateBids(ArrayList<Bid> allBidsNotDeleted , ArrayList<Bid> bidsToDelete) {
-
-        //TODO if not worked get buyer by username:
+    private ArrayList<Bid> deleteOutOfDateBids(ArrayList<Bid> allBidsNotDeleted , ArrayList<Bid> bidsToDelete) throws Exception {
         int maxPrice=0;
         Buyer winner = null;
         for (Bid bid : allBidsNotDeleted) {
             for (Buyer buyer : bid.getBuyer_recommendedPrice().keySet()) {
-                       if( maxPrice < bid.getBuyer_recommendedPrice().get(buyer)){
-                           maxPrice = bid.getBuyer_recommendedPrice().get(buyer);
-                           winner = buyer;
+                       if( maxPrice < bid.getBuyer_recommendedPrice().get(getPersonByUsername(buyer.getUserName()))){
+                           maxPrice = bid.getBuyer_recommendedPrice().get(getPersonByUsername(buyer.getUserName()));
+                           winner = (Buyer) getPersonByUsername(buyer.getUserName());
                }
             }
             bid.setWinnerInfo(new Pair<>(winner , maxPrice));
         }
         allBidsNotDeleted.removeAll(bidsToDelete);
+        return allBidsNotDeleted;
     }
 
     public ArrayList<Bid> getBidsHeWon(String username) {
+
+//        System.err.println("here is allBids:");
+//        for (Bid bid : allBids) {
+//            System.err.println(bid + "      winner:" + bid.getWinnerInfo());
+//        }
+
         ArrayList<Bid> bidsHeWon = new ArrayList<>();
         for (Bid bid : allBids) {
+            if(bid.getWinnerInfo()!=null){
             if(bid.getWinnerInfo().getKey().getUserName().equals(username)){
                 bidsHeWon.add(bid);
             }
-        }
+        }}
         return bidsHeWon;
     }
 

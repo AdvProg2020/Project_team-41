@@ -90,7 +90,7 @@ public class Bid implements Serializable {
     @Override
     public String toString() {
         return "Bid{" +
-                "product=" + product +
+                "product=" + product.getName() +
                 ", endDate=" + endDate +
                 '}';
     }
