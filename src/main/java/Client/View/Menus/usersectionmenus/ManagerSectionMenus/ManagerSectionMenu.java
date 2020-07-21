@@ -64,6 +64,10 @@ public class ManagerSectionMenu extends Menu {
         setSubPage("userSection/managerSection/financialSettings/financial settings");
     }
 
+    public void viewTradeLogs(MouseEvent mouseEvent) {
+        setSubPage("userSection/managerSection/viewTradeLogs/view tradeLogs menu");
+    }
+
     private void setSubPage(String name){
         Parent root = null;
         try {
