@@ -63,7 +63,7 @@ public class PaymentMenu {
     private void payFromBank(){
         try {
             BankAPI.makeInstance();
-            BankMainMenu.redirectedForTransfer = true;
+            BankMainMenu.redirectedToPay = true;
             BankWindow.openBank();
         } catch (Exception e) {
             e.printStackTrace();
