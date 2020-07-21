@@ -301,15 +301,15 @@ public class Database implements Serializable {
         }
         allNewBids = deleteOutOfDateBids(allNewBids , bidsToDelete);
 
-        System.err.println("here is allBids:");
-        for (Bid bid : allBids) {
-            System.err.println(bid + "      winner:" + bid.getWinnerInfo());
-        }
-
-        System.err.println("here is allNewBids:");
-        for (Bid newBid : allNewBids) {
-            System.err.println(newBid + "      winner:" + newBid.getWinnerInfo());
-        }
+//        System.err.println("here is allBids:");
+//        for (Bid bid : allBids) {
+//            System.err.println(bid + "      winner:" + bid.getWinnerInfo());
+//        }
+//
+//        System.err.println("here is allNewBids:");
+//        for (Bid newBid : allNewBids) {
+//            System.err.println(newBid + "      winner:" + newBid.getWinnerInfo());
+//        }
         return allNewBids;
     }
 
@@ -331,10 +331,10 @@ public class Database implements Serializable {
 
     public ArrayList<Bid> getBidsHeWon(String username) {
 
-        System.err.println("here is allBids:");
-        for (Bid bid : allBids) {
-            System.err.println(bid + "      winner:" + bid.getWinnerInfo());
-        }
+//        System.err.println("here is allBids:");
+//        for (Bid bid : allBids) {
+//            System.err.println(bid + "      winner:" + bid.getWinnerInfo());
+//        }
 
         ArrayList<Bid> bidsHeWon = new ArrayList<>();
         for (Bid bid : allBids) {
