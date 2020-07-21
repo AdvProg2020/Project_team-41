@@ -59,12 +59,8 @@ public class ServerConnector extends Thread {
                     objectOutputStream.reset();
                     Message message = (Message) objectInputStream.readObject();
                     System.out.println("message received");
-                    if((message.getOutput() instanceof List))
-                        if(((List) message.getOutput()).size()>500){
-                            System.out.println("large list message!");
-                        }
-                        else
-                            System.out.println(message);
+                    if(!message.isLarge())
+                        System.out.println(message);
                     System.err.println("----------------------");
                     processMessage(message);
                     ServerSaver.write(AllCommands.allData);

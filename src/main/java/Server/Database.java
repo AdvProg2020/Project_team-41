@@ -383,7 +383,7 @@ public class Database implements Serializable {
     public void addFile(Product product, List<Byte> file) {
 
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/data/files" + product.getName());
+            FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/data/files/" + product.getName());
             fileOutputStream.write(convertBytes(file));
             fileOutputStream.close();
         } catch (IOException e) {
@@ -395,7 +395,12 @@ public class Database implements Serializable {
     }
 
     public List<Byte> getFile(Product product) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream("src/main/resources/data/files" + product.getName());
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream("src/main/resources/data/files/" + product.getName());
+        } catch (FileNotFoundException e) {
+            return null;
+        }
         byte[] bytes = fileInputStream.readAllBytes();
         List<Byte> byteList = new ArrayList<>(bytes.length);
         for (int i = 0; i < bytes.length; i++) {
@@ -406,7 +411,7 @@ public class Database implements Serializable {
     }
 
     public void removeFile(Product product) throws Exception {
-        File file = new File("src/main/resources/data/files" + product.getName());
+        File file = new File("src/main/resources/data/files/" + product.getName());
         if (!file.delete()) {
             throw new Exception("file is not removed");
         }

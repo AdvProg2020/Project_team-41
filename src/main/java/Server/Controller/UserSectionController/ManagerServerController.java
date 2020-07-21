@@ -297,17 +297,14 @@ public class ManagerServerController extends UserSectionServerController {
                 break;
             }
             case "EDIT_PRODUCT" :{
-
-                Database.getInstance().removeProduct(request.getProduct());
+                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).removeProduct(Database.getInstance().getProductById(request.getProduct().getProductId()));
+                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).addProduct(request.getEditedProduct());
+                Database.getInstance().removeProduct(Database.getInstance().getProductById(request.getProduct().getProductId()));
                 Database.getInstance().addProduct(request.getEditedProduct());
                 request.getEditedProduct().setSituation(Situation.CONFIRMED);
-                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).removeProduct(Database.getInstance().getProductById(request.getProduct().getProductId()));
-                Database.getInstance().getSellerByUsername(request.getSeller().getUserName()).addProduct(Database.getInstance().getProductById(request.getEditedProduct().getProductId()));
-
                 break;
             }
             case "ADD_OFF" :{
-
                 for (Product product : request.getOff().getProducts()) {
                     if(product.isItInOff())
                         throw new Exception("one of the products is already in another off");

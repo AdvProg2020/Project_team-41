@@ -4,6 +4,7 @@ import Client.Controller.UserSectionController.UserSectionController;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class Message implements Serializable {
@@ -60,5 +61,21 @@ public class Message implements Serializable {
                 ", output=" + output +
                 ", messageType=" + messageType +
                 '}';
+    }
+    public boolean isLarge(){
+        final int MAX_SIZE = 1000;
+        if(this.getOutput() instanceof List) {
+            return ((List) this.getOutput()).size() > MAX_SIZE;
+        }
+        else if (this.getInputs() != null) {
+            for (Object input : this.getInputs()) {
+                if (input instanceof List) {
+                    if (((List) input).size() > MAX_SIZE) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

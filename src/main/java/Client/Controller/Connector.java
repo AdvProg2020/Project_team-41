@@ -39,12 +39,8 @@ public class Connector {
     private void sendMessage(Message message) {
         try {
             System.out.println("message sent");
-            if((message.getOutput() instanceof List))
-                if(((List) message.getOutput()).size()>500){
-                    System.out.println("large list message!");
-                }
-                else
-                    System.out.println(message);
+            if(!message.isLarge())
+                System.out.println(message);
             System.err.println("----------------------");
             objectOutputStream.reset();
             objectOutputStream.writeObject(message);
@@ -58,12 +54,8 @@ public class Connector {
         try {
              message = (Message) objectInputStream.readObject();
             System.out.println("message received");
-                if((message.getOutput() instanceof List))
-                    if(((List) message.getOutput()).size()>500){
-                        System.out.println("large list message!");
-                    }
-                else
-                    System.out.println(message);
+            if(!message.isLarge())
+                System.out.println(message);
             System.err.println("----------------------");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
