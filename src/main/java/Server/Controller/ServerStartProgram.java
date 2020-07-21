@@ -14,7 +14,7 @@ public class ServerStartProgram {
             System.out.println("So it's the first time you run this program... Welcome!");
             Database.getInstance();
             try {
-                ManagerServerController.getInstance().addCategory("file", "file");
+                ManagerServerController.getInstance().addCategory("file", "type");
             } catch (Exception er) {
                 if (!er.getMessage().equals("category exists with this name"))
                     er.printStackTrace();

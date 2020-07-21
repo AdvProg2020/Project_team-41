@@ -123,6 +123,11 @@ public class SellerServerController extends UserSectionServerController {
                 String productName = productDetails.get(0);
                 boolean flagForCategoryName = false;
                 Category category = Database.getInstance().getCategoryByName(productDetails.get(4));
+                if (category.getName().equals("file")) {
+                        if (file == null) {
+                                throw new Exception("product isn't a file");
+                        }
+                }
                 HashMap<String, SpecialFeature> specialFeatures = new HashMap<>();
                 for (String rawSpecialFeature : productDetails.get(6).split(",")) {
                         String[] specialFeature = rawSpecialFeature.split("-");

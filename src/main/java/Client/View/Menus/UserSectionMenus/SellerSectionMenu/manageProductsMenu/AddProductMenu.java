@@ -65,6 +65,8 @@ public class AddProductMenu {
             categoryNameTextField.setEditable(false);
             amountTextField.setText("1");
             amountTextField.setEditable(false);
+            specialFeaturesTextField.setText("type-");
+            specialFeaturesTextField.setPromptText("enter file type");
         }
     }
 
