@@ -38,7 +38,7 @@ public class BuyerServerController {
                 throw new Exception("oops, a product just went out of stock");
         }
         for (Product product : cart.getProducts().keySet()) {
-            Seller seller = product.getSeller();
+            Seller seller = Database.getInstance().getSellerByUsername(product.getSeller().getUserName());
             int productQuantity = cart.getProducts().get(product);
             sellerProducts.computeIfAbsent(seller, k -> new HashMap<>());
             sellerProducts.get(seller).put(product,productQuantity);
@@ -52,13 +52,14 @@ public class BuyerServerController {
                 int productQuantity = sellerProducts.get(seller).get(product);
                 moneyWithoutOff += product.getPrice() * productQuantity;
                 money += product.getPriceWithOff() * productQuantity;
-                product.decreaseQuantity(productQuantity);
-                seller.increaseCreditWithWage(product.getPriceWithOff() * productQuantity);
+                Database.getInstance().getProductById(product.getProductId()).decreaseQuantity(productQuantity);
+                Database.getInstance().getSellerByUsername(seller.getUserName()).increaseCreditWithWage(product.getPriceWithOff() * productQuantity);
+
             }
-                seller.addTradeLog(new TradeLog(new Date(),money,moneyWithoutOff - money,sellerProducts.get(seller),buyer.getUserName(), TradeLog.DeliverySituation.WAITING,null));
+            Database.getInstance().getSellerByUsername(seller.getUserName()).addTradeLog(new TradeLog(new Date(),money,moneyWithoutOff - money,sellerProducts.get(seller),buyer.getUserName(), TradeLog.DeliverySituation.WAITING,null));
         }
         if(cart.getCodedDiscount() != null)
-            cart.getCodedDiscount().reduceDiscountCodeForUser(buyer);
+            Database.getInstance().getCodedDiscountByCode(cart.getCodedDiscount().getDiscountCode()).reduceDiscountCodeForUser(buyer);
         buyer.addTradeLog(new TradeLog(new Date(),cashToPay,cart.totalPrice()-cashToPay,cart.getProducts(),buyer.getUserName(), TradeLog.DeliverySituation.WAITING,cart.getReceiverInformation()));
         buyer.renewCart();
     }

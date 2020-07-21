@@ -28,12 +28,12 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Label layoutX="24.0" layoutY="22.0" text="You can choose one of our" textFill="CRIMSON">
+            <Label layoutX="24.0" layoutY="22.0" text="You can choose one of our" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label layoutX="66.0" layoutY="49.0" text="online backups:" textFill="CRIMSON">
+            <Label layoutX="66.0" layoutY="49.0" text="online backups:" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>

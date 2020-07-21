@@ -291,7 +291,8 @@ public class FilterController {
 
 
     public void setFilterCategory(String filterCategoryName) throws Exception {
-        this.filterCategory = Database.getInstance().getCategoryByName(filterCategoryName);
+        //        this.filterCategory = Database.getInstance().getCategoryByName(filterCategoryName);
+        this.filterCategory= (Category) Connector.getInstance().initializeMessage(new Message(new Object[]{filterCategoryName},MessageType.GET_CATEGORY_BY_NAME));
     }
 
     public Category getFilterCategory() {

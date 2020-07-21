@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="fileAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="534.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewFiles.fileSplitButtonController">
+<AnchorPane fx:id="fileAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="409.0" style="-fx-background-color: #f5f1ed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.viewFiles.fileSplitButtonController">
     <children>
         <VBox layoutX="22.0" layoutY="7.0" prefHeight="35.0" prefWidth="100.0">
             <children>
@@ -22,8 +22,8 @@
                 </GridPane>
             </children>
         </VBox>
-        <TextField prefHeight="35.0" prefWidth="200.0" layoutX="150.0" layoutY="5.0" fx:id="productIdTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" />
-      <Button fx:id="downloadFileButton" layoutX="367.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#downloadFileClicked" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/eye.png') ">
+        <TextField fx:id="productIdTextField" editable="false" layoutX="150.0" layoutY="5.0" prefHeight="35.0" prefWidth="200.0" stylesheets="@/org/example/styles/textFill.css" />
+      <Button fx:id="downloadFileButton" layoutX="367.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#downloadFileClicked" prefHeight="20.0" prefWidth="19.0" style="-fx-background-color: #f5f1ed; -fx-background-image: url('org/example/images/download.png') ">
          <font>
             <Font size="1.0" />
          </font>

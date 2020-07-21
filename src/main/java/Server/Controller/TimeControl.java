@@ -25,7 +25,7 @@ public abstract class TimeControl {
         } catch (NumberFormatException e) {
             throw new Exception("Oh for god sake enter number!");
         }
-        if((monthInt>12) || (monthInt<1) || (dayInt<1) || (dayInt>30) || (hourInt>24) || (hourInt<0) || (minuteInt>59) || (minuteInt<0) || (secondInt>59) || (secondInt<0))
+        if((monthInt>12) || (monthInt<1) || (dayInt<1) || (dayInt>31) || (hourInt>24) || (hourInt<0) || (minuteInt>59) || (minuteInt<0) || (secondInt>59) || (secondInt<0))
             throw new Exception("Sigh, you entered one of these wrong : day,month,year,hour,minute,second");
         JalaliCalendar jalaliCalendar = new JalaliCalendar();
         Date date = new Date();

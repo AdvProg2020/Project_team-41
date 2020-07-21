@@ -10,8 +10,16 @@ public class ServerStartProgram {
         try {
             readDatabase();
         }
-        catch (Exception e){
+        catch (Exception e) {
             System.out.println("So it's the first time you run this program... Welcome!");
+            Database.getInstance();
+            try {
+                ManagerServerController.getInstance().addCategory("file", "file");
+            } catch (Exception er) {
+                if (!er.getMessage().equals("category exists with this name"))
+                    er.printStackTrace();
+            }
+
         }
     }
 
@@ -20,13 +28,6 @@ public class ServerStartProgram {
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         Database database = (Database) objectInputStream.readObject();
         Database.setInstance(database);
-        try {
-            ManagerServerController.getInstance().addCategory("file","file");
-        }
-        catch (Exception e) {
-            if(!e.getMessage().equals("category exists with this name"))
-                e.printStackTrace();
-        }
         inputStream.close();
     }
 }

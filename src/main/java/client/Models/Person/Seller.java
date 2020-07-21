@@ -74,4 +74,5 @@ public class Seller extends Person {
         return Objects.equals(factoryName, seller.factoryName);
     }
 
+
 }

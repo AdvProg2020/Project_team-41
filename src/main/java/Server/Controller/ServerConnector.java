@@ -59,7 +59,8 @@ public class ServerConnector extends Thread {
                     objectOutputStream.reset();
                     Message message = (Message) objectInputStream.readObject();
                     System.out.println("message received");
-                    System.out.println(message);
+                    if(!message.isLarge())
+                        System.out.println(message);
                     System.err.println("----------------------");
                     processMessage(message);
                     ServerSaver.write(AllCommands.allData);

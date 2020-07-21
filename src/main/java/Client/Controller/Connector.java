@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class Connector {
     private static Connector connector;
@@ -38,7 +39,8 @@ public class Connector {
     private void sendMessage(Message message) {
         try {
             System.out.println("message sent");
-            System.out.println(message);
+            if(!message.isLarge())
+                System.out.println(message);
             System.err.println("----------------------");
             objectOutputStream.reset();
             objectOutputStream.writeObject(message);
@@ -52,7 +54,8 @@ public class Connector {
         try {
              message = (Message) objectInputStream.readObject();
             System.out.println("message received");
-            System.out.println(message);
+            if(!message.isLarge())
+                System.out.println(message);
             System.err.println("----------------------");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
