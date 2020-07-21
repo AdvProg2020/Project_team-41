@@ -134,4 +134,7 @@ public class ManagerController extends UserSectionController{
         return (Product) Connector.getInstance().initializeMessage(new Message(new Object[]{productId}, MessageType.GET_PRODUCT_BY_ID));
 //        return ManagerServerController.getInstance().getProductById(productId);
     }
+    public void setMinimumCredit(int minimumCredit) throws Exception {
+        Connector.getInstance().initializeMessage(new Message(new Object[]{minimumCredit}, MessageType.SET_MINIMUM_CREDIT));
+    }
 }

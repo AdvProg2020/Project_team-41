@@ -44,4 +44,10 @@ public abstract class UserSectionController {
     public static String getLoggedInPersonUserName() {
         return loggedInPerson.getUserName();
     }
+
+    public static int getMinimumCredit() throws Exception {
+        return (int) Connector.getInstance().initializeMessage(new Message(null, MessageType.GET_MINIMUM_CREDIT));
+    }
+
+
 }
