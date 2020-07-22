@@ -60,5 +60,6 @@ public class Transaction implements Serializable {
 
     public void setPaid(int paid) {
         this.paid = paid;
+        Main.writeDatabase();
     }
 }

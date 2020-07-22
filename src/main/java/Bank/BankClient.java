@@ -220,7 +220,14 @@ public class BankClient extends Thread{
         if(split.length==6){
             transaction=new Transaction(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]),Integer.parseInt(split[5]),"");
         }else{
-            transaction=new Transaction(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]),Integer.parseInt(split[5]),split[6]);
+            StringBuilder stringBuilder=new StringBuilder();
+            for (int i = 6; i <split.length ; i++) {
+                if(i!=6){
+                    stringBuilder.append(" ");
+                }
+                stringBuilder.append(split[i]);
+            }
+            transaction=new Transaction(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]),Integer.parseInt(split[5]),stringBuilder.toString());
         }
         BankDatabase.getInstance().addTransaction(transaction);
         sendMessage(String.valueOf(transaction.getId()));
