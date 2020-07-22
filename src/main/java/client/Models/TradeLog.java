@@ -18,9 +18,10 @@ public class TradeLog implements Serializable {
     private final HashMap<Product,Integer> items;
     private final String buyerName;
     private DeliverySituation deliverySituation;
+    private final ArrayList<String> information;
 
 
-    public TradeLog(Date date, int money, int offAmount, HashMap<Product,Integer> items, String buyerName, DeliverySituation deliverySituation, ArrayList<String> Information) {
+    public TradeLog(Date date, int money, int offAmount, HashMap<Product,Integer> items, String buyerName, DeliverySituation deliverySituation, ArrayList<String> information) {
         this.logId = RandomNumberGenerator.getToken(5);
         this.date = date;
         this.money = money;
@@ -28,6 +29,7 @@ public class TradeLog implements Serializable {
         this.items = items;
         this.buyerName = buyerName;
         this.deliverySituation = deliverySituation;
+        this.information = information;
     }
 
     public String getLogId() {
@@ -67,6 +69,9 @@ public class TradeLog implements Serializable {
         this.deliverySituation = deliverySituation;
     }
 
+    public ArrayList<String> getInformation() {
+        return information;
+    }
 
     @Override
     public String toString() {
