@@ -40,14 +40,8 @@ public class ProductController {
         if (UserSectionController.getLoggedInPerson() == null) {
             throw new NullPointerException("You must first login!");
         }
-
-        Comment comment = new Comment(UserSectionController.getLoggedInPerson(), product, title, content, CommentSituation.WAITING , false);
-        for (Product tradedProduct : UserSectionController.getLoggedInPerson().getAllProductsHeTraded()) {
-            if (product.equals(tradedProduct)) {
-                comment.setHasHeBought(true);
-            }
-        }
-        Connector.getInstance().initializeMessage(new Message(new Object[]{comment} , MessageType.ADD_COMMENT));
+//
+        Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson().getUserName() , product.getProductId(), title, content} , MessageType.ADD_COMMENT));
         //ProductServerController.getInstance().addComment(comment);
     }
 

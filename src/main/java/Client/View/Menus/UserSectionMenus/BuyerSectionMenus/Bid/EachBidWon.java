@@ -6,8 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-import static Client.View.Menus.MessageTypeShow.ERROR;
-import static Client.View.Menus.MessageTypeShow.showMessage;
+import static Client.View.Menus.MessageTypeShow.*;
 
 public class EachBidWon {
     public Button payButton;
@@ -18,6 +17,7 @@ public class EachBidWon {
     public void payForBidProduct(MouseEvent mouseEvent) {
         try {
             BidController.payForProductInBid(bidId.getText() , Integer.parseInt(quantity.getText()));
+            showMessage(payInfo , SUCCESS , "Congratulation! You bought it successfully");
         } catch (Exception e) {
             showMessage(payInfo , ERROR , e.getMessage());
         }
