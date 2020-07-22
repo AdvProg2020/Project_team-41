@@ -79,7 +79,8 @@ public class BuyerServerController {
         }
         return codedDiscounts;
     }
-    public ArrayList<Product> getAllBoughtFiles(Buyer buyer) throws IOException {
+    public ArrayList<Product> getAllBoughtFiles(Buyer buyer) throws Exception {
+        buyer = (Buyer) Database.getInstance().getPersonByUsername(buyer.getUserName());
         ArrayList<Product> boughtFiles = new ArrayList<>();
         for (TradeLog tradeLog : buyer.getTradeLogs()) {
             for (Product product : tradeLog.getItems().keySet()) {

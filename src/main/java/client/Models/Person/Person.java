@@ -127,6 +127,9 @@ public abstract class Person implements Serializable {
 
     }
     public void decreaseCredit(int credit) throws Exception {
+        if (credit < 0) {
+            throw new Exception("credit can't be negative!");
+        }
         if(credit<=getCredit()- Database.getInstance().getMinimumCredit()) {
             setCredit(getCredit() - credit);
 

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.LoginRegister.LoginForm" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.LoginRegister.LoginForm">
    <right>
-      <AnchorPane prefHeight="500.0" prefWidth="344.0" BorderPane.alignment="CENTER" >
+      <AnchorPane prefHeight="500.0" prefWidth="344.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="username" layoutX="42.0" layoutY="142.0" prefHeight="26.0" prefWidth="259.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #7700ff; -fx-border-width: 0px 0px 2px 0px;">
                <font>
@@ -54,7 +54,7 @@
    <center>
       <AnchorPane prefHeight="500.0" prefWidth="322.0" style="-fx-background-color: #7700ff;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="49.0" layoutY="250.0" prefHeight="94.0" prefWidth="258.0" text="If you haven't registerd">
+            <Label layoutX="40.0" layoutY="250.0" prefHeight="94.0" prefWidth="271.0" text="If you haven't registered">
                <font>
                   <Font size="25.0" />
                </font>

@@ -23,8 +23,9 @@ public class ReceiverInformationMenu {
             showMessage(informationText, MessageTypeShow.ERROR,"please enter your information");
         else {
             ArrayList<String> receiverInformation = new ArrayList<>();
-            receiverInformation.add(addressTextField.getText());
+            receiverInformation.add(emailTextField.getText());
             receiverInformation.add(phoneNumberTextField.getText());
+            receiverInformation.add(addressTextField.getText());
             try {
                 BuyerController.getInstance().setReceiverInformation(receiverInformation);
             } catch (Exception e) {

@@ -116,7 +116,7 @@ public class BankClient extends Thread{
             sendMessage("token expired");
             return;
         }
-        if(split.length==7||split.length==6) {
+        if(split.length>=6) {
             if(!validInt(split[3])){
                 sendMessage("invalid money");
                 return;
@@ -261,7 +261,7 @@ public class BankClient extends Thread{
             }
         }else if(split[2].matches("\\d+")){
             for (Transaction transaction : BankDatabase.getInstance().getTransactions()) {
-                if(transaction.getId()==Integer.parseInt(split[2])){
+                if(transaction.getId()==Integer.parseInt(split[2])&&transaction.getPaid()==1){
                     sendMessage(Transaction.getString(transaction));
                     return;
                 }

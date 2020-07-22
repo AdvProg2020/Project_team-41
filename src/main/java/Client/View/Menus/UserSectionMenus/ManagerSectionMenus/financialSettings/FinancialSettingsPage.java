@@ -26,6 +26,7 @@ public class FinancialSettingsPage {
         try {
             ManagerController.getInstance().setWage(Integer.parseInt(minimumWage.getText()));
             ManagerController.getInstance().setMinimumCredit(Integer.parseInt(minimumWalletBalance.getText()));
+            MessageTypeShow.showMessage(informationText,MessageTypeShow.SUCCESS,"settings changed successfully");
         } catch (Exception e) {
             MessageTypeShow.showMessage(informationText,MessageTypeShow.ERROR,"invalid number");
         }

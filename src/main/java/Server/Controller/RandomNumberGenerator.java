@@ -6,6 +6,7 @@ public class RandomNumberGenerator {
     private static final Random random = new Random();
     private static final String CHARS = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
     private static final String NUMBERS="123456789";
+    private static final String CAPTCHA="abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890";
 
     public static String getToken(int length) {
         StringBuilder token = new StringBuilder(length);
@@ -18,6 +19,13 @@ public class RandomNumberGenerator {
         StringBuilder id=new StringBuilder(length);
         for (int i = 0; i <length ; i++) {
             id.append(NUMBERS.charAt(random.nextInt(NUMBERS.length())));
+        }
+        return id.toString();
+    }
+    public static String getCaptcha(int length){
+        StringBuilder id=new StringBuilder(length);
+        for (int i = 0; i <length ; i++) {
+            id.append(CAPTCHA.charAt(random.nextInt(CAPTCHA.length())));
         }
         return id.toString();
     }
