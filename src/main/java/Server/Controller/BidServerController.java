@@ -65,9 +65,9 @@ public class BidServerController {
         buyer.decreaseCredit(priceToPay);
         product.setQuantity(product.getQuantity() - quantity);
         seller.increaseCreditWithWage(priceToPay);
-        HashMap<Product, Integer> productPrice = new HashMap<>();
-        productPrice.put(product, priceToPay);
-        seller.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productPrice, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));
-        buyer.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productPrice, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));}
+        HashMap<Product, Integer> productQuantity = new HashMap<>();
+            productQuantity.put(product, quantity);
+        seller.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productQuantity, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));
+        buyer.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productQuantity, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));}
     }
 }

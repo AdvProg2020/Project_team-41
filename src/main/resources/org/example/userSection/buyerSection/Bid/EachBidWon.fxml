@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="200.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.Menus.UserSectionMenus.BuyerSectionMenus.Bid.EachBidWon">
     <children>
 
-        <TextField editable="false" layoutX="75.0" layoutY="13.0" prefHeight="34.0" prefWidth="146.0" stylesheets="@/org/example/styles/textFill.css" />
+        <TextField fx:id="bidId" editable="false" layoutX="75.0" layoutY="13.0" prefHeight="34.0" prefWidth="146.0" stylesheets="@/org/example/styles/textFill.css" />
         <TextField editable="false" layoutX="348.0" layoutY="15.0" prefHeight="34.0" prefWidth="146.0" stylesheets="@/org/example/styles/textFill.css" />
         <TextField editable="false" layoutX="289.0" layoutY="62.0" prefHeight="34.0" prefWidth="125.0" stylesheets="@/org/example/styles/textFill.css" />
         <TextField fx:id="quantity" layoutX="164.0" layoutY="108.0" prefHeight="34.0" prefWidth="125.0" stylesheets="@/org/example/styles/textFill.css" />

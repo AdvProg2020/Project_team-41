@@ -22,8 +22,8 @@ public class BidController {
        return ( ArrayList<Bid>) Connector.getInstance().initializeMessage(new Message(new Object[]{userName} , MessageType.GET_BIDS_HE_WON));
     }
 
-    public static void payForProductInBid(int quantity) throws Exception {
-        Connector.getInstance().initializeMessage(new Message(new Object[]{UserSectionController.getLoggedInPerson().getUserName() , quantity} , MessageType.PAY_FOR_WON_PRODUCT_IN_BID));
+    public static void payForProductInBid(String bidId , int quantity) throws Exception {
+        Connector.getInstance().initializeMessage(new Message(new Object[]{bidId , quantity} , MessageType.PAY_FOR_WON_PRODUCT_IN_BID));
     }
 
 }

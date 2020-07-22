@@ -13,10 +13,11 @@ public class EachBidWon {
     public Button payButton;
     public TextField quantity;
     public Text payInfo;
+    public TextField bidId;
 
     public void payForBidProduct(MouseEvent mouseEvent) {
         try {
-            BidController.payForProductInBid(Integer.parseInt(quantity.getText()));
+            BidController.payForProductInBid(bidId.getText() , Integer.parseInt(quantity.getText()));
         } catch (Exception e) {
             showMessage(payInfo , ERROR , e.getMessage());
         }
