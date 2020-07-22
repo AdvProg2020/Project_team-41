@@ -304,6 +304,8 @@ public class Database implements Serializable {
                 }
             }
             bid.setWinnerInfo(new Pair<>(winner, maxPrice));
+            maxPrice= 0;
+            winner = null;
         }
 
         ArrayList<Bid> allNewBids = new ArrayList<>();
@@ -312,22 +314,6 @@ public class Database implements Serializable {
                 allNewBids.add(bid);
             }
         }
-
-//        System.err.println("here is allBids:");
-//        for (Bid bid : allBids) {
-//            System.err.println(bid + "      winner:" + bid.getWinnerInfo());
-//            for (Buyer buyer : bid.getBuyer_recommendedPrice().keySet()) {
-//                System.out.println(buyer + "    price:" + bid.getBuyer_recommendedPrice().get(buyer));
-//            }
-//        }
-//
-//        System.err.println("here is allNewBids:");
-//        for (Bid newBid : allNewBids) {
-//            System.err.println(newBid + "      winner:" + newBid.getWinnerInfo());
-//            for (Buyer buyer : newBid.getBuyer_recommendedPrice().keySet()) {
-//                System.out.println(buyer + "    price:" + newBid.getBuyer_recommendedPrice().get(buyer));
-//            }
-//        }
 
         return allNewBids;
     }
