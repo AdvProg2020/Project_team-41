@@ -25,6 +25,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -91,6 +92,10 @@ public class ServerConnector extends Thread {
     }
 
     private void processMessage(Message message) throws Exception {
+        if(new Date().getTime()-message.getDate().getTime()>30*1000){
+            objectOutputStream.writeObject(new Message(new Exception("we got you sucker!")));
+            return;
+        }
         MessageType.ClassTypes classTypes = message.getMessageType().getClassTypes();
         switch (classTypes) {
             case USER_SECTION: {
