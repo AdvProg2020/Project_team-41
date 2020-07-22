@@ -62,11 +62,11 @@ public class Connector {
             e.printStackTrace();
         }
         assert message != null;
-        message.checkForException();
         if(new Date().getTime()-message.getDate().getTime()>30*1000){
             sendMessage(new Message(new Exception("we got you sucker!")));
             return null;
         }
+        message.checkForException();
         return message.getOutput();
     }
 
