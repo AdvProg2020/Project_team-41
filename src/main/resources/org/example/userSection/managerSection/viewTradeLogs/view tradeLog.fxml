@@ -21,6 +21,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Log id :" wrappingWidth="96.22900390625">
@@ -102,12 +105,54 @@
                            </LinearGradient>
                        </fill>
                    </Text>
+                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="email:" wrappingWidth="145.22900390625" GridPane.rowIndex="6">
+                       <font>
+                           <Font name="Times New Roman" size="17.0" />
+                       </font>
+                       <fill>
+                           <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                               <stops>
+                                   <Stop color="BLACK" />
+                                   <Stop color="#dd813f" offset="1.0" />
+                               </stops>
+                           </LinearGradient>
+                       </fill>
+                   </Text>
+                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="phone:" wrappingWidth="145.22900390625" GridPane.rowIndex="7">
+                       <font>
+                           <Font name="Times New Roman" size="17.0" />
+                       </font>
+                       <fill>
+                           <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                               <stops>
+                                   <Stop color="BLACK" />
+                                   <Stop color="#dd813f" offset="1.0" />
+                               </stops>
+                           </LinearGradient>
+                       </fill>
+                   </Text>
+                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="address:" wrappingWidth="145.22900390625" GridPane.rowIndex="8">
+                       <font>
+                           <Font name="Times New Roman" size="17.0" />
+                       </font>
+                       <fill>
+                           <LinearGradient endX="0.2158273381294964" endY="0.9760191846522782" startX="0.22541966426858512">
+                               <stops>
+                                   <Stop color="BLACK" />
+                                   <Stop color="#dd813f" offset="1.0" />
+                               </stops>
+                           </LinearGradient>
+                       </fill>
+                   </Text>
                   <TextField fx:id="logIdTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" />
                   <TextField fx:id="dateTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="deliverySituationTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="discountAmountTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="moneyTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="productsTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="emailTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="phoneNumberTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="addressTextField" editable="false" stylesheets="@/org/example/styles/textFill.css" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </children>

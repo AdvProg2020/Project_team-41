@@ -61,12 +61,18 @@ public class AddProductMenu {
             showMessage(informationText, MessageTypeShow.ERROR, "no file selected");
         } else {
             showMessage(informationText, MessageTypeShow.SUCCESS, "file selected successfully");
+            String extension;
+            try {
+                extension = file.getName().substring(file.getName().lastIndexOf(".")+1);
+            } catch (Exception e) {
+                extension = "none";
+            }
             categoryNameTextField.setText("file");
             categoryNameTextField.setEditable(false);
             amountTextField.setText("1");
             amountTextField.setEditable(false);
-            specialFeaturesTextField.setText("type-");
-            specialFeaturesTextField.setPromptText("enter file type");
+            specialFeaturesTextField.setText("extension-" + extension);
+            specialFeaturesTextField.setEditable(false);
         }
     }
 

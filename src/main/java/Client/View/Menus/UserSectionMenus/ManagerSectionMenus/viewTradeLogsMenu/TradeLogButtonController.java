@@ -4,6 +4,7 @@ import Client.Controller.UserSectionController.ManagerController;
 import Client.Models.TradeLog;
 import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.NodeFinder;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -36,13 +37,14 @@ public class TradeLogButtonController {
         else{
             tradeLogsShown.add(logIdTextField.getText());
             showTradeLog();
-
         }
     }
 
     public void deliveredClicked(MouseEvent mouseEvent) {
         try {
             ManagerController.getInstance().changeTradeLogToSent(logIdTextField.getText().trim());
+            Text informationText = (Text) NodeFinder.getChildById((Parent) NodeFinder.getParentById(gridPane, "tradeLogsAnchorPane"), "informationText");
+            MessageTypeShow.showMessage(informationText,MessageTypeShow.SUCCESS,"changed situation to sent successfully");
         } catch (Exception e) {
             e.printStackTrace();
         }

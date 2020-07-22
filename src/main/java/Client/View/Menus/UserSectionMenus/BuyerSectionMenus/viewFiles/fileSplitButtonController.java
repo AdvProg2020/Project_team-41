@@ -30,7 +30,7 @@ public class fileSplitButtonController {
         try {
             Product product = BuyerController.getInstance().getProduct(productIdTextField.getText());
             List<Byte> file = BuyerController.getInstance().downloadFile(product);
-            writeFile(convertBytes(file));
+            writeFile(convertBytes(file),product.getSpecialFeatures().get("extension").getSpecialFeatureString());
             MessageTypeShow.showMessage(informationText, MessageTypeShow.SUCCESS, "downloaded file successfully");
         } catch (Exception e) {
             MessageTypeShow.showMessage(informationText, MessageTypeShow.ERROR, e.getMessage());
@@ -45,8 +45,8 @@ public class fileSplitButtonController {
         }
         return file;
     }
-    public void writeFile(byte[] file) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream("downloadedFiles/"+productNameTextField.getText());
+    public void writeFile(byte[] file,String extension) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream("downloadedFiles/"+productNameTextField.getText()+"."+extension);
         fileOutputStream.write(file);
         fileOutputStream.close();
     }

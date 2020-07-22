@@ -295,5 +295,4 @@ public class SellerServerController extends UserSectionServerController {
                 int receipt = BankAPI.getInstance().move(money.toString(), Integer.toString(Database.getInstance().getAccountId()), accountNumber.toString(), "transformed money to seller");
                 BankAPI.getInstance().pay(Integer.toString(receipt));
         }
-
 }
