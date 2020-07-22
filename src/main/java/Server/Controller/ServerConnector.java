@@ -71,7 +71,6 @@ public class ServerConnector extends Thread {
                     Main.getConnectedPeople().remove(person);
                     System.out.println("client disconnected(i guess)");
                     System.out.println(e.getMessage());
-
                     break;
                 } catch (Exception e) {
                     try {

@@ -13,12 +13,9 @@ public class Message implements Serializable {
     private Object[] inputs;
     private Object output;
     protected MessageType messageType;
-    private Date date;
-
-
+    private final Date date = new Date();
 
     public Message(Object[] inputs, MessageType messageType) {
-        this.date=new Date();
         this.messageType = messageType;
         this.inputs = inputs;
         try {
