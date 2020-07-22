@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.example.App;
 
@@ -25,6 +26,7 @@ public class userButtonController {
     public Button viewUserButton;
     public GridPane gridPane;
     public TextField usernameTextField;
+    public Circle onlineCircle;
     ArrayList<String> usersShown = new ArrayList<>();
 
     public void viewUserClicked(MouseEvent mouseEvent) throws IOException {

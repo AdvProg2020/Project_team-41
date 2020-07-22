@@ -12,6 +12,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.example.App;
 
@@ -27,7 +29,7 @@ public class ListUsersMenu {
 
         try {
             for (String user : ManagerController.getInstance().getAllUsers()) {
-                    makeUserSplitButton(user);
+                    makeUserSplitButton(user.split("-")[0],user.split("-")[1]);
             }
         } catch (Exception e) {
             showMessage(informationText, MessageTypeShow.ERROR,e.getMessage());
@@ -40,7 +42,7 @@ public class ListUsersMenu {
         root = App.loadFXML("managerRegister");
         managerSectionBorderPane.setCenter(root);
     }
-    private void makeUserSplitButton(String username) {
+    private void makeUserSplitButton(String username,String online) {
         Parent root = null;
         try {
             root = App.loadFXML("userSection/managerSection/listUsersMenu/userSplitButton");
@@ -52,7 +54,10 @@ public class ListUsersMenu {
         GridPane gridPane = (GridPane) vBox.getChildren().get(0);
         TextField textField = (TextField) gridPane.getChildren().get(0);
         textField.setText(username);
-
+        Circle onlineCircle = (Circle) NodeFinder.getChildById(root, "onlineCircle");
+        if (online.trim().equals("true")) {
+            onlineCircle.setFill(Paint.valueOf("#6e9470"));
+        }
         usersVBox.getChildren().add(root);
     }
     private void showMessage(Text text, MessageTypeShow messageTypeShow, String message){

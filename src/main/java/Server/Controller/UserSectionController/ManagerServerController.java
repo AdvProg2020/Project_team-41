@@ -4,6 +4,7 @@ import Client.Models.*;
 import Client.Models.Person.*;
 import Server.Controller.TimeControl;
 import Server.Database;
+import Server.Main;
 
 import java.util.*;
 
@@ -83,7 +84,7 @@ public class ManagerServerController extends UserSectionServerController {
             } else {
                 userType = "unknown";
             }
-            allUsers.add(userType + " : " + user.getUserName());
+            allUsers.add(userType + " : " + user.getUserName()+"-"+ Main.getConnectedPeople().contains(user));
         }
         return allUsers;
     }
