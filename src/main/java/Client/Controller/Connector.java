@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Date;
 import java.util.List;
 
 public class Connector {
@@ -62,6 +63,10 @@ public class Connector {
         }
         assert message != null;
         message.checkForException();
+        if(new Date().getTime()-message.getDate().getTime()>30*1000){
+            sendMessage(new Message(new Exception("we got you sucker!")));
+            return null;
+        }
         return message.getOutput();
     }
 

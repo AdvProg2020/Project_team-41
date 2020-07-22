@@ -4,6 +4,7 @@ import Client.Controller.UserSectionController.UserSectionController;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -12,7 +13,7 @@ public class Message implements Serializable {
     private Object[] inputs;
     private Object output;
     protected MessageType messageType;
-
+    private final Date date = new Date();
 
     public Message(Object[] inputs, MessageType messageType) {
         this.messageType = messageType;
@@ -36,6 +37,9 @@ public class Message implements Serializable {
         }
     }
 
+    public Date getDate() {
+        return date;
+    }
 
     public String getSender() {
         return sender;
