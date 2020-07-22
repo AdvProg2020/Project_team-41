@@ -23,7 +23,7 @@ public class AddBid {
 
     public void addBid(MouseEvent mouseEvent) {
         try {
-            Connector.getInstance().initializeMessage(new Message(new Object[]{productTextField.getText() , endDateTextField.getText() , UserSectionController.getLoggedInPerson()} , MessageType.ADD_BID));
+            Connector.getInstance().initializeMessage(new Message(new Object[]{productTextField.getText() , endDateTextField.getText() , UserSectionController.getLoggedInPerson().getUserName()} , MessageType.ADD_BID));
             showMessage(informationText , MessageTypeShow.SUCCESS , "Bid added successfully");
         } catch (Exception e) {
             showMessage(informationText , MessageTypeShow.ERROR , e.getMessage());

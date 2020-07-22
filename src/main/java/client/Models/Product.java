@@ -61,6 +61,7 @@ public class Product implements Serializable {
     public Product(){
         this.productId = RandomNumberGenerator.getToken(5);
     }
+
     public ArrayList<Buyer> buyers = new ArrayList<>();
 
     public Integer calculateAverageScore() {

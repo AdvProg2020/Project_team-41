@@ -26,7 +26,7 @@ public class BidServerController {
     private BidServerController() {
     }
 
-    public void addBid(String productId, String date, Seller seller) throws Exception {
+    public void addBid(String productId, String date, String sellerUsername) throws Exception {
         Product product = AllProductsServerController.getInstance().getProduct(productId);
         for (Bid bid : Database.getInstance().getAllBids()) {
             if (bid.getProduct().equals(product))
@@ -34,7 +34,7 @@ public class BidServerController {
         }
         String[] dateTime = {date.split("-")[0], date.split("-")[1]};
         Date exactEndDate = TimeControl.getDateByDateTime(dateTime);
-        Database.getInstance().addBid(new Bid(product, exactEndDate, seller));
+        Database.getInstance().addBid(new Bid(product, exactEndDate, Database.getInstance().getSellerByUsername(sellerUsername)));
     }
 
     public void addParticipant(String bidId, String buyerId, int price) throws Exception {

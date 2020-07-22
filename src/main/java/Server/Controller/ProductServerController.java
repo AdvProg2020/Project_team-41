@@ -1,12 +1,11 @@
 package Server.Controller;
 
-import Client.Models.Comment;
-import Client.Models.Off;
+import Client.Models.*;
 import Client.Models.Person.Buyer;
-import Client.Models.Product;
-import Client.Models.Request;
+import Client.Models.Person.Person;
 import Server.Database;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class ProductServerController {
@@ -35,7 +34,15 @@ public class ProductServerController {
         }
         throw new Exception("There is no discount for this product at this time.");
     }
-    public void addComment(Comment comment){
+    public void addComment(String username , String productId , String title , String content) throws Exception {
+        Person person = Database.getInstance().getPersonByUsername(username);
+        Product product = Database.getInstance().getProductById(productId);
+        Comment comment = new Comment(person, product, title, content, CommentSituation.WAITING , false);
+        for (Product tradedProduct : person.getAllProductsHeTraded()) {
+            if (product.equals(tradedProduct)) {
+                comment.setHasHeBought(true);
+            }
+        }
         Request request=new Request(comment);
         Database.getInstance().addRequest(request);
     }

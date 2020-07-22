@@ -20,12 +20,12 @@ public class AddComment {
             ProductController.addComment(titleTextField.getText() , contentTextArea.getText() , ProductPageGeneralButtons.getTheProduct());
             showMessage(commentResultLabel , MessageTypeShow.SUCCESS , "Thanks for your comment!");
         }
-        catch(NullPointerException e){
+        catch(Exception e){
            showMessage(commentResultLabel , MessageTypeShow.ERROR , e.getMessage());
         }
-        catch (Exception e) {
-            showMessage(commentResultLabel , MessageTypeShow.ERROR , "Please fill all fields!");
-        }
+//        catch (Exception e) {
+//            showMessage(commentResultLabel , MessageTypeShow.ERROR , "Please fill all fields!");
+//        }
 
       }
 }

@@ -144,7 +144,7 @@ public class ServerConnector extends Thread {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()) {
             case ADD_BID:{
-                BidServerController.getInstance().addBid((String)inputs[0] , (String) inputs[1] , (Seller) inputs[2]);
+                BidServerController.getInstance().addBid((String)inputs[0] , (String) inputs[1] , (String) inputs[2]);
                 sendSuccessful();
                 break;
             }
@@ -192,7 +192,7 @@ public class ServerConnector extends Thread {
         Object[] inputs = message.getInputs();
         switch (message.getMessageType()) {
             case ADD_COMMENT: {
-                ProductServerController.getInstance().addComment((Comment) inputs[0]);
+                ProductServerController.getInstance().addComment((String) inputs[0] , (String) inputs[1] ,(String) inputs[2] ,(String) inputs[3] );
                 sendSuccessful();
                 break;
             }
