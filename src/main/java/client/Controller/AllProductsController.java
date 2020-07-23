@@ -27,7 +27,7 @@ public class AllProductsController {
 
     public void goToProductPage(String productId , ProductMenu productMenu) throws Exception {
         productMenu.setTheProduct(getProduct(productId));
-        AllProductsController.getInstance().getProduct(productId).setViews(getProduct(productId).getViews()+1);
+        Connector.getInstance().initializeMessage(new Message(new Object[]{productId} , MessageType.INCREASE_PRODUCT_VIEW_BY_ONE));
     }
 
     public Product getProduct(String productId) throws Exception {
