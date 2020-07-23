@@ -1,5 +1,6 @@
 package Server.Controller;
 
+import Client.Models.Bid;
 import Client.Models.Category;
 import Client.Models.Product;
 import Server.Database;
@@ -21,8 +22,14 @@ public class AllProductsServerController {
     public ArrayList<Category> getAllCategories(){
         return Database.getInstance().getAllCategory();
     }
-    public ArrayList<Product> getAllProducts(){
-        return Database.getInstance().getAllProducts();
+    public ArrayList<Product> getAllProductsForFilter() throws Exception {
+        ArrayList<Product> allProducts = new ArrayList<>(Database.getInstance().getAllProducts());
+        ArrayList<Product> bidProducts = new ArrayList<>();
+        for (Bid bid : Database.getInstance().getAllBids()) {
+            bidProducts.add(bid.getProduct());
+        }
+         allProducts.removeAll(bidProducts);
+        return allProducts;
     }
     public Product getProduct(String productId) throws Exception {
         return Database.getInstance().getProductById(productId);

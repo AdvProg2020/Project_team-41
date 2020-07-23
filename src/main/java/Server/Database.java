@@ -76,7 +76,6 @@ public class Database implements Serializable {
 
     public void addBid(Bid newBid) {
         allBids.add(newBid);
-
     }
 
     public ArrayList<Off> getAllOffs() {
@@ -304,7 +303,7 @@ public class Database implements Serializable {
                 }
             }
             bid.setWinnerInfo(new Pair<>(winner, maxPrice));
-            maxPrice= 0;
+            maxPrice = 0;
             winner = null;
         }
 

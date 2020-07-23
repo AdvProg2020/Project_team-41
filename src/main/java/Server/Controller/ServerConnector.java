@@ -220,7 +220,7 @@ public class ServerConnector extends Thread {
                 break;
             }
             case GET_ALL_PRODUCTS_FOR_FILTER:{
-                objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllProducts()));
+                objectOutputStream.writeObject(new Message(AllProductsServerController.getInstance().getAllProductsForFilter()));
                 break;
             }
             case GET_CATEGORY_BY_NAME:{
