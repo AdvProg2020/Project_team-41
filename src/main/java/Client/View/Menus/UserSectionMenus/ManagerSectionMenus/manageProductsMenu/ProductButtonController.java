@@ -1,6 +1,9 @@
 package Client.View.Menus.UserSectionMenus.ManagerSectionMenus.manageProductsMenu;
 
+import Client.Controller.Connector;
 import Client.Controller.UserSectionController.ManagerController;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Product;
 import Client.View.Menus.MessageTypeShow;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
@@ -61,7 +64,7 @@ public class ProductButtonController {
         }
         ProductPageGeneralButtons.setTheProduct(product);
         App.setRoot("ProductPage/ProductPageGeneral");
-       product.setViews(product.getViews()+1);
+        Connector.getInstance().initializeMessage(new Message(new Object[]{productIdTextField.getText()} , MessageType.INCREASE_PRODUCT_VIEW_BY_ONE));
        ProductPageGeneralButtons.parentFxmlAddress = "userSection/managerSection/manager section";
     }
     private void hideProduct() throws IOException {

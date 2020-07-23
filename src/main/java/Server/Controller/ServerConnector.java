@@ -10,6 +10,7 @@ import Client.Models.Person.*;
 import Client.Models.Product;
 import Client.Models.Score;
 import Client.View.Menus.Menu;
+import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 import Server.Controller.UserSectionController.BuyerServerController;
 import Server.Controller.UserSectionController.ManagerServerController;
 import Server.Controller.UserSectionController.SellerServerController;
@@ -205,6 +206,16 @@ public class ServerConnector extends Thread {
                 sendSuccessful();
                 break;
             }
+            case INCREASE_PRODUCT_VIEW_BY_ONE:{
+                ProductServerController.getInstance().increaseProductView((String)inputs[0]);
+                sendSuccessful();
+                break;
+            }
+            case ADD_SCORE:{
+                ProductServerController.getInstance().addScore((String)inputs[0], (int)inputs[1], (String)inputs[2]);
+                sendSuccessful();
+                break;
+            }
         }
     }
 
@@ -227,6 +238,7 @@ public class ServerConnector extends Thread {
                 objectOutputStream.writeObject(new Message(Database.getInstance().getCategoryByName((String)inputs[0])));
                 break;
             }
+
         }
     }
 

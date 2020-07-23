@@ -1,6 +1,9 @@
 package Client.View.Menus.ProductPage;
 
+import Client.Controller.Connector;
 import Client.Controller.UserSectionController.UserSectionController;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Person.Buyer;
 import Client.Models.Product;
 import Client.Models.Score;
@@ -26,7 +29,8 @@ public class ScoreProduct {
                     Score scoreObj = new Score(UserSectionController.getLoggedInPerson(), score, ProductPageGeneralButtons.getTheProduct());
                     for (Product tradedProduct : UserSectionController.getLoggedInPerson().getAllProductsHeTraded()) {
                         if (ProductPageGeneralButtons.getTheProduct().getProductId().equals(tradedProduct.getProductId())) {
-                            ProductPageGeneralButtons.getTheProduct().getScores().add(scoreObj);
+                            Connector.getInstance().initializeMessage(new Message(new Object[]
+                                    {UserSectionController.getLoggedInPerson().getUserName(), score, ProductPageGeneralButtons.getTheProduct().getProductId()}, MessageType.ADD_SCORE));
                             showMessage(scoreResult, MessageTypeShow.SUCCESS, "Thanks, we got the score");
                             error = false;
                         }

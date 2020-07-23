@@ -1,6 +1,9 @@
 package Client.View.Menus.UserSectionMenus.SellerSectionMenu.manageProductsMenu;
 
+import Client.Controller.Connector;
 import Client.Controller.UserSectionController.SellerController;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.Models.Product;
 import Client.Models.SpecialFeature;
 import Client.View.Menus.MessageTypeShow;
@@ -60,7 +63,7 @@ public class ProductButtonController {
             e.printStackTrace();
         }
         ProductPageGeneralButtons.setTheProduct(product);
-        ProductPageGeneralButtons.getTheProduct().setViews(ProductPageGeneralButtons.getTheProduct().getViews()+1);
+        Connector.getInstance().initializeMessage(new Message(new Object[]{productIdTextField.getText()} , MessageType.INCREASE_PRODUCT_VIEW_BY_ONE));
         App.setRoot("ProductPage/ProductPageGeneral");
         ProductPageGeneralButtons.parentFxmlAddress = "userSection/sellerSection/seller section";
     }

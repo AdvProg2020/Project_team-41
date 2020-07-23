@@ -52,4 +52,15 @@ public class ProductServerController {
         buyer.getCart().getProducts().put(Database.getInstance().getProductById(product.getProductId()) , 1);
 
     }
+
+    public void increaseProductView(String productId) throws Exception {
+        Product product = Database.getInstance().getProductById(productId);
+        product.setViews(product.getViews() + 1);
+    }
+
+    public void addScore(String username, int scoreNumber, String productId) throws Exception {
+        Product product = Database.getInstance().getProductById(productId);
+        Score score = new Score(Database.getInstance().getPersonByUsername(username) , scoreNumber , product);
+        product.addScore(score);
+    }
 }

@@ -1,7 +1,10 @@
 package Client.Models;
 
+import Client.Controller.Connector;
 import Client.Controller.FilterController;
 import Client.Controller.UserSectionController.ManagerController;
+import Client.Models.Message.Message;
+import Client.Models.Message.MessageType;
 import Client.View.Menus.ProductPage.ProductPageGeneralButtons;
 
 import javafx.scene.control.*;
@@ -101,7 +104,7 @@ public class OffProductsToShow {
             try {
                 Product product = ManagerController.getInstance().getProductById(this.productId);
                 ProductPageGeneralButtons.setTheProduct(product);
-                product.setViews(product.getViews()+1);
+                Connector.getInstance().initializeMessage(new Message(new Object[]{productId} , MessageType.INCREASE_PRODUCT_VIEW_BY_ONE));
                 ProductPageGeneralButtons.parentFxmlAddress = "offs";
                 FilterController.resetFilterController();
                 App.setRoot("ProductPage/ProductPageGeneral");
