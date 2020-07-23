@@ -72,6 +72,5 @@
             </fill>
         </Text>
 
-        <Text fx:id="payInfo" layoutX="96.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="336.13671875" />
     </children>
 </AnchorPane>

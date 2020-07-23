@@ -19,7 +19,7 @@ public class BidController {
     }
 
     public static ArrayList<Bid> getBidsHeWon(String userName) throws Exception {
-       return ( ArrayList<Bid>) Connector.getInstance().initializeMessage(new Message(new Object[]{userName} , MessageType.GET_BIDS_HE_WON));
+       return (ArrayList<Bid>) Connector.getInstance().initializeMessage(new Message(new Object[]{userName} , MessageType.GET_BIDS_HE_WON));
     }
 
     public static void payForProductInBid(String bidId , int quantity) throws Exception {

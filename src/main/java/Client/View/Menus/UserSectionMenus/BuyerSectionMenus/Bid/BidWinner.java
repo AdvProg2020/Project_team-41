@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static Client.View.Menus.MessageTypeShow.INFORMATION;
+import static Client.View.Menus.MessageTypeShow.showMessage;
+
 public class BidWinner {
     public VBox bidsVBox;
     public Text bidsInfo;
@@ -35,10 +38,12 @@ public class BidWinner {
         }
 
         if (allBidsHeWon.size() == 0)
-            bidsInfo.setText("No Bids you won yet");
+            showMessage(bidsInfo , INFORMATION , "No Bids you won yet");
         for (Bid bid : allBidsHeWon) {
             addEachBid(bid.getBidId(), bid.getProduct().getName() , bid.getWinnerInfo().getValue());
         }
+        EachBidWon.payInfo = bidsInfo;
+        EachBidWon.pageVBox = bidsVBox;
     }
 
 
