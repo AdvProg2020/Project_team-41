@@ -8,6 +8,7 @@ import Client.Models.BidChat.BidChatComment;
 import Client.Models.Chat.ChatBox;
 import Client.Models.Message.Message;
 import Client.Models.Message.MessageType;
+import Client.Models.Person.Buyer;
 import Client.View.Menus.Menu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -44,7 +45,7 @@ public class BidChatPage extends Menu {
 
     public void initialize() throws Exception {
         isHeOnThisPage = true;
-        numberOfComments=0;
+        numberOfComments = 0;
         if (UserSectionController.getLoggedInPerson() == null) {
             loginLogout.setText("Register/Login");
         } else {
@@ -52,71 +53,78 @@ public class BidChatPage extends Menu {
         }
         productId.setText(bid.getProduct().getProductId());
         productName.setText(bid.getProduct().getName());
-        Bid.getAllBids();
-        highestBid.setText(String.valueOf(bid.getWinnerInfo().getValue()));
+
         updateChatBox();
     }
 
-        public void back (ActionEvent actionEvent) throws IOException {
-            isHeOnThisPage = false;
-            App.setRoot("UserSection/buyerSection/buyer section");
+    public void back(ActionEvent actionEvent) throws IOException {
+        isHeOnThisPage = false;
+        App.setRoot("UserSection/buyerSection/buyer section");
+    }
+
+    public void registerOrLogin(ActionEvent actionEvent) throws IOException {
+        if (UserSectionController.getLoggedInPerson() == null) {
+            login("Bid/bidChatBox");
+        } else {
+            logout("Bid/bidChatBox");
         }
+    }
 
-        public void registerOrLogin (ActionEvent actionEvent) throws IOException {
-            if (UserSectionController.getLoggedInPerson() == null) {
-                login("Bid/bidChatBox");
-            } else {
-                logout("Bid/bidChatBox");
-            }
+    public void sendMessage(ActionEvent actionEvent) {
+        BidChatComment bidChatComment = new BidChatComment(UserSectionController.getLoggedInPerson().getUserName(),
+                message.getText(), bid.getBidId());
+        BidComment.bidChatComment = bidChatComment;
+        try {
+            chatVBox.getChildren().add(App.loadFXML("Bid/bidComment"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        public void sendMessage (ActionEvent actionEvent){
-            BidChatComment bidChatComment=new BidChatComment(UserSectionController.getLoggedInPerson().getUserName(),
-                    message.getText(),bid.getBidId());
-            BidComment.bidChatComment=bidChatComment;
-            try {
-                chatVBox.getChildren().add(App.loadFXML("Bid/bidComment"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                Connector.getInstance().initializeMessage(new Message(new Object[]{bidChatComment}, MessageType.ADD_BID_COMMENT));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            message.clear();
-
-
+        try {
+            Connector.getInstance().initializeMessage(new Message(new Object[]{bidChatComment}, MessageType.ADD_BID_COMMENT));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        public void updateChatBox () {
-            Timer animTimer = new Timer();
-            animTimer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    if (isHeOnThisPage) {
-                        BidChatBox bidChatBox = null;
-                        try {
-                            bidChatBox = (BidChatBox) Connector.getInstance().initializeMessage(new Message(new Object[]{bid.getBidId()},
-                                    MessageType.GET_BID_CHAT_BOX));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        if(bidChatBox.getChatComments().size()>numberOfComments){
-                            numberOfComments=bidChatBox.getChatComments().size();
-                            putComments(bidChatBox);
-                        }
+        message.clear();
 
 
-                    } else {
-                        this.cancel();
+    }
+
+    public void updateChatBox() {
+        Timer animTimer = new Timer();
+        animTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (isHeOnThisPage) {
+                    try {
+                        Bid.getAllBids();
+                        Bid shownBid = (Bid) Connector.getInstance().initializeMessage(new Message(new Object[]{bid.getBidId()}, MessageType.GET_BID_BY_ID));
+                        highestBid.setText(String.valueOf(shownBid.getWinnerInfo().getValue()));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    BidChatBox bidChatBox = null;
+                    try {
+                        bidChatBox = (BidChatBox) Connector.getInstance().initializeMessage(new Message(new Object[]{bid.getBidId()},
+                                MessageType.GET_BID_CHAT_BOX));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (bidChatBox.getChatComments().size() > numberOfComments) {
+                        numberOfComments = bidChatBox.getChatComments().size();
+                        putComments(bidChatBox);
                     }
 
+
+                } else {
+                    this.cancel();
                 }
 
-            }, 0, 1000);
+            }
+
+        }, 0, 1000);
 
 
-        }
+    }
 
     public void increasePrice(ActionEvent actionEvent) throws IOException {
         Stage window = new Stage();
@@ -128,11 +136,12 @@ public class BidChatPage extends Menu {
         IncreasePrice.bid = bid;
         window.showAndWait();
     }
-    public void putComments(BidChatBox bidChatBox){
+
+    public void putComments(BidChatBox bidChatBox) {
         Platform.runLater(() -> {
             chatVBox.getChildren().clear();
             for (BidChatComment chatComment : bidChatBox.getChatComments()) {
-                BidComment.bidChatComment=chatComment;
+                BidComment.bidChatComment = chatComment;
                 try {
                     chatVBox.getChildren().add(App.loadFXML("Bid/bidComment"));
                 } catch (IOException e) {
