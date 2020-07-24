@@ -322,7 +322,7 @@ public class Database implements Serializable {
         Date date = new Date();
         getAllBids();
         for (Bid bid : allBids) {
-            if (date.after(bid.getEndDate())) {
+            if (date.after(bid.getEndDate()) && bid.getWinnerInfo().getKey()!=null && bid.isWinnerBoughtProduct()==false) {
                 if (bid.getWinnerInfo().getKey().getUserName().equals(username)) {
                     bidsHeWon.add(bid);
                 }

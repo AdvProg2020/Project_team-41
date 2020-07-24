@@ -25,6 +25,7 @@ public class Bid implements Serializable {
     private HashMap<Buyer, Integer> buyer_recommendedPrice;
     private BidChatBox bidChatBox;
     private Pair <Buyer,Integer> winnerInfo;
+    private boolean winnerBoughtProduct;
 
     public Bid(Product product, Date endDate, Seller seller) {
         this.bidId = RandomNumberGenerator.getToken(5);
@@ -33,6 +34,15 @@ public class Bid implements Serializable {
         this.seller = seller;
         buyer_recommendedPrice = new HashMap<>();
         this.bidChatBox=new BidChatBox(this.bidId);
+        winnerBoughtProduct = false;
+    }
+
+    public boolean isWinnerBoughtProduct() {
+        return winnerBoughtProduct;
+    }
+
+    public void setWinnerBoughtProduct(boolean winnerBoughtProduct) {
+        this.winnerBoughtProduct = winnerBoughtProduct;
     }
 
     public Pair<Buyer, Integer> getWinnerInfo() {

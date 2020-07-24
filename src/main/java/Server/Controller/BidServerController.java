@@ -69,5 +69,6 @@ public class BidServerController {
             productQuantity.put(product, quantity);
         seller.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productQuantity, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));
         buyer.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productQuantity, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));}
+        bid.setWinnerBoughtProduct(true);
     }
 }

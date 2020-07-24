@@ -42,7 +42,7 @@ public class BidChatPage extends Menu {
     public boolean isHeOnThisPage;
     public int numberOfComments;
 
-    public void initialize() {
+    public void initialize() throws Exception {
         isHeOnThisPage = true;
         numberOfComments=0;
         if (UserSectionController.getLoggedInPerson() == null) {
@@ -52,6 +52,7 @@ public class BidChatPage extends Menu {
         }
         productId.setText(bid.getProduct().getProductId());
         productName.setText(bid.getProduct().getName());
+        Bid.getAllBids();
         highestBid.setText(String.valueOf(bid.getWinnerInfo().getValue()));
         updateChatBox();
     }
