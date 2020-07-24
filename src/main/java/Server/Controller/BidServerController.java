@@ -55,20 +55,20 @@ public class BidServerController {
         Bid bid = Database.getInstance().getBidById(bidId);
         Product product = bid.getProduct();
         Buyer buyer = bid.getWinnerInfo().getKey();
-        Seller seller = bid.getProduct().getSeller();
-        if(quantity>product.getQuantity()){
+        Seller seller = Database.getInstance().getSellerByUsername(bid.getProduct().getSeller().getUserName());
+        if (quantity > product.getQuantity()) {
             throw new Exception("we don't have that much products!");
-        }
-        else{
-        int priceToPay = (bid.getWinnerInfo().getValue()) * quantity;
-        product.addBuyer(buyer);
-        buyer.decreaseCredit(priceToPay);
-        product.setQuantity(product.getQuantity() - quantity);
-        seller.increaseCreditWithWage(priceToPay);
-        HashMap<Product, Integer> productQuantity = new HashMap<>();
+        } else {
+            int priceToPay = (bid.getWinnerInfo().getValue()) * quantity;
+            product.addBuyer(buyer);
+            buyer.decreaseCredit(priceToPay);
+            product.setQuantity(product.getQuantity() - quantity);
+            seller.increaseCreditWithWage(priceToPay);
+            HashMap<Product, Integer> productQuantity = new HashMap<>();
             productQuantity.put(product, quantity);
-        seller.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productQuantity, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));
-        buyer.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productQuantity, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));}
+            seller.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productQuantity, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));
+            buyer.addTradeLog(new TradeLog(new Date(), priceToPay, 0, productQuantity, buyer.getUserName(), TradeLog.DeliverySituation.WAITING, null));
+        }
         bid.setWinnerBoughtProduct(true);
     }
 }

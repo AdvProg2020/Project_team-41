@@ -97,6 +97,7 @@ public class BidChatPage extends Menu {
                 if (isHeOnThisPage) {
                     try {
                         Bid.getAllBids();
+
                         Bid shownBid = (Bid) Connector.getInstance().initializeMessage(new Message(new Object[]{bid.getBidId()}, MessageType.GET_BID_BY_ID));
                         highestBid.setText(String.valueOf(shownBid.getWinnerInfo().getValue()));
                     } catch (Exception e) {
