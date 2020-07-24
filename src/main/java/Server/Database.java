@@ -313,7 +313,6 @@ public class Database implements Serializable {
                 allNewBids.add(bid);
             }
         }
-
         return allNewBids;
     }
 
