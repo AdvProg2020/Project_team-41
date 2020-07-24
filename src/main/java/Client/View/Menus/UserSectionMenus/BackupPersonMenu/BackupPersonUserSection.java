@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import org.example.App;
+import org.example.Music;
+import org.example.SimpleAudioPlayer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class BackupPersonUserSection extends Menu {
 
 
     public void initialize() throws IOException {
+        SimpleAudioPlayer.getInstance().playMusic(Music.USER_SECTION);
         isHeOnThisPage=true;
         NameOfUser.hasHeChoose=false;
         if(UserSectionController.getLoggedInPerson()==null){

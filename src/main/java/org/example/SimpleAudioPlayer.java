@@ -42,7 +42,7 @@ public class SimpleAudioPlayer {
     }
     public void playMusic(Music music)  {
         String previousMusic = file;
-        file = "src/main/resources/org/example/musics2/"+ music.getName() +".mp3";
+        file = "src/main/resources/org/example/musics/"+ music.getName() +".mp3";
         if (file.equals(previousMusic)) {
             return;
         }
