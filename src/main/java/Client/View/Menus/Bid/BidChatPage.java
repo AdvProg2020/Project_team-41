@@ -122,7 +122,7 @@ public class BidChatPage extends Menu {
 
             }
 
-        }, 0, 1000);
+        }, 0, 3000);
 
 
     }

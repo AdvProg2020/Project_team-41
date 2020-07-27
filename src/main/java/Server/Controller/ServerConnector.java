@@ -18,13 +18,11 @@ import Server.Controller.UserSectionController.UserSectionServerController;
 import Server.Database;
 import Server.Main;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,6 +41,11 @@ public class ServerConnector extends Thread {
             ServerConnector.serverSocket = serverSocket;
         }
         this.socket = socket;
+        try {
+            socket.setTcpNoDelay(true);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
         this.backup=new Backup();
     }
 
@@ -50,9 +53,9 @@ public class ServerConnector extends Thread {
     public void run() {
         try {
             try {
-                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                objectOutputStream = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
                 objectOutputStream.flush();
-                objectInputStream = new ObjectInputStream(socket.getInputStream());
+                objectInputStream = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -65,6 +68,7 @@ public class ServerConnector extends Thread {
                         System.out.println(message);
                     System.err.println("----------------------");
                     processMessage(message);
+                    objectOutputStream.flush();
                     ServerSaver.write(AllCommands.allData);
 
                 } catch (IOException | ClassNotFoundException e) {

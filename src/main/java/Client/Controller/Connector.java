@@ -2,10 +2,9 @@ package Client.Controller;
 
 import Client.Models.Message.Message;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Date;
 import java.util.List;
 
@@ -28,9 +27,15 @@ public class Connector {
     private Connector(Socket socket){
         this.socket = socket;
         try {
-            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            socket.setTcpNoDelay(true);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        try {
+            objectOutputStream = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             objectOutputStream.flush();
-            objectInputStream = new ObjectInputStream(socket.getInputStream());
+            objectInputStream = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,6 +50,7 @@ public class Connector {
             System.err.println("----------------------");
             objectOutputStream.reset();
             objectOutputStream.writeObject(message);
+            objectOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
