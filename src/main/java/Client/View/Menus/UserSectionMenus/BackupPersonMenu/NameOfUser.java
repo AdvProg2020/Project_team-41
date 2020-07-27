@@ -75,7 +75,7 @@ public class NameOfUser {
 
             }
 
-        }, 0, 1000);
+        }, 0, 3000);
     }
     public static void putComments(ChatBox chatBox){
 

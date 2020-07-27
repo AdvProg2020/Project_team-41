@@ -87,7 +87,7 @@ public class BackupPersonUserSection extends Menu {
                 }
             }
 
-        }, 0, 1000);
+        }, 0, 2000);
 
 
     }
