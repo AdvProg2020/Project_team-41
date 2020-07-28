@@ -96,10 +96,10 @@ public class ServerConnector extends Thread {
     }
 
     private void processMessage(Message message) throws Exception {
-//        if(new Date().getTime()-message.getDate().getTime()>30*1000){
-//            objectOutputStream.writeObject(new Message(new Exception("we got you sucker!")));
-//            return;
-//        }
+        if(new Date().getTime()-message.getDate().getTime()>30*1000){
+            objectOutputStream.writeObject(new Message(new Exception("we got you sucker!")));
+            return;
+        }
         MessageType.ClassTypes classTypes = message.getMessageType().getClassTypes();
         switch (classTypes) {
             case USER_SECTION: {
