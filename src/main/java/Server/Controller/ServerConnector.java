@@ -81,6 +81,7 @@ public class ServerConnector extends Thread {
                     try {
                         e.printStackTrace();
                         objectOutputStream.writeObject(new Message(e));
+                        objectOutputStream.flush();
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                         break;
